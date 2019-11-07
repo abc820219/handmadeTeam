@@ -30,16 +30,16 @@ const NavBar = props => {
             {showMenuBtn ? (
               <ul className="navbarBtn">
                 <li>
-                  <Link to="/course">課程</Link>
+                  <Link to="/handmade/store/course">課程</Link>
                 </li>
                 <li>
-                  <Link to="/store">店家</Link>
+                  <Link to="/handmade/store">店家</Link>
                 </li>
                 <li>
-                  <Link to="/teacher">老師</Link>
+                  <Link to="/handmade/teacher">老師</Link>
                 </li>
                 <li>
-                  <Link to="/ingredients">食材</Link>
+                  <Link to="/handmade/ingredients">食材</Link>
                 </li>
               </ul>
             ) : null}

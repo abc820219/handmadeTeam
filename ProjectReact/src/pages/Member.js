@@ -9,13 +9,11 @@ const Member = ({ match }) => {
     <>
       <div className="d-flex">
         <NavBar />
-        <Router>
-          <MemberSideBar />
-          <Switch>
-            <Route exact path={`/order`} component={MemberOrder} />
-            <Route exact path={`/edit`} component={MemberEdit} />
-          </Switch>
-        </Router>
+        <MemberSideBar />
+        <Switch>
+          <Route exact path={`/handmade/member/order`} component={MemberOrder} />
+          <Route exact path={`/handmade/member/edit`} component={MemberEdit} />
+        </Switch>
       </div>
     </>
   );

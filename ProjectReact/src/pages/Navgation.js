@@ -1,8 +1,14 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class Navgation extends Component {
   render() {
-    return <div>navgation</div>;
+    return (
+      <>
+        <Link to="/handmade">handmade</Link>
+        <div>navgation</div>
+      </>
+    );
   }
 }
 
