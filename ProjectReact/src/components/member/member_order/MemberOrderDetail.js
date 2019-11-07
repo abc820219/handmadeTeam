@@ -19,11 +19,7 @@ const MemberOrderDetail = ({ orderType }) => {
         return "";
     }
   }
-  return (
-    <>
-      <div className="container">{renderSwitch(orderType)}</div>
-    </>
-  );
+  return <>{renderSwitch(orderType)}</>;
 };
 
 export default MemberOrderDetail;

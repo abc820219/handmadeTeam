@@ -9,7 +9,7 @@ import {
   Store,
   Teacher,
   Ingredients
-} from "./routes/index";
+} from "./Routes/index";
 function App() {
   return (
     <>
