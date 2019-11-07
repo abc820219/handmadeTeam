@@ -1,21 +1,21 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class Handmade extends Component {
   render() {
     return (
       <>
-        <Link to="course">course</Link>
+        <Link to="/handmade/store/course">course</Link>
         <br></br>
-        <Link to="cart">cart</Link>
+        <Link to="/handmade/cart">cart</Link>
         <br></br>
-        <Link to="member">member</Link>
+        <Link to="/handmade/member">member</Link>
         <br></br>
-        <Link to="store">store</Link>
+        <Link to="/handmade/store">store</Link>
         <br></br>
-        <Link to="teacher">teacher</Link>
+        <Link to="/handmade/teacher">teacher</Link>
         <br></br>
-        <Link to="ingredients">ingredients</Link>
+        <Link to="/handmade/ingredients">ingredients</Link>
         <br></br>
       </>
     );

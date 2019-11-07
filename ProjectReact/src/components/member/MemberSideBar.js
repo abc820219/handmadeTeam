@@ -1,7 +1,7 @@
 import React from "react";
 import "../../commom/scss/member/member_sideBar.scss";
 import { Link } from "react-router-dom";
-
+import MemberEdit from "./MemberEdit";
 const MemberSideBar = ({ match }) => {
   return (
     <aside className="side-bar">
@@ -19,9 +19,7 @@ const MemberSideBar = ({ match }) => {
         <div className="member-profile">
           <p>PROFILE</p>
           <h3>
-            <Link to="/edit" replace={false}>
-              基本資料修改
-            </Link>
+            <Link to="/handmade/member/edit">基本資料修改</Link>
           </h3>
           <h3>重設密碼</h3>
         </div>
@@ -34,12 +32,12 @@ const MemberSideBar = ({ match }) => {
           <p>ACTIVITY FINISHING</p>
           <h3>優惠活動</h3>
           <h3>
-            <Link to="/order">訂單紀錄</Link>
+            <Link to="/handmade/member/order">訂單紀錄</Link>
           </h3>
         </div>
         <div className="text-center mt-5">
           <h3>
-            <Link to="/home">Home</Link>
+            <Link to="/handmade">Home</Link>
           </h3>
           <h3>SIgn Out</h3>
         </div>
