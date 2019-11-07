@@ -1,6 +1,7 @@
-import React  from "react";
+import React from "react";
 import "../../commom/scss/member/memberEdit.scss";
-
+import { FaUserAlt, FaBirthdayCake, FaAddressCard } from "react-icons/fa";
+import { MdEmail, MdPhoneAndroid } from "react-icons/md";
 const MemberEdit = () => {
   return (
     <div className="container-fluid">
@@ -24,21 +25,35 @@ const MemberEdit = () => {
               <div className="d-flex  justify-content-center">
                 <div className="short-input">
                   <div className="titleH">Name</div>
-                  <input type="name" />
-                  <br></br>
+                  <div className="position-relative">
+                    <input name="" type="name" placeholder="請填入姓名" />
+                    <FaUserAlt
+                      style={{ position: "absolute", top: "25%", left: "8px" }}
+                    />
+                  </div>
                   <span></span>
                 </div>
                 <div className="short-input">
                   <div className="titleH">NickName</div>
-                  <input type="tel" />
+                  <div className="position-relative">
+                    <input name="" type="tel" placeholder="請填入暱稱" />
+                    <FaUserAlt
+                      style={{ position: "absolute", top: "25%", left: "8px" }}
+                    />
+                  </div>
                   <br></br>
                   <span></span>
                 </div>
               </div>
               <div className="d-flex  justify-content-center">
                 <div className="longe-input">
-                  <div className="titleH">Street address</div>
-                  <input type="text" />
+                  <div className="titleH">Email address</div>
+                  <div className="position-relative">
+                    <input name="" type="text" placeholder="請填入信箱地址" />
+                    <MdEmail
+                      style={{ position: "absolute", top: "25%", left: "8px" }}
+                    />
+                  </div>
                   <br></br>
                   <span></span>
                 </div>
@@ -46,34 +61,59 @@ const MemberEdit = () => {
               <div className="d-flex  justify-content-center">
                 <div className="short-input">
                   <div className="titleH">Phone</div>
-                  <input type="tel" />
+                  <div className="position-relative">
+                    <input name="" type="tel" placeholder="請填入手機" />
+                    <MdPhoneAndroid
+                      style={{ position: "absolute", top: "25%", left: "8px" }}
+                    />
+                  </div>
                   <br></br>
                   <span></span>
                 </div>
                 <div className="short-input">
                   <div className="titleH">birthday</div>
-                  <input className="date-input" type="date" />
+                  <div className="position-relative">
+                    <input name="" className="date-input" type="date" />
+                    <FaBirthdayCake
+                      style={{ position: "absolute", top: "25%", left: "8px" }}
+                    />
+                  </div>
                   <br></br>
                   <span></span>
                 </div>
               </div>
-              <div className="d-flex  justify-content-center mb-5">
+              <div className="d-flex  justify-content-center mb-1">
                 <div className="longe-input">
                   <div className="titleH">Street address</div>
-                  <input type="address" />
+                  <div className="position-relative">
+                    <input name="" type="address" placeholder="請填入地址" />
+                    <FaAddressCard
+                      style={{ position: "absolute", top: "25%", left: "8px" }}
+                    />
+                  </div>
                   <br />
                   <span></span>
                 </div>
               </div>
             </div>
-            <div className="MemberEditFooter my-5 d-flex  flex-column align-items-end">
-              <input className="formBtn  mt-5" type="submit" value="修改" />
+            <div className="MemberEditFooter  d-flex  flex-column align-items-end">
+              <input
+                name=""
+                className="formBtn"
+                type="submit"
+                value="修改"
+                onClick={formSubmit}
+              />
             </div>
           </form>
         </div>
       </div>
     </div>
   );
+  function formSubmit(event) {
+    event.preventDefault();
+    console.log("formSubmit");
+  }
 };
 
 export default MemberEdit;

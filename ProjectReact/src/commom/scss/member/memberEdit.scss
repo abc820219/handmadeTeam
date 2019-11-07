@@ -17,8 +17,10 @@
   border-width: 10px;
   border-bottom: 1px solid #544641;
 }
-.MemberEditMain {
+.MemberEditMain,
+.MemberPasswordEditMain {
   //   padding-left: 10%;
+
   .short-input {
     width: 288px;
     margin: 10px 2%;
@@ -47,10 +49,13 @@
   border-width: 10px;
   border-top: 1px solid #544641;
 }
-
+.MemberPasswordEditMain {
+  padding: 0% 19%;
+}
 .formBtn {
   padding: 13px 50px;
   border-radius: 20px;
   margin-right: 18%;
-  background-color: #F0F1F7;
+  margin-top: 3.5%;
+  background-color: #f0f1f7;
 }

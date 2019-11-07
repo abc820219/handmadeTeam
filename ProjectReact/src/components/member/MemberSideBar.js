@@ -21,7 +21,9 @@ const MemberSideBar = ({ match }) => {
           <h3>
             <Link to="/handmade/member/edit">基本資料修改</Link>
           </h3>
-          <h3>重設密碼</h3>
+          <h3>
+            <Link to="/handmade/member/passwordEdit">重設密碼</Link>
+          </h3>
         </div>
         <div className="member-like">
           <p>LIKED AND　WATCHED</p>
@@ -34,12 +36,6 @@ const MemberSideBar = ({ match }) => {
           <h3>
             <Link to="/handmade/member/order">訂單紀錄</Link>
           </h3>
-        </div>
-        <div className="text-center mt-5">
-          <h3>
-            <Link to="/handmade">Home</Link>
-          </h3>
-          <h3>SIgn Out</h3>
         </div>
       </div>
     </aside>

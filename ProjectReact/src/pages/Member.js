@@ -2,8 +2,9 @@ import React from "react";
 import MemberOrder from "../components/member/member_order/MemberOrder";
 import MemberSideBar from "../components/member/MemberSideBar";
 import MemberEdit from "../components/member/MemberEdit";
+import MemberPasswordEdit from "../components/member/MemberPasswordEdit";
 import NavBar from "../components/NavBar";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {  Route, Switch } from "react-router-dom";
 const Member = ({ match }) => {
   return (
     <>
@@ -11,8 +12,17 @@ const Member = ({ match }) => {
         <NavBar />
         <MemberSideBar />
         <Switch>
-          <Route exact path={`/handmade/member/order`} component={MemberOrder} />
-          <Route exact path={`/handmade/member/edit`} component={MemberEdit} />
+          <Route
+            exact
+            path={`/handmade/member/order`}
+            component={MemberOrder}
+          />
+          <Route
+            exact
+            path={`/handmade/member/passwordEdit`}
+            component={MemberPasswordEdit}
+          />
+          <Route path={`/handmade/member/:edit?`} component={MemberEdit} />
         </Switch>
       </div>
     </>
