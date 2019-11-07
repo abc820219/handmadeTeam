@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import {
   Handmade,
-  Navgation,
   Course,
   Cart,
   Member,
@@ -10,12 +9,11 @@ import {
   Teacher,
   Ingredients
 } from "./routes/index";
-function App() {
+function ProductPage() {
   return (
     <>
       <Router>
         <Switch>
-          <Route path="/" exact component={Navgation}></Route>
           <Route path="/handmade/:id?" component={Handmade}></Route>
           <Route path="/course/:id?" component={Course}></Route>
           <Route path="/cart" component={Cart}></Route>
@@ -28,4 +26,4 @@ function App() {
     </>
   );
 }
-export default App;
+export default ProductPage;

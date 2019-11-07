@@ -1,0 +1,91 @@
+.page-nav {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 60px;
+  background-color: rgba(255, 255, 255, 0.38);
+  padding: 0px;
+}
+
+body {
+  background-color: rgb(0, 87, 168);
+}
+/*瀚文增加 */
+.navbar {
+  z-index: 999;
+}
+.navbarBtn {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.7);
+  max-width: "100px";
+  white-space: nowrap;
+  left: 20px;
+  top: 55px;
+}
+.navbarBtn::before {
+  content: "";
+  width: 0;
+  display: block;
+  content: "";
+  border-width: 8px 8px 8px 8px;
+  border-style: solid;
+  border-color: transparent transparent rgba(255, 255, 255, 0.7) transparent;
+  /* 定位 */
+  position: absolute;
+  left: 5px;
+  top: -16px;
+}
+.navbarBtn li {
+  padding: 5px 30px;
+}
+.navbarBtn li + li {
+  border-top: 1px solid #000;
+}
+
+/*瀚文增加 */
+.page-nav-aside {
+  /* width: 474px; */
+  height: 100%;
+}
+
+.page-nav-aside h3 {
+  font-size: 25px;
+  color: #362d2b;
+  margin: 0px;
+}
+
+.fa-bars {
+  width: 16px;
+  height: 14px;
+  /* margin-left: 30px; */
+  margin-right: 0px;
+}
+
+.page-nav-rightside {
+  width: 84px;
+  height: 37px;
+}
+
+.page-nav-rightside p {
+  font-size: 12px;
+  color: #362d2b;
+  margin: 0px;
+  line-height: 37px;
+  background-color: rgba(255, 255, 255, 0.64);
+  padding: 0 10px;
+}
+
+.navbar-profile {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #fff;
+  overflow: hidden;
+  margin: 0px;
+}
+
+.navbar-profile img {
+  object-fit: cover;
+  width: 100%;
+}

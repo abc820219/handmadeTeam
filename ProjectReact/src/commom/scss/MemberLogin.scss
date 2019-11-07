@@ -1,0 +1,100 @@
+* {
+  list-style: none;
+}
+body {
+  background-color: bisque;
+}
+
+.login-wrap {
+  background-color: rgb(255, 255, 255);
+  width: 25%;
+  min-width: 300px;
+  max-height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  border-radius: 1%;
+  p {
+    font-size: 18px;
+    color: #39393e;
+  }
+  .my-facebook-button-class {
+    min-width: 220px;
+    white-space: nowrap;
+    line-height: 10px;
+    text-align: center;
+    border-radius: 3px;
+    font-family: Helvetica, sans-serif;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: calc(0.27548vw + 12.71074px);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background-color 0.3s, border-color 0.3s;
+    background-color: #4c69ba;
+    border: calc(0.06887vw + 0.67769px) solid #4c69ba;
+    padding: calc(0.34435vw + 13.38843px) calc(0.34435vw + 18.38843px);
+  }
+  form {
+    ul {
+      li {
+        position: relative;
+        label {
+          color: #aaa;
+          position: absolute;
+          top: 10px;
+          left: 15px;
+        }
+        input {
+          padding: 10px 10px 10px 40px;
+          border: 1px solid #d3d3d5;
+        }
+        .error {
+          border: 1px solid red;
+        }
+        .errorText {
+          color: red;
+          font-size: 0.75em;
+          position: relative;
+        }
+      }
+    }
+    .password-forget {
+      cursor: pointer;
+      color: #aaa;
+    }
+    .register {
+      cursor: pointer;
+      color: #aaa;
+    }
+    .login-btn {
+      input {
+        display: block;
+        text-align: center;
+        width: 100%;
+        padding: 5px 0;
+        border-radius: 5px;
+        margin: 0;
+        color: #fff;
+        background: #f78177;
+        border-color: #f78177;
+        cursor: pointer;
+      }
+    }
+  }
+}
+.login-backdrop {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.3;
+  background-color: #000;
+}

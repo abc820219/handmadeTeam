@@ -1,0 +1,56 @@
+* {
+  border-style: none;
+}
+.MemberEditHeader {
+  h4 {
+    span {
+      display: block;
+      padding: 3% 19%;
+    }
+  }
+}
+.MemberEditHeader::after {
+  content: "";
+  margin: auto;
+  display: block;
+  width: 95%;
+  border-width: 10px;
+  border-bottom: 1px solid #544641;
+}
+.MemberEditMain {
+  //   padding-left: 10%;
+  .short-input {
+    width: 288px;
+    margin: 10px 2%;
+  }
+  input {
+    width: 100%;
+    border-radius: 3px;
+    padding: 10px 35px;
+  }
+  .date-input {
+    padding: 6.7px 35px;
+  }
+  .titleH {
+    line-height: 60px;
+  }
+  .longe-input {
+    width: 620px;
+    margin: 10px 2%;
+  }
+}
+.MemberEditFooter::before {
+  content: "";
+  margin: auto;
+  display: block;
+  width: 95%;
+  border-width: 10px;
+  border-top: 1px solid #544641;
+}
+
+.formBtn {
+  padding: 13px 50px;
+  border-radius: 20px;
+  margin-right: 18%;
+  background-color: #F0F1F7;
+}
