@@ -1,8 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../../commom/scss/member/memberEdit.scss";
 import Captcha from "captcha-mini";
 import { FaKey } from "react-icons/fa";
 const MemberPasswordEdit = () => {
+  useEffect(() => {
+    let captcha = new Captcha({
+      lineWidth: 1, //线条宽度
+      lineNum: 3, //线条数量
+      dotR: 1, //点的半径
+      dotNum: 25, //点的数量
+      preGroundColor: [50, 80], //前景色区间
+      backGroundColor: [150, 250], //背景色区间
+      fontSize: 30, //字体大小
+      fontFamily: ["Georgia", "微软雅黑", "Helvetica", "Arial"], //字体类型
+      fontStyle: "stroke", //字体绘制方法，有fill和stroke
+      content: "abcdefghijklmnopqrstuvw", //验证码内容
+      length: 3 //验证码长度
+    });
+    //把生成的驗證碼丟到canvas容器中，然後callback把它(參數自訂為r)設定給state
+    captcha.draw(
+      document.querySelector("#captcha"),
+      value => {
+        console.log(value);
+      },
+      []
+    );
+  });
   return (
     <div className="container-fluid">
       <div className="row">
@@ -10,10 +33,7 @@ const MemberPasswordEdit = () => {
           className="col-4"
           style={{ background: "#635E59", minHeight: "937px" }}
         ></div>
-        <div
-          className="col-8 d-flex flex-column"
-          style={{ background: "#F3D6B7", minHeight: "937px" }}
-        >
+        <div className="col-8 d-flex flex-column">
           <form>
             <div className="MemberEditHeader my-5">
               <h4>
@@ -73,7 +93,7 @@ const MemberPasswordEdit = () => {
                   <span></span>
                 </div>
               </div>
-              <div className="d-flex mb-5">
+              <div className="d-flex">
                 <div className="short-input">
                   <div className="titleH">驗證碼</div>
                   <div className="position-relative">
@@ -86,8 +106,8 @@ const MemberPasswordEdit = () => {
                         color: "#fff"
                       }}
                     />
+                    <canvas width="100" height="30px" id="captcha" />
                   </div>
-                  <span></span>
                 </div>
               </div>
             </div>

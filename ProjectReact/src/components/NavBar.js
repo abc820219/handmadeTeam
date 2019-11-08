@@ -35,7 +35,10 @@ const NavBar = props => {
           onMouseLeave={MenuListLeave}
         >
           <div style={{ position: relative }}>
-            <GiHamburgerMenu className="mx-3 " style={{ fontSize: "30px" }} />
+            <GiHamburgerMenu
+              className="mx-3 "
+              style={{ fontSize: "30px", color: "#fff" }}
+            />
             {showMenuBtn ? (
               <ul className="navbarBtn">
                 <li>
