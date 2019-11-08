@@ -1,14 +1,10 @@
 .orderDeCourse {
   height: 100vh;
-<<<<<<< HEAD
-  .wrapper{
-=======
   padding-top: 60px;
-  wrapper{
->>>>>>> b9707af8eed1fa0ef1341d5853b5cbdc1225a261
+  wrapper {
     height: 90px;
-    border-bottom: 1px solid #F0F1F7;
-    p{
+    border-bottom: 1px solid #f0f1f7;
+    p {
       font-size: 16px;
       margin-bottom: 5px;
     }
@@ -16,7 +12,7 @@
 }
 
 .orderDeCourse {
-  border-bottom: 1px solid #F0F1F7;
+  border-bottom: 1px solid #f0f1f7;
   figure {
     width: 64px;
     height: 64px;
@@ -30,13 +26,13 @@
   }
 }
 
-.orderDeCourseList{
+.orderDeCourseList {
   flex-grow: 1;
-  border-bottom: 1px solid #F0F1F7;
+  border-bottom: 1px solid #f0f1f7;
   padding: 20px 65px 20px 60px;
-  p{
+  p {
     font-size: 16px;
-    color: #9597A6;
+    color: #9597a6;
     margin-bottom: 0px;
   }
   h5 {
@@ -47,23 +43,23 @@
     height: 80px;
     background-color: #fff;
     border-radius: 5px;
-    li{
+    li {
       flex-grow: 1;
-      border-right: 1px #F0CFB4 solid;
+      border-right: 1px #f0cfb4 solid;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      h4{
+      h4 {
         font-weight: light;
         font-size: 24px;
       }
-      .my-1{
+      .my-1 {
         width: 32px;
         height: 32px;
         border-radius: 50%;
       }
-      p{
+      p {
         font-size: 12px;
         font-weight: bold;
       }
@@ -71,42 +67,42 @@
   }
 }
 
-.orderCourseIcon{
-  background-color: #F7ECEB;
+.orderCourseIcon {
+  background-color: #f7eceb;
 }
 .orderCourseDel {
   width: 97px;
   height: 32px;
   border-radius: 5px;
-  background-color: #F0F1F7;
-  p{
+  background-color: #f0f1f7;
+  p {
     margin-left: 10px;
   }
 }
 
-.orderIconBottom{
-  width:160px;
-  height:48px;
+.orderIconBottom {
+  width: 160px;
+  height: 48px;
   border-radius: 5px;
-  background-color: #F0F1F7;
+  background-color: #f0f1f7;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 20px 0px 20px; 
+  padding: 0px 20px 0px 20px;
 }
 
-.orderIconRight{
-  width:97px;
-  height:32px;
+.orderIconRight {
+  width: 97px;
+  height: 32px;
   border-radius: 5px;
-  background-color: #F0F1F7;
+  background-color: #f0f1f7;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 5px 0px 5px; 
-  p{
+  padding: 0px 5px 0px 5px;
+  p {
     font-size: 14px;
     padding: 0px;
     white-space: nowrap;

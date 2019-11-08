@@ -11,8 +11,7 @@ const MemberEdit = () => {
           style={{ background: "#635E59", minHeight: "937px" }}
         ></div>
         <div
-          className="col-8 d-flex flex-column"
-          style={{ background: "#F3D6B7", minHeight: "937px" }}
+          className="col-8 d-flex flex-column bg-linear"
         >
           <form>
             <div className="MemberEditHeader my-5">
