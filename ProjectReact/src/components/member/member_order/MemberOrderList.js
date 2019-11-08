@@ -31,7 +31,7 @@ const MemberOrderList = ({ changeOrderType }) => {
     <>
       <Container
         className="memberOrderList"
-        style={{ backgroundColor: "#544741" }}
+        style={{ backgroundColor: "#544741" ,paddingTop:'60px'}}
       >
         <div className="orderListTitle d-flex">
           <GiHamburgerMenu

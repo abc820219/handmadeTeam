@@ -1,5 +1,6 @@
 .orderDeCourse {
   height: 100vh;
+  padding-top: 60px;
   wrapper{
     height: 90px;
     border-bottom: 1px solid #F0F1F7;
@@ -100,9 +101,10 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 13px 0px 13px; 
+  padding: 0px 5px 0px 5px; 
   p{
     font-size: 14px;
     padding: 0px;
+    white-space: nowrap;
   }
 }
