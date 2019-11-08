@@ -18,14 +18,23 @@ const NavBar = props => {
   const MenuList = () => {
     setshowMenuBtn(!showMenuBtn);
   };
+  const MenuListLeave = () => {
+    if (showMenuBtn == true) {
+      setshowMenuBtn(!showMenuBtn);
+    }
+  };
   if (showLightBox) {
     console.log("clicked");
   }
   return (
     <>
       <nav className="navbar page-nav d-flex">
-        <div className="page-nav-aside d-flex align-items-center justify-content-center">
-          <div style={{ position: relative }} onClick={MenuList}>
+        <div
+          className="page-nav-aside d-flex align-items-center justify-content-center"
+          onClick={MenuList}
+          onMouseLeave={MenuListLeave}
+        >
+          <div style={{ position: relative }}>
             <GiHamburgerMenu className="mx-3 " style={{ fontSize: "30px" }} />
             {showMenuBtn ? (
               <ul className="navbarBtn">
@@ -40,6 +49,9 @@ const NavBar = props => {
                 </li>
                 <li>
                   <Link to="/handmade/ingredients">食材</Link>
+                </li>
+                <li>
+                  <Link to="/handmade">首頁</Link>
                 </li>
               </ul>
             ) : null}
