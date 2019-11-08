@@ -8,6 +8,8 @@ import { FaCheck } from "react-icons/fa";
 import { FaExchangeAlt } from "react-icons/fa";
 import { MdCancel } from "react-icons/md";
 import { FaMapMarkerAlt } from "react-icons/fa";
+import { FaQuoteLeft } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
 
 
 const OrderDeListCourse = props => {
@@ -15,7 +17,8 @@ const OrderDeListCourse = props => {
     width: '64px',
     height: '64px',
     borderRadius: '50%',
-    backgroundColor: '#F7ECEB'
+    backgroundColor: '#F7ECEB',
+    marginRight: '80px'
   };
   return (
     <>
@@ -102,13 +105,40 @@ const OrderDeListCourse = props => {
           <figure style={iconZone} className='d-flex justify-content-center align-items-center'>
             <FaMapMarkerAlt style={{ color: '#EBD0CE', fontSize: '30px' }} />
           </figure>
-          <h5>235新北市中和區連城路160號後棟</h5>
-          <div className='orderIconRight'>
-            <p>Google Map</p>
+          <p style={{ color: '#544741' }}>235新北市中和區連城路160號後棟</p>
+          <div className='orderIconRight ml-auto'>
+            <p style={{ color: '#544741', maxWidth: '500px' }}>Google Map</p>
           </div>
         </div>
-        <div className='orderDeCourseList'>Hello</div>
-        <div className='orderDeCourseList'>Hello</div>
+        <div className='orderDeCourseList d-flex align-items-center'>
+          <figure style={iconZone} className='d-flex justify-content-center align-items-center'>
+            <FaQuoteLeft style={{ color: '#EBD0CE', fontSize: '30px' }} />
+          </figure>
+          <p style={{ color: '#544741', maxWidth: '500px' }}>臣亮言：先帝創業未半，而中道崩殂。今天下三分，益州疲弊，
+          此誠危急存亡之秋也。然侍衛之臣，不懈於內；
+          忠志臣亮言：先帝創業未半，而中</p>
+          <div className='orderIconRight ml-auto'>
+            <p style={{ color: '#544741' }}>Go Item page</p>
+          </div>
+        </div>
+        <div className='orderDeCourseList d-flex align-items-center'>
+          <figure style={iconZone} className='d-flex justify-content-center align-items-center'>
+            <img src="https://i.vimeocdn.com/portrait/4703572_640x640" alt='' />
+          </figure>
+          <div>
+            <div>
+              <p>成品名稱</p>
+              <h5>超級巧克男孩</h5>
+            </div>
+            <div className='mt-3 ml-3'>
+              <p>4.4 rating</p>
+            </div>
+          </div>
+          <div className='orderIconRight ml-auto'>
+            <FaStar />
+            <p style={{ color: '#544741' }}>Reviews</p>
+          </div>
+        </div>
         <div className='orderDeCourseList d-flex justify-content-between align-items-center flex-md-wrap'>
           <div className='orderIconBottom'>
             <FaExchangeAlt style={{ fontSize: '16px', color: '#545871' }} />

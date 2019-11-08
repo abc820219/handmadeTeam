@@ -13,10 +13,10 @@ const MemberOrder = props => {
     <div className="container-fluid">
       <div className="row">
         <div className="col-4 p-0">
-          <MemberOrderList changeOrderType={changeOrderType} />
+          <MemberOrderList changeOrderType={changeOrderType} style={{paddingTop:'60px'}}/>
         </div>
         <div className="col-8 p-0">
-          <MemberOrderDetail orderType={orderType} />
+          <MemberOrderDetail orderType={orderType} style={{paddingTop:'60px'}}/>
         </div>
       </div>
     </div>
