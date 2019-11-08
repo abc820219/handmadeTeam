@@ -87,6 +87,9 @@ app.use('/handmade/ingredients', ingredientsRoute);
 const cartRoute = require('../routes/cartRoute');
 app.use('/handmade/cart', cartRoute);
 
+const memberOrderRoute = require('../routes/memberOrderRoute');
+app.use('/handmade/member/order', memberOrderRoute);
+
 // ---------中間層結束---------
 
 

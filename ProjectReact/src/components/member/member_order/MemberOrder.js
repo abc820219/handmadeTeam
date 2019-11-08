@@ -9,14 +9,21 @@ const MemberOrder = props => {
     setOrderType(a);
   };
 
-  useEffect(async() => {
+  const orderData = async () =>{
     try{
-      const dataJson = await fetch("");
-      const result = dataJson.json();
+      const user = await localStorage.getItem('id');
+      console.log(user);
+      const dataJson = await fetch(`http://localhost:5000/handmade/member/order/${user}`);
+      const result = await dataJson.json();
+      console.log(result);
     }catch(e){
       console.log(e);
     }
-  })
+  }
+
+  useEffect(() => {
+    orderData();
+  },[])
 
   return (
     <div className="container-fluid">
