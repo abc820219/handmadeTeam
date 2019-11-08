@@ -95,9 +95,9 @@ const MemberPasswordEdit = () => {
               </div>
               <div className="d-flex">
                 <div className="short-input">
-                  <div className="titleH">新密碼確認</div>
+                  <div className="titleH">驗證碼</div>
                   <div className="position-relative">
-                    <input name="" type="name" placeholder="請再次填入新密碼" />
+                    <input name="" type="name" placeholder="請填入驗證碼" />
                     <FaKey
                       style={{
                         position: "absolute",
@@ -106,10 +106,8 @@ const MemberPasswordEdit = () => {
                         color: "#fff"
                       }}
                     />
+                    <canvas width="100" height="30px" id="captcha" />
                   </div>
-                <canvas width="100" height="30px" id="captcha" />
-
-                  <span></span>
                 </div>
               </div>
             </div>
