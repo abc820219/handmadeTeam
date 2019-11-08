@@ -51,7 +51,7 @@ const OrderDeListCourse = props => {
                   </figure>
                   <div>
                     <div>
-                      <p>教師名稱</p>
+                      <p>課程名稱</p>
                       <h5>賣口傑克森</h5>
                     </div>
                     <div>
