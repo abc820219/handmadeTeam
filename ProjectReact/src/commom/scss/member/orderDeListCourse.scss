@@ -1,6 +1,11 @@
 .orderDeCourse {
   height: 100vh;
+<<<<<<< HEAD
   .wrapper{
+=======
+  padding-top: 60px;
+  wrapper{
+>>>>>>> b9707af8eed1fa0ef1341d5853b5cbdc1225a261
     height: 90px;
     border-bottom: 1px solid #F0F1F7;
     p{
@@ -28,7 +33,7 @@
 .orderDeCourseList{
   flex-grow: 1;
   border-bottom: 1px solid #F0F1F7;
-  padding: 20px 65px 20px 85px;
+  padding: 20px 65px 20px 60px;
   p{
     font-size: 16px;
     color: #9597A6;
@@ -100,9 +105,10 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 13px 0px 13px; 
+  padding: 0px 5px 0px 5px; 
   p{
     font-size: 14px;
     padding: 0px;
+    white-space: nowrap;
   }
 }
