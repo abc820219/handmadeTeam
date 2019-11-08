@@ -17,10 +17,10 @@ function App() {
         <Switch>
           <Route path="/" exact component={Navgation}></Route>
           <Route path="/handmade/" exact component={Handmade}></Route>
-          <Route path="/handmade/store/course/:id?" component={Course}></Route>
+          <Route path="/handmade/store/course/" exact component={Course}></Route>
           <Route path="/handmade/cart" component={Cart}></Route>
           <Route path="/handmade/member/:id?" component={Member}></Route>
-          <Route path="/handmade/store/:id?" component={Store}></Route>
+          <Route path="/handmade/store/" exact component={Store}></Route>
           <Route path="/handmade/teacher/:id?" component={Teacher}></Route>
           <Route
             path="/handmade/ingredients/:id?"

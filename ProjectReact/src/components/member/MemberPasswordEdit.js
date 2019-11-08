@@ -29,20 +29,20 @@ const MemberPasswordEdit = () => {
   return (
     <div className="container-fluid">
       <div className="row">
-        <div
+        {/* <div
           className="col-4"
           style={{ background: "#635E59", minHeight: "937px" }}
-        ></div>
-        <div className="col-8 d-flex flex-column">
+        ></div> */}
+        <div className="col-12 d-flex flex-column">
           <form>
-            <div className="MemberEditHeader my-5">
+            <div className="MemberEditHeader my-3">
               <h4>
                 <span>重新設定密碼</span>
               </h4>
             </div>
             <div></div>
             <div className="MemberPasswordEditMain mb-5 d-flex flex-column">
-              <div className="d-flex">
+              <div className="d-flex align-items-end">
                 <div className="short-input">
                   <div className="titleH">舊密碼</div>
                   <div className="position-relative">
@@ -56,10 +56,10 @@ const MemberPasswordEdit = () => {
                       }}
                     />
                   </div>
-                  <span></span>
                 </div>
+                <span className="ml-5 mb-3">1234567</span>
               </div>
-              <div className="d-flex">
+              <div className="d-flex align-items-end">
                 <div className="short-input">
                   <div className="titleH">新密碼</div>
                   <div className="position-relative">
@@ -75,9 +75,10 @@ const MemberPasswordEdit = () => {
                   </div>
                   <span></span>
                 </div>
+                <span className="ml-5 mb-3">1234567</span>
               </div>
-              <div className="d-flex">
-                <div className="short-input">
+              <div className="d-flex align-items-end">
+                <div className="short-input ">
                   <div className="titleH">新密碼確認</div>
                   <div className="position-relative">
                     <input name="" type="name" placeholder="請再次填入新密碼" />
@@ -90,31 +91,39 @@ const MemberPasswordEdit = () => {
                       }}
                     />
                   </div>
-                  <span></span>
                 </div>
+                <span className="ml-5 mb-3">1234567</span>
               </div>
-              <div className="d-flex">
+              <div className="d-flex align-items-end">
                 <div className="short-input">
                   <div className="titleH">驗證碼</div>
                   <div className="position-relative">
-                    <input name="" type="name" placeholder="請填入驗證碼" />
-                    <FaKey
-                      style={{
-                        position: "absolute",
-                        top: "25%",
-                        left: "8px",
-                        color: "#fff"
-                      }}
-                    />
-                    <canvas width="100" height="30px" id="captcha" />
+                    <div className="d-flex">
+                      <input name="" type="name" placeholder="請填入驗證碼" />
+                      <FaKey
+                        style={{
+                          position: "absolute",
+                          top: "25%",
+                          left: "8px",
+                          color: "#fff"
+                        }}
+                      />
+                      <canvas
+                        width="100"
+                        height="30px"
+                        id="captcha"
+                        className="ml-3"
+                      />
+                    </div>
                   </div>
                 </div>
+                <span className="ml-5 mb-3">1234567</span>
               </div>
             </div>
-            <div className="MemberEditFooter  d-flex  flex-column align-items-end">
+            <div className="MemberEditFooter  d-flex  flex-column align-items-end pt-5 mb-5">
               <input
                 name=""
-                className="formBtn mt-5"
+                className="formBtn"
                 type="submit"
                 value="修改"
                 onClick={formSubmit}

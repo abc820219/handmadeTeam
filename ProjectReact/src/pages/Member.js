@@ -4,7 +4,7 @@ import MemberSideBar from "../components/member/MemberSideBar";
 import MemberEdit from "../components/member/MemberEdit";
 import MemberPasswordEdit from "../components/member/MemberPasswordEdit";
 import NavBar from "../components/NavBar";
-import {  Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 const Member = ({ match }) => {
   return (
     <>

@@ -6,15 +6,15 @@ const MemberEdit = () => {
   return (
     <div className="container-fluid">
       <div className="row">
-        <div
+        {/* <div
           className="col-4"
           style={{ background: "#635E59", minHeight: "937px" }}
-        ></div>
+        ></div> */}
         <div
-          className="col-8 d-flex flex-column bg-linear"
+          className="col-12 d-flex flex-column bg-linear"
         >
           <form>
-            <div className="MemberEditHeader my-5">
+            <div className="MemberEditHeader my-3">
               <h4>
                 <span>基本資料修改</span>
               </h4>
@@ -106,7 +106,7 @@ const MemberEdit = () => {
                   <span></span>
                 </div>
               </div>
-              <div className="d-flex  justify-content-center mb-1">
+              <div className="d-flex  justify-content-center mb">
                 <div className="longe-input">
                   <div className="titleH">Street address</div>
                   <div className="position-relative">
@@ -128,7 +128,7 @@ const MemberEdit = () => {
             <div className="MemberEditFooter  d-flex  flex-column align-items-end">
               <input
                 name=""
-                className="formBtn"
+                className="formBtn mt-5"
                 type="submit"
                 value="修改"
                 onClick={formSubmit}

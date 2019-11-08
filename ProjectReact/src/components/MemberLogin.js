@@ -9,7 +9,6 @@ import "../commom/scss/MemberLogin.scss";
 const emailRegex = RegExp(
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 ); //信箱正規
-
 //宣告-----------
 class MemberLogin extends Component {
   constructor(props) {
@@ -32,13 +31,7 @@ class MemberLogin extends Component {
       return (
         <>
           <div className="login-wrap d-flex flex-column align-items-center">
-            <div className="mt-4">
-              <img
-                alt="FacebookIcon"
-                src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Pinkoi_logo.png"
-                style={{ maxWidth: "100px" }}
-              />
-            </div>
+            <div className="mt-4">LOGO</div>
             <FacebookLogin />
             <p className="mt-4 mb-3">使用handmade帳號登入</p>
             <form onSubmit={this.handleSubmit}>
@@ -114,12 +107,7 @@ class MemberLogin extends Component {
       return (
         <>
           <div className="login-wrap d-flex flex-column align-items-center">
-            <div className="mt-4">
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Pinkoi_logo.png"
-                style={{ maxWidth: "100px" }}
-              />
-            </div>
+            <div className="mt-4">LOGO</div>
             <p className="mt-4 mb-3">註冊個人帳號</p>
             <form onSubmit={this.handleSubmit}>
               <ul>
@@ -263,25 +251,6 @@ class MemberLogin extends Component {
       console.log(value);
     });
   } //畫面載入生成
-  componentDidUpdate() {
-    let captcha = new Captcha({
-      lineWidth: 1, //线条宽度
-      lineNum: 3, //线条数量
-      dotR: 1, //点的半径
-      dotNum: 25, //点的数量
-      preGroundColor: [50, 80], //前景色区间
-      backGroundColor: [150, 250], //背景色区间
-      fontSize: 30, //字体大小
-      fontFamily: ["Georgia", "微软雅黑", "Helvetica", "Arial"], //字体类型
-      fontStyle: "stroke", //字体绘制方法，有fill和stroke
-      content: "abcdefghijklmnopqrstuvw", //验证码内容
-      length: 3 //验证码长度
-    });
-    //把生成的驗證碼丟到canvas容器中，然後callback把它(參數自訂為r)設定給state
-    captcha.draw(document.querySelector("#captcha"), value => {
-      console.log(value);
-    });
-  }
 } //畫面更新生成
 //-------生命週期-------
 
