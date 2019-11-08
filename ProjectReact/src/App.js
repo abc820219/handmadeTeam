@@ -9,7 +9,7 @@ import {
   Store,
   Teacher,
   Ingredients
-} from "./Routes/index";
+} from "./routes/index";
 function App() {
   return (
     <>
@@ -22,7 +22,10 @@ function App() {
           <Route path="/handmade/member/:id?" component={Member}></Route>
           <Route path="/handmade/store/:id?" component={Store}></Route>
           <Route path="/handmade/teacher/:id?" component={Teacher}></Route>
-          <Route path="/handmade/ingredients/:id?" component={Ingredients}></Route>
+          <Route
+            path="/handmade/ingredients/:id?"
+            component={Ingredients}
+          ></Route>
         </Switch>
       </Router>
     </>

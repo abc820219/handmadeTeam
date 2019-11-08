@@ -28,7 +28,12 @@ const MemberPasswordEdit = () => {
                   <div className="position-relative">
                     <input name="" type="name" placeholder="請填入舊密碼" />
                     <FaKey
-                      style={{ position: "absolute", top: "25%", left: "8px" }}
+                      style={{
+                        position: "absolute",
+                        top: "25%",
+                        left: "8px",
+                        color: "#fff"
+                      }}
                     />
                   </div>
                   <span></span>
@@ -40,7 +45,12 @@ const MemberPasswordEdit = () => {
                   <div className="position-relative">
                     <input name="" type="name" placeholder="請填入新密碼" />
                     <FaKey
-                      style={{ position: "absolute", top: "25%", left: "8px" }}
+                      style={{
+                        position: "absolute",
+                        top: "25%",
+                        left: "8px",
+                        color: "#fff"
+                      }}
                     />
                   </div>
                   <span></span>
@@ -52,7 +62,12 @@ const MemberPasswordEdit = () => {
                   <div className="position-relative">
                     <input name="" type="name" placeholder="請再次填入新密碼" />
                     <FaKey
-                      style={{ position: "absolute", top: "25%", left: "8px" }}
+                      style={{
+                        position: "absolute",
+                        top: "25%",
+                        left: "8px",
+                        color: "#fff"
+                      }}
                     />
                   </div>
                   <span></span>
@@ -64,7 +79,12 @@ const MemberPasswordEdit = () => {
                   <div className="position-relative">
                     <input name="" type="name" placeholder="請填入驗證碼" />
                     <FaKey
-                      style={{ position: "absolute", top: "25%", left: "8px" }}
+                      style={{
+                        position: "absolute",
+                        top: "25%",
+                        left: "8px",
+                        color: "#fff"
+                      }}
                     />
                   </div>
                   <span></span>

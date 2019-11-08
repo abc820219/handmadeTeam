@@ -24,7 +24,7 @@ class Facebook extends Component {
           onClick={this.componentClicked}
           callback={this.responseFacebook}
           cssClass="my-facebook-button-class"
-          textButton="FACEBOOK-LOGIN"
+          textButton="FACEBOOK"
         />
       );
     } else {
@@ -36,7 +36,8 @@ class Facebook extends Component {
           onClick={this.componentClicked}
           callback={this.responseFacebook}
           cssClass="my-facebook-button-class"
-          textButton="FACEBOOK-LOGIN"
+          textButton="FACEBOOK"
+          style={{ fontSize: "25px" }}
         />
       );
     }
