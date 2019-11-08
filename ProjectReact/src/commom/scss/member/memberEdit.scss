@@ -1,6 +1,11 @@
+@import url("https://use.typekit.net/eqs2axx.css");
 * {
   border-style: none;
+  font-family: basic-sans, sans-serif, "微軟正黑體";
+  font-weight: 500;
+  font-style: normal;
 }
+
 .MemberEditHeader {
   h4 {
     span {
@@ -27,8 +32,10 @@
   }
   input {
     width: 100%;
-    border-radius: 3px;
+    border-radius: 5px;
     padding: 10px 35px;
+    background-color: rgba($color: #000000, $alpha: 0.05);
+    border: 1px solid #fff;
   }
   .date-input {
     padding: 6.7px 35px;
