@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { Route, Switch, Link } from "react-router-dom";
 import {
   Handmade,
   Course,
@@ -12,17 +12,14 @@ import {
 function ProductPage() {
   return (
     <>
-      <Router>
-        <Switch>
-          <Route path="/handmade/:id?" component={Handmade}></Route>
-          <Route path="/course/:id?" component={Course}></Route>
-          <Route path="/cart" component={Cart}></Route>
-          <Route path="/member/:id?" component={Member}></Route>
-          <Route path="/store/:id?" component={Store}></Route>
-          <Route path="/teacher/:id?" component={Teacher}></Route>
-          <Route path="/ingredients/:id?" component={Ingredients}></Route>
-        </Switch>
-      </Router>
+      <Switch>
+        <Route path="/handmade/:id?" component={Handmade}></Route>
+        <Route path="/store/course/:id?" component={Course}></Route>
+        <Route path="/cart" component={Cart}></Route>
+        <Route path="/store/:id?" component={Store}></Route>
+        <Route path="/teacher/:id?" component={Teacher}></Route>
+        <Route path="/ingredients/:id?" component={Ingredients}></Route>
+      </Switch>
     </>
   );
 }

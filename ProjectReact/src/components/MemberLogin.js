@@ -20,7 +20,7 @@ class MemberLogin extends Component {
       email: null,
       password: null,
       formErrors: {
-        account: "",
+        account: " ",
         email: "",
         password: ""
       }
@@ -57,9 +57,9 @@ class MemberLogin extends Component {
                     }
                     value={this.state.account}
                   />
-                  {this.state.formErrors.account.length > 0 && (
-                    <p className="errorText">{this.state.formErrors.account}</p>
-                  )}
+                  <p className="errorText">
+                    {this.state.formErrors.account} &nbsp;
+                  </p>
                 </li>
                 <li>
                   <label htmlFor="member-password">
@@ -76,11 +76,9 @@ class MemberLogin extends Component {
                     }
                     value={this.state.password}
                   />
-                  {this.state.formErrors.password.length > 0 && (
-                    <p className="errorText">
-                      {this.state.formErrors.password}
-                    </p>
-                  )}
+                  <p className="errorText">
+                    {this.state.formErrors.password} &nbsp;
+                  </p>
                 </li>
               </ul>
               <div className="d-flex justify-content-around">
@@ -138,9 +136,10 @@ class MemberLogin extends Component {
                       this.state.formErrors.account.length > 0 ? "error" : null
                     }
                   />
-                  {this.state.formErrors.account.length > 0 && (
-                    <p className="errorText">{this.state.formErrors.account}</p>
-                  )}
+
+                  <p className="errorText">
+                    {this.state.formErrors.account}&nbsp;
+                  </p>
                 </li>
                 <li>
                   <label htmlFor="member-password">
@@ -153,9 +152,9 @@ class MemberLogin extends Component {
                     onChange={this.handleChange}
                   />
 
-                  {this.state.formErrors.email.length > 0 && (
-                    <p className="errorText">{this.state.formErrors.email}</p>
-                  )}
+                  <p className="errorText">
+                    {this.state.formErrors.email}&nbsp;
+                  </p>
                 </li>
                 <li>
                   <label htmlFor="member-password">
@@ -171,11 +170,9 @@ class MemberLogin extends Component {
                       this.state.formErrors.password.length > 0 ? "error" : null
                     }
                   />
-                  {this.state.formErrors.password.length > 0 && (
-                    <p className="errorText">
-                      {this.state.formErrors.password}
-                    </p>
-                  )}
+                  <p className="errorText">
+                    {this.state.formErrors.password}&nbsp;
+                  </p>
                 </li>
               </ul>
               <div className="d-flex justify-content-around">

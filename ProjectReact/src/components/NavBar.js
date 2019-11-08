@@ -18,28 +18,43 @@ const NavBar = props => {
   const MenuList = () => {
     setshowMenuBtn(!showMenuBtn);
   };
+  const MenuListLeave = () => {
+    if (showMenuBtn == true) {
+      setshowMenuBtn(!showMenuBtn);
+    }
+  };
   if (showLightBox) {
     console.log("clicked");
   }
   return (
     <>
       <nav className="navbar page-nav d-flex">
-        <div className="page-nav-aside d-flex align-items-center justify-content-center">
-          <div style={{ position: relative }} onClick={MenuList}>
-            <GiHamburgerMenu className="mx-3 " style={{ fontSize: "30px" }} />
+        <div
+          className="page-nav-aside d-flex align-items-center justify-content-center"
+          onClick={MenuList}
+          onMouseLeave={MenuListLeave}
+        >
+          <div style={{ position: relative }}>
+            <GiHamburgerMenu
+              className="mx-3 "
+              style={{ fontSize: "30px", color: "#fff" }}
+            />
             {showMenuBtn ? (
               <ul className="navbarBtn">
                 <li>
-                  <Link to="/course">課程</Link>
+                  <Link to="/handmade/store/course">課程</Link>
                 </li>
                 <li>
-                  <Link to="/store">店家</Link>
+                  <Link to="/handmade/store">店家</Link>
                 </li>
                 <li>
-                  <Link to="/teacher">老師</Link>
+                  <Link to="/handmade/teacher">老師</Link>
                 </li>
                 <li>
-                  <Link to="/ingredients">食材</Link>
+                  <Link to="/handmade/ingredients">食材</Link>
+                </li>
+                <li>
+                  <Link to="/handmade">首頁</Link>
                 </li>
               </ul>
             ) : null}
