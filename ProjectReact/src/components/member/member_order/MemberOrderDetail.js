@@ -10,9 +10,9 @@ const MemberOrderDetail = ({ orderType }) => {
   function renderSwitch(a) {
     switch (a) {
       case 1:
-        return <OrderDeListIngre />;
-      case 2:
         return <OrderDeListCourse />;
+      case 2:
+        return <OrderDeListIngre />;
       case 3:
         return <OrderDeListTeacher />;
       default:
