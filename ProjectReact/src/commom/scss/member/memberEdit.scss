@@ -26,12 +26,11 @@
 }
 .MemberEditMain,
 .MemberPasswordEditMain {
-  //   padding-left: 10%;
-
   .short-input {
     width: 288px;
     margin: 10px 2%;
   }
+
   input {
     width: 100%;
     border-radius: 5px;
@@ -40,7 +39,7 @@
     border: 1px solid #fff;
   }
   .date-input {
-    padding: 6.7px 35px;
+    padding: 6.7px 0px 6.7px 35px;
   }
   .titleH {
     line-height: 60px;
