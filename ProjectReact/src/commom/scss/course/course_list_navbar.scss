@@ -1,0 +1,147 @@
+* {
+  margin: 0;
+  padding: 0;
+  //  border: 1px solid red; 
+}
+
+body,
+html {
+  width: 100%;
+  background: #f5ddba;
+}
+@import url("https://use.typekit.net/zkl0auq.css");
+
+.course_navbar {
+  position: relative;
+  width: inherit;
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+
+.course_navbar_b {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 25%;
+  height: 100%;
+  background-color: #f78177;
+  z-index: 99;
+}
+
+.course_store {
+  position: absolute;
+  top: 0;
+  left: 25%;
+  background-color: #f5ddba;
+  display: flex;
+  flex-direction: column;
+}
+
+.course_store_navbar {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.course_store_info {
+  max-width: 25%;
+  max-height: 740px;
+  position: relative;
+
+
+}
+.course_hover_color1{
+background-color: #F6DCB9;
+}
+.course_hover_color2{
+background-color: #F2A6AD;
+}
+.course_hover_color3{
+background-color: #C57647;
+}
+.course_hover_color4{
+background-color: #9F7667;
+}
+
+.course_store_navbar img {
+  width: 100%;
+  opacity: 0.39;
+}
+
+
+
+.course_store_info_wrap {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  transform: translateX(-50%);
+  top: 20%;
+  left: 50%;
+  align-content: center;
+  justify-items: center;
+  
+
+  .course_store_info_txt {
+    font-family: niagara, serif;
+    font-size: 10vw;
+    position: absolute;
+    transform: translateX(-50%);
+    left: 50%;
+    top:1px
+   
+  }
+  .course_store_info_minTxt {
+    font-family: niagara, serif;
+    font-size:2vw;
+    position: absolute;
+    transform: translateX(-50%);
+    left: 50%;
+    top:11vw;
+  }
+}
+
+.course_store_content_wrap {
+  width: 100%;
+  height: 340px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.course_store_content_minWrap {
+  width: inherit;
+  height: 210px;
+  background-color: #362d2b;
+  width: 100%;
+}
+
+.course_store_slide {
+  width: 50vw;
+  height: 250px;
+  border: 5px solid #707070;
+  position: absolute;
+  transform: translateX(-50%);
+  left: 50%;
+}
+.course_store_slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.course_list_wrap {
+  display: flex;
+  flex-direction: row;
+  height: inherit;
+}
+
+.course_list {
+  display: flex;
+  flex-direction: column;
+  max-width: 25%;
+}
+
+.course_list img {
+  width: 100%;
+}
