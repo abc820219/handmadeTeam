@@ -29,13 +29,13 @@ const MemberPasswordEdit = () => {
   return (
     <div className="container-fluid">
       <div className="row">
-        <div
+        {/* <div
           className="col-4"
           style={{ background: "#635E59", minHeight: "937px" }}
-        ></div>
-        <div className="col-8 d-flex flex-column">
+        ></div> */}
+        <div className="col-12 d-flex flex-column">
           <form>
-            <div className="MemberEditHeader my-5">
+            <div className="MemberEditHeader my-3">
               <h4>
                 <span>重新設定密碼</span>
               </h4>
@@ -120,10 +120,10 @@ const MemberPasswordEdit = () => {
                 <span className="ml-5 mb-3">1234567</span>
               </div>
             </div>
-            <div className="MemberEditFooter  d-flex  flex-column align-items-end pt-5">
+            <div className="MemberEditFooter  d-flex  flex-column align-items-end pt-5 mb-5">
               <input
                 name=""
-                className="formBtn mt-5"
+                className="formBtn"
                 type="submit"
                 value="修改"
                 onClick={formSubmit}

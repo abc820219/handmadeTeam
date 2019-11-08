@@ -32,13 +32,7 @@ class MemberLogin extends Component {
       return (
         <>
           <div className="login-wrap d-flex flex-column align-items-center">
-            <div className="mt-4">
-              <img
-                alt="FacebookIcon"
-                src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Pinkoi_logo.png"
-                style={{ maxWidth: "100px" }}
-              />
-            </div>
+            <div className="mt-4">LOGO</div>
             <FacebookLogin />
             <p className="mt-4 mb-3">使用handmade帳號登入</p>
             <form onSubmit={this.handleSubmit}>
@@ -114,12 +108,7 @@ class MemberLogin extends Component {
       return (
         <>
           <div className="login-wrap d-flex flex-column align-items-center">
-            <div className="mt-4">
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Pinkoi_logo.png"
-                style={{ maxWidth: "100px" }}
-              />
-            </div>
+            <div className="mt-4">LOGO</div>
             <p className="mt-4 mb-3">註冊個人帳號</p>
             <form onSubmit={this.handleSubmit}>
               <ul>
