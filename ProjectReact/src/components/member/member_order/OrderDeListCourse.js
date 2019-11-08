@@ -43,7 +43,7 @@ const OrderDeListCourse = props => {
             <div className="d-flex align-items-center">
               <div className='orderDeCourseList'>
                 <div className='d-flex'>
-                  <figure style={{ marginTop: '0px', marginLeft: '0px' }}>
+                  <figure style={iconZone}>
                     <img
                       src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRBVl9lhK94mJ5MxzGptFKO5FLRXoXVNDmjYndWy1H4kCaqDqOw"
                       alt=""
@@ -51,7 +51,7 @@ const OrderDeListCourse = props => {
                   </figure>
                   <div>
                     <div>
-                      <p>教師名稱</p>
+                      <p>課程名稱</p>
                       <h5>賣口傑克森</h5>
                     </div>
                     <div>
@@ -99,7 +99,6 @@ const OrderDeListCourse = props => {
               </div>
             </div>
           </div>
-          <div></div>
         </div>
         <div className='orderDeCourseList d-flex align-items-center'>
           <figure style={iconZone} className='d-flex justify-content-center align-items-center'>
