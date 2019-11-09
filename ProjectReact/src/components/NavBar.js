@@ -26,6 +26,12 @@ const NavBar = props => {
   if (showLightBox) {
     console.log("clicked");
   }
+
+  const [showCart, setShowCart] = useState(false);
+
+  const openCart = check => {
+    setShowCart(check);
+  };
   return (
     <>
       <nav className="navbar page-nav d-flex">
@@ -61,7 +67,15 @@ const NavBar = props => {
           </div>
           <h3>BAKE TIME</h3>
         </div>
-        {signIn ? <NavBarSign /> : <NavBarUnSign showLightBox={memberSignIn} />}
+        {signIn ? (
+          <NavBarSign openCart={openCart} showCart={showCart} />
+        ) : (
+          <NavBarUnSign
+            showLightBox={memberSignIn}
+            openCart={openCart}
+            showCart={showCart}
+          />
+        )}
       </nav>
       {showLightBox ? (
         <MemberBox LoginBox={signIn} memberSignIn={memberSignIn}></MemberBox>
