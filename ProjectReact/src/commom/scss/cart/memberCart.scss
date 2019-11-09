@@ -1,91 +1,56 @@
-.memberCartList{
-  top: 30px;
-  // position: relative;
-  max-height: 937px;
-  background-color: #544741;
-  padding-top: 30px;
-  max-width: 30%;
-  right: 30px;
+.memberCartList {
+  background: rgba(110, 91, 83, 0.3);
+  backdrop-filter: blur(5px);
   position: absolute;
+  top: 0;
   overflow-y: scroll;
-  transition : .5s;
-  h4 {
-    color: white;
+  max-height: 937px;
+  transition: 0.3;
+  overflow-y: scroll;
+  width: 640px;
+  height: 937px;
+  .cart-title {
+    font-size: 24px;
+    padding-left: 130px;
+    padding-top: 40px;
+    color: #fff;
   }
-
-  h5 {
-    font-size: 22px;
+  .cartHead::after {
+    content: "";
+    display: block;
+    border: 1px solid #fff;
+    color: #fff;
+    width: 85%;
+    margin: auto;
   }
-  p {
-    color: white;
-    font-size: 16px;
+  .product-title {
+    color: #fff;
+    font-size: 20px;
+  }
+  .cartMain {
+    line-height: 30px;
+    .course-title {
+      font-size: 20px;
+      padding-left: 130px;
+      color: #fff;
+    }
+  }
+  .cartTotal {
+    font-size: 30px;
+  }
+  .cartBtn {
+    padding: 10px;
   }
 }
 
-.memberCartList h3 {
-  color: white;
-}
-
-.memberCartList ul {
-  list-style-type: none;
-}
-
-.memberCartList h5 {
-  color: white;
-  line-height: 30px;
-  font-size: 16px;
-}
-
-.memberCartList-info figure {
-  width: 60px;
-  height: 60px;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.memberCartList-info figure img {
+.cartFooter {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: 150px;
+  background-color: #ed8c69;
 }
-
-.cartListTitle {
-  height: 50px;
-  border-bottom: 1px solid white;
+.hr-bottom {
+  background-color: #fff;
+  width: 85%;
+  height: 1px;
+  margin: auto;
 }
-
-.memberCartBottom {
-  position: absolute;
-  bottom: 0px;
-  width: 100%;
-  height: 200;
-  background-color: white;
-}
-
-.cartTitle_border {
-  border-top: 1px white solid;
-}
-
-.cartList_title {
-  padding: 20px 0 20px 20px;
-  color: #9597a6;
-  font-size: 20px;
-  font-weight: bold;
-  border-bottom: 1px solid white;
-}
-
-.cartList_icons {
-  color: white;
-  margin: -4px 6px 0 5px;
-}
-
-::-webkit-scrollbar {
-  width: 5px;
-}
-::-webkit-scrollbar-track {
-  background-color: rgb(240, 218, 218);
-} /* the new scrollbar will have a flat appearance with the set background color */
-
-::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.39);
-} /* this will style the thumb, ignoring the track */

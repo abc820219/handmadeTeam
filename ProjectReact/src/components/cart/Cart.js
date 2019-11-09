@@ -12,41 +12,92 @@ import CartIngre from "./CartIngre";
 // import Nav from "react-bootstrap/Nav";
 
 const Cart = ({ openCart, showCart }) => {
-  const cartList_title = {
-    padding: "20px 0 20px 20px",
-    color: "#9597A6",
-    fontSize: "20px",
-    fontWeight: "bold",
-    borderBottom: "1px solid white"
-  };
-
-  const cartTitle_border = {
-    orderTop: "1px white solid"
-  };
-
-  const cartList_icons = {
-    color: "white",
-    margin: "-4px 6px 0 5px"
-  };
   return (
     <>
-      <Container
-        className="memberCartList pr-0"
+      <div
+        className="memberCartList"
         onMouseEnter={() => openCart(true)}
         onMouseLeave={() => openCart(false)}
-        style={{ right: showCart ? "0px" : "-30%" }}
+        style={{ right: showCart ? "0" : "100%" }}
       >
-        <div className="memberCarSlide">
-          <div className="cartListTitle d-flex align-items-center">
-            <h4 className="ml-5 mt-3 mb-3">購物車</h4>
+        <div className="d-flex flex-column">
+          <div className="cartHead">
+            <p className="cart-title">購物車</p>
           </div>
-          <div className="memberCartList-info pl-2">
-            <CartCourse />
-            <CartIngre />
+          <div className="cartMain">
+            {/* ------------------------------------------------------------------------ */}
+            <div>
+              <div className="course-title py-3">課程訂單</div>
+              <hr className="hr-bottom"></hr>
+              <ul className="d-flex justify-content-around align-items-center px-5">
+                <li className="d-flex flex-column align-items-between py-3">
+                  <div className="product-title">Saturday February 20th *2</div>
+                  <div className="d-flex align-items-center">
+                    <FaRegClock className="cartList_icons" />
+                    商品名稱:巧克力派
+                  </div>
+                  <div className="d-flex align-items-center">
+                    <GoPerson className="cartList_icons" />
+                    數量: 5
+                  </div>
+                  <div className="d-flex align-items-center">
+                    <FaDollarSign className="cartList_icons" />
+                    5000
+                  </div>
+                </li>
+                <figure>
+                  <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRBVl9lhK94mJ5MxzGptFKO5FLRXoXVNDmjYndWy1H4kCaqDqOw"
+                    alt=""
+                    width="80px"
+                    height="80px"
+                  />
+                </figure>
+              </ul>
+              <hr className="hr-bottom"></hr>
+            </div>
+            {/* --------------------------------------------------------------- */}
+            <div>
+              <div className="course-title py-3">老師資訊</div>
+              <hr className="hr-bottom"></hr>
+              <ul className="d-flex justify-content-around align-items-center px-5">
+                <li className="d-flex flex-column align-items-between py-3">
+                  <div className="product-title">Saturday February 20th *2</div>
+                  <div className="d-flex align-items-center">
+                    <FaRegClock className="cartList_icons" />
+                    商品名稱:巧克力派
+                  </div>
+                  <div className="d-flex align-items-center">
+                    <GoPerson className="cartList_icons" />
+                    數量: 5
+                  </div>
+                  <div className="d-flex align-items-center">
+                    <FaDollarSign className="cartList_icons" />
+                    5000
+                  </div>
+                </li>
+                <figure>
+                  <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRBVl9lhK94mJ5MxzGptFKO5FLRXoXVNDmjYndWy1H4kCaqDqOw"
+                    alt=""
+                    width="80px"
+                    height="80px"
+                  />
+                </figure>
+              </ul>
+            </div>
+          </div>
+          {/* --------------------------------------------------------------- */}
+        </div>{" "}
+        <div className="cartFooter d-flex justify-content-between p-5">
+          <div>
+            <span className="cartTotal">$ 5000</span>
+          </div>
+          <div>
+            <input name="" id="" class="cartBtn" type="button" value="購買" />
           </div>
         </div>
-        <div className="memberCartBottom"></div>
-      </Container>
+      </div>
     </>
   );
 };
