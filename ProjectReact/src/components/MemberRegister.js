@@ -4,15 +4,14 @@ import { FaUserAlt, FaKey } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import Captcha from "captcha-mini";
 import "../commom/scss/MemberLogin.scss";
-// import {Link} from "react-router-dom"
-//宣告-----------
 const emailRegex = RegExp(
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 ); //信箱正規
-//宣告-----------
-function MemberLogin(props) {
+
+function MemberRegister(props) {
   const [MemberLogin, setMemberLogin] = useState(true);
   const [account, setaccount] = useState("");
+  const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [Change] = useState(true);
   const [formErrors, setformErrors] = useState({
@@ -57,6 +56,10 @@ function MemberLogin(props) {
       case "captchatext":
         formErrors.captchatext = value.length < 3 ? "最少3個字" : "";
         break;
+      case "email":
+        setemail(value);
+        formErrors.email = emailRegex.test(value) ? "" : "請輸入正確的格式";
+        break;
       default:
         break;
     }
@@ -66,6 +69,7 @@ function MemberLogin(props) {
     event.preventDefault();
     setaccount("");
     setpassword("");
+    setemail("");
   };
   if (MemberLogin) {
     return (
@@ -73,7 +77,7 @@ function MemberLogin(props) {
         <div className="login-wrap d-flex flex-column align-items-center">
           <div className="mt-4">LOGO</div>
           <FacebookLogin />
-          <p className="mt-4 mb-3">使用handmade帳號登入</p>
+          <p className="mt-4 mb-3">註冊個人帳號</p>
           <form>
             <ul>
               <li>
@@ -89,6 +93,19 @@ function MemberLogin(props) {
                   value={account}
                 />
                 <p className="errorText">{formErrors.account} &nbsp;</p>
+              </li>
+              <li>
+                <label htmlFor="member-email">
+                  <MdEmail />
+                </label>
+                <input
+                  name="email"
+                  id="member-email"
+                  placeholder="信箱"
+                  onChange={handleChange}
+                  value={email}
+                />
+                <p className="errorText">{formErrors.email}&nbsp;</p>
               </li>
               <li>
                 <label htmlFor="member-password">
@@ -125,11 +142,11 @@ function MemberLogin(props) {
                 onClick={submitForm}
               />
             </div>
-            <div className="text-center m-3 member-footer-text">
-              <span className="password-forget">忘記密碼&nbsp;</span>
+            <div className="text-center m-3">
               <span className="register" onClick={props.boxStateChange}>
-                /&nbsp;註冊
+                切換到登入頁&nbsp;
               </span>
+              <span className="register">/&nbsp;閱讀條款</span>
             </div>
             <div className="text-center"></div>
           </form>
@@ -140,4 +157,4 @@ function MemberLogin(props) {
   }
 }
 
-export default MemberLogin;
+export default MemberRegister;

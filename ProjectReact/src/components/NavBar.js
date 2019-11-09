@@ -4,7 +4,7 @@ import "../commom/scss/normalize.scss";
 import { GiHamburgerMenu } from "react-icons/gi";
 import NavBarSign from "./NavBarSign";
 import NavBarUnSign from "./NavBarUnSign";
-import MemberLogin from "./MemberLogin";
+import MemberBox from "./MemberBox";
 import { relative } from "path";
 import { Link } from "react-router-dom";
 
@@ -64,10 +64,7 @@ const NavBar = props => {
         {signIn ? <NavBarSign /> : <NavBarUnSign showLightBox={memberSignIn} />}
       </nav>
       {showLightBox ? (
-        <MemberLogin
-          LoginBox={signIn}
-          memberSignIn={memberSignIn}
-        ></MemberLogin>
+        <MemberBox LoginBox={signIn} memberSignIn={memberSignIn}></MemberBox>
       ) : null}
     </>
   );

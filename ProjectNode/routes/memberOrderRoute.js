@@ -16,7 +16,7 @@ router.get('/:id',(req, res) => {
     db.queryAsync(sql)
     .then(results => {
         console.log(results);
-        res.json(results[0]);
+        res.json(results[0]);c
     })
 });
 
