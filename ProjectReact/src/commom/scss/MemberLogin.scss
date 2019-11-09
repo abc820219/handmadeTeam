@@ -2,7 +2,9 @@
   list-style: none;
 }
 .login-wrap {
-  background-color: rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 25px #000;
+  backdrop-filter: blur(5px);
   width: 25%;
   min-width: 300px;
   max-height: auto;
@@ -17,7 +19,7 @@
     color: #39393e;
   }
   .my-facebook-button-class {
-    min-width: 220px;
+    min-width: 245px;
     white-space: nowrap;
     line-height: 10px;
     text-align: center;
@@ -57,23 +59,26 @@
           color: red;
           font-size: 0.75em;
           position: relative;
+          margin-top: 5px;
         }
       }
     }
     .password-forget {
       cursor: pointer;
-      color: #aaa;
+      color: #eee;
     }
     .register {
       cursor: pointer;
-      color: #aaa;
+      color: #eee;
     }
     .login-btn {
+      margin-top: 32px;
+
       input {
         display: block;
         text-align: center;
         width: 100%;
-        padding: 5px 0;
+        padding: 8px;
         border-radius: 5px;
         margin: 0;
         color: #fff;
@@ -93,4 +98,8 @@
   bottom: 0;
   opacity: 0.3;
   background-color: #000;
+}
+.captchatextInput {
+  width: 148px;
+  padding-left: 10px;
 }
