@@ -1,14 +1,14 @@
-.memberCartList {
+.memberCartList{
   top: 30px;
+  // position: relative;
   max-height: 937px;
   background-color: #544741;
   padding-top: 30px;
   max-width: 30%;
-  right: 0px;
-  position: fixed;
+  right: 30px;
+  position: absolute;
   overflow-y: scroll;
-  // overflow-x: hidden;
-  transition: 0.5s;
+  transition : .5s;
   h4 {
     color: white;
   }
