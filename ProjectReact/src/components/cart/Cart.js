@@ -4,6 +4,8 @@ import "../../commom/scss/cart/memberCart.scss";
 import { FaDollarSign } from "react-icons/fa";
 import { FaRegClock } from "react-icons/fa";
 import { GoPerson } from "react-icons/go";
+import CartCourse from "./CartCourse";
+import CartIngre from "./CartIngre";
 
 // import Navbar from "react-bootstrap/Navbar";
 // import NavDropdown from "react-bootstrap/NavDropdown";
@@ -26,7 +28,6 @@ const Cart = ({ openCart, showCart }) => {
     color: "white",
     margin: "-4px 6px 0 5px"
   };
-  console.log(showCart);
   return (
     <>
       <Container
@@ -40,115 +41,8 @@ const Cart = ({ openCart, showCart }) => {
             <h4 className="ml-5 mt-3 mb-3">購物車</h4>
           </div>
           <div className="memberCartList-info pl-2">
-            <ul style={cartTitle_border}>
-              <h5 style={cartList_title}>課程</h5>
-              <li className="d-flex justify-content-between align-item-center my-3">
-                <div>
-                  <p style={{ fontSize: "18px" }}>Saturday February 20th</p>
-                  <div>
-                    <p>
-                      <FaRegClock style={cartList_icons} />
-                      商品名稱: 巧克先生
-                    </p>
-                  </div>
-                  <div className="d-flex flex-lg-wrap">
-                    <p>
-                      <FaDollarSign style={cartList_icons} />
-                      價格: 2000
-                    </p>
-                  </div>
-                </div>
-                <div>
-                  <figure>
-                    <img
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRBVl9lhK94mJ5MxzGptFKO5FLRXoXVNDmjYndWy1H4kCaqDqOw"
-                      alt=""
-                    />
-                  </figure>
-                </div>
-              </li>
-              <li className="d-flex justify-content-between align-item-center my-3">
-                <div>
-                  <p style={{ fontSize: "18px" }}>Saturday February 20th</p>
-                  <div>
-                    <p>
-                      <FaRegClock style={cartList_icons} />
-                      商品名稱: 白巧克小姐
-                    </p>
-                  </div>
-                  <div className="d-flex flex-lg-wrap">
-                    <p>
-                      <FaDollarSign style={cartList_icons} />
-                      價格: 2000
-                    </p>
-                  </div>
-                </div>
-                <div>
-                  <figure>
-                    <img
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRBVl9lhK94mJ5MxzGptFKO5FLRXoXVNDmjYndWy1H4kCaqDqOw"
-                      alt=""
-                    />
-                  </figure>
-                </div>
-              </li>
-              <li className="d-flex justify-content-between align-item-center my-3">
-                <div>
-                  <p style={{ fontSize: "18px" }}>Saturday February 20th</p>
-                  <div>
-                    <p>
-                      <FaRegClock style={cartList_icons} />
-                      商品名稱: 白巧克小姐
-                    </p>
-                  </div>
-                  <div className="d-flex flex-lg-wrap">
-                    <p>
-                      <FaDollarSign style={cartList_icons} />
-                      價格: 2000
-                    </p>
-                  </div>
-                </div>
-                <div>
-                  <figure>
-                    <img
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRBVl9lhK94mJ5MxzGptFKO5FLRXoXVNDmjYndWy1H4kCaqDqOw"
-                      alt=""
-                    />
-                  </figure>
-                </div>
-              </li>
-            </ul>
-            <ul style={cartTitle_border}>
-              <h5 style={cartList_title}>食材</h5>
-              <li className="d-flex justify-content-between align-item-center my-3">
-                <div>
-                  <div>
-                    <p>
-                      <FaRegClock style={cartList_icons} />
-                      商品名稱: 白巧克力
-                    </p>
-                  </div>
-                  <div className="d-flex flex-lg-wrap">
-                    <p className=" mr-3">
-                      <GoPerson style={cartList_icons} />
-                      數量: 5
-                    </p>
-                    <p>
-                      <FaDollarSign style={cartList_icons} />
-                      價格: 2000
-                    </p>
-                  </div>
-                </div>
-                <div>
-                  <figure>
-                    <img
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRBVl9lhK94mJ5MxzGptFKO5FLRXoXVNDmjYndWy1H4kCaqDqOw"
-                      alt=""
-                    />
-                  </figure>
-                </div>
-              </li>
-            </ul>
+            <CartCourse />
+            <CartIngre />
           </div>
         </div>
         <div className="memberCartBottom"></div>
