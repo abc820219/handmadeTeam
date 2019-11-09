@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import MemberOrderList from "./MemberOrderList";
 import MemberOrderDetail from "./MemberOrderDetail";
 
-const MemberOrder = props => {
+const MemberOrder = () => {
   const [orderType, setOrderType] = useState(1);
   const changeOrderType = a => {
     setOrderType(a);
