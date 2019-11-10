@@ -9,7 +9,7 @@ const emailRegex = RegExp(
 ); //信箱正規
 
 function MemberRegister(props) {
-  const [MemberLogin, setMemberLogin] = useState(true);
+  const [MemberLogin] = useState(true);
   const [account, setaccount] = useState("");
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
@@ -89,7 +89,7 @@ function MemberRegister(props) {
                   id="member-account"
                   placeholder="帳號"
                   onChange={handleChange}
-                  className={formErrors.account == "最少3個字" ? "error" : null}
+                  className={formErrors.account === "最少3個字" ? "error" : null}
                   value={account}
                 />
                 <p className="errorText">{formErrors.account} &nbsp;</p>
