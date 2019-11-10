@@ -1,87 +1,85 @@
 import React from "react";
 import { FaDollarSign } from "react-icons/fa";
 import { FaRegClock } from "react-icons/fa";
+import { GoPerson } from "react-icons/go";
 
 const CartCourse = () => {
   return (
     <>
-      <ul className="cartTitle_border">
-        <h5 className="cartList_title">課程</h5>
-        <li className="d-flex justify-content-between align-item-center my-3">
-          <div>
-            <p style={{ fontSize: "18px" }}>Saturday February 20th</p>
-            <div>
-              <p>
-                <FaRegClock className="cartList_icons" />
-                商品名稱: 巧克先生
-              </p>
-            </div>
-            <div className="d-flex flex-lg-wrap">
-              <p>
-                <FaDollarSign className="cartList_icons" />
-                價格: 2000
-              </p>
-            </div>
+      <ul className="d-flex justify-content-around align-items-center px-5">
+        <li className="d-flex flex-column align-items-between py-3">
+          <div className="product-title">Saturday February 20th *2</div>
+          <div className="d-flex align-items-center">
+            <FaRegClock className="cartList_icons" />
+            商品名稱:巧克力派
           </div>
-          <div>
-            <figure>
-              <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRBVl9lhK94mJ5MxzGptFKO5FLRXoXVNDmjYndWy1H4kCaqDqOw"
-                alt=""
-              />
-            </figure>
+          <div className="d-flex align-items-center">
+            <GoPerson className="cartList_icons" />
+            人數: 5
+          </div>
+          <div className="d-flex align-items-center">
+            <FaDollarSign className="cartList_icons" />
+            5000
           </div>
         </li>
-        <li className="d-flex justify-content-between align-item-center my-3">
-          <div>
-            <p style={{ fontSize: "18px" }}>Saturday February 20th</p>
-            <div>
-              <p>
-                <FaRegClock className="cartList_icons" />
-                商品名稱: 白巧克小姐
-              </p>
-            </div>
-            <div className="d-flex flex-lg-wrap">
-              <p>
-                <FaDollarSign className="cartList_icons" />
-                價格: 2000
-              </p>
-            </div>
+        <figure>
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRBVl9lhK94mJ5MxzGptFKO5FLRXoXVNDmjYndWy1H4kCaqDqOw"
+            alt=""
+            width="80px"
+            height="80px"
+          />
+        </figure>
+      </ul>
+      <ul className="d-flex justify-content-around align-items-center px-5">
+        <li className="d-flex flex-column align-items-between py-3">
+          <div className="product-title">Saturday February 20th *2</div>
+          <div className="d-flex align-items-center">
+            <FaRegClock className="cartList_icons" />
+            商品名稱:巧克力派
           </div>
-          <div>
-            <figure>
-              <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRBVl9lhK94mJ5MxzGptFKO5FLRXoXVNDmjYndWy1H4kCaqDqOw"
-                alt=""
-              />
-            </figure>
+          <div className="d-flex align-items-center">
+            <GoPerson className="cartList_icons" />
+            人數: 5
           </div>
-        </li>
-        <li className="d-flex justify-content-between align-item-center my-3">
-          <div>
-            <p style={{ fontSize: "18px" }}>Saturday February 20th</p>
-            <div>
-              <p>
-                <FaRegClock className="cartList_icons" />
-                商品名稱: 白巧克小姐
-              </p>
-            </div>
-            <div className="d-flex flex-lg-wrap">
-              <p>
-                <FaDollarSign className="cartList_icons" />
-                價格: 2000
-              </p>
-            </div>
-          </div>
-          <div>
-            <figure>
-              <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRBVl9lhK94mJ5MxzGptFKO5FLRXoXVNDmjYndWy1H4kCaqDqOw"
-                alt=""
-              />
-            </figure>
+          <div className="d-flex align-items-center">
+            <FaDollarSign className="cartList_icons" />
+            5000
           </div>
         </li>
+        <figure>
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRBVl9lhK94mJ5MxzGptFKO5FLRXoXVNDmjYndWy1H4kCaqDqOw"
+            alt=""
+            width="80px"
+            height="80px"
+          />
+        </figure>
+      </ul>
+      <ul className="d-flex justify-content-around align-items-center px-5">
+        <li className="d-flex flex-column align-items-between py-3">
+          <div className="product-title">Saturday February 20th *2</div>
+          <div className="d-flex align-items-center">
+            <FaRegClock className="cartList_icons" />
+            商品名稱:巧克力派
+          </div>
+          <div className="d-flex align-items-center">
+            <GoPerson className="cartList_icons" />
+            人數: 5
+          </div>
+          <div className="d-flex align-items-center">
+            <FaDollarSign className="cartList_icons" />
+            5000
+          </div>
+        </li>
+        <figure>
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRBVl9lhK94mJ5MxzGptFKO5FLRXoXVNDmjYndWy1H4kCaqDqOw"
+            alt=""
+            width="80px"
+            height="80px"
+          />
+        </figure>
       </ul>
     </>
   );
