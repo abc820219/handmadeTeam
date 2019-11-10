@@ -3,6 +3,8 @@ import "../../commom/scss/course/course_list_navbar.scss";
 
 
 class Course_navbar extends Component {
+    
+
     render() {
         return (
             <section className="course_navbar">
