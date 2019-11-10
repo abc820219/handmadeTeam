@@ -7,11 +7,14 @@ import CartIngre from "./CartIngre";
 // import NavDropdown from "react-bootstrap/NavDropdown";
 // import Nav from "react-bootstrap/Nav";
 
+
 const Cart = ({ openCart, showCart }) => {
-  let id = localStorage.getItem("user_id") || 0;
+  let id = localStorage.getItem("member_id") || 0;
   useEffect(() => {
-    localStorage.setItem(`cart${id}`, "123");
-  }, [id]);
+    localStorage.setItem(`courseCart${id}`, "{}");
+    localStorage.setItem(`ingreCart${id}`, "{}");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  });
   return (
     <>
       <div
