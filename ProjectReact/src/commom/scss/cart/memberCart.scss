@@ -1,0 +1,58 @@
+.memberCartList {
+  background: rgba(110, 91, 83, 0.3);
+  backdrop-filter: blur(5px);
+  position: absolute;
+  top: 0;
+  overflow-y: scroll;
+  max-height: 937px;
+  transition: 0.3;
+  overflow-y: scroll;
+  width: 640px;
+  height: 937px;
+  .cart-title {
+    font-size: 24px;
+    padding-left: 130px;
+    padding-top: 40px;
+    color: #fff;
+  }
+  .cartHead::after {
+    content: "";
+    display: block;
+    border: 1px solid #fff;
+    color: #fff;
+    width: 85%;
+    margin: auto;
+  }
+  .product-title {
+    color: #fff;
+    font-size: 20px;
+  }
+  .cartMain {
+    line-height: 30px;
+    .course-title {
+      font-size: 20px;
+      padding-left: 130px;
+      color: #fff;
+    }
+  }
+  .cartTotal {
+    font-size: 30px;
+  }
+  .cartBtn {
+    padding: 10px;
+  }
+}
+
+.cartFooter {
+  position: fixed;
+  bottom: 0;
+  width: 623px;
+  height: 150px;
+  background-color: #ed8c69;
+}
+.hr-bottom {
+  background-color: #fff;
+  width: 85%;
+  height: 1px;
+  margin: auto;
+}

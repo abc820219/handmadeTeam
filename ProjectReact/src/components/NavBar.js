@@ -4,7 +4,7 @@ import "../commom/scss/normalize.scss";
 import { GiHamburgerMenu } from "react-icons/gi";
 import NavBarSign from "./NavBarSign";
 import NavBarUnSign from "./NavBarUnSign";
-import MemberLogin from "./MemberLogin";
+import MemberBox from "./MemberBox";
 import { relative } from "path";
 import { Link } from "react-router-dom";
 
@@ -26,6 +26,12 @@ const NavBar = props => {
   if (showLightBox) {
     console.log("clicked");
   }
+
+  const [showCart, setShowCart] = useState(false);
+
+  const openCart = check => {
+    setShowCart(check);
+  };
   return (
     <>
       <nav className="navbar page-nav d-flex">
@@ -61,13 +67,18 @@ const NavBar = props => {
           </div>
           <h3>BAKE TIME</h3>
         </div>
-        {signIn ? <NavBarSign /> : <NavBarUnSign showLightBox={memberSignIn} />}
+        {signIn ? (
+          <NavBarSign openCart={openCart} showCart={showCart} />
+        ) : (
+          <NavBarUnSign
+            showLightBox={memberSignIn}
+            openCart={openCart}
+            showCart={showCart}
+          />
+        )}
       </nav>
       {showLightBox ? (
-        <MemberLogin
-          LoginBox={signIn}
-          memberSignIn={memberSignIn}
-        ></MemberLogin>
+        <MemberBox LoginBox={signIn} memberSignIn={memberSignIn}></MemberBox>
       ) : null}
     </>
   );
