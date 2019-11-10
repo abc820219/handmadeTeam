@@ -44,7 +44,9 @@
 }
 
 .cartFooter {
-  width: 100%;
+  position: fixed;
+  bottom: 0;
+  width: 623px;
   height: 150px;
   background-color: #ed8c69;
 }
