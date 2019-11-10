@@ -1,7 +1,6 @@
 import React from "react";
 import "../../commom/scss/member/member_sideBar.scss";
 import { Link } from "react-router-dom";
-import MemberEdit from "./MemberEdit";
 const MemberSideBar = ({ match }) => {
   return (
     <aside className="side-bar">

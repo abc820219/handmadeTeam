@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "../../commom/scss/member/memberEdit.scss";
 import { FaUserAlt, FaBirthdayCake, FaAddressCard } from "react-icons/fa";
 import { MdEmail, MdPhoneAndroid } from "react-icons/md";
