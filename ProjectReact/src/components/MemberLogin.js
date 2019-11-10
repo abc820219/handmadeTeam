@@ -62,7 +62,32 @@ function MemberLogin(props) {
     }
     setformErrors({ formErrors, ...formErrors });
   }; //錯誤訊息篩選順便更新狀態
-  const submitForm = event => {
+  const submitForm = async event => {
+    fetch("http://localhost:5000/handmade/member/login", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        member_account: account,
+        member_password: password
+      })
+    })
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        console.log(data.info.member_sid);
+        localStorage.setItem("member_id", data.info.member_sid);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    // try{
+
+    // }catch(error){
+
+    // }
     event.preventDefault();
     setaccount("");
     setpassword("");
