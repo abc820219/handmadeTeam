@@ -8,28 +8,6 @@ const MemberOrder = () => {
   const changeOrderType = a => {
     setOrderType(a);
   };
-
-  const [courseList, setCourseList] = useState([]);
-
-  const orderData = async () => {
-    try {
-      const user = await localStorage.getItem("id");
-      const dataJson = await fetch(
-        `http://localhost:5000/handmade/member/order/${user}`
-      );
-      const result = await dataJson.json();
-      const newCourseList = await [...courseList, result];
-      await setCourseList(newCourseList);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  useEffect(() => {
-    orderData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
     <div className="container-fluid">
       <div className="row">
@@ -37,7 +15,6 @@ const MemberOrder = () => {
           <MemberOrderList
             changeOrderType={changeOrderType}
             style={{ paddingTop: "60px" }}
-            courseList={courseList}
           />
         </div>
         <div className="col-8 p-0">
