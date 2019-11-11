@@ -14,33 +14,19 @@ class Facebook extends Component {
   }
   render() {
     let fbContent;
+    fbContent = (
+      <FacebookLogin
+        appId="2455924711363188"
+        autoLoad={false}
+        fields="name,email,picture"
+        onClick={this.componentClicked}
+        callback={this.responseFacebook}
+        cssClass="my-facebook-button-class"
+        textButton="FACEBOOK"
+        style={{ fontSize: "25px" }}
+      />
+    );
 
-    if (this.state.isLoggedIn) {
-      fbContent = (
-        <FacebookLogin
-          appId="2455924711363188"
-          autoLoad={false}
-          fields="name,email,picture"
-          onClick={this.componentClicked}
-          callback={this.responseFacebook}
-          cssClass="my-facebook-button-class"
-          textButton="FACEBOOK"
-        />
-      );
-    } else {
-      fbContent = (
-        <FacebookLogin
-          appId="2455924711363188"
-          autoLoad={false}
-          fields="name,email,picture"
-          onClick={this.componentClicked}
-          callback={this.responseFacebook}
-          cssClass="my-facebook-button-class"
-          textButton="FACEBOOK"
-          style={{ fontSize: "25px" }}
-        />
-      );
-    }
     return <div className="mt-5">{fbContent}</div>;
   }
   responseFacebook = response => {

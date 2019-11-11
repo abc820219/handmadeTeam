@@ -1,87 +1,97 @@
-.page-nav {
-  width: 100%;
+nav {
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
   height: 60px;
-  padding: 0px;
-}
-
-/*瀚文增加 */
-.navbar {
+  padding: 0 30px;
   z-index: 999;
-}
-.navbarBtn {
-  position: absolute;
-  background-color: rgba(255, 255, 255, 0.7);
-  max-width: "100px";
-  white-space: nowrap;
-  left: 20px;
-  top: 55px;
-}
-.navbarBtn::before {
-  content: "";
-  width: 0;
-  display: block;
-  content: "";
-  border-width: 8px 8px 8px 8px;
-  border-style: solid;
-  border-color: transparent transparent rgba(255, 255, 255, 0.7) transparent;
-  /* 定位 */
-  position: absolute;
-  left: 5px;
-  top: -16px;
-}
-.navbarBtn li {
-  padding: 5px 30px;
-}
-.navbarBtn li + li {
-  border-top: 1px solid #000;
-}
+  .page-nav-aside {
+    height: 100%;
+    h3 {
+      font-size: 25px;
+      color: #362d2b;
+      margin: 0px;
+    }
+    .logoBox {
+      margin-left: 130px;
+    }
+    .fa-bars {
+      width: 16px;
+      height: 14px;
+      margin-right: 0px;
+    }
+  }
+  .page-nav-rightside {
+    width: 84px;
+    height: 37px;
+    p {
+      font-size: 12px;
+      color: #362d2b;
+      margin: 0px;
+      line-height: 37px;
+      background-color: rgba(255, 255, 255, 0.64);
+      padding: 0 10px;
+    }
+  }
 
-/*瀚文增加 */
-.page-nav-aside {
-  /* width: 474px; */
-  height: 100%;
-}
-
-.page-nav-aside h3 {
-  font-size: 25px;
-  color: #362d2b;
-  margin: 0px;
-}
-
-.fa-bars {
-  width: 16px;
-  height: 14px;
-  /* margin-left: 30px; */
-  margin-right: 0px;
-}
-
-.page-nav-rightside {
-  width: 84px;
-  height: 37px;
-}
-
-.page-nav-rightside p {
-  font-size: 12px;
-  color: #362d2b;
-  margin: 0px;
-  line-height: 37px;
-  background-color: rgba(255, 255, 255, 0.64);
-  padding: 0 10px;
-}
-
-.navbar-profile {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: #fff;
-  overflow: hidden;
-  margin: 0px;
-}
-
-.navbar-profile img {
-  object-fit: cover;
-  width: 100%;
+  .navbar-profile {
+    position: relative;
+    .navbar-img-box {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #fff;
+      overflow: hidden;
+      margin: 0px;
+      img {
+        object-fit: cover;
+        width: 50px;
+        height: 50px;
+        object-position: top;
+      }
+    }
+    .navbar-profile-list {
+      position: absolute;
+      background-color: rgba(255, 255, 255, 0.7);
+      max-width: "100px";
+      white-space: nowrap;
+      left: 15px;
+      top:60px;
+    }
+    .navbar-profile-list::before {
+      content: "";
+      width: 0;
+      display: block;
+      content: "";
+      border-width: 8px 8px 8px 8px;
+      border-style: solid;
+      border-color: transparent transparent rgba(255, 255, 255, 0.7) transparent;
+      /* 定位 */
+      position: absolute;
+      left: 5px;
+      top: -15px;
+    }
+    ul {
+      margin: 0;
+      li {
+        padding: 5px 10px;
+      }
+      li + li {
+        border-top: 1px solid #000;
+      }
+    }
+  }
+  .navbarBtn {
+    margin: 0;
+    padding: 0;
+    transition: 0.5s;
+    color: #fff;
+    position: absolute;
+    background-color: #362d2b;
+    min-height: 937px;
+    width: 300px;
+    top: 0;
+    left: 0;
+  }
 }
