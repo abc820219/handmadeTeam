@@ -12,6 +12,7 @@ import {
 function ProductPage() {
   return (
     <>
+    
       <Switch>
         <Route path="/handmade/:id?" component={Handmade}></Route>
         <Route path="/course/:id?" component={Course}></Route>
