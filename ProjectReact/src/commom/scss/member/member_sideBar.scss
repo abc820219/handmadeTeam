@@ -1,65 +1,45 @@
-* {
-  font-family: "微軟正黑體";
-  padding: 0;
-  margin: 0;
-}
-
-.side-bar {
-  padding-top: 60px;
+.member-side-bar {
+  color: #ffffff;
   min-width: 374px;
   background-color: #362d2b;
-  min-height: 937px;
-}
+  .member-side-bar-header {
+    .imgBox {
+      margin-top: 65px;
+      position: relative;
+      img {
+        max-width: 150px;
+        max-height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: top;
+        border: 5px solid #f2a6ad;
+      }
+      .imgEdit {
+        position: absolute;
+        bottom: 5px;
+        font-size: 50px;
+        color: rgba($color: #7a7a7a, $alpha: 0.5);
+      }
+    }
+    .nameBox {
+      padding: 25px 80px;
+      text-align: center;
+      font-size: 24px;
+      border-bottom: 1px solid #9597A6;
+    }
+  }
 
-.member-info {
-  height: 230px;
-  position: relative;
-}
-
-.member-photo {
-  margin: 0px;
-  border-radius: 50%;
-  border: 8px #f2a6ad solid;
-  box-sizing: border-box;
-  overflow: hidden;
-  position: absolute;
-  width: 148px;
-  height: 148px;
-  top: 64px;
-  left: 50%;
-  margin-left: -74px;
-}
-
-.object {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-}
-
-.member-title {
-  border-bottom: 1px solid #fff;
-  padding: 30px 15%;
-}
-
-.member-function {
-  color: white;
-  width: 100%;
-  height: 100%;
-}
-
-.member-function p {
-  margin-top: 45px;
-  color: #9597a6;
-  margin-bottom: 5px;
-  font-size: 12px;
-  line-height: 29px;
-}
-
-.member-function h3 {
-  font-size: 20px;
-}
-
-.text-center h3 {
-  font-size: 23px;
+  .member-side-bar-info {
+    ul {
+      font-size: 12px;
+      line-height: 35px;
+      margin-top: 45px;
+      margin-left: -40px;
+      color: #9597A6;
+      li {
+        font-size: 20px;
+        color: #fff;
+      }
+    }
+  }
 }
