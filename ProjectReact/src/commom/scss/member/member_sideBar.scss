@@ -7,8 +7,9 @@
       margin-top: 65px;
       position: relative;
       img {
-        max-width: 150px;
-        max-height: 150px;
+        overflow: hidden;
+        width: 150px;
+        height: 150px;
         border-radius: 50%;
         object-fit: cover;
         object-position: top;
@@ -25,7 +26,7 @@
       padding: 25px 80px;
       text-align: center;
       font-size: 24px;
-      border-bottom: 1px solid #9597A6;
+      border-bottom: 1px solid #9597a6;
     }
   }
 
@@ -35,7 +36,7 @@
       line-height: 35px;
       margin-top: 45px;
       margin-left: -40px;
-      color: #9597A6;
+      color: #9597a6;
       li {
         font-size: 20px;
         color: #fff;

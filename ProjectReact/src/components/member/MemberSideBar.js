@@ -8,7 +8,7 @@ const MemberSideBar = ({ match }) => {
     <aside className="member-side-bar d-flex flex-column align-items-center">
       <div className="member-side-bar-header">
         <div className="imgBox d-flex  flex-column justify-content-center align-items-center">
-          <img src="https://pixel.nymag.com/imgs/daily/vulture/2015/04/02/02-winnie-the-pooh.w330.h330.jpg"></img>
+          <img src="https://img.ltn.com.tw/Upload/talk/page/800/2017/03/15/phpWocuqD.png"></img>
           <AiFillPicture className="imgEdit" />
         </div>
         <div className="nameBox">
@@ -37,7 +37,7 @@ const MemberSideBar = ({ match }) => {
             <Link to="/handmade/member/order">訂單紀錄</Link>
           </li>
           <li>購物車</li>
-          <li>回首頁</li>
+          <li><Link to="/handmade">回首頁</Link></li>
         </ul>
       </div>
     </aside>

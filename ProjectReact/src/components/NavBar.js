@@ -34,7 +34,7 @@ const NavBar = props => {
   };
   return (
     <>
-      <nav className="navbar page-nav d-flex">
+      <nav className="navbar page-nav d-flex align-items-center">
         <div
           className="page-nav-aside d-flex align-items-center justify-content-center"
           onClick={MenuList}
@@ -45,27 +45,32 @@ const NavBar = props => {
               className="mx-3 "
               style={{ fontSize: "30px", color: "#fff" }}
             />
-            {showMenuBtn ? (
-              <ul className="navbarBtn">
-                <li>
-                  <Link to="/handmade/store/course">課程</Link>
-                </li>
-                <li>
-                  <Link to="/handmade/store">店家</Link>
-                </li>
-                <li>
-                  <Link to="/handmade/teacher">老師</Link>
-                </li>
-                <li>
-                  <Link to="/handmade/ingredients">食材</Link>
-                </li>
-                <li>
-                  <Link to="/handmade">首頁</Link>
-                </li>
-              </ul>
-            ) : null}
           </div>
-          <h3>BAKE TIME</h3>
+          <div className="logoBox">
+            <img />
+            LOGO
+          </div>
+          {showMenuBtn ? (
+            <ul className="navbarBtn">
+              <li>
+                <Link to="/handmade/store/course">課程</Link>
+              </li>
+              <li>
+                <Link to="/handmade/store">店家</Link>
+              </li>
+              <li>
+                <Link to="/handmade/teacher">老師</Link>
+              </li>
+              <li>
+                <Link to="/handmade/ingredients">食材</Link>
+              </li>
+              <li>
+                <Link to="/handmade">首頁</Link>
+              </li>
+            </ul>
+          ) : (
+            ""
+          )}
         </div>
         {signIn ? (
           <NavBarSign openCart={openCart} showCart={showCart} />
@@ -77,6 +82,7 @@ const NavBar = props => {
           />
         )}
       </nav>
+      {/* ------------------ */}
       {showLightBox ? (
         <MemberBox LoginBox={signIn} memberSignIn={memberSignIn}></MemberBox>
       ) : null}
@@ -85,3 +91,18 @@ const NavBar = props => {
 };
 
 export default NavBar;
+// {showMenuBtn ? (
+//   <ul className="navbarBtn">
+//     <li>
+//
+//     </li>
+//     <li>
+//     </li>
+//     <li>
+//     </li>
+//     <li>
+//     </li>
+//     <li>
+//     </li>
+//   </ul>
+// ) : null}
