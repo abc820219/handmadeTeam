@@ -1,10 +1,10 @@
 .memberOrderList {
   position: relative;
   overflow: scroll;
-  height: 937px;
+  max-height: 100vh;
   overflow-x: hidden;
   background-color: #544741;
-  padding-top: 60px;
+ 
 
   h5 {
     font-size: 20px;

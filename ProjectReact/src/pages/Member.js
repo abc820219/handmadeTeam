@@ -9,7 +9,6 @@ const Member = ({ match }) => {
   return (
     <>
       <div className="d-flex">
-        <NavBar />
         <MemberSideBar />
         <Switch>
           <Route
