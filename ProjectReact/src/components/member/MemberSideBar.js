@@ -37,7 +37,7 @@ const MemberSideBar = ({ match }) => {
             <Link to="/handmade/member/order">訂單紀錄</Link>
           </li>
           <li>購物車</li>
-          <li><Link to="/handmade">回首頁</Link></li>
+          <li><Link to="/handmade/">回首頁</Link></li>
         </ul>
       </div>
     </aside>

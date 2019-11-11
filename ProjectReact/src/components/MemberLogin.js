@@ -4,7 +4,7 @@ import { FaUserAlt, FaKey } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import Captcha from "captcha-mini";
 import "../commom/scss/MemberLogin.scss";
-// import {Link} from "react-router-dom"
+import { Redirect } from "react-router-dom";
 //宣告-----------
 const emailRegex = RegExp(
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
@@ -20,6 +20,7 @@ function MemberLogin(props) {
     email: "",
     password: ""
   });
+  const [captchaValue, setCaptchaValue] = useState("");
   useEffect(() => {
     let captcha = new Captcha({
       lineWidth: 1, //线条宽度
@@ -44,6 +45,8 @@ function MemberLogin(props) {
   const handleChange = event => {
     event.preventDefault();
     const { name, value } = event.target;
+    console.log(value);
+
     console.log(name + value);
     switch (name) {
       case "account":
@@ -62,27 +65,35 @@ function MemberLogin(props) {
     }
     setformErrors({ formErrors, ...formErrors });
   }; //錯誤訊息篩選順便更新狀態
-  const submitForm = async event => {
+  const submitForm = event => {
     event.preventDefault();
-    try {
-      const data = await fetch("http://localhost:5000/handmade/member/login", {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          member_account: account,
-          member_password: password
-        })
+    fetch("http://localhost:5000/handmade/member/login", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        member_account: account,
+        member_password: password
+      })
+    })
+      .then(res => {
+        let member_data = res.json();
+        return member_data;
+      })
+      .then(member_data => {
+        localStorage.setItem("member_id", member_data.info.member_sid);
+        localStorage.setItem("member_data", member_data.info);
+        console.log(member_data);
+        alert(member_data.message);
+        setTimeout(() => {
+          window.location = "http://localhost:3000/handmade/member";
+        }, 1000);
+      })
+      .catch(err => {
+        console.log(err);
+        alert("登入失敗");
       });
-      const res = await data.json();
-      const member_data = await res;
-      await localStorage.setItem("member_id", member_data.info.member_sid);
-      await localStorage.setItem("member_data", member_data.info);
-      console.log(member_data);
-    } catch (error) {
-      await console.log(error);
-    }
     setaccount("");
     setpassword("");
   };
@@ -133,6 +144,8 @@ function MemberLogin(props) {
                 name="captchatext"
                 type="text"
                 placeholder="輸入驗證碼"
+                value={captchaValue}
+                onChange={handleChange}
               />
               <canvas width="100" height="30px" id="captcha" />
             </div>

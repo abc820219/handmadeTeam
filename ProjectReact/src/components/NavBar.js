@@ -65,6 +65,9 @@ const NavBar = props => {
                 <Link to="/handmade/ingredients">食材</Link>
               </li>
               <li>
+                <Link to="/handmade/member">會員專區</Link>
+              </li>
+              <li>
                 <Link to="/handmade">首頁</Link>
               </li>
             </ul>
