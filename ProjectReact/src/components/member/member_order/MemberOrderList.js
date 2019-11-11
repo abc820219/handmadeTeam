@@ -6,20 +6,19 @@ import MemberOrderListCourse from '../member_order/MemberOrderListCourse';
 import MemberOrderListIngre from '../member_order/MemberOrderListIngre';
 
 const MemberOrderList = ({ changeOrderType }) => {
-  const [courseList, setCourseList] = useState([]);
-  const [ingreList, setIngreList] = useState([]);
-  const [teacherList, setTeacherList] = useState([]);
+  const [courseLists, setCourseLists] = useState([]);
+  const [ingreLists, setIngreLists] = useState([]);
+  // const [teacherList, setTeacherList] = useState([]);
 
   const orderCourseData = async () => {
     try {
       const user = await localStorage.getItem("member_id");
-      
       const dataJson = await fetch(
         `http://localhost:5000/handmade/member/order/course/${user}`
       );
       const result = await dataJson.json();
-      const newCourseList = await [...courseList, result];
-      await setCourseList(newCourseList);
+      const newCourseLists = await result;
+      await setCourseLists(newCourseLists);
     } catch (e) {
       console.log(e);
     }
@@ -32,35 +31,33 @@ const MemberOrderList = ({ changeOrderType }) => {
         `http://localhost:5000/handmade/member/order/ingre/${user}`
       );
       const result = await dataJson.json();
-      const newIngreList = await [...ingreList, result];
-      await setIngreList(newIngreList);
+      const newIngreLists = await result;
+      await setIngreLists(newIngreLists);
     } catch (e) {
       console.log(e);
     }
   };
 
-  const orderTeacherData = async () => {
-    try {
-      const user = await localStorage.getItem("member_id");
-      const dataJson = await fetch(
-        `http://localhost:5000/handmade/member/order/teacher/${user}`
-      );
-      const result = await dataJson.json();
-      const newTeacherList = await [...teacherList, result];
-      await setIngreList(newTeacherList);
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  // const orderTeacherData = async () => {
+  //   try {
+  //     const user = await localStorage.getItem("member_id");
+  //     const dataJson = await fetch(
+  //       `http://localhost:5000/handmade/member/order/teacher/${user}`
+  //     );
+  //     const result = await dataJson.json();
+  //     const newTeacherList = await [...teacherList, result];
+  //     // await setIngreList(newTeacherList);
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
 
-  useEffect(() => {
-    Promise.all([orderCourseData(), orderIngreData(), orderTeacherData()]).then((values)=>{
-      console.log(values)
-    })
-    //orderCourseData();
-    //orderIngreData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect (async() => {
+    await Promise.all([orderCourseData(), orderIngreData()]);
+  //eslint-disable-next-line import/no-extraneous-dependencies
   }, []);
+  console.log(ingreLists);
   return (
     <>
       <Container className="memberOrderList container">
@@ -72,13 +69,25 @@ const MemberOrderList = ({ changeOrderType }) => {
             <h3 className="orderList_title">
               課程
             </h3>
-            <MemberOrderListCourse/>
+            {courseLists.map((courseList)=> <MemberOrderListCourse 
+            key={courseList.order_sid}
+            orderSid={courseList.order_sid}
+            courseName={courseList.course_name}
+            courseOrderChoose={courseList.course_order_choose}
+            coursePrice={courseList.course_price}  
+            />)}
           </ul>
           <ul className="orderTitle_border" onClick={() => changeOrderType(2)}>
             <h3 className="orderList_title">
               食材
             </h3>
-            <MemberOrderListIngre/>
+            {ingreLists.map((ingreList)=> <MemberOrderListIngre 
+            key={ingreList.order_sid}
+            orderSid={ingreList.order_sid}
+            ingredientsName={ingreList.ingredients_name}
+            ingredientsQuantity={ingreList.ingredients_order_quantity}
+            ingredientsPrice={ingreList.ingredients_price}  
+            />)}
           </ul>
           <ul className="orderTitle_border">
             <h3 className="orderList_title" onClick={() => changeOrderType(3)}>

@@ -3,28 +3,28 @@ import { FaRegClock } from "react-icons/fa";
 import { FaDollarSign } from "react-icons/fa";
 import { GoPerson } from "react-icons/go";
 
-const MemberOrderListIngre = () => {
+const MemberOrderListIngre = ({orderSid,ingredientsName,ingredientsQuantity,ingredientsPrice}) => {
     return (
         <>
             <span>
-                <p>訂單編號: 100001</p>
+                <p>訂單編號: {orderSid}</p>
             </span>
             <li className="d-flex justify-content-between align-item-center my-4">
                 <div>
                     <div>
                         <h5>
                             <FaRegClock className="oderList_icons" />
-                            商品名稱: 白巧克力
+                            商品名稱: {ingredientsName}
                   </h5>
                     </div>
                     <div className="d-flex flex-lg-wrap">
                         <h5 className=" mr-3">
                             <GoPerson className="oderList_icons" />
-                            數量: 5
+                            數量: {ingredientsQuantity}
                   </h5>
                         <h5>
                             <FaDollarSign className="oderList_icons" />
-                            價格: 2000
+                            價格: {ingredientsPrice}
                   </h5>
                     </div>
                 </div>
