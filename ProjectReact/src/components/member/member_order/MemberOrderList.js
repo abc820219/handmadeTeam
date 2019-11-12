@@ -15,93 +15,53 @@ const MemberOrderList = ({ changeOrderType }) => {
   // const [courseLists, setCourseLists] = useState([]);
   // const [ingreLists, setIngreLists] = useState([]);
   // const [teacherList, setTeacherList] = useState([]);
-  // const {
-  //   courseLists,
-  //   clDispatch,
-  //   ingreLists,
-  //   ilDispatch,
-  //   courseIsFetch,
-  //   ingreIsFetch
-  // } = React.useContext(ContextStore);
-  const {courseIsFetch} = useContext(Store);
-  console.log(courseIsFetch);
-  // const orderCourseData = async () => {
-  //   try {
-  //     const user = await localStorage.getItem("member_id");
-  //     const dataJson = await fetch(
-  //       `http://localhost:5000/handmade/member/order/course/${user}`
-  //     );
-  //     const result = await dataJson.json();
-  //     const newCourseLists = await result;
-  //     await setCourseLists(newCourseLists);
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
+  const {
+    courseLists,
+    clDispatch,
+    ingreLists,
+    ilDispatch,
+    courseIsFetch,
+    ingreIsFetch
+  } = React.useContext(Store);
 
-  // const orderIngreData = async () => {
-  //   try {
-  //     const user = await localStorage.getItem("member_id");
-  //     const dataJson = await fetch(
-  //       `http://localhost:5000/handmade/member/order/ingre/${user}`
-  //     );
-  //     const result = await dataJson.json();
-  //     const newIngreLists = await result;
-  //     await setIngreLists(newIngreLists);
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
+  const orderCourseData = async () => {
+    try {
+      const user = await localStorage.getItem("member_id");
+      await clDispatch(requestCourseOrder());
+      const dataJson = await fetch(
+        `http://localhost:5000/handmade/member/order/course/${user}`
+      );
+      const data = await dataJson.json();
+      await clDispatch(receiveCourseOrder(data));
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
-  // const orderTeacherData = async () => {
-  //   try {
-  //     const user = await localStorage.getItem("member_id");
-  //     const dataJson = await fetch(
-  //       `http://localhost:5000/handmade/member/order/teacher/${user}`
-  //     );
-  //     const result = await dataJson.json();
-  //     const newTeacherList = await [...teacherList, result];
-  //     // await setIngreList(newTeacherList);
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
-  // const orderCourseData = async () => {
-  //   try {
-  //     const user = await localStorage.getItem("member_id");
-  //     await clDispatch(requestCourseOrder());
-  //     const dataJson = await fetch(
-  //       `http://localhost:5000/handmade/member/order/course/${user}`
-  //     );
-  //     await clDispatch(receiveCourseOrder(dataJson));
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
-
-  // const orderIngreData = async () => {
-  //   try {
-  //     const user = await localStorage.getItem("member_id");
-  //     await ilDispatch(requestIngreOrder());
-  //     const dataJson = await fetch(
-  //       `http://localhost:5000/handmade/member/order/ingre/${user}`
-  //     );
-  //     await clDispatch(receiveIngreOrder(dataJson));
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
+  const orderIngreData = async () => {
+    try {
+      const user = await localStorage.getItem("member_id");
+      await ilDispatch(requestIngreOrder());
+      const dataJson = await fetch(
+        `http://localhost:5000/handmade/member/order/ingre/${user}`
+      );
+      const data = await dataJson.json();
+      await ilDispatch(receiveIngreOrder(data));
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // useEffect(async () => {
-  //   await Promise.all([orderCourseData(), orderIngreData()]);
-  //   //eslint-disable-next-line import/no-extraneous-dependencies
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [courseIsFetch, ingreIsFetch]);
+  useEffect(async () => {
+    await Promise.all([orderCourseData(), orderIngreData()]);
+    //eslint-disable-next-line import/no-extraneous-dependencies
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [courseIsFetch, ingreIsFetch]);
   // console.log(ingreLists);
   return (
     <>
-      {/* <Container className="memberOrderList container">
+      <Container className="memberOrderList container">
         <div className="orderListTitle-bar d-flex align-items-center">
           <h3 className="ml-5 mt-5 mb-5">訂單紀錄</h3>
         </div>
@@ -137,7 +97,7 @@ const MemberOrderList = ({ changeOrderType }) => {
             <MemberOrderListTeacher />
           </ul>
         </div>
-      </Container> */}
+      </Container>
     </>
   );
 };
