@@ -1,4 +1,5 @@
 import React from "react";
+import LogOut from "./MemberLogout";
 import { AiFillPicture } from "react-icons/ai";
 
 import "../../commom/scss/member/member_sideBar.scss";
@@ -13,6 +14,7 @@ const MemberSideBar = ({ match }) => {
         </div>
         <div className="nameBox">
           <span>USER NAME</span>
+          <LogOut></LogOut>
         </div>
       </div>
       {/* --------------------------------------------------------------------------------- */}
@@ -37,7 +39,9 @@ const MemberSideBar = ({ match }) => {
             <Link to="/handmade/member/order">訂單紀錄</Link>
           </li>
           <li>購物車</li>
-          <li><Link to="/handmade/">回首頁</Link></li>
+          <li>
+            <Link to="/handmade/">回首頁</Link>
+          </li>
         </ul>
       </div>
     </aside>

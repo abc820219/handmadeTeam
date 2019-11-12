@@ -8,8 +8,8 @@ import MemberBox from "./MemberBox";
 import { relative } from "path";
 import { Link } from "react-router-dom";
 
-const NavBar = props => {
-  const [signIn] = useState(false);
+const NavBar = ({ checkLogIn, login }) => {
+  console.log(login.login);
   const [showLightBox, setShowLightBox] = useState(false);
   const [showMenuBtn, setshowMenuBtn] = useState(false);
   const memberSignIn = () => {
@@ -65,9 +65,6 @@ const NavBar = props => {
                 <Link to="/handmade/ingredients">食材</Link>
               </li>
               <li>
-                <Link to="/handmade/member">會員專區</Link>
-              </li>
-              <li>
                 <Link to="/handmade">首頁</Link>
               </li>
             </ul>
@@ -75,19 +72,23 @@ const NavBar = props => {
             ""
           )}
         </div>
-        {signIn ? (
-          <NavBarSign openCart={openCart} showCart={showCart} />
-        ) : (
+        {login.login == false ? (
           <NavBarUnSign
             showLightBox={memberSignIn}
             openCart={openCart}
             showCart={showCart}
           />
+        ) : (
+          <NavBarSign openCart={openCart} showCart={showCart} />
         )}
       </nav>
       {/* ------------------ */}
       {showLightBox ? (
-        <MemberBox LoginBox={signIn} memberSignIn={memberSignIn}></MemberBox>
+        <MemberBox
+          LoginBox={login}
+          memberSignIn={memberSignIn}
+          checkLogIn={checkLogIn}
+        ></MemberBox>
       ) : null}
     </>
   );
