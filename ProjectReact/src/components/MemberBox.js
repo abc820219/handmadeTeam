@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import MemberLogin from "./MemberLogin";
 import MemberRegister from "./MemberRegister";
-function MemberBox(props) {
+function MemberBox(props, { checkLogIn }) {
   console.log(props);
   const [boxState, setBxState] = useState(true);
   function boxStateChange() {
@@ -13,6 +13,7 @@ function MemberBox(props) {
         <MemberLogin
           memberSignIn={props.memberSignIn}
           boxStateChange={boxStateChange}
+          checkLogIn={checkLogIn}
         />
       </>
     );

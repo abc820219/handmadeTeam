@@ -1,9 +1,9 @@
-import React,{useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import "../../../commom/scss/member/memberOrderList.scss";
-import MemberOrderListTeacher from '../member_order/MemberOrderListTeacher';
-import MemberOrderListCourse from '../member_order/MemberOrderListCourse';
-import MemberOrderListIngre from '../member_order/MemberOrderListIngre';
+import MemberOrderListTeacher from "../member_order/MemberOrderListTeacher";
+import MemberOrderListCourse from "../member_order/MemberOrderListCourse";
+import MemberOrderListIngre from "../member_order/MemberOrderListIngre";
 
 const MemberOrderList = ({ changeOrderType }) => {
   const [courseLists, setCourseLists] = useState([]);
@@ -53,9 +53,9 @@ const MemberOrderList = ({ changeOrderType }) => {
   // };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect (async() => {
+  useEffect(async () => {
     await Promise.all([orderCourseData(), orderIngreData()]);
-  //eslint-disable-next-line import/no-extraneous-dependencies
+    //eslint-disable-next-line import/no-extraneous-dependencies
   }, []);
   console.log(ingreLists);
   return (
@@ -66,34 +66,34 @@ const MemberOrderList = ({ changeOrderType }) => {
         </div>
         <div className="memberOrderList-info pl-2">
           <ul className="orderTitle_border" onClick={() => changeOrderType(1)}>
-            <h3 className="orderList_title">
-              課程
-            </h3>
-            {courseLists.map((courseList)=> <MemberOrderListCourse 
-            key={courseList.order_sid}
-            orderSid={courseList.order_sid}
-            courseName={courseList.course_name}
-            courseOrderChoose={courseList.course_order_choose}
-            coursePrice={courseList.course_price}  
-            />)}
+            <h3 className="orderList_title">課程</h3>
+            {courseLists.map(courseList => (
+              <MemberOrderListCourse
+                key={courseList.order_sid}
+                orderSid={courseList.order_sid}
+                courseName={courseList.course_name}
+                courseOrderChoose={courseList.course_order_choose}
+                coursePrice={courseList.course_price}
+              />
+            ))}
           </ul>
           <ul className="orderTitle_border" onClick={() => changeOrderType(2)}>
-            <h3 className="orderList_title">
-              食材
-            </h3>
-            {ingreLists.map((ingreList)=> <MemberOrderListIngre 
-            key={ingreList.order_sid}
-            orderSid={ingreList.order_sid}
-            ingredientsName={ingreList.ingredients_name}
-            ingredientsQuantity={ingreList.ingredients_order_quantity}
-            ingredientsPrice={ingreList.ingredients_price}  
-            />)}
+            <h3 className="orderList_title">食材</h3>
+            {ingreLists.map(ingreList => (
+              <MemberOrderListIngre
+                key={ingreList.order_sid}
+                orderSid={ingreList.order_sid}
+                ingredientsName={ingreList.ingredients_name}
+                ingredientsQuantity={ingreList.ingredients_order_quantity}
+                ingredientsPrice={ingreList.ingredients_price}
+              />
+            ))}
           </ul>
           <ul className="orderTitle_border">
             <h3 className="orderList_title" onClick={() => changeOrderType(3)}>
               老師
             </h3>
-              <MemberOrderListTeacher/>
+            <MemberOrderListTeacher />
           </ul>
         </div>
       </Container>
