@@ -1,4 +1,4 @@
-import { REQ_COURSE_ORDER, REC_COURSE_ORDER } from "./OrderAction";
+import { REQ_COURSE_ORDER, REC_COURSE_ORDER ,REQ_INGRE_ORDER,REC_INGRE_ORDER} from "./OrderAction";
 
 export const courseListReducer = (state, action) => {
   switch (action.type) {
@@ -7,9 +7,10 @@ export const courseListReducer = (state, action) => {
         courseIsFetch: true
       });
     case REC_COURSE_ORDER:
+      const newcourseLists = action.payload;
       return Object.assign({}, state, {
         courseIsFetch: false,
-        courseLists: [...state.courseLists, action.payload]
+        courseLists: newcourseLists
       });
     default:
       return state;
@@ -18,9 +19,16 @@ export const courseListReducer = (state, action) => {
 
 export const ingreListReducer = (state, action) => {
   switch (action.type) {
-    case "REQ_INGRE_ORDER":
+    case REQ_INGRE_ORDER:
       return Object.assign({}, state, {
-        orders: state.orders.concat({ id: state.orders.length })
+        ingreIsFetch: true
+      });
+    case REC_INGRE_ORDER:
+       const newingreLists = action.payload;
+       console.log(newingreLists);
+      return Object.assign({}, state, {
+        ingreIsFetch: false,
+        ingreLists: newingreLists
       });
     default:
       return state;

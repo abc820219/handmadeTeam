@@ -21,7 +21,14 @@ const MemberOrder = () => {
     setOrderType(a);
   };
   return (
-    <Store.Provider value={OrderStore}>
+    <Store.Provider value={{
+        courseLists: clState.courseLists,
+        ingreLists: ilState.ingreLists,
+        courseIsFetch: Store.courseIsFetch,
+        ingreIsFetch: Store.ingreIsFetch,
+        clDispatch,
+        ilDispatch
+    }}>
       <div className="container-fluid">
         <div className="row">
           <div className="col-4 p-0">
