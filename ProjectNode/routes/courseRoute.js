@@ -6,16 +6,22 @@ const db_Obj = require('C:/Users/__connect.json'); //連線到資料庫
 const db = mysql.createConnection(db_Obj);
 bluebird.promisifyAll(db);
 
-router.get('/',(req,res)=>{
-    res.send("course");
-});
-router.get("/:storeId",(req,res)=>{
+// router.get('/',(req,res)=>{
+//     console.log("123");
+//     res.send("course");
+// });
+
+router.get("/:storeId?",(req,res)=>{
+    console.log("123");
     const storeId = req.params.storeId;
+    // console.log(storeId);
     const output =[];
-    db.queryAsync("SELECT * FROM (`course` LEFT JOIN `course_ind` ON `course`.`store_sid` = `course_ind`.`store_sid`)LEFT JOIN `course_img` on `course`.`course_sid` = `course_img`.`course_sid` =" + storeId)
+    // 暫時篩選店家標號是課程的 之後要改回tank的
+    db.queryAsync("SELECT * FROM((((`store` NATURAL JOIN `course`) NATURAL JOIN `course_img`) NATURAL JOIN `course_ind`) LEFT JOIN `community` ON `store`.`store_sid` =`community`.`correspond_sid`) WHERE `store`.`store_sid` = "  +  storeId )
     .then(results=>{
-        
-        output.push(results[0]);
+        console.log(results);
+        output.push(results
+            );
         res.json(output);
     })
     .catch((error)=>{
