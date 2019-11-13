@@ -1,28 +1,32 @@
-import React, { useState } from "react";
+import React, { useState,useReducer } from "react";
 import NavBar from "../components/NavBar";
-import CartCheckPage from "../components/cart/CartCheckPage";
-import CartPayPage from "../components/cart/CartPayPage";
+import CartLeft from "../components/cart/CartLeft";
+import CartRight from "../components/cart/CartRight";
 import "../commom/scss/cart/memberCartPage.scss";
+import CartStore from "../components/cart/CartStore";
+import { cartPageReducer } from "../components/cart/CartReducer";
+export const cartPageInitState = { step: 0 };
 
-function Cart({ login, checkLogIn }) {
-  const [step, setStep] = useState(0);
+const Cart = ({ login, checkLogIn }) => {
+ 
+    const [cartPageState, cartPageDispatch] = useReducer(
+      cartPageReducer,
+      cartPageInitState
+    );
 
-  const nextStep = () => {
-    setStep(1);
-  };
-
-  const prevStep = () => {
-    setStep(0);
-  };
-
-  const check = () => {
-    console.log('CheckOut')
-  }
   return (
     <>
+    <CartStore.Provider value={{
+      step: cartPageState.step,
+      cartPageDispatch
+    }}>
       <div className="container-fluid">
-        <CartCheckPage nextStep={nextStep} step={step} prevStep={prevStep} check={check}/>
+        <div className="row">
+          <CartLeft/>
+          <CartRight/>
+        </div>
       </div>
+      </CartStore.Provider>
     </>
   );
 }

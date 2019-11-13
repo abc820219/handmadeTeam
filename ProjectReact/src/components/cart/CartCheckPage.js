@@ -2,6 +2,7 @@ import React from "react";
 
 const CartCheckPage = ({ nextStep ,step, prevStep ,check}) => {
   return (
+    
     <>
       <div className="row">
         <div className="col-4 px-3 checkLeftBox">
