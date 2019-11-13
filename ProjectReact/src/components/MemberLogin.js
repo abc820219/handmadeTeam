@@ -48,7 +48,6 @@ function MemberLogin(props, { checkLogIn }) {
     event.preventDefault();
     const { name, value } = event.target;
     console.log(value);
-
     console.log(name + value);
     switch (name) {
       case "account":
@@ -71,7 +70,7 @@ function MemberLogin(props, { checkLogIn }) {
   const submitForm = event => {
     event.preventDefault();
     if (captchaValue != captchaAgree) {
-      alert("驗證錯誤");
+      alert("驗證碼錯誤");
       setCaptchaErr(true);
       return;
     }

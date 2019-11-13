@@ -92,18 +92,3 @@ const NavBar = ({ checkLogIn, login }) => {
 };
 
 export default NavBar;
-// {showMenuBtn ? (
-//   <ul className="navbarBtn">
-//     <li>
-//
-//     </li>
-//     <li>
-//     </li>
-//     <li>
-//     </li>
-//     <li>
-//     </li>
-//     <li>
-//     </li>
-//   </ul>
-// ) : null}
