@@ -1,15 +1,8 @@
 import React, { useState, useEffect } from "react";
 import FacebookLogin from "./FacebookLogin";
 import { FaUserAlt, FaKey } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
 import Captcha from "captcha-mini";
 import "../commom/scss/MemberLogin.scss";
-import { Redirect } from "react-router-dom";
-//宣告-----------
-const emailRegex = RegExp(
-  /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-); //信箱正規
-//宣告-----------
 function MemberLogin(props, { checkLogIn }) {
   const [MemberLogin, setMemberLogin] = useState(true);
   const [account, setaccount] = useState("");

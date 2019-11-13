@@ -4,13 +4,7 @@ import FacebookLogin from "react-facebook-login";
 class Facebook extends Component {
   constructor() {
     super();
-    this.state = {
-      isLoggedIn: false,
-      userID: "",
-      name: "",
-      email: "",
-      picture: ""
-    };
+    this.state = {};
   }
   render() {
     let fbContent;
@@ -31,24 +25,58 @@ class Facebook extends Component {
   }
   responseFacebook = response => {
     console.log(response);
-    //發一個fetch拿資料庫的會員token_id
-    // if (response.userID != 原本資料庫裡的) {
-    //不等於的話發一個fetch到後端新增資料
-    //新增完資料把資料存到session並且判斷session有無資料然後登入
-    this.setState({
-      isLoggedIn: true,
-      userID: response.userID,
-      name: response.name,
-      email: response.email,
-      picture: response.picture.data.url
-    });
-    console.log(this.state.picture);
-    // } else {
-    //   console.log("登入");
-    //如果token_id相同把資料抓出來並且存到session然後登入
-    // }D
+    fetch("http://localhost:5000/handmade/member/fbLogin", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        member_name: response.name,
+        member_email: response.email,
+        token_id: response.id
+      })
+    })
+      .then(res => {
+        let member_data = res.json();
+        return member_data;
+      })
+      .then(member_data => {
+        console.log(member_data);
+        localStorage.setItem("member_id", member_data.info.member_sid);
+        localStorage.setItem("member_data", member_data.info);
+        alert(member_data.message);
+        setTimeout(() => {
+          window.location = "http://localhost:3000/handmade/member";
+        }).catch(async err => {
+          console.log(err);
+          alert("註冊失敗");
+        });
+      });
   };
 
   // componentClicked = () => console.log("clicked");
 }
 export default Facebook;
+
+// import React from 'react';
+// import FacebookLogin from 'react-facebook-login';
+
+// class Facebook extends React.Component {
+//   responseFacebook(response) {
+//     console.log(response);
+//   }
+
+//   render() {
+//     return (
+//       <FacebookLogin
+//         appId="2455924711363188"
+//         autoLoad={false}
+//         fields="name,email,picture"
+//         scope="public_profile,user_friends,user_actions.books"
+//         callback={this.responseFacebook}
+//       />
+//     )
+//   }
+// }
+
+// export default Facebook;
