@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import Course_navbar from "../components/course/Course_navbar"
+import CourseAll from "../components/course/CourseAll"
 
 class Course extends Component {
   render() {
-    return <Course_navbar/>
+    return <CourseAll/>
   }
 }
 

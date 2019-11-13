@@ -17,12 +17,11 @@ router.get("/:storeId?",(req,res)=>{
     // console.log(storeId);
     const output =[];
     // 暫時篩選店家標號是課程的 之後要改回tank的
-    db.queryAsync("SELECT * FROM((((`store` NATURAL JOIN `course`) NATURAL JOIN `course_img`) NATURAL JOIN `course_ind`) LEFT JOIN `community` ON `store`.`store_sid` =`community`.`correspond_sid`) WHERE `store`.`store_sid` = "  +  storeId )
+    db.queryAsync("SELECT * FROM ((((`store` NATURAL JOIN `course`) NATURAL JOIN `course_img`) NATURAL JOIN `course_ind`) LEFT JOIN `community` ON `store`.`store_sid` =`community`.`correspond_sid`) WHERE `store`.`store_sid` = "  +  storeId )
     .then(results=>{
-        console.log(results);
-        output.push(results
-            );
-        res.json(output);
+  
+        res.json(results);
+
     })
     .catch((error)=>{
         console.log("courseRouter出錯了")
