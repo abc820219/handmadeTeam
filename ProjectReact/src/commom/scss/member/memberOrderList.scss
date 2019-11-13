@@ -4,8 +4,6 @@
   max-height: 100vh;
   overflow-x: hidden;
   background-color: #544741;
- 
-
   h5 {
     font-size: 20px;
   }
@@ -60,3 +58,5 @@
   color: white;
   margin: -4px 6px 0 5px;
 }
+
+::-webkit-scrollbar { width: 0 !important }
