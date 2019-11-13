@@ -1,7 +1,6 @@
 import React from "react";
 import LogOut from "./MemberLogout";
 import { AiFillPicture } from "react-icons/ai";
-
 import "../../commom/scss/member/member_sideBar.scss";
 import { Link } from "react-router-dom";
 const MemberSideBar = ({ match }) => {
@@ -38,7 +37,9 @@ const MemberSideBar = ({ match }) => {
           <li>
             <Link to="/handmade/member/order">訂單紀錄</Link>
           </li>
-          <li>購物車</li>
+          <li>
+            <Link to="/handmade/member/cart">購物車</Link>
+          </li>
           <li>
             <Link to="/handmade/">回首頁</Link>
           </li>
