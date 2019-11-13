@@ -50,27 +50,24 @@ const NavBar = ({ checkLogIn, login }) => {
             <img />
             LOGO
           </div>
-          {showMenuBtn ? (
-            <ul className="navbarBtn">
-              <li>
-                <Link to="/handmade/store/course">課程</Link>
-              </li>
-              <li>
-                <Link to="/handmade/store">店家</Link>
-              </li>
-              <li>
-                <Link to="/handmade/teacher">老師</Link>
-              </li>
-              <li>
-                <Link to="/handmade/ingredients">食材</Link>
-              </li>
-              <li>
-                <Link to="/handmade">首頁</Link>
-              </li>
-            </ul>
-          ) : (
-            ""
-          )}
+
+          <ul className={showMenuBtn ? "move" : "navbarBtn"}>
+            <li>
+              <Link to="/handmade/store/course">課程</Link>
+            </li>
+            <li>
+              <Link to="/handmade/store">店家</Link>
+            </li>
+            <li>
+              <Link to="/handmade/teacher">老師</Link>
+            </li>
+            <li>
+              <Link to="/handmade/ingredients">食材</Link>
+            </li>
+            <li>
+              <Link to="/handmade">首頁</Link>
+            </li>
+          </ul>
         </div>
         {login.login == false ? (
           <NavBarUnSign

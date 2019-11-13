@@ -98,7 +98,7 @@ function MemberLogin(props, { checkLogIn }) {
           window.location = "http://localhost:3000/handmade/member";
         });
       })
-      .catch(err => {
+      .catch(async err => {
         console.log(err);
         alert("登入失敗");
       });

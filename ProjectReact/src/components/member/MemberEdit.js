@@ -8,18 +8,27 @@ const MemberEdit = () => {
       <div className="row">
         <div
           className="col-4"
-          style={{ background: "#635E59", minHeight: "937px" }}
-        ></div>
-        <div
-          className="col-8 d-flex flex-column bg-linear"
+          style={{ background: "#635E59", minHeight: "937px", color: "#fff" }}
         >
+          <h4>
+            <span>會員基本資料</span>
+          </h4>
+          <ul>
+            <li>姓名:</li>
+            <li>暱稱:</li>
+            <li>信箱:</li>
+            <li>手機:</li>
+            <li>生日:</li>
+            <li>地址:</li>
+          </ul>
+        </div>
+        <div className="col-8 d-flex flex-column bg-linear">
           <form>
             <div className="MemberEditHeader my-3">
               <h4>
                 <span>基本資料修改</span>
               </h4>
             </div>
-            <div></div>
             <div className="MemberEditMain mb-5 d-flex flex-column">
               <div className="d-flex  justify-content-center">
                 <div className="short-input">

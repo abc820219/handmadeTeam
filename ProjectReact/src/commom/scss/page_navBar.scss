@@ -57,7 +57,7 @@ nav {
       max-width: "100px";
       white-space: nowrap;
       left: 15px;
-      top:60px;
+      top: 60px;
     }
     .navbar-profile-list::before {
       content: "";
@@ -85,13 +85,24 @@ nav {
   .navbarBtn {
     margin: 0;
     padding: 0;
-    transition: 0.5s;
+    transition: 1s;
     color: #fff;
     position: absolute;
     background-color: #362d2b;
     min-height: 937px;
     width: 300px;
     top: 0;
-    left: 0;
+    left: -100%;
+  }
+  .move {
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    position: absolute;
+    background-color: #362d2b;
+    min-height: 937px;
+    width: 300px;
+    top: 0;
+    left: 0%;
   }
 }
