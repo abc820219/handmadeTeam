@@ -1,12 +1,18 @@
 const express = require("express"); //引入express應用程式
+const app = express();
 const router = express.Router();
 const mysql = require("mysql");
 const db_Obj = require("C:/Users/__connect.json"); //連線到資料庫
 const db = mysql.createConnection(db_Obj);
 const bluebird = require("bluebird"); //使用兩次sql
+const multer = require("multer"); //引入檔案
+const upload = multer({ dest: "tmp_uploads" }); //設定檔案暫存目錄
+const fs = require("fs"); //讀檔案寫檔案
+
 bluebird.promisifyAll(db);
 router.post("/", (req, res) => {
-  console.log(req.body);np
+  console.log(req.body);
+  np;
   res.send("Member-Page");
 });
 
@@ -61,6 +67,16 @@ class allMemberAccount {
     return sql;
   }
 }
+class MemberAccount {
+  constructor(account) {
+    this.member_account = account;
+  }
+  allMemberSQL() {
+    let sql = `SELECT member_account FROM member WHERE member_account = "${this.member_account}"`;
+    return sql;
+  }
+}
+
 //----------------------------------------------------------------------------------------------------------------------------------------
 router.post("/login", (req, res, next) => {
   console.log(req.body.member_account);
@@ -89,7 +105,7 @@ router.post("/login", (req, res, next) => {
     }
   });
 });
-
+//-------------------------------------------------------------------------------------------------------
 router.post("/register", (req, res, next) => {
   let allMember = new allMemberAccount(req.body.member_account);
   let Member = new register(
@@ -110,6 +126,7 @@ router.post("/register", (req, res, next) => {
     });
   });
 });
+//-------------------------------------------------------------------------------------------------------
 
 router.post("/fbLogin", (req, res, next) => {
   let allMember = new fbRegister("", "", req.body.token_id);
@@ -142,6 +159,32 @@ router.post("/fbLogin", (req, res, next) => {
       return;
     });
   });
+});
+//-------------------------------------------------------------------------------------------------------
+
+//單圖;
+router.post("/upload", upload.single("file"), (req, res) => {
+  //單張圖片上傳
+  console.log(req.file);
+  if (req.file && req.file.originalname) {
+    switch (req.file.mimetype) {
+      case "image/png":
+      case "image/jpeg":
+      case "image/jpg":
+        res.json(req.file);
+        fs.createReadStream(req.file.path) //讀檔案
+          .pipe(
+            //串進去
+            fs.createWriteStream(
+              "/public/images/member" + req.file.originalname
+            ) //寫檔案
+          );
+        break;
+      default:
+    }
+  } else {
+    res.send("失敗");
+  }
 });
 
 module.exports = router;

@@ -54,28 +54,6 @@ app.use(
     }
   })
 );
-//單圖;
-app.post("/upload", upload.single("avatar"), (req, res) => {
-  //單張圖片上傳
-  if (req.file && req.file.originalname) {
-    switch (req.file.mimetype) {
-      case "image/png":
-      case "image/jpeg":
-      case "image/jpg":
-        res.json(req.file);
-        fs.createReadStream(req.file.path) //讀檔案
-          .pipe(
-            //串進去
-            fs.createWriteStream("public/images/" + req.file.originalname) //寫檔案
-          );
-        break;
-      default:
-    }
-  } else {
-    res.send("失敗");
-  }
-});
-
 // ---------中間層(mid)結束---------
 
 //---------中間層(route)路由---------
