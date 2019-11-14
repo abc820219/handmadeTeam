@@ -16,11 +16,11 @@ const MemberSideBar = ({ match }) => {
       method: "POST",
       body: data
     })
-      .then(res => {
-        fetch("")
-        console.log(res);
-      })
-      .catch(error => console.log(error));
+      // .then(res => {
+      //   fetch("")
+      //   console.log(res);
+      // })
+      // .catch(error => console.log(error));
   };
   return (
     <aside className="member-side-bar d-flex flex-column align-items-center">

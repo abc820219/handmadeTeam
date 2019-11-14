@@ -176,7 +176,7 @@ router.post("/upload", upload.single("file"), (req, res) => {
           .pipe(
             //串進去
             fs.createWriteStream(
-              "/public/images/member" + req.file.originalname
+              "./public/images/member/member" + req.file.originalname
             ) //寫檔案
           );
         break;
