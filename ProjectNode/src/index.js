@@ -38,6 +38,7 @@ let corsOptions = {
     }
   }
 };
+app.use(express.static("public")); //靜態資料夾
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors(corsOptions)); //使用開放網域
@@ -53,18 +54,27 @@ app.use(
     }
   })
 );
-// -----session-------
-// app.use('/', (req, res, next) => {
-//     if (req.session.isVisit) {
-//         req.session.isVisit = 'aa';
-//         next()
-//     } else {
-//         req.session.isVisit = 'aa';
-//         next()
-//         console.log(req.session);
-//     }
-// });
-// -----session-------
+//單圖;
+app.post("/upload", upload.single("avatar"), (req, res) => {
+  //單張圖片上傳
+  if (req.file && req.file.originalname) {
+    switch (req.file.mimetype) {
+      case "image/png":
+      case "image/jpeg":
+      case "image/jpg":
+        res.json(req.file);
+        fs.createReadStream(req.file.path) //讀檔案
+          .pipe(
+            //串進去
+            fs.createWriteStream("public/images/" + req.file.originalname) //寫檔案
+          );
+        break;
+      default:
+    }
+  } else {
+    res.send("失敗");
+  }
+});
 
 // ---------中間層(mid)結束---------
 

@@ -6,7 +6,7 @@ const db = mysql.createConnection(db_Obj);
 const bluebird = require("bluebird"); //使用兩次sql
 bluebird.promisifyAll(db);
 router.post("/", (req, res) => {
-  console.log(req.body);
+  console.log(req.body);np
   res.send("Member-Page");
 });
 
