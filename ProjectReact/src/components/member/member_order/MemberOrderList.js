@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useContext } from "react";
 import { Container } from "react-bootstrap";
 import "../../../commom/scss/member/memberOrderList.scss";
@@ -54,8 +53,8 @@ const MemberOrderList = ({ changeOrderType }) => {
   };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(async () => {
-    await Promise.all([orderCourseData(), orderIngreData()]);
+  useEffect(() => {
+    Promise.all([orderCourseData(), orderIngreData()]);
     //eslint-disable-next-line import/no-extraneous-dependencies
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [courseIsFetch, ingreIsFetch]);
