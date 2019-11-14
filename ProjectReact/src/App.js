@@ -12,17 +12,27 @@ import {
 } from "./routes/index";
 function App() {
   const [login, setLogin] = useState(false);
-  const loginLocal = localStorage.getItem("member_id");
+  const loginLocal = localStorage.getItem("member_id") || 0;
   useEffect(() => {
     if (loginLocal) {
       setLogin(true);
     }
+
+    // localStorage.setItem(`courseCart${loginLocal}`, "[]");
+    // localStorage.setItem(`ingreCart${loginLocal}`, "[]");
+    if(!localStorage.getItem(`courseCart${loginLocal}`)){
+      localStorage.setItem(`courseCart${loginLocal}`, "[]");
+    }
+    if(!localStorage.getItem(`ingreCart${loginLocal}`)){
+      localStorage.setItem(`ingreCart${loginLocal}`, "[]");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [login]);
   console.log(login);
   const checkLogIn = () => {
     setLogin(!login);
   };
-
+  
   return (
     <>
       <Router>
@@ -41,10 +51,6 @@ function App() {
             component={() => (
               <Course login={{ login }} checkLogIn={checkLogIn} />
             )}
-          ></Route>
-          <Route
-            path="/handmade/cart"
-            component={() => <Cart login={{ login }} checkLogIn={checkLogIn} />}
           ></Route>
           <Route
             path="/handmade/member/:id?"

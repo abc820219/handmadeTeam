@@ -12,9 +12,7 @@ import {
   receiveIngreOrder
 } from "./OrderAction";
 const MemberOrderList = ({ changeOrderType }) => {
-  // const [courseLists, setCourseLists] = useState([]);
-  // const [ingreLists, setIngreLists] = useState([]);
-  // const [teacherList, setTeacherList] = useState([]);
+
   const {
     courseLists,
     clDispatch,
@@ -53,7 +51,7 @@ const MemberOrderList = ({ changeOrderType }) => {
   };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => {
+  useEffect( () => {
     Promise.all([orderCourseData(), orderIngreData()]);
     //eslint-disable-next-line import/no-extraneous-dependencies
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -1,12 +1,12 @@
 import React from "react";
 import { TiShoppingCart } from "react-icons/ti";
-import Cart from "./cart/Cart";
+import SmallCart from "./cart/SmallCart";
 
-const NavBarUnSign = ({ showLightBox, showCart, openCart }) => {
+const NavBarUnSign = ({ showLightBox, showCart, openCart ,login}) => {
   return (
     <>
       <div className="page-nav-rightside mr-5">
-        <div className="text-center d-flex align-items-center   ">
+        <div className="text-center d-flex align-items-center">
           <p className="text-nowrap mr-3" onClick={() => showLightBox()}>
             sign up
           </p>
@@ -20,7 +20,7 @@ const NavBarUnSign = ({ showLightBox, showCart, openCart }) => {
           </div>
         </div>
       </div>
-      <Cart openCart={openCart} showCart={showCart} />
+      <SmallCart openCart={openCart} showCart={showCart} login={login.login}/>
     </>
   );
 };
