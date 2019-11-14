@@ -18,6 +18,7 @@ const MemberOrder = () => {
         `http://localhost:5000/handmade/member/order/${user}`
       );
       const result = await dataJson.json();
+      
       const newCourseList = await [...courseList, result];
       await setCourseList(newCourseList);
     } catch (e) {

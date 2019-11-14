@@ -12,7 +12,6 @@ bluebird.promisifyAll(db);
 // });
 
 router.get("/:storeId?",(req,res)=>{
-    console.log("123");
     const storeId = req.params.storeId;
     // console.log(storeId);
     const output =[];

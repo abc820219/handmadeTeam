@@ -77,29 +77,7 @@ class courseAll extends Component {
                         {/* 店家選單結束 */}
                      
                         <Course_list list={this.state.course_wrap}/>
-                        {/* <main className="course_list_wrap">
-                            <div id="course_list_a" className="course_list">
-
-                                <img src="/image/course_img/檸檬乳酪蛋糕s.png" alt="" />
-                            <img src="/image/course_img/烏龍鐵觀音乳酪蛋糕s.png" alt="" />
-                            <img src="/image/course_img/玫瑰荔枝乳酪蛋糕s.png" alt="" />
-                            </div>
-                            <div id="course_list_b" className="course_list">
-                                <img src="/image/course_img/鮮綠檸檬蛋糕s.png" />
-                            <img src="/image/course_img/檸檬乳酪蛋糕s.png" />
-                            <img src="/image/course_img/烏龍鐵觀音乳酪蛋糕s.png" />
-                            </div>
-                            <div id="course_list_c" className="course_list">
-                                <img src="/image/course_img/玫瑰荔枝乳酪蛋糕s.png" alt="" />
-                            <img src="/image/course_img/鮮綠檸檬蛋糕s.png" alt="" />
-                            <img src="/image/course_img/檸檬乳酪蛋糕s.png" alt="" />
-                            </div>
-                            <div id="course_list_d" className="course_list">
-                                <img src="/image/course_img/烏龍鐵觀音乳酪蛋糕s.png" alt="" />
-                            <img src="/image/course_img/玫瑰荔枝乳酪蛋糕s.png" alt="" />
-                            <img src="/image/course_img/玫瑰荔枝乳酪蛋糕s.png" alt="" />
-                            </div>
-                        </main> */}
+         
                     </section>
 
 

@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { FaFacebookSquare, FaInstagram ,FaLine} from "react-icons/fa";
+
 
 class Course_store extends Component {
 
@@ -8,26 +10,42 @@ class Course_store extends Component {
             return (
                 <>
 
-                    <div id="carouselExampleIndicators" className="carousel " data-ride="carousel">
-                        <div className="carousel-inner">
+                    <div id="carouselExampleIndicators" className="carousel"  data-interval="false">
+                        <div className="carousel-inner" data-wrap="false">
                             <div className="carousel-item active">
-                                <div>
+                                <div className="carousel_store_info">
+                                    <h5 className="carousel_store_title">
+                                        {/* <span className="carousel_store_title_min" >SUPER EAT BAKERY</span> */}
+                                        INFO
+                                    {/* <span className="carousel_store_title_min">SUPER EAT BAKERY</span> */}
+                                    </h5>
                                     <li>{this.props.state[0][0]}</li>
                                     <li>{this.props.state[0][1]}</li>
                                     <li>{this.props.state[0][2]}</li>
                                 </div>
                             </div>
                             <div className="carousel-item">
-                                <div>
-                                    <li>{this.props.state[1][0]}</li>
-                                    <li>{this.props.state[1][1]}</li>
-                                    <li>{this.props.state[1][2]}</li>
+                                <div className="carousel_store_info">
+                                <h5 className="carousel_store_title">
+                                        {/* <span className="carousel_store_title_min" >SUPER EAT BAKERY</span> */}
+                                        WEB
+                                    {/* <span className="carousel_store_title_min">SUPER EAT BAKERY</span> */}
+                                    </h5>
+                                    <li>
+                                    <FaFacebookSquare/>
+                                    {this.props.state[1][0]}</li>
+                                    <li>
+                                    <FaInstagram/>
+                                    {this.props.state[1][1]}</li>
+                                    <li>
+                                    <FaLine/>
+                                    {this.props.state[1][2]}</li>
                                 </div>
                             </div>
                             <div className="carousel-item">
-                            <div>
-                                <iframe width='100%' height='100%' frameBorder='0' scrolling='no' marginHeight='0' marginWidth='0' src={`https://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&q=${this.props.state[2]}&z=16&output=embed&t=`}></iframe>
-                            </div>
+                                <div>
+                                    <iframe width='100%' height='100%' frameBorder='0' scrolling='no' marginHeight='0' marginWidth='0' src={`https://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&q=${this.props.state[2]}&z=16&output=embed&t=`}></iframe>
+                                </div>
                             </div>
                             <div className="carousel-item">
                                 <img src={`/image/course_img/classroom/${this.props.state[3]}`} alt="..." />
