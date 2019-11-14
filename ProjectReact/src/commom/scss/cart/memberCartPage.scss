@@ -161,5 +161,97 @@
     width: 85px;
     height: 48px;
     border-radius: 0px;
+    flex-shrink: 0;
   }
 }
+.checkRightBox {
+  height: 100vh;
+  overflow: scroll; 
+  .cartRightTitle{
+    margin: 0 auto;
+    width: 90%;
+    height: 90px;
+    border-bottom: 1px solid #362D2B;
+  }
+  
+  .cartRightSubTitle {
+    height: 72px;
+    width: 80%;
+    margin: 0 auto;
+    border-bottom: 1px solid #362D2B;
+    h4{
+      font-size: 20px;
+      font-weight: bold;
+      margin-left: 30px;
+    }
+  }
+  
+  .cartRightList {
+    width: 80%;
+    padding: 16px 0px;
+    margin: 0 auto;
+    li{
+        display: flex;
+        padding: 30px 30px 28px 30px;
+        width: 100%;
+        min-height: 153px;
+        background-color: #362D2B;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        color: white;
+        .cartListDetail {
+          display: flex;
+        }
+        h4{
+          margin-top: -8px;
+          span{
+            font-weight: bold;
+          }
+        }
+        figure{
+          width: 80px;
+          height: 80px;
+          border-radius: 5px;
+          overflow: hidden;
+          img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+      h2{
+        font-weight: bold;
+      }
+      button {
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        border: 1px solid #EEC9B2;
+        background-color: #362D2B;
+        color: white;
+        font-weight: bold;
+        margin: 0 20px 0 20px;
+        transition: .5s;
+      }
+      button:hover {
+        background-color: #F78177;
+      }
+  }
+  input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    border-radius: 8px;
+  }
+  .checkListBox {
+    margin-left: 20px;
+    margin-right: 10%;
+  }
+  .cartListTotal{
+    letter-spacing: 2px;
+  }
+  .cartButtonAdd {
+    margin-top: 18px;
+  }
+}
+

@@ -7,8 +7,9 @@ import CartStore from "../components/cart/CartStore";
 import { cartPageReducer } from "../components/cart/CartReducer";
 export const cartPageInitState = { step: 0 };
 
-const Cart = ({ login, checkLogIn }) => {
- 
+const Cart = (props) => {
+    const { login, checkLogIn } = props
+
     const [cartPageState, cartPageDispatch] = useReducer(
       cartPageReducer,
       cartPageInitState
@@ -22,8 +23,8 @@ const Cart = ({ login, checkLogIn }) => {
     }}>
       <div className="container-fluid">
         <div className="row">
-          <CartLeft/>
-          <CartRight/>
+          <CartLeft {...props} />
+          <CartRight {...props} />
         </div>
       </div>
       </CartStore.Provider>

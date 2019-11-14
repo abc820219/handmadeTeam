@@ -5,7 +5,8 @@ import {
     cartPrev
 } from "./CartAction";
 
-const CartLeft = () => {
+const CartLeft = (props) => {
+    console.log(props)
     const {
         step,
         cartPageDispatch

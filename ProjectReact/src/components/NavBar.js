@@ -74,9 +74,10 @@ const NavBar = ({ checkLogIn, login }) => {
             showLightBox={memberSignIn}
             openCart={openCart}
             showCart={showCart}
+            login={login}
           />
         ) : (
-          <NavBarSign openCart={openCart} showCart={showCart} />
+          <NavBarSign openCart={openCart} showCart={showCart} login={login}/>
         )}
       </nav>
       {/* ------------------ */}
