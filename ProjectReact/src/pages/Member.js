@@ -3,13 +3,13 @@ import MemberOrder from "../components/member/member_order/MemberOrder";
 import MemberSideBar from "../components/member/MemberSideBar";
 import MemberEdit from "../components/member/MemberEdit";
 import MemberPasswordEdit from "../components/member/MemberPasswordEdit";
+import Cart from "./Cart";
 import NavBar from "../components/NavBar";
 import { Route, Switch } from "react-router-dom";
 const Member = ({ match }) => {
   return (
     <>
       <div className="d-flex">
-        <NavBar />
         <MemberSideBar />
         <Switch>
           <Route
@@ -17,6 +17,7 @@ const Member = ({ match }) => {
             path={`/handmade/member/order`}
             component={MemberOrder}
           />
+          <Route exact path={`/handmade/member/cart`} component={Cart} />
           <Route
             exact
             path={`/handmade/member/passwordEdit`}

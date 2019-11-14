@@ -9,7 +9,7 @@ const emailRegex = RegExp(
 ); //信箱正規
 
 function MemberRegister(props) {
-  const [MemberLogin, setMemberLogin] = useState(true);
+  const [MemberLogin] = useState(true);
   const [account, setaccount] = useState("");
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
@@ -19,6 +19,9 @@ function MemberRegister(props) {
     email: "",
     password: ""
   });
+  const [captchaValue, setCaptchaValue] = useState("");
+  const [captchaAgree, setCaptchaAgreee] = useState("");
+  const [captchaErr, setCaptchaErr] = useState(false);
   useEffect(() => {
     let captcha = new Captcha({
       lineWidth: 1, //线条宽度
@@ -35,7 +38,7 @@ function MemberRegister(props) {
     });
     //把生成的驗證碼丟到canvas容器中，然後callback把它(參數自訂為r)設定給state
     captcha.draw(document.querySelector("#captcha"), value => {
-      console.log(value);
+      setCaptchaAgreee(value);
     });
   }, [Change]);
 
@@ -54,11 +57,11 @@ function MemberRegister(props) {
         formErrors.password = value.length < 3 ? "最少3個字" : "";
         break;
       case "captchatext":
-        formErrors.captchatext = value.length < 3 ? "最少3個字" : "";
+        setCaptchaValue(value);
         break;
       case "email":
-        setemail(value);
         formErrors.email = emailRegex.test(value) ? "" : "請輸入正確的格式";
+        setemail(value);
         break;
       default:
         break;
@@ -67,16 +70,78 @@ function MemberRegister(props) {
   }; //錯誤訊息篩選順便更新狀態
   const submitForm = event => {
     event.preventDefault();
+    console.log();
+    if (account.length <= 3 || password <= 3 || !emailRegex.test(email)) {
+      alert("請輸入正確資訊");
+      return;
+    }
+    console.log(account.length);
+    if (captchaValue != captchaAgree) {
+      alert("驗證碼錯誤");
+      setCaptchaErr(true);
+      return;
+    }
+
+    fetch("http://localhost:5000/handmade/member/register", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        member_account: account,
+        member_email: email,
+        member_password: password
+      })
+    })
+      .then(res => {
+        let member_data = res.json();
+        return member_data;
+      })
+      .then(member_data => {
+        console.log(member_data)
+        fetch("http://localhost:5000/handmade/member/login", {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            member_account: account,
+            member_password: password
+          })
+        })
+          .then(res => {
+            let member_data = res.json();
+            return member_data;
+          })
+          .then(member_data => {
+            localStorage.setItem("member_id", member_data.info.member_sid);
+            localStorage.setItem("member_data", member_data.info);
+            console.log(member_data.info);
+            alert(member_data.message);
+            setTimeout(() => {
+              window.location = "http://localhost:3000/handmade/member";
+            });
+          })
+          .catch(async err => {
+            console.log(err);
+            alert("此帳號已註冊");
+          });
+      })
+      .catch(async err => {
+        console.log(err);
+        alert("註冊失敗");
+      });
     setaccount("");
     setpassword("");
     setemail("");
+    setCaptchaValue("");
+    setCaptchaErr(false);
   };
   if (MemberLogin) {
     return (
       <>
         <div className="login-wrap d-flex flex-column align-items-center">
           <div className="mt-4">LOGO</div>
-          <FacebookLogin />
           <p className="mt-4 mb-3">註冊個人帳號</p>
           <form>
             <ul>
@@ -89,7 +154,9 @@ function MemberRegister(props) {
                   id="member-account"
                   placeholder="帳號"
                   onChange={handleChange}
-                  className={formErrors.account == "最少3個字" ? "error" : null}
+                  className={
+                    formErrors.account === "最少3個字" ? "error" : null
+                  }
                   value={account}
                 />
                 <p className="errorText">{formErrors.account} &nbsp;</p>
@@ -131,6 +198,8 @@ function MemberRegister(props) {
                 name="captchatext"
                 type="text"
                 placeholder="輸入驗證碼"
+                value={captchaValue}
+                onChange={handleChange}
               />
               <canvas width="100" height="30px" id="captcha" />
             </div>
@@ -138,7 +207,7 @@ function MemberRegister(props) {
               <input
                 type="submit"
                 className=""
-                value="登入"
+                value="註冊"
                 onClick={submitForm}
               />
             </div>

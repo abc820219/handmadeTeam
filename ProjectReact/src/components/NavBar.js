@@ -8,8 +8,8 @@ import MemberBox from "./MemberBox";
 import { relative } from "path";
 import { Link } from "react-router-dom";
 
-const NavBar = props => {
-  const [signIn] = useState(false);
+const NavBar = ({ checkLogIn, login }) => {
+  console.log(login.login);
   const [showLightBox, setShowLightBox] = useState(false);
   const [showMenuBtn, setshowMenuBtn] = useState(false);
   const memberSignIn = () => {
@@ -34,7 +34,7 @@ const NavBar = props => {
   };
   return (
     <>
-      <nav className="navbar page-nav d-flex">
+      <nav className="navbar page-nav d-flex align-items-center">
         <div
           className="page-nav-aside d-flex align-items-center justify-content-center"
           onClick={MenuList}
@@ -45,40 +45,47 @@ const NavBar = props => {
               className="mx-3 "
               style={{ fontSize: "30px", color: "#fff" }}
             />
-            {showMenuBtn ? (
-              <ul className="navbarBtn">
-                <li>
-                  <Link to="/handmade/store/course">課程</Link>
-                </li>
-                <li>
-                  <Link to="/handmade/store">店家</Link>
-                </li>
-                <li>
-                  <Link to="/handmade/teacher">老師</Link>
-                </li>
-                <li>
-                  <Link to="/handmade/ingredients">食材</Link>
-                </li>
-                <li>
-                  <Link to="/handmade">首頁</Link>
-                </li>
-              </ul>
-            ) : null}
           </div>
-          <h3>BAKE TIME</h3>
+          <div className="logoBox">
+            <img />
+            LOGO
+          </div>
+
+          <ul className={showMenuBtn ? "move" : "navbarBtn"}>
+            <li>
+              <Link to="/handmade/store/course">課程</Link>
+            </li>
+            <li>
+              <Link to="/handmade/store">店家</Link>
+            </li>
+            <li>
+              <Link to="/handmade/teacher">老師</Link>
+            </li>
+            <li>
+              <Link to="/handmade/ingredients">食材</Link>
+            </li>
+            <li>
+              <Link to="/handmade">首頁</Link>
+            </li>
+          </ul>
         </div>
-        {signIn ? (
-          <NavBarSign openCart={openCart} showCart={showCart} />
-        ) : (
+        {login.login == false ? (
           <NavBarUnSign
             showLightBox={memberSignIn}
             openCart={openCart}
             showCart={showCart}
           />
+        ) : (
+          <NavBarSign openCart={openCart} showCart={showCart} />
         )}
       </nav>
+      {/* ------------------ */}
       {showLightBox ? (
-        <MemberBox LoginBox={signIn} memberSignIn={memberSignIn}></MemberBox>
+        <MemberBox
+          LoginBox={login}
+          memberSignIn={memberSignIn}
+          checkLogIn={checkLogIn}
+        ></MemberBox>
       ) : null}
     </>
   );
