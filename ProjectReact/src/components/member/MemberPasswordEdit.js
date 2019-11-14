@@ -27,7 +27,7 @@ const MemberPasswordEdit = () => {
     );
   });
   return (
-    <div className="container-fluid">
+    <div className="container-fluid MemberPasswordEdit">
       <div className="row">
         <div
           className="col-4"

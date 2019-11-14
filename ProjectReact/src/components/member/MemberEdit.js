@@ -4,7 +4,7 @@ import { FaUserAlt, FaBirthdayCake, FaAddressCard } from "react-icons/fa";
 import { MdEmail, MdPhoneAndroid } from "react-icons/md";
 const MemberEdit = () => {
   return (
-    <div className="container-fluid">
+    <div className="container-fluid MemberEdit">
       <div className="row">
         <div
           className="col-4"

@@ -31,11 +31,32 @@ class register {
     return sql;
   }
 }
+
+class fbRegister {
+  constructor(name, email, token_id) {
+    this.member_name = name;
+    this.member_email = email;
+    this.token_id = token_id;
+  }
+  allMemberSQL() {
+    let sql = `SELECT token_id FROM member WHERE token_id = "${this.token_id}"`;
+    return sql;
+  }
+  registerUserSQL() {
+    let sql = `INSERT INTO member(  member_email,member_name,token_id) VALUES ( "${this.member_email}","${this.member_name}","${this.token_id}")`;
+    return sql;
+  }
+  getUserByTokenIdSQL() {
+    let sql = `SELECT * FROM member WHERE token_id = "${this.token_id}"`;
+    return sql;
+  }
+}
+
 class allMemberAccount {
   constructor(account) {
     this.member_account = account;
   }
-  allMemberSql() {
+  allMemberSQL() {
     let sql = `SELECT member_account FROM member WHERE member_account = "${this.member_account}"`;
     return sql;
   }
@@ -76,14 +97,47 @@ router.post("/register", (req, res, next) => {
     req.body.member_password,
     req.body.member_email
   );
-  db.query(allMember.allMemberSql(), (error, rows) => {
-    if (rows.length>=1) {
+  db.query(allMember.allMemberSQL(), (error, rows) => {
+    if (rows.length >= 1) {
       return res.json({ status: "404", message: "此帳號已註冊" });
     }
     db.query(Member.registerUserSQL(), (error, rows) => {
       res.json({
         status: "202",
         message: "跳轉中"
+      });
+      return;
+    });
+  });
+});
+
+router.post("/fbLogin", (req, res, next) => {
+  let allMember = new fbRegister("", "", req.body.token_id);
+  console.log(allMember.allMemberSQL());
+  let Member = new fbRegister(
+    req.body.member_name,
+    req.body.member_email,
+    req.body.token_id
+  );
+  db.query(allMember.allMemberSQL(), (error, rows) => {
+    console.log(rows);
+    if (rows.length >= 1) {
+      db.query(allMember.getUserByTokenIdSQL(), (error, rows) => {
+        res.json({
+          status: "202",
+          message: "登入成功跳轉中",
+          info: rows[0]
+        });
+      });
+      return;
+    }
+    db.query(Member.registerUserSQL(), (error, rows) => {
+      db.query(allMember.getUserByTokenIdSQL(), (error, rows) => {
+        res.json({
+          status: "202",
+          message: "註冊成功跳轉中",
+          info: rows[0]
+        });
       });
       return;
     });
