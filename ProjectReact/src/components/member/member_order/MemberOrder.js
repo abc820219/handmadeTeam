@@ -20,6 +20,7 @@ const MemberOrder = () => {
   const changeOrderType = a => {
     setOrderType(a);
   };
+
   return (
     <Store.Provider value={{
         courseLists: clState.courseLists,
