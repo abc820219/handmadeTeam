@@ -29,7 +29,6 @@ function App() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [login]);
-  console.log(login);
   const checkLogIn = () => {
     setLogin(!login);
   };
