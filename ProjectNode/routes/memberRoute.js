@@ -67,12 +67,13 @@ class allMemberAccount {
     return sql;
   }
 }
-class MemberAccount {
-  constructor(account) {
-    this.member_account = account;
+class MemberImg {
+  constructor(member_sid, member_photo_name) {
+    this.member_sid = member_sid;
+    this.member_photo_name = member_photo_name;
   }
-  allMemberSQL() {
-    let sql = `SELECT member_account FROM member WHERE member_account = "${this.member_account}"`;
+  addMemberImg() {
+    let sql = `INSERT INTO member_photo(  member_sid,member_photo_name) VALUES ( "${this.member_sid}","${this.member_photo_name}")`;
     return sql;
   }
 }
@@ -184,6 +185,25 @@ router.post("/upload", upload.single("file"), (req, res) => {
     }
   } else {
     res.send("失敗");
+  }
+});
+router.post("/memberImg", upload.single("file"), (req, res) => {
+  //單張圖片上傳
+  console.log(req.body);
+  let Member = new MemberImg(req.body.member_sid, req.body.member_photo_name);
+  console.log(Member.addMemberImg());
+  if (req.body.member_sid) {
+  db.query(Member.addMemberImg(), (error, rows) => {
+    res.json({
+      status:200,
+      message:"照片上傳成功"
+    })
+  });
+  }else{
+    res.json({
+      status:404,
+      message:"照片上傳失敗"
+    })
   }
 });
 

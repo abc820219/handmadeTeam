@@ -8,7 +8,7 @@ function LogOut() {
   };
   return (
     <>
-      <h5 onClick={memberLogOut}>LogOut</h5>
+      <h5 onClick={memberLogOut}>登出</h5>
     </>
   );
 }

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // { ingredient_sid: 1, ingredient_name: "無敵蘋果", ingredient_order_quantity: '5', ingredients_en_name:'Banana',ingredients_pic:'Banana.jpg'}
+    let arr = [
+      { sid: 1, name: "Ben"},
+      { sid: 2, name: "Son"}
+    ];
+    let b = { sid: 3, name: "Ben"};
+
+    function isObjEqual(o1, o2) {
+      var props1 = Object.getOwnPropertyNames(o1);
+      var props2 = Object.getOwnPropertyNames(o2);
+      if (props1.length != props2.length) {
+        return false;
+      }
+      for (var i = 0, max = props1.length; i < max; i++) {
+        var propName = props1[i];
+        if (o1[propName] !== o2[propName]) {
+          return false;
+        }
+      }
+      return true;
+    }
+    
+    let check=[];
+    for(let i = 0; i < arr.length; i++){
+      check[i] = isObjEqual(arr[i], b);
+    }
+    if(check.indexOf(true)=== -1){
+      arr.push(b);
+      check = [];
+    }else{
+      check = [];
+    }
+    console.log(arr)
+    
+  </script>
+</body>
+
+</html>

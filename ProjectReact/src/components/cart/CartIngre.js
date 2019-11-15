@@ -1,13 +1,19 @@
 import React from "react";
 import { FaDollarSign } from "react-icons/fa";
+import { FaShoppingBag } from "react-icons/fa";
 
 const CartIngre = () => {
   return (
     <>
       <ul className="d-flex justify-content-around align-items-center px-5">
         <li className="d-flex flex-column align-items-between py-3">
-          <div className="product-title">巧克力派</div>
-          <div className="d-flex align-items-center"></div>
+          <div className="product-title">
+            巧克力派
+          </div>
+          <div className="d-flex align-items-center">
+          <FaShoppingBag />
+          *1
+          </div>
           <div className="d-flex align-items-center">
             <FaDollarSign className="cartList_icons" />
             5000
@@ -24,8 +30,13 @@ const CartIngre = () => {
       </ul>
       <ul className="d-flex justify-content-around align-items-center px-5">
         <li className="d-flex flex-column align-items-between py-3">
-          <div className="product-title">巧克力派</div>
-          <div className="d-flex align-items-center"></div>
+          <div className="product-title">
+            巧克力派
+          </div>
+          <div className="d-flex align-items-center">
+          <FaShoppingBag />
+          *1
+          </div>
           <div className="d-flex align-items-center">
             <FaDollarSign className="cartList_icons" />
             5000

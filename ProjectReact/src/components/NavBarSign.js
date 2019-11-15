@@ -2,9 +2,9 @@ import React from "react";
 import { TiShoppingCart } from "react-icons/ti";
 import { MdFavorite, MdNotifications } from "react-icons/md";
 import { Link } from "react-router-dom";
-import Cart from "./cart/Cart";
+import SmallCart from "./cart/SmallCart";
 
-const NavBarSign = ({ openCart, showCart }) => {
+const NavBarSign = ({ openCart, showCart ,login}) => {
   const logoPattern = {
     fontSize: "30px",
     color: "white"
@@ -42,7 +42,7 @@ const NavBarSign = ({ openCart, showCart }) => {
           />
         </div>
       </div>
-      <Cart openCart={openCart} showCart={showCart} />
+      <SmallCart openCart={openCart} showCart={showCart} login={login.login}/>
     </>
   );
 };
