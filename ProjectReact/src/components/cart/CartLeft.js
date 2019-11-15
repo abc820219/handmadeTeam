@@ -4,7 +4,7 @@ import { cartNext, cartPrev } from "./CartAction";
 
 const CartLeft = props => {
   console.log(props);
-  const { step, cartPageDispatch } = useContext(CartStore);
+  const { step, cartPageDispatch ,setcheckoutFinish} = useContext(CartStore);
   return (
     <>
       <div className="col-4 px-3 checkLeftBox">
@@ -125,7 +125,7 @@ const CartLeft = props => {
         {!step ? (
           <button onClick={() => cartPageDispatch(cartNext())}>NEXT</button>
         ) : (
-          <button>CHECK</button>
+          <button onClick={() => setcheckoutFinish(true)}>CHECK</button>
         )}
       </div>
     </>

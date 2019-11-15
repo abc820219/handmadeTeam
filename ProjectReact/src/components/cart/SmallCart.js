@@ -53,7 +53,7 @@ const SmallCart = ({ openCart, showCart }) => {
         </div>
         <div>
           <Link to='/handmade/member/cart'>
-            <input name="" id="" class="cartBtn" type="button" value="購買" />
+            <input name="" id="" className="cartBtn" type="button" value="購買" />
           </Link>
         </div>
       </div>
