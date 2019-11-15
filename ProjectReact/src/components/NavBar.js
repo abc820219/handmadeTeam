@@ -34,7 +34,7 @@ const NavBar = ({ checkLogIn, login }) => {
   };
   return (
     <>
-      <nav className="navbar page-nav d-flex align-items-center">
+      <nav className="navbar page-nav  align-items-center">
         <div
           className="page-nav-aside d-flex align-items-center justify-content-center"
           onClick={MenuList}

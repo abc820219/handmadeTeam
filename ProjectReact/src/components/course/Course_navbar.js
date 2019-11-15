@@ -22,7 +22,7 @@ class Course_navbar extends Component {
 
         return (
             <>
-                <div className="course_store_navbar" >
+                <div className="course_store_navbar " > 
                     <div id="course_store_info" className="course_store_info course_hover_color1 activeImg" data-target="#carouselExampleIndicators" data-slide-to="0" >
                         <img src="/image/course_img/info.png" alt="" />
                         <div className="course_store_info_wrap">
