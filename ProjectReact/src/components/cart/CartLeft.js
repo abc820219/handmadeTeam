@@ -103,7 +103,7 @@ const CartLeft = props => {
                 </div>
                 <input type="text" placeholder="驗證碼" />
               </div>
-              <ul className="d-flex justify-content-around">
+              <ul className="d-flex justify-content-between mt-4">
                 <li>
                   <input type="radio" name="pay" value="LINE Pay" />
                   <p>LINE Pay</p>

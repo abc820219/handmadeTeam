@@ -8,8 +8,6 @@ class Handmade extends Component {
        
         <Link to="/handmade/store/course">course</Link>
         <br></br>
-        <Link to="/handmade/cart">cart</Link>
-        <br></br>
         <Link to="/handmade/member">member</Link>
         <br></br>
         <Link to="/handmade/store">store</Link>
