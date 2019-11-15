@@ -5,9 +5,8 @@ class Handmade extends Component {
   render() {
     return (
       <>
+       
         <Link to="/handmade/store/course">course</Link>
-        <br></br>
-        <Link to="/handmade/cart">cart</Link>
         <br></br>
         <Link to="/handmade/member">member</Link>
         <br></br>

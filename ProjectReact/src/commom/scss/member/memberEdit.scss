@@ -5,8 +5,11 @@
   font-weight: 500;
   font-style: normal;
 }
+.MemberEdit{
+  height: 100vh;
+}
 .bg-linear {
-  min-height: "937px";
+  height: "100vh";
 }
 .MemberEditHeader {
   h4 {
@@ -23,6 +26,9 @@
   width: 95%;
   border-width: 10px;
   border-bottom: 1px solid #544641;
+}
+.MemberPasswordEdit{
+  height: 100vh;
 }
 .MemberEditMain,
 .MemberPasswordEditMain {

@@ -1,9 +1,16 @@
 .memberOrderList {
   position: relative;
   overflow: scroll;
-  height: 937px;
-  overflow-x:hidden;
-  
+  max-height: 100vh;
+  overflow-x: hidden;
+  background-color: #544741;
+  h5 {
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 16px;
+  }
 }
 
 .memberOrderList h3 {
@@ -33,6 +40,23 @@
   object-fit: cover;
 }
 
-.orderListTitle {
+.orderListTitle-bar {
   height: 90px;
 }
+
+.orderList_title {
+  margin: 14px 0 17px;
+  margin-left: 25%;
+  color: #9597a6;
+}
+
+.orderTitle_border {
+  border-top: 1px white solid;
+}
+
+.oderList_icons {
+  color: white;
+  margin: -4px 6px 0 5px;
+}
+
+::-webkit-scrollbar { width: 0 !important }

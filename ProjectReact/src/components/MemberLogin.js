@@ -1,16 +1,9 @@
 import React, { useState, useEffect } from "react";
 import FacebookLogin from "./FacebookLogin";
 import { FaUserAlt, FaKey } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
 import Captcha from "captcha-mini";
 import "../commom/scss/MemberLogin.scss";
-// import {Link} from "react-router-dom"
-//宣告-----------
-const emailRegex = RegExp(
-  /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-); //信箱正規
-//宣告-----------
-function MemberLogin(props) {
+function MemberLogin(props, { checkLogIn }) {
   const [MemberLogin, setMemberLogin] = useState(true);
   const [account, setaccount] = useState("");
   const [password, setpassword] = useState("");
@@ -20,6 +13,9 @@ function MemberLogin(props) {
     email: "",
     password: ""
   });
+  const [captchaValue, setCaptchaValue] = useState("");
+  const [captchaAgree, setCaptchaAgreee] = useState("");
+  const [captchaErr, setCaptchaErr] = useState(false);
   useEffect(() => {
     let captcha = new Captcha({
       lineWidth: 1, //线条宽度
@@ -36,7 +32,7 @@ function MemberLogin(props) {
     });
     //把生成的驗證碼丟到canvas容器中，然後callback把它(參數自訂為r)設定給state
     captcha.draw(document.querySelector("#captcha"), value => {
-      console.log(value);
+      setCaptchaAgreee(value);
     });
   }, [Change]);
 
@@ -44,6 +40,7 @@ function MemberLogin(props) {
   const handleChange = event => {
     event.preventDefault();
     const { name, value } = event.target;
+    console.log(value);
     console.log(name + value);
     switch (name) {
       case "account":
@@ -55,14 +52,21 @@ function MemberLogin(props) {
         formErrors.password = value.length < 3 ? "最少3個字" : "";
         break;
       case "captchatext":
-        formErrors.captchatext = value.length < 3 ? "最少3個字" : "";
+        setCaptchaValue(value);
         break;
       default:
         break;
     }
     setformErrors({ formErrors, ...formErrors });
+    setCaptchaErr(false);
   }; //錯誤訊息篩選順便更新狀態
-  const submitForm = async event => {
+  const submitForm = event => {
+    event.preventDefault();
+    if (captchaValue != captchaAgree) {
+      alert("驗證碼錯誤");
+      setCaptchaErr(true);
+      return;
+    }
     fetch("http://localhost:5000/handmade/member/login", {
       method: "post",
       headers: {
@@ -74,23 +78,26 @@ function MemberLogin(props) {
       })
     })
       .then(res => {
-        return res.json();
+        let member_data = res.json();
+        return member_data;
       })
-      .then(data => {
-        console.log(data.info.member_sid);
-        localStorage.setItem("member_id", data.info.member_sid);
+      .then(member_data => {
+        localStorage.setItem("member_id", member_data.info.member_sid);
+        localStorage.setItem("member_data", JSON.stringify(member_data.info));
+        console.log(member_data.info);
+        alert(member_data.message);
+        setTimeout(() => {
+          window.location = "http://localhost:3000/handmade/member";
+        });
       })
-      .catch(error => {
-        console.log(error);
+      .catch(async err => {
+        console.log(err);
+        alert("登入失敗");
       });
-    // try{
-
-    // }catch(error){
-
-    // }
-    event.preventDefault();
     setaccount("");
     setpassword("");
+    setCaptchaValue("");
+    setCaptchaErr(false);
   };
   if (MemberLogin) {
     return (
@@ -135,10 +142,14 @@ function MemberLogin(props) {
             </ul>
             <div className="d-flex justify-content-around">
               <input
-                className="captchatextInput"
+                className={
+                  captchaErr ? "captchatextInput error" : "captchatextInput"
+                }
                 name="captchatext"
                 type="text"
                 placeholder="輸入驗證碼"
+                value={captchaValue}
+                onChange={handleChange}
               />
               <canvas width="100" height="30px" id="captcha" />
             </div>
