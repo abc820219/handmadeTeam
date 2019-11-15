@@ -4,8 +4,9 @@ import MemberSideBar from "../components/member/MemberSideBar";
 import MemberEdit from "../components/member/MemberEdit";
 import MemberPasswordEdit from "../components/member/MemberPasswordEdit";
 import Cart from "./Cart";
-import NavBar from "../components/NavBar";
 import { Route, Switch } from "react-router-dom";
+let memberData = localStorage.getItem("member_data");
+console.log(memberData);
 const Member = ({ match }) => {
   return (
     <>

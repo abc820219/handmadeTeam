@@ -98,7 +98,7 @@ function MemberRegister(props) {
         return member_data;
       })
       .then(member_data => {
-        console.log(member_data)
+        console.log(member_data);
         fetch("http://localhost:5000/handmade/member/login", {
           method: "post",
           headers: {
@@ -115,7 +115,10 @@ function MemberRegister(props) {
           })
           .then(member_data => {
             localStorage.setItem("member_id", member_data.info.member_sid);
-            localStorage.setItem("member_data", member_data.info);
+            localStorage.setItem(
+              "member_data",
+              JSON.stringify(member_data.info)
+            );
             console.log(member_data.info);
             alert(member_data.message);
             setTimeout(() => {
