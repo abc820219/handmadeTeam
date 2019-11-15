@@ -13,8 +13,7 @@ class Course_list extends Component {
 
 
     render() {
-        // if (this.props.list)
-        console.log(this.props.list)
+      
         return (
             <>
                 <main className="course_list_wrap">
@@ -42,23 +41,6 @@ class Course_list extends Component {
                 </main>
 
             </>
-
-            // <>
-            //     {this.props.list.map(thing => {
-            //             {/* <main className="course_list_wrap"> </main> */}
-            //                 <div id="course_list" className="course_list">
-            //                     {/* <Course_detail key={thing.course_sid} to={""}>
-            //                         <img src={`/image/course_img/classroom/${thing.course_list}`} />
-            //                     </Course_detail> */}
-
-            //                 </div>
-
-
-
-            //     })
-            //     }
-            //             </>
-
         )
     }
 }

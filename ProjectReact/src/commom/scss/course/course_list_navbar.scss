@@ -4,11 +4,11 @@
 //   //  border: 1px solid red;
 // }
 
-body,
-html {
-  width: 100%;
-  background: #f5ddba;
-}
+// body,
+// html {
+//   width: 100%;
+//   background: #f5ddba;
+// }
 @import url("https://use.typekit.net/zkl0auq.css");
 
 ::-webkit-scrollbar {
@@ -231,6 +231,20 @@ html {
     }
   }
 }
+
+.course_filter_bar{
+  display: flex;
+  flex-direction: column;
+  // justify-content: flex-end;
+  align-items: center;
+  margin: 0 10px 0 0;
+  font-family: adobe-devanagari, sans-serif;
+  .course_search{
+    font-size: 39px;
+
+  }
+}
+
 
 .color0 {
   background-color: #edc6b1;
