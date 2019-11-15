@@ -83,7 +83,7 @@ function MemberLogin(props, { checkLogIn }) {
       })
       .then(member_data => {
         localStorage.setItem("member_id", member_data.info.member_sid);
-        localStorage.setItem("member_data", member_data.info);
+        localStorage.setItem("member_data", JSON.stringify(member_data.info));
         console.log(member_data.info);
         alert(member_data.message);
         setTimeout(() => {

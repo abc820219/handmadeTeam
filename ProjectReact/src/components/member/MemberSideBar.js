@@ -3,11 +3,13 @@ import LogOut from "./MemberLogout";
 import { AiFillPicture } from "react-icons/ai";
 import "../../commom/scss/member/member_sideBar.scss";
 import { Link } from "react-router-dom";
+
 const MemberSideBar = ({ match }) => {
   const imgChange = e => {
     let file = e.target.files[0];
+    let imgName = file.name;
+    console.log(imgName);
     console.log(file);
-
     const data = new FormData();
     console.log(data + "1");
     data.append("file", file);
@@ -16,11 +18,25 @@ const MemberSideBar = ({ match }) => {
       method: "POST",
       body: data
     })
-      // .then(res => {
-      //   fetch("")
-      //   console.log(res);
-      // })
-      // .catch(error => console.log(error));
+      .then(res => {
+        fetch("http://localhost:5000/handmade/member/memberImg", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            member_sid: localStorage.getItem("member_id"),
+            member_photo_name: imgName
+          })
+        })
+          .then(res => {
+            return res.json();
+          })
+          .then(res => {
+            alert(res.message);
+          });
+      })
+      .catch(error => console.log(error));
   };
   return (
     <aside className="member-side-bar d-flex flex-column align-items-center">
