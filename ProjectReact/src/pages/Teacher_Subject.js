@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import TeacherList from "../components/teacher/TeacherList";
+import Subject from "../components/teacher/Subject";
 import NavBar from "../components/NavBar";
-class Teacher extends Component {
+
+class Teacher_Subject extends Component {
   render() {
     return (
       <>
@@ -9,10 +10,10 @@ class Teacher extends Component {
           login={this.props.login}
           checkLogIn={this.props.checkLogIn}
         ></NavBar>
-        <TeacherList />
+        <Subject />
       </>
     );
   }
 }
 
-export default Teacher;
+export default Teacher_Subject;
