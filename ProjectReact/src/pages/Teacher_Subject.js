@@ -1,23 +1,19 @@
 import React, { Component } from "react";
-import CourseAll from "../components/course/CourseAll"
+import Subject from "../components/teacher/Subject";
 import NavBar from "../components/NavBar";
-class Course extends Component {
-  constructor(props) {
-    super(props);
-  }
+
+class Teacher_Subject extends Component {
   render() {
-
-    return(
-
+    return (
       <>
         <NavBar
           login={this.props.login}
           checkLogIn={this.props.checkLogIn}
         ></NavBar>
-    <CourseAll/>
-    </>
-      ) 
+        <Subject />
+      </>
+    );
   }
 }
 
-export default Course;
+export default Teacher_Subject;

@@ -5,8 +5,8 @@ import Cart from "../pages/Cart";
 import Member from "../pages/Member";
 import Store from "../pages/Store";
 import Teacher from "../pages/Teacher";
+import Teacher_Subject from "../pages/Teacher_Subject";
 import Ingredients from "../pages/Ingredients";
-
 
 export { Handmade };
 export { Navgation };
@@ -16,3 +16,4 @@ export { Member };
 export { Store };
 export { Teacher };
 export { Ingredients };
+export { Teacher_Subject };

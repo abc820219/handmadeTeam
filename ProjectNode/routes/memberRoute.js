@@ -26,6 +26,15 @@ class login {
     return sql;
   }
 }
+class getMemberData {
+  constructor(member_id) {
+    this.member_sid = member_id;
+  }
+  getUserByIdSQL() {
+    let sql = `SELECT * FROM member WHERE member_sid = "${this.member_sid}"`;
+    return sql;
+  }
+}
 class register {
   constructor(account, password, email) {
     this.member_account = account;
@@ -80,9 +89,32 @@ class MemberImg {
 
 //----------------------------------------------------------------------------------------------------------------------------------------
 router.post("/login", (req, res, next) => {
-  console.log(req.body.member_account);
   let Member = new login(req.body.member_account, req.body.member_password);
-  console.log(Member.getUserByIdSQL());
+  db.query(Member.getUserByIdSQL(), (error, rows) => {
+    if (rows.length == 0) {
+      res.json({
+        status: "404",
+        message: "請輸入正確的帳號或密碼"
+      });
+      return;
+    } else if (error) {
+      res.json({
+        status: "404",
+        message: "伺服器錯誤，請稍後在試！"
+      });
+      return;
+    } else {
+      res.json({
+        status: "202",
+        message: "歡迎登入!",
+        info: rows[0]
+      });
+      return;
+    }
+  });
+});
+router.post("/getMemberData", (req, res, next) => {
+  let Member = new getMemberData(req.body.member_sid);
   db.query(Member.getUserByIdSQL(), (error, rows) => {
     if (rows.length == 0) {
       res.json({
@@ -193,17 +225,17 @@ router.post("/memberImg", upload.single("file"), (req, res) => {
   let Member = new MemberImg(req.body.member_sid, req.body.member_photo_name);
   console.log(Member.addMemberImg());
   if (req.body.member_sid) {
-  db.query(Member.addMemberImg(), (error, rows) => {
+    db.query(Member.addMemberImg(), (error, rows) => {
+      res.json({
+        status: 200,
+        message: "照片上傳成功"
+      });
+    });
+  } else {
     res.json({
-      status:200,
-      message:"照片上傳成功"
-    })
-  });
-  }else{
-    res.json({
-      status:404,
-      message:"照片上傳失敗"
-    })
+      status: 404,
+      message: "照片上傳失敗"
+    });
   }
 });
 

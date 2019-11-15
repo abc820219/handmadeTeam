@@ -1,0 +1,120 @@
+$maincolor:#F78177;
+
+@import url("https://use.typekit.net/wuz0itu.css");
+@import url("https://use.typekit.net/wuz0itu.css");
+
+body {
+    background: linear-gradient(135deg, #F0C7B3, #F4DCB9);
+}
+
+//----左邊sidebar,顯示課程資訊及報名人資料----
+.booking-sidebar {
+    // height: 100% ;
+    // position: fixed;
+    height: 100vh;
+    width: 360px;
+    background: #362D2B;
+    color: #9597A6;
+
+    .subject-header {
+        background: rgb(125, 115, 221);
+        height: 140px;
+    }
+
+    .subject-img {
+        height: 170px;
+        width: 100%;
+        background: #1c2;
+
+        .sub-img {
+            width: 100%;
+        }
+    }
+
+    .subject-data {
+        height: 200px;
+        width: 100%;
+        padding: 10px 20px;
+        color: #9597A6;
+        // color: #eee;
+        font-size: 16px;
+        text-align: center;
+        line-height: 1.8rem;
+    }
+
+    .price-info {
+        height: 180px;
+        padding: 10px 20px;
+        text-align: center;
+        color: #eee;
+        font-size: 12px;
+
+        .price-info-line {
+            height: 33%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 2px solid #888;
+            font-size: 16px;
+
+            .price-left {
+                width: 65%;
+                text-align: left;
+                padding-left: 20px;
+                // color: #888;
+                color: #9597A6;
+                font-size: 16px;
+            }
+
+            .price-right {
+                width: 35%;
+                text-align: right;
+                padding-right: 20px;
+                color: #eee;
+                font-size: 25px;
+            }
+        }
+
+        .price-info-total {
+            height: 33%;
+            //  background: #c9c;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 20px;
+            font-size: 25px;
+        }
+    }
+
+    .subject-btn {
+        height: 100px;
+        padding: 20px;
+        text-align: center;
+        color: #eee;
+        // font-size: 12px;
+        font-size: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .order-btn {
+            width: 130px;
+            height: 40px;
+            color: #362D2B;
+            border: 1px solid transparent;
+            background: #F0F1F7;
+            font-family: basic-sans, sans-serif;
+            font-weight: 300;
+            font-style: normal;
+            font-size: 16px;
+            // font-size: 24px;
+            border-radius: 30px;
+        }
+    }
+}
+
+
+
+
+
+
