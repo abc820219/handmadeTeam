@@ -1,4 +1,4 @@
-import React ,{useEffect, useContext}from "react";
+import React, { useEffect, useContext } from "react";
 // import {useSelector , useDispatch} from 'react-redux';
 
 import "../../../commom/scss/member/memberOrderDetail.scss";
@@ -8,29 +8,37 @@ import OrderDeListIngre from "./OrderDeListIngre";
 import Store from "./OrderStore";
 
 const MemberOrderDetail = () => {
-  const {
-    orderType,
-    orderDetailLists
-  } = useContext(Store);
-  let newOrderDetailList;
-  useEffect(()=>{
+  const { orderType, orderDetailLists, orderDetailFetch } = useContext(Store);
+  console.log(orderDetailLists);
+  useEffect(() => {
     renderSwitch(orderType);
-    newOrderDetailList = orderDetailLists;
-  },[orderType,orderDetailLists])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [orderDetailFetch]);
   function renderSwitch(type) {
     switch (type) {
       case 1:
-        console.log(456);
-        return <OrderDeListCourse orderDetailLists={newOrderDetailList}/>;
+        return (
+          <OrderDeListCourse
+            orderDetail={orderDetailLists ? orderDetailLists : []}
+          />
+        );
       case 2:
-        return <OrderDeListIngre orderDetailLists={newOrderDetailList}/>;
+        return (
+          <OrderDeListIngre
+            orderDetail={orderDetailLists ? orderDetailLists : []}
+          />
+        );
       case 3:
-        return <OrderDeListTeacher/>;
+        return (
+          <OrderDeListTeacher
+            orderDetail={orderDetailLists ? orderDetailLists : []}
+          />
+        );
       default:
         return "";
     }
   }
-  return <>{renderSwitch(orderType)}</>
+  return <>{renderSwitch(orderType)}</>;
 };
 
 export default MemberOrderDetail;
