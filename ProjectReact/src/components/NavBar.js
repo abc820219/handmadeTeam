@@ -36,7 +36,7 @@ const NavBar = ({ checkLogIn, login }) => {
     <>
       <nav className="navbar page-nav  align-items-center">
         <div
-          className="page-nav-aside d-flex align-items-center justify-content-center"
+          className="page-nav-aside d-flex align-items-center justify-content-between"
           onClick={MenuList}
           onMouseLeave={MenuListLeave}
         >
@@ -46,11 +46,6 @@ const NavBar = ({ checkLogIn, login }) => {
               style={{ fontSize: "30px", color: "#fff" }}
             />
           </div>
-          <div className="logoBox">
-            <img />
-            LOGO
-          </div>
-
           <ul className={showMenuBtn ? "move" : "navbarBtn"}>
             <li>
               <Link to="/handmade/store/course">課程</Link>
@@ -68,6 +63,10 @@ const NavBar = ({ checkLogIn, login }) => {
               <Link to="/handmade">首頁</Link>
             </li>
           </ul>
+          <div className="logoBox">
+            <img />
+            LOGO
+          </div>
         </div>
         {login.login == false ? (
           <NavBarUnSign
