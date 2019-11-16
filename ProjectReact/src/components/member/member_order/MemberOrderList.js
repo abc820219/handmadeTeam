@@ -14,7 +14,6 @@ import {
   receiveOrderDetail
 } from "./OrderAction";
 const MemberOrderList = ({ changeOrderType }) => {
-
   const {
     courseLists,
     clDispatch,
@@ -24,8 +23,6 @@ const MemberOrderList = ({ changeOrderType }) => {
     ingreIsFetch,
     odlDispatch
   } = React.useContext(Store);
-
-
 
   const orderCourseData = async () => {
     try {
@@ -62,7 +59,6 @@ const MemberOrderList = ({ changeOrderType }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [courseIsFetch, ingreIsFetch]);
 
-
   const orderDetailData = async (orderType, item) => {
     try {
       const user = await localStorage.getItem("member_id");
@@ -73,13 +69,11 @@ const MemberOrderList = ({ changeOrderType }) => {
         user: user
       });
       const url = `http://localhost:5000/handmade/member/order/orderDetail`;
-      const dataJson = await fetch(
-        url, {
-        method: 'POST',
+      const dataJson = await fetch(url, {
+        method: "POST",
         body: orderListDetail,
-        headers: {'Content-Type': 'application/json'}
-      }
-      );
+        headers: { "Content-Type": "application/json" }
+      });
       const data = await dataJson.json();
       console.log(data);
       await odlDispatch(receiveOrderDetail(data));
@@ -95,7 +89,7 @@ const MemberOrderList = ({ changeOrderType }) => {
           <h3 className="ml-5 mt-5 mb-5">訂單紀錄</h3>
         </div>
         <div className="memberOrderList-info pl-2">
-          <ul className="orderTitle_border" onClick={() => changeOrderType('course')}>
+          <ul className="orderTitle_border">
             <h3 className="orderList_title">課程</h3>
             {courseLists.map(courseList => (
               <MemberOrderListCourse
@@ -108,7 +102,7 @@ const MemberOrderList = ({ changeOrderType }) => {
               />
             ))}
           </ul>
-          <ul className="orderTitle_border" onClick={() => changeOrderType('ingredient')}>
+          <ul className="orderTitle_border">
             <h3 className="orderList_title">食材</h3>
             {ingreLists.map(ingreList => (
               <MemberOrderListIngre
@@ -122,9 +116,7 @@ const MemberOrderList = ({ changeOrderType }) => {
             ))}
           </ul>
           <ul className="orderTitle_border">
-            <h3 className="orderList_title" onClick={() => changeOrderType('teacher')}>
-              老師
-            </h3>
+            <h3 className="orderList_title">老師</h3>
             <MemberOrderListTeacher />
           </ul>
         </div>
