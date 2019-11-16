@@ -5,12 +5,12 @@ import { MdEmail, MdPhoneAndroid } from "react-icons/md";
 
 const MemberEdit = () => {
   //會員----------------------------------------------------------
-  const [member_address, setmember_address] = useState(null);
-  const [member_birthday, setmember_birthday] = useState(null);
-  const [member_email, setmember_email] = useState(null);
-  const [member_name, setmember_name] = useState(null);
-  const [member_nickname, setmember_nickname] = useState(null);
-  const [member_phone, setmember_phone] = useState(null);
+  const [member_address, setmember_address] = useState("");
+  const [member_birthday, setmember_birthday] = useState("");
+  const [member_email, setmember_email] = useState("");
+  const [member_name, setmember_name] = useState("");
+  const [member_nickname, setmember_nickname] = useState("");
+  const [member_phone, setmember_phone] = useState("");
   //會員----------------------------------------------------------
   //錯誤訊息--------------------------------------------------------
   const [formErrors, setformErrors] = useState({
@@ -22,12 +22,12 @@ const MemberEdit = () => {
   });
   //錯誤訊息----------------------------------------------------------
   //輸入值------------------------------------------------------------
-  const [address, setaddress] = useState(null);
-  const [birthday, setbirthday] = useState(null);
-  const [email, setemail] = useState(null);
-  const [name, setname] = useState(null);
-  const [nickname, setnickname] = useState(null);
-  const [phone, setphone] = useState(null);
+  const [address, setaddress] = useState("");
+  const [birthday, setbirthday] = useState("");
+  const [email, setemail] = useState("");
+  const [name, setname] = useState("");
+  const [nickname, setnickname] = useState("");
+  const [phone, setphone] = useState("");
   //輸入值------------------------------------------------------------
   //------------------------------------------------------------------
   const emailRegex = RegExp(
@@ -36,6 +36,7 @@ const MemberEdit = () => {
   const phoneRegex = RegExp(/^[09]{2}[0-9]{8}$/); //手機正規
   //------------------------------------------------------------------
   useEffect(() => {
+    let isSub = true;
     fetch("http://localhost:5000/handmade/member/getMemberData", {
       method: "POST",
       headers: {
@@ -49,17 +50,21 @@ const MemberEdit = () => {
         return res.json();
       })
       .then(res => {
-        console.log(res.info);
-        setmember_address(res.info.member_address);
-        setmember_birthday(res.info.member_birth);
-        setmember_email(res.info.member_email);
-        setmember_name(res.info.member_name);
-        setmember_nickname(res.info.member_nickname);
-        setmember_phone(res.info.member_phone);
+        if (isSub) {
+          console.log(res.info);
+          setmember_address(res.info.member_address);
+          setmember_birthday(res.info.member_birth.slice(0, 10));
+          setbirthday(res.info.member_birth.slice(0, 10));
+          setmember_email(res.info.member_email);
+          setmember_name(res.info.member_name);
+          setmember_nickname(res.info.member_nickname);
+          setmember_phone(res.info.member_phone);
+        }
       })
       .catch(error => {
         console.log(error);
       });
+    return () => (isSub = false);
   }, []);
   //資料載入完成-------------------------------------------------
 
@@ -78,9 +83,7 @@ const MemberEdit = () => {
             <li>暱稱:{member_nickname ? member_nickname : "未填寫"}</li>
             <li>信箱:{member_email ? member_email : "未填寫"}</li>
             <li>手機:{member_phone ? member_phone : "未填寫"}</li>
-            <li>
-              生日:{member_birthday ? member_birthday.slice(0, 10) : "未填寫"}
-            </li>
+            <li>生日:{member_birthday ? member_birthday : "未填寫"}</li>
             <li>地址:{member_address ? member_address : "未填寫"}</li>
           </ul>
         </div>
@@ -117,11 +120,13 @@ const MemberEdit = () => {
                   <div className="titleH">NickName</div>
                   <div className="position-relative">
                     <input
-                      name=""
-                      type="tel"
+                      name="nickname"
+                      type="name"
                       placeholder={
                         member_nickname ? member_nickname : "請填入暱稱"
                       }
+                      onChange={handleChange}
+                      value={nickname}
                     />
                     <FaUserAlt
                       style={{
@@ -144,7 +149,7 @@ const MemberEdit = () => {
                       name="email"
                       type="text"
                       placeholder={
-                        member_address ? member_address : "請填入信箱地址"
+                        member_email ? member_email : "請填入信箱地址"
                       }
                       onChange={handleChange}
                       value={email}
@@ -192,11 +197,9 @@ const MemberEdit = () => {
                       name="birthday"
                       className="date-input"
                       type="date"
-                      placeholder={
-                        member_birthday ? member_birthday.slice(0, 10) : null
-                      }
+                      placeholder={member_birthday ? member_birthday : null}
                       onChange={handleChange}
-                      value={birthday ? birthday : member_birthday}
+                      value={birthday}
                     />
                     <FaBirthdayCake
                       style={{
@@ -257,6 +260,32 @@ const MemberEdit = () => {
   function formSubmit(event) {
     event.preventDefault();
     console.log("formSubmit");
+    fetch("http://localhost:5000/handmade/member/MemberEdit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        member_sid: localStorage.getItem("member_id"),
+        member_email: email ? email : member_name,
+        member_name: name ? name : member_name,
+        member_nickname: nickname ? nickname : member_nickname,
+        member_birth: birthday ? birthday : member_birthday,
+        member_phone: phone ? phone : member_phone,
+        member_address: address ? address : member_address
+      })
+    })
+      .then(res => {
+        return res.json();
+      })
+      .then(row => {
+        console.log(row);
+        window.location = "http://localhost:3000/handmade/member/edit";
+        alert(row.message);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
   function handleChange(event) {
     event.preventDefault();
