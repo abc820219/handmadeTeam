@@ -33,7 +33,7 @@ const MemberPasswordEdit = () => {
           className="col-4"
           style={{ background: "#635E59", minHeight: "937px" }}
         ></div>
-        <div className="col-8 d-flex flex-column">
+        <div className="col-12 col-md-8 d-flex flex-column">
           <form>
             <div className="MemberEditHeader my-3">
               <h4>
