@@ -4,7 +4,7 @@ import { MdFavorite, MdNotifications } from "react-icons/md";
 import { Link } from "react-router-dom";
 import SmallCart from "./cart/SmallCart";
 
-const NavBarSign = ({ openCart, showCart ,login}) => {
+const NavBarSign = ({ openCart, showCart, login }) => {
   const logoPattern = {
     fontSize: "30px",
     color: "white"
@@ -42,7 +42,7 @@ const NavBarSign = ({ openCart, showCart ,login}) => {
           />
         </div>
       </div>
-      <SmallCart openCart={openCart} showCart={showCart} login={login.login}/>
+      <SmallCart openCart={openCart} showCart={showCart} login={login.login} />
     </>
   );
 };

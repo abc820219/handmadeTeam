@@ -11,7 +11,6 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaQuoteLeft } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 
-
 const OrderDeListCourse = props => {
   const iconZone = {
     width: '64px',
@@ -20,6 +19,8 @@ const OrderDeListCourse = props => {
     backgroundColor: '#F7ECEB',
     marginRight: '80px'
   };
+
+  
   return (
     <>
       <div className="container-fluid orderDeCourse d-flex flex-column">
