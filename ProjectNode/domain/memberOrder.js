@@ -1,57 +1,50 @@
-class MemberOrder {
-  constructor(name, username, password, email) {
-    this.id = 0;
-    this.name = name;
-    this.username = username;
-    this.password = password;
-    this.email = email;
-    this.login = 0;
+class OrderDetail {
+  constructor(orderType, user, item) {
+    this.orderType = orderType;
+    this.user = user;
+    this.item = item;
   }
-
-  addUserSQL() {
-    let sql = `INSERT INTO USERS(name, username, password, email, login, createdDate) \
-                     VALUES('${this.name}', '${this.username}', '${this.password}', '${this.email}', 0, NOW())`;
-    return sql;
-  }
-
-  updateUserByIdSQL(id) {
-    let sql = `UPDATE USERS \
-                 SET name = '${this.name}', username = '${this.username}', password = '${this.password}', email = '${this.email}', login = ${this.login} \
-                 WHERE id =  ${id}`;
-    return sql;
-  }
-
-  // static是與實例化無關
-  static getUserByIdSQL(id) {
-    let sql = `SELECT * FROM USERS WHERE id = ${id}`;
-    return sql;
-  }
-
-  // static是與實例化無關
-  static getUserByQuerySQL(query) {
-    const where = [];
-
-    if (query.name) where.push(`name = '${query.name}'`);
-    if (query.email) where.push(`email = '${query.email}'`);
-    if (query.username) where.push(`username = '${query.username}'`);
-
+  orderDetailSQL() {
     let sql = "";
-
-    if (where.length) sql = `SELECT * FROM USERS WHERE ` + where.join(" AND ");
-    else sql = `SELECT * FROM USERS`;
-
-    return sql;
-  }
-
-  static deleteUserByIdSQL(id) {
-    let sql = `DELETE FROM USERS WHERE ID = ${id}`;
-    return sql;
-  }
-
-  static getAllOrderSQL() {
-    let sql = `SELECT * FROM USERS`;
-    return sql;
+    switch (this.orderType) {
+      case 1:
+        sql =
+          "SELECT * FROM `order` `o` JOIN `course_order` `co` JOIN `course` `c` JOIN `course_img` `ci` ON `o`.order_sid = `co`.order_sid AND `co`.`course_sid` = `c`.`course_sid` AND `co`.`course_sid` = `ci`.`course_sid` WHERE `o`.member_sid = " +
+          this.user +
+          " AND `o`.order_sid = " +
+          this.item;
+        return sql;
+        break;
+      case 2:
+        sql =
+          "SELECT * FROM ((`order` NATURAL JOIN `ingredients_order`) NATURAL JOIN `ingredients`) WHERE `order`.`member_sid` = " +
+          this.user;
+        return sql;
+        break;
+      default:
+        return;
+    }
   }
 }
 
-export default MemberOrder;
+router.post("/orderDetail", (req, res, next) => {
+  let orderDetail = new OrderDetail(
+    req.body.orderType,
+    req.body.user,
+    req.body.item
+  );
+  db.query(orderDetail.orderDetailSQL(), (error, rows) => {
+    if (error) {
+      res.json({
+        status: "404",
+        message: "伺服器錯誤，請稍後在試！"
+      });
+      return;
+    } else {
+      res.json(rows[0]);
+      return;
+    }
+  });
+});
+
+export default OrderDetail;
