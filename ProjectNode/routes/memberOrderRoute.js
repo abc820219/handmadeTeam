@@ -27,7 +27,6 @@ router.get("/ingre/:id", (req, res) => {
     "SELECT * FROM ((`order` NATURAL JOIN `ingredients_order`) NATURAL JOIN `ingredients`) WHERE `order`.`member_sid` = " +
     memberId;
   db.queryAsync(sql).then(results => {
-    console.log(results);
     res.json(results);
   });
 });
@@ -61,6 +60,12 @@ class OrderDetail {
         return;
     }
   }
+  static orderDefaultSQL(id) {
+    let sql =
+      "SELECT * FROM `order` `o` JOIN `course_order` `co` JOIN `course` `c` JOIN `course_img` `ci` ON `o`.order_sid = `co`.order_sid AND `co`.`course_sid` = `c`.`course_sid` AND `co`.`course_sid` = `ci`.`course_sid` WHERE `o`.member_sid = " +
+      id +
+      " order by `o`.`order_sid` DESC LIMIT 1";
+  }
 }
 
 router.post("/orderDetail", (req, res, next) => {
@@ -70,6 +75,23 @@ router.post("/orderDetail", (req, res, next) => {
     req.body.item
   );
   db.query(orderDetail.orderDetailSQL(), (error, rows) => {
+    if (error) {
+      res.json({
+        status: "404",
+        message: "伺服器錯誤，請稍後在試！"
+      });
+      return;
+    } else {
+      res.json(rows[0]);
+      return;
+    }
+  });
+});
+
+router.get("/orderDetail/:id", (req, res, next) => {
+  const id = req.params.id;
+  console.log(id);
+  db.query(OrderDetail.orderDetailSQL(id), (error, rows) => {
     if (error) {
       res.json({
         status: "404",

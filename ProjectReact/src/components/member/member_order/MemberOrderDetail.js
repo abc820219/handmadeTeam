@@ -17,23 +17,11 @@ const MemberOrderDetail = () => {
   function renderSwitch(type) {
     switch (type) {
       case 1:
-        return (
-          <OrderDeListCourse
-            orderDetail={orderDetailLists ? orderDetailLists : []}
-          />
-        );
+        return <OrderDeListCourse orderDetail={orderDetailLists} />;
       case 2:
-        return (
-          <OrderDeListIngre
-            orderDetail={orderDetailLists ? orderDetailLists : []}
-          />
-        );
+        return <OrderDeListIngre orderDetail={orderDetailLists} />;
       case 3:
-        return (
-          <OrderDeListTeacher
-            orderDetail={orderDetailLists ? orderDetailLists : []}
-          />
-        );
+        return <OrderDeListTeacher orderDetail={orderDetailLists} />;
       default:
         return "";
     }
