@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../../commom/scss/course/course_list_navbar.scss";
-import $ from "jquery";
+
 
 
 
@@ -12,10 +12,6 @@ class Course_navbar extends Component {
 
     componentDidMount() {
 
-        $(".course_store_info ").click(function () {
-            $(this).addClass("activeImg");
-            $(this).siblings().removeClass("activeImg");
-        })
 
     }
     render() {
