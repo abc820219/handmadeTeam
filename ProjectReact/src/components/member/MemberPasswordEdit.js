@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../../commom/scss/member/memberEdit.scss";
 import Captcha from "captcha-mini";
-import { FaKey } from "react-icons/fa";
+import { FaKey, FaEye } from "react-icons/fa";
 import { FiXCircle } from "react-icons/fi";
 import MemberInfo from "./MemberInfo";
 
@@ -17,6 +17,9 @@ const MemberPasswordEdit = () => {
   });
   const [captchaCheck, setcaptchaCheck] = useState("");
   const [captchaValue, setCaptchaValue] = useState("");
+  const [shown1, setShown1] = React.useState(false);
+  const [shown2, setShown2] = React.useState(false);
+  const [shown3, setShown3] = React.useState(false);
   let MemberPassword = "";
   if (JSON.parse(localStorage.getItem("member_data"))) {
     MemberPassword = JSON.parse(localStorage.getItem("member_data"))
@@ -90,11 +93,11 @@ const MemberPasswordEdit = () => {
                   <div className="position-relative">
                     <input
                       name="password"
-                      type="password"
+                      type={shown1 ? "text" : "password"}
                       placeholder="請填入舊密碼"
                       onChange={handleChange}
                       value={password}
-                      className={ formErrors.password ?"error":""}
+                      className={formErrors.password ? "error" : ""}
                     />
                     <FaKey
                       style={{
@@ -104,9 +107,21 @@ const MemberPasswordEdit = () => {
                         color: "#fff"
                       }}
                     />
+                    <FaEye
+                      style={{
+                        position: "absolute",
+                        top: "30%",
+                        right: "8px",
+                        color: "#fff"
+                      }}
+                      onClick={() => setShown1(!shown1)}
+                    />
                   </div>
                 </div>
-                <span className="ml-5 my-3 errorText d-flex  align-items-center">{formErrors.password?<FiXCircle/> :""}{formErrors.password}</span>
+                <span className="ml-5 my-3 errorText d-flex  align-items-center">
+                  {formErrors.password ? <FiXCircle /> : ""}
+                  {formErrors.password}
+                </span>
               </div>
               <div className=" passEditRwd d-flex align-items-end">
                 <div className="short-input">
@@ -114,12 +129,11 @@ const MemberPasswordEdit = () => {
                   <div className="position-relative">
                     <input
                       name="newPassword"
-                      type="password"
+                      type={shown2 ? "text" : "password"}
                       placeholder="請填入新密碼"
                       onChange={handleChange}
                       value={newPassword}
-                      className={ formErrors.newPassword ?"error":""}
-
+                      className={formErrors.newPassword ? "error" : ""}
                     />
                     <FaKey
                       style={{
@@ -129,9 +143,22 @@ const MemberPasswordEdit = () => {
                         color: "#fff"
                       }}
                     />
+                    <FaEye
+                      style={{
+                        position: "absolute",
+                        top: "30%",
+                        right: "8px",
+                        color: "#fff"
+                      }}
+                      onClick={() => setShown2(!shown2)}
+
+                    />
                   </div>
                 </div>
-                <span className="ml-5 my-3 errorText d-flex  align-items-center">{formErrors.newPassword?<FiXCircle/> :""}{formErrors.newPassword}</span>
+                <span className="ml-5 my-3 errorText d-flex  align-items-center">
+                  {formErrors.newPassword ? <FiXCircle /> : ""}
+                  {formErrors.newPassword}
+                </span>
               </div>
               <div className=" passEditRwd d-flex align-items-end">
                 <div className="short-input ">
@@ -139,12 +166,11 @@ const MemberPasswordEdit = () => {
                   <div className="position-relative">
                     <input
                       name="newPassword2"
-                      type="password"
+                      type={shown3 ? "text" : "password"}
                       placeholder="請再次填入新密碼"
                       onChange={handleChange}
                       value={newPassword2}
-                      className={ formErrors.newPassword2 ?"error":""}
-
+                      className={formErrors.newPassword2 ? "error" : ""}
                     />
                     <FaKey
                       style={{
@@ -154,9 +180,21 @@ const MemberPasswordEdit = () => {
                         color: "#fff"
                       }}
                     />
+                    <FaEye
+                      style={{
+                        position: "absolute",
+                        top: "30%",
+                        right: "8px",
+                        color: "#fff"
+                      }}
+                      onClick={() => setShown3(!shown3)}
+                    />
                   </div>
                 </div>
-                <span className="ml-5 my-3 errorText d-flex  align-items-center">{formErrors.newPassword2?<FiXCircle/> :""}  {formErrors.newPassword2}</span>
+                <span className="ml-5 my-3 errorText d-flex  align-items-center">
+                  {formErrors.newPassword2 ? <FiXCircle /> : ""}{" "}
+                  {formErrors.newPassword2}
+                </span>
               </div>
               <div className=" d-flex align-items-end">
                 <div className="short-input">
