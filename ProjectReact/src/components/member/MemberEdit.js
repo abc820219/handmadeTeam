@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import "../../commom/scss/member/memberEdit.scss";
 import { FaUserAlt, FaBirthdayCake, FaAddressCard } from "react-icons/fa";
 import { MdEmail, MdPhoneAndroid } from "react-icons/md";
+import { FiXCircle } from "react-icons/fi";
 
+import MemberInfo from "./MemberInfo";
 const MemberEdit = () => {
   //會員----------------------------------------------------------
   const [member_address, setmember_address] = useState("");
@@ -23,7 +25,7 @@ const MemberEdit = () => {
   //錯誤訊息----------------------------------------------------------
   //輸入值------------------------------------------------------------
   const [address, setaddress] = useState("");
-  const [birthday, setbirthday] = useState("");
+  const [birthday, setbirthday] = useState("2019-01-01");
   const [email, setemail] = useState("");
   const [name, setname] = useState("");
   const [nickname, setnickname] = useState("");
@@ -71,23 +73,8 @@ const MemberEdit = () => {
   return (
     <div className="container-fluid MemberEdit">
       <div className="row">
-        <div
-          className="col-4"
-          style={{ background: "#635E59", minHeight: "937px", color: "#fff" }}
-        >
-          <h4>
-            <span>會員基本資料</span>
-          </h4>
-          <ul>
-            <li>姓名:{member_name ? member_name : "未填寫"}</li>
-            <li>暱稱:{member_nickname ? member_nickname : "未填寫"}</li>
-            <li>信箱:{member_email ? member_email : "未填寫"}</li>
-            <li>手機:{member_phone ? member_phone : "未填寫"}</li>
-            <li>生日:{member_birthday ? member_birthday : "未填寫"}</li>
-            <li>地址:{member_address ? member_address : "未填寫"}</li>
-          </ul>
-        </div>
-        <div className="col-8 d-flex flex-column bg-linear">
+        <MemberInfo></MemberInfo>
+        <div className="col-12 col-md-8 d-flex flex-column bg-linear">
           <form>
             <div className="MemberEditHeader ">
               <h4>
@@ -95,7 +82,7 @@ const MemberEdit = () => {
               </h4>
             </div>
             <div className="MemberEditMain mb-5 d-flex flex-column">
-              <div className="d-flex  justify-content-center">
+              <div className="d-flex edit-rwd justify-content-center">
                 <div className="short-input">
                   <div className="titleH">Name</div>
                   <div className="position-relative">
@@ -141,7 +128,7 @@ const MemberEdit = () => {
                   <span></span>
                 </div>
               </div>
-              <div className="d-flex  justify-content-center">
+              <div className="d-flex edit-rwd justify-content-center">
                 <div className="longe-input">
                   <div className="titleH">Email address</div>
                   <div className="position-relative">
@@ -153,6 +140,7 @@ const MemberEdit = () => {
                       }
                       onChange={handleChange}
                       value={email}
+                      className={formErrors.email ? "error" : ""}
                     />
                     <MdEmail
                       style={{
@@ -164,10 +152,10 @@ const MemberEdit = () => {
                     />
                   </div>
                   <br></br>
-                  <span>{formErrors.email}</span>
+                  <span className="errorText d-flex align-items-center">{formErrors.email?<FiXCircle/>:""}{formErrors.email}</span>
                 </div>
               </div>
-              <div className="d-flex  justify-content-center">
+              <div className="d-flex edit-rwd justify-content-center">
                 <div className="short-input">
                   <div className="titleH">Phone</div>
                   <div className="position-relative">
@@ -177,6 +165,7 @@ const MemberEdit = () => {
                       placeholder={member_phone ? member_phone : "請填入手機"}
                       onChange={handleChange}
                       value={phone}
+                      className={formErrors.phone ? "error" : ""}
                     />
                     <MdPhoneAndroid
                       style={{
@@ -188,7 +177,7 @@ const MemberEdit = () => {
                     />
                   </div>
                   <br></br>
-                  <span>{formErrors.phone}</span>
+                  <span className="errorText d-flex align-items-center">{formErrors.phone?<FiXCircle/>:""}{formErrors.phone} </span>
                 </div>
                 <div className="short-input">
                   <div className="titleH">birthday</div>
@@ -214,7 +203,7 @@ const MemberEdit = () => {
                   <span></span>
                 </div>
               </div>
-              <div className="d-flex  justify-content-center mb">
+              <div className="d-flex edit-rwd justify-content-center mb">
                 <div className="longe-input">
                   <div className="titleH">Street address</div>
                   <div className="position-relative">
@@ -226,6 +215,7 @@ const MemberEdit = () => {
                       }
                       onChange={handleChange}
                       value={address}
+                      className={formErrors.address ? "error" : ""}
                     />
                     <FaAddressCard
                       style={{
@@ -237,7 +227,7 @@ const MemberEdit = () => {
                     />
                   </div>
                   <br />
-                  <span>{formErrors.address}</span>
+                  <span className="errorText d-flex align-items-center">{formErrors.address?<FiXCircle/>:""}{formErrors.address}</span>
                 </div>
               </div>
             </div>

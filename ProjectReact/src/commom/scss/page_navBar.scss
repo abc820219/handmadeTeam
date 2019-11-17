@@ -3,7 +3,7 @@
   margin: 0;
 }
 .page-nav {
-  position: fixed;
+  position: fixed !important;
   top: 0;
   left: 0;
   right: 0;
@@ -67,7 +67,6 @@
       content: "";
       width: 0;
       display: block;
-      content: "";
       border-width: 8px 8px 8px 8px;
       border-style: solid;
       border-color: transparent transparent rgba(255, 255, 255, 0.7) transparent;

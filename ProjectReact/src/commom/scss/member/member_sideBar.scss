@@ -57,3 +57,17 @@
     }
   }
 }
+@media (max-width: 576px) {
+  .member-side-bar {
+    position: fixed;
+    left: -1000%;
+    z-index: 900;
+  }
+}
+@media (max-width: 1200px) {
+  .member-side-bar {
+    position: fixed;
+    left: -100%;
+    z-index: 900;
+  }
+}
