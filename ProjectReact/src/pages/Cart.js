@@ -2,10 +2,13 @@ import React, { useState, useReducer, useEffect } from "react";
 import CartLeft from "../components/cart/CartLeft";
 import CartRight from "../components/cart/CartRight";
 import "../commom/scss/cart/memberCartPage.scss";
-import CartStore,{CartStoreStatus} from "../components/cart/CartStore";
-import { cartPageReducer ,cartCourseReducer ,cartCheckoutReducer} from "../components/cart/CartReducer";
+import CartStore, { CartStoreStatus } from "../components/cart/CartStore";
+import {
+  cartPageReducer,
+  cartCourseReducer,
+  cartCheckoutReducer
+} from "../components/cart/CartReducer";
 export const cartPageInitState = { step: 0 };
-
 
 const Cart = props => {
   const [cartPageState, cartPageDispatch] = useReducer(
@@ -23,16 +26,6 @@ const Cart = props => {
     CartStoreStatus.checkoutFinish
   );
 
-  // useEffect(() => {
-  //   localStorage.setItem(`ingreCart${id}`, JSON.stringify(ingreCart));
-  //   localStorage.setItem(`courseCart${id}`, JSON.stringify(courseCart));
-  // }, [courseCart,ingreCart]);
-
-
-  // if (checkoutFinish ) {
-  //   localStorage.setItem(`ingreCart${id}`, JSON.stringify([]));
-  //   localStorage.setItem(`courseCart${id}`, JSON.stringify([]));
-  // }
   return (
     <>
       <CartStore.Provider

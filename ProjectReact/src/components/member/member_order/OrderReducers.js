@@ -1,4 +1,11 @@
-import { REQ_COURSE_ORDER, REC_COURSE_ORDER, REQ_INGRE_ORDER, REC_INGRE_ORDER, REQ_ORDER_DETAIL, REC_ORDER_DETAIL } from "./OrderAction";
+import {
+  REQ_COURSE_ORDER,
+  REC_COURSE_ORDER,
+  REQ_INGRE_ORDER,
+  REC_INGRE_ORDER,
+  REQ_ORDER_DETAIL,
+  REC_ORDER_DETAIL
+} from "./OrderAction";
 
 export const courseListReducer = (state, action) => {
   switch (action.type) {
@@ -25,7 +32,6 @@ export const ingreListReducer = (state, action) => {
       });
     case REC_INGRE_ORDER:
       const newingreLists = action.payload;
-      console.log(newingreLists);
       return Object.assign({}, state, {
         ingreIsFetch: false,
         ingreLists: newingreLists
@@ -34,7 +40,6 @@ export const ingreListReducer = (state, action) => {
       return state;
   }
 };
-
 
 export const orderDetailReducer = (state, action) => {
   switch (action.type) {
@@ -49,7 +54,6 @@ export const orderDetailReducer = (state, action) => {
       });
     case REC_ORDER_DETAIL:
       const neworderDetailLists = action.payload;
-      console.log(neworderDetailLists);
       return Object.assign({}, state, {
         orderDetailFetch: false,
         orderDetailLists: neworderDetailLists
