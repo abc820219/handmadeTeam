@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { FaRegClock } from "react-icons/fa";
 import { FaDollarSign } from "react-icons/fa";
 
-const MemberOrderListCourse = ({orderSid,courseName,courseOrderChoose,coursePrice}) => {
+const MemberOrderListCourse = ({orderSid,courseName,courseOrderChoose,coursePrice,orderDetailData}) => {
     return (
         <>
-            <span>
+            <li className="d-flex justify-content-between align-item-center my-4 flex-wrap" 
+            onClick={()=>{orderDetailData(1,orderSid)}}>
+            <span className='w-100'>
                 <p>訂單編號: {orderSid}</p>
             </span>
-            <li className="d-flex justify-content-between align-item-center my-4">
                 <div>
                     <h5>{courseOrderChoose}</h5>
                     <div>

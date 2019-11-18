@@ -5,11 +5,11 @@
   font-weight: 500;
   font-style: normal;
 }
-.MemberEdit{
-  height: 100vh;
+.MemberEdit {
+  height: 100%;
 }
 .bg-linear {
-  height: "100vh";
+  height: "100%";
 }
 .MemberEditHeader {
   h4 {
@@ -27,25 +27,28 @@
   border-width: 10px;
   border-bottom: 1px solid #544641;
 }
-.MemberPasswordEdit{
+.MemberPasswordEdit {
   height: 100vh;
 }
 .MemberEditMain,
 .MemberPasswordEditMain {
   .short-input {
     width: 288px;
-    margin: 10px 2%;
+    margin: 10px 30px;
   }
 
   input {
     width: 100%;
     border-radius: 5px;
     padding: 10px 35px;
-    background-color: rgba($color: #000000, $alpha: 0.05);
+    background-color: rgba($color: #000000, $alpha: 0.07);
     border: 1px solid #fff;
   }
+  input:-webkit-autofill {
+    box-shadow: 0 0 0px 1000px rgba(0, 0, 0, 0.119) inset !important;
+  }
   .date-input {
-    padding: 6.7px 0px 6.7px 35px;
+    padding: 8px 0px 8px 35px;
   }
   .titleH {
     line-height: 60px;
@@ -53,6 +56,13 @@
   .longe-input {
     width: 635px;
     margin: 10px 2%;
+  }
+  .error {
+    border: 1px solid #B8817D;
+  }
+  .errorText {
+    color: #B8817D;
+    font-size: 1em;
   }
 }
 .MemberEditFooter::before {
@@ -72,4 +82,71 @@
   margin-right: 18%;
   margin-top: 3.5%;
   background-color: #f0f1f7;
+}
+
+//--------------------------------------------------------------------------------------------------
+.memberInfo{
+  padding:30px 0;
+  h4{
+    span{
+      margin-left: 10%;
+    }
+  }
+  ul{
+    padding: 10px 20px;
+    li{
+      padding:10px;
+    }
+  }
+  h4::after{
+  content:"";
+  margin: auto;
+  display: block;
+  width: 95%;
+  border-width: 10px;
+  border-bottom: 1px solid #fff;
+  padding: 20px 0;
+}
+}
+
+
+
+
+
+
+//--------------------------------------------------------------------------------------------------
+@media (max-width: 576px) {
+ .captchaCheckBox{
+   flex-direction:column;
+     align-items:flex-end;
+   canvas{
+     margin:10px 0;
+     max-width:100px;
+   }
+ }
+ .MemberEditFooter{
+   padding:10px 0;
+ }
+}
+@media (max-width: 1200px) {
+  .edit-rwd {
+    flex-direction: column;
+  }
+  .passEditRwd {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  .MemberEditMain,
+  .MemberPasswordEditMain {
+
+    .short-input {
+      width: 100%;
+      margin: 0px 0px;
+    }
+    .longe-input {
+      width: 100%;
+      margin: 0px 0px;
+    }
+  }
 }

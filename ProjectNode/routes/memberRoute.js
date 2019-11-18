@@ -26,6 +26,15 @@ class login {
     return sql;
   }
 }
+class getMemberData {
+  constructor(member_id) {
+    this.member_sid = member_id;
+  }
+  getUserByIdSQL() {
+    let sql = `SELECT * FROM member WHERE member_sid = "${this.member_sid}"`;
+    return sql;
+  }
+}
 class register {
   constructor(account, password, email) {
     this.member_account = account;
@@ -73,21 +82,90 @@ class MemberImg {
     this.member_photo_name = member_photo_name;
   }
   addMemberImg() {
-    let sql = `INSERT INTO member_photo(  member_sid,member_photo_name) VALUES ( "${this.member_sid}","${this.member_photo_name}")`;
+    let sql = `INSERT INTO member_photo( member_sid,member_photo_name) VALUES ( "${this.member_sid}","${this.member_photo_name}")`;
     return sql;
   }
 }
-
+class MemberChange {
+  constructor(member_sid, member_photo_name) {
+    this.member_sid = member_sid;
+    this.member_photo_name = member_photo_name;
+  }
+  getMemberImg() {
+    let sql = `SELECT  member_photo_name, member_photo_create
+    FROM  member_photo WHERE member_sid = "${this.member_sid}"
+    ORDER BY member_photo_create DESC LIMIT 1`;
+    return sql;
+  }
+}
+class MemberEdit {
+  constructor(
+    member_sid,
+    member_email,
+    member_name,
+    member_nickname,
+    member_birth,
+    member_phone,
+    member_address
+  ) {
+    this.member_sid = member_sid;
+    this.member_email = member_email;
+    this.member_name = member_name;
+    this.member_nickname = member_nickname;
+    this.member_birth = member_birth;
+    this.member_phone = member_phone;
+    this.member_address = member_address;
+  }
+  MemberEdit() {
+    let sql = `UPDATE member SET member_email="${this.member_email}",member_name="${this.member_name}",member_nickname="${this.member_nickname}",member_birth="${this.member_birth}",member_phone="${this.member_phone}",member_address="${this.member_address}" WHERE member_sid = "${this.member_sid}"`;
+    return sql;
+  }
+}
+class MemberPasswordEdit {
+  constructor(member_sid, member_password) {
+    this.member_sid = member_sid;
+    this.member_password = member_password;
+  }
+  MemberPasswordEdit() {
+    let sql = `UPDATE member SET member_password="${this.member_password}" WHERE member_sid = "${this.member_sid}"`;
+    return sql;
+  }
+}
 //----------------------------------------------------------------------------------------------------------------------------------------
 router.post("/login", (req, res, next) => {
-  console.log(req.body.member_account);
   let Member = new login(req.body.member_account, req.body.member_password);
-  console.log(Member.getUserByIdSQL());
   db.query(Member.getUserByIdSQL(), (error, rows) => {
     if (rows.length == 0) {
       res.json({
         status: "404",
         message: "請輸入正確的帳號或密碼"
+      });
+      return;
+    } else if (error) {
+      res.json({
+        status: "404",
+        message: "伺服器錯誤，請稍後在試！"
+      });
+      return;
+    } else {
+      res.json({
+        status: "202",
+        message: "歡迎登入!",
+        info: rows[0]
+      });
+      return;
+    }
+  });
+});
+router.post("/getMemberData", (req, res, next) => {
+  let Member = new getMemberData(req.body.member_sid);
+  console.log(req.body.member_sid);
+  console.log(Member.getUserByIdSQL());
+  db.query(Member.getUserByIdSQL(), (error, rows) => {
+    if (rows.length == 0) {
+      res.json({
+        status: "404",
+        message: "無此帳號"
       });
       return;
     } else if (error) {
@@ -161,7 +239,7 @@ router.post("/fbLogin", (req, res, next) => {
     });
   });
 });
-//-------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------
 
 //單圖;
 router.post("/upload", upload.single("file"), (req, res) => {
@@ -193,18 +271,73 @@ router.post("/memberImg", upload.single("file"), (req, res) => {
   let Member = new MemberImg(req.body.member_sid, req.body.member_photo_name);
   console.log(Member.addMemberImg());
   if (req.body.member_sid) {
-  db.query(Member.addMemberImg(), (error, rows) => {
+    db.query(Member.addMemberImg(), (error, rows) => {
+      res.json({
+        status: 200,
+        message: "照片上傳成功"
+      });
+    });
+  } else {
     res.json({
-      status:200,
-      message:"照片上傳成功"
-    })
-  });
-  }else{
-    res.json({
-      status:404,
-      message:"照片上傳失敗"
-    })
+      status: 404,
+      message: "照片上傳失敗"
+    });
   }
 });
-
+router.post("/getMemberImg", (req, res) => {
+  //單張圖片上傳
+  console.log(req.body);
+  let Member = new MemberChange(req.body.member_sid);
+  console.log(Member.getMemberImg());
+  if (req.body.member_sid) {
+    db.query(Member.getMemberImg(), (error, rows) => {
+      res.json({
+        status: 200,
+        message: "照片上傳成功2",
+        info: rows
+      });
+    });
+  } else {
+    res.json({
+      status: 404,
+      message: "照片上傳失敗"
+    });
+  }
+});
+//------------------------------------------------------------------------------------------------------------------------------------------------------
+router.post("/MemberEdit", (req, res) => {
+  let Member = new MemberEdit(
+    req.body.member_sid,
+    req.body.member_email,
+    req.body.member_name,
+    req.body.member_nickname,
+    req.body.member_birth,
+    req.body.member_phone,
+    req.body.member_address
+  );
+  console.log(req.body);
+  console.log(Member.MemberEdit());
+  db.query(Member.MemberEdit(), (error, rows) => {
+    console.log(rows);
+    if (rows) {
+      return res.json({ status: "202", message: "更新成功" });
+    }
+  });
+});
+router.post("/MemberPasswordEdit", (req, res) => {
+  let Member = new MemberPasswordEdit(
+    req.body.member_sid,
+    req.body.member_password
+  );
+  console.log(req.body);
+  console.log(Member.MemberPasswordEdit());
+  db.query(Member.MemberPasswordEdit(), (error, rows) => {
+    console.log(rows);
+    if (rows) {
+      return res.json({ status: "202", message: "修改成功" });
+    } else {
+      return res.json({ status: "404", message: "修改失敗" });
+    }
+  });
+});
 module.exports = router;

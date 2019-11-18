@@ -1,10 +1,82 @@
-import React,{ useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { MdCancel } from "react-icons/md";
 import CartStore from "./CartStore";
+import CartCourseCard from "./CartCourseCard";
+import CartIngreCard from "./CartIngreCard";
 
 const CartRight = () => {
   const { step } = useContext(CartStore);
-  let invisible_button = {visibility: step? 'hidden':'visible'};
+  let invisible_button = { visibility: step ? "hidden" : "visible" };
+
+  const [courseCards, setCourseCards] = useState();
+  const [ingreCards, setIngreCards] = useState();
+  const [courseTotalPrice, setCourseTotalPrice] = useState([]);
+
+  let id, courseCard, ingreCard;
+
+  const getCourseCard = async () => {
+    id = await localStorage.getItem("member_id");
+    courseCard = await localStorage.getItem("courseCart" + id);
+    await setCourseCards(JSON.parse(courseCard));
+  };
+
+  const courseAmountBtn = async (pos, value) => {
+    id = await localStorage.getItem("member_id");
+    const newCourseCards = await [...courseCards];
+    const newCourseQty = await newCourseCards[pos].course_order_applicants;
+    if ((await newCourseQty) + value >= 0) {
+      newCourseCards[pos].course_order_applicants =
+        (await newCourseQty) + value;
+    }
+    await setCourseCards(newCourseCards);
+    const newApplicants = await JSON.stringify(courseCards);
+    await localStorage.setItem("courseCart" + id, newApplicants);
+  };
+
+  const courseDelBtn = async pos => {
+    id = await localStorage.getItem("member_id");
+    const newCourseCards = await [...courseCards];
+    await newCourseCards.splice(pos, 1);
+    await setCourseCards(newCourseCards);
+    const newCard = await JSON.stringify(courseCards);
+    await localStorage.setItem("courseCart" + id, newCard);
+  };
+
+  const getIngreCard = async () => {
+    id = await localStorage.getItem("member_id");
+    ingreCard = await localStorage.getItem("ingreCart" + id);
+    await setIngreCards(JSON.parse(ingreCard));
+  };
+
+  const ingreAmountBtn = async (pos, value) => {
+    id = await localStorage.getItem("member_id");
+    const newIngreCards = await [...ingreCards];
+    const newIngreQty = await newIngreCards[pos].ingredient_order_quantity;
+    if ((await newIngreQty) + value >= 0) {
+      newIngreCards[pos].ingredient_order_quantity =
+        (await newIngreQty) + value;
+    }
+    await setIngreCards(newIngreCards);
+    const newQuantity = await JSON.stringify(ingreCards);
+    console.log(id);
+    await localStorage.setItem("ingreCart" + id, newQuantity);
+  };
+
+  const ingreDelBtn = async pos => {
+    id = await localStorage.getItem("member_id");
+    const newIngreCards = await [...ingreCards];
+    await newIngreCards.splice(pos, 1);
+    await setIngreCards(newIngreCards);
+    const newCard = await JSON.stringify(ingreCards);
+    await localStorage.setItem("ingreCart" + id, newCard);
+  };
+
+  useEffect(() => {
+    getCourseCard();
+    getIngreCard();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  console.log(courseCards);
   return (
     <>
       <div className="col-8 p-0 checkRightBox">
@@ -12,193 +84,63 @@ const CartRight = () => {
           <h1>shopping-Cart</h1>
         </div>
         <div className="cartRightSubTitle d-flex align-items-center">
-          <input type="checkbox" name="selectTotalCourse" style={invisible_button}/>
-          {step?'':'全選'}
+          <input
+            type="checkbox"
+            name="selectTotalCourse"
+            style={invisible_button}
+          />
+          {step ? "" : "全選"}
           <h4>課程</h4>
         </div>
         <ul className="cartRightList">
-          <li className="d-flex flex-sm-wrap">
-            <input type="checkbox" name="selectTotalCourse" style={invisible_button}/>
-            <div className="checkListBox">
-              <h4>
-                <span>Saturday</span>
-                February 20th
-              </h4>
-              <h2>磐石</h2>
-            </div>
-            <div className="d-flex justify-content-center flex-column mr-3">
-              <div className="d-flex align-items-center cartButtonAdd">
-                <button style={invisible_button}>-</button>
-                <span>1</span>
-                <button style={invisible_button}>+</button>
-              </div>
-              <p className="cartListTotal">Total Count : $ 9500</p>
-            </div>
-            <figure>
-              <img
-                src="https://lumiere-a.akamaihd.net/v1/images/c94eed56a5e84479a2939c9172434567c0147d4f.jpeg?region=0,0,600,600"
-                alt="product pic"
+          {courseCards ? (
+            courseCards.map((courseCard, index) => (
+              <CartCourseCard
+                pos={index}
+                key={"course_" + index}
+                course_sid={courseCard.course_sid}
+                course_name={courseCard.course_name}
+                course_order_choose={courseCard.course_order_choose}
+                course_order_time={courseCard.course_order_time}
+                course_order_applicants={courseCard.course_order_applicants}
+                course_lists={courseCard.course_lists}
+                course_price={courseCard.course_price}
+                courseAmountBtn={courseAmountBtn}
+                courseDelBtn={courseDelBtn}
               />
-            </figure>
-            <MdCancel className="cartOrderCancel" style={invisible_button}/>
-          </li>
-          <li className="d-flex flex-sm-wrap">
-            <input type="checkbox" name="selectTotalCourse" style={invisible_button}/>
-            <div className="checkListBox">
-              <h4>
-                <span>Saturday</span>
-                February 20th
-              </h4>
-              <h2>磐石</h2>
-            </div>
-            <div className="d-flex justify-content-center flex-column mr-3">
-              <div className="d-flex align-items-center cartButtonAdd">
-                <button style={invisible_button}>-</button>
-                <span>1</span>
-                <button style={invisible_button}>+</button>
-              </div>
-              <p className="cartListTotal">Total Count : $ 9500</p>
-            </div>
-            <figure>
-              <img
-                src="https://lumiere-a.akamaihd.net/v1/images/c94eed56a5e84479a2939c9172434567c0147d4f.jpeg?region=0,0,600,600"
-                alt="product pic"
-              />
-            </figure>
-            <MdCancel className="cartOrderCancel" style={invisible_button}/>
-          </li>
-          <li className="d-flex flex-sm-wrap">
-            <input type="checkbox" name="selectTotalCourse" style={invisible_button}/>
-            <div className="checkListBox">
-              <h4>
-                <span>Saturday</span>
-                February 20th
-              </h4>
-              <h2>磐石</h2>
-            </div>
-            <div className="d-flex justify-content-center flex-column mr-3">
-              <div className="d-flex align-items-center cartButtonAdd">
-                <button style={invisible_button}>-</button>
-                <span>1</span>
-                <button style={invisible_button}>+</button>
-              </div>
-              <p className="cartListTotal">Total Count : $ 9500</p>
-            </div>
-            <figure>
-              <img
-                src="https://lumiere-a.akamaihd.net/v1/images/c94eed56a5e84479a2939c9172434567c0147d4f.jpeg?region=0,0,600,600"
-                alt="product pic"
-              />
-            </figure>
-            <MdCancel className="cartOrderCancel" style={invisible_button}/>
-          </li>
-          <li className="d-flex flex-sm-wrap">
-            <input type="checkbox" name="selectTotalCourse" style={invisible_button}/>
-            <div className="checkListBox">
-              <h4>
-                <span>Saturday</span>
-                February 20th
-              </h4>
-              <h2>磐石</h2>
-            </div>
-            <div className="d-flex justify-content-center flex-column mr-3">
-              <div className="d-flex align-items-center cartButtonAdd">
-                <button style={invisible_button}>-</button>
-                <span>1</span>
-                <button style={invisible_button}>+</button>
-              </div>
-              <p className="cartListTotal">Total Count : $ 9500</p>
-            </div>
-            <figure>
-              <img
-                src="https://lumiere-a.akamaihd.net/v1/images/c94eed56a5e84479a2939c9172434567c0147d4f.jpeg?region=0,0,600,600"
-                alt="product pic"
-              />
-            </figure>
-            <MdCancel className="cartOrderCancel" style={invisible_button}/>
-          </li>
+            ))
+          ) : (
+            <h1>目前課程還沒任何商品</h1>
+          )}
         </ul>
         <div className="cartRightSubTitle d-flex align-items-center">
-          <input type="checkbox" name="selectTotalCourse" style={invisible_button}/>
-          {step?'':'全選'}
+          <input
+            type="checkbox"
+            name="selectTotalCourse"
+            style={invisible_button}
+          />
+          {step ? "" : "全選"}
           <h4>食材</h4>
         </div>
         <ul className="cartRightList">
-          <li className="d-flex flex-sm-wrap">
-            <input type="checkbox" name="selectTotalCourse" style={invisible_button}/>
-            <div className="checkListBox">
-              <h4>
-                <span>Banana</span>
-                February 20th
-              </h4>
-              <h2>香蕉</h2>
-            </div>
-            <div className="d-flex justify-content-center flex-column mr-3">
-              <div className="d-flex align-items-center cartButtonAdd">
-                <button style={invisible_button}>-</button>
-                <span>1</span>
-                <button style={invisible_button}>+</button>
-              </div>
-              <p className="cartListTotal">Total Count : $ 9500</p>
-            </div>
-            <figure>
-              <img
-                src="https://lumiere-a.akamaihd.net/v1/images/c94eed56a5e84479a2939c9172434567c0147d4f.jpeg?region=0,0,600,600"
-                alt="product pic"
+          {ingreCards ? (
+            ingreCards.map((ingreCard, index) => (
+              <CartIngreCard
+                pos={index}
+                key={"ingre_" + index}
+                ingre_sid={ingreCard.ingredient_sid}
+                ingre_name={ingreCard.ingredient_name}
+                ingre_en_name={ingreCard.ingredients_en_name}
+                ingre_order_quantity={ingreCard.ingredient_order_quantity}
+                ingre_pic={ingreCard.ingredients_pic}
+                ingre_price={ingreCard.ingredients_price}
+                ingreAmountBtn={ingreAmountBtn}
+                ingreDelBtn={ingreDelBtn}
               />
-            </figure>
-            <MdCancel className="cartOrderCancel" style={invisible_button}/>
-          </li>
-          <li className="d-flex flex-sm-wrap">
-            <input type="checkbox" name="selectTotalCourse" style={invisible_button}/>
-            <div className="checkListBox">
-              <h4>
-                <span>Banana</span>
-                February 20th
-              </h4>
-              <h2>香蕉</h2>
-            </div>
-            <div className="d-flex justify-content-center flex-column mr-3">
-              <div className="d-flex align-items-center cartButtonAdd">
-                <button style={invisible_button}>-</button>
-                <span>1</span>
-                <button style={invisible_button}>+</button>
-              </div>
-              <p className="cartListTotal">Total Count : $ 9500</p>
-            </div>
-            <figure>
-              <img
-                src="https://lumiere-a.akamaihd.net/v1/images/c94eed56a5e84479a2939c9172434567c0147d4f.jpeg?region=0,0,600,600"
-                alt="product pic"
-              />
-            </figure>
-            <MdCancel className="cartOrderCancel" style={invisible_button}/>
-          </li>
-          <li className="d-flex flex-sm-wrap">
-            <input type="checkbox" name="selectTotalCourse" style={invisible_button}/>
-            <div className="checkListBox">
-              <h4>
-                <span>Banana</span>
-                February 20th
-              </h4>
-              <h2>香蕉</h2>
-            </div>
-            <div className="d-flex justify-content-center flex-column mr-3">
-              <div className="d-flex align-items-center cartButtonAdd">
-                <button style={invisible_button}>-</button>
-                <span>1</span>
-                <button style={invisible_button}>+</button>
-              </div>
-              <p className="cartListTotal">Total Count : $ 9500</p>
-            </div>
-            <figure>
-              <img
-                src="https://lumiere-a.akamaihd.net/v1/images/c94eed56a5e84479a2939c9172434567c0147d4f.jpeg?region=0,0,600,600"
-                alt="product pic"
-              />
-            </figure>
-            <MdCancel className="cartOrderCancel" style={invisible_button}/>
-          </li>
+            ))
+          ) : (
+            <h1>目前食材還沒任何商品</h1>
+          )}
         </ul>
       </div>
     </>

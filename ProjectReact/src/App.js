@@ -8,6 +8,7 @@ import {
   Member,
   Store,
   Teacher,
+  Teacher_Subject,
   Ingredients
 } from "./routes/index";
 function App() {
@@ -20,19 +21,18 @@ function App() {
 
     // localStorage.setItem(`courseCart${loginLocal}`, "[]");
     // localStorage.setItem(`ingreCart${loginLocal}`, "[]");
-    if(!localStorage.getItem(`courseCart${loginLocal}`)){
+    if (!localStorage.getItem(`courseCart${loginLocal}`)) {
       localStorage.setItem(`courseCart${loginLocal}`, "[]");
     }
-    if(!localStorage.getItem(`ingreCart${loginLocal}`)){
+    if (!localStorage.getItem(`ingreCart${loginLocal}`)) {
       localStorage.setItem(`ingreCart${loginLocal}`, "[]");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [login]);
-  console.log(login);
   const checkLogIn = () => {
     setLogin(!login);
   };
-  
+
   return (
     <>
       <Router>
@@ -66,9 +66,16 @@ function App() {
             )}
           ></Route>
           <Route
-            path="/handmade/teacher/:id?"
+            path="/handmade/teacher/"
+            exact
             component={() => (
               <Teacher login={{ login }} checkLogIn={checkLogIn} />
+            )}
+          ></Route>
+          <Route
+            path="/handmade/teacher/subject"
+            component={() => (
+              <Teacher_Subject login={{ login }} checkLogIn={checkLogIn} />
             )}
           ></Route>
           <Route

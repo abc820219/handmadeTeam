@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import FacebookLogin from "./FacebookLogin";
-import { FaUserAlt, FaKey } from "react-icons/fa";
+import { FaUserAlt, FaKey, FaEye } from "react-icons/fa";
 import Captcha from "captcha-mini";
 import "../commom/scss/MemberLogin.scss";
 function MemberLogin(props, { checkLogIn }) {
@@ -16,6 +16,8 @@ function MemberLogin(props, { checkLogIn }) {
   const [captchaValue, setCaptchaValue] = useState("");
   const [captchaAgree, setCaptchaAgreee] = useState("");
   const [captchaErr, setCaptchaErr] = useState(false);
+  const [shown, setShown] = React.useState(false);
+
   useEffect(() => {
     let captcha = new Captcha({
       lineWidth: 1, //线条宽度
@@ -128,7 +130,7 @@ function MemberLogin(props, { checkLogIn }) {
                 </label>
                 <input
                   name="password"
-                  type="password"
+                  type={shown ? "text" : "password"}
                   id="member-password"
                   placeholder="密碼"
                   onChange={handleChange}
@@ -137,6 +139,9 @@ function MemberLogin(props, { checkLogIn }) {
                   }
                   value={password}
                 />
+                <div className="passwordShow">
+                  <FaEye  onClick={() => setShown(!shown)}/>
+                </div>
                 <p className="errorText">{formErrors.password} &nbsp;</p>
               </li>
             </ul>

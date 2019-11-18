@@ -10,39 +10,60 @@
 
 <body>
   <script>
-    // { course_sid: 1, course_name: "幕幕甜心", course_order_choose: "2018-09-10", course_order_time: "10-10-00", course_order_applicants: '5',course_lists: '幕幕甜心.jpg'}
+    // { "course_sid": 1, "course_name": "幕幕甜心", "course_order_choose": "2018-09-10", "course_order_time": "10-10-00", "course_order_applicants": 5,"course_lists": "幕幕甜心.jpg","course_price":1500}
     let arr = [
       { sid: 1, name: "Ben", time: "1994-08-02" },
-      { sid: 2, name: "Son", time: "1996-02-20" }
+      { sid: 2, name: "Son", time: "1996-02-20" },
+      { sid: 3, name: "Ben", time: "1994-08-02" },
+      { sid: 4, name: "Ben", time: "1994-08-02" },
+      { sid: 5, name: "Ben", time: "1994-08-02" }
     ];
-    let b = { sid: 3, name: "Ben", time: "1994-08-02" };
+    let b = [
+      { sid: 4, name: "Son", time: "1996-02-20" },
+      { sid: 3, name: "Ben", time: "1994-08-02" }
+    ];
 
-    function isObjEqual(o1, o2) {
-      var props1 = Object.getOwnPropertyNames(o1);
-      var props2 = Object.getOwnPropertyNames(o2);
-      if (props1.length != props2.length) {
-        return false;
-      }
-      for (var i = 0, max = props1.length; i < max; i++) {
-        var propName = props1[i];
-        if (o1[propName] !== o2[propName]) {
-          return false;
-        }
-      }
-      return true;
-    }
+    //  console.log(arr.filter(i=>  )) 
+
+    let crr = [...arr];
     
-    let check=[];
-    for(let i = 0; i < arr.length; i++){
-      check[i] = isObjEqual(arr[i], b);
-    }
-    if(check.indexOf(true)=== -1){
-      arr.push(b);
-      check = [];
-    }else{
-      check = [];
-    }
-    console.log(arr)
+    arr.forEach((el) => {
+      b.forEach(value => {
+        if (el.sid === value.sid) {
+          crr.splice(crr.indexOf(el), 1);
+        }
+      })
+    })
+
+
+    console.log(crr);
+
+    // function isObjEqual(o1, o2) {
+    //   var props1 = Object.getOwnPropertyNames(o1);
+    //   var props2 = Object.getOwnPropertyNames(o2);
+    //   if (props1.length != props2.length) {
+    //     return false;
+    //   }
+    //   for (var i = 0, max = props1.length; i < max; i++) {
+    //     var propName = props1[i];
+    //     if (o1[propName] !== o2[propName]) {
+    //       return false;
+    //     }
+    //   }
+    //   return true;
+    // }
+
+    // let check=[];
+    // for(let i = 0; i < arr.length; i++){
+    //   check[i] = isObjEqual(arr[i], b);
+    // }
+    // if(check.indexOf(true)=== -1){
+    //   arr.push(b);
+    //   check = [];
+    // }else{
+    //   check = [];
+    // }
+    // console.log(arr)
 
 
   </script>

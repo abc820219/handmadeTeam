@@ -9,17 +9,19 @@ import {
   requestCourseOrder,
   receiveCourseOrder,
   requestIngreOrder,
-  receiveIngreOrder
+  receiveIngreOrder,
+  requestOrderDetail,
+  receiveOrderDetail
 } from "./OrderAction";
 const MemberOrderList = ({ changeOrderType }) => {
-
   const {
     courseLists,
     clDispatch,
     ingreLists,
     ilDispatch,
     courseIsFetch,
-    ingreIsFetch
+    ingreIsFetch,
+    odlDispatch
   } = React.useContext(Store);
 
   const orderCourseData = async () => {
@@ -51,12 +53,35 @@ const MemberOrderList = ({ changeOrderType }) => {
   };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect( () => {
+  useEffect(() => {
     Promise.all([orderCourseData(), orderIngreData()]);
     //eslint-disable-next-line import/no-extraneous-dependencies
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [courseIsFetch, ingreIsFetch]);
-  // console.log(ingreLists);
+
+  const orderDetailData = async (orderType, item) => {
+    try {
+      const user = await localStorage.getItem("member_id");
+      await odlDispatch(requestOrderDetail(item, orderType));
+      const orderListDetail = JSON.stringify({
+        orderType: orderType,
+        item: item,
+        user: user
+      });
+      const url = `http://localhost:5000/handmade/member/order/orderDetail`;
+      const dataJson = await fetch(url, {
+        method: "POST",
+        body: orderListDetail,
+        headers: { "Content-Type": "application/json" }
+      });
+      const data = await dataJson.json();
+      console.log(data);
+      await odlDispatch(receiveOrderDetail(data));
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <>
       <Container className="memberOrderList container">
@@ -64,10 +89,11 @@ const MemberOrderList = ({ changeOrderType }) => {
           <h3 className="ml-5 mt-5 mb-5">訂單紀錄</h3>
         </div>
         <div className="memberOrderList-info pl-2">
-          <ul className="orderTitle_border" onClick={() => changeOrderType(1)}>
+          <ul className="orderTitle_border">
             <h3 className="orderList_title">課程</h3>
             {courseLists.map(courseList => (
               <MemberOrderListCourse
+                orderDetailData={orderDetailData}
                 key={courseList.order_sid}
                 orderSid={courseList.order_sid}
                 courseName={courseList.course_name}
@@ -76,10 +102,11 @@ const MemberOrderList = ({ changeOrderType }) => {
               />
             ))}
           </ul>
-          <ul className="orderTitle_border" onClick={() => changeOrderType(2)}>
+          <ul className="orderTitle_border">
             <h3 className="orderList_title">食材</h3>
             {ingreLists.map(ingreList => (
               <MemberOrderListIngre
+                orderDetailData={orderDetailData}
                 key={ingreList.order_sid}
                 orderSid={ingreList.order_sid}
                 ingredientsName={ingreList.ingredients_name}
@@ -89,9 +116,7 @@ const MemberOrderList = ({ changeOrderType }) => {
             ))}
           </ul>
           <ul className="orderTitle_border">
-            <h3 className="orderList_title" onClick={() => changeOrderType(3)}>
-              老師
-            </h3>
+            <h3 className="orderList_title">老師</h3>
             <MemberOrderListTeacher />
           </ul>
         </div>

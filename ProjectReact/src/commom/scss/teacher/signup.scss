@@ -1,0 +1,208 @@
+$maincolor:#F78177;
+
+@import url("https://use.typekit.net/wuz0itu.css");
+@import url("https://use.typekit.net/wuz0itu.css");
+
+body {
+    background: linear-gradient(135deg, #F0C7B3, #F4DCB9);
+}
+
+//----左邊sidebar,顯示課程資訊及報名人資料----
+.booking-sidebar {
+    // height: 100% ;
+    // position: fixed;
+    height: 100vh;
+    width: 360px;
+    background: #362D2B;
+    color: #9597A6;
+
+    .subject-header{
+        background: rgb(125, 115, 221);
+        height: 140px;
+    }
+
+    .subject-img {
+        height: 170px;
+        width: 100%;
+        background: #1c2;
+            .sub-img {
+                width: 100%;
+            }
+    }
+
+    .subject-data {
+        height: 200px;
+        width: 100%;
+        padding: 10px 20px;
+        color: #eee;
+        font-size: 14px;
+        text-align: center;
+        line-height: 1.8rem;
+    }
+
+    .price-info {
+        height: 180px;
+        padding: 10px 20px;
+        text-align: center;
+        color: #eee;
+        font-size: 12px;
+        .price-info-line{
+            height: 33%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 2px solid #888;
+            font-size: 10px;
+
+            .price-left{
+                width: 65%;
+                text-align: left;
+                padding-left:20px ;
+                color: #888;
+            }
+            .price-right{
+                width: 35%;
+                text-align: right;
+                padding-right:20px;
+                color: #eee;
+            }
+        }
+        .price-info-total{
+            height: 33%;
+            //  background: #c9c;
+             display: flex;
+             align-items: center;
+             justify-content: flex-end;
+             padding-right:20px ;
+        }
+    }
+
+    .subject-btn {
+        height: 100px;
+        padding: 20px;
+        text-align: center;
+        color: #eee;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .order-btn {
+            width: 130px;
+            height: 40px;
+            color: #362D2B;
+            border: 1px solid transparent;
+            background: #F0F1F7;
+            font-family: basic-sans, sans-serif;
+            font-weight: 300;
+            font-style: normal;
+            font-size: 16px;
+            border-radius: 30px;
+        }
+    }
+}
+
+// ----左邊sidebar結束----
+
+
+
+// ----報名表內容----
+.sign-body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+
+    // ----右邊sidebar----
+    .order-sidebar {
+        width: 20%;
+        height: 100%;
+        background: #911;
+        opacity: 0.35;
+    }
+
+    // ----右邊sidebar結束----
+
+    .signup-from {
+        // margin: 0 auto;
+        width: 80%;
+        padding: 20px 20px 20px 60px;
+
+        label {
+            // 主要字型
+            font-family: niagara,
+                serif;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 73px;
+        }
+
+        .form-group {
+            width: 80%;
+            background: $maincolor;
+            border-radius: 16px;
+            .form-line{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 12px;
+                .input-short {
+                    width: 50%;
+                    height: 50px;
+                    border-radius: 8px;
+                    border: solid 1.5px #DFDFDF;
+                    background: transparent;
+                    padding: 2px 14px;
+                    &:first-child{
+                        margin-right: 4px;
+                    }
+                    &:last-child{
+                        margin-left: 4px;
+                    }
+                    &:focus{
+                        outline: none;
+                    }
+                }
+                .input-long{
+                    width: 100%;
+                    height: 50px;
+                    border-radius: 8px;
+                    background: transparent;
+                    border: solid 1.5px #DFDFDF;
+                    padding: 2px 14px;
+                     &:focus {
+                         outline: none;
+                     }
+                }
+            }
+        }
+    }
+}
+
+//==================================
+// ============== RWD ==============
+
+ @media (max-width:780px) {
+     .booking-sidebar {
+         // background: #911 !important;
+         width: 60px;
+     }
+
+     .sign-body{
+        .order-sidebar {
+            width:0%
+        }
+        .signup-from{
+            width:97%;
+            .form-group{
+                width: 100%;
+            }
+        }
+     }
+
+ }
+
+ @media (max-width:480px){
+    .booking-sidebar{
+        // background: #911 !important;
+        width: 60px;
+    }
+}

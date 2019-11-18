@@ -1,7 +1,13 @@
 const REQ_COURSE_ORDER = "REQ_COURSE_ORDER";
 const REC_COURSE_ORDER = "REC_COURSE_ORDER";
+
 const REQ_INGRE_ORDER = "REQ_INGRE_ORDER";
 const REC_INGRE_ORDER = "REC_INGRE_ORDER";
+
+const REQ_ORDER_DETAIL = 'REQ_ORDER_DETAIL';
+const REC_ORDER_DETAIL = 'REC_ORDER_DETAIL';
+
+const SET_ORDER_ITEM = 'SET_ORDER_ITEM';
 
 //开始请求
 const requestCourseOrder = () => ({
@@ -18,9 +24,18 @@ const requestIngreOrder = () => ({
   type: REQ_INGRE_ORDER
 });
 
-//接收到数据
 const receiveIngreOrder = datajson => ({
   type: REC_INGRE_ORDER,
+  payload: datajson
+});
+
+const requestOrderDetail = (item,type) => ({
+  type: REQ_ORDER_DETAIL,
+  payload: {item:item,type:type}
+});
+
+const receiveOrderDetail = datajson => ({
+  type: REC_ORDER_DETAIL,
   payload: datajson
 });
 
@@ -29,8 +44,12 @@ export {
   REC_COURSE_ORDER,
   REQ_INGRE_ORDER,
   REC_INGRE_ORDER,
+  REQ_ORDER_DETAIL,
+  REC_ORDER_DETAIL,
   requestCourseOrder,
   receiveCourseOrder,
   requestIngreOrder,
-  receiveIngreOrder
+  receiveIngreOrder,
+  requestOrderDetail,
+  receiveOrderDetail,
 };
