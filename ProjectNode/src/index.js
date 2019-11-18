@@ -82,6 +82,9 @@ app.use("/handmade/cart", cartRoute);
 const memberOrderRoute = require("../routes/memberOrderRoute");
 app.use("/handmade/member/order", memberOrderRoute);
 
+const couponRoute = require("../routes/couponRoute");
+app.use("/handmade/coupon", couponRoute);
+
 // ---------中間層結束---------
 
 //----------網頁錯誤----------

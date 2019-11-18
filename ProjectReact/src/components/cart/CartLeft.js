@@ -1,10 +1,30 @@
-import React, { useContext } from "react";
+import React, { useState ,useContext, useEffect } from "react";
 import CartStore from "./CartStore";
 import { cartNext, cartPrev } from "./CartAction";
 
-const CartLeft = props => {
-  console.log(props);
-  const { step, cartPageDispatch ,setcheckoutFinish} = useContext(CartStore);
+const CartLeft = ({ courseCards, ingreCards }) => {
+  
+  const [cartTotal,setCartTotal] = useState(0);
+  let CartTotal = (courseCards, ingreCards) => {
+    if (courseCards && ingreCards) {
+      let courseTotal = courseCards.reduce((courseCardA, courseCardB) => {
+        return courseCardA + courseCardB.course_order_applicants * courseCardB.course_price;
+      },0);
+      let ingreTotal = ingreCards.reduce((ingreCardA, ingreCardB) => {
+        return ingreCardA + ingreCardB.ingredient_order_quantity * ingreCardB.ingredients_price;
+      },0);
+      return courseTotal + ingreTotal;
+    }else{
+      return "沒有商品";
+    }
+  }
+
+  const [fnCartTotal,setFnCartTotal] = useState();
+  
+  useEffect(() => {
+    setCartTotal(CartTotal(courseCards,ingreCards));
+  }, [courseCards, ingreCards])
+  const { step, cartPageDispatch, setcheckoutFinish } = useContext(CartStore);
   return (
     <>
       <div className="col-4 px-3 checkLeftBox">
@@ -45,7 +65,7 @@ const CartLeft = props => {
             <h4>訂單摘要</h4>
             <div className="checkTotal d-flex align-items-baseline justify-content-between">
               <p>商品總計</p>
-              <h4>$ 1,855</h4>
+              <h4>$ {cartTotal}</h4>
             </div>
             <div className="d-flex flex-column">
               <div className="checkOrderDeduct">
@@ -65,8 +85,8 @@ const CartLeft = props => {
                       </li>
                     </>
                   ) : (
-                    ""
-                  )}
+                      ""
+                    )}
                   <li>
                     <p>使用紅利</p>
                     {step === 0 ? <input type="text" /> : <h4>$ 55</h4>}
@@ -80,7 +100,7 @@ const CartLeft = props => {
               <div>
                 <div className="checkOrderTotal">
                   <p>結帳總額</p>
-                  <h4>$ 7855</h4>
+                  <h4>$ {fnCartTotal}</h4>
                 </div>
               </div>
             </div>
@@ -120,13 +140,13 @@ const CartLeft = props => {
             </div>
           </>
         ) : (
-          ""
-        )}
+            ""
+          )}
         {!step ? (
           <button onClick={() => cartPageDispatch(cartNext())}>NEXT</button>
         ) : (
-          <button onClick={() => setcheckoutFinish(true)}>CHECK</button>
-        )}
+            <button onClick={() => setcheckoutFinish(true)}>CHECK</button>
+          )}
       </div>
     </>
   );

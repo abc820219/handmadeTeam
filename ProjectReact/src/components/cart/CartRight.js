@@ -4,79 +4,76 @@ import CartStore from "./CartStore";
 import CartCourseCard from "./CartCourseCard";
 import CartIngreCard from "./CartIngreCard";
 
-const CartRight = () => {
-  const { step } = useContext(CartStore);
+const CartRight = ({ courseCards,
+  courseAmountBtn,
+  courseDelBtn,
+  ingreCards,
+  ingreAmountBtn,
+  ingreDelBtn}) => {
+  const { step, id } = useContext(CartStore);
   let invisible_button = { visibility: step ? "hidden" : "visible" };
 
-  const [courseCards, setCourseCards] = useState();
-  const [ingreCards, setIngreCards] = useState();
-  const [courseTotalPrice, setCourseTotalPrice] = useState([]);
+  // const [courseCards, setCourseCards] = useState();
+  // const [ingreCards, setIngreCards] = useState();
 
-  let id, courseCard, ingreCard;
+  // let courseCard, ingreCard;
 
-  const getCourseCard = async () => {
-    id = await localStorage.getItem("member_id");
-    courseCard = await localStorage.getItem("courseCart" + id);
-    await setCourseCards(JSON.parse(courseCard));
-  };
+  // const getCourseCard = async () => {
+  //   courseCard = await localStorage.getItem("courseCart" + id);
+  //   await setCourseCards(JSON.parse(courseCard));
+  // };
 
-  const courseAmountBtn = async (pos, value) => {
-    id = await localStorage.getItem("member_id");
-    const newCourseCards = await [...courseCards];
-    const newCourseQty = await newCourseCards[pos].course_order_applicants;
-    if ((await newCourseQty) + value >= 0) {
-      newCourseCards[pos].course_order_applicants =
-        (await newCourseQty) + value;
-    }
-    await setCourseCards(newCourseCards);
-    const newApplicants = await JSON.stringify(courseCards);
-    await localStorage.setItem("courseCart" + id, newApplicants);
-  };
+  // const courseAmountBtn = async (pos, value) => {
+  //   const newCourseCards = await [...courseCards];
+  //   const newCourseQty = await newCourseCards[pos].course_order_applicants;
+  //   if ((await newCourseQty) + value >= 0) {
+  //     newCourseCards[pos].course_order_applicants =
+  //       (await newCourseQty) + value;
+  //   }
+  //   await setCourseCards(newCourseCards);
+  //   const newApplicants = await JSON.stringify(courseCards);
+  //   await localStorage.setItem("courseCart" + id, newApplicants);
+  // };
 
-  const courseDelBtn = async pos => {
-    id = await localStorage.getItem("member_id");
-    const newCourseCards = await [...courseCards];
-    await newCourseCards.splice(pos, 1);
-    await setCourseCards(newCourseCards);
-    const newCard = await JSON.stringify(courseCards);
-    await localStorage.setItem("courseCart" + id, newCard);
-  };
+  // const courseDelBtn = async pos => {
+  //   const newCourseCards = await [...courseCards];
+  //   await newCourseCards.splice(pos, 1);
+  //   await setCourseCards(newCourseCards);
+  //   const newCard = await JSON.stringify(newCourseCards);
+  //   await localStorage.setItem("courseCart" + id, newCard);
+  // };
 
-  const getIngreCard = async () => {
-    id = await localStorage.getItem("member_id");
-    ingreCard = await localStorage.getItem("ingreCart" + id);
-    await setIngreCards(JSON.parse(ingreCard));
-  };
+  // const getIngreCard = async () => {
+  //   ingreCard = await localStorage.getItem("ingreCart" + id);
+  //   await setIngreCards(JSON.parse(ingreCard));
+  // };
 
-  const ingreAmountBtn = async (pos, value) => {
-    id = await localStorage.getItem("member_id");
-    const newIngreCards = await [...ingreCards];
-    const newIngreQty = await newIngreCards[pos].ingredient_order_quantity;
-    if ((await newIngreQty) + value >= 0) {
-      newIngreCards[pos].ingredient_order_quantity =
-        (await newIngreQty) + value;
-    }
-    await setIngreCards(newIngreCards);
-    const newQuantity = await JSON.stringify(ingreCards);
-    console.log(id);
-    await localStorage.setItem("ingreCart" + id, newQuantity);
-  };
+  // const ingreAmountBtn = async (pos, value) => {
+  //   const newIngreCards = await [...ingreCards];
+  //   const newIngreQty = await newIngreCards[pos].ingredient_order_quantity;
+  //   if ((await newIngreQty) + value >= 0) {
+  //     newIngreCards[pos].ingredient_order_quantity =
+  //       (await newIngreQty) + value;
+  //   }
+  //   await setIngreCards(newIngreCards);
+  //   const newQuantity = await JSON.stringify(ingreCards);
+  //   console.log(id);
+  //   await localStorage.setItem("ingreCart" + id, newQuantity);
+  // };
 
-  const ingreDelBtn = async pos => {
-    id = await localStorage.getItem("member_id");
-    const newIngreCards = await [...ingreCards];
-    await newIngreCards.splice(pos, 1);
-    await setIngreCards(newIngreCards);
-    const newCard = await JSON.stringify(ingreCards);
-    await localStorage.setItem("ingreCart" + id, newCard);
-  };
+  // const ingreDelBtn = async pos => {
+  //   const newIngreCards = await [...ingreCards];
+  //   await newIngreCards.splice(pos, 1);
+  //   await setIngreCards(newIngreCards);
+  //   const newCard = await JSON.stringify(newIngreCards);
+  //   await localStorage.setItem("ingreCart" + id, newCard);
+  // };
 
-  useEffect(() => {
-    getCourseCard();
-    getIngreCard();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  console.log(courseCards);
+  // useEffect(() => {
+  //   getCourseCard();
+  //   getIngreCard();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
   return (
     <>
       <div className="col-8 p-0 checkRightBox">
@@ -84,11 +81,11 @@ const CartRight = () => {
           <h1>shopping-Cart</h1>
         </div>
         <div className="cartRightSubTitle d-flex align-items-center">
-          <input
+          {/* <input
             type="checkbox"
             name="selectTotalCourse"
             style={invisible_button}
-          />
+          /> */}
           {step ? "" : "全選"}
           <h4>課程</h4>
         </div>
@@ -110,15 +107,15 @@ const CartRight = () => {
               />
             ))
           ) : (
-            <h1>目前課程還沒任何商品</h1>
-          )}
+              <h1>目前課程還沒任何商品</h1>
+            )}
         </ul>
         <div className="cartRightSubTitle d-flex align-items-center">
-          <input
+          {/* <input
             type="checkbox"
             name="selectTotalCourse"
             style={invisible_button}
-          />
+          /> */}
           {step ? "" : "全選"}
           <h4>食材</h4>
         </div>
@@ -139,8 +136,8 @@ const CartRight = () => {
               />
             ))
           ) : (
-            <h1>目前食材還沒任何商品</h1>
-          )}
+              <h1>目前食材還沒任何商品</h1>
+            )}
         </ul>
       </div>
     </>

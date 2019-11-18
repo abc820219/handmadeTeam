@@ -19,11 +19,11 @@ const CartIngreCard = ({
   return (
     <>
       <li className="d-flex flex-sm-wrap">
-        <input
+        {/* <input
           type="checkbox"
           name="selectTotalCourse"
           style={invisible_button}
-        />
+        /> */}
         <div className="checkListBox">
           <h4>
             <span>{ingre_en_name}</span>

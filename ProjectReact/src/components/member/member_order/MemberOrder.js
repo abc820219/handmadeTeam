@@ -35,7 +35,7 @@ const MemberOrder = () => {
         ingreIsFetch: Store.ingreIsFetch,
         orderDetailLists: odState.orderDetailLists,
         orderDetailFetch: Store.orderDetailFetch,
-        orderType: odState.orderType || 1,
+        orderType: odState.orderType,
         clDispatch,
         ilDispatch,
         odlDispatch
