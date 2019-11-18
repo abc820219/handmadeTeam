@@ -180,6 +180,7 @@ router.post("/getMemberData", (req, res, next) => {
         message: "歡迎登入!",
         info: rows[0]
       });
+      console.log(rows[0])
       return;
     }
   });
