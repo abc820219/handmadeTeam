@@ -42,7 +42,7 @@ const NavBar = ({ checkLogIn, login }) => {
             />
           </div>
           <ul
-            className={showMenuBtn ? "move" : "navbarBtn"}
+            className={showMenuBtn ? "move  navbarBtn" : "navbarBtn"}
             onMouseLeave={MenuListLeave}
           >
             <FaTimesCircle

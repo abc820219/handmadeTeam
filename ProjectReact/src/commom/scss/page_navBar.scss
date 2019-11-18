@@ -95,7 +95,7 @@
   .navbarBtn {
     margin: 0;
     padding: 0;
-    transition: 1s;
+    transition: 2s;
     color: #fff;
     position: absolute;
     background-color: #362d2b;
@@ -105,16 +105,8 @@
     left: -100%;
   }
   .move {
-    margin: 0;
-    padding: 0;
-    transition: 1s;
-    color: #fff;
-    position: absolute;
-    background-color: #362d2b;
-    min-height: 937px;
-    width: 300px;
-    top: 0;
     left: 0%;
+    transition: 0.8s;
   }
 }
 //------------------------------
