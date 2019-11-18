@@ -125,7 +125,6 @@ const MemberEdit = () => {
                     />
                   </div>
                   <br></br>
-                  <span></span>
                 </div>
               </div>
               <div className="d-flex edit-rwd justify-content-center">
@@ -152,7 +151,13 @@ const MemberEdit = () => {
                     />
                   </div>
                   <br></br>
-                  <span className="errorText d-flex align-items-center">{formErrors.email?<FiXCircle/>:""}{formErrors.email}</span>
+                  <span
+                    className="errorText d-flex align-items-center"
+                    
+                  >
+                    {formErrors.email ? <FiXCircle /> : ""}
+                    {formErrors.email}
+                  </span>
                 </div>
               </div>
               <div className="d-flex edit-rwd justify-content-center">
@@ -177,7 +182,10 @@ const MemberEdit = () => {
                     />
                   </div>
                   <br></br>
-                  <span className="errorText d-flex align-items-center">{formErrors.phone?<FiXCircle/>:""}{formErrors.phone} </span>
+                  <span className="errorText d-flex align-items-center"  >
+                    {formErrors.phone ? <FiXCircle /> : ""}
+                    {formErrors.phone}{" "}
+                  </span>
                 </div>
                 <div className="short-input">
                   <div className="titleH">birthday</div>
@@ -227,14 +235,17 @@ const MemberEdit = () => {
                     />
                   </div>
                   <br />
-                  <span className="errorText d-flex align-items-center">{formErrors.address?<FiXCircle/>:""}{formErrors.address}</span>
+                  <span className="errorText d-flex align-items-center"  >
+                    {formErrors.address ? <FiXCircle /> : ""}
+                    {formErrors.address}
+                  </span>
                 </div>
               </div>
             </div>
             <div className="MemberEditFooter  d-flex  flex-column align-items-end">
               <input
                 name=""
-                className="formBtn mt-5"
+                className="formBtn"
                 type="submit"
                 value="修改"
                 onClick={formSubmit}

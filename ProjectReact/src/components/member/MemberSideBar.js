@@ -4,7 +4,7 @@ import { AiFillPicture } from "react-icons/ai";
 import "../../commom/scss/member/member_sideBar.scss";
 import { Link } from "react-router-dom";
 
-const MemberSideBar = ({ match }) => {
+const MemberSideBar = ({ match ,showSideBar}) => {
   const [memberImgName, setMemberImgName] = useState("");
   const [imgHand, setImgHand] = useState(false);
   const [tokeId, setTokenId] = useState("");
@@ -69,7 +69,7 @@ const MemberSideBar = ({ match }) => {
       .catch(error => console.log(error));
   };
   return (
-    <aside className="member-side-bar d-flex flex-column align-items-center">
+    <aside className={showSideBar?"member-side-bar d-flex flex-column align-items-center member-side-bar-hide":"member-side-bar d-flex flex-column align-items-center member-side-bar-hide  member-side-bar-show"}>
       <div className="member-side-bar-header">
         <div className="imgBox d-flex  flex-column justify-content-center align-items-center">
           <img

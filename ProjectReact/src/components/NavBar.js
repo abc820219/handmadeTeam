@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../commom/scss/page_navBar.scss";
 import "../commom/scss/normalize.scss";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -14,6 +14,8 @@ const NavBar = ({ checkLogIn, login }) => {
   const [showLightBox, setShowLightBox] = useState(false);
   const [showMenuBtn, setshowMenuBtn] = useState(false);
   const [showCart, setShowCart] = useState(false);
+  const [memberImgName, setMemberImgName] = useState("");
+  const [imgHand] = useState(false);
 
   const openCart = check => {
     setShowCart(check);
@@ -29,7 +31,25 @@ const NavBar = ({ checkLogIn, login }) => {
   if (showLightBox) {
     console.log("clicked");
   }
-
+  useEffect(() => {
+    fetch("http://localhost:5000/handmade/member/getMemberImg", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        member_sid: localStorage.getItem("member_id")
+      })
+    })
+      .then(res => {
+        return res.json();
+      })
+      .then(rows => {
+        console.log(rows);
+        setMemberImgName(rows.info[0].member_photo_name);
+      })
+      .catch(error => console.log(error));
+  }, [imgHand]);
   return (
     <>
       <nav className="navbar page-nav  align-items-center">
@@ -88,7 +108,7 @@ const NavBar = ({ checkLogIn, login }) => {
             login={login}
           />
         ) : (
-          <NavBarSign openCart={openCart} showCart={showCart} login={login} />
+          <NavBarSign openCart={openCart} showCart={showCart} login={login} memberImgName={memberImgName} />
         )}
       </nav>
       {/* ------------------ */}

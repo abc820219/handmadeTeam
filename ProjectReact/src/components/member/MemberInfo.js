@@ -12,6 +12,7 @@ const MemberInfo = () => {
   //會員----------------------------------------------------------
   //輸入值------------------------------------------------------------
   const [birthday, setbirthday] = useState("");
+  const [loding, setLoding] = useState(true);
   //輸入值------------------------------------------------------------
   useEffect(() => {
     let isSub = true;
@@ -37,19 +38,46 @@ const MemberInfo = () => {
           setmember_name(res.info.member_name);
           setmember_nickname(res.info.member_nickname);
           setmember_phone(res.info.member_phone);
+          setLoding(false);
         }
       })
       .catch(error => {
         console.log(error);
       });
-    return () => (isSub = false);
-  }, []);
-  //資料載入完成-------------------------------------------------
 
+    return () => (isSub = false);
+  }, [
+    member_address,
+    member_birthday,
+    member_email,
+    member_name,
+    member_nickname,
+    member_phone
+  ]);
+  if (loding) {
+    return (
+      <div
+        className="memberInfo col-md-4 col-12"
+        style={{ background: "#635E59", color: "#fff" }}
+      >
+        <h4>
+          <span>會員基本資料</span>
+        </h4>
+        <ul>
+          <li>姓名:</li>
+          <li>暱稱:</li>
+          <li>信箱:</li>
+          <li>手機:</li>
+          <li>生日:</li>
+          <li>地址:</li>
+        </ul>
+      </div>
+    );
+  }
   return (
     <div
       className="memberInfo col-md-4 col-12"
-      style={{ background: "#635E59",  color: "#fff" }}
+      style={{ background: "#635E59", color: "#fff" }}
     >
       <h4>
         <span>會員基本資料</span>

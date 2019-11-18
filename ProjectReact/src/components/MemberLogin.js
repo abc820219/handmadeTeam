@@ -89,7 +89,7 @@ function MemberLogin(props, { checkLogIn }) {
         console.log(member_data.info);
         alert(member_data.message);
         setTimeout(() => {
-          window.location = "http://localhost:3000/handmade/member";
+          window.location = window.location.href;
         });
       })
       .catch(async err => {
@@ -140,7 +140,7 @@ function MemberLogin(props, { checkLogIn }) {
                   value={password}
                 />
                 <div className="passwordShow">
-                  <FaEye  onClick={() => setShown(!shown)}/>
+                  <FaEye onClick={() => setShown(!shown)} />
                 </div>
                 <p className="errorText">{formErrors.password} &nbsp;</p>
               </li>

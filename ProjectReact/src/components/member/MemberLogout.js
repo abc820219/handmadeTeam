@@ -4,7 +4,7 @@ function LogOut() {
     localStorage.removeItem("member_id");
     localStorage.removeItem("member_data");
     alert("登出成功");
-    window.location = "http://localhost:3000/handmade/";
+    window.location = window.location.href;
   };
   return (
     <>
