@@ -46,7 +46,7 @@ const SmallCart = ({ openCart, showCart }) => {
         className="cartFooter d-flex justify-content-between p-5"
         onMouseEnter={() => openCart(true)}
         onMouseLeave={() => openCart(false)}
-        style={{ right: showCart ? "17px" : "100%" }}
+        style={{ right: showCart ? "0" : "100%" }}
       >
         <div>
           <span className="cartTotal">$ 5000</span>

@@ -3,11 +3,12 @@
   backdrop-filter: blur(5px);
   position: absolute;
   top: 0;
+  bottom: 0;
   overflow-y: scroll;
   max-height: 937px;
   transition: 0.3;
   overflow-y: scroll;
-  width: 640px;
+  width: 400px;
   height: 937px;
   .cart-title {
     font-size: 24px;
@@ -46,7 +47,7 @@
 .cartFooter {
   position: fixed;
   bottom: 0;
-  width: 623px;
+  width: 400px;
   height: 150px;
   background-color: #ed8c69;
 }
