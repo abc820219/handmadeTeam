@@ -32,8 +32,9 @@ const MemberInfo = () => {
         if (isSub) {
           console.log(res.info);
           setmember_address(res.info.member_address);
-          setmember_birthday(res.info.member_birth.slice(0, 10));
-          setbirthday(res.info.member_birth.slice(0, 10));
+          if (res.info.member_birth) {
+            setmember_birthday(res.info.member_birth.slice(0, 10));
+          }
           setmember_email(res.info.member_email);
           setmember_name(res.info.member_name);
           setmember_nickname(res.info.member_nickname);

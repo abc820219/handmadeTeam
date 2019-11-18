@@ -9,7 +9,7 @@ import UseWinSize from "../components/UseWinSize";
 import { Route, Switch } from "react-router-dom";
 const Member = ({ login }) => {
   const size = UseWinSize();
-  const [showSideBar, setShowSideBar] = useState(false);
+  const [showSideBar, setShowSideBar] = useState(true);
   if (!localStorage.getItem("member_id")) {
     window.location = "http://localhost:3000/handmade";
     return;

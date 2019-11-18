@@ -71,3 +71,11 @@
     transition:1s;
   }
 }
+@media (max-width: 375) {
+  .member-side-bar-show {
+    left: 0%;
+    top: 0;
+    right:0;
+    bottom:0;
+  }
+}
