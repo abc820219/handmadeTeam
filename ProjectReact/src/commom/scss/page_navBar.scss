@@ -25,6 +25,13 @@
       height: 14px;
       margin-right: 0px;
     }
+    ul {
+      padding: 0 0 0 30px;
+      li {
+        padding: 10px;
+      
+      }
+    }
   }
   .page-nav-rightside {
     width: 84px;
@@ -100,6 +107,7 @@
   .move {
     margin: 0;
     padding: 0;
+    transition: 1s;
     color: #fff;
     position: absolute;
     background-color: #362d2b;
@@ -109,3 +117,4 @@
     left: 0%;
   }
 }
+//------------------------------

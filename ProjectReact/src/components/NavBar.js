@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../commom/scss/page_navBar.scss";
 import "../commom/scss/normalize.scss";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { FaTimesCircle } from "react-icons/fa";
 import NavBarSign from "./NavBarSign";
 import NavBarUnSign from "./NavBarUnSign";
 import MemberBox from "./MemberBox";
@@ -12,14 +13,16 @@ const NavBar = ({ checkLogIn, login }) => {
   console.log(login.login);
   const [showLightBox, setShowLightBox] = useState(false);
   const [showMenuBtn, setshowMenuBtn] = useState(false);
+  const [showCart, setShowCart] = useState(false);
+
+  const openCart = check => {
+    setShowCart(check);
+  };
   const memberSignIn = () => {
     setShowLightBox(!showLightBox);
   };
-  const MenuList = () => {
-    setshowMenuBtn(!showMenuBtn);
-  };
   const MenuListLeave = () => {
-    if (showMenuBtn == true) {
+    if (showMenuBtn === true) {
       setshowMenuBtn(!showMenuBtn);
     }
   };
@@ -27,40 +30,49 @@ const NavBar = ({ checkLogIn, login }) => {
     console.log("clicked");
   }
 
-  const [showCart, setShowCart] = useState(false);
-
-  const openCart = check => {
-    setShowCart(check);
-  };
   return (
     <>
       <nav className="navbar page-nav  align-items-center">
-        <div
-          className="page-nav-aside d-flex align-items-center justify-content-between"
-          onClick={MenuList}
-          onMouseLeave={MenuListLeave}
-        >
+        <div className="page-nav-aside d-flex align-items-center justify-content-between">
           <div style={{ position: relative }}>
             <GiHamburgerMenu
+              onClick={() => setshowMenuBtn(true)}
               className="mx-3 "
               style={{ fontSize: "30px", color: "#fff" }}
             />
           </div>
-          <ul className={showMenuBtn ? "move" : "navbarBtn"}>
+          <ul
+            className={showMenuBtn ? "move" : "navbarBtn"}
+            onMouseLeave={MenuListLeave}
+          >
+            <FaTimesCircle
+              onClick={() => setshowMenuBtn(false)}
+              style={{ margin: "30px 0 30px 0" }}
+            />
             <li>
-              <Link to="/handmade/store/course">課程</Link>
+              <Link style={{ color: "#fff" }} to="/handmade/store/course">
+                精選課程
+              </Link>
             </li>
             <li>
-              <Link to="/handmade/store">店家</Link>
+              <Link style={{ color: "#fff" }} to="/handmade/store">
+                烘焙店家
+              </Link>
             </li>
             <li>
-              <Link to="/handmade/teacher">老師</Link>
+              <Link style={{ color: "#fff" }} to="/handmade/teacher">
+                優質老師
+              </Link>
             </li>
             <li>
-              <Link to="/handmade/ingredients">食材</Link>
+              <Link style={{ color: "#fff" }} to="/handmade/ingredients">
+                精緻食材
+              </Link>
             </li>
             <li>
-              <Link to="/handmade">首頁</Link>
+              <Link style={{ color: "#fff" }} to="/handmade">
+                首頁
+              </Link>
             </li>
           </ul>
           <div className="logoBox">
