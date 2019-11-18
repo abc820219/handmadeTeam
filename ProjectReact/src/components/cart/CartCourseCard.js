@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
-import { MdCancel } from "react-icons/md";
+import { MdCancel, MdSentimentSatisfied } from "react-icons/md";
 import CartStore from "./CartStore";
+import {selectCourse,unSelectCourse} from "./CartAction";
 
 const CartCourseCard = ({
   pos,
@@ -11,20 +12,51 @@ const CartCourseCard = ({
   course_order_applicants,
   course_lists,
   course_price,
-  course_total_price,
   courseAmountBtn,
   courseDelBtn
 }) => {
-  const { step } = useContext(CartStore);
+  const { step ,courseCartCf, courseCartCfDispatch} = useContext(CartStore);
   let invisible_button = { visibility: step ? "hidden" : "visible" };
+
+  const [checkCourse, setCheckCourse] = useState(true);
+
+    const courseInfo = {
+    course_sid: course_sid,
+    course_name: course_name,
+    course_order_choose: course_order_choose,
+    course_order_time: course_order_time,
+    course_order_applicants: course_order_applicants,
+    course_lists: course_lists,
+    course_price: course_price
+  } 
+
+  // const courseCartSelector = (pos) => {
+  //   console.log('courseCcccccc',checkCourse)
+  //   if(!checkCourse){
+  //     console.log('courseCartSelector true')
+  //     courseCartCfDispatch(selectCourse(pos,courseInfo))
+  //   }else{
+  //     console.log('courseCartSelector false')
+  //     courseCartCfDispatch(unSelectCourse(pos,courseInfo))
+  //   }
+  // } 
+  // useEffect(()=>{
+  //   // courseCartSelector(pos)
+  //  return ()=> { courseCartSelector(pos) }
+  // },[checkCourse])
+
+  // console.log('checkCourse',checkCourse)
+
   return (
     <>
       <li className="d-flex flex-sm-wrap">
-        <input
+        {/* <input
           type="checkbox"
           name="selectTotalCourse"
           style={invisible_button}
-        />
+          checked={checkCourse}
+          onClick={()=>{setCheckCourse(!checkCourse)}}
+        /> */}
         <div className="checkListBox">
           <h4>
             <span>{course_order_time}</span>
