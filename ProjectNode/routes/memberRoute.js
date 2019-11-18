@@ -82,7 +82,7 @@ class MemberImg {
     this.member_photo_name = member_photo_name;
   }
   addMemberImg() {
-    let sql = `INSERT INTO member_photo(  member_sid,member_photo_name) VALUES ( "${this.member_sid}","${this.member_photo_name}")`;
+    let sql = `INSERT INTO member_photo( member_sid,member_photo_name) VALUES ( "${this.member_sid}","${this.member_photo_name}")`;
     return sql;
   }
 }
@@ -108,16 +108,26 @@ class MemberEdit {
     member_phone,
     member_address
   ) {
+    this.member_sid = member_sid;
     this.member_email = member_email;
     this.member_name = member_name;
     this.member_nickname = member_nickname;
     this.member_birth = member_birth;
     this.member_phone = member_phone;
     this.member_address = member_address;
-    this.member_sid = member_sid;
   }
   MemberEdit() {
     let sql = `UPDATE member SET member_email="${this.member_email}",member_name="${this.member_name}",member_nickname="${this.member_nickname}",member_birth="${this.member_birth}",member_phone="${this.member_phone}",member_address="${this.member_address}" WHERE member_sid = "${this.member_sid}"`;
+    return sql;
+  }
+}
+class MemberPasswordEdit {
+  constructor(member_sid, member_password) {
+    this.member_sid = member_sid;
+    this.member_password = member_password;
+  }
+  MemberPasswordEdit() {
+    let sql = `UPDATE member SET member_password="${this.member_password}" WHERE member_sid = "${this.member_sid}"`;
     return sql;
   }
 }
@@ -311,6 +321,22 @@ router.post("/MemberEdit", (req, res) => {
     console.log(rows);
     if (rows) {
       return res.json({ status: "202", message: "更新成功" });
+    }
+  });
+});
+router.post("/MemberPasswordEdit", (req, res) => {
+  let Member = new MemberPasswordEdit(
+    req.body.member_sid,
+    req.body.member_password
+  );
+  console.log(req.body);
+  console.log(Member.MemberPasswordEdit());
+  db.query(Member.MemberPasswordEdit(), (error, rows) => {
+    console.log(rows);
+    if (rows) {
+      return res.json({ status: "202", message: "修改成功" });
+    } else {
+      return res.json({ status: "404", message: "修改失敗" });
     }
   });
 });

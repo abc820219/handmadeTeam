@@ -1,7 +1,7 @@
 .member-side-bar {
   height: 100vh;
   color: #ffffff;
-  min-width: 374px;
+  min-width: 375px;
   background-color: #362d2b;
   .member-side-bar-header {
     .imgBox {
@@ -55,5 +55,19 @@
         color: #fff;
       }
     }
+  }
+}
+@media (max-width: 1200px) {
+  .member-side-bar-hide {
+    position: fixed;
+    left: -100%;
+    z-index: 900;
+    transition:1s;
+  }
+  .member-side-bar-show {
+    position: fixed;
+    left: 0%;
+    z-index: 900;
+    transition:1s;
   }
 }

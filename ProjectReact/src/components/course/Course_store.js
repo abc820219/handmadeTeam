@@ -65,7 +65,7 @@ class Course_store extends Component {
             )
         else
             return (<>
-                <h1>Course_store 資料有短缺</h1>
+                <h1>Course_store 資料讀取中...</h1>
             </>)
     }
 }

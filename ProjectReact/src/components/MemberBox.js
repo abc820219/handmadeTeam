@@ -4,7 +4,7 @@ import MemberRegister from "./MemberRegister";
 function MemberBox(props, { checkLogIn }) {
   console.log(props);
   const [boxState, setBxState] = useState(true);
-  function boxStateChange() {
+  function boxStateChange(v) {
     setBxState(!boxState);
   }
   if (boxState) {
