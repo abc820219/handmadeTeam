@@ -8,9 +8,9 @@ import OrderDeListIngre from "./OrderDeListIngre";
 import Store from "./OrderStore";
 
 const MemberOrderDetail = () => {
-  const fetchData = async() => {
-    await fetch('')
-  }
+  const fetchData = async () => {
+    await fetch("");
+  };
   const { orderType, orderDetailLists, orderDetailFetch } = useContext(Store);
   useEffect(() => {
     renderSwitch(orderType);

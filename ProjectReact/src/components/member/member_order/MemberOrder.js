@@ -43,10 +43,10 @@ const MemberOrder = () => {
     >
       <div className="container-fluid">
         <div className="row">
-          <div className="col-4 p-0">
+          <div className="col-md-4 p-0  col-12">
             <MemberOrderList style={{ paddingTop: "60px" }} />
           </div>
-          <div className="col-8 p-0">
+          <div className="col-md-8 p-0 col-12">
             <MemberOrderDetail style={{ paddingTop: "60px" }} />
           </div>
         </div>
