@@ -9,7 +9,8 @@ const CartRight = ({ courseCards,
   courseDelBtn,
   ingreCards,
   ingreAmountBtn,
-  ingreDelBtn}) => {
+  ingreDelBtn,
+}) => {
   const { step, id } = useContext(CartStore);
   let invisible_button = { visibility: step ? "hidden" : "visible" };
 
@@ -69,11 +70,9 @@ const CartRight = ({ courseCards,
   //   await localStorage.setItem("ingreCart" + id, newCard);
   // };
 
-  // useEffect(() => {
-  //   getCourseCard();
-  //   getIngreCard();
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <>
       <div className="col-8 p-0 checkRightBox">
@@ -85,12 +84,12 @@ const CartRight = ({ courseCards,
             type="checkbox"
             name="selectTotalCourse"
             style={invisible_button}
-          /> */}
-          {step ? "" : "全選"}
+          />
+          {step ? "" : "全選"} */}
           <h4>課程</h4>
         </div>
         <ul className="cartRightList">
-          {courseCards ? (
+          {courseCards? (
             courseCards.map((courseCard, index) => (
               <CartCourseCard
                 pos={index}
@@ -107,7 +106,7 @@ const CartRight = ({ courseCards,
               />
             ))
           ) : (
-              <h1>目前課程還沒任何商品</h1>
+              <h3>目前課程還沒任何商品</h3>
             )}
         </ul>
         <div className="cartRightSubTitle d-flex align-items-center">
@@ -115,12 +114,12 @@ const CartRight = ({ courseCards,
             type="checkbox"
             name="selectTotalCourse"
             style={invisible_button}
-          /> */}
-          {step ? "" : "全選"}
+          />
+          {step ? "" : "全選"} */}
           <h4>食材</h4>
         </div>
         <ul className="cartRightList">
-          {ingreCards ? (
+          {ingreCards?(
             ingreCards.map((ingreCard, index) => (
               <CartIngreCard
                 pos={index}
@@ -136,7 +135,7 @@ const CartRight = ({ courseCards,
               />
             ))
           ) : (
-              <h1>目前食材還沒任何商品</h1>
+              <h3>目前食材還沒任何商品</h3>
             )}
         </ul>
       </div>

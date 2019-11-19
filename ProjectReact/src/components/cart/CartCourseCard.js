@@ -72,7 +72,7 @@ const CartCourseCard = ({
   return (
     <>
       <li className="d-flex flex-sm-wrap">
-        <input
+        {/* <input
           type="checkbox"
           name="selectTotalCourse"
           style={invisible_button}
@@ -80,7 +80,7 @@ const CartCourseCard = ({
           onClick={() => {
             setCheckCourse(!checkCourse);
           }}
-        />
+        /> */}
         <div className="checkListBox">
           <h4>
             <span>{course_order_time}</span>

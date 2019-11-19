@@ -13,6 +13,7 @@ const db = mysql.createConnection(db_Obj);
 const bluebird = require("bluebird"); //使用兩次sql
 const bodyParser = require("body-parser");
 bluebird.promisifyAll(db);
+
 db.connect(function(err) {
   if (err) {
     console.log(err + "資料庫連線錯誤");
