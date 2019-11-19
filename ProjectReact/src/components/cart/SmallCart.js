@@ -2,17 +2,8 @@ import React, { useEffect, useState } from "react";
 import "../../commom/scss/cart/memberCart.scss";
 import CartCourse from "./CartCourse";
 import CartIngre from "./CartIngre";
-import { Link } from 'react-router-dom'
-
-// import Navbar from "react-bootstrap/Navbar";
-// import NavDropdown from "react-bootstrap/NavDropdown";
-// import Nav from "react-bootstrap/Nav";
-
-
+import { Link } from "react-router-dom";
 const SmallCart = ({ openCart, showCart }) => {
-  useEffect(() => {
-
-  });
   return (
     <>
       <div
@@ -52,8 +43,14 @@ const SmallCart = ({ openCart, showCart }) => {
           <span className="cartTotal">$ 5000</span>
         </div>
         <div>
-          <Link to='/handmade/member/cart'>
-            <input name="" id="" className="cartBtn" type="button" value="購買" />
+          <Link to="/handmade/member/cart">
+            <input
+              name=""
+              id=""
+              className="cartBtn"
+              type="button"
+              value="購買"
+            />
           </Link>
         </div>
       </div>
