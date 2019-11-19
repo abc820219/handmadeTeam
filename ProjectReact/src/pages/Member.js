@@ -30,7 +30,6 @@ const Member = ({ login }) => {
             }}
             onClick={() => {
               setShowSideBar(!showSideBar);
-              console.log(showSideBar);
             }}
           />
         ) : (

@@ -59,7 +59,7 @@ const NavBarSign = ({ openCart, showCart, login,...props }) => {
         <div>
           <TiShoppingCart
             style={logoPattern}
-            onMouseEnter={() => openCart(true)}
+            onClick={() => openCart(true)}
             onMouseLeave={() => openCart(false)}
             name="cart"
           />
