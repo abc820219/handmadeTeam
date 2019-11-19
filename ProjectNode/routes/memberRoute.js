@@ -8,7 +8,7 @@ const bluebird = require("bluebird"); //使用兩次sql
 const multer = require("multer"); //引入檔案
 const upload = multer({ dest: "tmp_uploads" }); //設定檔案暫存目錄
 const fs = require("fs"); //讀檔案寫檔案
-
+const nodemailer = require("nodemailer");
 bluebird.promisifyAll(db);
 router.post("/", (req, res) => {
   console.log(req.body);
@@ -131,6 +131,18 @@ class MemberPasswordEdit {
     return sql;
   }
 }
+
+class MemberEmailPWD {
+  constructor(member_email, member_account) {
+    this.member_email = member_email;
+    this.member_account = member_account;
+  }
+  getMemberPwd() {
+    let sql = `SELECT  member_password, member_sid
+    FROM  member WHERE member_email = "${this.member_email}" AND member_account="${this.member_account}"`;
+    return sql;
+  }
+}
 //----------------------------------------------------------------------------------------------------------------------------------------
 router.post("/login", (req, res, next) => {
   let Member = new login(req.body.member_account, req.body.member_password);
@@ -180,7 +192,7 @@ router.post("/getMemberData", (req, res, next) => {
         message: "歡迎登入!",
         info: rows[0]
       });
-      console.log(rows[0])
+      console.log(rows[0]);
       return;
     }
   });
@@ -341,4 +353,56 @@ router.post("/MemberPasswordEdit", (req, res) => {
     }
   });
 });
+
+//------------------------------------------------------------------------------ mail
+
+router.post("/mail", (req, res) => {
+  let email = req.body.member_email;
+  let account = req.body.member_account;
+  let Member = new MemberEmailPWD(email, account);
+  console.log(email, account);
+  console.log(Member.getMemberPwd());
+  db.query(Member.getMemberPwd(), (error, rows) => {
+    console.log(rows);
+    if (rows.length >= 1) {
+      let transporter = nodemailer.createTransport({
+        service: "Gmail",
+        auth: {
+          user: "handmade20190927@gmail.com",
+          pass: "Aa27089433"
+        }
+      });
+      let mailOptions = {
+        from: "handmade20190927@gmail.com",
+        to: email,
+        subject: "密碼設定",
+        html: `
+        <h1>親愛的會員您好,您的密碼是:${rows[0].member_password}</h1>
+        <div>若要修改密碼請點擊連結重新設定密碼<a href="http://localhost:3000/handmade/member/passwordEmail${rows[0].member_sid}">http://localhost:3000/handmade/member/passwordEmail${rows[0].member_sid}</a></div>
+        `
+      };
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          return res.json({
+            status: "404",
+            message: error
+          });
+        }
+      });
+      return res.json({
+        status: "202",
+        message: "重設密碼信件已發送請至信箱確認"
+      });
+    } else {
+      res.json({
+        status: "404",
+        message: "請輸入正確的資訊"
+      });
+    }
+  });
+  console.log(email);
+});
+
+//------------------------------------------------------------------------------ mail
+
 module.exports = router;
