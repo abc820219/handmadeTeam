@@ -30,7 +30,6 @@ const MemberInfo = () => {
       })
       .then(res => {
         if (isSub) {
-          console.log(res.info);
           setmember_address(res.info.member_address);
           if (res.info.member_birth) {
             setmember_birthday(res.info.member_birth.slice(0, 10));
