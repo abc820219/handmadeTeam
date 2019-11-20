@@ -133,13 +133,19 @@ class MemberPasswordEdit {
 }
 
 class MemberEmailPWD {
-  constructor(member_email, member_account) {
+  constructor(member_email, member_account, member_sid, member_password) {
     this.member_email = member_email;
     this.member_account = member_account;
+    this.member_sid = member_sid;
+    this.member_password = member_password;
   }
   getMemberPwd() {
     let sql = `SELECT  member_password, member_sid
     FROM  member WHERE member_email = "${this.member_email}" AND member_account="${this.member_account}"`;
+    return sql;
+  }
+  editMemberPwd() {
+    let sql = `UPDATE member SET member_password="${this.member_password}" WHERE member_sid="${this.member_sid}"`;
     return sql;
   }
 }
@@ -378,7 +384,7 @@ router.post("/mail", (req, res) => {
         subject: "密碼設定",
         html: `
         <h1>親愛的會員您好,您的密碼是:${rows[0].member_password}</h1>
-        <div>若要修改密碼請點擊連結重新設定密碼<a href="http://localhost:3000/handmade/member/passwordEmail${rows[0].member_sid}">http://localhost:3000/handmade/member/passwordEmail${rows[0].member_sid}</a></div>
+        <div>若要修改密碼請點擊連結重新設定密碼<a href="http://localhost:3000/handmade/email/${rows[0].member_sid}">http://localhost:3000/handmade/email/${rows[0].member_sid}</a></div>
         `
       };
       transporter.sendMail(mailOptions, (error, info) => {
@@ -391,7 +397,7 @@ router.post("/mail", (req, res) => {
       });
       return res.json({
         status: "202",
-        message: "重設密碼信件已發送請至信箱確認"
+        message: "重設密碼信件已發送,請至信箱確認"
       });
     } else {
       res.json({
@@ -401,6 +407,26 @@ router.post("/mail", (req, res) => {
     }
   });
   console.log(email);
+});
+router.post("/mailEdit", (req, res) => {
+  let member_sid = req.body.member_sid;
+  let member_password = req.body.member_password;
+  let Member = new MemberEmailPWD("", "", member_sid, member_password);
+  console.log(Member.editMemberPwd());
+  db.query(Member.editMemberPwd(), (error, rows) => {
+    console.log(rows.affectedRows);
+    if (rows.affectedRows === 1) {
+      res.json({
+        status: "202",
+        message: "修改成功"
+      });
+    } else {
+      res.json({
+        status: "404",
+        message: "修改失敗"
+      });
+    }
+  });
 });
 
 //------------------------------------------------------------------------------ mail

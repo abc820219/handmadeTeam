@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, BrowserRouter } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import {
   Handmade,
@@ -9,7 +9,8 @@ import {
   Store,
   Teacher,
   Teacher_Subject,
-  Ingredients
+  Ingredients,
+  MemberEmail
 } from "./routes/index";
 function App() {
   const [login, setLogin] = useState(false);
@@ -35,7 +36,7 @@ function App() {
 
   return (
     <>
-      <Router>
+      <Router history={BrowserRouter}>
         <Switch>
           <Route path="/" exact component={Navgation}></Route>
           <Route
@@ -57,6 +58,10 @@ function App() {
             component={() => (
               <Member login={{ login }} checkLogIn={checkLogIn} />
             )}
+          ></Route>
+          <Route
+            path="/handmade/email/:sid?"
+            component={() => <MemberEmail />}
           ></Route>
           <Route
             path="/handmade/store/"

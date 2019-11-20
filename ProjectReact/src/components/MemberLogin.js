@@ -167,8 +167,16 @@ function MemberLogin(props, { checkLogIn }) {
               />
             </div>
             <div className="text-center m-3 member-footer-text">
-              <span className="password-forget">忘記密碼&nbsp;</span>
-              <span className="register" onClick={props.boxStateChange}>
+              <span
+                className="password-forget"
+                onClick={() => props.boxStateChange(3)}
+              >
+                忘記密碼&nbsp;
+              </span>
+              <span
+                className="register"
+                onClick={() => props.boxStateChange(1)}
+              >
                 /&nbsp;註冊
               </span>
             </div>
