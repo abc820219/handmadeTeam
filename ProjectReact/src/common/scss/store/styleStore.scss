@@ -1,0 +1,63 @@
+// background-color
+
+$bgc-dark: #362D2B;
+$bgc-topLeft: #F6DCB9;
+
+// color
+
+$color-storeUp: #F4DBB9;
+$color-storeDown: #E9756E;
+
+// style css 
+
+.storeAll {
+    display: flex;
+    width: 1920px;
+    height: 100vh;
+    background-color: $bgc-dark;
+    .storeChoose {
+        width: 470px;
+        .storeUp {
+            height: 60px;
+            background-color: rgba($bgc-topLeft,0.5);
+            overflow: hidden;
+            p {
+                font-size: 120px;
+                line-height: 130px;
+                margin-left: 90px;
+                font-weight: 600;
+                color: $color-storeUp;
+            }
+        }
+        .storeDown {
+            overflow: hidden;
+            p {
+                font-size: 120px;
+                line-height: 120px;
+                margin-left: 95px;
+                margin-top: -55px;
+                font-weight: 600;
+                color: $color-storeDown;
+            }
+            .storeButtonGroup {
+                p {
+                    font-size: 20px;
+                    line-height: 20px;
+                }
+            }
+        }
+    }
+    .storeList {
+        max-width: 1450px;
+    }
+}
+
+// max-width 1200px
+@media (max-width:1200px) {
+    
+}
+
+// max-width 500px
+@media (max-width:500px) {
+    
+}
