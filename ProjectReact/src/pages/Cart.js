@@ -48,7 +48,7 @@ const Cart = props => {
   const courseAmountBtn = async (pos, value) => {
     const newCourseCards = await [...courseCards];
     const newCourseQty = await newCourseCards[pos].course_order_applicants;
-    if ((await newCourseQty) + value >= 0) {
+    if ((await newCourseQty) + value >= 1) {
       newCourseCards[pos].course_order_applicants =
         (await newCourseQty) + value;
     }
@@ -73,7 +73,7 @@ const Cart = props => {
   const ingreAmountBtn = async (pos, value) => {
     const newIngreCards = await [...ingreCards];
     const newIngreQty = await newIngreCards[pos].ingredient_order_quantity;
-    if ((await newIngreQty) + value >= 0) {
+    if ((await newIngreQty) + value >= 1) {
       newIngreCards[pos].ingredient_order_quantity =
         (await newIngreQty) + value;
     }
@@ -121,7 +121,9 @@ const Cart = props => {
             <CartLeft {...props}
             // cartTotal = {cartTotal}
             courseCards = {courseCards}
+            setCourseCards = {setCourseCards}
             ingreCards = {ingreCards}
+            setIngreCards = {setIngreCards}
             />
             <CartRight {...props} 
               courseCards = {courseCards}
