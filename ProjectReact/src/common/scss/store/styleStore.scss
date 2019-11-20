@@ -8,6 +8,7 @@ $bgc-topLeft: #F6DCB9;
 $color-storeUp: #F4DBB9;
 $color-storeDown: #E9756E;
 
+
 // style css 
 
 .storeAll {
@@ -39,6 +40,25 @@ $color-storeDown: #E9756E;
                 font-weight: 600;
                 color: $color-storeDown;
             }
+            .storeMap {
+                
+            }
+            .storeCountryName {
+                p {
+                    margin-top: -100px;
+                    margin-left: 290px;
+                    width: 180px;
+                    height: 80px;
+                    border-radius: 10px 0 0 10px;
+                    background-color: #E9756E;
+                    color: #ffffff;
+                    font-size: 50px;
+                    line-height: 85px;
+                    text-align: center;
+                    position: absolute;
+                    opacity: 1;
+                }
+            }
             .storeButtonGroup {
                 p {
                     font-size: 20px;
@@ -49,6 +69,11 @@ $color-storeDown: #E9756E;
     }
     .storeList {
         max-width: 1450px;
+        .storeListTop {
+            width: 100%;
+            height: 60px;
+            background-color: $bgc-topLeft;
+        }
     }
 }
 
@@ -60,4 +85,68 @@ $color-storeDown: #E9756E;
 // max-width 500px
 @media (max-width:500px) {
     
+}
+
+// taiwan css
+.prefix__storeCountry {
+    fill: #ffffff;
+}
+.prefix__storeCountry:hover {
+    fill: #E9756E;
+}
+
+.keelungMap:hover .keelung{
+    // fill: #E9756E;
+    opacity: 1;
+}
+.taipeiMap:hover {
+    fill: #E9756E;
+}
+.newTaipeiMap:hover {
+    fill: #E9756E;
+}
+.taoyuanMap:hover {
+    fill: #E9756E;
+}
+.hsinchu_1Map:hover {
+    fill: #E9756E;
+}
+.hsinchu_2Map:hover {
+    fill: #E9756E;
+}
+.yilanMap:hover {
+    fill: #E9756E;
+}
+.miaoliMap:hover {
+    fill: #E9756E;
+}
+.taichungMap:hover {
+    fill: #E9756E;
+}
+.changhuaMap:hover {
+    fill: #E9756E;
+}
+.nantouMap:hover {
+    fill: #E9756E;
+}
+.yunlinMap:hover {
+    fill: #E9756E;
+}
+.hualienMap:hover {
+    fill: #E9756E;
+}
+.chiayiMap:hover {
+    fill: #E9756E;
+}
+.tainanMap:hover {
+    fill: #E9756E;
+}
+.kaohsiungMap:hover {
+    fill: #E9756E;
+}
+.taitungMap:hover {
+    fill: #E9756E;
+}
+.pingtungMap:hover {
+    fill: #E9756E;
 }

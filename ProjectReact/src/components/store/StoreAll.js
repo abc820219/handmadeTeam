@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import "../../common/scss/store/styleStore.scss"
 import StoreList from "./StoreList"
+import StoreMap from './StoreMap'
 
 class StoreAll extends Component {
     render() {
@@ -17,7 +18,25 @@ class StoreAll extends Component {
                         <div className="storeDown">
                             <p>STORE</p>
                             <div className="storeMap">
-                                
+                                <StoreMap />
+                            </div>
+                            <div className="storeCountryName">
+                                <p className="keelung">基隆市</p>
+                                <p className="taipei">台北市</p>
+                                <p className="newTaipei">新北市</p>
+                                <p className="taoyuan">桃園市</p>
+                                <p className="hsinchu_1">新竹市</p>
+                                <p className="hsinchu_2">新竹縣</p>
+                                <p className="yilan">宜蘭縣</p>
+                                <p className="taichung">台中市</p>
+                                <p className="changhua">彰化縣</p>
+                                <p className="nantou">南投縣</p>
+                                <p className="hualien">花蓮縣</p>
+                                <p className="chiayi">嘉義縣</p>
+                                <p className="tainan">台南市</p>
+                                <p className="kaohsiung">高雄市</p>
+                                <p className="taitung">台東縣</p>
+                                <p className="pingtung">屏東縣</p>
                             </div>
                             <div className="storeButtonGroup">
                                 <Grid item>
@@ -27,15 +46,16 @@ class StoreAll extends Component {
                                         size="large"
                                         aria-label="large contained secondary button group"
                                     >
-                                        <Button>One</Button>
-                                        <Button>Two</Button>
-                                        <Button>Three</Button>
+                                        <Button>攜伴同行</Button>
+                                        <Button>攜帶孩童</Button>
                                     </ButtonGroup>
                                 </Grid>
                             </div>
                         </div>
                     </div>
                     <div className="storeList">
+                        <div className="storeListTop"></div>
+                        
                     </div>
                 </div>
             </>
