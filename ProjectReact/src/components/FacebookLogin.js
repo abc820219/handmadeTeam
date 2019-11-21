@@ -46,11 +46,12 @@ class Facebook extends Component {
         localStorage.setItem("member_data", JSON.stringify(member_data.info));
         alert(member_data.message);
         setTimeout(() => {
-          window.location =   window.location.href;
-        }).catch(async err => {
-          console.log(err);
-          alert("註冊失敗");
+          window.location = window.location.href;
         });
+      })
+      .catch(async err => {
+        console.log(err);
+        alert("註冊失敗");
       });
   };
 }

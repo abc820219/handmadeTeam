@@ -218,7 +218,7 @@ function MemberRegister(props) {
               />
             </div>
             <div className="text-center m-3">
-              <span className="register" onClick={props.boxStateChange}>
+              <span className="register" onClick={()=>props.boxStateChange(0)}>
                 切換到登入頁&nbsp;
               </span>
               <span className="register">/&nbsp;閱讀條款</span>
