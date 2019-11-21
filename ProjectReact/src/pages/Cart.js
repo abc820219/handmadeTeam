@@ -3,37 +3,26 @@ import CartLeft from "../components/cart/CartLeft";
 import CartRight from "../components/cart/CartRight";
 import "../commom/scss/cart/memberCartPage.scss";
 import CartStore, { CartStoreStatus } from "../components/cart/CartStore";
-import {
-  cartPageReducer,
-  cartCourseReducer,
-  cartCheckoutReducer,
-  courseCartCfReducer
-} from "../components/cart/CartReducer";
-export const cartPageInitState = { step: 0 };
+import io from 'socket.io-client';
 
 const Cart = props => {
-  const {id ,courseCartCf} = useContext(CartStore);
-  const [cartPageState, cartPageDispatch] = useReducer(
-    cartPageReducer,
-    cartPageInitState
-  );
-
-  const [cartCourseState, cartCourseDispatch] = useReducer(
-    cartCourseReducer,
-    CartStoreStatus.courseCart
-  );
-
-  const [cartCheckState, cartCheckoutDispatch] = useReducer(
-    cartCheckoutReducer,
-    CartStoreStatus.checkoutFinish
-  );
+  const { id, courseCartCf } = useContext(CartStore);
 
 
-  const [courseCartCfState, courseCartCfDispatch] = useReducer(
-    courseCartCfReducer,
-    courseCartCf
-  )
+  // const [cartCourseState, cartCourseDispatch] = useReducer(
+  //   cartCourseReducer,
+  //   CartStoreStatus.courseCart
+  // );
 
+  // const [cartCheckState, cartCheckoutDispatch] = useReducer(
+  //   cartCheckoutReducer,
+  //   CartStoreStatus.checkoutFinish
+  // );
+
+  // const [courseCartCfState, courseCartCfDispatch] = useReducer(
+  //   courseCartCfReducer,
+  //   courseCartCf
+  // )
 
   const [courseCards, setCourseCards] = useState();
   const [ingreCards, setIngreCards] = useState();
@@ -95,47 +84,75 @@ const Cart = props => {
   //   await fetch('')
   // }
 
-  console.log(courseCards);
-// cartTotal(courseCards,ingreCards);
+  // const fetchCourseAttendee = async () => {
+  //   try {
+  //     const user = localStorage.getItem("member_id");
+  //     const courseCart = JSON.parse(localStorage.getItem(`courseCart${user}`));
+  //     const ingreCart = JSON.parse(localStorage.getItem(`ingreCart${user}`));
+
+  //     const cart = JSON.stringify({
+  //       courseCart: courseCart,
+  //       ingreCart: ingreCart,
+  //       user: user
+  //     });
+  //     const url = `http://localhost:5000/handmade/cart/submitcart`;
+  //     const dataJson = await fetch(url, {
+  //       method: "POST",
+  //       body: cart,
+  //       headers: { "Content-Type": "application/json" }
+  //     });
+  //     const data = await dataJson.json();
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
+  // cartTotal(courseCards,ingreCards);
+
   useEffect(() => {
-    getCourseCard();
-    getIngreCard();
+    let socket = io('http://localhost:5000');
+    Promise.all([getCourseData(socket),getCourseCard(),getIngreCard()])
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const getCourseData = (socket) => {
+
+    socket.emit('sayhi', 'HELLO!!!'); // emit action named sayhi
+    socket.emit('getCourseCartData');
+    socket.on('showrows', (rows) => {
+      for(let i=0;i<rows.length;i++){
+        console.log(rows[i])
+      }
+    })
+    // listen action named otherAction
+    socket.on('otherAction', (msg) => {
+      console.log('Data recieved', msg);
+    });
+  }
   return (
     <>
-      <CartStore.Provider
-        value={{
-          id: id,
-          step: cartPageState.step,
-          cartPageDispatch,
-          checkoutFinish: cartCheckState.checkoutFinish,
-          cartCheckoutDispatch,
-          courseCartCf: courseCartCfState,
-          courseCartCfDispatch
-        }}
-      >
+      
         <div className="container-fluid">
           <div className="row">
-            <CartLeft {...props}
-            // cartTotal = {cartTotal}
-            courseCards = {courseCards}
-            setCourseCards = {setCourseCards}
-            ingreCards = {ingreCards}
-            setIngreCards = {setIngreCards}
+            <CartLeft
+              {...props}
+              // cartTotal = {cartTotal}
+              courseCards={courseCards}
+              setCourseCards={setCourseCards}
+              ingreCards={ingreCards}
+              setIngreCards={setIngreCards}
             />
-            <CartRight {...props} 
-              courseCards = {courseCards}
-              courseAmountBtn = {courseAmountBtn}
-              courseDelBtn = {courseDelBtn}
-              ingreCards = {ingreCards}
-              ingreAmountBtn = {ingreAmountBtn}
-              ingreDelBtn = {ingreDelBtn}
+            <CartRight
+              {...props}
+              courseCards={courseCards}
+              courseAmountBtn={courseAmountBtn}
+              courseDelBtn={courseDelBtn}
+              ingreCards={ingreCards}
+              ingreAmountBtn={ingreAmountBtn}
+              ingreDelBtn={ingreDelBtn}
             />
           </div>
         </div>
-      </CartStore.Provider>
+
     </>
   );
 };
