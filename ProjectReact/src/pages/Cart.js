@@ -3,7 +3,6 @@ import CartLeft from "../components/cart/CartLeft";
 import CartRight from "../components/cart/CartRight";
 import "../commom/scss/cart/memberCartPage.scss";
 import CartStore, { CartStoreStatus } from "../components/cart/CartStore";
-import io from 'socket.io-client';
 
 const Cart = props => {
   const { id, courseCartCf } = useContext(CartStore);
@@ -109,25 +108,10 @@ const Cart = props => {
   // cartTotal(courseCards,ingreCards);
 
   useEffect(() => {
-    let socket = io('http://localhost:5000');
-    Promise.all([getCourseData(socket),getCourseCard(),getIngreCard()])
+    Promise.all([getCourseCard(),getIngreCard()])
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const getCourseData = (socket) => {
-
-    socket.emit('sayhi', 'HELLO!!!'); // emit action named sayhi
-    socket.emit('getCourseCartData');
-    socket.on('showrows', (rows) => {
-      for(let i=0;i<rows.length;i++){
-        console.log(rows[i])
-      }
-    })
-    // listen action named otherAction
-    socket.on('otherAction', (msg) => {
-      console.log('Data recieved', msg);
-    });
-  }
   return (
     <>
       
