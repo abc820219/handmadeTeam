@@ -1,6 +1,7 @@
 import Handmade from "../pages/Handmade";
 import Navgation from "../pages/Navgation";
 import Course from "../pages/Course";
+import Course_detail from "../pages/Course_detail";
 import Cart from "../pages/Cart";
 import Member from "../pages/Member";
 import Store from "../pages/Store";
@@ -12,6 +13,7 @@ import MemberEmail from "../pages/Email";
 export { Handmade };
 export { Navgation };
 export { Course };
+export { Course_detail };
 export { Cart };
 export { Member };
 export { Store };
