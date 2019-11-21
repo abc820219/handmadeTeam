@@ -73,9 +73,13 @@ function App() {
             )}
           ></Route>
           <Route
-            path="/handmade/teacher/subject"
-            component={() => (
-              <Teacher_Subject login={{ login }} checkLogIn={checkLogIn} />
+            path="/handmade/teacher/subject/:image_id?"
+            component={props => (
+              <Teacher_Subject
+                {...props}
+                login={{ login }}
+                checkLogIn={checkLogIn}
+              />
             )}
           ></Route>
           <Route

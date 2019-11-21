@@ -38,6 +38,27 @@ router.get("/:subject/", (req, res) => {
     });
 });
 
+// http://localhost:5000/handmade/teacher/subject/3
+// 用subject_sid 查看某筆開課資料
+const momnet=require('moment-timezone');
+router.get("/:subject/:sid", (req, res) => {
+  const subjectId = req.params.sid;
+  const data = [];
+  const myFormat='YYYY-MM-DD HH:mm:ss';
+  db.queryAsync(
+    "SELECT * FROM subject NATURAL JOIN subject_img WHERE `subject_sid` =" +
+      subjectId
+  )
+    .then(results => {
+      data.push(results);
+      res.json(data);
+      // console.log("date",data)
+    })
+    .catch(error => {
+      console.log("subject_sid錯誤", error);
+    });    
+});
+
 // 拿所有開課資料及開課圖
 // router.get("/:subject/", (req, res) => {
 //   const teacherId = req.params.sid;
@@ -55,7 +76,7 @@ router.get("/:subject/", (req, res) => {
 // });
 
 // 用teacher_sid拿開課資料
-// http://localhost:5000/handmade/teacher/subject/3  
+// http://localhost:5000/handmade/teacher/subject/  
 router.get("/:subject/", (req, res) => {
   const teacherId = req.params.sid;
   const data = []; //  放接到的資料
