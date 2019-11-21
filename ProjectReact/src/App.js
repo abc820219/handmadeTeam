@@ -10,7 +10,8 @@ import {
   Teacher,
   Teacher_Subject,
   Ingredients,
-  MemberEmail
+  MemberEmail,
+  Course_detail
 } from "./routes/index";
 import CartStore from "./components/cart/CartStore";
 import {
@@ -98,6 +99,13 @@ function App() {
             exact
             component={() => (
               <Course login={{ login }} checkLogIn={checkLogIn}/>
+            )}
+          ></Route>
+          <Route
+            path="/handmade/store/course/:sid?"
+            exact
+            component={() => (
+              <Course_detail login={{ login }} checkLogIn={checkLogIn} />
             )}
           ></Route>
           <Route

@@ -109,7 +109,7 @@ const Cart = props => {
   // cartTotal(courseCards,ingreCards);
 
   useEffect(() => {
-  
+
     Promise.all([getCourseCard(),getIngreCard()])
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
