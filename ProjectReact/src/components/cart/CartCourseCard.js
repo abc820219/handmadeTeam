@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect, useCallback } from "react";
 import { MdCancel, MdSentimentSatisfied } from "react-icons/md";
 import CartStore from "./CartStore";
-import { selectCourse, unSelectCourse } from "./CartAction";
+import { selectCourse, unSelectCourse ,cancelCourse} from "./CartAction";
 
 const CartCourseCard = ({
   pos,
@@ -15,9 +15,9 @@ const CartCourseCard = ({
   courseAmountBtn,
   courseDelBtn
 }) => {
-  const { step, courseCartCf, courseCartCfDispatch } = useContext(CartStore);
+  const { step, courseCartCf, courseCartCfDispatch,cartCourseDispatch,id,courseCart} = useContext(CartStore);
   let invisible_button = { visibility: step ? "hidden" : "visible" };
-
+  console.log(courseCart);
   const [checkCourse, setCheckCourse] = useState(true);
 
   const courseInfo = {
@@ -57,17 +57,17 @@ const CartCourseCard = ({
   // );
 
   useEffect(() => {
-    if (checkCourse) {
-      console.log("courseCartSelector true");
-      courseCartCfDispatch(selectCourse(pos, courseInfo));
-    } else {
-      console.log("courseCartSelector false");
-      courseCartCfDispatch(unSelectCourse(pos, courseInfo));
-    }
+    // if (checkCourse) {
+    //   console.log("courseCartSelector true");
+    //   courseCartCfDispatch(selectCourse(pos, courseInfo));
+    // } else {
+    //   console.log("courseCartSelector false");
+    //   courseCartCfDispatch(unSelectCourse(pos, courseInfo));
+    // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [checkCourse]);
+  } );
 
-  console.log("checkCourse", checkCourse);
+  // console.log("checkCourse", checkCourse);
 
   return (
     <>
@@ -123,6 +123,7 @@ const CartCourseCard = ({
           style={invisible_button}
           onClick={() => {
             courseDelBtn(pos);
+            cartCourseDispatch(cancelCourse(courseInfo,id));
           }}
         />
       </li>

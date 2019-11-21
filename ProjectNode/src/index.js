@@ -13,6 +13,7 @@ const db = mysql.createConnection(db_Obj);
 const bluebird = require("bluebird"); //使用兩次sql
 const bodyParser = require("body-parser");
 bluebird.promisifyAll(db);
+const io = require("socket.io")();
 
 db.connect(function(err) {
   if (err) {
@@ -55,6 +56,29 @@ app.use(
     }
   })
 );
+
+// io.on('connection', function (socket) {
+//   console.log('a client connected');
+//   socket.on('getCourseCartData', () => {
+//     db.query('SELECT `store`.store_max_number,`store`.store_sid,`course_order`.* FROM `course_order` JOIN `store` JOIN `course` ON `store`.store_sid = `course`.store_sid WHERE `course`.`course_sid` = `course_order`.`course_sid`',function(err,rows){
+//         if(err) throw err;
+//         console.log('Data received from Db:\n');
+//         console.log(rows);
+//         socket.emit('showrows', rows);
+//       });
+//   })
+
+//   // db.query('SELECT * FROM `order`',function(err,rows){
+//   //   if(err) throw err;
+//   //   console.log('Data received from Db:\n');
+//   //   console.log(rows);
+//   //   socket.emit('showrows', rows);
+//   // });
+//   socket.on('disconnect', () => {
+//     console.info(`disconnect ${socket.id}`);
+//   });
+// });
+
 // ---------中間層(mid)結束---------
 
 //---------中間層(route)路由---------
@@ -95,6 +119,8 @@ app.use((req, res) => {
 //----------網頁錯誤----------
 
 //給一個port:3000不能重複
-app.listen(5000, function() {
+const server = app.listen(5000, function() {
   console.log("已經啟動:http://localhost:5000/");
 });
+
+io.listen(server);

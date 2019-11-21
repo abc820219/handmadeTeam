@@ -17,6 +17,7 @@ body {
   align-items: center;
   text-align: center;
 
+  //-----老師大圖------
   .left-img {
     // border: 1px solid red;
     z-index: 1;
@@ -28,6 +29,7 @@ body {
     // width: 860px;
     // background: rgb(207, 163, 80);
     clip-path: polygon(0 36%, 31% 0, 100% 100%, 0% 100%);
+
     .big_img {
       height: 300px;
       width: 300px;
@@ -90,23 +92,44 @@ body {
       overflow: hidden;
       border: 10px solid #f4dcb9;
     }
+    .slider-image{
+      width: 100%;
+    }
   }
 
-  // ----老師小圖----
+  // --------老師小圖-------
 
-  // ----老師課程----
+  // --------老師開課程圖--------
   .right-img {
-    z-index: 1;
+    z-index: 100;
     position: fixed;
     top: 0;
     right: 0;
-    height: 900px;
-    width: 1000px;
-    background: #683;
+    height: 960px;
+    width: 960px;
+    object-fit: cover;
+    // overflow: hidden;
+    // background: #683;
     clip-path: polygon(100% 0, 0 0, 100% 100%);
+    .slider-image{
+      // width: 100%;
+    }
+    .btn-right-link{
+      margin-top:100px;
+      border:none;
+      background:#972;
+      border-radius:5px;
+      padding:5px;
+      &:hover{
+        cursor: pointer;
+      }
+      &:focus{
+        outline:none;
+      }
+    }
   }
 
-  // ----老師課程----
+  // --------老師課程圖--------
 
   .teacher-page-left {
     width: 10%;

@@ -1,8 +1,23 @@
 import { createContext } from "react";
 
 const id = localStorage.getItem("member_id");
-const ingreCart = JSON.parse(localStorage.getItem("ingreCart" + id));
-const courseCart = JSON.parse(localStorage.getItem("courseCart" + id));
+
+let ingreCart;
+let courseCart;
+
+if(localStorage.getItem("ingreCart" + id)){
+  ingreCart = JSON.parse(localStorage.getItem("ingreCart" + id));
+}else{
+  localStorage.setItem("ingreCart" + id,'[]');
+  ingreCart = [];
+}
+
+if(localStorage.getItem("courseCart" + id)){
+  courseCart = JSON.parse(localStorage.getItem("courseCart" + id));
+}else{
+  localStorage.setItem("courseCart" + id,'[]');
+  courseCart = [];
+}
 
 export const CartStoreStatus = {
   id: id,
