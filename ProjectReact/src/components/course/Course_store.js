@@ -19,9 +19,7 @@ class Course_store extends Component {
                                         INFO
                                     {/* <span className="carousel_store_title_min">SUPER EAT BAKERY</span> */}
                                     </h5>
-                                    <li>{this.props.state[0][0]}</li>
-                                    <li>{this.props.state[0][1]}</li>
-                                    <li>{this.props.state[0][2]}</li>
+                                    {this.props.state[0].map((str,index)=><li key={index}>{str}</li>)}
                                 </div>
                             </div>
                             <div className="carousel-item">
@@ -65,7 +63,7 @@ class Course_store extends Component {
             )
         else
             return (<>
-                <h1>Course_store 資料有短缺</h1>
+                <h1>Course_store 資料讀取中...</h1>
             </>)
     }
 }

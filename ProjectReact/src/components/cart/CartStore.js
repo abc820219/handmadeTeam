@@ -1,17 +1,32 @@
 import { createContext } from "react";
 
-const id = localStorage.getItem('member_id');
-const ingreCart = localStorage.getItem('ingreCart'+id);
-const courseCart = localStorage.getItem('courseCart'+id);
+const id = localStorage.getItem("member_id");
+
+let ingreCart;
+let courseCart;
+
+if(localStorage.getItem("ingreCart" + id)){
+  ingreCart = JSON.parse(localStorage.getItem("ingreCart" + id));
+}else{
+  localStorage.setItem("ingreCart" + id,'[]');
+  ingreCart = [];
+}
+
+if(localStorage.getItem("courseCart" + id)){
+  courseCart = JSON.parse(localStorage.getItem("courseCart" + id));
+}else{
+  localStorage.setItem("courseCart" + id,'[]');
+  courseCart = [];
+}
 
 export const CartStoreStatus = {
-    id: id,
-    step: 0,
-    courseCart: JSON.parse(courseCart),
-    ingreCart: JSON.parse(ingreCart),
-    courseCartCf:[],
-    ingreCartCf:[],
-    checkoutFinish: false
+  id: id,
+  step: 0,
+  courseCart: courseCart,
+  ingreCart: ingreCart,
+  courseCartCf: courseCart,
+  ingreCartCf: ingreCart,
+  checkoutFinish: false
 };
 
 const CartStore = createContext(CartStoreStatus);

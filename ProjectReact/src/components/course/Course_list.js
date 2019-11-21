@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../../commom/scss/course/course_list_navbar.scss";
-import Course_detail from "./Course_detail";
+// import Course_detail from "./Course_detail";
 
 import { NavLink } from 'react-router-dom'
 
@@ -16,7 +16,7 @@ class Course_list extends Component {
       
         return (
             <>
-                <main className="course_list_wrap">
+                <main className="course_list_wrap" id="course_list" >
 
                     {this.props.list.map((thing, index) => {
                         return (

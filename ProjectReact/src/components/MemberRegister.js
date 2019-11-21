@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import FacebookLogin from "./FacebookLogin";
-import { FaUserAlt, FaKey } from "react-icons/fa";
+import { FaUserAlt, FaKey, FaEye } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import Captcha from "captcha-mini";
 import "../commom/scss/MemberLogin.scss";
@@ -14,6 +13,7 @@ function MemberRegister(props) {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [Change] = useState(true);
+  const [shown, setShown] = React.useState(false);
   const [formErrors, setformErrors] = useState({
     account: "",
     email: "",
@@ -183,7 +183,7 @@ function MemberRegister(props) {
                 </label>
                 <input
                   name="password"
-                  type="password"
+                  type={shown ? "text" : "password"}
                   id="member-password"
                   placeholder="密碼"
                   onChange={handleChange}
@@ -192,6 +192,9 @@ function MemberRegister(props) {
                   }
                   value={password}
                 />
+                <div className="passwordShow">
+                  <FaEye onClick={() => setShown(!shown)} />
+                </div>
                 <p className="errorText">{formErrors.password} &nbsp;</p>
               </li>
             </ul>
@@ -215,7 +218,7 @@ function MemberRegister(props) {
               />
             </div>
             <div className="text-center m-3">
-              <span className="register" onClick={props.boxStateChange}>
+              <span className="register" onClick={()=>props.boxStateChange(0)}>
                 切換到登入頁&nbsp;
               </span>
               <span className="register">/&nbsp;閱讀條款</span>

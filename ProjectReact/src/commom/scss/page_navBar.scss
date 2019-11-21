@@ -3,7 +3,7 @@
   margin: 0;
 }
 .page-nav {
-  position: fixed;
+  position: fixed !important;
   top: 0;
   left: 0;
   right: 0;
@@ -11,6 +11,7 @@
   padding: 0 30px;
   z-index: 9999;
   .page-nav-aside {
+    z-index: 2000;
     height: 100%;
     h3 {
       font-size: 25px;
@@ -24,6 +25,13 @@
       width: 16px;
       height: 14px;
       margin-right: 0px;
+    }
+    ul {
+      padding: 0 0 0 30px;
+      li {
+        padding: 10px;
+      
+      }
     }
   }
   .page-nav-rightside {
@@ -67,7 +75,6 @@
       content: "";
       width: 0;
       display: block;
-      content: "";
       border-width: 8px 8px 8px 8px;
       border-style: solid;
       border-color: transparent transparent rgba(255, 255, 255, 0.7) transparent;
@@ -89,7 +96,7 @@
   .navbarBtn {
     margin: 0;
     padding: 0;
-    transition: 1s;
+    transition: 2s;
     color: #fff;
     position: absolute;
     background-color: #362d2b;
@@ -99,14 +106,8 @@
     left: -100%;
   }
   .move {
-    margin: 0;
-    padding: 0;
-    color: #fff;
-    position: absolute;
-    background-color: #362d2b;
-    min-height: 937px;
-    width: 300px;
-    top: 0;
     left: 0%;
+    transition: 0.8s;
   }
 }
+//------------------------------

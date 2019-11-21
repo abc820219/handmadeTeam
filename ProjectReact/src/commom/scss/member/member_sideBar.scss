@@ -1,7 +1,7 @@
 .member-side-bar {
   height: 100vh;
   color: #ffffff;
-  min-width: 374px;
+  min-width: 375px;
   background-color: #362d2b;
   .member-side-bar-header {
     .imgBox {
@@ -20,7 +20,7 @@
         position: absolute;
         bottom: 5px;
         font-size: 50px;
-        color: rgba($color: #7a7a7a, $alpha: 0.5);
+        color: rgba($color: #7a7a7a, $alpha: 0.4);
         .imgBox {
           position: relative;
           top: 10px;
@@ -55,5 +55,27 @@
         color: #fff;
       }
     }
+  }
+}
+@media (max-width: 1200px) {
+  .member-side-bar-hide {
+    position: fixed;
+    left: -100%;
+    z-index: 900;
+    transition:1s;
+  }
+  .member-side-bar-show {
+    position: fixed;
+    left: 0%;
+    z-index: 900;
+    transition:1s;
+  }
+}
+@media (max-width: 375) {
+  .member-side-bar-show {
+    left: 0%;
+    top: 0;
+    right:0;
+    bottom:0;
   }
 }

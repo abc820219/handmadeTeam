@@ -4,11 +4,16 @@ function LogOut() {
     localStorage.removeItem("member_id");
     localStorage.removeItem("member_data");
     alert("登出成功");
-    window.location = "http://localhost:3000/handmade/";
+    window.location = window.location.href;
   };
   return (
     <>
-      <h5 onClick={memberLogOut}>登出</h5>
+      <div
+        onClick={memberLogOut}
+        style={{ fontSize: "16px", cursor: "pointer" }}
+      >
+        登出
+      </div>
     </>
   );
 }

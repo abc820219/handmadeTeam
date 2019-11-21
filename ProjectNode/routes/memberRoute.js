@@ -8,7 +8,7 @@ const bluebird = require("bluebird"); //使用兩次sql
 const multer = require("multer"); //引入檔案
 const upload = multer({ dest: "tmp_uploads" }); //設定檔案暫存目錄
 const fs = require("fs"); //讀檔案寫檔案
-
+const nodemailer = require("nodemailer");
 bluebird.promisifyAll(db);
 router.post("/", (req, res) => {
   console.log(req.body);
@@ -82,7 +82,19 @@ class MemberImg {
     this.member_photo_name = member_photo_name;
   }
   addMemberImg() {
-    let sql = `INSERT INTO member_photo(  member_sid,member_photo_name) VALUES ( "${this.member_sid}","${this.member_photo_name}")`;
+    let sql = `INSERT INTO member_photo( member_sid,member_photo_name) VALUES ( "${this.member_sid}","${this.member_photo_name}")`;
+    return sql;
+  }
+}
+class MemberChange {
+  constructor(member_sid, member_photo_name) {
+    this.member_sid = member_sid;
+    this.member_photo_name = member_photo_name;
+  }
+  getMemberImg() {
+    let sql = `SELECT  member_photo_name, member_photo_create
+    FROM  member_photo WHERE member_sid = "${this.member_sid}"
+    ORDER BY member_photo_create DESC LIMIT 1`;
     return sql;
   }
 }
@@ -96,16 +108,44 @@ class MemberEdit {
     member_phone,
     member_address
   ) {
+    this.member_sid = member_sid;
     this.member_email = member_email;
     this.member_name = member_name;
     this.member_nickname = member_nickname;
     this.member_birth = member_birth;
     this.member_phone = member_phone;
     this.member_address = member_address;
-    this.member_sid = member_sid;
   }
   MemberEdit() {
     let sql = `UPDATE member SET member_email="${this.member_email}",member_name="${this.member_name}",member_nickname="${this.member_nickname}",member_birth="${this.member_birth}",member_phone="${this.member_phone}",member_address="${this.member_address}" WHERE member_sid = "${this.member_sid}"`;
+    return sql;
+  }
+}
+class MemberPasswordEdit {
+  constructor(member_sid, member_password) {
+    this.member_sid = member_sid;
+    this.member_password = member_password;
+  }
+  MemberPasswordEdit() {
+    let sql = `UPDATE member SET member_password="${this.member_password}" WHERE member_sid = "${this.member_sid}"`;
+    return sql;
+  }
+}
+
+class MemberEmailPWD {
+  constructor(member_email, member_account, member_sid, member_password) {
+    this.member_email = member_email;
+    this.member_account = member_account;
+    this.member_sid = member_sid;
+    this.member_password = member_password;
+  }
+  getMemberPwd() {
+    let sql = `SELECT  member_password, member_sid
+    FROM  member WHERE member_email = "${this.member_email}" AND member_account="${this.member_account}"`;
+    return sql;
+  }
+  editMemberPwd() {
+    let sql = `UPDATE member SET member_password="${this.member_password}" WHERE member_sid="${this.member_sid}"`;
     return sql;
   }
 }
@@ -158,6 +198,7 @@ router.post("/getMemberData", (req, res, next) => {
         message: "歡迎登入!",
         info: rows[0]
       });
+      console.log(rows[0]);
       return;
     }
   });
@@ -262,6 +303,26 @@ router.post("/memberImg", upload.single("file"), (req, res) => {
     });
   }
 });
+router.post("/getMemberImg", (req, res) => {
+  //單張圖片上傳
+  console.log(req.body);
+  let Member = new MemberChange(req.body.member_sid);
+  console.log(Member.getMemberImg());
+  if (req.body.member_sid) {
+    db.query(Member.getMemberImg(), (error, rows) => {
+      res.json({
+        status: 200,
+        message: "照片上傳成功2",
+        info: rows
+      });
+    });
+  } else {
+    res.json({
+      status: 404,
+      message: "照片上傳失敗"
+    });
+  }
+});
 //------------------------------------------------------------------------------------------------------------------------------------------------------
 router.post("/MemberEdit", (req, res) => {
   let Member = new MemberEdit(
@@ -282,4 +343,92 @@ router.post("/MemberEdit", (req, res) => {
     }
   });
 });
+router.post("/MemberPasswordEdit", (req, res) => {
+  let Member = new MemberPasswordEdit(
+    req.body.member_sid,
+    req.body.member_password
+  );
+  console.log(req.body);
+  console.log(Member.MemberPasswordEdit());
+  db.query(Member.MemberPasswordEdit(), (error, rows) => {
+    console.log(rows);
+    if (rows) {
+      return res.json({ status: "202", message: "修改成功" });
+    } else {
+      return res.json({ status: "404", message: "修改失敗" });
+    }
+  });
+});
+
+//------------------------------------------------------------------------------ mail
+
+router.post("/mail", (req, res) => {
+  let email = req.body.member_email;
+  let account = req.body.member_account;
+  let Member = new MemberEmailPWD(email, account);
+  console.log(email, account);
+  console.log(Member.getMemberPwd());
+  db.query(Member.getMemberPwd(), (error, rows) => {
+    console.log(rows);
+    if (rows.length >= 1) {
+      let transporter = nodemailer.createTransport({
+        service: "Gmail",
+        auth: {
+          user: "handmade20190927@gmail.com",
+          pass: "Aa27089433"
+        }
+      });
+      let mailOptions = {
+        from: "handmade20190927@gmail.com",
+        to: email,
+        subject: "密碼設定",
+        html: `
+        <h1>親愛的會員您好,您的密碼是:${rows[0].member_password}</h1>
+        <div>若要修改密碼請點擊連結重新設定密碼<a href="http://localhost:3000/handmade/email/${rows[0].member_sid}">http://localhost:3000/handmade/email/${rows[0].member_sid}</a></div>
+        `
+      };
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          return res.json({
+            status: "404",
+            message: error
+          });
+        }
+      });
+      return res.json({
+        status: "202",
+        message: "重設密碼信件已發送,請至信箱確認"
+      });
+    } else {
+      res.json({
+        status: "404",
+        message: "請輸入正確的資訊"
+      });
+    }
+  });
+  console.log(email);
+});
+router.post("/mailEdit", (req, res) => {
+  let member_sid = req.body.member_sid;
+  let member_password = req.body.member_password;
+  let Member = new MemberEmailPWD("", "", member_sid, member_password);
+  console.log(Member.editMemberPwd());
+  db.query(Member.editMemberPwd(), (error, rows) => {
+    console.log(rows.affectedRows);
+    if (rows.affectedRows === 1) {
+      res.json({
+        status: "202",
+        message: "修改成功"
+      });
+    } else {
+      res.json({
+        status: "404",
+        message: "修改失敗"
+      });
+    }
+  });
+});
+
+//------------------------------------------------------------------------------ mail
+
 module.exports = router;

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import CourseAll from "../components/course/CourseAll"
 import NavBar from "../components/NavBar";
+
 class Course extends Component {
   constructor(props) {
     super(props);

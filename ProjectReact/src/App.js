@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect ,useContext ,useReducer,BrowserRouter} from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import {
   Handmade,
@@ -9,23 +9,56 @@ import {
   Store,
   Teacher,
   Teacher_Subject,
-  Ingredients
+  Ingredients,
+  MemberEmail
 } from "./routes/index";
+import CartStore from "./components/cart/CartStore";
+import {
+ cartPageReducer,
+  cartCourseReducer,
+  cartIngreReducer,
+  cartCheckoutReducer,
+  courseCartCfReducer
+} from "./components/cart/CartReducer";
+export const cartPageInitState = { step: 0 };
 function App() {
   const [login, setLogin] = useState(false);
   const loginLocal = localStorage.getItem("member_id") || 0;
+  // const [courseCart, setCourseCart] = useState();
+  // const [ingreCart, setIngreCart] = useState();
+  const { id, courseCartCf ,courseCart,ingreCart} = useContext(CartStore);
+
+
+  const [cartPageState, cartPageDispatch] = useReducer(
+    cartPageReducer,
+    cartPageInitState
+  );
+  const [cartCourseState, cartCourseDispatch] = useReducer(
+    cartCourseReducer,
+    courseCart
+  );
+
+  const [cartIngreState, cartIngreDispatch] = useReducer(
+    cartIngreReducer,
+    ingreCart
+  );
+
+  
   useEffect(() => {
     if (loginLocal) {
       setLogin(true);
     }
-
     // localStorage.setItem(`courseCart${loginLocal}`, "[]");
     // localStorage.setItem(`ingreCart${loginLocal}`, "[]");
     if (!localStorage.getItem(`courseCart${loginLocal}`)) {
       localStorage.setItem(`courseCart${loginLocal}`, "[]");
+    } else {
+      // setCourseCart(JSON.parse(localStorage.getItem(`courseCart${loginLocal}`)))
     }
     if (!localStorage.getItem(`ingreCart${loginLocal}`)) {
       localStorage.setItem(`ingreCart${loginLocal}`, "[]");
+    } else {
+      // setIngreCart(JSON.parse(localStorage.getItem(`ingreCart${loginLocal}`)))
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [login]);
@@ -35,8 +68,23 @@ function App() {
 
   return (
     <>
-      <Router>
+      <Router history={BrowserRouter}>
         <Switch>
+          <CartStore.Provider
+            value={{
+              id: id,
+              step: cartPageState.step,
+              cartPageDispatch,
+              cartCourseDispatch,
+              courseCart: cartCourseState,
+              cartIngreDispatch,
+              ingreCart: cartIngreState
+              // checkoutFinish: cartCheckState.checkoutFinish,
+              // cartCheckoutDispatch,
+              // courseCartCf: courseCartCfState,
+              // courseCartCfDispatch
+            }}
+          >
           <Route path="/" exact component={Navgation}></Route>
           <Route
             path="/handmade/"
@@ -49,27 +97,31 @@ function App() {
             path="/handmade/store/course/"
             exact
             component={() => (
-              <Course login={{ login }} checkLogIn={checkLogIn} />
+              <Course login={{ login }} checkLogIn={checkLogIn}/>
             )}
           ></Route>
           <Route
             path="/handmade/member/:id?"
             component={() => (
-              <Member login={{ login }} checkLogIn={checkLogIn} />
+              <Member login={{ login }} checkLogIn={checkLogIn}/>
             )}
+          ></Route>
+          <Route
+            path="/handmade/email/:sid?"
+            component={() => <MemberEmail />}
           ></Route>
           <Route
             path="/handmade/store/"
             exact
             component={() => (
-              <Store login={{ login }} checkLogIn={checkLogIn} />
+              <Store login={{ login }} checkLogIn={checkLogIn}/>
             )}
           ></Route>
           <Route
             path="/handmade/teacher/"
             exact
             component={() => (
-              <Teacher login={{ login }} checkLogIn={checkLogIn} />
+              <Teacher login={{ login }} checkLogIn={checkLogIn}/>
             )}
           ></Route>
           <Route
@@ -88,6 +140,7 @@ function App() {
               <Ingredients login={{ login }} checkLogIn={checkLogIn} />
             )}
           ></Route>
+          </CartStore.Provider>
         </Switch>
       </Router>
     </>
