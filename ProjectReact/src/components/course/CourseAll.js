@@ -3,8 +3,9 @@ import "../../commom/scss/course/course_list_navbar.scss";
 import Course_store from "./Course_store";
 import Course_navbar from "./Course_navbar";
 import Course_list from "./Course_list";
-import Course_filter from "./Course_filter"
+import Course_filter from "./Course_filter";
 import $ from "jquery";
+
 
 
 
@@ -16,9 +17,25 @@ class CourseAll extends Component {
             store_wrap: [],
             course_list: [],
             course_total: [],
-            course_click: [],
-            course_filter_title_wrap:["種類","口味","尺寸","難易度","價格"],
-            course_filter_title_content:[["蛋糕", "點心", "餅乾"], ["巧克力", "覆盆子", "草莓", "香草", "抹茶", "茶類", "檸檬", "其他"], ["4吋", "5吋", "6吋", "8吋"], ["1顆星", "2顆星", "3顆星"], ["500元~700元", "700元-1000元", "1000元-1500元", "1500元以上"]]
+            course_blur: true,
+            course_filter_title_wrap: ["種類", "口味", "尺寸", "難易度", "價格"],
+            condition: {
+                kid: '',
+                taste: '',
+                size: '',
+                difficult: '',
+                price: '',
+            },
+            course_search: {
+                name: ""
+            },
+            course_page: "種類",
+            disabled: true,
+            new_course_list: [],
+            aging_course_list: [],
+            course_filter_start: [],
+            course_filter_title_content: [["蛋糕", "點心", "餅乾"], ["巧克力", "覆盆子", "草莓", "香草", "抹茶", "茶類", "檸檬", "其他"], ["4吋", "5吋", "6吋", "8吋"], ["1顆星", "2顆星", "3顆星"], ["500元~700元", "700元-1000元", "1000元-1500元", "1500元以上"]]
+
 
         }
     }
@@ -32,11 +49,14 @@ class CourseAll extends Component {
             $(this).siblings().removeClass("activeImg");
         })
 
-        
+
     }
+
+
+
     courseAll = async () => {
         try {
-            const storeId = 2;
+            const storeId = 1;
             const res = await fetch(`http://localhost:5000/handmade/store/course/${storeId}`);
             const data = await res.json();
             console.log("data", data);
@@ -56,10 +76,11 @@ class CourseAll extends Component {
             store_ind = [...store_ind, store_name, store_phone, store_address]
             store_web = [...store_web, community_facebook, community_instagram, community_line, community_twitter]
             store_wrap = [...store_wrap, store_ind, store_web, store_name, course_classroom];
-            this.setState({ store_wrap: store_wrap, course_total: course_total, course_list: course_list});
+            this.setState({ store_wrap: store_wrap, course_total: course_total, course_list: course_list });
             console.log("course_wrap:", this.state)
-            console.log("course_total",course_total)
-            console.log("course_list",course_list)
+            console.log("course_total", course_total)
+            console.log("course_list", course_list)
+
 
         } catch (error) {
             console.log(error);
@@ -68,23 +89,188 @@ class CourseAll extends Component {
     }
     course_total_onclick = () => {
         this.setState({ course_list: this.state.course_total })
-        $(".course_filter_thing div").removeClass("course_filter_active");
-       $(".course_kid ").addClass("course_active").siblings().removeClass("course_active")
-       
+        this.setState({ course_filter_start: "" })
+        this.setState({ course_blur: true })
+        this.setState({ course_page: "種類" })
+        this.setState({
+            condition: {
+                kid: '',
+                taste: '',
+                size: '',
+                difficult: '',
+                price: '',
+            }
+        })
+    }
 
+    course_blur_fn = () => {
+        this.setState({ course_blur: false })
+        this.setState({ course_filter_start: "" })
+        this.setState({ course_list: this.state.course_total })
+        this.setState({ course_page: "種類" })
+        this.setState({
+            condition: {
+                kid: '',
+                taste: '',
+                size: '',
+                difficult: '',
+                price: '',
+            }
+        })
+    }
+
+    course_filter_search = (key, param) => {
+        this.setState({course_search_fn:false})
+        const course_list = this.state.course_list;
+        let new_course_search = {
+            ...this.state.course_search,
+            [key]: param,
+        }
+        let filter = course_list.filter(obj => {
+            let { name } = new_course_search
+            if (name) {
+                let str = obj.course_name
+                str.toString();
+                let find = str.indexOf(param);
+                console.log("find", find)
+                console.log("str", str)
+                if (find >= 0) {
+                    return obj.course_name
+                }
+            }
+        })
+        this.setState({ new_course_list: filter, course_search: new_course_search })
+    }
+
+    course_page_pre_fn = () => {
+        let page = this.state.course_page
+        if (page == '口味') {
+            this.setState({ course_page: "種類" })
+
+        } else if (page == '尺寸') {
+            this.setState({ course_page: "口味" })
+        } else if (page == '難易度') {
+            if (this.state.condition.kid == "蛋糕") {
+                this.setState({ course_page: "尺寸" })
+            } else {
+                this.setState({ course_page: "口味" })
+            }
+        } else if (page == '種類') {
+            this.setState({ disabled: true })
+        } else {
+            this.setState({ course_page: "難易度" })
+        }
+    }
+    course_page_next_fn = () => {
+        let page = this.state.course_page
+        if (page == '種類') {
+            this.setState({ disabled: false })
+            this.setState({ course_page: "口味" })
+        } else if (page == '口味') {
+            if (this.state.condition.kid == "蛋糕") {
+                this.setState({ course_page: "尺寸" })
+            }
+            else { this.setState({ course_page: "難易度" }) }
+        } else if (page == '尺寸') {
+            this.setState({ course_page: "難易度" })
+        } else if (page == '難易度') {
+            this.setState({ course_page: "價格" })
+        } else {
+            this.setState({ disabled: true })
+        }
+    };
+
+
+    course_filter_fn = (key, param) => {
+        this.setState({ course_filter_start: [1] })
+        this.setState({ course_blur: true })
+        const course_list = this.state.course_list;
+        let new_course_filter = {
+            ...this.state.condition,
+            [key]: param,
+        }
+        console.log(course_list)
+        console.log(new_course_filter)
+
+        let filter = course_list.filter(obj => {
+
+            let { kid } = new_course_filter
+            if (kid) {
+                return obj.course_kid == kid
+            } else {
+                return true;
+            }
+        })
+            .filter(obj => {
+
+                let { taste } = new_course_filter
+                if (taste) {
+                    return obj.course_taste == taste
+                } else {
+                    return true;
+                }
+
+            })
+            .filter(obj => {
+
+                let { size } = new_course_filter
+                if (size) {
+                    return obj.course_size == size
+                } else {
+                    return true;
+                }
+
+
+            })
+            .filter(obj => {
+
+                let { difficult } = new_course_filter
+                if (difficult) {
+                    return obj.course_difficult == difficult
+                } else {
+                    return true;
+                }
+
+            })
+            .filter(obj => {
+                let { price } = new_course_filter
+                if (price) {
+                    return obj.course_price == price
+                } else {
+                    return true;
+                }
+
+            })
+        this.setState({ new_course_list: filter, condition: new_course_filter })
     }
 
 
 
     render() {
 
+        console.log("new_course_list", this.state.new_course_list)
+        console.log("course_list", this.state.course_list)
+        console.log("course_search", this.state.course_search)
+        console.log("course_filter_start", this.state.course_filter_start)
+        // console.log("condition", this.state.condition)
         return (
             <>
                 <section className="course_navbar">
                     <nav className="course_navbar_b">
-                        <Course_filter course_list={this.course_total_onclick.bind(this)} 
-                        kid_name={this.state.course_filter_title_content} 
-                        title={this.state.course_filter_title_wrap}/>
+                        <Course_filter course_list={this.course_total_onclick.bind(this)}
+                            kid_name={this.state.course_filter_title_content}
+                            title={this.state.course_filter_title_wrap}
+                            filter={this.course_filter_fn.bind(this)}
+                            search={this.course_blur_fn.bind(this)}
+                            course_blur={this.state.course_blur}
+                            course_page={this.state.course_page}
+                            pre_page={this.course_page_pre_fn.bind(this)}
+                            next_page={this.course_page_next_fn.bind(this)}
+                            search_filter={this.course_filter_search.bind(this)}
+                            color={this.state.condition}
+                            search_fn={this.state.search_fn}
+                        />
+
                     </nav>
                     <section className="course_store">
 
@@ -97,8 +283,14 @@ class CourseAll extends Component {
                             </div>
                         </section>
                         {/* 店家選單結束 */}
+                        
+                        {/* filter bar開始 */}
+                        {this.state.course_search.name === "" ? (this.state.course_filter_start.length > 0 ?
+                            (this.state.new_course_list.length > 0 ? <Course_list list={this.state.new_course_list} /> : null)
+                            : <Course_list list={this.state.course_list} />)
+                            : <Course_list list={this.state.new_course_list} />}
+                        {/* filter bar結束 */}
 
-                        <Course_list list={this.state.course_list} />
 
                     </section>
 
