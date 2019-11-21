@@ -1,4 +1,4 @@
-import React, { useState, useEffect ,useContext ,useReducer} from "react";
+import React, { useState, useEffect ,useContext ,useReducer,BrowserRouter} from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import {
   Handmade,
@@ -9,7 +9,8 @@ import {
   Store,
   Teacher,
   Teacher_Subject,
-  Ingredients
+  Ingredients,
+  MemberEmail
 } from "./routes/index";
 import CartStore from "./components/cart/CartStore";
 import {
@@ -67,7 +68,7 @@ function App() {
 
   return (
     <>
-      <Router>
+      <Router history={BrowserRouter}>
         <Switch>
           <CartStore.Provider
             value={{
@@ -104,6 +105,10 @@ function App() {
             component={() => (
               <Member login={{ login }} checkLogIn={checkLogIn}/>
             )}
+          ></Route>
+          <Route
+            path="/handmade/email/:sid?"
+            component={() => <MemberEmail />}
           ></Route>
           <Route
             path="/handmade/store/"
