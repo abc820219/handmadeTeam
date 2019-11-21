@@ -4,6 +4,7 @@ import CartRight from "../components/cart/CartRight";
 import "../commom/scss/cart/memberCartPage.scss";
 import CartStore, { CartStoreStatus } from "../components/cart/CartStore";
 
+
 const Cart = props => {
   const { id, courseCartCf } = useContext(CartStore);
 
@@ -108,6 +109,7 @@ const Cart = props => {
   // cartTotal(courseCards,ingreCards);
 
   useEffect(() => {
+
     Promise.all([getCourseCard(),getIngreCard()])
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
