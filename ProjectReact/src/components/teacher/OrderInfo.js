@@ -11,7 +11,6 @@ class OrderInfo extends Component {
       people: "1",
       // 最大可報名人數
       maxPeople: "4",
-      subjectPrice: "4000"
     };
   }
 
@@ -96,12 +95,12 @@ class OrderInfo extends Component {
   //   // console.log(this.state.username)  <= 會慢一步，錯誤寫法
   // };
 
-  // ------ post API 上傳報名資料 ------
+  // ------------post API 上傳報名資料------------
   postMeberInfo = () => {
     let postData = {
       username: this.state.username,
       phone: this.state.phone,
-      email: this.state.email
+      pepple:this.state.people
     };
     fetch("http://localhost:3000/api/upload", {
       method: "POST",
@@ -122,14 +121,19 @@ class OrderInfo extends Component {
       <>
         <div className="d-flex">
           <sidebar className="booking-sidebar">
-            <div className="subject-header">header</div>
+            <div className="subject-header"></div>
+            {/* 開課圖 */}
             <div className="subject-smallimg">
-              <img className="sub-img" src=""></img>
+              <img className="sub-img" src={`/image/${this.state.subject_img}`}></img>
             </div>
             <div className="subject-data">
-              <div className="info-subject-name">{this.state.subject_name}</div>
-              <div>{this.state.subject_date}</div>
-              <div>{this.state.subject_address}</div>
+              <div className="order-subject-name">
+                {this.state.subject_name}
+              </div>
+              <div className="order-subject-date">
+                {this.state.subject_date}
+              </div>
+              <div className="order-subject-address">{this.state.subject_address}</div>
               <div>會員xxx</div>
             </div>
             <div className="price-info">
@@ -147,7 +151,6 @@ class OrderInfo extends Component {
                 </button>
                 <span className="price-right">
                   {this.state.people}
-                  {/* {this.state.people === !1 ? this.state.people : 1} */}
                 </span>
                 <button className="plus" onClick={this.plus}>
                   +
