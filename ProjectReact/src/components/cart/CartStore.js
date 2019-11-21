@@ -13,7 +13,7 @@ if(localStorage.getItem("ingreCart" + id)){
 }
 
 if(localStorage.getItem("courseCart" + id)){
-  ingreCart = JSON.parse(localStorage.getItem("courseCart" + id));
+  courseCart = JSON.parse(localStorage.getItem("courseCart" + id));
 }else{
   localStorage.setItem("courseCart" + id,'[]');
   courseCart = [];

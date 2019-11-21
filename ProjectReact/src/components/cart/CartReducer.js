@@ -53,6 +53,7 @@ export const cartCourseReducer = (state, {type,payload}) => {
     case ADD_COURSE_ITEM: {
       const addCourse = payload.item;
       const newCourse = [...state];
+      console.log(state);
       const id = payload.id;
       localStorage.setItem(`courseCart${id}`,JSON.stringify([...newCourse,addCourse]));
       return [...newCourse,addCourse];
@@ -83,6 +84,7 @@ export const cartCourseReducer = (state, {type,payload}) => {
 export const cartIngreReducer = (state, {type,payload}) => {
   switch (type) {
     case ADD_INGRE_ITEM: {
+      console.log(state);
       const addIngre = payload.item;
       const newIngre = [...state];
       const id = payload.id;

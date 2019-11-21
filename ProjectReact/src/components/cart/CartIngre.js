@@ -3,12 +3,15 @@ import { FaDollarSign } from "react-icons/fa";
 import { FaShoppingBag } from "react-icons/fa";
 
 const CartIngre = ({ingreName,ingreOrderQty, ingreEnName,ingrePrice}) => {
+
   return (
     <>
       <ul className="d-flex justify-content-around align-items-center px-5">
         <li className="d-flex flex-column align-items-between py-3">
           <div className="product-title">
-            {ingreName},{ingreEnName}
+            {ingreName}
+            <br/>
+            {ingreEnName}
           </div>
           <div className="d-flex align-items-center">
           <FaShoppingBag />

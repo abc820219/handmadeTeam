@@ -8,7 +8,8 @@ import { courseCartRerender, ingreCartRerender } from './CartAction';
 
 const SmallCart = ({ openCart, showCart }) => {
 
-  const { courseCart, ingreCart, id, cartCourseDispatch, cartIngreDispatch } = useContext(CartStore);
+  let { courseCart, ingreCart, id, cartCourseDispatch, cartIngreDispatch } = useContext(CartStore);
+console.log(courseCart, ingreCart);
 
   // const reRenderPage = async (id) => {
   //   await cartCourseDispatch(courseCartRerender(id));
@@ -18,6 +19,9 @@ const SmallCart = ({ openCart, showCart }) => {
   // useEffect(() => {
   //   reRenderPage(id)
   // }, [])
+
+  courseCart = courseCart || [];
+  ingreCart = ingreCart || [];
 
   return (
     <>
@@ -72,7 +76,7 @@ const SmallCart = ({ openCart, showCart }) => {
         style={{ right: showCart ? "0" : "100%" }}
       >
         <div>
-          <span className="cartTotal">$ 5000</span>
+          <span className="cartTotal">$ </span>
         </div>
         <div>
           <Link to="/handmade/member/cart">
