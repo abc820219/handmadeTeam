@@ -122,7 +122,14 @@ const MemberSideBar = ({ match, showSideBar }) => {
         <ul>
           PROFILE
           <li>收藏清單</li>
-          <li>優惠活動</li>
+          <li>
+            <Link
+              to="/handmade/member/coupon"
+              style={{ color: "#fff", textDecoration: "none" }}
+            >
+              優惠活動
+            </Link>
+          </li>
         </ul>
         <ul>
           PROFILE
