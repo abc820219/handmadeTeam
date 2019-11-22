@@ -3,6 +3,7 @@ import LogOut from "./MemberLogout";
 import { AiFillPicture } from "react-icons/ai";
 import "../../commom/scss/member/member_sideBar.scss";
 import { Link } from "react-router-dom";
+import UseWinSize from "../UseWinSize";
 
 const MemberSideBar = ({ match, showSideBar }) => {
   const [memberImgName, setMemberImgName] = useState("");

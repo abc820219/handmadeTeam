@@ -258,6 +258,10 @@ const MemberEdit = () => {
   //-------------------------------------事件------------------
   function formSubmit(event) {
     event.preventDefault();
+    if (formErrors.email || formErrors.phone) {
+      alert("請輸入正確資訊");
+      return;
+    }
     console.log("formSubmit");
     fetch("http://localhost:5000/handmade/member/MemberEdit", {
       method: "POST",

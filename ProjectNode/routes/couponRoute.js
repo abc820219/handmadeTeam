@@ -13,6 +13,10 @@ class getCoupon {
     this.member_sid = member_sid;
     this.coupon_sid = coupon_sid;
   }
+  checkCoupon() {
+    let sql = `SELECT * FROM member_coupon WHERE member_sid = "${this.member_sid}" AND coupon_sid ="${this.coupon_sid}"`;
+    return sql;
+  }
   addCoupon() {
     let sql = `INSERT INTO member_coupon( member_sid,coupon_sid) VALUES ( "${this.member_sid}","${this.coupon_sid}")`;
     return sql;
@@ -25,26 +29,36 @@ router.get("/", (req, res) => {
       status: "202",
       message: "資料獲取成功",
       rows
-    })
-  })
+    });
+  });
 });
 
-router.post("/getCoupon", (req, res) => {
+router.post("/getcoupon", (req, res) => {
   let Coupon = new getCoupon(req.body.member_sid, req.body.coupon_sid);
-  db.query(Coupon.addCoupon(), (error, rows) => {
+  db.query(Coupon.checkCoupon(), (error, rows) => {
     console.log(rows);
-    if (rows.affectedRows === 1) {
-     return res.json({
-        status: "202",
-        message: "領取成功"
-      });
-    } else {
+    if (rows.length > 0) {
       return res.json({
         status: "404",
-        message: "領取失敗"
+        message: "已領取過"
+      });
+    } else {
+      db.query(Coupon.addCoupon(), (error, rows) => {
+        console.log(rows);
+        if (rows.affectedRows === 1) {
+          return res.json({
+            status: "202",
+            message: "領取成功"
+          });
+        } else {
+          return res.json({
+            status: "404",
+            message: "領取失敗"
+          });
+        }
       });
     }
-  })
+  });
 });
 
 module.exports = router;

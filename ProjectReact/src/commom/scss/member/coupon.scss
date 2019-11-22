@@ -37,7 +37,7 @@ $BtnBgc: #f5b3aa;
     width: 350px;
     height: 150px;
     position: relative;
-    span {
+    .couponSid {
       position: absolute;
       z-index: 10;
       left: 10px;
@@ -45,6 +45,7 @@ $BtnBgc: #f5b3aa;
       font-size: 14px;
       font-weight: 1000;
       white-space: nowrap;
+      background: #fff;
     }
     .couponContent {
       position: absolute;
