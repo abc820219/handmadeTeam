@@ -42,23 +42,17 @@ function App() {
     cartIngreReducer,
     ingreCart
   );
-
   
   useEffect(() => {
     if (loginLocal) {
       setLogin(true);
     }
-    // localStorage.setItem(`courseCart${loginLocal}`, "[]");
-    // localStorage.setItem(`ingreCart${loginLocal}`, "[]");
+
     if (!localStorage.getItem(`courseCart${loginLocal}`)) {
       localStorage.setItem(`courseCart${loginLocal}`, "[]");
-    } else {
-      // setCourseCart(JSON.parse(localStorage.getItem(`courseCart${loginLocal}`)))
     }
     if (!localStorage.getItem(`ingreCart${loginLocal}`)) {
       localStorage.setItem(`ingreCart${loginLocal}`, "[]");
-    } else {
-      // setIngreCart(JSON.parse(localStorage.getItem(`ingreCart${loginLocal}`)))
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [login]);

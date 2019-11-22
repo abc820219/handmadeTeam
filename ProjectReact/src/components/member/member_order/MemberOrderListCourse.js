@@ -2,13 +2,17 @@ import React, { Component } from 'react';
 import { FaRegClock } from "react-icons/fa";
 import { FaDollarSign } from "react-icons/fa";
 
-const MemberOrderListCourse = ({orderSid,courseName,courseOrderChoose,coursePrice,orderDetailData}) => {
+const MemberOrderListCourse = ({key,courseOrderSid,courseName,courseOrderChoose,coursePrice,orderDetailData,courseList}) => {
+    // if(courseOrderChoose) {
+    //     courseOrderChoose = courseOrderChoose.splice("T")[0];
+    // }
+    console.log(courseName);
     return (
         <>
             <li className="d-flex justify-content-between align-item-center my-4 flex-wrap" 
-            onClick={()=>{orderDetailData(1,orderSid)}}>
+            onClick={()=>{orderDetailData(1,courseOrderSid)}}>
             <span className='w-100'>
-                <p>訂單編號: {orderSid}</p>
+                <p>訂單編號: {key}</p>
             </span>
                 <div>
                     <h5>{courseOrderChoose}</h5>
@@ -28,7 +32,7 @@ const MemberOrderListCourse = ({orderSid,courseName,courseOrderChoose,coursePric
                 <div>
                     <figure>
                         <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRBVl9lhK94mJ5MxzGptFKO5FLRXoXVNDmjYndWy1H4kCaqDqOw"
+                            src={`/image/course_img/360/${courseList}`}
                             alt=""
                         />
                     </figure>

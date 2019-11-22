@@ -8,6 +8,7 @@ const bodyParser = require("body-parser");
 bluebird.promisifyAll(db);
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
+const moment = require("moment-timezone");
 
 // router.get('/',(req,res)=>{
 //     res.send("cart-Page");
@@ -36,12 +37,11 @@ router.post("/submitcart", (req, res) => {
         if (courseCart.length !== 0 && ingreCart.length !== 0) {
           for (i = 0; i < courseCart.length; i++) {
             db.query(
-              "INSERT INTO `course_order` (order_sid, course_sid, course_order_choose,course_order_time, course_order_applicants) VALUES (?, ?,?,?,?)",
+              "INSERT INTO `course_order` (order_sid, course_sid, course_order_choose, course_order_applicants) VALUES (?, ?,?,?)",
               [
                 order_sid,
                 courseCart[i].course_sid,
                 courseCart[i].course_order_choose,
-                courseCart[i].course_order_time,
                 courseCart[i].course_order_applicants
               ]
             );
@@ -59,12 +59,11 @@ router.post("/submitcart", (req, res) => {
         } else if (courseCart.length !== 0) {
           for (i = 0; i < courseCart.length; i++) {
             db.query(
-              "INSERT INTO `course_order` (order_sid, course_sid, course_order_choose,course_order_time, course_order_applicants) VALUES (?, ?,?,?,?)",
+              "INSERT INTO `course_order` (order_sid, course_sid, course_order_choose, course_order_applicants) VALUES (?, ?,?,?)",
               [
                 order_sid,
                 courseCart[i].course_sid,
                 courseCart[i].course_order_choose,
-                courseCart[i].course_order_time,
                 courseCart[i].course_order_applicants
               ]
             );
@@ -84,6 +83,8 @@ router.post("/submitcart", (req, res) => {
         return results;
       })
       .then((results, fields) => {
+        const formatDate = "YYYY-MM-DD HH:mm:ss";
+        results.course_order_choose = moment(results.course_order_choose).tz('Asia/Taipei').format(formatDate);
         res.json(results);
       });
   });

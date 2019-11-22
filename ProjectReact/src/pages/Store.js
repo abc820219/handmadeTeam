@@ -9,7 +9,6 @@ import CartStore from "../components/cart/CartStore";
 const Store = ({ login, checkLogIn }) => {
   let { cartCourseDispatch, courseCart, id, ingreCart, cartIngreDispatch } = useContext(CartStore);
   // console.log(cartCourseDispatch);
-
   const [courseInCart, setCourseInCart] = useState(false)
   const [courseInfo, setCourseInfo] = useState({
     course_sid: 2,
@@ -27,7 +26,7 @@ const Store = ({ login, checkLogIn }) => {
     ingredient_sid: 2,
     ingredients_price: 500,
     ingredients_en_name: "MOO-MOO-TAN-TAN",
-    ingredient_order_quantity: 5,
+    ingredient_order_quantity: 1,
     ingredient_name: "幕幕甜甜"
   });
   courseCart = courseCart || [];
