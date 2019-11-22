@@ -3,8 +3,12 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import "../../common/scss/store/styleStore.scss"
-import StoreList from "./StoreList"
+import "intersection-observer";
+
+// Components
+
 import StoreMap from './StoreMap'
+import StoreMasonryCards from './StoreMasonryCards'
 
 class StoreAll extends Component {
     render() {
@@ -55,7 +59,7 @@ class StoreAll extends Component {
                     </div>
                     <div className="storeList">
                         <div className="storeListTop"></div>
-                        
+                        <StoreMasonryCards />
                     </div>
                 </div>
             </>
