@@ -235,7 +235,17 @@ class CourseAll extends Component {
             .filter(obj => {
                 let { price } = new_course_filter
                 if (price) {
-                    return obj.course_price == price
+                    let course_price = parseInt (obj.course_price)
+                    if(price=="500元~700元"){
+                        return (500<course_price && course_price <700)
+                    }else if(price=="700元-1000元"){
+                        return(700<=course_price && course_price<1000)
+                    }else if(price =="1000元-1500元"){
+                        return(1000<=course_price && course_price<1500)
+                    }else{
+                        return(1500<=course_price)
+                    }
+                    
                 } else {
                     return true;
                 }

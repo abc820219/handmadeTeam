@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import CourseAll from "../components/course/CourseAll"
+import Class_detail from "../components/course/Class_detail"
 import NavBar from "../components/NavBar";
 
-class Course extends Component {
+class Course_detail extends Component {
   constructor(props) {
     super(props);
   }
@@ -15,10 +15,10 @@ class Course extends Component {
           login={this.props.login}
           checkLogIn={this.props.checkLogIn}
         ></NavBar>
-      <CourseAll/>
+      <Class_detail/>
     </>
       ) 
   }
 }
 
-export default Course;
+export default Course_detail;

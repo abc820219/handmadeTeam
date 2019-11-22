@@ -10,7 +10,8 @@ import {
   Teacher,
   Teacher_Subject,
   Ingredients,
-  MemberEmail
+  MemberEmail,
+  Course_detail
 } from "./routes/index";
 import CartStore from "./components/cart/CartStore";
 import {
@@ -101,6 +102,13 @@ function App() {
             )}
           ></Route>
           <Route
+            path="/handmade/store/course/:sid?"
+            exact
+            component={() => (
+              <Course_detail login={{ login }} checkLogIn={checkLogIn} />
+            )}
+          ></Route>
+          <Route
             path="/handmade/member/:id?"
             component={() => (
               <Member login={{ login }} checkLogIn={checkLogIn}/>
@@ -125,9 +133,13 @@ function App() {
             )}
           ></Route>
           <Route
-            path="/handmade/teacher/subject"
-            component={() => (
-              <Teacher_Subject login={{ login }} checkLogIn={checkLogIn} />
+            path="/handmade/teacher/subject/:image_id?"
+            component={props => (
+              <Teacher_Subject
+                {...props}
+                login={{ login }}
+                checkLogIn={checkLogIn}
+              />
             )}
           ></Route>
           <Route

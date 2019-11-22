@@ -8,8 +8,9 @@ import NavBarUnSign from "./NavBarUnSign";
 import MemberBox from "./MemberBox";
 import { relative } from "path";
 import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
-const NavBar = ({ checkLogIn, login }) => {
+const NavBar = ({ checkLogIn, login, ...props }) => {
   console.log(login.login);
   const [showLightBox, setShowLightBox] = useState(false);
   const [showMenuBtn, setshowMenuBtn] = useState(false);
@@ -108,7 +109,12 @@ const NavBar = ({ checkLogIn, login }) => {
             login={login}
           />
         ) : (
-          <NavBarSign openCart={openCart} showCart={showCart} login={login} memberImgName={memberImgName} />
+          <NavBarSign
+            openCart={openCart}
+            showCart={showCart}
+            login={login}
+            memberImgName={memberImgName}
+          />
         )}
       </nav>
       {/* ------------------ */}
@@ -123,4 +129,4 @@ const NavBar = ({ checkLogIn, login }) => {
   );
 };
 
-export default NavBar;
+export default withRouter(NavBar);
