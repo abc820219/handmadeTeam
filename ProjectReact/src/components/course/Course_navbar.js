@@ -5,15 +5,7 @@ import "../../commom/scss/course/course_list_navbar.scss";
 
 
 class Course_navbar extends Component {
-    constructor() {
-        super()
-
-    }
-
-    componentDidMount() {
-
-
-    }
+ 
     render() {
 
         return (
