@@ -6,23 +6,85 @@ import "bootstrap/dist/css/bootstrap.min.css";
 class OrderInfo extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      subject_name: "",
+      people: "1",
+      // 最大可報名人數
+      maxPeople: "4",
+    };
   }
 
   componentDidMount() {
-    this.getApiData();
+    // this.getApiData();
+    this.getSubjectInfo();
   }
 
-  // ------ get API 取得報名人數、載入報名資料 ------
-  getApiData = () => {
-    fetch("http://localhost:3000/teacher/")
+  // ------------ 取得開課資料------------
+  getSubjectInfo = () => {
+    console.log("this props:", this.props.subject_sid); //開課編號
+    fetch(
+      "http://localhost:5000/handmade/teacher/subject/" +
+        this.props.subject_sid,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "content-type": "application/json"
+        }
+      }
+    )
       .then(res => res.json())
-      .then(member => {
-        this.setState({
-          signuplist: [],
-          ownerInfo: ""
-        });
+      .then(data => {
+        let Data = data[0];
+        console.log("subject data:", Data);
+        this.setState(
+          {
+            subject_name: Data[0].subject_name,
+            subject_date: Data[0].subject_date,
+            subject_address: Data[0].subject_address,
+            subject_price: Data[0].subject_price,
+            subject_img: Data[0].subject_img
+          },
+          () => {
+           console.log(Data[0].subject_date);
+          }
+        );
       });
+  };
+
+  // ------ get API 取得報名人數、載入報名資料 ------
+  // getApiData = () => {
+  //   fetch("http://localhost:3000/teacher/")
+  //     .then(res => res.json())
+  //     .then(member => {
+  //       this.setState({
+  //         // signuplist: [],
+  //         ownerInfo: ""
+  //       });
+  //     });
+  // };
+
+  // ------------  報名人數增加處理------------
+  plus = () => {
+    // console.log("plus");
+    this.setState({
+      people:
+        this.state.people >= this.state.maxPeople
+          ? this.state.maxPeople
+          : this.state.people * 1 + 1
+      // totalPrice:this.state.people*this.state.subjectPrice
+    });
+    // console.log(this.state.people * 1 + 1);
+  };
+
+  //------------ 報名人數減少處理------------
+  minus = () => {
+    // console.log("minus");
+    this.setState({
+      people: this.state.people > 1 ? this.state.people - 1 : 1
+      // 會差一步!!
+      // totalPrice: this.state.people * this.state.subjectPrice
+    });
   };
 
   // // 改變文字onChange功能
@@ -33,12 +95,12 @@ class OrderInfo extends Component {
   //   // console.log(this.state.username)  <= 會慢一步，錯誤寫法
   // };
 
-  // ------ post API 上傳報名資料 ------
+  // ------------post API 上傳報名資料------------
   postMeberInfo = () => {
     let postData = {
       username: this.state.username,
       phone: this.state.phone,
-      email: this.state.email
+      pepple:this.state.people
     };
     fetch("http://localhost:3000/api/upload", {
       method: "POST",
@@ -53,31 +115,52 @@ class OrderInfo extends Component {
   };
 
   render() {
-    console.log(this.state.username);
+    console.log("props:", this.props.subject_sid);
+    // console.log(this.state.username);
     return (
       <>
         <div className="d-flex">
           <sidebar className="booking-sidebar">
-            <div className="subject-header">header</div>
-            <div className="subject-img">
-              <img className="sub-img" src=""></img>
+            <div className="subject-header"></div>
+            {/* 開課圖 */}
+            <div className="subject-smallimg">
+              <img className="sub-img" src={`/image/${this.state.subject_img}`}></img>
             </div>
             <div className="subject-data">
-              <div>課程名稱xxx</div>
-              <div>開課日期xxx</div>
-              <div>地區xxx</div>
+              <div className="order-subject-name">
+                {this.state.subject_name}
+              </div>
+              <div className="order-subject-date">
+                {this.state.subject_date}
+              </div>
+              <div className="order-subject-address">{this.state.subject_address}</div>
               <div>會員xxx</div>
             </div>
             <div className="price-info">
               <div className="price-info-line">
                 <span className="price-left">課程價格</span>
-                <span className="price-right">123</span>
+                <span className="price-right">
+                  <span>$</span>
+                  {this.state.subject_price}
+                </span>
               </div>
               <div className="price-info-line">
-                <span className="price-left">參加人數</span>
-                <span className="price-right">99</span>
+                <span className="price-left">報名人數</span>
+                <button className="minus" onClick={this.minus}>
+                  -
+                </button>
+                <span className="price-right">
+                  {this.state.people}
+                </span>
+                <button className="plus" onClick={this.plus}>
+                  +
+                </button>
               </div>
-              <div className="price-info-total">$1,998</div>
+              <div className="price-info-total">
+                {/* 總價 */}
+                <span>$</span>
+                {this.state.subject_price * this.state.people}
+              </div>
             </div>
             <div className="subject-btn">
               <button className="order-btn" onClick={this.postMeberInfo}>

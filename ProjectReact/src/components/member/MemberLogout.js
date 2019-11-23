@@ -1,10 +1,12 @@
 import React from "react";
-function LogOut() {
+import { withRouter } from "react-router-dom";
+
+function LogOut(props) {
   const memberLogOut = () => {
     localStorage.removeItem("member_id");
     localStorage.removeItem("member_data");
     alert("登出成功");
-    window.location = "http://localhost:3000/handmade/";
+    window.location = window.location = `http://localhost:3000${props.location.pathname}`;
   };
   return (
     <>
@@ -17,4 +19,4 @@ function LogOut() {
     </>
   );
 }
-export default LogOut;
+export default withRouter(LogOut);

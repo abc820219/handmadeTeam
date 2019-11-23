@@ -3,6 +3,8 @@ import FacebookLogin from "./FacebookLogin";
 import { FaUserAlt, FaKey, FaEye } from "react-icons/fa";
 import Captcha from "captcha-mini";
 import "../commom/scss/MemberLogin.scss";
+import { withRouter } from "react-router-dom";
+
 function MemberLogin(props, { checkLogIn }) {
   const [MemberLogin, setMemberLogin] = useState(true);
   const [account, setaccount] = useState("");
@@ -89,7 +91,7 @@ function MemberLogin(props, { checkLogIn }) {
         console.log(member_data.info);
         alert(member_data.message);
         setTimeout(() => {
-          window.location = "http://localhost:3000/handmade/member";
+          window.location = `http://localhost:3000${props.location.pathname}`;
         });
       })
       .catch(async err => {
@@ -140,7 +142,7 @@ function MemberLogin(props, { checkLogIn }) {
                   value={password}
                 />
                 <div className="passwordShow">
-                  <FaEye  onClick={() => setShown(!shown)}/>
+                  <FaEye onClick={() => setShown(!shown)} />
                 </div>
                 <p className="errorText">{formErrors.password} &nbsp;</p>
               </li>
@@ -167,8 +169,16 @@ function MemberLogin(props, { checkLogIn }) {
               />
             </div>
             <div className="text-center m-3 member-footer-text">
-              <span className="password-forget">忘記密碼&nbsp;</span>
-              <span className="register" onClick={props.boxStateChange}>
+              <span
+                className="password-forget"
+                onClick={() => props.boxStateChange(3)}
+              >
+                忘記密碼&nbsp;
+              </span>
+              <span
+                className="register"
+                onClick={() => props.boxStateChange(1)}
+              >
                 /&nbsp;註冊
               </span>
             </div>
@@ -181,4 +191,4 @@ function MemberLogin(props, { checkLogIn }) {
   }
 }
 
-export default MemberLogin;
+export default withRouter(MemberLogin);

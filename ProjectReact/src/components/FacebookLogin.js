@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import FacebookLogin from "react-facebook-login";
+import { withRouter } from "react-router-dom";
 
 class Facebook extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {};
   }
   render() {
@@ -46,12 +47,13 @@ class Facebook extends Component {
         localStorage.setItem("member_data", JSON.stringify(member_data.info));
         alert(member_data.message);
         setTimeout(() => {
-          window.location = "http://localhost:3000/handmade/member";
-        }).catch(async err => {
-          console.log(err);
-          alert("註冊失敗");
+          window.location = window.location = `http://localhost:3000${this.props.location.pathname}`;
         });
+      })
+      .catch(async err => {
+        console.log(err);
+        alert("註冊失敗");
       });
   };
 }
-export default Facebook;
+export default withRouter(Facebook);

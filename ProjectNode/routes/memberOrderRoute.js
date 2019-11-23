@@ -90,7 +90,6 @@ router.post("/orderDetail", (req, res, next) => {
 
 router.get("/orderDetail/:id", (req, res, next) => {
   const id = req.params.id;
-  console.log(id);
   db.query(OrderDetail.orderDetailSQL(id), (error, rows) => {
     if (error) {
       res.json({

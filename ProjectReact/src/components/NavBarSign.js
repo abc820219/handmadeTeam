@@ -5,36 +5,15 @@ import { TiShoppingCart } from "react-icons/ti";
 import { Link } from "react-router-dom";
 import SmallCart from "./cart/SmallCart";
 import LogOut from "./member/MemberLogout";
-const NavBarSign = ({ openCart, showCart, login }) => {
+const NavBarSign = ({ openCart, showCart, login,...props }) => {
   const logoPattern = {
     fontSize: "30px",
     color: "white"
-  };
-  const [memberImgName, setMemberImgName] = useState("");
-  const [imgHand, setImgHand] = useState(false);
+  };  
   const [memberList, setMemberList] = useState(false);
   const memberShow = () => {
     setMemberList(!memberList);
   };
-  useEffect(() => {
-    fetch("http://localhost:5000/handmade/member/getMemberImg", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        member_sid: localStorage.getItem("member_id")
-      })
-    })
-      .then(res => {
-        return res.json();
-      })
-      .then(rows => {
-        console.log(rows);
-        setMemberImgName(rows.info[0].member_photo_name);
-      })
-      .catch(error => console.log(error));
-  }, [imgHand]);
   return (
     <>
       <div
@@ -45,9 +24,9 @@ const NavBarSign = ({ openCart, showCart, login }) => {
           <div className="navbar-img-box">
           <img
             src={
-              !memberImgName
+              !props.memberImgName
                 ? "http://g.udn.com.tw/upfiles/B_AN/andy2946/PSN_PHOTO/813/f_23140813_1.jpg"
-                : `http://localhost:5000/images/member/member${memberImgName}`
+                : `http://localhost:5000/images/member/member${props.memberImgName}`
             }
           ></img>
           </div>
@@ -80,7 +59,7 @@ const NavBarSign = ({ openCart, showCart, login }) => {
         <div>
           <TiShoppingCart
             style={logoPattern}
-            onMouseEnter={() => openCart(true)}
+            onClick={() => openCart(true)}
             onMouseLeave={() => openCart(false)}
             name="cart"
           />

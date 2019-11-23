@@ -36,7 +36,7 @@ const StoreMasonryCards = () => {
         <Root>
             {bg.map((item, index) => (
                 <Brick className="storeMasonryCard" bg={item}>
-                    <img className="storeSpacePhoto" src={`../images/store/aMaFaconCafeSpace.jpg`} />
+                    <img className="storeSpacePhoto" src={`/image/store/aMaFaconCafeSpace.jpg`} />
                     <div className="storeCardTop">
                         <div className="storeName">
                             <p>À ma façon Café & Dessert 焙窩手工甜點</p>
@@ -45,7 +45,7 @@ const StoreMasonryCards = () => {
                     </div>
                     <div className="storeCardDown">
                         <div className="storeCardDownMain">
-                            <img className="storeLogoPhoto" src={`../images/store/aMaFaconCafeLogo.jpg`} />
+                            <img className="storeLogoPhoto" src={`/image/store/aMaFaconCafeLogo.jpg`} />
                             <div className="storeIntroduce">
                                 <p>焙窩從一人工作室起家，每一個甜點都是經由我們的雙手一步一步完成。不追求大量生產製造，是相信手工製作的溫度是機械化無法比擬的，就像家常菜一樣讓人感到回味和想念。但也因為純手工製作，為了維持住品質，一直以來焙窩的產出雖有經過時間的淬鍊而成長，但仍無法與工廠製造量相比。對我們來說，每一個甜點不單單只是一項商品，更是我們視為作品的呈現。</p>
                             </div>
