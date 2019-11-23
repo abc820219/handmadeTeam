@@ -55,8 +55,9 @@ const MemberEdit = () => {
         if (isSub) {
           console.log(res.info);
           setmember_address(res.info.member_address);
-          setmember_birthday(res.info.member_birth.slice(0, 10));
-          setbirthday(res.info.member_birth.slice(0, 10));
+          if (res.info.member_birth) {
+            setmember_birthday(res.info.member_birth.slice(0, 10));
+          }
           setmember_email(res.info.member_email);
           setmember_name(res.info.member_name);
           setmember_nickname(res.info.member_nickname);
@@ -125,7 +126,6 @@ const MemberEdit = () => {
                     />
                   </div>
                   <br></br>
-                  <span></span>
                 </div>
               </div>
               <div className="d-flex edit-rwd justify-content-center">
@@ -152,7 +152,10 @@ const MemberEdit = () => {
                     />
                   </div>
                   <br></br>
-                  <span className="errorText d-flex align-items-center">{formErrors.email?<FiXCircle/>:""}{formErrors.email}</span>
+                  <span className="errorText d-flex align-items-center">
+                    {formErrors.email ? <FiXCircle /> : ""}
+                    {formErrors.email}
+                  </span>
                 </div>
               </div>
               <div className="d-flex edit-rwd justify-content-center">
@@ -177,7 +180,10 @@ const MemberEdit = () => {
                     />
                   </div>
                   <br></br>
-                  <span className="errorText d-flex align-items-center">{formErrors.phone?<FiXCircle/>:""}{formErrors.phone} </span>
+                  <span className="errorText d-flex align-items-center">
+                    {formErrors.phone ? <FiXCircle /> : ""}
+                    {formErrors.phone}{" "}
+                  </span>
                 </div>
                 <div className="short-input">
                   <div className="titleH">birthday</div>
@@ -227,14 +233,17 @@ const MemberEdit = () => {
                     />
                   </div>
                   <br />
-                  <span className="errorText d-flex align-items-center">{formErrors.address?<FiXCircle/>:""}{formErrors.address}</span>
+                  <span className="errorText d-flex align-items-center">
+                    {formErrors.address ? <FiXCircle /> : ""}
+                    {formErrors.address}
+                  </span>
                 </div>
               </div>
             </div>
             <div className="MemberEditFooter  d-flex  flex-column align-items-end">
               <input
                 name=""
-                className="formBtn mt-5"
+                className="formBtn"
                 type="submit"
                 value="修改"
                 onClick={formSubmit}
@@ -249,6 +258,10 @@ const MemberEdit = () => {
   //-------------------------------------事件------------------
   function formSubmit(event) {
     event.preventDefault();
+    if (formErrors.email || formErrors.phone) {
+      alert("請輸入正確資訊");
+      return;
+    }
     console.log("formSubmit");
     fetch("http://localhost:5000/handmade/member/MemberEdit", {
       method: "POST",

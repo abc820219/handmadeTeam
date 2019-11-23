@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { MdCancel } from "react-icons/md";
 import CartStore from "./CartStore";
-
+import {cancelCourse} from "./CartAction";
 const CartIngreCard = ({
   pos,
   ingre_sid,
@@ -13,17 +13,25 @@ const CartIngreCard = ({
   ingreAmountBtn,
   ingreDelBtn
 }) => {
-  const { step } = useContext(CartStore);
+  const { step,id, cartIngreDispatch,ingreCart} = useContext(CartStore);
   let invisible_button = { visibility: step ? "hidden" : "visible" };
+  console.log(ingreCart);
+  const courseInfo = {
+    ingredient_sid: ingre_sid,
+    ingredient_name: ingre_name,
+    ingredients_price: ingre_pic,
+    ingredient_order_quantity: ingre_order_quantity,
+    ingredients_en_name: ingre_en_name,
+  };
 
   return (
     <>
       <li className="d-flex flex-sm-wrap">
-        <input
+        {/* <input
           type="checkbox"
           name="selectTotalCourse"
           style={invisible_button}
-        />
+        /> */}
         <div className="checkListBox">
           <h4>
             <span>{ingre_en_name}</span>
@@ -66,6 +74,7 @@ const CartIngreCard = ({
           style={invisible_button}
           onClick={() => {
             ingreDelBtn(pos);
+            cartIngreDispatch(cancelCourse(courseInfo,id));
           }}
         />
       </li>

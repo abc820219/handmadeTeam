@@ -3,15 +3,15 @@ import LogOut from "./MemberLogout";
 import { AiFillPicture } from "react-icons/ai";
 import "../../commom/scss/member/member_sideBar.scss";
 import { Link } from "react-router-dom";
+import UseWinSize from "../UseWinSize";
 
-const MemberSideBar = ({ match }) => {
+const MemberSideBar = ({ match, showSideBar }) => {
   const [memberImgName, setMemberImgName] = useState("");
   const [imgHand, setImgHand] = useState(false);
   const [tokeId, setTokenId] = useState("");
   useEffect(() => {
     if (JSON.parse(localStorage.getItem("member_data"))) {
       setTokenId(JSON.parse(localStorage.getItem("member_data")).token_id);
-      console.log(tokeId);
     }
   }, []);
   useEffect(() => {
@@ -28,7 +28,6 @@ const MemberSideBar = ({ match }) => {
         return res.json();
       })
       .then(rows => {
-        console.log(rows);
         setMemberImgName(rows.info[0].member_photo_name);
       })
       .catch(error => console.log(error));
@@ -36,12 +35,8 @@ const MemberSideBar = ({ match }) => {
   const imgChange = e => {
     let file = e.target.files[0];
     let imgName = file.name;
-    console.log(imgName);
-    console.log(file);
     const data = new FormData();
-    console.log(data + "1");
     data.append("file", file);
-    console.log(data);
     fetch("http://localhost:5000/handmade/member/upload", {
       method: "POST",
       body: data
@@ -62,14 +57,19 @@ const MemberSideBar = ({ match }) => {
           })
           .then(res => {
             alert(res.message);
-            console.log(res);
             setImgHand(!imgHand);
           });
       })
       .catch(error => console.log(error));
   };
   return (
-    <aside className="member-side-bar d-flex flex-column align-items-center">
+    <aside
+      className={
+        showSideBar
+          ? "member-side-bar d-flex flex-column align-items-center member-side-bar-hide"
+          : "member-side-bar d-flex flex-column align-items-center member-side-bar-hide  member-side-bar-show"
+      }
+    >
       <div className="member-side-bar-header">
         <div className="imgBox d-flex  flex-column justify-content-center align-items-center">
           <img
@@ -99,12 +99,22 @@ const MemberSideBar = ({ match }) => {
       <div className="member-side-bar-info">
         <ul>
           PROFILE
-          <li >
-            <Link to="/handmade/member/edit" style={{color:"#fff",textDecoration: "none"}}>基本資料</Link>
+          <li>
+            <Link
+              to="/handmade/member/edit"
+              style={{ color: "#fff", textDecoration: "none" }}
+            >
+              基本資料
+            </Link>
           </li>
           {!tokeId ? (
             <li>
-              <Link to="/handmade/member/passwordEdit" style={{color:"#fff",textDecoration: "none"}}>重設密碼</Link>
+              <Link
+                to="/handmade/member/passwordEdit"
+                style={{ color: "#fff", textDecoration: "none" }}
+              >
+                重設密碼
+              </Link>
             </li>
           ) : (
             ""
@@ -113,18 +123,40 @@ const MemberSideBar = ({ match }) => {
         <ul>
           PROFILE
           <li>收藏清單</li>
-          <li>優惠活動</li>
+          <li>
+            <Link
+              to="/handmade/member/coupon"
+              style={{ color: "#fff", textDecoration: "none" }}
+            >
+              優惠活動
+            </Link>
+          </li>
         </ul>
         <ul>
           PROFILE
           <li>
-            <Link to="/handmade/member/order" style={{color:"#fff",textDecoration: "none"}}>訂單紀錄</Link>
+            <Link
+              to="/handmade/member/order"
+              style={{ color: "#fff", textDecoration: "none" }}
+            >
+              訂單紀錄
+            </Link>
           </li>
           <li>
-            <Link to="/handmade/member/cart" style={{color:"#fff",textDecoration: "none"}}>購物車</Link>
+            <Link
+              to="/handmade/member/cart"
+              style={{ color: "#fff", textDecoration: "none" }}
+            >
+              購物車
+            </Link>
           </li>
           <li>
-            <Link to="/handmade/" style={{color:"#fff",textDecoration: "none"}}>回首頁</Link>
+            <Link
+              to="/handmade/"
+              style={{ color: "#fff", textDecoration: "none" }}
+            >
+              回首頁
+            </Link>
           </li>
         </ul>
       </div>

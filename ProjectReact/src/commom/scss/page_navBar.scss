@@ -11,6 +11,7 @@
   padding: 0 30px;
   z-index: 9999;
   .page-nav-aside {
+    z-index: 2000;
     height: 100%;
     h3 {
       font-size: 25px;
@@ -29,7 +30,6 @@
       padding: 0 0 0 30px;
       li {
         padding: 10px;
-      
       }
     }
   }
@@ -97,12 +97,13 @@
     padding: 0;
     transition: 2s;
     color: #fff;
-    position: absolute;
-    background-color: #362d2b;
-    min-height: 937px;
-    width: 300px;
+    position: fixed;
     top: 0;
     left: -100%;
+    width: 300px;
+    height: 100%;
+    background-color: #362d2b;
+    z-index: 99;
   }
   .move {
     left: 0%;

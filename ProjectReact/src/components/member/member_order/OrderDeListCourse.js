@@ -25,35 +25,23 @@ const OrderDeListCourse = ({ orderDetail }) => {
     const dataJson = await fetch(`http://localhost:5000/orderDetail/${id}`);
     const data = await dataJson.json();
     await console.log(data);
-    // const {
-    //   couse_order_choose,
-    //   course_list,
-    //   course_order_applicants,
-    //   course_name,
-    //   order_create_time,
-    //   order_sid,
-    //   course_spend_time,
-    //   course_taste,
-    //   course_price
-    // } = await data;
   };
 
+  const {
+    couse_order_choose,
+    course_list,
+    course_order_applicants,
+    course_name,
+    order_create_time,
+    order_sid,
+    course_spend_time,
+    course_taste,
+    course_price
+  } = orderDetail;
+
   useEffect(() => {
-    if (!orderDetail) {
-      fetchDetail();
-    } else {
-      const {
-        couse_order_choose,
-        course_list,
-        course_order_applicants,
-        course_name,
-        order_create_time,
-        order_sid,
-        course_spend_time,
-        course_taste,
-        course_price
-      } = orderDetail;
-    }
+    fetchDetail();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -62,15 +50,15 @@ const OrderDeListCourse = ({ orderDetail }) => {
       <div className="container-fluid orderDeCourse d-flex flex-column">
         <wrapper className="d-flex flex-column justify-content-center">
           <div className="d-flex justify-content-between align-items-center px-4">
-            <h5>couse_order_choose</h5>
+            <h5>{couse_order_choose}</h5>
             <div>
               <p className="mr-3">
                 <FaRegClock className="mr-2" />
-                course_taste
+                {course_taste}
               </p>
               <p className="mr-3">
                 <FaDollarSign className="mr-2" />
-                訂單編號: order_sid
+                訂單編號: {order_sid}
               </p>
             </div>
           </div>
@@ -89,11 +77,11 @@ const OrderDeListCourse = ({ orderDetail }) => {
                   <div>
                     <div>
                       <p>課程名稱</p>
-                      <h5>course_name</h5>
+                      <h5>{course_name}</h5>
                     </div>
                     <div>
                       <p>訂購日期</p>
-                      <h5>order_create_time</h5>
+                      <h5>{order_create_time}</h5>
                     </div>
                   </div>
                   <div className="ml-auto">
@@ -116,7 +104,7 @@ const OrderDeListCourse = ({ orderDetail }) => {
                   </li>
                   <li>
                     <div className="my-1 mt-2 d-flex justify-content-center align-items-center">
-                      <h4 style={{ color: "#9597A6" }}>course_spend_time</h4>
+                      <h4 style={{ color: "#9597A6" }}>{course_spend_time}</h4>
                     </div>
                     <p>HR</p>
                   </li>

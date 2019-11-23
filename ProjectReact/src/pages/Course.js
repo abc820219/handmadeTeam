@@ -15,7 +15,7 @@ class Course extends Component {
           login={this.props.login}
           checkLogIn={this.props.checkLogIn}
         ></NavBar>
-    <CourseAll/>
+      <CourseAll/>
     </>
       ) 
   }

@@ -1,0 +1,33 @@
+.Ingre {
+  .IngreHeader {
+    padding: 20px 10px 0 10px;
+  }
+  .IngreMain {
+    height: -webkit-calc(100vh - 190px);
+    overflow-y: scroll;
+    ul {
+      padding: 0 20px;
+      li {
+        ul {
+          img {
+            margin: auto;
+            overflow: hidden;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: top;
+          }
+          .Ingre-info {
+            margin-left: 100px;
+          }
+        }
+      }
+    }
+  }
+  .IngreFooter {
+    .totleBox {
+      padding: 10px;
+    }
+  }
+}
