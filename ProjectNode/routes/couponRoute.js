@@ -70,26 +70,39 @@ router.post("/getcoupon", (req, res) => {
     }
   });
 });
-
-router.get("/couponStatus0", (req, res) => {
-  let Coupon = new getCoupon(req.body.member_sid, req.body.coupon_sid);
+router.post("/couponStatus0", (req, res) => {
+  let Coupon = new getCoupon(req.body.member_sid);
   db.query(Coupon.checkCouponStatus0(), (error, rows) => {
-    return res.json({
-      status: "202",
-      message: "資料獲取成功",
-      rows
-    });
+    console.log(rows);
+    if (rows.length > 0) {
+      return res.json({
+        status: "202",
+        message: rows.length,
+        rows
+      });
+    } else {
+      return res.json({
+        status: "404",
+        message: "沒有優惠卷,請到活動專區領取"
+      });
+    }
   });
 });
-
-router.get("/couponStatus1", (req, res) => {
-  let Coupon = new getCoupon(req.body.member_sid, req.body.coupon_sid);
+router.post("/couponStatus1", (req, res) => {
+  let Coupon = new getCoupon(req.body.member_sid);
   db.query(Coupon.checkCouponStatus1(), (error, rows) => {
-    return res.json({
-      status: "202",
-      message: "資料獲取成功",
-      rows
-    });
+    console.log(rows);
+    if (rows.length > 0) {
+      return res.json({
+        status: "202",
+        rows
+      });
+    } else {
+      return res.json({
+        status: "404",
+        message: "沒有使用過的優惠卷"
+      });
+    }
   });
 });
 
