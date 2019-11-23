@@ -1,53 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { StoreData } from "./StoreData"
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
-const bg = [
-    "#7FDBFF",
-    "#39CCCC",
-    "#85144b",
-    "#FF851B",
-    "#996666",
-    "#cc6666",
-    "#cccc99",
-    "#7FDBFF",
-    "#39CCCC",
-    "#85144b",
-    "#FF851B",
-    "#996666",
-    "#7FDBFF",
-    "#39CCCC",
-    "#85144b",
-    "#FF851B",
-    "#996666",
-    "#cc6666",
-    "#cccc99",
-    "#7FDBFF",
-    "#39CCCC",
-    "#85144b",
-    "#FF851B",
-    "#996666"
-];
+const StoreMasonryCards = ({storeDataLoad}) => {
 
-const StoreMasonryCards = () => {
     return (
         <Root>
-            {bg.map((item, index) => (
-                <Brick className="storeMasonryCard" bg={item}>
-                    <img className="storeSpacePhoto" src={`/image/store/aMaFaconCafeSpace.jpg`} />
+            {storeDataLoad.map((item, index) => (
+                <Brick className="storeMasonryCard">
+                    <img className="storeSpacePhoto" src={`/image/store/${item.store_space_photo}`} />
                     <div className="storeCardTop">
                         <div className="storeName">
-                            <p>À ma façon Café & Dessert 焙窩手工甜點</p>
+                            <p>{item.store_name}</p>
                         </div>
 
                     </div>
                     <div className="storeCardDown">
                         <div className="storeCardDownMain">
-                            <img className="storeLogoPhoto" src={`/image/store/aMaFaconCafeLogo.jpg`} />
+                            <img className="storeLogoPhoto" src={`/image/store/${item.store_logo}`} />
                             <div className="storeIntroduce">
-                                <p>焙窩從一人工作室起家，每一個甜點都是經由我們的雙手一步一步完成。不追求大量生產製造，是相信手工製作的溫度是機械化無法比擬的，就像家常菜一樣讓人感到回味和想念。但也因為純手工製作，為了維持住品質，一直以來焙窩的產出雖有經過時間的淬鍊而成長，但仍無法與工廠製造量相比。對我們來說，每一個甜點不單單只是一項商品，更是我們視為作品的呈現。</p>
+                                <p>{item.store_introduce}</p>
                             </div>
                         </div>
                         <div className="storeEnterButton">

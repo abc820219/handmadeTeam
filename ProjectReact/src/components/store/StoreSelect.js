@@ -13,6 +13,7 @@ const CustomOption = props => {
 };
 
 const options = [
+  { value: "0", label: "全島" },
   { value: "1", label: "基隆市" },
   { value: "2", label: "台北市" },
   { value: "3", label: "新北市" },
