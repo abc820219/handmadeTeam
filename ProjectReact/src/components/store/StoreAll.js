@@ -52,7 +52,7 @@ const StoreAll = () => {
             const data = await dataJson.json();
             setAreaNowCatch(data.area_name);
           } catch (e) {
-            console.log(e);
+            console.log(e); 
           }
         };
     
