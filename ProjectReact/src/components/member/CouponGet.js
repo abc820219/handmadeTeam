@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../../commom/scss/member/coupon.scss";
 
 const CouponGet = () => {
-    const [couponData, setCouponData] = useState("");
+  const [couponData, setCouponData] = useState("");
   const getCoupon = e => {
     e.preventDefault();
     console.log(e.target.name);

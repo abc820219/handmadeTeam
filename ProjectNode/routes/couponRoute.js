@@ -19,11 +19,13 @@ class getCoupon {
   }
 
   checkCouponStatus0() {
-    let sql = `SELECT * FROM member_coupon WHERE member_sid = "${this.member_sid}"  AND  member_coupon_used = "0"`;
+    let sql = `SELECT *
+    FROM member_coupon  JOIN coupon USING(coupon_sid) WHERE member_coupon.member_sid="${this.member_sid}" AND member_coupon.member_coupon_used="0"; `;
     return sql;
   }
   checkCouponStatus1() {
-    let sql = `SELECT * FROM member_coupon WHERE member_sid = "${this.member_sid}"  AND  member_coupon_used = "1"`;
+    let sql = `SELECT *
+    FROM member_coupon  JOIN coupon USING(coupon_sid) WHERE member_coupon.member_sid="${this.member_sid}" AND member_coupon.member_coupon_used="1"; `;
     return sql;
   }
 
@@ -50,7 +52,7 @@ router.post("/getcoupon", (req, res) => {
     if (rows.length > 0) {
       return res.json({
         status: "404",
-        message: "已領取過"
+        message: "已領取過",
       });
     } else {
       db.query(Coupon.addCoupon(), (error, rows) => {

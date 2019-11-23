@@ -2,49 +2,25 @@ import React from "react";
 import { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../commom/scss/member/coupon.scss";
-
+import { Nav } from "react-bootstrap";
+import MyCoupon0 from "./MyCoupon0";
+import MyCoupon1 from "./MyCoupon1";
 const MyCoupon = () => {
-    const [couponData, setCouponData] = useState("");
-  useEffect(() => {
-    fetch("http://localhost:5000/handmade/coupon", {
-      method: "GET"
-    })
-      .then(res => {
-        return res.json();
-      })
-      .then(row => {
-        console.log(row);
-        setCouponData(row.rows);
-      });
-  }, []);
-  if (couponData === "") return <></>;
+  const [couponStatus, setCouponStatus] = useState(true);
   return (
     <>
-      <h2>我的優惠卷</h2>
-      {couponData.map((v, index) => {
-        return (
-            <div className="d-flex justify-content-center" key={index}>
-              <div className="py-3">
-                <div className="coupon d-flex flex-nowrap ">
-                  <div className="coupon-left">
-                    <p className="coupon-left-content">
-                      <span>{v.coupon_price}折</span>
-                    </p>
-                  </div>
-                  <div className="coupon-con">
-                    <input
-                      name="coupon_sid"
-                      className="couponSid"
-                      value={`優惠卷編號:${v.coupon_sid}`}
-                      disabled
-                    ></input>
-                    <div className="couponContent">{v.coupon_content}</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-        );
-      })}
+      <div className="d-flex justify-content-center">
+        <h2>我的優惠卷</h2>
+        <Nav justify variant="tabs">
+          <Nav.Item>
+            <Nav.Link onClick={()=>setCouponStatus(true)}>未使用</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link onClick={()=>setCouponStatus(false)}>已使用</Nav.Link>
+          </Nav.Item>
+        </Nav>
+      </div>
+      {couponStatus ? <MyCoupon0 /> : <MyCoupon1 />}
     </>
   );
 };
