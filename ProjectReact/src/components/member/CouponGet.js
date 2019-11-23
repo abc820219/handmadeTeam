@@ -2,7 +2,6 @@ import React from "react";
 import { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../commom/scss/member/coupon.scss";
-import { Route, Switch } from "react-router-dom";
 
 const CouponGet = () => {
     const [couponData, setCouponData] = useState("");
