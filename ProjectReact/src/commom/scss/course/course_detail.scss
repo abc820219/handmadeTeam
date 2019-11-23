@@ -1,0 +1,269 @@
+@import url("https://use.typekit.net/zkl0auq.css");
+
+::-webkit-scrollbar {
+  width: 0 !important;
+}
+.course_detail {
+  position: relative;
+  width: inherit;
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  .detail_navbar_wrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 25%;
+    height: 100%;
+    background-color: #362d2b;
+    z-index: 99;
+    .detail_navbar {
+      // border: 1px red solid;
+      width: 100%;
+      position: absolute;
+      transform: translateX(-50%);
+      top: 10vh;
+      left: 50%;
+      .course_detail_info {
+        // border: 1px red solid;
+        color: #ffffff;
+        text-shadow: #c57647 3px 3px 12px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        .course_detail_price {
+          background: #e9756e;
+          box-shadow: #e71c4c40 0px 18px 18px;
+          max-width: 185px;
+          max-height: 108px;
+          border-radius: 10px;
+          font-size: 2.5vw;
+          align-self: center;
+          padding: 10px;
+        }
+        .course_detail_name {
+          margin: 0 0 0 1vw;
+          .course_difficult {
+            display: flex;
+            width: 90%;
+            div {
+              font-size: 15px;
+              margin: 0 0.5vw 0 0;
+            }
+          }
+          .course_name {
+            font-size: 25px;
+            span {
+              font-family: adobe-devanagari, sans-serif;
+              font-weight: 700;
+              font-style: normal;
+              font-size: 20px;
+            }
+          }
+          div {
+            font-family: adobe-devanagari, sans-serif;
+            font-weight: 700;
+            font-style: normal;
+            font-size: 18px;
+          }
+        }
+      }
+      .course_detail_data {
+        width: 100%;
+        .course_detail_time {
+          h5 {
+            font-family: open-sans, sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 18px;
+            color: #959595;
+            margin: 25px;
+          }
+          .detail_time_btn_wrap {
+            margin: auto;
+            border: 1px #f0f1f7 solid;
+            border-radius: 5px;
+            display: flex;
+            width: 90%;
+            .time_btn {
+              width: 70%;
+              vertical-align: middle;
+              background: #ffffff;
+              border: #f0f1f7 1px solid;
+              div {
+                display: flex;
+                justify-content: center;
+                .time_btn_icon {
+                  color: #ebd0ce;
+                  font-size: 25px;
+                }
+              }
+              .detail_time_btn {
+                color: #9597a6;
+              }
+            }
+            .activeColor {
+              background: #e9756e;
+              box-shadow: #e71c4c40 0 18px 18px;
+              .detail_time_btn {
+                color: #ffffff;
+                border:  #e9756e;;
+              }
+               div{
+                .time_btn_icon {
+                  color: #ffffff;
+                  font-size: 25px;
+                }
+               }
+            }
+          }
+        }
+      }
+      .course_detail_mon_cart_wrap {
+        // border: teal 5px solid;
+        .course_detail_mon {
+          h5 {
+            font-family: open-sans, sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 18px;
+            color: #959595;
+            margin: 25px;
+          }
+          .react-datepicker {
+            border:none;
+            width: 98%;
+            height: 400px;
+            background: transparent;
+
+            .react-datepicker__navigation--previous {
+              position: absolute;
+              transform: translateX(-50%);
+              left: 60%;
+              border-top: 14px solid transparent;
+              border-bottom: 14px solid transparent;
+              border-right: 14px solid #ccc;
+              // width: 30px;
+              // height: 30px;
+            }
+            .react-datepicker__navigation--next{
+              position: absolute;
+              transform: translateX(-50%);
+              left: 100%;
+              right: 0;
+              border-top: 14px solid transparent;
+              border-bottom: 14px solid transparent;
+              border-left: 14px solid #ccc;
+          
+            }
+            .react-datepicker__month-container {
+              // border: 2px blue solid;
+              width: 90%;
+              height: 400px;
+              position: absolute;
+              transform: translateX(-50%);
+              left: 50%;
+              top: 0%;
+              .react-datepicker__header {
+                background: transparent;
+                border-bottom:none;
+                .react-datepicker__current-month {
+                  position: absolute;
+                  width:60px;
+                  transform: translateX(-50%);
+                  left:82%;
+                  color: #e9756e;
+                }
+                .react-datepicker__day-names {
+                  background: transparent;
+                  border: transparent;
+                  margin: 42px 0 auto;
+                  .react-datepicker__day-name {
+                    background: #4d4d4d;
+                    color: #959595;
+                    width: 10%;
+                    height: 42px;
+                    line-height: 42px;
+                    border-radius: 6px;
+                    font-size: 18px;
+                    
+                  }
+                }
+              }
+              .react-datepicker__month {
+                // border: 1px solid red;
+                width: 100%;
+                margin: 0 10px 0 0;
+                .react-datepicker__week {
+                  margin: 0 auto;
+                  .react-datepicker__day {
+                    background: #ffffff;
+                    box-shadow: #0000000a 0px 10px 20px;
+                    width: 10%;
+                    height: 42px;
+                    line-height: 42px;
+                    border-radius: 6px;
+                    font-size: 18px;
+                  }
+                  .react-datepicker__day--selected {
+                    background: #e9756e;
+                    box-shadow: #0000000a 0 10px 20px;
+                    color: #ffffff;
+                  }
+                }
+              }
+            }
+          }
+        }
+        .course_detail_person {
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          .person_count {
+            align-self: center;
+            margin: 0 20px;
+            font-size: 28px;
+            color: #f5f5f5;
+          }
+          .detail_person_btn {
+            background: transparent;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 1px solid #eec9b2;
+            position: relative;
+            .person_icon {
+              position: absolute;
+              transform: translateX(-50%);
+              top: 35%;
+              left: 50%;
+              color: #f5f5f5;
+            }
+          }
+        }
+        .course_detail_cart {
+          display: flex;
+          justify-content: center;
+          .detail_cart_icon_btn {
+            width: 60%;
+            margin: 10px;
+            background: #e9756e;
+            box-shadow: #e71c4c41 0px 16px 18px;
+            display: flex;
+            flex-direction: row;
+            border-radius: 50px;
+            height: 50px;
+            align-items: center;
+            justify-content: center;
+            line-height: 50px;
+            color: #ffffff;
+            .cart_icon {
+              margin: 0 5px 0 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}

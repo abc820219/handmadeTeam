@@ -11,9 +11,9 @@ import $ from "jquery";
 
 
 class CourseAll extends Component {
-    constructor() {
-        super()
-        this.state = {
+constructor() {
+    super()
+    this.state = {
             store_wrap: [],
             course_list: [],
             course_total: [],
