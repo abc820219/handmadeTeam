@@ -5,8 +5,10 @@ const db_Obj = require('C:/Users/__connect.json'); //連線到資料庫
 const db = mysql.createConnection(db_Obj);
 
 router.get('/',(req,res)=>{
-    res.send("store-Page");
+    db.query
+
 });
+
 
 
 module.exports = router;

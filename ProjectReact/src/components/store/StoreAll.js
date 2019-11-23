@@ -9,6 +9,7 @@ import "intersection-observer";
 
 import StoreMap from './StoreMap'
 import StoreMasonryCards from './StoreMasonryCards'
+import StoreSelect from './StoreSelect'
 
 class StoreAll extends Component {
     render() {
@@ -20,7 +21,9 @@ class StoreAll extends Component {
                             <p>STORE</p>
                         </div>
                         <div className="storeDown">
-                            <p>STORE</p>
+                            <div className="storeDownName">
+                                <p>STORE</p>
+                            </div>
                             <div className="storeMap">
                                 <StoreMap />
                             </div>
@@ -41,6 +44,9 @@ class StoreAll extends Component {
                                 <p className="kaohsiung">高雄市</p>
                                 <p className="taitung">台東縣</p>
                                 <p className="pingtung">屏東縣</p>
+                            </div>
+                            <div className="storeSelect">
+                                <StoreSelect />
                             </div>
                             <div className="storeButtonGroup">
                                 <Grid item>
