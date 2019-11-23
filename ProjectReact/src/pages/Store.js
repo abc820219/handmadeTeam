@@ -10,10 +10,10 @@ class Store extends Component {
   render() {
     return (
       <>
-        {/* <NavBar
+        <NavBar
           login={this.props.login}
           checkLogIn={this.props.checkLogIn}
-        ></NavBar> */}
+        ></NavBar>
         <StoreAll />
       </>
     );

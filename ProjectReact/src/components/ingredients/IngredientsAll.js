@@ -36,22 +36,22 @@ class IngredientsAll extends Component {
                                 focusOnSelect={true}
                             >
                                 <div>
-                                    <img src={`../images/ingredients/abstract01.jpg`} />
+                                    <img src={`/image/ingredients/abstract01.jpg`} />
                                 </div>
                                 <div>
-                                    <img src={`../images/ingredients/abstract02.jpg`} />
+                                    <img src={`/image/ingredients/abstract02.jpg`} />
                                 </div>
                                 <div>
-                                    <img src={`../images/ingredients/abstract03.jpg`} />
+                                    <img src={`/image/ingredients/abstract03.jpg`} />
                                 </div>
                                 <div>
-                                    <img src={`../images/ingredients/abstract04.jpg`} />
+                                    <img src={`/image/ingredients/abstract04.jpg`} />
                                 </div>
                                 <div>
-                                    <img src={`../images/ingredients/abstract05.jpg`} />
+                                    <img src={`/image/ingredients/abstract05.jpg`} />
                                 </div>
                                 <div>
-                                    <img src={`../images/ingredients/abstract06.jpg`} />
+                                    <img src={`/image/ingredients/abstract06.jpg`} />
                                 </div>
                             </Slider>
                         </div>
@@ -69,22 +69,22 @@ class IngredientsAll extends Component {
                                 ref={slider => (this.slider1 = slider)}
                             >
                                 <div>
-                                    <img src={`../images/ingredients/abstract01.jpg`} />
+                                    <img src={`/image/ingredients/abstract01.jpg`} />
                                 </div>
                                 <div>
-                                    <img src={`../images/ingredients/abstract02.jpg`} />
+                                    <img src={`/image/ingredients/abstract02.jpg`} />
                                 </div>
                                 <div>
-                                    <img src={`../images/ingredients/abstract03.jpg`} />
+                                    <img src={`/image/ingredients/abstract03.jpg`} />
                                 </div>
                                 <div>
-                                    <img src={`../images/ingredients/abstract04.jpg`} />
+                                    <img src={`/image/ingredients/abstract04.jpg`} />
                                 </div>
                                 <div>
-                                    <img src={`../images/ingredients/abstract05.jpg`} />
+                                    <img src={`/image/ingredients/abstract05.jpg`} />
                                 </div>
                                 <div>
-                                    <img src={`../images/ingredients/abstract06.jpg`} />
+                                    <img src={`/image/ingredients/abstract06.jpg`} />
                                 </div>
                             </Slider>
                         </div>
