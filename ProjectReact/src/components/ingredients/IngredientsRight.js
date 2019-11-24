@@ -4,6 +4,10 @@ import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 
+// ICON import
+
+import { FaArrowLeft } from 'react-icons/fa';
+
 const useStyles = makeStyles({
   list: {
     width: 1450,
@@ -55,7 +59,7 @@ function IngredientsRight() {
   return (
     <div>
       <Button className="recipeRightButtonShow" onClick={toggleDrawer('right', true)}>
-        按這裡
+          <FaArrowLeft className="recipeRightArrow"/>
         </Button>
       <Drawer className="buttonRightIngredientsMain" anchor="right" open={state.right} onClose={toggleDrawer('right', false)}>
         {sideList('right')}

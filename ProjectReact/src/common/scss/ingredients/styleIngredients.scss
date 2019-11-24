@@ -89,6 +89,25 @@ $color-LeftName: #FFFFFF;
             z-index: 50;
             top: 0;
             left: 0;
+            div {
+                .recipeRightButtonShow {
+                    position: fixed;
+                    top: calc( 50% - 75px );
+                    right: -75px;
+                    z-index: 99;
+                    .MuiButton-label {
+                        width: 150px;
+                        height: 150px;
+                        border-radius: 50%;
+                        background-color: $bgc-dark;
+                    }
+                    .recipeRightArrow {
+                        margin-right: 75px;
+                        font-size: 30px;
+                        color: #FFFFFF;
+                    }
+                }
+            }
         }
     }
 }
@@ -114,14 +133,7 @@ $color-LeftName: #FFFFFF;
     }
 }
 
-// recipeRightButton css
 
-.recipeRightButtonShow {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background-color: $bgc-dark;
-}
 
 .MuiPaper-root {
     background-color: rgba(#000000,0.3) !important;
