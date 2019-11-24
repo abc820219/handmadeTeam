@@ -1,15 +1,25 @@
 import React, { useState, useEffect, useContext, useReducer } from "react";
 import Course_navbar from "../components/course/Course_navbar";
 import NavBar from "../components/NavBar";
-import StoreMenu from "../components/store/StoreMenu.js";
-import { addCourse, cancelCourse, addIngre, cancelIngre } from '../components/cart/CartAction'
+import {
+  addCourse,
+  cancelCourse,
+  addIngre,
+  cancelIngre
+} from "../components/cart/CartAction";
 
 import CartStore from "../components/cart/CartStore";
 
-const Store = ({ login, checkLogIn }) => {
-  let { cartCourseDispatch, courseCart, id, ingreCart, cartIngreDispatch } = useContext(CartStore);
-  // console.log(cartCourseDispatch);
-  const [courseInCart, setCourseInCart] = useState(false)
+const TestStore = ({ login, checkLogIn }) => {
+  let {
+    cartCourseDispatch,
+    courseCart,
+    id,
+    ingreCart,
+    cartIngreDispatch
+  } = useContext(CartStore);
+
+  const [courseInCart, setCourseInCart] = useState(false);
   const [courseInfo, setCourseInfo] = useState({
     course_sid: 2,
     course_price: 1500,
@@ -20,8 +30,7 @@ const Store = ({ login, checkLogIn }) => {
     course_lists: "幕幕甜甜.jpg"
   });
 
-
-  const [ingreInCart, setIngreInCart] = useState(false)
+  const [ingreInCart, setIngreInCart] = useState(false);
   const [ingreInfo, setIngreInfo] = useState({
     ingredient_sid: 2,
     ingredients_price: 500,
@@ -30,27 +39,30 @@ const Store = ({ login, checkLogIn }) => {
     ingredient_name: "幕幕甜甜"
   });
   courseCart = courseCart || [];
-  ingreCart = ingreCart|| [];
+  ingreCart = ingreCart || [];
 
   const checkCoursePage = async () => {
     let check;
     if (courseCart) {
       check = await courseCart.some(course => {
-        return course.course_sid == courseInfo.course_sid && course.course_order_choose == courseInfo.course_order_choose;
-      })
+        return (
+          course.course_sid == courseInfo.course_sid &&
+          course.course_order_choose == courseInfo.course_order_choose
+        );
+      });
     }
     check ? setCourseInCart(true) : setCourseInCart(false);
-  }
+  };
 
   const checkIngrePage = async () => {
     let check;
     if (ingreCart) {
       check = await ingreCart.some(ingre => {
         return ingre.ingredient_sid == ingreInfo.ingredient_sid;
-      })
+      });
     }
     check ? setIngreInCart(true) : setIngreInCart(false);
-  }
+  };
 
   const AddCourseToCart = (item, id) => {
     if (courseInCart) {
@@ -59,7 +71,7 @@ const Store = ({ login, checkLogIn }) => {
     } else {
       cartCourseDispatch(addCourse(item, id));
     }
-  }
+  };
 
   const AddIngreToCart = (item, id) => {
     if (ingreInCart) {
@@ -67,29 +79,39 @@ const Store = ({ login, checkLogIn }) => {
     } else {
       cartIngreDispatch(addIngre(item, id));
     }
-  }
+  };
 
   useEffect(() => {
     Promise.all([checkCoursePage(), checkIngrePage()]);
-    // eslint-disable-next-line react-hooks/exhaustive-deps   
-  }, [])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   console.log(courseInCart);
   return (
     <>
-      <NavBar
-        login={login}
-        checkLogIn={checkLogIn}
-      ></NavBar>
-      <StoreMenu />
+      <NavBar login={login} checkLogIn={checkLogIn}></NavBar>
       <br />
       <br />
       <br />
-      <button onClick={() => { AddCourseToCart(courseInfo, id) }}>{courseInCart ? 'courseInCart' : 'courseNotInCart'}</button>
       <br />
       <br />
-      <button onClick={() => { AddIngreToCart(ingreInfo, id) }}>{ingreInCart ? 'ingreInCart' : 'ingreNotInCart'}</button>
+      <button
+        onClick={() => {
+          AddCourseToCart(courseInfo, id);
+        }}
+      >
+        {courseInCart ? "courseInCart" : "courseNotInCart"}
+      </button>
+      <br />
+      <br />
+      <button
+        onClick={() => {
+          AddIngreToCart(ingreInfo, id);
+        }}
+      >
+        {ingreInCart ? "ingreInCart" : "ingreNotInCart"}
+      </button>
     </>
   );
-}
+};
 
-export default Store;
+export default TestStore;

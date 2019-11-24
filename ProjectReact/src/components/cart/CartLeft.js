@@ -1,6 +1,10 @@
 import React, { useState, useContext, useEffect, useCallback } from "react";
 import CartStore from "./CartStore";
-import { cartNext, cartPrev, cartAfterCouponAction } from "./CartAction";
+import { cartNext, cartPrev, checkoutAction } from "./CartAction";
+import { FieldSet, InputField } from "fannypack";
+import { usePaymentInputs } from "react-payment-inputs";
+import images from "react-payment-inputs/images";
+import { Form, Col } from "react-bootstrap";
 
 const CartLeft = ({
   courseCards,
@@ -16,13 +20,25 @@ const CartLeft = ({
   const {
     step,
     cartPageDispatch,
+    cartCourseDispatch,
+    ingreCartDispatch,
     setcheckoutFinish,
     id,
     priceAfterCouponDispatch,
-    afterCoupon
+    afterCoupon,
+    courseCart,
+    ingreCart
   } = useContext(CartStore);
   const [couponSelect, setCouponSelect] = useState();
-  console.log(123);
+  const {
+    meta,
+    getCardNumberProps,
+    getExpiryDateProps,
+    getCVCProps
+  } = usePaymentInputs();
+  const { erroredInputs, touchedInputs } = meta;
+
+  console.log(courseCart, ingreCart);
   let CartTotal = (courseCards, ingreCards) => {
     if (courseCards && ingreCards) {
       let courseTotal = courseCards.reduce((courseCardA, courseCardB) => {
@@ -55,7 +71,6 @@ const CartLeft = ({
     const value = e.target.value;
     const index = e.target[e.target.selectedIndex].index;
     setCouponSelect(couponUse[index].coupon_price);
-    console.log(couponSelect);
     setCoupon(value);
   };
   const cartSubmit = async () => {
@@ -83,9 +98,10 @@ const CartLeft = ({
       alert(`訂單${order_Sid}於${orderDate}---${orderTime}新增完成`);
       localStorage.setItem(`courseCart${user}`, "[]");
       setCourseCards();
-      console.log(0);
+      cartCourseDispatch(checkoutAction());
       localStorage.setItem(`ingreCart${user}`, "[]");
       setIngreCards();
+      ingreCartDispatch(checkoutAction());
     } catch (e) {
       console.log(e);
     }
@@ -101,11 +117,10 @@ const CartLeft = ({
   }, []);
 
   useEffect(() => {
-      console.log(couponSelect);
-      const couponAfter =
-        cartTotal *
-        (couponSelect > 10 ? couponSelect / 100 : couponSelect / 10);
-      setFnCartTotal(couponAfter);
+    console.log(couponSelect);
+    const couponAfter =
+      cartTotal * (couponSelect > 10 ? couponSelect / 100 : couponSelect / 10);
+    setFnCartTotal(couponAfter);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [couponSelect]);
 
@@ -154,34 +169,39 @@ const CartLeft = ({
             <div className="d-flex flex-column">
               <div className="checkOrderDeduct">
                 <ul className="mt-4 w-100">
-                  {step ? (
+                  {step && (
                     <>
                       <li>
                         <p>可用優惠卷</p>
-                        {couponUse&&<select
-                          id="coupon"
-                          onClick={e => {
-                            coponSelect(e);
-                          }}
-                        >
-                          {couponUse &&
-                            couponUse.map((coupon, index = 0) => {
-                              return (
-                                <option index={index} value={coupon.coupon_sid}>
-                                  {coupon.coupon_content}
-                                </option>
-                              );
-                            })}
-                        </select>}
+                        {couponUse && (
+                          <select
+                            id="coupon"
+                            onClick={e => {
+                              coponSelect(e);
+                            }}
+                          >
+                            {couponUse &&
+                              couponUse.map((coupon, index = 0) => {
+                                return (
+                                  <option
+                                    index={index}
+                                    value={coupon.coupon_sid}
+                                  >
+                                    {coupon.coupon_content}
+                                  </option>
+                                );
+                              })}
+                          </select>
+                        )}
                       </li>
                     </>
-                  ) : (
-                    ""
                   )}
-                  {step&&<li>
-                    <p>可用折扣</p>
-                    <h4>{couponSelect}折</h4>
-                  </li>}
+                  {step && (
+                    <li>
+                      <p>可用折扣</p>
+                      <h4>{couponSelect}折</h4>
+                    </li>
+                  )}
                   {/* <li>
                     <p>使用紅利</p>
                     {step === 0 ? <input type="text" /> : <h4>$ 55</h4>}
@@ -195,12 +215,7 @@ const CartLeft = ({
               <div>
                 <div className="checkOrderTotal">
                   <p>結帳總額</p>
-                  <h4>
-                    ${" "}
-                    {!step
-                      ? cartTotal 
-                      : fnCartTotal}
-                  </h4>
+                  <h4>$ {!step ? cartTotal : fnCartTotal}</h4>
                 </div>
               </div>
             </div>
@@ -213,27 +228,74 @@ const CartLeft = ({
                 <input type="radio" name="pay" />
                 <p>信用卡資料</p>
               </div>
-              <div className="my-3">
-                <input type="text" placeholder="0000-0000-0000-0000" />
-              </div>
-              <div className="creditCardDetail d-flex justify-content-end">
-                <div className="d-flex align-items-center mr-4">
-                  <p className="px-3">有效日期</p>
-                  <input type="text" />
-                </div>
-                <input type="text" placeholder="驗證碼" />
-              </div>
-              <ul className="d-flex justify-content-between mt-4">
+              <Form>
+                <Form.Row>
+                  <Form.Group as={Col} lg="12" style={{ maxWidth: "15rem" }}>
+                    <Form.Label>Card number</Form.Label>
+                    <Form.Control
+                      // Here is where React Payment Inputs injects itself into the input element.
+                      {...getCardNumberProps()}
+                      // You can retrieve error state by making use of the error & touched attributes in `meta`.
+                      isInvalid={
+                        touchedInputs.cardNumber && erroredInputs.cardNumber
+                      }
+                      placeholder="0000 0000 0000 0000"
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {erroredInputs.cardNumber}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                  <Form.Group as={Col} style={{ maxWidth: "10rem" }}>
+                    <Form.Label>Expiry date</Form.Label>
+                    <Form.Control
+                      {...getExpiryDateProps()}
+                      isInvalid={
+                        touchedInputs.expiryDate && erroredInputs.expiryDate
+                      }
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {erroredInputs.expiryDate}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                  <Form.Group as={Col} style={{ maxWidth: "7rem" }}>
+                    <Form.Label>CVC</Form.Label>
+                    <Form.Control
+                      {...getCVCProps()}
+                      isInvalid={touchedInputs.cvc && erroredInputs.cvc}
+                      placeholder="123"
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {erroredInputs.cvc}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </Form.Row>
+              </Form>
+              <ul className="d-flex justify-content-between mt-4 row">
                 <li>
-                  <input type="radio" name="pay" value="LINE Pay" />
+                  <input
+                    type="radio"
+                    name="pay"
+                    value="LINE Pay"
+                    className="col-lg-8"
+                  />
                   <p>LINE Pay</p>
                 </li>
                 <li>
-                  <input type="radio" name="pay" value="APPLE Pay" />
+                  <input
+                    type="radio"
+                    name="pay"
+                    value="APPLE Pay"
+                    className="col-lg-8"
+                  />
                   <p>APPLE Pay</p>
                 </li>
                 <li>
-                  <input type="radio" name="pay" value="GOOGLE Pay" />
+                  <input
+                    type="radio"
+                    name="pay"
+                    value="GOOGLE Pay"
+                    className="col-lg-8"
+                  />
                   <p>GOOGLE Pay</p>
                 </li>
               </ul>
