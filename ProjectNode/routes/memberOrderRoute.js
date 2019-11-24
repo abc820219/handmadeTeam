@@ -13,9 +13,16 @@ router.get("/", (req, res) => {
 
 router.get("/course/:id", (req, res) => {
   const memberId = req.params.id;
-  sql =
+  let sql =
     "SELECT * FROM `order` `o` JOIN `course_order` `co` JOIN `course` `c` JOIN `course_img` `ci` ON `o`.order_sid = `co`.order_sid AND `co`.`course_sid` = `c`.`course_sid` AND `co`.`course_sid` = `ci`.`course_sid` WHERE `o`.member_sid = " +
     memberId;
+  db.queryAsync(sql).then(results => {
+    res.json(results);
+  });
+});
+router.get("/orderSid", (req, res) => {
+  const memberId = req.params.id;
+  sql = "SELECT * FROM `order` WHERE `o`.member_sid = " + memberId;
   db.queryAsync(sql).then(results => {
     res.json(results);
   });

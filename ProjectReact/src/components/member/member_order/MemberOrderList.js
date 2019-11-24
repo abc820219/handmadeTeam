@@ -22,7 +22,7 @@ const MemberOrderList = ({ changeOrderType }) => {
     courseIsFetch,
     ingreIsFetch,
     odlDispatch
-  } = React.useContext(Store);
+  } = useContext(Store);
 
   const orderCourseData = async () => {
     try {
@@ -51,13 +51,16 @@ const MemberOrderList = ({ changeOrderType }) => {
       console.log(e);
     }
   };
-
   // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(()=>{
+    
+  },[])
   useEffect(() => {
     Promise.all([orderCourseData(), orderIngreData()]);
     //eslint-disable-next-line import/no-extraneous-dependencies
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [courseIsFetch, ingreIsFetch]);
+  console.log(courseLists);
 
   const orderDetailData = async (orderType, item) => {
     try {
@@ -90,16 +93,16 @@ const MemberOrderList = ({ changeOrderType }) => {
         <div className="memberOrderList-info pl-2">
           <ul className="orderTitle_border">
             <h3 className="orderList_title">課程</h3>
-            {courseLists.map(courseList => (
+            {/* {courseLists.map(courseList => ( */}
               <MemberOrderListCourse
-                orderDetailData={orderDetailData}
-                key={courseList.order_sid}
-                orderSid={courseList.order_sid}
-                courseName={courseList.course_name}
-                courseOrderChoose={courseList.course_order_choose}
-                coursePrice={courseList.course_price}
+                // orderDetailData={orderDetailData}
+                // key={courseList.order_sid}
+                // orderSid={courseList.order_sid}
+                // courseName={courseList.course_name}
+                // courseOrderChoose={courseList.course_order_choose}
+                // coursePrice={courseList.course_price}
               />
-            ))}
+            {/* ))} */}
           </ul>
           <ul className="orderTitle_border">
             <h3 className="orderList_title">食材</h3>

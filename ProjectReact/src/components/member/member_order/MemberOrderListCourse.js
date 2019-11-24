@@ -10,7 +10,7 @@ const MemberOrderListCourse = ({orderSid,courseName,courseOrderChoose,coursePric
             <span className='w-100'>
                 <p>訂單編號: {orderSid}</p>
             </span>
-                <div>
+                {/* <div>
                     <h5>{courseOrderChoose}</h5>
                     <div>
                         <h5>
@@ -32,7 +32,7 @@ const MemberOrderListCourse = ({orderSid,courseName,courseOrderChoose,coursePric
                             alt=""
                         />
                     </figure>
-                </div>
+                </div> */}
             </li>
         </>
     )
