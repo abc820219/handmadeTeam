@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect, useCallback } from "react";
-import CartStore from "./TestStore";
+import CartStore from "./CartStore";
 import { cartNext, cartPrev, cartAfterCouponAction } from "./CartAction";
 
 const CartLeft = ({
