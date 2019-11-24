@@ -1,14 +1,28 @@
-import React, { useState, useContext, useEffect } from "react";
-import CartStore from "./CartStore";
-import { cartNext, cartPrev } from "./CartAction";
+import React, { useState, useContext, useEffect, useCallback } from "react";
+import CartStore from "./TestStore";
+import { cartNext, cartPrev, cartAfterCouponAction } from "./CartAction";
 
-const CartLeft = ({ courseCards, ingreCards, setCourseCards, setIngreCards }) => {
+const CartLeft = ({
+  courseCards,
+  ingreCards,
+  setCourseCards,
+  setIngreCards
+}) => {
   const [cartTotal, setCartTotal] = useState(0);
-  const [coupon, setCoupon] = useState()
-
-  const [fnCartTotal, setFnCartTotal] = useState();
-  const { step, cartPageDispatch, setcheckoutFinish } = useContext(CartStore);
-
+  // const [afterCoupon, setAfterCoupon] = useState(localStorage.getItem("afterTotal") ? localStorage.getItem("afterTotal") : 0);
+  const [fnCartTotal, setFnCartTotal] = useState(0);
+  const [coupon, setCoupon] = useState(0);
+  const [couponUse, setCouponUse] = useState();
+  const {
+    step,
+    cartPageDispatch,
+    setcheckoutFinish,
+    id,
+    priceAfterCouponDispatch,
+    afterCoupon
+  } = useContext(CartStore);
+  const [couponSelect, setCouponSelect] = useState();
+  console.log(123);
   let CartTotal = (courseCards, ingreCards) => {
     if (courseCards && ingreCards) {
       let courseTotal = courseCards.reduce((courseCardA, courseCardB) => {
@@ -29,16 +43,26 @@ const CartLeft = ({ courseCards, ingreCards, setCourseCards, setIngreCards }) =>
     }
   };
 
-  const coponSelect = (e) => {
+  const getCoupon = async () => {
+    const couponJson = await fetch(
+      "http://localhost:5000/handmade/cart/getcoupon/" + id
+    );
+    const couponGet = await couponJson.json();
+    setCouponUse(couponGet);
+  };
+
+  const coponSelect = e => {
     const value = e.target.value;
+    const index = e.target[e.target.selectedIndex].index;
+    setCouponSelect(couponUse[index].coupon_price);
+    console.log(couponSelect);
     setCoupon(value);
-  }
+  };
   const cartSubmit = async () => {
     try {
       const user = localStorage.getItem("member_id");
       const courseCart = localStorage.getItem(`courseCart${user}`);
       const ingreCart = localStorage.getItem(`ingreCart${user}`);
-      console.log(courseCart, ingreCart);
       const cart = JSON.stringify({
         courseCart: courseCart,
         ingreCart: ingreCart,
@@ -54,20 +78,36 @@ const CartLeft = ({ courseCards, ingreCards, setCourseCards, setIngreCards }) =>
       const data = await dataJson.json();
       const order_Sid = await data[0].order_sid;
       let orderCreate_time = await data[0].order_create_time;
-      let [orderDate, orderTime] = await orderCreate_time.split('T');
-      orderTime = await orderTime.split('.')[0];
+      let [orderDate, orderTime] = await orderCreate_time.split("T");
+      orderTime = await orderTime.split(".")[0];
       alert(`訂單${order_Sid}於${orderDate}---${orderTime}新增完成`);
-      localStorage.setItem(`courseCart${user}`, '[]');
+      localStorage.setItem(`courseCart${user}`, "[]");
       setCourseCards();
-      localStorage.setItem(`ingreCart${user}`, '[]');
+      console.log(0);
+      localStorage.setItem(`ingreCart${user}`, "[]");
       setIngreCards();
     } catch (e) {
       console.log(e);
     }
-  }
+  };
+  console.log(coupon);
   useEffect(() => {
     setCartTotal(CartTotal(courseCards, ingreCards));
   }, [courseCards, ingreCards]);
+
+  useEffect(() => {
+    getCoupon();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+      console.log(couponSelect);
+      const couponAfter =
+        cartTotal *
+        (couponSelect > 10 ? couponSelect / 100 : couponSelect / 10);
+      setFnCartTotal(couponAfter);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [couponSelect]);
 
   return (
     <>
@@ -81,7 +121,7 @@ const CartLeft = ({ courseCards, ingreCards, setCourseCards, setIngreCards }) =>
               <div className="checkPageIcon cartStep">1</div>
               <h5 style={{ color: "#f78177", fontWeight: "bold" }}>
                 確認數量/金額
-            </h5>
+              </h5>
             </div>
             <hr style={step ? { background: "#f78177" } : {}} />
             <div
@@ -93,7 +133,7 @@ const CartLeft = ({ courseCards, ingreCards, setCourseCards, setIngreCards }) =>
                 style={step !== 0 ? { backgroundColor: "#f78177" } : {}}
               >
                 2
-            </div>
+              </div>
               <h5
                 style={
                   step === 0
@@ -102,7 +142,7 @@ const CartLeft = ({ courseCards, ingreCards, setCourseCards, setIngreCards }) =>
                 }
               >
                 選擇付款方式/結帳
-            </h5>
+              </h5>
             </div>
           </div>
           <div className="checkPageBox">
@@ -114,37 +154,53 @@ const CartLeft = ({ courseCards, ingreCards, setCourseCards, setIngreCards }) =>
             <div className="d-flex flex-column">
               <div className="checkOrderDeduct">
                 <ul className="mt-4 w-100">
-                  {!step ? (
+                  {step ? (
                     <>
                       <li>
                         <p>可用優惠卷</p>
-                        <select name="coupon" id="" onChange={(e) => { coponSelect(e) }}>
-                          <option value="145678">145678</option>
-                          <option value="145777">145777</option>
-                        </select>
-                      </li>
-                      <li>
-                        <p>可用紅利</p>
-                        <h4>$ 55</h4>
+                        {couponUse&&<select
+                          id="coupon"
+                          onClick={e => {
+                            coponSelect(e);
+                          }}
+                        >
+                          {couponUse &&
+                            couponUse.map((coupon, index = 0) => {
+                              return (
+                                <option index={index} value={coupon.coupon_sid}>
+                                  {coupon.coupon_content}
+                                </option>
+                              );
+                            })}
+                        </select>}
                       </li>
                     </>
                   ) : (
-                      ""
-                    )}
-                  <li>
+                    ""
+                  )}
+                  {step&&<li>
+                    <p>可用折扣</p>
+                    <h4>{couponSelect}折</h4>
+                  </li>}
+                  {/* <li>
                     <p>使用紅利</p>
                     {step === 0 ? <input type="text" /> : <h4>$ 55</h4>}
                   </li>
                   <li>
                     <p>其他折抵</p>
                     <h4>$ 70</h4>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
               <div>
                 <div className="checkOrderTotal">
                   <p>結帳總額</p>
-                  <h4>$ {}</h4>
+                  <h4>
+                    ${" "}
+                    {!step
+                      ? cartTotal 
+                      : fnCartTotal}
+                  </h4>
                 </div>
               </div>
             </div>
@@ -184,16 +240,16 @@ const CartLeft = ({ courseCards, ingreCards, setCourseCards, setIngreCards }) =>
             </div>
           </>
         ) : (
-            ""
-          )}
+          ""
+        )}
         {!step ? (
           <button onClick={() => cartPageDispatch(cartNext())}>NEXT</button>
         ) : (
-            <button onClick={() => cartSubmit()}>CHECK</button>
-          )}
+          <button onClick={() => cartSubmit()}>CHECK</button>
+        )}
       </div>
     </>
   );
-}
+};
 
 export default CartLeft;

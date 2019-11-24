@@ -9,7 +9,9 @@ import {
   CANCEL_COURSE_ITEM,
   CANCEL_INGRE_ITEM,
   CORSE_CART_RERENDER,
-  INGRE_CART_RERENDER
+  INGRE_CART_RERENDER,
+  CART_AFTER_COUPON,
+  COUPON_SELECT
 } from "./CartAction";
 
 // export const cartCourseRerender = (state, action) => {
@@ -151,3 +153,25 @@ export const courseCartCfReducer = (state, { type, payload }) => {
       return state;
   }
 };
+
+export const priceAfterCouponReducer = (state, { type ,payload}) => {
+  switch (type) {
+    
+    case CART_AFTER_COUPON: {
+      console.log("Hello Cart");
+      return payload;
+    }
+    default:
+      return state;
+  }
+};
+
+// export const couponSelectReducer = (state, { type ,payload}) => {
+//   switch (type) {
+//     case COUPON_SELECT: {
+//       return payload;
+//     }
+//     default:
+//       return state;
+//   }
+// };
