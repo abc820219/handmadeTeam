@@ -26,6 +26,9 @@ const MyCoupon1 = () => {
   if (!couponData) {
     return (
       <>
+        <div className="d-flex justify-content-center">
+          <p className="py-3"    style={{ textAlign: "center" }}>尚未使用優惠卷</p>
+        </div>
       </>
     );
   }
