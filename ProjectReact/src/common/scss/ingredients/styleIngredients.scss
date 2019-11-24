@@ -41,12 +41,12 @@ $color-LeftName: #FFFFFF;
         .recipeNameLeft {
             position: absolute;
             top: 50%;
-            right: -90px;
+            right: -75px;
             transform: translate( 0, -50% );
             p {
                 color: $color-LeftName;
-                font-size: 180px;
-                line-height: 180px;
+                font-size: 150px;
+                line-height: 150px;
                 writing-mode: vertical-lr;
                 text-orientation: mixed;
             }
@@ -67,12 +67,12 @@ $color-LeftName: #FFFFFF;
             position: absolute;
             z-index: 2;
             top: 49%;
-            left: -90px;
+            left: -75px;
             transform: translate( 0, -50% );
             p { 
                 color: $color-RightName;
-                font-size: 180px;
-                line-height: 180px;
+                font-size: 150px;
+                line-height: 150px;
                 writing-mode: vertical-lr;
                 text-orientation: mixed;
             }
