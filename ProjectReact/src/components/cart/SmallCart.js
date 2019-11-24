@@ -13,11 +13,6 @@ console.log(courseCart, ingreCart);
 
   const [cartBtn , setCartBtn] = useState(false)
 
-  // const reRenderPage = async (id) => {
-  //   await cartCourseDispatch(courseCartRerender(id));
-  //   await cartIngreDispatch(ingreCartRerender(id));
-  // }
-
   useEffect(() => {
     if(courseCart.length!==0 || ingreCart.length!==0){
       setCartBtn(true)

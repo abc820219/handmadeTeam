@@ -11,7 +11,7 @@ import {
   Teacher_Subject,
   Ingredients,
   MemberEmail,
-  Course_detail
+  Course_detail,
 } from "./routes/index";
 import CartStore from "./components/cart/CartStore";
 import {
@@ -19,7 +19,8 @@ import {
   cartCourseReducer,
   cartIngreReducer,
   cartCheckoutReducer,
-  courseCartCfReducer
+  courseCartCfReducer,
+  priceAfterCouponReducer
 } from "./components/cart/CartReducer";
 export const cartPageInitState = { step: 0 };
 function App() {
@@ -27,7 +28,7 @@ function App() {
   const loginLocal = localStorage.getItem("member_id") || 0;
   // const [courseCart, setCourseCart] = useState();
   // const [ingreCart, setIngreCart] = useState();
-  const { id, courseCartCf ,courseCart,ingreCart} = useContext(CartStore);
+  const { id, courseCartCf ,courseCart,ingreCart,afterCoupon} = useContext(CartStore);
 
 
   const [cartPageState, cartPageDispatch] = useReducer(
@@ -43,7 +44,13 @@ function App() {
     cartIngreReducer,
     ingreCart
   );
-  
+
+
+  const [priceAfterCoupon,priceAfterCouponDispatch] = useReducer(
+    priceAfterCouponReducer,
+    afterCoupon
+  )
+
   useEffect(() => {
     if (loginLocal) {
       setLogin(true);
@@ -73,11 +80,13 @@ function App() {
               cartCourseDispatch,
               courseCart: cartCourseState,
               cartIngreDispatch,
-              ingreCart: cartIngreState
+              ingreCart: cartIngreState,
               // checkoutFinish: cartCheckState.checkoutFinish,
               // cartCheckoutDispatch,
               // courseCartCf: courseCartCfState,
               // courseCartCfDispatch
+              afterCoupon: priceAfterCoupon,
+              priceAfterCouponDispatch
             }}
           >
           <Route path="/" exact component={Navgation}></Route>

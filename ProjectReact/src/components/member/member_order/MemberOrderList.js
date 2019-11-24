@@ -75,7 +75,6 @@ const MemberOrderList = ({ changeOrderType }) => {
         headers: { "Content-Type": "application/json" }
       });
       const data = await dataJson.json();
-      console.log(data);
       await odlDispatch(receiveOrderDetail(data));
     } catch (e) {
       console.log(e);

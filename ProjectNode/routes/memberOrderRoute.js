@@ -114,7 +114,6 @@ router.get("/orderDetail/:id", (req, res, next) => {
     } else {
       const formatDate = "YYYY-MM-DD HH:mm:ss";
       rows[0].course_order_choose = moment(rows[0].course_order_choose).tz('Asia/Taipei').format(formatDate);
-      console.log(rows[0]);
       res.json(rows[0]);
       return;
     }
