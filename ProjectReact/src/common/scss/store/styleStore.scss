@@ -87,11 +87,15 @@ $color-storeDown: #E9756E;
 
 // taiwan css
 .prefix__storeCountry {
-    transition: .5s;
+    transition: .2s;
     fill: #ffffff;
 }
 .prefix__storeCountry:hover {
     fill: #E9756E;
+}
+
+.areaNoHaveStore {
+    fill: #666666;
 }
 
 // .keelungMap:hover{
