@@ -94,6 +94,10 @@ $color-storeDown: #E9756E;
     fill: #E9756E;
 }
 
+.areaStoreClick {
+    fill: #E9756E;
+}
+
 .areaNoHaveStore {
     fill: #666666;
 }
@@ -275,7 +279,7 @@ $color-storeDown: #E9756E;
             }
         }
         .storeList {
-            margin-left: 0;
+            margin-left: 0px;
             width: 100%;
         }
     }

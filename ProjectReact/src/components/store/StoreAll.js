@@ -150,7 +150,7 @@ const StoreAll = () => {
                 </div>
                 <div className="storeList">
                     <div className="storeListTop"></div>
-                    <StoreMasonryCards storeDataLoad={storeDataLoad} />
+                    <StoreMasonryCards className="storeListMasonryCardsGroup"  storeDataLoad={storeDataLoad} />
                 </div>
             </div>
         </>
