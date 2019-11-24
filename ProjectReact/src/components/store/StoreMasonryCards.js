@@ -4,6 +4,10 @@ import { StoreData } from "./StoreData"
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
+
+// ICON import
+import { FaStore } from 'react-icons/fa';
+
 const StoreMasonryCards = ({storeDataLoad}) => {
 
     return (
@@ -25,9 +29,10 @@ const StoreMasonryCards = ({storeDataLoad}) => {
                             </div>
                         </div>
                         <div className="storeEnterButton">
-                            <Button className="storeEnterStore" variant="contained" color="secondary">
+                            {/* <Button className="storeEnterStore" variant="contained" color="secondary">
                                 Go To Store
-                            </Button>
+                            </Button> */}
+                            <a className="storeEnterStore"><FaStore /> GO TO Store</a>
                         </div>
                     </div>
                 </Brick>

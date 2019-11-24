@@ -5,6 +5,12 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import "../../common/scss/store/styleStore.scss"
 import "intersection-observer";
 
+// ICON import
+
+import { MdPeopleOutline } from 'react-icons/md';
+import { MdChildCare } from 'react-icons/md';
+
+
 // Components
 
 import StoreMap from './StoreMap'
@@ -20,20 +26,20 @@ const StoreAll = () => {
     const [areaNowCatch, setAreaNowCatch] = useState("全島")
 
     // const getAreaClick = (areaStoreMapValue) => {
-        // console.log(areaStoreMapValue);
-        // console.log(storeDataLoad);
+    // console.log(areaStoreMapValue);
+    // console.log(storeDataLoad);
 
-        // storeDataLoad.filter(element => {
-        //     element.area_sid == areaStoreMapValue;
-        // })
-        // let arr = [];
-        // for (let i = 0; i < storeDataLoad.length; i++) {
-        //     if (storeDataLoad[i].area_sid == areaStoreMapValue) {
-        //         arr.push(storeDataLoad[i]);
-        //     }
-        // }
-        // console.log(arr);
-        // setStoreDataLoad(arr);
+    // storeDataLoad.filter(element => {
+    //     element.area_sid == areaStoreMapValue;
+    // })
+    // let arr = [];
+    // for (let i = 0; i < storeDataLoad.length; i++) {
+    //     if (storeDataLoad[i].area_sid == areaStoreMapValue) {
+    //         arr.push(storeDataLoad[i]);
+    //     }
+    // }
+    // console.log(arr);
+    // setStoreDataLoad(arr);
     // }
 
     useEffect(() => {
@@ -43,10 +49,10 @@ const StoreAll = () => {
     useEffect(() => {
         storeAreaHoverNow(areaNowName);
     }, [areaNowName])
-    
+
     useEffect(() => {
         allStoreData()
-    },[])
+    }, [])
 
     const allStoreData = async () => {
         const storeAllDataFirst = await fetch("http://localhost:5000/handmade/store");
@@ -57,7 +63,7 @@ const StoreAll = () => {
     const storeData = async (areaStoreMapValue) => {
         const storeDataFirst = await fetch("http://localhost:5000/handmade/store");
         let storeDataJson = await storeDataFirst.json();
-        if(areaStoreMapValue) {
+        if (areaStoreMapValue) {
             let arr = [];
             for (let i = 0; i < storeDataLoad.length; i++) {
                 if (storeDataLoad[i].area_sid == areaStoreMapValue) {
@@ -65,7 +71,7 @@ const StoreAll = () => {
                 }
             }
             setStoreDataLoad(arr);
-        }else{
+        } else {
             setStoreDataLoad(storeDataJson);
         }
         // console.log(storeDataJson);
@@ -134,23 +140,36 @@ const StoreAll = () => {
                             <StoreSelect />
                         </div>
                         <div className="storeButtonGroup">
-                            <Grid item>
-                                <ButtonGroup
-                                    variant="contained"
-                                    color="secondary"
-                                    size="large"
-                                    aria-label="large contained secondary button group"
-                                >
-                                    <Button>攜伴同行</Button>
-                                    <Button>攜帶孩童</Button>
-                                </ButtonGroup>
-                            </Grid>
+                            <ul class="storeCheckboxGroup list">
+                                <li class="storeCheckboxItem storeCheckboxItem1">
+                                    <label class="number-item">
+                                        <input
+                                            type="checkbox"
+                                            name="numbers[]"
+                                            value="1"
+                                            class="item-checkbox"
+                                        />
+                                        <span><MdPeopleOutline /><br/>攜伴同行</span>
+                                    </label>
+                                </li>
+                                <li class="storeCheckboxItem storeCheckboxItem2">
+                                    <label class="number-item">
+                                        <input
+                                            type="checkbox"
+                                            name="numbers[]"
+                                            value="1"
+                                            class="item-checkbox"
+                                        />
+                                        <span><MdChildCare /><br/>攜伴孩童</span>
+                                    </label>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
                 <div className="storeList">
                     <div className="storeListTop"></div>
-                    <StoreMasonryCards className="storeListMasonryCardsGroup"  storeDataLoad={storeDataLoad} />
+                    <StoreMasonryCards className="storeListMasonryCardsGroup" storeDataLoad={storeDataLoad} />
                 </div>
             </div>
         </>

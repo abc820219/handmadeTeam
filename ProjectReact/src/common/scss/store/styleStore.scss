@@ -64,10 +64,47 @@ $color-storeDown: #E9756E;
                 display: none;
             }
             .storeButtonGroup {
-                p {
-                    font-size: 20px;
-                    line-height: 20px;
-                }
+                width: 100%;
+                margin: 0 auto;
+                ul.storeCheckboxGroup {
+                    width: 405px;
+                    margin: 0 auto;
+                    list-style: none;
+                    padding: 0;
+                    li.storeCheckboxItem {
+                        display: inline-block;
+                    }
+                    li.storeCheckboxItem label span {
+                        display: inline-block;
+                        margin-top: 20px;
+                        width: 200px;
+                        height: 70px;
+                        /* background: lightgreen; */
+                        background-color: #fff;
+                        text-align: center;
+                        line-height: 30px;
+                        user-select: none;
+                        cursor: pointer;
+                        color: #9597A6;
+                        font-weight: bold;
+                        font-family: "微軟正黑體";
+                        font-size: 25px;
+                    }
+                    li.storeCheckboxItem1 label span {
+                        border-radius: 10px 0 0 10px;
+                    }
+                    li.storeCheckboxItem2 label span {
+                        margin-left: 5px;
+                        border-radius: 0 10px 10px 0;
+                    }
+                    li.storeCheckboxItem label input {
+                        display: none;
+                    }
+                    li.storeCheckboxItem label input:checked + span {
+                        background: #E9756E;
+                        color: #FFFFFF;
+                    }
+                } 
             }
         }
     }
@@ -158,7 +195,7 @@ $color-storeDown: #E9756E;
 //     fill: #E9756E;
 // }
 
-// Masonry Grid Css
+
 
 
 // Masonry Card Css
@@ -234,6 +271,22 @@ $color-storeDown: #E9756E;
             position: absolute;
             bottom: 10px;
             right: 25px;
+            .storeEnterStore {
+                padding: 10px 10px;
+                border-radius: 10px;
+                color: #9597A6;
+                background: #FFFFFF;
+                font-size: 20px;
+                line-height: 20px;
+                cursor: pointer;
+                svg {
+                    font-size: 20px;
+                }
+            }
+            .storeEnterStore:hover {
+                background: #E9756E;
+                color: #FFFFFF;
+            }
         }
     }
 }
@@ -294,8 +347,20 @@ $color-storeDown: #E9756E;
             position: relative;
             width: 100%;
             .storeUp {
-
+                
+            }
+            .storeDown {
+                .storeButtonGroup {
+                    ul.storeCheckboxGroup {
+                        li.storeCheckboxItem label span {
+                            height: 50px;
+                            line-height: 22px;
+                            font-size: 20px;
+                        }
+                    }
+                }
             }
         }
     }
+    
 }

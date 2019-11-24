@@ -122,3 +122,11 @@ $color-LeftName: #FFFFFF;
     border-radius: 50%;
     background-color: $bgc-dark;
 }
+
+.MuiPaper-root {
+    background-color: rgba(#000000,0.3) !important;
+}
+.buttonRightList {
+    color: #ffffff;
+    font-size: 200px;
+}

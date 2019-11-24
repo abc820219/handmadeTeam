@@ -34,7 +34,20 @@ function IngredientsRight() {
       onClick={toggleDrawer(side, false)}
       onKeyDown={toggleDrawer(side, false)}
     >
-      <List>
+      <List className="buttonRightList">
+        9999999999999999999999999999999999999999999999999<br/>
+        9999999999999999999999999999999999999999999999999<br/>
+        9999999999999999999999999999999999999999999999999<br/>
+        9999999999999999999999999999999999999999999999999<br/>
+        9999999999999999999999999999999999999999999999999<br/>
+        9999999999999999999999999999999999999999999999999<br/>
+        9999999999999999999999999999999999999999999999999<br/>
+        9999999999999999999999999999999999999999999999999<br/>
+        9999999999999999999999999999999999999999999999999<br/>
+        9999999999999999999999999999999999999999999999999<br/>
+        9999999999999999999999999999999999999999999999999<br/>
+        9999999999999999999999999999999999999999999999999<br/>
+        9999999999999999999999999999999999999999999999999<br/>
 
       </List>
     </div>
@@ -44,7 +57,7 @@ function IngredientsRight() {
       <Button className="recipeRightButtonShow" onClick={toggleDrawer('right', true)}>
         按這裡
         </Button>
-      <Drawer anchor="right" open={state.right} onClose={toggleDrawer('right', false)}>
+      <Drawer className="buttonRightIngredientsMain" anchor="right" open={state.right} onClose={toggleDrawer('right', false)}>
         {sideList('right')}
       </Drawer>
     </div>
