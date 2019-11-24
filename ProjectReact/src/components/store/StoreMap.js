@@ -3,35 +3,75 @@ import React, { useEffect } from 'react'
 
 
 const SvgComponent = props => {
-  
+  // console.log(props); 
   const setAreaNowName = props.setAreaNowName;
   function areaNow(e){
     let value = e.target.getAttribute('mapValue');
-    console.log(value);
+    // console.log(value); // 傳 hover 後的值
     setAreaNowName(value);
   }
+
   const setAreaNowCatch = props.setAreaNowCatch;
 
   const areaHaveStore = props.areaHaveStore;
 
+  const areaAllHaveStoreData = props.areaAllHaveStoreData;
+
+  // const getAreaClick = props.getAreaClick;
+
+  const storeData = props.storeData;
+
   function areaNoStore(areaHaveStore){
-    console.log(areaHaveStore);
-    let areaNumber = document.querySelectorAll("path");
+    // console.log(areaHaveStore); // 地區有店家
+    let areaNumber = document.querySelectorAll(".taiwanMap path");
+    // console.log(areaNumber) // 地區號碼
     areaNumber.forEach(element => {
       // console.log(element);
-      console.log(element.mapValue);
-      // if(areaHaveStore[element.mapValue]){
-      //   element.style.fill = "#000000";
-      //   console.log(element);
-      // }      
+      // console.log(element.getAttribute("mapValue"));
+      // console.log(areaHaveStore[element.getAttribute("mapValue")]); 
+      if(areaHaveStore[element.getAttribute("mapValue")]){
+        // element.classList.add('prefix__storeCountry');
+        // element.classList.remove('areaNoHaveStore');
+        let areaStoreMapValue = element.getAttribute("mapValue");
+        // console.log(element); //有店家
+        element.addEventListener('click',()=>{storeData(areaStoreMapValue)})
+      } else{
+        // console.log(element); //沒店家
+        // element.classList.add('areaNoHaveStore');
+        // element.classList.remove('prefix__storeCountry');
+      }
+    });
+  }
+
+  function areaNoStoreData(areaAllHaveStoreData){
+    // console.log(areaHaveStore); // 地區有店家
+    let areaNumberData = document.querySelectorAll(".taiwanMap path");
+    // console.log(areaNumber) // 地區號碼
+    areaNumberData.forEach(element => {
+      // console.log(element);
+      // console.log(element.getAttribute("mapValue"));
+      // console.log(areaHaveStore[element.getAttribute("mapValue")]); 
+      if(areaAllHaveStoreData[element.getAttribute("mapValue")]){
+        element.classList.add('prefix__storeCountry');
+        element.classList.remove('areaNoHaveStore');
+      } else{
+        element.classList.add('areaNoHaveStore');
+        element.classList.remove('prefix__storeCountry');
+      }
     });
   }
 
   useEffect(()=>{
-
+    // console.log( document.querySelector('.taiwanMap path').attributes ); // 抓台灣地圖 PATH
+    areaNoStore(areaHaveStore);
   })
+
+  useEffect(()=>{
+    areaNoStoreData(areaAllHaveStoreData);
+  })
+
 return(
-  <svg onMouseLeave={()=>setAreaNowCatch("全島")} viewBox="0 0 566.9 850.4" {...props}>
+  <svg className="taiwanMap" onMouseLeave={()=>setAreaNowCatch("全島")} viewBox="0 0 566.9 850.4" {...props}>
     <path
       onMouseEnter={(event)=>areaNow(event)}
       mapValue="11"
