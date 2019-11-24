@@ -1,4 +1,10 @@
-import React, { useState, useEffect ,useContext ,useReducer,BrowserRouter} from "react";
+import React, {
+  useState,
+  useEffect,
+  useContext,
+  useReducer,
+  BrowserRouter
+} from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import {
   Handmade,
@@ -12,15 +18,16 @@ import {
   Ingredients,
   MemberEmail,
   Course_detail,
+  TestStore
 } from "./routes/index";
+
 import CartStore from "./components/cart/CartStore";
 import {
- cartPageReducer,
+  cartPageReducer,
   cartCourseReducer,
   cartIngreReducer,
   cartCheckoutReducer,
-  courseCartCfReducer,
-  priceAfterCouponReducer
+  courseCartCfReducer
 } from "./components/cart/CartReducer";
 export const cartPageInitState = { step: 0 };
 function App() {
@@ -28,8 +35,9 @@ function App() {
   const loginLocal = localStorage.getItem("member_id") || 0;
   // const [courseCart, setCourseCart] = useState();
   // const [ingreCart, setIngreCart] = useState();
-  const { id, courseCartCf ,courseCart,ingreCart,afterCoupon} = useContext(CartStore);
-
+  const { id, courseCartCf, courseCart, ingreCart, afterCoupon } = useContext(
+    CartStore
+  );
 
   const [cartPageState, cartPageDispatch] = useReducer(
     cartPageReducer,
@@ -44,12 +52,6 @@ function App() {
     cartIngreReducer,
     ingreCart
   );
-
-
-  const [priceAfterCoupon,priceAfterCouponDispatch] = useReducer(
-    priceAfterCouponReducer,
-    afterCoupon
-  )
 
   useEffect(() => {
     if (loginLocal) {
@@ -80,77 +82,78 @@ function App() {
               cartCourseDispatch,
               courseCart: cartCourseState,
               cartIngreDispatch,
-              ingreCart: cartIngreState,
-              // checkoutFinish: cartCheckState.checkoutFinish,
-              // cartCheckoutDispatch,
-              // courseCartCf: courseCartCfState,
-              // courseCartCfDispatch
-              afterCoupon: priceAfterCoupon,
-              priceAfterCouponDispatch
+              ingreCart: cartIngreState
             }}
           >
-          <Route path="/" exact component={Navgation}></Route>
-          <Route
-            path="/handmade/"
-            exact
-            component={() => (
-              <Handmade login={{ login }} checkLogIn={checkLogIn} />
-            )}
-          ></Route>
-          <Route
-            path="/handmade/store/course/"
-            exact
-            component={() => (
-              <Course login={{ login }} checkLogIn={checkLogIn}/>
-            )}
-          ></Route>
-          <Route
-            path="/handmade/store/course/:sid?"
-            exact
-            component={() => (
-              <Course_detail login={{ login }} checkLogIn={checkLogIn} />
-            )}
-          ></Route>
-          <Route
-            path="/handmade/member/:id?"
-            component={() => (
-              <Member login={{ login }} checkLogIn={checkLogIn}/>
-            )}
-          ></Route>
-          <Route
-            path="/handmade/email/:sid?"
-            component={() => <MemberEmail />}
-          ></Route>
-          <Route
-            path="/handmade/store/"
-            exact
-            component={() => (
-              <Store login={{ login }} checkLogIn={checkLogIn}/>
-            )}
-          ></Route>
-          <Route
-            path="/handmade/teacher/"
-            exact
-            component={() => (
-              <Teacher login={{ login }} checkLogIn={checkLogIn}/>
-            )}
-          ></Route>
-          <Route
-            path="/handmade/teacher/subject/:image_id?"
-            component={props => (
-              <Teacher_Subject
-                {...props}
-                login={{ login }}
-                checkLogIn={checkLogIn}
-              />
-            )}
-          ></Route>
-          <Route
-            path="/handmade/ingredients/:id?"
-            component={() => (
-              <Ingredients login={{ login }} checkLogIn={checkLogIn} />
-            )}
-          ></Route>
+            <Route path="/" exact component={Navgation}></Route>
+            <Route
+              path="/handmade/"
+              exact
+              component={() => (
+                <Handmade login={{ login }} checkLogIn={checkLogIn} />
+              )}
+            ></Route>
+            <Route
+              path="/handmade/store/course/"
+              exact
+              component={() => (
+                <Course login={{ login }} checkLogIn={checkLogIn} />
+              )}
+            ></Route>
+            <Route
+              path="/handmade/store/course/:sid?"
+              exact
+              component={() => (
+                <Course_detail login={{ login }} checkLogIn={checkLogIn} />
+              )}
+            ></Route>
+            <Route
+              path="/handmade/test?"
+              exact
+              component={() => (
+                <TestStore login={{ login }} checkLogIn={checkLogIn} />
+              )}
+            ></Route>
+            <Route
+              path="/handmade/member/:id?"
+              component={() => (
+                <Member login={{ login }} checkLogIn={checkLogIn} />
+              )}
+            ></Route>
+            <Route
+              path="/handmade/email/:sid?"
+              component={() => <MemberEmail />}
+            ></Route>
+            <Route
+              path="/handmade/store/"
+              exact
+              component={() => (
+                <Store login={{ login }} checkLogIn={checkLogIn} />
+              )}
+            ></Route>
+            <Route
+              path="/handmade/teacher/"
+              exact
+              component={() => (
+                <Teacher login={{ login }} checkLogIn={checkLogIn} />
+              )}
+            ></Route>
+            <Route
+              path="/handmade/teacher/subject/:image_id?"
+              component={props => (
+                <Teacher_Subject
+                  {...props}
+                  login={{ login }}
+                  checkLogIn={checkLogIn}
+                />
+              )}
+            ></Route>
+            <Route
+              path="/handmade/ingredients/:id?"
+              component={() => (
+                <Ingredients login={{ login }} checkLogIn={checkLogIn} />
+              )}
+            ></Route>
           </CartStore.Provider>
         </Switch>
       </Router>

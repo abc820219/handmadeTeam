@@ -95,22 +95,12 @@ const MemberOrderList = ({ changeOrderType }) => {
             <h3 className="orderList_title">課程</h3>
             {/* {courseLists.map(courseList => ( */}
               <MemberOrderListCourse
-<<<<<<< HEAD
                 // orderDetailData={orderDetailData}
                 // key={courseList.order_sid}
                 // orderSid={courseList.order_sid}
                 // courseName={courseList.course_name}
                 // courseOrderChoose={courseList.course_order_choose}
                 // coursePrice={courseList.course_price}
-=======
-                orderDetailData={orderDetailData}
-                key={courseList.order_sid}
-                courseOrderSid={courseList.course_order_sid}
-                courseName={courseList.course_name}
-                courseList={courseList.course_list}
-                courseOrderChoose={courseList.course_order_choose}
-                coursePrice={courseList.course_price}
->>>>>>> 42ffe768ad262ba3dea317152e01a81380de536b
               />
             {/* ))} */}
           </ul>
