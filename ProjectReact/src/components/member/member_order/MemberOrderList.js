@@ -45,8 +45,8 @@ const MemberOrderList = ({ changeOrderType }) => {
       const dataJson = await fetch(
         `http://localhost:5000/handmade/member/order/ingre/${user}`
       );
-      const data = await dataJson.json();
-      await ilDispatch(receiveIngreOrder(data));
+      const datas = await dataJson.json();
+      await ilDispatch(receiveIngreOrder(datas));
     } catch (e) {
       console.log(e);
     }
@@ -83,7 +83,7 @@ const MemberOrderList = ({ changeOrderType }) => {
       console.log(e);
     }
   };
-
+  console.log(courseLists);
   return (
     <>
       <Container className="memberOrderList container">
@@ -95,12 +95,22 @@ const MemberOrderList = ({ changeOrderType }) => {
             <h3 className="orderList_title">課程</h3>
             {/* {courseLists.map(courseList => ( */}
               <MemberOrderListCourse
+<<<<<<< HEAD
                 // orderDetailData={orderDetailData}
                 // key={courseList.order_sid}
                 // orderSid={courseList.order_sid}
                 // courseName={courseList.course_name}
                 // courseOrderChoose={courseList.course_order_choose}
                 // coursePrice={courseList.course_price}
+=======
+                orderDetailData={orderDetailData}
+                key={courseList.order_sid}
+                courseOrderSid={courseList.course_order_sid}
+                courseName={courseList.course_name}
+                courseList={courseList.course_list}
+                courseOrderChoose={courseList.course_order_choose}
+                coursePrice={courseList.course_price}
+>>>>>>> 42ffe768ad262ba3dea317152e01a81380de536b
               />
             {/* ))} */}
           </ul>
@@ -110,7 +120,7 @@ const MemberOrderList = ({ changeOrderType }) => {
               <MemberOrderListIngre
                 orderDetailData={orderDetailData}
                 key={ingreList.order_sid}
-                orderSid={ingreList.order_sid}
+                ingreOrderSid={ingreList.ingredients_order_sid}
                 ingredientsName={ingreList.ingredients_name}
                 ingredientsQuantity={ingreList.ingredients_order_quantity}
                 ingredientsPrice={ingreList.ingredients_price}

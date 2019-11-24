@@ -9,7 +9,7 @@ const CartRight = ({ courseCards,
   courseDelBtn,
   ingreCards,
   ingreAmountBtn,
-  ingreDelBtn,
+  ingreDelBtn
 }) => {
   const { step, id } = useContext(CartStore);
   let invisible_button = { visibility: step ? "hidden" : "visible" };

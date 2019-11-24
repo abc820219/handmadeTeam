@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from "react";
+import React, { useState, useReducer, useContext } from "react";
 // import store from '../../store'
 import MemberOrderList from "./MemberOrderList";
 import MemberOrderDetail from "./MemberOrderDetail";
@@ -14,6 +14,7 @@ export const ingreInitState = { ingreLists: [] };
 export const orderDetailInitState = { orderDetail: [] };
 
 const MemberOrder = () => {
+  const{orderDetailFetch} = useContext(Store);
   const [clState, clDispatch] = useReducer(courseListReducer, courseInitState);
   const [ilState, ilDispatch] = useReducer(ingreListReducer, ingreInitState);
   // const [orderType, setOrderType] = useState(1);
@@ -34,7 +35,7 @@ const MemberOrder = () => {
         courseIsFetch: Store.courseIsFetch,
         ingreIsFetch: Store.ingreIsFetch,
         orderDetailLists: odState.orderDetailLists,
-        orderDetailFetch: Store.orderDetailFetch,
+        orderDetailFetch: orderDetailFetch,
         orderType: odState.orderType,
         clDispatch,
         ilDispatch,

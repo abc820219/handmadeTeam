@@ -9,6 +9,8 @@ const CANCEL_INGRE_ITEM = 'CANCEL_INGRE_ITEM';
 const ADD_INGRE_ITEM = 'ADD_INGRE_ITEM';
 const CORSE_CART_RERENDER = 'CORSE_CART_RERENDER';
 const INGRE_CART_RERENDER = 'INGRE_CART_RERENDER';
+const CART_AFTER_COUPON = 'CART_AFTER_COUPON';
+const COUPON_SELECT = 'COUPON_SELECT';
 
 const courseCartRerender= (id) => ({
     type: CART_PREV_PAGE,
@@ -65,6 +67,16 @@ const unSelectCourse = (pos,courseInfo) => ({
     payload: {pos:pos,courseInfo:courseInfo}
 })
 
+const cartAfterCouponAction = (couponPrice) => ({
+    type: CART_AFTER_COUPON,
+    payload: couponPrice
+})
+
+const couponSelectAction = (couponSelect) => ({
+    type: COUPON_SELECT,
+    payload: couponSelect
+})
+
 export {
     CART_PREV_PAGE,
     CART_NEXT_PAGE,
@@ -86,5 +98,7 @@ export {
     CORSE_CART_RERENDER,
     INGRE_CART_RERENDER,
     courseCartRerender,
-    ingreCartRerender
+    ingreCartRerender,
+    CART_AFTER_COUPON,
+    cartAfterCouponAction 
 };
