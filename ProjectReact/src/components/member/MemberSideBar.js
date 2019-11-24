@@ -8,6 +8,7 @@ const MemberSideBar = ({ match, showSideBar }) => {
   const [memberImgName, setMemberImgName] = useState("");
   const [imgHand, setImgHand] = useState(false);
   const [tokeId, setTokenId] = useState("");
+  const [couponPage, setCouponPage] = useState(0);
   useEffect(() => {
     if (JSON.parse(localStorage.getItem("member_data"))) {
       setTokenId(JSON.parse(localStorage.getItem("member_data")).token_id);
@@ -100,6 +101,8 @@ const MemberSideBar = ({ match, showSideBar }) => {
           PROFILE
           <li>
             <Link
+              className={couponPage === 0 ? "active" : ""}
+              onClick={() => setCouponPage(0)}
               to="/handmade/member/edit"
               style={{ color: "#fff", textDecoration: "none" }}
             >
@@ -109,6 +112,8 @@ const MemberSideBar = ({ match, showSideBar }) => {
           {!tokeId ? (
             <li>
               <Link
+                className={couponPage === 1 ? "active" : ""}
+                onClick={() => setCouponPage(1)}
                 to="/handmade/member/passwordEdit"
                 style={{ color: "#fff", textDecoration: "none" }}
               >
@@ -121,9 +126,11 @@ const MemberSideBar = ({ match, showSideBar }) => {
         </ul>
         <ul>
           PROFILE
-          <li>收藏清單</li>
+          {/* <li>收藏清單</li> */}
           <li>
             <Link
+              className={couponPage === 2 ? "active" : ""}
+              onClick={() => setCouponPage(2)}
               to="/handmade/member/coupon"
               style={{ color: "#fff", textDecoration: "none" }}
             >
@@ -135,6 +142,8 @@ const MemberSideBar = ({ match, showSideBar }) => {
           PROFILE
           <li>
             <Link
+              className={couponPage === 3 ? "active" : ""}
+              onClick={() => setCouponPage(3)}
               to="/handmade/member/order"
               style={{ color: "#fff", textDecoration: "none" }}
             >
@@ -143,6 +152,8 @@ const MemberSideBar = ({ match, showSideBar }) => {
           </li>
           <li>
             <Link
+              className={couponPage === 4 ? "active" : ""}
+              onClick={() => setCouponPage(4)}
               to="/handmade/member/cart"
               style={{ color: "#fff", textDecoration: "none" }}
             >

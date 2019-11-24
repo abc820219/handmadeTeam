@@ -1,42 +1,52 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Nav } from "react-bootstrap";
 import "../../commom/scss/member/coupon.scss";
+import CouponGet from "../member/CouponGet";
+import MyCoupon from "../member/MyCoupon";
 const Coupon = ({ props }) => {
-  const [couponData, setCouponData] = useState("");
-  useEffect(() => {
-    fetch("http://localhost:5000/handmade/coupon", {
-      method: "GET"
-    })
-      .then(res => {
-        return res.json();
-      })
-      .then(row => {
-        console.log(row);
-        setCouponData(row.rows);
-      });
-  }, []);
-  console.log(couponData);
-  if (couponData === "") return <></>;
+  const [couponPage, setCouponPage] = useState(0);
+  const PageChange = page => {
+    setCouponPage(page);
+  };
   return (
     <>
-      <div className="container-fluid">
+      <div className="container-fluid couponDetail">
         <div className="row">
           <div className="col-md-12">
             <article>
               <div className="row">
                 <div className=" p-5 col-md-6 col-12">
-                  <Nav variant="tabs" fill defaultActiveKey="/home">
+                  <Nav
+                    variant="tabs"
+                    fill
+                    defaultActiveKey="/handmade/member/coupon"
+                  >
                     <Nav.Item>
-                      <Nav.Link href="">優惠卷領取專區</Nav.Link>
+                      <Nav.Link
+                        onClick={() => PageChange(0)}
+                        className={couponPage === 0 && "active"}
+                      >
+                        優惠卷領取專區
+                      </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                      <Nav.Link href="">我的優惠卷</Nav.Link>
+                      <Nav.Link
+                        onClick={() => PageChange(1)}
+                        className={couponPage === 1 && "active"}
+                      >
+                        我的優惠卷
+                      </Nav.Link>
                     </Nav.Item>
-                    <Nav.Item>
-                      <Nav.Link href="">我的紅利</Nav.Link>
-                    </Nav.Item>
+                    {/* <Nav.Item>
+                      <Nav.Link
+                        onClick={() => PageChange(2)}
+                        className={couponPage === 2 && "active"}
+                      >
+                        我的紅利
+                      </Nav.Link>
+                    </Nav.Item> */}
                   </Nav>
                   <div>
                     <article className="p-4">
@@ -90,31 +100,9 @@ const Coupon = ({ props }) => {
                     </article>
                   </div>
                 </div>
-                <div className="col-md-6 col-12 p-5">
-                  {couponData.map((v, index) => {
-                    return (
-                      <div className="d-flex justify-content-center">
-                        <div className="py-3">
-                          <div className="coupon d-flex flex-nowrap ">
-                            <div className="coupon-left">
-                              <p className="coupon-left-content">
-                                <span>{v.coupon_price}折</span>
-                              </p>
-                            </div>
-                            <div className="coupon-con">
-                              <span>優惠卷編號:{v.coupon_sid}</span>
-                              <div className="couponContent">{v.coupon_content}</div>
-                              <input
-                                className="couponBtn"
-                                value="領取"
-                                type="button"
-                              ></input>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
+                <div className="col-md-6 col-12 p-4">
+                  {couponPage === 0 && <CouponGet />}
+                  {couponPage === 1 && <MyCoupon />}
                 </div>
               </div>
             </article>
