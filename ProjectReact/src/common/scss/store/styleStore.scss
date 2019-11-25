@@ -273,12 +273,13 @@ $color-storeDown: #E9756E;
             right: 25px;
             .storeEnterStore {
                 padding: 10px 10px;
-                border-radius: 10px;
+                border-radius: 22px;
                 color: #9597A6;
                 background: #FFFFFF;
                 font-size: 20px;
                 line-height: 20px;
                 cursor: pointer;
+                text-decoration: none;
                 svg {
                     font-size: 20px;
                 }

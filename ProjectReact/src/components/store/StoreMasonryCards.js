@@ -32,7 +32,7 @@ const StoreMasonryCards = ({storeDataLoad}) => {
                             {/* <Button className="storeEnterStore" variant="contained" color="secondary">
                                 Go To Store
                             </Button> */}
-                            <a className="storeEnterStore"><FaStore /> GO TO Store</a>
+                            <a className="storeEnterStore" href={`/handmade/store/${item.store_sid}/course`}><FaStore /> GO TO Store</a>
                         </div>
                     </div>
                 </Brick>
