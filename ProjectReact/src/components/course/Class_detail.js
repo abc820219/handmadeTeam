@@ -29,10 +29,14 @@ function Class_detail() {
   const [img_detail, setImg_detail] = useState("")
   const [difficult, setDifficult] = useState("")
   const [course_time_select, setCourse_time_select] = useState("")
-  const [test, setTest] = useState("")
   const [data_total, setData_total] = useState("")
   const [order_data, setOrder_data] = useState("")
-
+  const [order_total, setOrder_total] = useState("")
+  const [test, setTest] = useState("")
+  const [order_morning, setOrder_morning] = useState("");
+  const [order_afternoon, setOrder_afternoon] = useState("")
+  const [order_noon, setOrder_noon] = useState("")
+  const [start, setStart] = useState("")
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,17 +44,73 @@ function Class_detail() {
       const data = await res.json();
       console.log(data)
       setData_total(data);
-      setOrder_data(data[0])
+      setOrder_total(data[0])//訂單全部
       let note = [];
       note = [...note, data[1][0].course_cancel, data[1][0].course_content, data[1][0].course_experience, data[1][0].course_object, data[1][0].course_precautions, data[1][0].store_introduce];
       setDataNote(note)
       let time = [];
       let noon = "12:00"
       let afternoon = "15:00"
+      let noon_str = "T04:00:00.000Z";
+      let afternoon_str = "T07:00:00.000Z";
+
+      //////////人數相加////////
+      let person_sum = (arr) => {
+        let sum = 0;
+        for (let i = 0; i < arr.length; i++) {
+          sum += arr[i]
+        }
+        return sum
+      }
+      //////人數相加//////
+
+
+
+      let big_filter = () => {
+        let now = new Date()
+        let year = now.getFullYear();
+        console.log(typeof year)
+        let total = data[2] && data[2].filter(obj => {
+          let data = obj.course_order_choose
+          data = data.slice(0, 4)
+          if (data == year) {
+            return obj.course_order_choose
+          }
+        })
+        console.log("塞年分", total)
+
+        now = parseInt((now.getMonth()) + "") + 1
+        console.log(now)
+        let order = total && total.filter(obj => {
+          let data = obj.course_order_choose
+          data = data.slice(5, 7)
+          data = parseInt(data + "")
+          if (data == now) {
+            return obj.course_order_choose
+          }
+        })
+        console.log("塞月份", order)
+        //////塞月份
+
+        let month = [];
+        for (let i = 0; i < 13; i++) {
+          month.push(total && total.filter(obj => {
+            let data = obj.course_order_choose
+            data = data.slice(5, 7)
+            return data == i
+          }))
+        }
+        console.log("月份", month)
+
+
+      }
+
+
+
       time = [...time, data[1][0].store_open, noon, afternoon, data[1][0].store_end]
       setCourse_time(time)
       let max_store = data[1][0].store_max_number
-      setMax_person(max_store)
+      await setMax_person(max_store)
       let select = []
       select = [...select, data[1][0].store_open.slice(0, 5), noon, afternoon]
       setSelect_time(select)
@@ -59,24 +119,77 @@ function Class_detail() {
         return obj.course_sid == course_sid
       })
       console.log(filter)
+
+
+      let order_morning = data[0] && data[0].filter(obj => {
+        let date = obj.course_order_choose
+        date = (date + "").slice(10)
+        if ((date + "") == "T01:00:00.000Z") {
+          return obj.course_order_choose
+        }
+      });
+      let course_time = parseInt(filter[0].course_spend_time)
+      console.log("course_time", course_time)
+
+
+      let morning_person = order_morning && order_morning.map(el => el.course_order_applicants)
+      console.log("morning_person", morning_person)
+      let morning_person_total = person_sum(morning_person)
+      console.log(" morning_person_total", morning_person_total)
+
+      let order_afternoon = data[0] && data[0].filter(obj => {
+        let date = obj.course_order_choose
+        date = (date + "").slice(10)
+        if ((date + "") == afternoon_str) {
+          return obj.course_order_choose
+        }
+      })
+      let afternoon_person = order_afternoon && order_afternoon.map(el => el.course_order_applicants)
+      console.log("afternoon_person", afternoon_person)
+      let afternoon_person_total = person_sum(afternoon_person)
+      console.log("afternoon_person_total", afternoon_person_total)
+
+      let order_noon = data[0] && data[0].filter(obj => {
+        let date = obj.course_order_choose
+        date = (date + "").slice(10)
+        if ((date + "") == noon_str) {
+          return obj.course_order_choose
+        }
+      })
+      let noon_person = order_noon && order_noon.map(el => el.course_order_applicants)
+      console.log("noon_person", noon_person)
+      let noon_person_total = person_sum(noon_person)
+      console.log("noon_person_total", noon_person_total)
+
+
+
+      await setOrder_afternoon(order_afternoon)
+      await setOrder_morning(order_morning)
+      await setOrder_noon(order_noon)
       await setDifficult(parseInt(filter[0].course_difficult))
-      await setOrder_data(filter[0])
+      await setOrder_data(filter[0]) //課程詳細全部
+      await setNeed_time(parseInt(filter[0].course_spend_time))
+      await setImg_detail(filter[0].course_detail)
+      big_filter()
     }
-
     fetchData()
-
   }, []
   )
 
-
-  console.log(data_total)
+  console.log("max_person", max_person)
+  console.log("order_noon", order_noon)
+  console.log(start, "4564546")
+  console.log("data_total", data_total)
   console.log({ dataNote });
   console.log(order_data)
   console.log(course_time)
   console.log(startDate)
- 
+  console.log("order_total", order_total)
+  console.log("vdvd", order_morning)
+  console.log("(order_afternoon)", order_afternoon)
   console.log("選擇時間", course_time_select)
-  // console.log(select_time)
+  console.log(img_detail)
+  console.log("Need_time", need_time)
   // console.log(course_person)
   // console.log(price)
 
@@ -129,8 +242,9 @@ function Class_detail() {
     data = [...data, arr[2], mon, arr[1]]
     data = data.join("-")
     console.log(data)
+    setTest(data)
   }
-
+  console.log(test)
 
 
   let Star = []
@@ -140,6 +254,8 @@ function Class_detail() {
     }
   }
   console.log(Star)
+  // let a="029";
+  // $(".react-datepicker__day--"+a).css("background-color","black");
   return (
     <div className="course_detail">
       <div className="detail_navbar_wrap">
@@ -152,7 +268,7 @@ function Class_detail() {
                 </span>
               </div>
               <div className="course_size_kid">
-                {order_data.course_size=='"'?'無尺寸':order_data.course_size}
+                {order_data.course_size == '"' ? '無尺寸' : order_data.course_size}
                 / {order_data.course_kid}
               </div>
               <div className="course_difficult">
@@ -195,6 +311,7 @@ function Class_detail() {
                   onChange={date => setStartDate(date)}
                   inline
                 />
+
               </div>
             </div>
             <div className="course_detail_person">

@@ -28,13 +28,19 @@ router.get("/:storeId/:courseSid", (req, res) => {
     const courseSid = req.params.courseSid;
     const total = "SELECT * FROM((((`course` NATURAL JOIN `store`) NATURAL JOIN `course_img`) NATURAL JOIN `course_ind`) NATURAL JOIN `course_order`) WHERE `store_sid` = " + storeId + " AND `course_sid`= " + courseSid;
     // const total = "SELECT * FROM((((`course` NATURAL JOIN `store`) NATURAL JOIN `course_img`) NATURAL JOIN `course_ind`) NATURAL JOIN `course_order`) WHERE  `course_sid`= " + courseSid ;
-    const total2 = "SELECT * FROM(((`course` NATURAL JOIN `store`) NATURAL JOIN `course_img`) NATURAL JOIN `course_ind`)WHERE `store`.`store_sid` = " + storeId
+    const total2 = "SELECT * FROM(((`course` NATURAL JOIN `store`) NATURAL JOIN `course_img`) NATURAL JOIN `course_ind`)WHERE `store`.`store_sid` = " + storeId;
+    const total3= "SELECT * FROM((((`course` NATURAL JOIN `store`) NATURAL JOIN `course_img`) NATURAL JOIN `course_ind`) NATURAL JOIN `course_order`) WHERE `store_sid` = " + storeId; 
     db.queryAsync(total)
         .then(results => {
             output.push(results)
             // res.json(results);
             // console.log(results)
             return db.queryAsync(total2)
+        }).then(results => {
+            output.push(results)
+            // res.json(output)
+            return db.queryAsync(total3)
+        
         }).then(results => {
             output.push(results)
             res.json(output)
