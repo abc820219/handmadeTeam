@@ -41,6 +41,7 @@ function Class_detail(props) {
   const [order_afternoon, setOrder_afternoon] = useState("")
   const [order_noon, setOrder_noon] = useState("")
   const [start, setStart] = useState("")
+  const [correctDay, setCorrectDay] = useState("")
 
   const [checkCart, setCheckCart] = useState(false);
 
@@ -207,57 +208,66 @@ function Class_detail(props) {
   // console.log(course_person)
   // console.log(price)
 
-  let date = () => {
-    let str;
-    str = startDate + ""
-    let arr;
-    str = str.slice(4, 15)
-    arr = str.split(" ")
-    let data = [];
-    let mon = "";
-    switch (arr[0]) {
-      case "Jan":
-        mon = "1";
-        break;
-      case "Feb":
-        mon = "2";
-        break;
-      case "Mar":
-        mon = "3";
-        break;
-      case "Apr":
-        mon = "4";
-        break;
-      case "May":
-        mon = "5";
-        break;
-      case "Jun":
-        mon = "6";
-        break;
-      case "Jul":
-        mon = "7";
-        break;
-      case "Aug":
-        mon = "8";
-        break;
-      case "Sep":
-        mon = "9";
-        break;
-      case "Oct":
-        mon = "10";
-        break;
-      case 'Nov':
-        mon = "11";
-        break;
-      case "Dec":
-        mon = "12";
-        break;
+
+
+  const setCorrectDate = (correctDate) => {
+    console.log(correctDate);
+    let date = (correctDate) => {
+      let str;
+      // str = startDate + ""
+      str = correctDate + "";
+      let arr;
+      str = str.slice(4, 15)
+      arr = str.split(" ")
+      let data = [];
+      let mon = "";
+      switch (arr[0]) {
+        case "Jan":
+          mon = "1";
+          break;
+        case "Feb":
+          mon = "2";
+          break;
+        case "Mar":
+          mon = "3";
+          break;
+        case "Apr":
+          mon = "4";
+          break;
+        case "May":
+          mon = "5";
+          break;
+        case "Jun":
+          mon = "6";
+          break;
+        case "Jul":
+          mon = "7";
+          break;
+        case "Aug":
+          mon = "8";
+          break;
+        case "Sep":
+          mon = "9";
+          break;
+        case "Oct":
+          mon = "10";
+          break;
+        case 'Nov':
+          mon = "11";
+          break;
+        case "Dec":
+          mon = "12";
+          break;
+      }
+      data = [...data, arr[2], mon, arr[1]]
+      data = data.join("-")
+      console.log(data)
+      return data
     }
-    data = [...data, arr[2], mon, arr[1]]
-    data = data.join("-")
-    console.log(data)
-    setTest(data)
+    setStartDate(correctDate);
+    setCorrectDay(date(correctDate));
   }
+
   console.log(test)
 
 
@@ -278,10 +288,8 @@ function Class_detail(props) {
     };
   }
 
-  console.log(productDetail);
-  console.log(course_person);
   const checkBottom = () => {
-    if (test && course_time_select && course_person) {
+    if (correctDay && course_time_select && course_person) {
       setCheckCart(true);
     } else {
       setCheckCart(false);
@@ -291,6 +299,9 @@ function Class_detail(props) {
   console.log(id);
 
   const putInCart = (productDetail, choseDate, courseTimeSelect, course_person, courseCart, id) => {
+    console.log(productDetail);
+    console.log(choseDate);
+    console.log(courseTimeSelect);
     if (id) {
       const courseSid = productDetail.courseSid;
       const courseTime = `${choseDate} ${courseTimeSelect}`;
@@ -299,7 +310,8 @@ function Class_detail(props) {
         checkCart = courseCart.filter(courseC => {
           return courseC.course_sid == courseSid && courseC.course_choose == courseTime;
         });
-        if (!checkCart.length) {
+        console.log(checkCart);
+        if (checkCart.length) {
           alert("已經加入重複時間課程");
         } else {
           console.log(checkCart);
@@ -330,8 +342,8 @@ function Class_detail(props) {
   }
 
   useEffect(() => {
-    checkBottom(test, course_time_select)
-  }, [test, course_time_select])
+    checkBottom(correctDay, course_time_select)
+  }, [correctDay, course_time_select])
 
 
   // let a="029";
@@ -384,11 +396,11 @@ function Class_detail(props) {
             <div className="course_detail_mon">
               <h5>Choose date</h5>
               <div
-                onClick={() => date()}
+                // onClick={() => date()}
               >
                 <DatePicker
                   selected={startDate}
-                  onChange={date => setStartDate(date)}
+                  onChange={date => setCorrectDate(date)}
                   inline
                 />
 
@@ -400,8 +412,8 @@ function Class_detail(props) {
               <button className="detail_person_btn" onClick={() => setCourse_person(course_person + 1)}><FaPlus className="person_icon" /></button>
             </div>
             <div className="course_detail_cart">
-              <button type="button" className="detail_cart_icon_btn" disabled={!checkCart} style={!checkCart ? { opacity: '0.3', pointerEvent: 'none', cursor: 'not-allowed' } : {}} 
-              onClick={() => { putInCart(productDetail, test, course_time_select, course_person, courseCart, id) }}>
+              <button type="button" className="detail_cart_icon_btn" disabled={!checkCart} style={!checkCart ? { opacity: '0.3', pointerEvent: 'none', cursor: 'not-allowed' } : {}}
+                onClick={() => { putInCart(productDetail, correctDay, course_time_select, course_person, courseCart, id) }}>
                 <FaShoppingBasket className="cart_icon" />
                 <div>Add to Cart</div>
               </button>
