@@ -109,5 +109,23 @@
     left: 0%;
     transition: 0.8s;
   }
+  .shoppingCartWrapper {
+    position: relative;
+    .itemTotal {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background-color: #362d2b;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      top: 0px;
+      left: 0px;
+      font-size: 12px;
+    }
+  }
 }
 //------------------------------

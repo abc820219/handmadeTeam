@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext,useState } from "react";
 // import {useSelector , useDispatch} from 'react-redux';
 
 import "../../../commom/scss/member/memberOrderDetail.scss";
@@ -8,15 +8,14 @@ import OrderDeListIngre from "./OrderDeListIngre";
 import Store from "./OrderStore";
 
 const MemberOrderDetail = () => {
-  const fetchData = async () => {
-    await fetch("");
-  };
+
   const { orderType, orderDetailLists, orderDetailFetch } = useContext(Store);
+  const [loading,setLoading] = useState(true);
   useEffect(() => {
-    renderSwitch(orderType);
+    setLoading(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orderDetailFetch]);
-  function renderSwitch(type) {
+  const renderSwitch = (type) => {
     switch (type) {
       case 1:
         return <OrderDeListCourse orderDetail={orderDetailLists} />;
@@ -28,7 +27,7 @@ const MemberOrderDetail = () => {
         return "";
     }
   }
-  return <>{renderSwitch(orderType)}</>;
+  return <>{loading&&renderSwitch(orderType)}</>;
 };
 
 export default MemberOrderDetail;

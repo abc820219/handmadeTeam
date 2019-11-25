@@ -11,18 +11,39 @@ const SmallCart = ({ openCart, showCart }) => {
   let { courseCart, ingreCart, id, cartCourseDispatch, cartIngreDispatch } = useContext(CartStore);
 console.log(courseCart, ingreCart);
 
-  // const reRenderPage = async (id) => {
-  //   await cartCourseDispatch(courseCartRerender(id));
-  //   await cartIngreDispatch(ingreCartRerender(id));
-  // }
+  const [cartBtn , setCartBtn] = useState(false)
 
-  // useEffect(() => {
-  //   reRenderPage(id)
-  // }, [])
+  useEffect(() => {
+    if(courseCart.length!==0 || ingreCart.length!==0){
+      setCartBtn(true)
+    }else{
+      setCartBtn(false)
+    }
+  }, [])
 
   courseCart = courseCart || [];
   ingreCart = ingreCart || [];
 
+  let CartTotal = (courseCart, ingreCart) => {
+    if (courseCart && ingreCart) {
+      let courseTotal = courseCart.reduce((courseCardA, courseCardB) => {
+        return (
+          courseCardA +
+          courseCardB.course_order_applicants * courseCardB.course_price
+        );
+      }, 0);
+      let ingreTotal = ingreCart.reduce((ingreCardA, ingreCardB) => {
+        return (
+          ingreCardA +
+          ingreCardB.ingredient_order_quantity * ingreCardB.ingredients_price
+        );
+      }, 0);
+      return courseTotal + ingreTotal;
+    } else {
+      return "沒有商品";
+    }
+  };
+  console.log(cartBtn);
   return (
     <>
       <div
@@ -76,17 +97,15 @@ console.log(courseCart, ingreCart);
         style={{ right: showCart ? "0" : "100%" }}
       >
         <div>
-          <span className="cartTotal">$ </span>
+          <span className="cartTotal">$ {CartTotal(courseCart, ingreCart)}</span>
         </div>
         <div>
-          <Link to="/handmade/member/cart">
-            <input
-              name=""
-              id=""
+          <Link to="/handmade/member/cart" style={cartBtn?{color:'white'}:{color:'white',pointerEvents:'none'}}>
+            <div
               className="cartBtn"
-              type="button"
-              value="購買"
-            />
+            >
+            購買
+            </div>
           </Link>
         </div>
       </div>

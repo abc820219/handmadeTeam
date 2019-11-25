@@ -1,9 +1,8 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Nav } from "react-bootstrap";
 import "../../commom/scss/member/coupon.scss";
-import { Route, Switch } from "react-router-dom";
 import CouponGet from "../member/CouponGet";
 import MyCoupon from "../member/MyCoupon";
 const Coupon = ({ props }) => {
@@ -13,7 +12,7 @@ const Coupon = ({ props }) => {
   };
   return (
     <>
-      <div className="container-fluid">
+      <div className="container-fluid couponDetail">
         <div className="row">
           <div className="col-md-12">
             <article>
@@ -40,14 +39,14 @@ const Coupon = ({ props }) => {
                         我的優惠卷
                       </Nav.Link>
                     </Nav.Item>
-                    <Nav.Item>
+                    {/* <Nav.Item>
                       <Nav.Link
                         onClick={() => PageChange(2)}
                         className={couponPage === 2 && "active"}
                       >
                         我的紅利
                       </Nav.Link>
-                    </Nav.Item>
+                    </Nav.Item> */}
                   </Nav>
                   <div>
                     <article className="p-4">

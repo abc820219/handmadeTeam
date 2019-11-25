@@ -26,7 +26,9 @@ export const CartStoreStatus = {
   ingreCart: ingreCart,
   courseCartCf: courseCart,
   ingreCartCf: ingreCart,
-  checkoutFinish: false
+  checkoutFinish: false,
+  afterCoupon:0,
+  couponSelect:null
 };
 
 const CartStore = createContext(CartStoreStatus);

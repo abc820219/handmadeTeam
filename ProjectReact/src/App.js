@@ -1,4 +1,10 @@
-import React, { useState, useEffect ,useContext ,useReducer,BrowserRouter} from "react";
+import React, {
+  useState,
+  useEffect,
+  useContext,
+  useReducer,
+  BrowserRouter
+} from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import {
   Handmade,
@@ -11,11 +17,13 @@ import {
   Teacher_Subject,
   Ingredients,
   MemberEmail,
-  Course_detail
+  Course_detail,
+  TestStore
 } from "./routes/index";
+
 import CartStore from "./components/cart/CartStore";
 import {
- cartPageReducer,
+  cartPageReducer,
   cartCourseReducer,
   cartIngreReducer,
   cartCheckoutReducer,
@@ -27,8 +35,9 @@ function App() {
   const loginLocal = localStorage.getItem("member_id") || 0;
   // const [courseCart, setCourseCart] = useState();
   // const [ingreCart, setIngreCart] = useState();
-  const { id, courseCartCf ,courseCart,ingreCart} = useContext(CartStore);
-
+  const { id, courseCartCf, courseCart, ingreCart, afterCoupon } = useContext(
+    CartStore
+  );
 
   const [cartPageState, cartPageDispatch] = useReducer(
     cartPageReducer,
@@ -44,22 +53,16 @@ function App() {
     ingreCart
   );
 
-  
   useEffect(() => {
     if (loginLocal) {
       setLogin(true);
     }
-    // localStorage.setItem(`courseCart${loginLocal}`, "[]");
-    // localStorage.setItem(`ingreCart${loginLocal}`, "[]");
+
     if (!localStorage.getItem(`courseCart${loginLocal}`)) {
       localStorage.setItem(`courseCart${loginLocal}`, "[]");
-    } else {
-      // setCourseCart(JSON.parse(localStorage.getItem(`courseCart${loginLocal}`)))
     }
     if (!localStorage.getItem(`ingreCart${loginLocal}`)) {
       localStorage.setItem(`ingreCart${loginLocal}`, "[]");
-    } else {
-      // setIngreCart(JSON.parse(localStorage.getItem(`ingreCart${loginLocal}`)))
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [login]);
@@ -80,10 +83,6 @@ function App() {
               courseCart: cartCourseState,
               cartIngreDispatch,
               ingreCart: cartIngreState
-              // checkoutFinish: cartCheckState.checkoutFinish,
-              // cartCheckoutDispatch,
-              // courseCartCf: courseCartCfState,
-              // courseCartCfDispatch
             }}
           >
           <Route path="/" exact component={Navgation}></Route>
@@ -148,6 +147,7 @@ function App() {
               <Ingredients login={{ login }} checkLogIn={checkLogIn} />
             )}
           ></Route>
+
           </CartStore.Provider>
         </Switch>
       </Router>

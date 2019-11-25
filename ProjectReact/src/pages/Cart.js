@@ -4,10 +4,8 @@ import CartRight from "../components/cart/CartRight";
 import "../commom/scss/cart/memberCartPage.scss";
 import CartStore, { CartStoreStatus } from "../components/cart/CartStore";
 
-
 const Cart = props => {
-  const { id, courseCartCf } = useContext(CartStore);
-
+  const { id, courseCartCf, step } = useContext(CartStore);
 
   // const [cartCourseState, cartCourseDispatch] = useReducer(
   //   cartCourseReducer,
@@ -26,7 +24,6 @@ const Cart = props => {
 
   const [courseCards, setCourseCards] = useState();
   const [ingreCards, setIngreCards] = useState();
-
   let courseCard, ingreCard;
 
   const getCourseCard = async () => {
@@ -60,14 +57,14 @@ const Cart = props => {
   };
 
   const ingreAmountBtn = async (pos, value) => {
-    const newIngreCards = await [...ingreCards];
+    const newIngreCards = [...ingreCards];
     const newIngreQty = await newIngreCards[pos].ingredient_order_quantity;
     if ((await newIngreQty) + value >= 1) {
       newIngreCards[pos].ingredient_order_quantity =
         (await newIngreQty) + value;
     }
     await setIngreCards(newIngreCards);
-    const newQuantity = await JSON.stringify(ingreCards);
+    const newQuantity = JSON.stringify(ingreCards);
     console.log(id);
     await localStorage.setItem("ingreCart" + id, newQuantity);
   };
@@ -79,10 +76,6 @@ const Cart = props => {
     const newCard = await JSON.stringify(newIngreCards);
     await localStorage.setItem("ingreCart" + id, newCard);
   };
-
-  // const getCoupon = async() =>{
-  //   await fetch('')
-  // }
 
   // const fetchCourseAttendee = async () => {
   //   try {
@@ -109,36 +102,33 @@ const Cart = props => {
   // cartTotal(courseCards,ingreCards);
 
   useEffect(() => {
-
-    Promise.all([getCourseCard(),getIngreCard()])
+    Promise.all([getCourseCard(), getIngreCard()]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <>
-      
-        <div className="container-fluid">
-          <div className="row">
-            <CartLeft
-              {...props}
-              // cartTotal = {cartTotal}
-              courseCards={courseCards}
-              setCourseCards={setCourseCards}
-              ingreCards={ingreCards}
-              setIngreCards={setIngreCards}
-            />
-            <CartRight
-              {...props}
-              courseCards={courseCards}
-              courseAmountBtn={courseAmountBtn}
-              courseDelBtn={courseDelBtn}
-              ingreCards={ingreCards}
-              ingreAmountBtn={ingreAmountBtn}
-              ingreDelBtn={ingreDelBtn}
-            />
-          </div>
+      <div className="container-fluid">
+        <div className="row">
+          <CartLeft
+            {...props}
+            // cartTotal = {cartTotal}
+            courseCards={courseCards}
+            setCourseCards={setCourseCards}
+            ingreCards={ingreCards}
+            setIngreCards={setIngreCards}
+          />
+          <CartRight
+            {...props}
+            courseCards={courseCards}
+            courseAmountBtn={courseAmountBtn}
+            courseDelBtn={courseDelBtn}
+            ingreCards={ingreCards}
+            ingreAmountBtn={ingreAmountBtn}
+            ingreDelBtn={ingreDelBtn}
+          />
         </div>
-
+      </div>
     </>
   );
 };
