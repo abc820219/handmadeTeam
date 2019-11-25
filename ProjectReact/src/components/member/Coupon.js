@@ -1,5 +1,5 @@
 import React from "react";
-import {  useState } from "react";
+import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Nav } from "react-bootstrap";
 import "../../commom/scss/member/coupon.scss";
@@ -59,12 +59,6 @@ const Coupon = ({ props }) => {
                           </p>
                         </li>
                         <li>
-                          如何獲得折價券?
-                          <p className="ml-3">
-                            享烘平台將會不定期舉辦贈送折價券活動，請您密切留意活動訊息，贈送方式與贈送內容皆以單次活動公告內容為主
-                          </p>
-                        </li>
-                        <li>
                           折價券使用須知:
                           <p className="ml-3">
                             折價券使用是以每筆訂單為單位，每筆訂單限使用一張折價券。
@@ -82,16 +76,16 @@ const Coupon = ({ props }) => {
                         <li>
                           注意事項
                           <ul>
-                            <li className="p-3">
+                            <li className="p-2">
                               1.折價券限會員使用，不得折抵現金，不得轉讓。若會員未在截止日期前，使用折價券(購物金)做購物折抵，則逾期無效，不再補發。
                             </li>
-                            <li className="p-3">
+                            <li className="p-2">
                               2.折價券不再另開立發票，發票金額以該訂單「購買時實際支付的金額」來計算。
                             </li>
-                            <li className="p-3">
+                            <li className="p-2">
                               3.訂單取消時，退貨的金額是以「購買時實際支付的金額」來計算，也就是扣除折價券(購物金)後的金額。該次消費使用之折價券(購物金)將無法退回。
                             </li>
-                            <li className="p-3">
+                            <li className="p-1">
                               4.折價券不得兌換現金、找零或折換其他贈品。
                             </li>
                           </ul>

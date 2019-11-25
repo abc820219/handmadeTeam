@@ -1,3 +1,6 @@
+@function pxToVw($px) {
+  @return $px * 100 / 1920 + vw;
+}
 * {
   list-style: none;
   -webkit-font-smoothing: antialiased;
