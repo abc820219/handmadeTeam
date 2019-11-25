@@ -125,7 +125,6 @@ const MemberOrderList = ({ changeOrderType }) => {
         </div>
         <div className="memberOrderList-info pl-2">
           <ul className="orderTitle_border">
-<<<<<<< HEAD
             <h3 className="orderList_title">訂單編號</h3>
 
             {orderSid.map((v, index) => (
@@ -184,19 +183,6 @@ const MemberOrderList = ({ changeOrderType }) => {
                 </li>
               </ul>
             ))}
-=======
-            <h3 className="orderList_title">課程</h3>
-            {/* {courseLists.map(courseList => ( */}
-              <MemberOrderListCourse
-                // orderDetailData={orderDetailData}
-                // key={courseList.order_sid}
-                // orderSid={courseList.order_sid}
-                // courseName={courseList.course_name}
-                // courseOrderChoose={courseList.course_order_choose}
-                // coursePrice={courseList.course_price}
-              />
-            {/* ))} */}
->>>>>>> 8b3126aa011eda65e0f1186ef862639a47769e65
           </ul>
           {/* <ul className="orderTitle_border">
             <h3 className="orderList_title">食材</h3>
