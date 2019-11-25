@@ -41,12 +41,12 @@ $color-LeftName: #FFFFFF;
         .recipeNameLeft {
             position: absolute;
             top: 50%;
-            right: -90px;
+            right: -75px;
             transform: translate( 0, -50% );
             p {
                 color: $color-LeftName;
-                font-size: 180px;
-                line-height: 180px;
+                font-size: 150px;
+                line-height: 150px;
                 writing-mode: vertical-lr;
                 text-orientation: mixed;
             }
@@ -67,12 +67,12 @@ $color-LeftName: #FFFFFF;
             position: absolute;
             z-index: 2;
             top: 49%;
-            left: -90px;
+            left: -75px;
             transform: translate( 0, -50% );
             p { 
                 color: $color-RightName;
-                font-size: 180px;
-                line-height: 180px;
+                font-size: 150px;
+                line-height: 150px;
                 writing-mode: vertical-lr;
                 text-orientation: mixed;
             }
@@ -89,6 +89,25 @@ $color-LeftName: #FFFFFF;
             z-index: 50;
             top: 0;
             left: 0;
+            div {
+                .recipeRightButtonShow {
+                    position: fixed;
+                    top: calc( 50% - 75px );
+                    right: -75px;
+                    z-index: 99;
+                    .MuiButton-label {
+                        width: 150px;
+                        height: 150px;
+                        border-radius: 50%;
+                        background-color: $bgc-dark;
+                    }
+                    .recipeRightArrow {
+                        margin-right: 75px;
+                        font-size: 30px;
+                        color: #FFFFFF;
+                    }
+                }
+            }
         }
     }
 }
@@ -114,11 +133,12 @@ $color-LeftName: #FFFFFF;
     }
 }
 
-// recipeRightButton css
 
-.recipeRightButtonShow {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background-color: $bgc-dark;
+
+.MuiPaper-root {
+    background-color: rgba(#000000,0.3) !important;
+}
+.buttonRightList {
+    color: #ffffff;
+    font-size: 200px;
 }

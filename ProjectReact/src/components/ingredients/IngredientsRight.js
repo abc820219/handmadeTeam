@@ -4,6 +4,10 @@ import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 
+// ICON import
+
+import { FaArrowLeft } from 'react-icons/fa';
+
 const useStyles = makeStyles({
   list: {
     width: 1450,
@@ -34,7 +38,20 @@ function IngredientsRight() {
       onClick={toggleDrawer(side, false)}
       onKeyDown={toggleDrawer(side, false)}
     >
-      <List>
+      <List className="buttonRightList">
+        9999999999999999999999999999999999999999999999999<br/>
+        9999999999999999999999999999999999999999999999999<br/>
+        9999999999999999999999999999999999999999999999999<br/>
+        9999999999999999999999999999999999999999999999999<br/>
+        9999999999999999999999999999999999999999999999999<br/>
+        9999999999999999999999999999999999999999999999999<br/>
+        9999999999999999999999999999999999999999999999999<br/>
+        9999999999999999999999999999999999999999999999999<br/>
+        9999999999999999999999999999999999999999999999999<br/>
+        9999999999999999999999999999999999999999999999999<br/>
+        9999999999999999999999999999999999999999999999999<br/>
+        9999999999999999999999999999999999999999999999999<br/>
+        9999999999999999999999999999999999999999999999999<br/>
 
       </List>
     </div>
@@ -42,9 +59,9 @@ function IngredientsRight() {
   return (
     <div>
       <Button className="recipeRightButtonShow" onClick={toggleDrawer('right', true)}>
-        按這裡
+          <FaArrowLeft className="recipeRightArrow"/>
         </Button>
-      <Drawer anchor="right" open={state.right} onClose={toggleDrawer('right', false)}>
+      <Drawer className="buttonRightIngredientsMain" anchor="right" open={state.right} onClose={toggleDrawer('right', false)}>
         {sideList('right')}
       </Drawer>
     </div>
