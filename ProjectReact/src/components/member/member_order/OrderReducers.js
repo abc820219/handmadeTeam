@@ -5,7 +5,9 @@ import {
   REC_INGRE_ORDER,
   REQ_ORDER_DETAIL,
   REC_ORDER_DETAIL,
-  REC_ORDER_SID
+  REC_ORDER_SID,
+  REQ_SUBJECT_ORDER,
+  REC_SUBJECT_ORDER
 } from "./OrderAction";
 
 export const courseListReducer = (state, action) => {
@@ -36,6 +38,24 @@ export const ingreListReducer = (state, action) => {
       return Object.assign({}, state, {
         ingreIsFetch: false,
         ingreLists: newingreLists
+      });
+    default:
+      return state;
+  }
+
+};
+
+export const subjectListReducer = (state, action) => {
+  switch (action.type) {
+    case REQ_SUBJECT_ORDER:
+      return Object.assign({}, state, {
+        subjectIsFetch: true
+      });
+    case REC_SUBJECT_ORDER:
+      const newsubjectLists = action.payload;
+      return Object.assign({}, state, {
+        subjectIsFetch: false,
+        subjectList: newsubjectLists
       });
     default:
       return state;

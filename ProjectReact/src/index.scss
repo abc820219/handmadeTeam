@@ -1,6 +1,15 @@
+* {
+  list-style: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  border-style: none;
+  font-family: basic-sans, sans-serif, "微軟正黑體";
+  font-weight: 500;
+  font-style: normal;
+}
 html,
 body {
   padding: 0;
   margin: 0;
-  background: #eec1b1;
+  background: linear-gradient(135deg, #eec1b1 0%, #f5ddba 100%, #eabeae 100%);
 }

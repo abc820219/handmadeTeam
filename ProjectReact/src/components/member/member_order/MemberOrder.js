@@ -8,17 +8,20 @@ import {
   ingreListReducer,
   orderDetailReducer,
   orderItemReducer,
-  orderSidReducer
+  orderSidReducer,
+  subjectListReducer
 } from "./OrderReducers";
 export const courseInitState = { courseLists: [] };
 export const ingreInitState = { ingreLists: [] };
 export const orderDetailInitState = { orderDetail: [] };
 export const orderSidState = { order_sid: [] };
+export const subjectInitState = { subjectList: [] };
 
 const MemberOrder = () => {
-  const { orderDetailFetch } = useContext(Store);
+  const { orderDetailFetch , subjectList } = useContext(Store);
   const [clState, clDispatch] = useReducer(courseListReducer, courseInitState);
   const [ilState, ilDispatch] = useReducer(ingreListReducer, ingreInitState);
+  const [slState, slDispatch] = useReducer(subjectListReducer, subjectInitState);
   // const [orderType, setOrderType] = useState(1);
   // const changeOrderType = a => {
   //   setOrderType(a);
@@ -29,7 +32,6 @@ const MemberOrder = () => {
     orderDetailInitState
   );
   const [odsState, odsDispatch] = useReducer(orderSidReducer, orderSidState);
-
   return (
     <Store.Provider
       value={{
@@ -41,10 +43,12 @@ const MemberOrder = () => {
         orderDetailLists: odState.orderDetailLists,
         orderDetailFetch: orderDetailFetch,
         orderType: odState.orderType,
+        subjectList: slState.subjectList,
         clDispatch,
         ilDispatch,
         odlDispatch,
-        odsDispatch
+        odsDispatch,
+        slDispatch
       }}
     >
       <div className="container-fluid">
