@@ -17,7 +17,7 @@
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #fff;
+    
   }
   
   :root {
@@ -90,6 +90,7 @@
     animation: shrink 0.5s;
     animation-fill-mode: forwards;
     cursor: grab;
+    color: #fff;
   }
   
   .main__image {

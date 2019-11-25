@@ -183,11 +183,41 @@ class Handmade extends Component {
                 : ""}
             </div>
             <div className="innerEnter" onClick={this.handleClickIsShow}>
-              {this.state.showIntroduce ? "ENTER" : ""}
-              {this.state.showClass ? "ENTER" : ""}
-              {this.state.showTeacher ? "ENTER" : ""}
-              {this.state.showStore ? "ENTER" : ""}
-              {this.state.showFood ? "ENTER" : ""}
+              {this.state.showIntroduce ? (
+                <div class="container-login100-form-btn fix">
+                  <button class="login100-form-btn ">ENTER</button>
+                </div>
+              ) : (
+                ""
+              )}
+              {this.state.showClass ? (
+                <div class="container-login100-form-btn fix">
+                  <button class="login100-form-btn ">ENTER</button>
+                </div>
+              ) : (
+                ""
+              )}
+              {this.state.showTeacher ? (
+                <div class="container-login100-form-btn fix">
+                  <button class="login100-form-btn ">ENTER</button>
+                </div>
+              ) : (
+                ""
+              )}
+              {this.state.showStore ? (
+                <div class="container-login100-form-btn fix">
+                  <button class="login100-form-btn ">ENTER</button>
+                </div>
+              ) : (
+                ""
+              )}
+              {this.state.showFood ? (
+                <div class="container-login100-form-btn fix">
+                  <button class="login100-form-btn ">ENTER</button>
+                </div>
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </div>
@@ -197,44 +227,99 @@ class Handmade extends Component {
             close
           </div>
 
-          {this.state.showIntroduce ? <h1>網站介紹</h1> : ""}
-          {this.state.showClass ? <h1>課程瀏覽</h1> : ""}
-          {this.state.showTeacher ? <h1>老師瀏覽</h1> : ""}
-          {this.state.showStore ? <h1>店家瀏覽</h1> : ""}
-          {this.state.showFood ? <h1>精選食材</h1> : ""}
+      
 
           {this.state.showIntroduce ? (
-            <div>
-              網站介紹
-              <div>課程瀏覽</div>
+            <div className="frame1">
+              <div className="interFrame1">
+                <div className="wordBox">
+                  <div className="wordBoxUp">
+                    <div className="wordHalfUp">INTRODUCE</div>
+                  </div>
+                  <div className="wordBoxDown">
+                    <div className="wordHalfDown">INTRODUCE</div>
+                  </div>
+                </div>
+              </div>
+              <div className="interFrame2">
+                <div className="innerWord"></div>
+              </div>
             </div>
           ) : (
             ""
           )}
           {this.state.showClass ? (
-            <div>
-              課程瀏覽<div>課程瀏覽</div>
+            <div className="frame1">
+              <div className="interFrame1">
+                <div className="wordBox">
+                  <div className="wordBoxUp">
+                    <div className="wordHalfUp">COURSE</div>
+                  </div>
+                  <div className="wordBoxDown">
+                    <div className="wordHalfDown">COURSE</div>
+                  </div>
+                </div>
+              </div>
+              <div className="interFrame2">
+                <div className="innerWord"></div>
+              </div>
             </div>
           ) : (
             ""
           )}
           {this.state.showTeacher ? (
-            <div>
-              課程瀏覽<div>課程瀏覽</div>
+            <div className="frame1">
+              <div className="interFrame1">
+                <div className="wordBox">
+                  <div className="wordBoxUp">
+                    <div className="wordHalfUp">TEACHER</div>
+                  </div>
+                  <div className="wordBoxDown">
+                    <div className="wordHalfDown">TEACHER</div>
+                  </div>
+                </div>
+              </div>
+              <div className="interFrame2">
+                <div className="innerWord"></div>
+              </div>
             </div>
           ) : (
             ""
           )}
           {this.state.showStore ? (
-            <div>
-              課程瀏覽<div>課程瀏覽</div>
+            <div className="frame1">
+              <div className="interFrame1">
+                <div className="wordBox">
+                  <div className="wordBoxUp">
+                    <div className="wordHalfUp">FINDSTROE</div>
+                  </div>
+                  <div className="wordBoxDown">
+                    <div className="wordHalfDown">FINDSTROE</div>
+                  </div>
+                </div>
+              </div>
+              <div className="interFrame2">
+                <div className="innerWord"></div>
+              </div>
             </div>
           ) : (
             ""
           )}
           {this.state.showFood ? (
-            <div>
-              課程瀏覽<div>課程瀏覽</div>
+            <div className="frame1">
+              <div className="interFrame1">
+                <div className="wordBox">
+                  <div className="wordBoxUp">
+                    <div className="wordHalfUp">FINDFOOD</div>
+                  </div>
+                  <div className="wordBoxDown">
+                    <div className="wordHalfDown">FINDFOOD</div>
+                  </div>
+                </div>
+              </div>
+              <div className="interFrame2">
+                <div className="innerWord"></div>
+              </div>
             </div>
           ) : (
             ""
