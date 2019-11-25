@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import { Container } from "react-bootstrap";
 import "../../../commom/scss/member/memberOrderList.scss";
 import Store from "./OrderStore";
+import { FaPlus } from "react-icons/fa";
+
 import MemberOrderListTeacher from "../member_order/MemberOrderListTeacher";
 import MemberOrderListCourse from "../member_order/MemberOrderListCourse";
 import MemberOrderListIngre from "../member_order/MemberOrderListIngre";
@@ -11,8 +13,10 @@ import {
   requestIngreOrder,
   receiveIngreOrder,
   requestOrderDetail,
-  receiveOrderDetail
+  receiveOrderDetail,
+  receiveOrderSid
 } from "./OrderAction";
+import { resetWarningCache } from "prop-types";
 const MemberOrderList = ({ changeOrderType }) => {
   const {
     courseLists,
@@ -21,9 +25,21 @@ const MemberOrderList = ({ changeOrderType }) => {
     ilDispatch,
     courseIsFetch,
     ingreIsFetch,
-    odlDispatch
+    odlDispatch,
+    orderSid,
+    odsDispatch
   } = useContext(Store);
-
+  //
+  const [open, setOpen] = useState("");
+  const openStatus = i => {
+    console.log(i);
+    if (open === i) {
+      setOpen(null);
+    } else {
+      setOpen(i);
+    }
+  };
+  //
   const orderCourseData = async () => {
     try {
       const user = await localStorage.getItem("member_id");
@@ -51,16 +67,29 @@ const MemberOrderList = ({ changeOrderType }) => {
       console.log(e);
     }
   };
+
+  const orderSidData = async () => {
+    try {
+      const user = await localStorage.getItem("member_id");
+      const dataJson = await fetch(
+        `http://localhost:5000/handmade/member/order/orderSid/${user}`
+      );
+      const datas = await dataJson.json();
+      await odsDispatch(receiveOrderSid(datas));
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    orderSidData();
+  }, []);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(()=>{
-    
-  },[])
   useEffect(() => {
     Promise.all([orderCourseData(), orderIngreData()]);
     //eslint-disable-next-line import/no-extraneous-dependencies
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [courseIsFetch, ingreIsFetch]);
-  console.log(courseLists);
 
   const orderDetailData = async (orderType, item) => {
     try {
@@ -83,7 +112,11 @@ const MemberOrderList = ({ changeOrderType }) => {
       console.log(e);
     }
   };
+
   console.log(courseLists);
+  console.log(ingreLists);
+  console.log(orderSid);
+
   return (
     <>
       <Container className="memberOrderList container">
@@ -92,6 +125,66 @@ const MemberOrderList = ({ changeOrderType }) => {
         </div>
         <div className="memberOrderList-info pl-2">
           <ul className="orderTitle_border">
+<<<<<<< HEAD
+            <h3 className="orderList_title">訂單編號</h3>
+
+            {orderSid.map((v, index) => (
+              // <MemberOrderListCourse
+              //   orderDetailData={orderDetailData}
+              //   key={courseList.order_sid}
+              //   orderSid={courseList.order_sid}
+              //   courseName={courseList.course_name}
+              //   courseOrderChoose={courseList.course_order_choose}
+              //   coursePrice={courseList.course_price}
+              // />
+              <ul>
+                <div className="d-flex justify-content-between align-items-center">
+                  <div
+                    className="d-flex justify-content-between align-items-center"
+                    style={{ color: "#fff" }}
+                  >
+                    <div className="p-2">訂單編號:{v.order_sid}</div>
+                    <FaPlus onClick={() => openStatus(index)} />
+                  </div>
+                  <h5>總金額:寫不出來</h5>
+                </div>
+                <li className={open === index ? "" : "d-none"}>
+                  {courseLists.map(row => {
+                    if (row.order_sid === v.order_sid) {
+                      return (
+                        <>
+                          <ul className="d-flex justify-content-between align-items-center">
+                            <li className="p-3">
+                              <div>課程名稱:{row.course_name}</div>
+                              <div>開課時間:{row.course_order_choose}</div>
+                            </li>
+                            <button>詳細內容</button>
+                          </ul>
+                        </>
+                      );
+                    } else {
+                      return "";
+                    }
+                  })}
+                  {ingreLists.map(row => {
+                    if (row.order_sid === v.order_sid) {
+                      return (
+                        <ul className="d-flex justify-content-between align-items-center">
+                          <li className="p-3">
+                            <div>食材名稱:{row.ingredients_name}</div>
+                            <div>購買數量:{row.ingredients_order_quantity}</div>
+                          </li>
+                          <button>詳細內容</button>
+                        </ul>
+                      );
+                    } else {
+                      return "";
+                    }
+                  })}
+                </li>
+              </ul>
+            ))}
+=======
             <h3 className="orderList_title">課程</h3>
             {/* {courseLists.map(courseList => ( */}
               <MemberOrderListCourse
@@ -103,8 +196,9 @@ const MemberOrderList = ({ changeOrderType }) => {
                 // coursePrice={courseList.course_price}
               />
             {/* ))} */}
+>>>>>>> 8b3126aa011eda65e0f1186ef862639a47769e65
           </ul>
-          <ul className="orderTitle_border">
+          {/* <ul className="orderTitle_border">
             <h3 className="orderList_title">食材</h3>
             {ingreLists.map(ingreList => (
               <MemberOrderListIngre
@@ -120,7 +214,7 @@ const MemberOrderList = ({ changeOrderType }) => {
           <ul className="orderTitle_border">
             <h3 className="orderList_title">老師</h3>
             <MemberOrderListTeacher />
-          </ul>
+          </ul> */}
         </div>
       </Container>
     </>

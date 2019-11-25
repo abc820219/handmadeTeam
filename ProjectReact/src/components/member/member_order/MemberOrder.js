@@ -7,14 +7,16 @@ import {
   courseListReducer,
   ingreListReducer,
   orderDetailReducer,
-  orderItemReducer
+  orderItemReducer,
+  orderSidReducer
 } from "./OrderReducers";
 export const courseInitState = { courseLists: [] };
 export const ingreInitState = { ingreLists: [] };
 export const orderDetailInitState = { orderDetail: [] };
+export const orderSidState = { order_sid: [] };
 
 const MemberOrder = () => {
-  const{orderDetailFetch} = useContext(Store);
+  const { orderDetailFetch } = useContext(Store);
   const [clState, clDispatch] = useReducer(courseListReducer, courseInitState);
   const [ilState, ilDispatch] = useReducer(ingreListReducer, ingreInitState);
   // const [orderType, setOrderType] = useState(1);
@@ -26,6 +28,7 @@ const MemberOrder = () => {
     orderDetailReducer,
     orderDetailInitState
   );
+  const [odsState, odsDispatch] = useReducer(orderSidReducer, orderSidState);
 
   return (
     <Store.Provider
@@ -34,12 +37,14 @@ const MemberOrder = () => {
         ingreLists: ilState.ingreLists,
         courseIsFetch: Store.courseIsFetch,
         ingreIsFetch: Store.ingreIsFetch,
+        orderSid: odsState.order_sid,
         orderDetailLists: odState.orderDetailLists,
         orderDetailFetch: orderDetailFetch,
         orderType: odState.orderType,
         clDispatch,
         ilDispatch,
-        odlDispatch
+        odlDispatch,
+        odsDispatch
       }}
     >
       <div className="container-fluid">
