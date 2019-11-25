@@ -147,7 +147,6 @@ function App() {
                 <Ingredients login={{ login }} checkLogIn={checkLogIn} />
               )}
             ></Route>
-            <Route component={() => <>404</>} />
           </CartStore.Provider>
         </Switch>
       </Router>
