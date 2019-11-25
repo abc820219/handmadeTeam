@@ -95,6 +95,11 @@ const NavBar = ({ checkLogIn, login, ...props }) => {
                 首頁
               </Link>
             </li>
+            <li>
+              <Link style={{ color: "#fff" }} to="/handmade/test">
+                測試
+              </Link>
+            </li>
           </ul>
           <div className="logoBox">
             <img />

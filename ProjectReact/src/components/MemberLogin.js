@@ -109,7 +109,9 @@ function MemberLogin(props, { checkLogIn }) {
         <div className="login-wrap d-flex flex-column align-items-center">
           <div className="mt-4">LOGO</div>
           <FacebookLogin />
-          <p className="mt-4 mb-3">使用handmade帳號登入</p>
+          <p className="mt-4 mb-3" style={{ color: "#fff" }}>
+            使用handmade帳號登入
+          </p>
           <form>
             <ul>
               <li>
@@ -186,6 +188,7 @@ function MemberLogin(props, { checkLogIn }) {
           </form>
         </div>
         <div className="login-backdrop" onClick={props.memberSignIn}></div>
+        <div className="backdropChange" onClick={props.memberSignIn}></div>
       </>
     );
   }

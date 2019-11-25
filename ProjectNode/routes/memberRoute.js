@@ -312,7 +312,7 @@ router.post("/getMemberImg", (req, res) => {
     db.query(Member.getMemberImg(), (error, rows) => {
       res.json({
         status: 200,
-        message: "照片上傳成功2",
+        message: "照片上傳成功",
         info: rows
       });
     });

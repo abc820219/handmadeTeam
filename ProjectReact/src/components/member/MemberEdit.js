@@ -85,7 +85,7 @@ const MemberEdit = () => {
             <div className="MemberEditMain mb-5 d-flex flex-column">
               <div className="d-flex edit-rwd justify-content-center">
                 <div className="short-input">
-                  <div className="titleH">Name</div>
+                  <div className="titleH">姓名</div>
                   <div className="position-relative">
                     <input
                       name="name"
@@ -105,7 +105,7 @@ const MemberEdit = () => {
                   </div>
                 </div>
                 <div className="short-input">
-                  <div className="titleH">NickName</div>
+                  <div className="titleH">暱稱</div>
                   <div className="position-relative">
                     <input
                       name="nickname"
@@ -130,7 +130,7 @@ const MemberEdit = () => {
               </div>
               <div className="d-flex edit-rwd justify-content-center">
                 <div className="longe-input">
-                  <div className="titleH">Email address</div>
+                  <div className="titleH">信箱</div>
                   <div className="position-relative">
                     <input
                       name="email"
@@ -160,7 +160,7 @@ const MemberEdit = () => {
               </div>
               <div className="d-flex edit-rwd justify-content-center">
                 <div className="short-input">
-                  <div className="titleH">Phone</div>
+                  <div className="titleH">手機</div>
                   <div className="position-relative">
                     <input
                       name="phone"
@@ -186,7 +186,7 @@ const MemberEdit = () => {
                   </span>
                 </div>
                 <div className="short-input">
-                  <div className="titleH">birthday</div>
+                  <div className="titleH">生日</div>
                   <div className="position-relative">
                     <input
                       name="birthday"
@@ -211,7 +211,7 @@ const MemberEdit = () => {
               </div>
               <div className="d-flex edit-rwd justify-content-center mb">
                 <div className="longe-input">
-                  <div className="titleH">Street address</div>
+                  <div className="titleH">地址</div>
                   <div className="position-relative">
                     <input
                       name="address"

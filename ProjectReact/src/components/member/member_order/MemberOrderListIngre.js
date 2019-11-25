@@ -4,7 +4,8 @@ import { FaDollarSign } from "react-icons/fa";
 import { GoPerson } from "react-icons/go";
 
 const MemberOrderListIngre = ({
-  orderSid,
+  key,
+  ingreOrderSid,
   ingredientsName,
   ingredientsQuantity,
   ingredientsPrice,
@@ -15,11 +16,11 @@ const MemberOrderListIngre = ({
       <li
         className="d-flex justify-content-between align-item-center my-4 flex-wrap"
         onClick={() => {
-          orderDetailData(2, orderSid);
+          orderDetailData(2, ingreOrderSid);
         }}
       >
         <span className="w-100">
-          <p>訂單編號: {orderSid}</p>
+          <p>訂單編號: {key}</p>
         </span>
         <div>
           <div>

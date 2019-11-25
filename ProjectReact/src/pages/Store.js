@@ -3,10 +3,11 @@ import Course_navbar from "../components/course/Course_navbar";
 import NavBar from "../components/NavBar";
 import StoreAll from "../components/store/StoreAll.js";
 
-class Store extends Component {
-  constructor(props) {
-    super(props);
+class Store extends Component { 
+  constructor(props){
+    super(props)
   }
+
   render() {
     return (
       <>

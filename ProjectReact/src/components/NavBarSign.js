@@ -1,15 +1,20 @@
-import React, { useEffect, useState } from "react";
-
+import React, { useContext, useState, useEffect } from "react";
 import { TiShoppingCart } from "react-icons/ti";
 // import { MdFavorite, MdNotifications } from "react-icons/md";
 import { Link } from "react-router-dom";
 import SmallCart from "./cart/SmallCart";
 import LogOut from "./member/MemberLogout";
-const NavBarSign = ({ openCart, showCart, login,...props }) => {
+import cartStore from "./cart/CartStore";
+const NavBarSign = ({ openCart, showCart, login, ...props }) => {
   const logoPattern = {
     fontSize: "30px",
     color: "white"
-  };  
+  };
+  const { ingreCart, courseCart } = useContext(cartStore);
+  const [cartLength, setCartLength] = useState(0);
+  useEffect(() => {
+    setCartLength(courseCart.length + ingreCart.length);
+  }, [ingreCart, courseCart]);
   const [memberList, setMemberList] = useState(false);
   const memberShow = () => {
     setMemberList(!memberList);
@@ -22,13 +27,13 @@ const NavBarSign = ({ openCart, showCart, login,...props }) => {
       >
         <div className="navbar-profile" onClick={memberShow}>
           <div className="navbar-img-box">
-          <img
-            src={
-              !props.memberImgName
-                ? "http://g.udn.com.tw/upfiles/B_AN/andy2946/PSN_PHOTO/813/f_23140813_1.jpg"
-                : `http://localhost:5000/images/member/member${props.memberImgName}`
-            }
-          ></img>
+            <img
+              src={
+                !props.memberImgName
+                  ? "http://g.udn.com.tw/upfiles/B_AN/andy2946/PSN_PHOTO/813/f_23140813_1.jpg"
+                  : `http://localhost:5000/images/member/member${props.memberImgName}`
+              }
+            ></img>
           </div>
           {memberList ? (
             <div className="navbar-profile-list">
@@ -56,13 +61,14 @@ const NavBarSign = ({ openCart, showCart, login,...props }) => {
           )}
         </div>
 
-        <div>
+        <div className="shoppingCartWrapper">
           <TiShoppingCart
             style={logoPattern}
             onClick={() => openCart(true)}
             onMouseLeave={() => openCart(false)}
             name="cart"
           />
+          <div className="itemTotal">{cartLength}</div>
         </div>
       </div>
       <SmallCart openCart={openCart} showCart={showCart} login={login.login} />

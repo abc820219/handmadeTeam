@@ -5,6 +5,7 @@ const db_Obj = require("C:/Users/__connect.json"); //連線到資料庫
 const db = mysql.createConnection(db_Obj);
 const bluebird = require("bluebird"); //使用兩次sql
 bluebird.promisifyAll(db);
+const moment = require("moment-timezone");
 // import OrderDetail from "../domain/memberOrder";
 
 router.get("/", (req, res) => {
@@ -13,11 +14,27 @@ router.get("/", (req, res) => {
 
 router.get("/course/:id", (req, res) => {
   const memberId = req.params.id;
-  sql =
+  let sql =
     "SELECT * FROM `order` `o` JOIN `course_order` `co` JOIN `course` `c` JOIN `course_img` `ci` ON `o`.order_sid = `co`.order_sid AND `co`.`course_sid` = `c`.`course_sid` AND `co`.`course_sid` = `ci`.`course_sid` WHERE `o`.member_sid = " +
     memberId;
   db.queryAsync(sql).then(results => {
+    const formatDate = "YYYY-MM-DD HH:mm:ss";
+    results.forEach(function(v) {
+      v.course_order_choose = moment(v.course_order_choose)
+        .tz("Asia/Taipei")
+        .format(formatDate);
+    });
     res.json(results);
+  });
+});
+
+router.get("/orderSid/:id", (req, res) => {
+  const memberId = req.params.id;
+  sql = "SELECT * FROM `order` WHERE `member_sid` = " + memberId;
+  console.log(sql);
+  db.queryAsync(sql).then(results => {
+    res.json(results);
+    console.log(results);
   });
 });
 
@@ -44,7 +61,7 @@ class OrderDetail {
         sql =
           "SELECT * FROM `order` `o` JOIN `course_order` `co` JOIN `course` `c` JOIN `course_img` `ci` ON `o`.order_sid = `co`.order_sid AND `co`.`course_sid` = `c`.`course_sid` AND `co`.`course_sid` = `ci`.`course_sid` WHERE `o`.member_sid = " +
           this.user +
-          " AND `o`.order_sid = " +
+          " AND `co`.course_order_sid = " +
           this.item;
         return sql;
         break;
@@ -52,7 +69,7 @@ class OrderDetail {
         sql =
           "SELECT * FROM ((`order` NATURAL JOIN `ingredients_order`) NATURAL JOIN `ingredients`) WHERE `order`.`member_sid` = " +
           this.user +
-          " AND `order`.order_sid = " +
+          " AND `ingredients_order`.ingredients_order_sid = " +
           this.item;
         return sql;
         break;
@@ -74,6 +91,7 @@ router.post("/orderDetail", (req, res, next) => {
     req.body.user,
     req.body.item
   );
+  console.log(orderDetail);
   db.query(orderDetail.orderDetailSQL(), (error, rows) => {
     if (error) {
       res.json({
@@ -82,6 +100,19 @@ router.post("/orderDetail", (req, res, next) => {
       });
       return;
     } else {
+      const formatDate = "YYYY-MM-DD HH:mm:ss";
+      if (rows[0].course_order_choose) {
+        rows[0].course_order_choose = moment(rows[0].course_order_choose)
+          .tz("Asia/Taipei")
+          .format(formatDate);
+        rows[0].order_create_time = moment(rows[0].order_create_time)
+          .tz("Asia/Taipei")
+          .format(formatDate);
+      } else {
+        rows[0].order_create_time = moment(rows[0].order_create_time)
+          .tz("Asia/Taipei")
+          .format(formatDate);
+      }
       res.json(rows[0]);
       return;
     }
@@ -98,6 +129,10 @@ router.get("/orderDetail/:id", (req, res, next) => {
       });
       return;
     } else {
+      const formatDate = "YYYY-MM-DD HH:mm:ss";
+      rows[0].course_order_choose = moment(rows[0].course_order_choose)
+        .tz("Asia/Taipei")
+        .format(formatDate);
       res.json(rows[0]);
       return;
     }
