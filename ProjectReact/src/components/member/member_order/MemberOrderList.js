@@ -164,7 +164,7 @@ const MemberOrderList = ({ changeOrderType }) => {
                   <div>{'訂單創建日期:' + v.order_create_time.split("T")[0]}</div>
                   <div>總金額:{v.order_total_price}</div>
                 </div>
-                <li className={open === index ? "" : "d-none"} id="s">
+                <li className={open === index ? "" : "d-none"} id="orderItem">
                   {courseLists.map(row => {
                     if (row.order_sid === v.order_sid) {
                       return (
