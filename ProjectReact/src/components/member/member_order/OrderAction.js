@@ -7,6 +7,9 @@ const REC_INGRE_ORDER = "REC_INGRE_ORDER";
 const REQ_ORDER_DETAIL = "REQ_ORDER_DETAIL";
 const REC_ORDER_DETAIL = "REC_ORDER_DETAIL";
 
+const REQ_SUBJECT_ORDER = "REQ_SUBJECT_ORDER";
+const REC_SUBJECT_ORDER = "REC_SUBJECT_ORDER";
+
 ///------------------
 const REC_ORDER_SID = "REC_ORDER_SID";
 ///------------------
@@ -30,6 +33,15 @@ const requestIngreOrder = () => ({
 
 const receiveIngreOrder = datajson => ({
   type: REC_INGRE_ORDER,
+  payload: datajson
+});
+
+const requestSubjectOrder = () => ({
+  type: REQ_SUBJECT_ORDER
+});
+
+const receiveSubjectOrder = datajson => ({
+  type: REC_SUBJECT_ORDER,
   payload: datajson
 });
 
@@ -57,11 +69,15 @@ export {
   REQ_ORDER_DETAIL,
   REC_ORDER_DETAIL,
   REC_ORDER_SID,
+  REQ_SUBJECT_ORDER,
+  REC_SUBJECT_ORDER,
   requestCourseOrder,
   receiveCourseOrder,
   requestIngreOrder,
   receiveIngreOrder,
   requestOrderDetail,
   receiveOrderDetail,
-  receiveOrderSid
+  receiveOrderSid,
+  requestSubjectOrder,
+  receiveSubjectOrder
 };

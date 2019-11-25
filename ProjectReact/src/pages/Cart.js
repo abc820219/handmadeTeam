@@ -6,6 +6,7 @@ import CartStore, { CartStoreStatus } from "../components/cart/CartStore";
 
 const Cart = props => {
   const { id, courseCartCf, step } = useContext(CartStore);
+  const setPage = props.setPage
 
   // const [cartCourseState, cartCourseDispatch] = useReducer(
   //   cartCourseReducer,
@@ -117,6 +118,7 @@ const Cart = props => {
             setCourseCards={setCourseCards}
             ingreCards={ingreCards}
             setIngreCards={setIngreCards}
+            setPage={setPage}
           />
           <CartRight
             {...props}

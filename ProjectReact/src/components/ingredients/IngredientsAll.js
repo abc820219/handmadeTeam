@@ -63,33 +63,27 @@ class IngredientsAll extends Component {
                                     <img src={`/image/ingredients/abstract06.jpg`} />
                                 </div>
                                 <div className="recipeSliderLeft">
-                                    <img src={`/image/ingredients/abstract01.jpg`} />
+                                    <img src={`/image/ingredients/abstract07.jpg`} />
                                 </div>
                                 <div className="recipeSliderLeft">
-                                    <img src={`/image/ingredients/abstract02.jpg`} />
+                                    <img src={`/image/ingredients/abstract08.jpg`} />
                                 </div>
                                 <div className="recipeSliderLeft">
-                                    <img src={`/image/ingredients/abstract03.jpg`} />
+                                    <img src={`/image/ingredients/abstract09.jpg`} />
                                 </div>
                                 <div className="recipeSliderLeft">
-                                    <img src={`/image/ingredients/abstract04.jpg`} />
-                                </div>
-                                <div className="recipeSliderLeft">
-                                    <img src={`/image/ingredients/abstract05.jpg`} />
-                                </div>
-                                <div className="recipeSliderLeft">
-                                    <img src={`/image/ingredients/abstract06.jpg`} />
+                                    <img src={`/image/ingredients/abstract10.jpg`} />
                                 </div>
                             </Slider>
                         </div>
                         <div className="recipeNameLeft">
-                            <p>PANCAKE</p>
+                            <p>MOUSSE</p>
                         </div>
                     </div>
                     <div className="ingredientsRight">
                         <div className="recipeRightDark"></div>
                         <div className="recipeNameRight">
-                            <p>PANCAKE</p>
+                            <p>MOUSSE</p>
                         </div>
                         <div className="recipeBigImages">
                             <Slider
@@ -118,22 +112,16 @@ class IngredientsAll extends Component {
                                     <img src={`/image/ingredients/abstract06.jpg`} />
                                 </div>
                                 <div className="recipeSliderRight">
-                                    <img src={`/image/ingredients/abstract01.jpg`} />
+                                    <img src={`/image/ingredients/abstract07.jpg`} />
                                 </div>
                                 <div className="recipeSliderRight">
-                                    <img src={`/image/ingredients/abstract02.jpg`} />
+                                    <img src={`/image/ingredients/abstract08.jpg`} />
                                 </div>
                                 <div className="recipeSliderRight">
-                                    <img src={`/image/ingredients/abstract03.jpg`} />
+                                    <img src={`/image/ingredients/abstract09.jpg`} />
                                 </div>
                                 <div className="recipeSliderRight">
-                                    <img src={`/image/ingredients/abstract04.jpg`} />
-                                </div>
-                                <div className="recipeSliderRight">
-                                    <img src={`/image/ingredients/abstract05.jpg`} />
-                                </div>
-                                <div className="recipeSliderRight">
-                                    <img src={`/image/ingredients/abstract06.jpg`} />
+                                    <img src={`/image/ingredients/abstract10.jpg`} />
                                 </div>
                             </Slider>
                         </div>
