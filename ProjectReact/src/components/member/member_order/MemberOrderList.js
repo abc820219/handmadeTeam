@@ -176,7 +176,7 @@ const MemberOrderList = ({ changeOrderType }) => {
                   </div>
                   <div>總金額:{v.order_total_price}</div>
                 </div>
-                <li className={open === index ? "" : "d-none"} id="s">
+                <li className={open === index ? "" : "d-none"} id="orderItem">
                   {courseLists.map(row => {
                     if (row.order_sid === v.order_sid) {
                       return (

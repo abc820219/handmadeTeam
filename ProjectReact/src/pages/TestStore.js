@@ -65,7 +65,6 @@ const TestStore = ({ login, checkLogIn }) => {
 
   const AddCourseToCart = (item, id) => {
     if (courseInCart) {
-      console.log(item, courseCart);
       cartCourseDispatch(cancelCourse(item, id));
     } else {
       cartCourseDispatch(addCourse(item, id));
