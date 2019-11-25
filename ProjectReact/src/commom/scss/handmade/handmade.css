@@ -1,0 +1,222 @@
+@font-face {
+    font-family: "LeagueSpartanVariable";
+    src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/2101521/LeagueSpartanVariable.ttf");
+  }
+  
+@font-face {
+    font-family: "SourceSerifVariable";
+    src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/2101521/SourceSerifVariable-Roman.ttf");
+  }
+  
+
+@import url("https://use.typekit.net/zkl0auq.css");
+
+* {
+    /* margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; */
+    /* color: #fff; */
+  }
+  
+  :root {
+    /* --black: #1f1f1f; */
+  }
+  
+  .main {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    font-family: "LeagueSpartanVariable";
+    /* font-family: niagara, serif; */
+    background: var(--black);
+    overflow: hidden;
+    transition: background .3s;
+  }
+  
+  .main:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("http://ashleydutton.co.uk/assets/images/noise.png");
+    opacity: 0.5;
+  }
+  
+  .main__slider {
+    position: absolute !important;
+    width: 100vw;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  }
+  
+  .main__slider.slick-initialized .slick-slide {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .main__item.slick-slide {
+    position: relative;
+    opacity: 0.4;
+    transition: opacity 0.5s;
+    outline: none;
+  }
+  
+  .main__item.slick-current {
+    opacity: 1;
+  }
+  
+  .main__item.slick-current .main__title {
+    animation: grow 0.5s;
+    animation-delay: 0.1s;
+    animation-fill-mode: forwards;
+  }
+  
+  .main__item.slick-current .main__image {
+    transform: scale(1);
+  }
+  
+  .main__title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 50px;
+    font-variation-settings: "wght" 200;
+    animation: shrink 0.5s;
+    animation-fill-mode: forwards;
+    cursor: grab;
+  }
+  
+  .main__image {
+    width: 920px;
+    height: 650px;
+    transform: scale(0.5);
+    transition: transform 0.5s;
+    transition-delay: 0.1s;
+    background-size: cover;
+    background-position: center;
+    cursor: grab;
+    
+  }
+  
+  .main__image:active, .main__title:active {
+    cursor: grabbing;
+  }
+  
+  .main__credit {
+    position: fixed;
+    bottom: 30px;
+    right: 50px;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    font-variation-settings: "wght" 200;
+  }
+  
+  .main__credit a {
+    text-decoration: none;
+    font-variation-settings: "wght" 650;
+  }
+  
+ 
+  
+  
+  
+
+  
+  
+  
+   .main__title {
+    font-family: "SourceSerifVariable";
+  }
+  
+  .main__item:hover .main__title {
+    animation: grow 0.3s;
+    animation-delay: 0.1s;
+    animation-fill-mode: forwards;
+  }
+  
+  .main__item.slick-current .main__title {
+    font-size: 50px;
+    animation: shrink 0.5s;
+    animation-fill-mode: forwards;
+  }
+  
+   .main__image {
+  
+    opacity: 1;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  
+  .main__option.active:after {
+    background: var(--black);
+  }
+  
+  .main__info-icon {
+    stroke: var(--black);
+  }
+  
+  .main__info-window {
+    box-shadow: 0 0 10px rgba(0,0,0,0.08);
+  }
+  
+  
+  /* Animations */
+  
+  @keyframes grow {
+    0% {
+      font-variation-settings: "wght" 200;
+      font-size: 75px;
+    }
+    100% {
+      font-variation-settings: "wght" 650;
+      font-size: 200px;
+    }
+  }
+  
+  @keyframes shrink {
+    0% {
+      font-variation-settings: "wght" 650;
+      font-size: 200px;
+    }
+    100% {
+      font-variation-settings: "wght" 200;
+      font-size: 75px;
+    }
+  }
+  
+  /*---------------------------------------*/
+  
+  @media only screen and (max-width: 650px){
+    .main__image {
+      height: 650px;
+    }
+  
+   
+    @keyframes grow {
+      0% {
+        font-variation-settings: "wght" 200;
+        font-size: 65px;
+      }
+      100% {
+        font-variation-settings: "wght" 650;
+        font-size: 140px;
+      }
+    }
+  
+    @keyframes shrink {
+      0% {
+        font-variation-settings: "wght" 650;
+        font-size: 140px;
+      }
+      100% {
+        font-variation-settings: "wght" 200;
+        font-size: 65px;
+      }
+    }
+  }
