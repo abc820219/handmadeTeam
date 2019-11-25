@@ -1,24 +1,23 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import NavBar from "../components/NavBar";
+import Handmade from "../components/handmade/Handmade";
 
-class Handmade extends Component {
+
+class Ingredients extends Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
     return (
       <>
-       
-        <Link to="/handmade/store/course">course</Link>
-        <br></br>
-        <Link to="/handmade/member">member</Link>
-        <br></br>
-        <Link to="/handmade/store">store</Link>
-        <br></br>
-        <Link to="/handmade/teacher">teacher</Link>
-        <br></br>
-        <Link to="/handmade/ingredients">ingredients</Link>
-        <br></br>
+        <NavBar
+          login={this.props.login}
+          checkLogIn={this.props.checkLogIn}
+        ></NavBar>
+        <Handmade />
       </>
     );
   }
 }
 
-export default Handmade;
+export default Ingredients;
