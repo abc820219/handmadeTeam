@@ -10,7 +10,8 @@ const CartLeft = ({
   courseCards,
   ingreCards,
   setCourseCards,
-  setIngreCards
+  setIngreCards,
+  setPage
 }) => {
   const [cartTotal, setCartTotal] = useState(0);
   // const [afterCoupon, setAfterCoupon] = useState(localStorage.getItem("afterTotal") ? localStorage.getItem("afterTotal") : 0);
@@ -105,13 +106,13 @@ const CartLeft = ({
     }
   };
 
-
   useEffect(() => {
 
       setCartTotal(CartTotal(courseCards, ingreCards));
   }, [courseCards, ingreCards]);
 
   useEffect(() => {
+    setPage(4);
     getCoupon();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
