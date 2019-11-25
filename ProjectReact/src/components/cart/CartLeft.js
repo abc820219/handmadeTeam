@@ -15,10 +15,10 @@ const CartLeft = ({
 }) => {
   const [cartTotal, setCartTotal] = useState(0);
   // const [afterCoupon, setAfterCoupon] = useState(localStorage.getItem("afterTotal") ? localStorage.getItem("afterTotal") : 0);
-  const [fnCartTotal, setFnCartTotal] = useState(+0);
+  const [fnCartTotal, setFnCartTotal] = useState(0);
   const [coupon, setCoupon] = useState(0);
   const [couponUse, setCouponUse] = useState(0);
-  const [step,setStep] = useState(0);
+  const [step, setStep] = useState(0);
 
   const {
     cartCourseDispatch,
@@ -38,7 +38,7 @@ const CartLeft = ({
 
   console.log(courseCart, ingreCart);
   let CartTotal = (courseCards, ingreCards) => {
-    if  (courseCards && ingreCards) {
+    if (courseCards && ingreCards) {
       let courseTotal = courseCards.reduce((courseCardA, courseCardB) => {
         return (
           courseCardA +
@@ -73,6 +73,7 @@ const CartLeft = ({
   };
   const cartSubmit = async () => {
     try {
+
       const user = localStorage.getItem("member_id");
       const courseCart = localStorage.getItem(`courseCart${user}`);
       const ingreCart = localStorage.getItem(`ingreCart${user}`);
@@ -81,7 +82,7 @@ const CartLeft = ({
         ingreCart: ingreCart,
         user: user,
         coupon: coupon,
-        totalPrice: fnCartTotal
+        totalPrice: fnCartTotal ? fnCartTotal : cartTotal
       });
       const url = `http://localhost:5000/handmade/cart/submitcart`;
       const dataJson = await fetch(url, {
@@ -108,7 +109,7 @@ const CartLeft = ({
 
   useEffect(() => {
 
-      setCartTotal(CartTotal(courseCards, ingreCards));
+    setCartTotal(CartTotal(courseCards, ingreCards));
   }, [courseCards, ingreCards]);
 
   useEffect(() => {
@@ -124,6 +125,7 @@ const CartLeft = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [couponSelect]);
 
+  console.log(couponUse.length);
   return (
     <>
       <div className="col-4 px-3 checkLeftBox">
@@ -173,15 +175,14 @@ const CartLeft = ({
                     <>
                       <li>
                         <p>可用優惠卷</p>
-                        {couponUse && (
+                        {couponUse.length && (
                           <select
                             id="coupon"
                             onClick={e => {
                               coponSelect(e);
                             }}
                           >
-                            {couponUse &&
-                              couponUse.map((coupon, index = 0) => {
+                              {couponUse.map((coupon, index = 0) => {
                                 return (
                                   <option
                                     index={index}
@@ -194,13 +195,13 @@ const CartLeft = ({
                           </select>
                         )}
                       </li>
+                      {step ? (
+                        <li>
+                          <p>可用折扣</p>
+                          <h4>{couponSelect}折</h4>
+                        </li>
+                      ):''}
                     </>
-                  )}
-                  {step && (
-                    <li>
-                      <p>可用折扣</p>
-                      <h4>{couponSelect}折</h4>
-                    </li>
                   )}
                   {/* <li>
                     <p>使用紅利</p>
@@ -215,7 +216,7 @@ const CartLeft = ({
               <div>
                 <div className="checkOrderTotal">
                   <p>結帳總額</p>
-                  <h4>$ {step ? fnCartTotal : cartTotal}</h4>
+                  <h4>$ {step ? (fnCartTotal ? fnCartTotal : cartTotal) : cartTotal}</h4>
                 </div>
               </div>
             </div>
@@ -302,13 +303,13 @@ const CartLeft = ({
             </div>
           </>
         ) : (
-          ""
-        )}
+            ""
+          )}
         {!step ? (
           <button onClick={() => setStep(1)}>NEXT</button>
         ) : (
-          <button onClick={() => cartSubmit()}>CHECK</button>
-        )}
+            <button onClick={() => cartSubmit()}>CHECK</button>
+          )}
       </div>
     </>
   );
