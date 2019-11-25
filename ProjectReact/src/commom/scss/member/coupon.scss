@@ -5,7 +5,9 @@ $BtnBgc: #f5b3aa;
     font-size: 700;
   }
 }
-
+.couponBg-color {
+  background-color: #eec1b1;
+}
 .coupon {
   display: inline-block;
   overflow: hidden;
@@ -171,7 +173,4 @@ $BtnBgc: #f5b3aa;
       );
     }
   }
-}
-
-@media (max-width: 375px) {
 }

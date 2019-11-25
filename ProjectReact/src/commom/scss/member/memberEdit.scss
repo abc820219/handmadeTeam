@@ -1,10 +1,4 @@
 @import url("https://use.typekit.net/eqs2axx.css");
-* {
-  border-style: none;
-  font-family: basic-sans, sans-serif, "微軟正黑體";
-  font-weight: 500;
-  font-style: normal;
-}
 .MemberEdit {
   height: 100%;
 }
@@ -59,7 +53,6 @@
   }
   .error {
     border: 1px solid #b8817d;
-
   }
   .errorText {
     color: #b8817d;
@@ -125,6 +118,9 @@
   }
 }
 @media (max-width: 1200px) {
+  .bg-linear {
+    background-color: #eec1b1;
+  }
   .edit-rwd {
     flex-direction: column;
   }
