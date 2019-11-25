@@ -100,7 +100,7 @@ class Subject extends Component {
           {/* <div className="subject-img">
             <img
               className="slider-image"
-              src={`/images/${this.state.subject_img}`}
+              src={`/image/${this.state.subject_img}`}
             />
           </div> */}
           <div className="subject-page-center">

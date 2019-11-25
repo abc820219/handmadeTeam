@@ -6,16 +6,17 @@ import { MdStar } from "react-icons/md";
 import CartStore from "../cart/CartStore";
 import "../../commom/scss/course/course_detail.scss";
 import "react-datepicker/dist/react-datepicker.css";
+import {Switch,Route,NavLink,Redirect,withRouter} from 'react-router-dom' ;
 
 
 
 
-
-function Class_detail() {
+function Class_detail(props) {
+  console.log(props)
   const { courseCart } = useContext(CartStore);
   console.log(courseCart);
-  const course_sid = (window.location.href).substr(44);
-  const store_sid = 1;
+  const course_sid = props.match.params.cSid;
+  const store_sid =props.match.params.sid;
   const [startDate, setStartDate] = useState(new Date());
   const [dataNote, setDataNote] = useState('')
   const [course_total, setCourse_total] = useState('')
@@ -102,6 +103,15 @@ function Class_detail() {
         }
         console.log("月份", month)
 
+        let day = [];
+        for (let i = 0; i < 32; i++) {
+          day.push(order && order.filter(obj => {
+            let data = obj.course_order_choose
+            data = (data).slice(8, 10)
+            return data == i
+          }))
+        }
+        console.log("日期訂單", day)
 
       }
 
@@ -339,4 +349,4 @@ function Class_detail() {
 
 
 
-export default Class_detail;
+export default withRouter(Class_detail);

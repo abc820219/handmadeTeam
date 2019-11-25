@@ -4,7 +4,8 @@ import {
   REQ_INGRE_ORDER,
   REC_INGRE_ORDER,
   REQ_ORDER_DETAIL,
-  REC_ORDER_DETAIL
+  REC_ORDER_DETAIL,
+  REC_ORDER_SID
 } from "./OrderAction";
 
 export const courseListReducer = (state, action) => {
@@ -39,8 +40,21 @@ export const ingreListReducer = (state, action) => {
     default:
       return state;
   }
-};
 
+};
+//------------------------------------------
+export const orderSidReducer = (state, action) => {
+  switch (action.type) {
+    case REC_ORDER_SID:
+      const newOrderSid = action.payload;
+      return Object.assign({}, state, {
+        order_sid: newOrderSid
+      });
+    default:
+      return state;
+  }
+};
+//------------------------------------
 export const orderDetailReducer = (state, action) => {
   switch (action.type) {
     case REQ_ORDER_DETAIL:

@@ -223,7 +223,7 @@ class TeacherList extends Component {
           <div className="left-img">
             <img
               className="slider-image"
-              src={`/images/${this.state.teacher_big_img}`}
+              src={`/image/${this.state.teacher_big_img}`}
             />
           </div>
           {/* 按鈕切換照片及變更資料 */}
@@ -249,12 +249,12 @@ class TeacherList extends Component {
             <div className="slider-box">
               <img
                 className="slider-image"
-                src={`/images/${this.state.teacherNumber}`}
+                src={`/image/${this.state.teacherNumber}`}
               />
               {/* <div className="image-box">
                   <img
                     className="slider-image"
-                    src={`/images/${this.state.teacher[0]}`}
+                    src={`/image/${this.state.teacher[0]}`}
                   />
                 </div> */}
               {/* </Slider> */}

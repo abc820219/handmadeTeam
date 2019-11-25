@@ -3,6 +3,8 @@ import FacebookLogin from "./FacebookLogin";
 import { FaUserAlt, FaKey, FaEye } from "react-icons/fa";
 import Captcha from "captcha-mini";
 import "../commom/scss/MemberLogin.scss";
+import { withRouter } from "react-router-dom";
+
 function MemberLogin(props, { checkLogIn }) {
   const [MemberLogin, setMemberLogin] = useState(true);
   const [account, setaccount] = useState("");
@@ -89,7 +91,7 @@ function MemberLogin(props, { checkLogIn }) {
         console.log(member_data.info);
         alert(member_data.message);
         setTimeout(() => {
-          window.location = window.location.href;
+          window.location = `http://localhost:3000${props.location.pathname}`;
         });
       })
       .catch(async err => {
@@ -107,7 +109,9 @@ function MemberLogin(props, { checkLogIn }) {
         <div className="login-wrap d-flex flex-column align-items-center">
           <div className="mt-4">LOGO</div>
           <FacebookLogin />
-          <p className="mt-4 mb-3">使用handmade帳號登入</p>
+          <p className="mt-4 mb-3" style={{ color: "#fff" }}>
+            使用handmade帳號登入
+          </p>
           <form>
             <ul>
               <li>
@@ -184,9 +188,10 @@ function MemberLogin(props, { checkLogIn }) {
           </form>
         </div>
         <div className="login-backdrop" onClick={props.memberSignIn}></div>
+        <div className="backdropChange" onClick={props.memberSignIn}></div>
       </>
     );
   }
 }
 
-export default MemberLogin;
+export default withRouter(MemberLogin);
