@@ -31,10 +31,8 @@ router.get("/course/:id", (req, res) => {
 router.get("/orderSid/:id", (req, res) => {
   const memberId = req.params.id;
   sql = "SELECT * FROM `order` WHERE `member_sid` = " + memberId;
-  console.log(sql);
   db.queryAsync(sql).then(results => {
     res.json(results);
-    console.log(results);
   });
 });
 
@@ -43,6 +41,15 @@ router.get("/ingre/:id", (req, res) => {
   sql =
     "SELECT * FROM ((`order` NATURAL JOIN `ingredients_order`) NATURAL JOIN `ingredients`) WHERE `order`.`member_sid` = " +
     memberId;
+  db.queryAsync(sql).then(results => {
+    res.json(results);
+  });
+});
+
+router.get("/subject/:id", (req, res) => {
+  const memberId = req.params.id;
+  sql =
+    "SELECT * FROM `order` o JOIN `subject_order` so JOIN `subject` s ON o.order_sid = so.order_sid AND so.subject_sid = s.subject_sid WHERE o.member_sid = "+memberId;
   db.queryAsync(sql).then(results => {
     res.json(results);
   });
@@ -91,7 +98,6 @@ router.post("/orderDetail", (req, res, next) => {
     req.body.user,
     req.body.item
   );
-  console.log(orderDetail);
   db.query(orderDetail.orderDetailSQL(), (error, rows) => {
     if (error) {
       res.json({

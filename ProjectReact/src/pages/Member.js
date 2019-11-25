@@ -48,7 +48,7 @@ const Member = ({ login }) => {
             path={`/handmade/member/coupon`}
             component={Coupon}
           />
-          <Route exact path={`/handmade/member/cart`} component={Cart} />
+          <Route exact path={`/handmade/member/cart`} component={()=>{<Cart setPage={setPage}/>}} />
           <Route
             exact
             path={`/handmade/member/passwordEdit`}

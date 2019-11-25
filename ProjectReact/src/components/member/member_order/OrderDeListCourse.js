@@ -48,7 +48,9 @@ const OrderDeListCourse = ({orderDetail}) => {
     order_sid,
     course_spend_time,
     course_taste,
-    course_price
+    course_price,
+    course_ingredient,
+    course_difficult
   } = orderDetail;
 
   useEffect(() => {
@@ -82,7 +84,7 @@ const OrderDeListCourse = ({orderDetail}) => {
                   <div className="d-flex">
                     <figure style={iconZone}>
                       <img
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRBVl9lhK94mJ5MxzGptFKO5FLRXoXVNDmjYndWy1H4kCaqDqOw"
+                        src={"/image/course_img/360/"+course_list}
                         alt=""
                       />
                     </figure>
@@ -97,10 +99,6 @@ const OrderDeListCourse = ({orderDetail}) => {
                       </div>
                     </div>
                     <div className="ml-auto">
-                      <div className="orderCourseDel d-flex justify-content-center align-items-center">
-                        <FaRegTrashAlt style={{ height: "14px" }} />
-                        <p>DEL</p>
-                      </div>
                       <div className="d-flex justify-content-around align-items-center pt-3">
                         <MdAttachMoney />
                         <p style={{ fontWeight: "bold" }}>{course_price * course_order_applicants}</p>
@@ -116,9 +114,8 @@ const OrderDeListCourse = ({orderDetail}) => {
                     </li>
                     <li>
                       <div className="my-1 mt-2 d-flex justify-content-center align-items-center">
-                        <h4 style={{ color: "#9597A6" }}>{course_spend_time}</h4>
+                        <h5 style={{ color: "#9597A6" , fontSize: '18px', fontWeight:'bold', whiteSpace:'nowrap'}}>{course_spend_time}</h5>
                       </div>
-                      <p>HR</p>
                     </li>
                     <li>
                       <div className="my-1 d-flex justify-content-center align-items-center orderCourseIcon">
@@ -157,9 +154,7 @@ const OrderDeListCourse = ({orderDetail}) => {
               <FaQuoteLeft style={{ color: "#EBD0CE", fontSize: "30px" }} />
             </figure>
             <p style={{ color: "#544741", maxWidth: "500px" }}>
-              臣亮言：先帝創業未半，而中道崩殂。今天下三分，益州疲弊，
-              此誠危急存亡之秋也。然侍衛之臣，不懈於內；
-              忠志臣亮言：先帝創業未半，而中
+              {course_ingredient}
             </p>
             <div className="orderIconRight ml-auto">
               <p style={{ color: "#544741" }}>Go Item page</p>
@@ -178,7 +173,7 @@ const OrderDeListCourse = ({orderDetail}) => {
                 <h5>超級巧克男孩</h5>
               </div>
               <div className="mt-3 ml-3">
-                <p>4.4 rating</p>
+                <p>課程難度: {" "+course_difficult}</p>
               </div>
             </div>
             <div className="orderIconRight ml-auto">
@@ -187,14 +182,14 @@ const OrderDeListCourse = ({orderDetail}) => {
             </div>
           </div>
           <div className="orderDeCourseList d-flex justify-content-between align-items-center flex-md-wrap">
-            <div className="orderIconBottom">
+            <button className="orderIconBottom">
               <FaExchangeAlt style={{ fontSize: "16px", color: "#545871" }} />
               <p>轉讓訂單</p>
-            </div>
-            <div className="orderIconBottom">
+            </button>
+            <button className="orderIconBottom">
               <MdCancel style={{ fontSize: "16px", color: "#545871" }} />
               <p>取消訂單</p>
-            </div>
+            </button>
           </div>
         </div>
       </>

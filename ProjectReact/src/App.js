@@ -23,7 +23,6 @@ import {
 
 import CartStore from "./components/cart/CartStore";
 import {
-  cartPageReducer,
   cartCourseReducer,
   cartIngreReducer,
   cartCheckoutReducer,
@@ -37,11 +36,6 @@ function App() {
   // const [ingreCart, setIngreCart] = useState();
   const { id, courseCartCf, courseCart, ingreCart, afterCoupon } = useContext(
     CartStore
-  );
-
-  const [cartPageState, cartPageDispatch] = useReducer(
-    cartPageReducer,
-    cartPageInitState
   );
   const [cartCourseState, cartCourseDispatch] = useReducer(
     cartCourseReducer,
@@ -77,8 +71,6 @@ function App() {
           <CartStore.Provider
             value={{
               id: id,
-              step: cartPageState.step,
-              cartPageDispatch,
               cartCourseDispatch,
               courseCart: cartCourseState,
               cartIngreDispatch,
@@ -108,7 +100,7 @@ function App() {
               )}
             ></Route>
             <Route
-              path="/handmade/test?"
+              path="/handmade/test"
               exact
               component={() => (
                 <TestStore login={{ login }} checkLogIn={checkLogIn} />
