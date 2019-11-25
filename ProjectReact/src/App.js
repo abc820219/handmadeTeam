@@ -94,7 +94,7 @@ function App() {
               )}
             ></Route>
             <Route
-              path="/handmade/store/:sid/course/:sid?"
+              path="/handmade/store/:sid?/course/:cSid"
               exact
               component={() => (
                 <Course_detail login={{ login }} checkLogIn={checkLogIn} />
