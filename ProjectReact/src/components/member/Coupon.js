@@ -17,7 +17,7 @@ const Coupon = ({ props }) => {
           <div className="col-md-12">
             <article>
               <div className="row">
-                <div className=" p-5 col-md-6 col-12">
+                <div className=" p-5 col-md-6 col-12 couponBg-color">
                   <Nav
                     variant="tabs"
                     fill
@@ -100,7 +100,7 @@ const Coupon = ({ props }) => {
                     </article>
                   </div>
                 </div>
-                <div className="col-md-6 col-12 p-4">
+                <div className="col-md-6 col-12 p-4 couponBg-color">
                   {couponPage === 0 && <CouponGet />}
                   {couponPage === 1 && <MyCoupon />}
                 </div>

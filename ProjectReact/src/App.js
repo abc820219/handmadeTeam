@@ -5,7 +5,12 @@ import React, {
   useReducer,
   BrowserRouter
 } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from "react-router-dom";
 import {
   Handmade,
   Navgation,
@@ -32,8 +37,6 @@ export const cartPageInitState = { step: 0 };
 function App() {
   const [login, setLogin] = useState(false);
   const loginLocal = localStorage.getItem("member_id") || 0;
-  // const [courseCart, setCourseCart] = useState();
-  // const [ingreCart, setIngreCart] = useState();
   const { id, courseCartCf, courseCart, ingreCart, afterCoupon } = useContext(
     CartStore
   );
@@ -46,7 +49,6 @@ function App() {
     cartIngreReducer,
     ingreCart
   );
-
   useEffect(() => {
     if (loginLocal) {
       setLogin(true);
@@ -58,7 +60,6 @@ function App() {
     if (!localStorage.getItem(`ingreCart${loginLocal}`)) {
       localStorage.setItem(`ingreCart${loginLocal}`, "[]");
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [login]);
   const checkLogIn = () => {
     setLogin(!login);
@@ -146,7 +147,6 @@ function App() {
                 <Ingredients login={{ login }} checkLogIn={checkLogIn} />
               )}
             ></Route>
-            <Route component={() => <>404</>} />
           </CartStore.Provider>
         </Switch>
       </Router>

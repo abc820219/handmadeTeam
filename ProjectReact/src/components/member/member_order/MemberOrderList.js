@@ -152,16 +152,28 @@ const MemberOrderList = ({ changeOrderType }) => {
               //   coursePrice={courseList.course_price}
               // />
               <ul>
-                <div className="d-flex justify-content-between align-items-center flex-wrap" style={{color:'#9597A6'}}>
+                <div
+                  className="d-flex justify-content-between align-items-center flex-wrap"
+                  style={{ color: "#9597A6" }}
+                >
                   <div
                     className="d-flex justify-content-between align-items-center"
                     style={{ color: "#fff" }}
                   >
-                    <div className="p-2" style={{fontWeight:'bold',fontSize:'18px'}}>訂單編號:{v.order_sid}</div>
+                    <div
+                      className="p-2"
+                      style={{ fontWeight: "bold", fontSize: "18px" }}
+                    >
+                      訂單編號:{v.order_sid}
+                    </div>
                     <FaPlus onClick={() => openStatus(index)} />
                   </div>
-                  <div>{v.coupon_sid === 0 ? '' : '使用優惠卷代碼:' + v.coupon_sid}</div>
-                  <div>{'訂單創建日期:' + v.order_create_time.split("T")[0]}</div>
+                  <div>
+                    {v.coupon_sid === 0 ? "" : "使用優惠卷代碼:" + v.coupon_sid}
+                  </div>
+                  <div>
+                    {"訂單創建日期:" + v.order_create_time.split("T")[0]}
+                  </div>
                   <div>總金額:{v.order_total_price}</div>
                 </div>
                 <li className={open === index ? "" : "d-none"} id="orderItem">
@@ -175,7 +187,13 @@ const MemberOrderList = ({ changeOrderType }) => {
                               <div>開課時間:{row.course_order_choose}</div>
                               <div>報名人數:{row.course_order_applicants}</div>
                             </li>
-                            <button onClick={()=>{orderDetailData(1,row.course_order_sid)}}>詳細內容</button>
+                            <button
+                              onClick={() => {
+                                orderDetailData(1, row.course_order_sid);
+                              }}
+                            >
+                              詳細內容
+                            </button>
                           </ul>
                         </>
                       );
@@ -191,7 +209,13 @@ const MemberOrderList = ({ changeOrderType }) => {
                             <div>食材名稱:{row.ingredients_name}</div>
                             <div>購買數量:{row.ingredients_order_quantity}</div>
                           </li>
-                          <button onClick={()=>{orderDetailData(2,row.ingredients_order_sid)}}>詳細內容</button>
+                          <button
+                            onClick={() => {
+                              orderDetailData(2, row.ingredients_order_sid);
+                            }}
+                          >
+                            詳細內容
+                          </button>
                         </ul>
                       );
                     } else {
@@ -209,7 +233,13 @@ const MemberOrderList = ({ changeOrderType }) => {
                             <div>開課時間:{row.subject_date}</div>
                             <div>報名人數:{row.subject_applicants}</div>
                           </li>
-                          <button onClick={()=>{orderDetailData(3,row.subject_order_sid)}}>詳細內容</button>
+                          <button
+                            onClick={() => {
+                              orderDetailData(3, row.subject_order_sid);
+                            }}
+                          >
+                            詳細內容
+                          </button>
                         </ul>
                       );
                     } else {
@@ -218,8 +248,7 @@ const MemberOrderList = ({ changeOrderType }) => {
                   })}
                 </li>
               </ul>
-            )
-            )}
+            ))}
           </ul>
           {/* <ul className="orderTitle_border">
             <h3 className="orderList_title">食材</h3>
