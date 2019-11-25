@@ -8,7 +8,6 @@ bluebird.promisifyAll(db);
 const moment = require("moment-timezone");
 // import OrderDetail from "../domain/memberOrder";
 
-
 router.get("/", (req, res) => {
   res.send("Member-OrderPage");
 });
@@ -20,17 +19,22 @@ router.get("/course/:id", (req, res) => {
     memberId;
   db.queryAsync(sql).then(results => {
     const formatDate = "YYYY-MM-DD HH:mm:ss";
-    results.forEach(function(v){
-      v.course_order_choose = moment(v.course_order_choose).tz('Asia/Taipei').format(formatDate);
+    results.forEach(function(v) {
+      v.course_order_choose = moment(v.course_order_choose)
+        .tz("Asia/Taipei")
+        .format(formatDate);
     });
     res.json(results);
   });
 });
-router.get("/orderSid", (req, res) => {
+
+router.get("/orderSid/:id", (req, res) => {
   const memberId = req.params.id;
-  sql = "SELECT * FROM `order` WHERE `o`.member_sid = " + memberId;
+  sql = "SELECT * FROM `order` WHERE `member_sid` = " + memberId;
+  console.log(sql);
   db.queryAsync(sql).then(results => {
     res.json(results);
+    console.log(results);
   });
 });
 
@@ -97,11 +101,17 @@ router.post("/orderDetail", (req, res, next) => {
       return;
     } else {
       const formatDate = "YYYY-MM-DD HH:mm:ss";
-      if(rows[0].course_order_choose){
-        rows[0].course_order_choose = moment(rows[0].course_order_choose).tz('Asia/Taipei').format(formatDate);
-        rows[0].order_create_time = moment(rows[0].order_create_time).tz('Asia/Taipei').format(formatDate);
-      }else{
-        rows[0].order_create_time = moment(rows[0].order_create_time).tz('Asia/Taipei').format(formatDate);
+      if (rows[0].course_order_choose) {
+        rows[0].course_order_choose = moment(rows[0].course_order_choose)
+          .tz("Asia/Taipei")
+          .format(formatDate);
+        rows[0].order_create_time = moment(rows[0].order_create_time)
+          .tz("Asia/Taipei")
+          .format(formatDate);
+      } else {
+        rows[0].order_create_time = moment(rows[0].order_create_time)
+          .tz("Asia/Taipei")
+          .format(formatDate);
       }
       res.json(rows[0]);
       return;
@@ -120,7 +130,9 @@ router.get("/orderDetail/:id", (req, res, next) => {
       return;
     } else {
       const formatDate = "YYYY-MM-DD HH:mm:ss";
-      rows[0].course_order_choose = moment(rows[0].course_order_choose).tz('Asia/Taipei').format(formatDate);
+      rows[0].course_order_choose = moment(rows[0].course_order_choose)
+        .tz("Asia/Taipei")
+        .format(formatDate);
       res.json(rows[0]);
       return;
     }

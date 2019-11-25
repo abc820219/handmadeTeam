@@ -35,6 +35,7 @@ const SvgComponent = props => {
         let areaStoreMapValue = element.getAttribute("mapValue");
         // console.log(element); //有店家
         element.addEventListener('click',()=>{storeData(areaStoreMapValue)})
+        
       } else{
         // console.log(element); //沒店家
         // element.classList.add('areaNoHaveStore');
