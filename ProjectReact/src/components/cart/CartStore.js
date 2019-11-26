@@ -21,12 +21,13 @@ if(localStorage.getItem("courseCart" + id)){
 
 export const CartStoreStatus = {
   id: id,
-  step: 0,
   courseCart: courseCart,
   ingreCart: ingreCart,
   courseCartCf: courseCart,
   ingreCartCf: ingreCart,
-  checkoutFinish: false
+  checkoutFinish: false,
+  afterCoupon:0,
+  couponSelect:null
 };
 
 const CartStore = createContext(CartStoreStatus);

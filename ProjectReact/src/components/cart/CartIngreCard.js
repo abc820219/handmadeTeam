@@ -35,6 +35,7 @@ const CartIngreCard = ({
         <div className="checkListBox">
           <h4>
             <span>{ingre_en_name}</span>
+            <br/>
             February 20th
           </h4>
           <h2>{ingre_name}</h2>

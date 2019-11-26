@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from "react";
+import React, { useState, useReducer, useContext } from "react";
 // import store from '../../store'
 import MemberOrderList from "./MemberOrderList";
 import MemberOrderDetail from "./MemberOrderDetail";
@@ -7,15 +7,21 @@ import {
   courseListReducer,
   ingreListReducer,
   orderDetailReducer,
-  orderItemReducer
+  orderItemReducer,
+  orderSidReducer,
+  subjectListReducer
 } from "./OrderReducers";
 export const courseInitState = { courseLists: [] };
 export const ingreInitState = { ingreLists: [] };
 export const orderDetailInitState = { orderDetail: [] };
+export const orderSidState = { order_sid: [] };
+export const subjectInitState = { subjectList: [] };
 
 const MemberOrder = () => {
+  const { orderDetailFetch , subjectList } = useContext(Store);
   const [clState, clDispatch] = useReducer(courseListReducer, courseInitState);
   const [ilState, ilDispatch] = useReducer(ingreListReducer, ingreInitState);
+  const [slState, slDispatch] = useReducer(subjectListReducer, subjectInitState);
   // const [orderType, setOrderType] = useState(1);
   // const changeOrderType = a => {
   //   setOrderType(a);
@@ -25,7 +31,7 @@ const MemberOrder = () => {
     orderDetailReducer,
     orderDetailInitState
   );
-
+  const [odsState, odsDispatch] = useReducer(orderSidReducer, orderSidState);
   return (
     <Store.Provider
       value={{
@@ -33,12 +39,16 @@ const MemberOrder = () => {
         ingreLists: ilState.ingreLists,
         courseIsFetch: Store.courseIsFetch,
         ingreIsFetch: Store.ingreIsFetch,
+        orderSid: odsState.order_sid,
         orderDetailLists: odState.orderDetailLists,
-        orderDetailFetch: Store.orderDetailFetch,
+        orderDetailFetch: orderDetailFetch,
         orderType: odState.orderType,
+        subjectList: slState.subjectList,
         clDispatch,
         ilDispatch,
-        odlDispatch
+        odlDispatch,
+        odsDispatch,
+        slDispatch
       }}
     >
       <div className="container-fluid">

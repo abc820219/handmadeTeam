@@ -55,7 +55,7 @@ const NavBar = ({ checkLogIn, login, ...props }) => {
     <>
       <nav className="navbar page-nav  align-items-center">
         <div className="page-nav-aside d-flex align-items-center justify-content-between">
-          <div style={{ position: relative }}>
+          <div style={{ position: "relative", cursor: "pointer" }}>
             <GiHamburgerMenu
               onClick={() => setshowMenuBtn(true)}
               className="mx-3 "
@@ -93,6 +93,11 @@ const NavBar = ({ checkLogIn, login, ...props }) => {
             <li>
               <Link style={{ color: "#fff" }} to="/handmade">
                 首頁
+              </Link>
+            </li>
+            <li>
+              <Link style={{ color: "#fff" }} to="/handmade/test">
+                測試
               </Link>
             </li>
           </ul>

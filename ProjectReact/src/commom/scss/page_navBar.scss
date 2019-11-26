@@ -30,7 +30,6 @@
       padding: 0 0 0 30px;
       li {
         padding: 10px;
-      
       }
     }
   }
@@ -98,16 +97,35 @@
     padding: 0;
     transition: 2s;
     color: #fff;
-    position: absolute;
-    background-color: #362d2b;
-    min-height: 937px;
-    width: 300px;
+    position: fixed;
     top: 0;
     left: -100%;
+    width: 300px;
+    height: 100%;
+    background-color: #362d2b;
+    z-index: 99;
   }
   .move {
     left: 0%;
     transition: 0.8s;
+  }
+  .shoppingCartWrapper {
+    position: relative;
+    .itemTotal {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background-color: #362d2b;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      top: 0px;
+      left: 0px;
+      font-size: 12px;
+    }
   }
 }
 //------------------------------

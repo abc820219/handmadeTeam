@@ -5,14 +5,15 @@ import Course_navbar from "./Course_navbar";
 import Course_list from "./Course_list";
 import Course_filter from "./Course_filter";
 import $ from "jquery";
+import {Switch,Route,NavLink,Redirect,withRouter} from 'react-router-dom' ;
 
 
 
 
 
 class CourseAll extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             store_wrap: [],
             course_list: [],
@@ -35,14 +36,15 @@ class CourseAll extends Component {
             aging_course_list: [],
             course_filter_start: [],
             course_filter_title_content: [["蛋糕", "點心", "餅乾"], ["巧克力", "覆盆子", "草莓", "香草", "抹茶", "茶類", "檸檬", "其他"], ["4吋", "5吋", "6吋", "8吋"], ["1顆星", "2顆星", "3顆星"], ["500元~700元", "700元-1000元", "1000元-1500元", "1500元以上"]]
-
-
+            
         }
+        console.log(this.props)
+        console.log(this.props.match.params)
     }
-
-
+    
+    
     componentDidMount() {
-
+        
         this.courseAll();
         $(".course_store_info ").click(function () {
             $(this).addClass("activeImg");
@@ -56,7 +58,7 @@ class CourseAll extends Component {
 
     courseAll = async () => {
         try {
-            const storeId = 1;
+            const storeId = this.props.match.params.sid;
             const res = await fetch(`http://localhost:5000/handmade/store/course/${storeId}`);
             const data = await res.json();
             console.log("data", data);
@@ -311,4 +313,4 @@ class CourseAll extends Component {
     }
 }
 
-export default CourseAll;
+export default withRouter (CourseAll);

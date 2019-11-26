@@ -4,10 +4,17 @@ const REC_COURSE_ORDER = "REC_COURSE_ORDER";
 const REQ_INGRE_ORDER = "REQ_INGRE_ORDER";
 const REC_INGRE_ORDER = "REC_INGRE_ORDER";
 
-const REQ_ORDER_DETAIL = 'REQ_ORDER_DETAIL';
-const REC_ORDER_DETAIL = 'REC_ORDER_DETAIL';
+const REQ_ORDER_DETAIL = "REQ_ORDER_DETAIL";
+const REC_ORDER_DETAIL = "REC_ORDER_DETAIL";
 
-const SET_ORDER_ITEM = 'SET_ORDER_ITEM';
+const REQ_SUBJECT_ORDER = "REQ_SUBJECT_ORDER";
+const REC_SUBJECT_ORDER = "REC_SUBJECT_ORDER";
+
+///------------------
+const REC_ORDER_SID = "REC_ORDER_SID";
+///------------------
+
+const SET_ORDER_ITEM = "SET_ORDER_ITEM";
 
 //开始请求
 const requestCourseOrder = () => ({
@@ -29,13 +36,28 @@ const receiveIngreOrder = datajson => ({
   payload: datajson
 });
 
-const requestOrderDetail = (item,type) => ({
+const requestSubjectOrder = () => ({
+  type: REQ_SUBJECT_ORDER
+});
+
+const receiveSubjectOrder = datajson => ({
+  type: REC_SUBJECT_ORDER,
+  payload: datajson
+});
+
+const requestOrderDetail = (item, type) => ({
   type: REQ_ORDER_DETAIL,
-  payload: {item:item,type:type}
+  payload: { item: item, type: type }
 });
 
 const receiveOrderDetail = datajson => ({
   type: REC_ORDER_DETAIL,
+  payload: datajson
+});
+
+
+const receiveOrderSid = datajson => ({
+  type: REC_ORDER_SID,
   payload: datajson
 });
 
@@ -46,10 +68,16 @@ export {
   REC_INGRE_ORDER,
   REQ_ORDER_DETAIL,
   REC_ORDER_DETAIL,
+  REC_ORDER_SID,
+  REQ_SUBJECT_ORDER,
+  REC_SUBJECT_ORDER,
   requestCourseOrder,
   receiveCourseOrder,
   requestIngreOrder,
   receiveIngreOrder,
   requestOrderDetail,
   receiveOrderDetail,
+  receiveOrderSid,
+  requestSubjectOrder,
+  receiveSubjectOrder
 };

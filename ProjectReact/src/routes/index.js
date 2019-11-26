@@ -9,6 +9,7 @@ import Teacher from "../pages/Teacher";
 import Teacher_Subject from "../pages/Teacher_Subject";
 import Ingredients from "../pages/Ingredients";
 import MemberEmail from "../pages/Email";
+import TestStore from "../pages/TestStore";
 
 export { Handmade };
 export { Navgation };
@@ -21,3 +22,4 @@ export { Teacher };
 export { Ingredients };
 export { Teacher_Subject };
 export { MemberEmail };
+export { TestStore };

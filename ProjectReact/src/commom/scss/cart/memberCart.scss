@@ -16,6 +16,31 @@
     padding-top: 40px;
     color: #fff;
   }
+
+  .course_sm_cart {
+    position: relative;
+      .cancel_sm_cart {
+        position: absolute;
+        top: 6px;
+        right: 40px;
+      }
+    
+    img{
+      border-radius: 5px;
+    }
+  }
+
+  .ingre_sm_cart {
+    position: relative;
+    .cancel_sm_cart {
+      position: absolute;
+      top: 6px;
+      right: 40px;
+    }
+    img{
+      border-radius: 5px;
+    }
+  }
   .cartHead::after {
     content: "";
     display: block;
@@ -37,11 +62,14 @@
     }
   }
   .cartTotal {
-    font-size: 30px;
+    font-size: 60px;
   }
   .cartBtn {
     padding: 10px;
+    font-size: 60px;
+    color: white;
   }
+
 }
 
 .cartFooter {
