@@ -5,7 +5,12 @@ import React, {
   useReducer,
   BrowserRouter
 } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from "react-router-dom";
 import {
   Handmade,
   Navgation,
@@ -23,7 +28,6 @@ import {
 
 import CartStore from "./components/cart/CartStore";
 import {
-  cartPageReducer,
   cartCourseReducer,
   cartIngreReducer,
   cartCheckoutReducer,
@@ -33,15 +37,8 @@ export const cartPageInitState = { step: 0 };
 function App() {
   const [login, setLogin] = useState(false);
   const loginLocal = localStorage.getItem("member_id") || 0;
-  // const [courseCart, setCourseCart] = useState();
-  // const [ingreCart, setIngreCart] = useState();
   const { id, courseCartCf, courseCart, ingreCart, afterCoupon } = useContext(
     CartStore
-  );
-
-  const [cartPageState, cartPageDispatch] = useReducer(
-    cartPageReducer,
-    cartPageInitState
   );
   const [cartCourseState, cartCourseDispatch] = useReducer(
     cartCourseReducer,
@@ -52,7 +49,6 @@ function App() {
     cartIngreReducer,
     ingreCart
   );
-
   useEffect(() => {
     if (loginLocal) {
       setLogin(true);
@@ -64,7 +60,6 @@ function App() {
     if (!localStorage.getItem(`ingreCart${loginLocal}`)) {
       localStorage.setItem(`ingreCart${loginLocal}`, "[]");
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [login]);
   const checkLogIn = () => {
     setLogin(!login);
@@ -73,18 +68,16 @@ function App() {
   return (
     <>
       <Router history={BrowserRouter}>
-        <Switch>
+      
           <CartStore.Provider
             value={{
               id: id,
-              step: cartPageState.step,
-              cartPageDispatch,
               cartCourseDispatch,
               courseCart: cartCourseState,
               cartIngreDispatch,
               ingreCart: cartIngreState
             }}
-          >
+          >  <Switch>
             <Route path="/" exact component={Navgation}></Route>
             <Route
               path="/handmade/"
@@ -101,10 +94,17 @@ function App() {
               )}
             ></Route>
             <Route
-              path="/handmade/store/:sid/course/:sid?"
+              path="/handmade/store/:sid?/course/:cSid"
               exact
               component={() => (
                 <Course_detail login={{ login }} checkLogIn={checkLogIn} />
+              )}
+            ></Route>
+            <Route
+              path="/handmade/test"
+              exact
+              component={() => (
+                <TestStore login={{ login }} checkLogIn={checkLogIn} />
               )}
             ></Route>
             <Route
@@ -147,8 +147,9 @@ function App() {
                 <Ingredients login={{ login }} checkLogIn={checkLogIn} />
               )}
             ></Route>
+            <Route path="" component={()=>(404)} />
+            </Switch>
           </CartStore.Provider>
-        </Switch>
       </Router>
     </>
   );
