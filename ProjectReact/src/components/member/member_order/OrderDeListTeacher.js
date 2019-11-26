@@ -11,7 +11,7 @@ import { FaQuoteLeft } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 
 
-const OrderDeListTeacher = props => {
+const OrderDeListTeacher = ({orderDetail}) => {
   const iconZone = {
     width: '64px',
     height: '64px',
@@ -19,20 +19,60 @@ const OrderDeListTeacher = props => {
     backgroundColor: '#F7ECEB',
     marginRight: '80px'
   };
+
+  console.log(orderDetail);
+
+  if(!orderDetail){
+    orderDetail = {
+      subject_name: '',
+      subject_address: '',
+      order_create_time: '',
+      subject_nervous: '',
+      subject_spend_time: '',
+      subject_applicants_name: '',
+      subject_applicants_phone: '',
+      subject_feature: '',
+      subject_price: '',
+      order_sid:'',
+      subject_date: '',
+      subject_img:'',
+      teacher_name:'',
+      teacher_small_img:'',
+      teacher_big_img:'' 
+    };
+  }
+
+  const {
+    subject_name,
+    subject_address,
+    order_create_time,
+    subject_nervous,
+    subject_spend_time,
+    subject_applicants_name,
+    subject_applicants_phone,
+    subject_feature,
+    subject_price,
+    order_sid,
+    subject_date,
+    subject_img,
+    teacher_name,
+    teacher_small_img,
+    teacher_big_img
+  } = orderDetail;
   return (
     <>
       <div className="container-fluid orderDeCourse d-flex flex-column">
         <wrapper className="d-flex flex-column justify-content-center">
           <div className="d-flex justify-content-between align-items-center px-4">
-            <h5>Friday, February 19th</h5>
+            <h5>{subject_date}</h5>
             <div>
               <p className="mr-3">
                 <FaRegClock className="mr-2" />
-                巧克力派
+                {subject_name}
               </p>
               <p className="mr-3">
                 <FaDollarSign className="mr-2" />
-                訂單編號: 10001
+                訂單編號: {order_sid}
               </p>
             </div>
           </div>
@@ -44,28 +84,24 @@ const OrderDeListTeacher = props => {
                 <div className='d-flex'>
                   <figure style={iconZone}>
                     <img
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRBVl9lhK94mJ5MxzGptFKO5FLRXoXVNDmjYndWy1H4kCaqDqOw"
+                      src={"/image/"+teacher_big_img}
                       alt=""
                     />
                   </figure>
                   <div>
                     <div>
                       <p>教師名稱</p>
-                      <h5>賣口傑克森</h5>
+                      <h5>{teacher_name}</h5>
                     </div>
                     <div>
                       <p>訂購日期</p>
-                      <h5>2016-5-5</h5>
+                      <h5>{order_create_time.split(" ")[0]}</h5>
                     </div>
                   </div>
                   <div className='ml-auto'>
-                    <div className='orderCourseDel d-flex justify-content-center align-items-center'>
-                      <FaRegTrashAlt style={{ height: '14px' }} />
-                      <p>DEL</p>
-                    </div>
                     <div className='d-flex justify-content-around align-items-center pt-3'>
                       <MdAttachMoney />
-                      <p style={{ fontWeight: 'bold' }}>54668</p>
+                      <p style={{ fontWeight: 'bold' }}>{subject_price}</p>
                     </div>
                   </div>
                 </div>
@@ -78,9 +114,8 @@ const OrderDeListTeacher = props => {
                   </li>
                   <li>
                     <div className='my-1 mt-2 d-flex justify-content-center align-items-center'>
-                      <h4 style={{ color: '#9597A6' }}>1.5</h4>
+                      <h4 style={{ color: "#9597A6" , fontSize: '18px', fontWeight:'bold', whiteSpace:'nowrap'}}>{subject_spend_time}</h4>
                     </div>
-                    <p>HR</p>
                   </li>
                   <li>
                     <div className='my-1 d-flex justify-content-center align-items-center orderCourseIcon'>
@@ -103,33 +138,31 @@ const OrderDeListTeacher = props => {
           <figure style={iconZone} className='d-flex justify-content-center align-items-center'>
             <FaMapMarkerAlt style={{ color: '#EBD0CE', fontSize: '30px' }} />
           </figure>
-          <p style={{ color: '#544741' }}>235新北市中和區連城路160號後棟</p>
-          <div className='orderIconRight ml-auto'>
+          <p style={{ color: '#544741' }}>{subject_address}</p>
+          <a className="orderIconRight ml-auto" href={'https://www.google.com/maps/search/'+subject_address} target="_blank">
             <p style={{ color: '#544741', maxWidth: '500px' }}>Google Map</p>
-          </div>
+          </a>
         </div>
         <div className='orderDeCourseList d-flex align-items-center'>
           <figure style={iconZone} className='d-flex justify-content-center align-items-center'>
             <FaQuoteLeft style={{ color: '#EBD0CE', fontSize: '30px' }} />
           </figure>
-          <p style={{ color: '#544741', maxWidth: '500px' }}>臣亮言：先帝創業未半，而中道崩殂。今天下三分，益州疲弊，
-          此誠危急存亡之秋也。然侍衛之臣，不懈於內；
-          忠志臣亮言：先帝創業未半，而中</p>
+          <p style={{ color: '#544741', maxWidth: '500px' }}>{subject_feature}</p>
           <div className='orderIconRight ml-auto'>
             <p style={{ color: '#544741' }}>Go Item page</p>
           </div>
         </div>
         <div className='orderDeCourseList d-flex align-items-center'>
           <figure style={iconZone} className='d-flex justify-content-center align-items-center'>
-            <img src="https://i.vimeocdn.com/portrait/4703572_640x640" alt='' />
+            <img src={"/image/"+subject_img} alt='' />
           </figure>
           <div>
             <div>
               <p>成品名稱</p>
-              <h5>超級巧克男孩</h5>
+              <h5>{subject_name}</h5>
             </div>
             <div className='mt-3 ml-3'>
-              <p>4.4 rating</p>
+              <p>課程難度: {subject_nervous}</p>
             </div>
           </div>
           <div className='orderIconRight ml-auto'>
@@ -138,13 +171,13 @@ const OrderDeListTeacher = props => {
           </div>
         </div>
         <div className='orderDeCourseList d-flex justify-content-between align-items-center flex-md-wrap'>
-          <div className='orderIconBottom'>
+          <button className='orderIconBottom'>
             <p style={{whiteSpace:'nowrap'}}>修改參加者資訊</p>
-          </div>
-          <div className='orderIconBottom'>
+          </button>
+          <button className='orderIconBottom'>
             <MdCancel style={{ fontSize: '16px', color: '#545871' }} />
             <p>取消訂單</p>
-          </div>
+          </button>
         </div>
       </div>
     </>

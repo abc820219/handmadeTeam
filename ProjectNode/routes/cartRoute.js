@@ -31,14 +31,16 @@ router.post("/submitcart", (req, res) => {
   const ingreCart = JSON.parse(req.body.ingreCart);
   const user = req.body.user;
   const coupon = req.body.coupon || 0;
+  const totalPrice = req.body.totalPrice;
   const outPut = [];
   let order_sid;
 
   let courseCartInsert = [];
 
-  db.queryAsync("INSERT INTO `order` (member_sid, coupon_sid) VALUES (?, ?)", [
+  db.queryAsync("INSERT INTO `order` (member_sid, coupon_sid, order_total_price) VALUES (?, ?, ?)", [
     user,
-    coupon
+    coupon,
+    totalPrice
   ]).then((results, fields) => {
     db.queryAsync(
       "SELECT `order`.`order_sid`,`order`.`order_create_time` FROM `order` ORDER BY `order`.`order_create_time` DESC LIMIT 1"
@@ -84,7 +86,7 @@ router.post("/submitcart", (req, res) => {
               ]
             );
           }
-        } else {
+        } else{
           for (i = 0; i < ingreCart.length; i++) {
             db.query(
               "INSERT INTO `ingredients_order` (order_sid, ingredients_sid, ingredients_order_quantity) VALUES (?, ?,?)",

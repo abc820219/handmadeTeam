@@ -21,22 +21,21 @@ const TestStore = ({ login, checkLogIn }) => {
 
   const [courseInCart, setCourseInCart] = useState(false);
   const [courseInfo, setCourseInfo] = useState({
-    course_sid: 2,
-    course_price: 1500,
-    course_order_time: "14:00:00",
-    course_order_choose: "2018-09-10",
+    course_sid: 36,
+    course_price: 1200,
+    course_order_choose: "2019-12-25 15:00:00",
     course_order_applicants: 5,
-    course_name: "幕幕甜甜",
-    course_lists: "幕幕甜甜.jpg"
+    course_name: "巧克力玫瑰花束",
+    course_lists: "巧克力玫瑰花束.jpg"
   });
 
   const [ingreInCart, setIngreInCart] = useState(false);
   const [ingreInfo, setIngreInfo] = useState({
     ingredient_sid: 2,
-    ingredients_price: 500,
-    ingredients_en_name: "MOO-MOO-TAN-TAN",
+    ingredients_price: 5000,
+    ingredients_en_name: "super_banana",
     ingredient_order_quantity: 1,
-    ingredient_name: "幕幕甜甜"
+    ingredient_name: "超級香蕉"
   });
   courseCart = courseCart || [];
   ingreCart = ingreCart || [];
@@ -66,7 +65,6 @@ const TestStore = ({ login, checkLogIn }) => {
 
   const AddCourseToCart = (item, id) => {
     if (courseInCart) {
-      console.log(item, courseCart);
       cartCourseDispatch(cancelCourse(item, id));
     } else {
       cartCourseDispatch(addCourse(item, id));

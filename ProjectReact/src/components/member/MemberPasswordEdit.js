@@ -78,7 +78,7 @@ const MemberPasswordEdit = () => {
     <div className="container-fluid MemberPasswordEdit">
       <div className="row">
         <MemberInfo />
-        <div className="col-12 col-md-8 d-flex flex-column">
+        <div className="col-12 col-md-8 d-flex flex-column bg-linear">
           <form>
             <div className="MemberEditHeader my-3">
               <h4>

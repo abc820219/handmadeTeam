@@ -38,7 +38,10 @@ const MyCoupon0 = () => {
     <>
       {couponData.map((v, index) => {
         return (
-          <div className="d-flex justify-content-center" key={index}>
+          <div
+            className="d-flex justify-content-center"
+            key={index}
+          >
             <div className="py-3">
               <div className="coupon d-flex flex-nowrap ">
                 <div className="coupon-left">

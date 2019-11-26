@@ -47,7 +47,7 @@ const CouponGet = () => {
         return (
           <form name={v.coupon_sid} onSubmit={getCoupon}>
             <div className="d-flex justify-content-center" key={index}>
-              <div className="py-3">
+              <div className="py-1">
                 <div className="coupon d-flex flex-nowrap ">
                   <div className="coupon-left">
                     <p className="coupon-left-content">

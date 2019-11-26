@@ -1,40 +1,12 @@
 import {
-  CART_NEXT_PAGE,
-  CART_PREV_PAGE,
   SELECT_COURSE,
   UN_SELECT_COURSE,
   ADD_COURSE_ITEM,
   ADD_INGRE_ITEM,
   CANCEL_COURSE_ITEM,
   CANCEL_INGRE_ITEM,
-  CORSE_CART_RERENDER,
-  INGRE_CART_RERENDER,
   CHECK_OUT
 } from "./CartAction";
-
-export const cartIngreRerender = (state, action) => {
-  switch (action.type) {
-    case INGRE_CART_RERENDER:
-      const id = action.payload;
-      const ingreCart = localStorage.getItem(`ingreCart${id}`);
-      return { ...state, ingreCart: ingreCart };
-    default:
-      return state;
-  }
-};
-
-export const cartPageReducer = (state, action) => {
-  switch (action.type) {
-    case CART_NEXT_PAGE:
-      const next = action.payload;
-      return { ...state, step: next };
-    case CART_PREV_PAGE:
-      const prev = action.payload;
-      return { ...state, step: prev };
-    default:
-      return state;
-  }
-};
 
 export const cartCourseReducer = (state, { type, payload }) => {
   switch (type) {
@@ -58,15 +30,11 @@ export const cartCourseReducer = (state, { type, payload }) => {
           newCour.course_order_choose !== cancelCourse.course_order_choose
         );
       });
+      console.log(cancelCourse);
+      console.log(newCourse);
       const id = payload.id;
       localStorage.setItem(`courseCart${id}`, JSON.stringify(newCourse));
       return newCourse;
-      break;
-    }
-    case CORSE_CART_RERENDER: {
-      const id = payload;
-      const courseCart = localStorage.getItem(`courseCart${id}`);
-      return { ...state, courseCart: courseCart };
       break;
     }
     case CHECK_OUT: {
@@ -104,12 +72,6 @@ export const cartIngreReducer = (state, { type, payload }) => {
       return newIngre;
       break;
     }
-    case INGRE_CART_RERENDER: {
-      const id = payload;
-      const ingreCart = localStorage.getItem(`ingreCart${id}`);
-      return { ...state, ingreCart: ingreCart };
-      break;
-    }
     case CHECK_OUT: {
       return payload;
       break;
@@ -132,7 +94,6 @@ export const courseCartCfReducer = (state, { type, payload }) => {
       let { courseInfo, pos } = payload;
       let newCourseCart = [...state];
       newCourseCart.splice(pos, 1);
-      console.log(456);
       return newCourseCart;
     }
     default:

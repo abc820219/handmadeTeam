@@ -1,7 +1,36 @@
-@import url("https://use.typekit.net/zkl0auq.css");
+@import url("https://use.typekit.net/zkl0auq.css")
+.background
+    background-size: cover
+    background-repeat: no-repeat
+    position: fixed
+    top: 0
+    left: 0
+    width: 100%
+    height: 100vh
+    transition: 0.5s
+    opacity: 0.5
 
-    
-    
+.background1
+
+    background-image: url("/image/ingredients/abstract01.jpg")
+    background-position: 0 -400px
+.background2
+    background-image: url("/image/ingredients/abstract02.jpg")
+    background-position: 0 -200px
+
+.background3
+
+    background-image: url("/image/ingredients/abstract03.jpg")
+    background-position: 0 -400px
+
+.background4
+    background-image: url("/image/ingredients/abstract04.jpg")
+    background-position: 0 -100px
+
+.background5
+    background-image: url("/image/ingredients/abstract05.jpg")
+    background-position: 0 -400px
+
 .part2
     // background: #ccc
     width: 100vw
@@ -9,29 +38,37 @@
     position: absolute
     bottom: 0
     .info
-        
+
         text-align: center
         font-weight: 700
-        color: #342B29
+        color: #F0F1F7
+        text-shadow: 0 0 5px #362D2B
         h1
-            color: #342B29
+            color: #F0F1F7
+            text-shadow: 0 0 10px #362D2B
+
         .innerInfo
             font-size: 18px
             max-width: 960px
             margin: auto
-            color: #342B29 
+            color: #F0F1F7
             font-weight: 700
             padding: 20px
+            text-shadow: 0 0 5px #362D2B
+
 .part3
     width: 80vw
     height: 80vh
-    background: #F78177
+    background: #362D2B
     position: fixed
-    top: 50%
+    top: 55%
     left: 50%
     margin-top: -40vh
     margin-left: -40vw
     transition: 0.7s
+    box-shadow: 0 0 30px #cccccc
+    border-radius: 10px
+    overflow: hidden
 
     h1
         text-align: center
@@ -40,14 +77,14 @@
         top: 15px
         right: 15px
 .part3Close
-   
+
     width: 0px
     height: 80vh
     position: fixed
-    margin: auto 
+    margin: auto
     background: #F78177
     transition: 0.7s
-    overflow: hidden
+    // overflow: hidden
 .linkOut
     position: absolute
     width: 100px
@@ -56,11 +93,10 @@
     left: 50%
     margin-left: -25px
 
-
-button 
+button
     cursor: pointer
     outline: none
-.outline 
+.outline
     position: absolute
     left: 50%
     margin-left: -65px
@@ -76,7 +112,7 @@ button
     padding: 20px 60px
     text-transform: uppercase
     transition: all 0.2s linear
-    a 
+    a
         text-decoration: none
     div
         position: absolute
@@ -87,26 +123,39 @@ button
         margin-left: -30px
         margin-top: -10px
 
-    
+.frame1
+    width: 100%
+    height: 100%
+    display: flex
+    overflow: hidden
+    .interFrame1
+        width: 50%
+        height: 100%
+        background-image: url("/image/ingredients/abstract01.jpg")
+        background-size: cover
+        background-repeat: no-repeat
+        border-radius: 11px 0 0 11px
 
-    
-    
-  
-.green-white 
+    .interFrame2
+        width: 50%
+        height: 100%
+        display: flex
+        flex-direction: column
+
+.green-white
     font-weight: 700
     color: #362D2B
     border-color: #F0F1F7
     background: transparent
-    
-        
-.green-white:hover 
+
+.green-white:hover
     color: #362D2B
     background: #F0F1F7
     border-color: #F0F1F7
-    box-shadow: 
-    div  
+    box-shadow:
+    div
         color: #362D2B
-.container-login100-form-btn 
+.container-login100-form-btn
     width: 40%
     display: -webkit-box
     display: -webkit-flex
@@ -119,10 +168,9 @@ button
     position: absolute
     bottom: 15px
     left: 50%
-    margin-left: -20% 
+    margin-left: -20%
 
-
-.login100-form-btn 
+.login100-form-btn
     font-family: 'Montserrat', sans-serif
     font-weight: 700
     font-size: 15px
@@ -133,7 +181,7 @@ button
     width: 100%
     height: 50px
     border-radius: 25px
-    background: #362D2B
+    background: #fff
     display: -webkit-box
     display: -webkit-flex
     display: -moz-box
@@ -142,14 +190,127 @@ button
     justify-content: center
     align-items: center
     padding: 0 25px
-
+    box-shadow: 0 0 20px #ffffff
     -webkit-transition: all 0.4s
     -o-transition: all 0.4s
     -moz-transition: all 0.4s
     transition: all 0.4s
 
-.login100-form-btn:hover 
-    background: #fff
-    color: #362D2B
-    box-shadow: 0 0 20px #ffffff
+.login100-form-btn:hover
+    background: #362D2B
+    color: #ffffff
+    box-shadow: 0 0 10px #F78177
 
+.fix
+    width: 20%
+    margin-left: -10%
+
+.wordBox
+    width: 50vw
+    height: 50vh
+    // background: #cccccc
+    pointer-events: none
+    transform: rotate(90deg)
+    position: absolute
+    top: 40%
+    left: 18.75%
+    .wordBoxUp
+        width: 100vw
+        height: 25vh
+        // background: #888888
+        position: relative
+        overflow: hidden
+        .wordHalfUp
+            font-family: niagara, serif
+            position: absolute
+            font-size: 256px
+            top: 25%
+            transform: translate(-5px)
+            color: #F0F1F7
+    .wordBoxDown
+        width: 100vw
+        height: 25vh
+        // background: #c45622
+        position: relative
+        overflow: hidden
+        .wordHalfDown
+
+            font-family: niagara, serif
+            position: absolute
+            font-size: 256px
+            top: -75%
+            color: #F78177
+.spaceNone
+    height: 30%
+    width: 100%
+    // background: #F78177
+
+.innerWord
+    height: 30%
+    width: 100%
+    padding: 70px
+    color: #cccccc
+@media screen and (max-width: 1000px) 
+    .background1
+        background-image: url("/image/ingredients/abstract01.jpg")
+        background-position: 0 0
+
+    .background2
+        background-image: url("/image/ingredients/abstract02.jpg")
+        background-position: 0 0
+
+    .background3
+        background-image: url("/image/ingredients/abstract03.jpg")
+        background-position: 0 0
+
+    .background4
+        background-image: url("/image/ingredients/abstract04.jpg")
+        background-position: 0 0
+
+    .background5
+        background-image: url("/image/ingredients/abstract05.jpg")
+        background-position: 0 0
+@media screen and (max-width: 1650px) 
+    .wordBox
+        top: 20%
+@media screen and (max-width: 1000px) 
+    .wordBox
+        top: 0%
+@media screen and (max-width: 800px) 
+    .wordBox
+        top: -1.3%
+        left: 0
+        transform: rotate(0deg)
+
+        .wordBoxUp
+            .wordHalfUp
+                font-size: 128px
+                top: 60%
+
+        .wordBoxDown
+            .wordHalfDown
+                font-size: 128px
+                top: -40%
+    .spaceNone
+        height: 0%
+        width: 100%
+        // background: #F78177
+
+    .frame1
+        width: 100%
+        height: 100%
+        display: flex
+        flex-direction: column
+        overflow: hidden
+        .interFrame1
+            width: 100%
+            height: 30%
+            background-image: url("/image/ingredients/abstract01.jpg")
+            background-size: cover
+            background-position: 0  -200px
+            background-repeat: no-repeat
+            border-radius: 10px 10px 0 0
+
+        .interFrame2
+            width: 100%
+            height: 70%

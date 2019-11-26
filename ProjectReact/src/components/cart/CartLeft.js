@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect, useCallback } from "react";
 import CartStore from "./CartStore";
-import { cartNext, cartPrev, checkoutAction } from "./CartAction";
+import { checkoutAction } from "./CartAction";
 import { FieldSet, InputField } from "fannypack";
 import { usePaymentInputs } from "react-payment-inputs";
 import images from "react-payment-inputs/images";
@@ -10,22 +10,20 @@ const CartLeft = ({
   courseCards,
   ingreCards,
   setCourseCards,
-  setIngreCards
+  setIngreCards,
+  setPage
 }) => {
   const [cartTotal, setCartTotal] = useState(0);
   // const [afterCoupon, setAfterCoupon] = useState(localStorage.getItem("afterTotal") ? localStorage.getItem("afterTotal") : 0);
   const [fnCartTotal, setFnCartTotal] = useState(0);
   const [coupon, setCoupon] = useState(0);
-  const [couponUse, setCouponUse] = useState();
+  const [couponUse, setCouponUse] = useState(0);
+  const [step, setStep] = useState(0);
+
   const {
-    step,
-    cartPageDispatch,
     cartCourseDispatch,
     ingreCartDispatch,
-    setcheckoutFinish,
     id,
-    priceAfterCouponDispatch,
-    afterCoupon,
     courseCart,
     ingreCart
   } = useContext(CartStore);
@@ -75,6 +73,7 @@ const CartLeft = ({
   };
   const cartSubmit = async () => {
     try {
+
       const user = localStorage.getItem("member_id");
       const courseCart = localStorage.getItem(`courseCart${user}`);
       const ingreCart = localStorage.getItem(`ingreCart${user}`);
@@ -82,7 +81,8 @@ const CartLeft = ({
         courseCart: courseCart,
         ingreCart: ingreCart,
         user: user,
-        coupon: coupon
+        coupon: coupon,
+        totalPrice: fnCartTotal ? fnCartTotal : cartTotal
       });
       const url = `http://localhost:5000/handmade/cart/submitcart`;
       const dataJson = await fetch(url, {
@@ -97,33 +97,35 @@ const CartLeft = ({
       orderTime = await orderTime.split(".")[0];
       alert(`訂單${order_Sid}於${orderDate}---${orderTime}新增完成`);
       localStorage.setItem(`courseCart${user}`, "[]");
-      setCourseCards();
-      cartCourseDispatch(checkoutAction());
+      await setCourseCards();
+      await cartCourseDispatch(checkoutAction());
       localStorage.setItem(`ingreCart${user}`, "[]");
-      setIngreCards();
-      ingreCartDispatch(checkoutAction());
+      await setIngreCards();
+      await ingreCartDispatch(checkoutAction());
     } catch (e) {
       console.log(e);
     }
   };
-  console.log(coupon);
+
   useEffect(() => {
+
     setCartTotal(CartTotal(courseCards, ingreCards));
   }, [courseCards, ingreCards]);
 
   useEffect(() => {
+    setPage(4);
     getCoupon();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    console.log(couponSelect);
     const couponAfter =
       cartTotal * (couponSelect > 10 ? couponSelect / 100 : couponSelect / 10);
     setFnCartTotal(couponAfter);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [couponSelect]);
 
+  console.log(couponUse.length);
   return (
     <>
       <div className="col-4 px-3 checkLeftBox">
@@ -131,7 +133,7 @@ const CartLeft = ({
           <div className="checkPageIconBox d-flex align-items-center justify-content-around">
             <div
               className="d-flex align-items-center"
-              onClick={() => cartPageDispatch(cartPrev())}
+              onClick={() => setStep(0)}
             >
               <div className="checkPageIcon cartStep">1</div>
               <h5 style={{ color: "#f78177", fontWeight: "bold" }}>
@@ -141,7 +143,7 @@ const CartLeft = ({
             <hr style={step ? { background: "#f78177" } : {}} />
             <div
               className="d-flex align-items-center"
-              onClick={() => cartPageDispatch(cartNext())}
+              onClick={() => setStep(1)}
             >
               <div
                 className="checkPageIcon cartStep2"
@@ -173,15 +175,14 @@ const CartLeft = ({
                     <>
                       <li>
                         <p>可用優惠卷</p>
-                        {couponUse && (
+                        {couponUse.length && (
                           <select
                             id="coupon"
                             onClick={e => {
                               coponSelect(e);
                             }}
                           >
-                            {couponUse &&
-                              couponUse.map((coupon, index = 0) => {
+                              {couponUse.map((coupon, index = 0) => {
                                 return (
                                   <option
                                     index={index}
@@ -194,13 +195,13 @@ const CartLeft = ({
                           </select>
                         )}
                       </li>
+                      {step ? (
+                        <li>
+                          <p>可用折扣</p>
+                          <h4>{couponSelect}折</h4>
+                        </li>
+                      ):''}
                     </>
-                  )}
-                  {step && (
-                    <li>
-                      <p>可用折扣</p>
-                      <h4>{couponSelect}折</h4>
-                    </li>
                   )}
                   {/* <li>
                     <p>使用紅利</p>
@@ -215,7 +216,7 @@ const CartLeft = ({
               <div>
                 <div className="checkOrderTotal">
                   <p>結帳總額</p>
-                  <h4>$ {!step ? cartTotal : fnCartTotal}</h4>
+                  <h4>$ {step ? (fnCartTotal ? fnCartTotal : cartTotal) : cartTotal}</h4>
                 </div>
               </div>
             </div>
@@ -230,7 +231,7 @@ const CartLeft = ({
               </div>
               <Form>
                 <Form.Row>
-                  <Form.Group as={Col} lg="12" style={{ maxWidth: "15rem" }}>
+                  <Form.Group as={Col} lg="12">
                     <Form.Label>Card number</Form.Label>
                     <Form.Control
                       // Here is where React Payment Inputs injects itself into the input element.
@@ -270,7 +271,7 @@ const CartLeft = ({
                   </Form.Group>
                 </Form.Row>
               </Form>
-              <ul className="d-flex justify-content-between mt-4 row">
+              {/* <ul className="d-flex justify-content-between mt-4 row">
                 <li>
                   <input
                     type="radio"
@@ -298,17 +299,17 @@ const CartLeft = ({
                   />
                   <p>GOOGLE Pay</p>
                 </li>
-              </ul>
+              </ul> */}
             </div>
           </>
         ) : (
-          ""
-        )}
+            ""
+          )}
         {!step ? (
-          <button onClick={() => cartPageDispatch(cartNext())}>NEXT</button>
+          <button onClick={() => setStep(1)}>NEXT</button>
         ) : (
-          <button onClick={() => cartSubmit()}>CHECK</button>
-        )}
+            <button onClick={() => cartSubmit()}>CHECK</button>
+          )}
       </div>
     </>
   );

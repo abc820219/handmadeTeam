@@ -1,5 +1,7 @@
+$formErrorColor: #fff;
+
 .login-wrap {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.1) !important;
   box-shadow: 0 10px 25px #000;
   backdrop-filter: blur(3px);
   width: 25%;
@@ -60,7 +62,7 @@
           border: 1px solid red;
         }
         .errorText {
-          color: red;
+          color: $formErrorColor;
           font-size: 0.75em;
           position: relative;
           margin-top: 5px;
@@ -101,8 +103,8 @@
   right: 0;
   bottom: 0;
   // background-color: #000;
-  background-image: url("https://images.unsplash.com/photo-1505276452202-6df1db49945a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80");
-  background-position: 80%  5%;
+  background-image: url("/image/member/loginBack.jpg");
+  background-position: 80% 5%;
   background-repeat: no-repeat;
   background-size: cover;
 }

@@ -1,5 +1,14 @@
+@function pxToVw($px) {
+  @return $px * 100 / 1920 + vw;
+}
 * {
   list-style: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  border-style: none;
+  font-family: basic-sans, sans-serif, "微軟正黑體";
+  font-weight: 500;
+  font-style: normal;
 }
 html,
 body {

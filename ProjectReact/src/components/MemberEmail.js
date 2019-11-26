@@ -68,7 +68,9 @@ function MemberEmail(props) {
     <>
       <div className="login-wrap d-flex flex-column align-items-center">
         <div className="mt-4">LOGO</div>
-        <p className="mt-4 mb-3">請填寫帳號與信箱</p>
+        <p className="mt-4 mb-3" style={{ color: "white" }}>
+          請填寫帳號與信箱
+        </p>
         <form>
           <ul>
             <li>
