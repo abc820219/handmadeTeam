@@ -6,17 +6,20 @@ import { MdStar } from "react-icons/md";
 import CartStore from "../cart/CartStore";
 import "../../commom/scss/course/course_detail.scss";
 import "react-datepicker/dist/react-datepicker.css";
-import {Switch,Route,NavLink,Redirect,withRouter} from 'react-router-dom' ;
-
-
+import { Switch, Route, NavLink, Redirect, withRouter } from 'react-router-dom';
+import {
+  addCourse,
+  cancelCourse,
+} from "../../components/cart/CartAction";
 
 
 function Class_detail(props) {
+  let productDetail;
   console.log(props)
-  const { courseCart } = useContext(CartStore);
+  const { courseCart, id, cartCourseDispatch } = useContext(CartStore);
   console.log(courseCart);
   const course_sid = props.match.params.cSid;
-  const store_sid =props.match.params.sid;
+  const store_sid = props.match.params.sid;
   const [startDate, setStartDate] = useState(new Date());
   const [dataNote, setDataNote] = useState('')
   const [course_total, setCourse_total] = useState('')
@@ -38,6 +41,9 @@ function Class_detail(props) {
   const [order_afternoon, setOrder_afternoon] = useState("")
   const [order_noon, setOrder_noon] = useState("")
   const [start, setStart] = useState("")
+  const [correctDay, setCorrectDay] = useState("")
+
+  const [checkCart, setCheckCart] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,7 +60,6 @@ function Class_detail(props) {
       let afternoon = "15:00"
       let noon_str = "T04:00:00.000Z";
       let afternoon_str = "T07:00:00.000Z";
-
       //////////人數相加////////
       let person_sum = (arr) => {
         let sum = 0;
@@ -186,74 +191,83 @@ function Class_detail(props) {
   }, []
   )
 
-  console.log("max_person", max_person)
-  console.log("order_noon", order_noon)
-  console.log(start, "4564546")
-  console.log("data_total", data_total)
-  console.log({ dataNote });
-  console.log(order_data)
-  console.log(course_time)
-  console.log(startDate)
-  console.log("order_total", order_total)
-  console.log("vdvd", order_morning)
-  console.log("(order_afternoon)", order_afternoon)
-  console.log("選擇時間", course_time_select)
-  console.log(img_detail)
-  console.log("Need_time", need_time)
+  // console.log("max_person", max_person)
+  // console.log("order_noon", order_noon)
+  // console.log(start, "4564546")
+  // console.log("data_total", data_total)
+  // console.log({ dataNote });
+  // console.log(order_data)
+  // console.log(course_time)
+  // console.log(startDate)
+  // console.log("order_total", order_total)
+  // console.log("vdvd", order_morning)
+  // console.log("(order_afternoon)", order_afternoon)
+  // console.log("選擇時間", course_time_select)
+  // console.log(img_detail)
+  // console.log("Need_time", need_time)
   // console.log(course_person)
   // console.log(price)
 
-  let date = () => {
-    let str;
-    str = startDate + ""
-    let arr;
-    str = str.slice(4, 15)
-    arr = str.split(" ")
-    let data = [];
-    let mon = "";
-    switch (arr[0]) {
-      case "Jan":
-        mon = "1";
-        break;
-      case "Feb":
-        mon = "2";
-        break;
-      case "Mar":
-        mon = "3";
-        break;
-      case "Apr":
-        mon = "4";
-        break;
-      case "May":
-        mon = "5";
-        break;
-      case "Jun":
-        mon = "6";
-        break;
-      case "Jul":
-        mon = "7";
-        break;
-      case "Aug":
-        mon = "8";
-        break;
-      case "Sep":
-        mon = "9";
-        break;
-      case "Oct":
-        mon = "10";
-        break;
-      case 'Nov':
-        mon = "11";
-        break;
-      case "Dec":
-        mon = "12";
-        break;
+
+
+  const setCorrectDate = (correctDate) => {
+    console.log(correctDate);
+    let date = (correctDate) => {
+      let str;
+      // str = startDate + ""
+      str = correctDate + "";
+      let arr;
+      str = str.slice(4, 15)
+      arr = str.split(" ")
+      let data = [];
+      let mon = "";
+      switch (arr[0]) {
+        case "Jan":
+          mon = "1";
+          break;
+        case "Feb":
+          mon = "2";
+          break;
+        case "Mar":
+          mon = "3";
+          break;
+        case "Apr":
+          mon = "4";
+          break;
+        case "May":
+          mon = "5";
+          break;
+        case "Jun":
+          mon = "6";
+          break;
+        case "Jul":
+          mon = "7";
+          break;
+        case "Aug":
+          mon = "8";
+          break;
+        case "Sep":
+          mon = "9";
+          break;
+        case "Oct":
+          mon = "10";
+          break;
+        case 'Nov':
+          mon = "11";
+          break;
+        case "Dec":
+          mon = "12";
+          break;
+      }
+      data = [...data, arr[2], mon, arr[1]]
+      data = data.join("-")
+      console.log(data)
+      return data
     }
-    data = [...data, arr[2], mon, arr[1]]
-    data = data.join("-")
-    console.log(data)
-    setTest(data)
+    setStartDate(correctDate);
+    setCorrectDay(date(correctDate));
   }
+
   console.log(test)
 
 
@@ -264,6 +278,74 @@ function Class_detail(props) {
     }
   }
   console.log(Star)
+
+  if (order_data) {
+    productDetail = {
+      courseSid: order_data.course_sid,
+      courseName: order_data.course_name,
+      coursePrice: order_data.course_price,
+      courseList: order_data.course_list
+    };
+  }
+
+  const checkBottom = () => {
+    if (correctDay && course_time_select && course_person) {
+      setCheckCart(true);
+    } else {
+      setCheckCart(false);
+    }
+  }
+
+  console.log(id);
+
+  const putInCart = (productDetail, choseDate, courseTimeSelect, course_person, courseCart, id) => {
+    console.log(productDetail);
+    console.log(choseDate);
+    console.log(courseTimeSelect);
+    if (id) {
+      const courseSid = productDetail.courseSid;
+      const courseTime = `${choseDate} ${courseTimeSelect}`;
+      let checkCart;
+      if (courseCart) {
+        checkCart = courseCart.filter(courseC => {
+          return courseC.course_sid == courseSid && courseC.course_choose == courseTime;
+        });
+        console.log(checkCart);
+        if (checkCart.length) {
+          alert("已經加入重複時間課程");
+        } else {
+          console.log(checkCart);
+          let orderCf = {
+            course_sid: productDetail.courseSid,
+            course_name: productDetail.courseName,
+            course_price: productDetail.coursePrice,
+            course_order_applicants: course_person,
+            course_list: productDetail.courseList,
+            course_order_choose: courseTime
+          }
+          cartCourseDispatch(addCourse(orderCf, id));
+        }
+      } else {
+        let orderCf2 = {
+          course_sid: productDetail.courseSid,
+          course_name: productDetail.courseName,
+          course_price: productDetail.coursePrice,
+          course_order_applicants: course_person,
+          course_list: productDetail.courseList,
+          course_order_choose: courseTime
+        }
+        cartCourseDispatch(addCourse(orderCf2, id));
+      }
+    } else {
+      alert("請先登入")
+    }
+  }
+
+  useEffect(() => {
+    checkBottom(correctDay, course_time_select)
+  }, [correctDay, course_time_select])
+
+
   // let a="029";
   // $(".react-datepicker__day--"+a).css("background-color","black");
   return (
@@ -314,11 +396,11 @@ function Class_detail(props) {
             <div className="course_detail_mon">
               <h5>Choose date</h5>
               <div
-                onClick={() => date()}
+                // onClick={() => date()}
               >
                 <DatePicker
                   selected={startDate}
-                  onChange={date => setStartDate(date)}
+                  onChange={date => setCorrectDate(date)}
                   inline
                 />
 
@@ -330,7 +412,8 @@ function Class_detail(props) {
               <button className="detail_person_btn" onClick={() => setCourse_person(course_person + 1)}><FaPlus className="person_icon" /></button>
             </div>
             <div className="course_detail_cart">
-              <button className="detail_cart_icon_btn">
+              <button type="button" className="detail_cart_icon_btn" disabled={!checkCart} style={!checkCart ? { opacity: '0.3', pointerEvent: 'none', cursor: 'not-allowed' } : {}}
+                onClick={() => { putInCart(productDetail, correctDay, course_time_select, course_person, courseCart, id) }}>
                 <FaShoppingBasket className="cart_icon" />
                 <div>Add to Cart</div>
               </button>
