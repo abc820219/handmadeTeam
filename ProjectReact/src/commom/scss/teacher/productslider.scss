@@ -6,27 +6,24 @@ $orange: #f5ddba;
 @import url("https://use.typekit.net/wuz0itu.css");
 @import url("https://use.typekit.net/wuz0itu.css");
 
-// body {
-//   height: 100vh;
-//   background: linear-gradient(135deg, #f0c7b3, #f4dcb9);
-//   font-family: franklin-gothic-compressed, sans-serif;
-// }
+body {
+  background: linear-gradient(135deg, #f0c7b3, #f4dcb9);
+  font-family: franklin-gothic-compressed, sans-serif;
+}
 
 .teacher-list-page {
+  margin-top: 60px;
   display: flex;
   align-items: center;
   text-align: center;
 
   //-----老師大圖------
   .left-img {
-    // border: 1px solid red;
     z-index: 1;
     position: fixed;
     bottom: 0;
-    // height: 750px;
-    width: 1100px;
+    width: 900px;
     height: 600px;
-    // width: 860px;
     // background: rgb(207, 163, 80);
     clip-path: polygon(0 36%, 31% 0, 100% 100%, 0% 100%);
 
@@ -39,12 +36,17 @@ $orange: #f5ddba;
 
   //----切換照片的按鈕----
   .slider-btn-box {
-    width: 10%;
-    // position: relative;
-    // left: 38%;
     left: 20%;
-    // bottom: 10%;
-    z-index: 3;
+    width: 30%;
+    margin-left: 10%;
+    position: absolute;
+    bottom: 9%;
+    z-index: 2;
+
+    button {
+      padding-left: 2%;
+      font-size: 18px;
+    }
 
     .btn-slide {
       background: transparent;
@@ -55,11 +57,11 @@ $orange: #f5ddba;
       }
 
       &:hover {
-        color: blueviolet;
+        color: #c57647;
       }
 
       &:active {
-        color: rgb(114, 54, 170);
+        color: #c57647;
       }
     }
   }
@@ -69,19 +71,7 @@ $orange: #f5ddba;
   // ----老師小圖----
   .silder-circle {
     z-index: 2;
-    // position: absolute;
-    // top: 400px;
-    // display: flex;
-    // top: 60%;
-    // left: 50%;
-    // top: 600px;
-    // left: 700px;
-    // width: 300px;
-    // height: 300px;
-    // background: rgb(47, 88, 129);
-    // border: 10px solid #f4dcb9;
-    // border-radius: 50%;
-    // object-fit: cover;
+
     .slider-box {
       width: 350px;
       height: 350px;
@@ -90,43 +80,53 @@ $orange: #f5ddba;
       bottom: 5%;
       border-radius: 50%;
       overflow: hidden;
-      border: 10px solid #f4dcb9;
+      border: 10px solid #f0c7b3;
     }
-    .slider-image{
+    .slider-image {
       width: 100%;
     }
   }
 
-  // --------老師小圖-------
-
   // --------老師開課程圖--------
   .right-img {
-    z-index: 100;
+    z-index: 3;
     position: fixed;
     top: 0;
     right: 0;
-    height: 960px;
-    width: 960px;
-    object-fit: cover;
+    height: 730px;
+    width: 850px;
+    // object-fit: cover;
     // overflow: hidden;
     // background: #683;
     clip-path: polygon(100% 0, 0 0, 100% 100%);
-    .slider-image{
-      // width: 100%;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
-    .btn-right-link{
-      margin-top:100px;
-      border:none;
-      background:#972;
-      border-radius:5px;
-      padding:5px;
-      &:hover{
-        cursor: pointer;
-      }
-      &:focus{
-        outline:none;
+    .link-subject {
+      position: fixed;
+      top: 70px;
+      right: 30px;
+      z-index: 5;
+      a {
+        color: #c57647;
+        font-size: 50px;
       }
     }
+    // .btn-right-link{
+    //   margin-top:100px;
+    //   border:none;
+    //   background:#972;
+    //   border-radius:5px;
+    //   padding:5px;
+    //   &:hover{
+    //     cursor: pointer;
+    //   }
+    //   &:focus{
+    //     outline:none;
+    //   }
+    // }
   }
 
   // --------老師課程圖--------
@@ -140,22 +140,20 @@ $orange: #f5ddba;
   .teacher-page-right {
     width: 10%;
     height: 100%;
-    // background: rgb(61, 160, 61);
   }
 
   .teacher-page-center {
     width: 80%;
+    z-index: 4;
     // background: #882;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    z-index: 10 !important;
 
     .teacher-name {
       height: 50%;
-      padding-top: 15%;
-
+      padding-top: 5%;
       // background: #922;
       h1 {
         font-family: niagara, serif;
@@ -167,18 +165,18 @@ $orange: #f5ddba;
 
     // ----老師介紹introduce----
     .teacher-intro {
-      height: 40%;
+      height: 30%;
       text-align: right;
       //往左移
-      padding-right: 5%;
-      // padding-bottom: 2%;
-      padding-top: 5%;
+      padding-right: 9%;
+      padding-bottom: 2%;
+      padding-top: 3%;
       display: flex;
       justify-content: flex-end;
 
       .teacher-intro-box {
         // background: rgb(180, 19, 113);
-        width: 40%;
+        width: 30%;
         text-align: left;
 
         h3 {
@@ -200,9 +198,9 @@ $orange: #f5ddba;
 
     // ----老師專長expertise----
     .teacher-expe {
-      height: 30%;
+      height: 20%;
       text-align: right;
-      padding-right: 1%;
+      // padding-right: 1%;
 
       .teacher-expe-box {
         // background: rgb(241, 135, 28);
@@ -225,7 +223,24 @@ $orange: #f5ddba;
         font-size: 25px;
       }
     }
-
-    // ----老師專長expertise----
+  }
+}
+// =========RWD============
+@media (max-width: 400px) {
+  // 開課圖
+  .subject-img {
+    display: none;
+  }
+  //報名頁
+  .subject-page-left {
+    display: none;
+    z-index: 2;
+  }
+  .subject-page-right {
+    display: none;
+  }
+  // 主要區塊
+  .subject-page-center {
+    width: 100%;
   }
 }

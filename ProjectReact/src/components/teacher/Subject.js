@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { Container, Button } from "react-bootstrap";
 import "../../commom/scss/teacher/subject.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -23,13 +24,46 @@ class Subject extends Component {
       subject_address: "",
       subject_img: "",
       subject_price: "",
-      showOrder: false
+      showOrder: false,
+      last_people: "",
+      orderPeople:""
     };
   }
 
   componentDidMount() {
     this.getSubjectInfo();
+    this.getSubjectOrder();
   }
+  // ========取得開課訂單資料========
+  getSubjectOrder = () => {
+   console.log("this props:", this.props.subject_sid);
+    fetch(
+      "http://localhost:5000/handmade/teacher/order/" +
+        this.props.subject_sid,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "content-type": "application/json"
+        }
+      }
+    )
+      .then(res => res.json())
+      .then(data => {
+        let Data = data[0];
+        // console.log("subject data:", Data[0]);
+        console.log("total:", Data[0].OrderTotal);  //報名人數
+        this.setState(
+          {
+            orderPeople: Data[0].OrderTotal
+          },
+          () => {
+            console.log(this.state.orderPeople);
+          }
+        );
+      });
+  };
+
   // ========取得開課資料========
   getSubjectInfo = () => {
     console.log("this props:", this.props.subject_sid); //開課編號
@@ -46,21 +80,23 @@ class Subject extends Component {
     )
       .then(res => res.json())
       .then(data => {
-        let Data = data[0];
+        let Data = data;
         console.log("subject data:", Data);
         this.setState(
           {
-            subject_name: Data[0].subject_name,
-            subject_feature: Data[0].subject_feature,
-            suject_date: Data[0].subject_date,
-            subject_spend_time: Data[0].subject_spend_time,
-            subject_address: Data[0].subject_address,
-            subject_price: Data[0].subject_price,
-            subject_img:Data[0].subject_img
+            subject_name: Data.subject_name,
+            subject_feature: Data.subject_feature,
+            suject_date: Data.subject_date,
+            subject_spend_time: Data.subject_spend_time,
+            subject_address: Data.subject_address,
+            subject_price: Data.subject_price,
+            subject_img: Data.subject_img,
+            last_people: Data.subject_number
+            
           },
           () => {
-            // console.log(Data[1].subject_spend_time);
-            // console.log("date:", Data[0].subject_date);
+            console.log(Data);
+            console.log("last_people:", this.state.last_people);
             // console.log("teacher整包第一筆:", this.state.teacherArr1);
           }
         );
@@ -77,33 +113,41 @@ class Subject extends Component {
 
   render() {
     // console.log(this.props.match.params.subject_img)
-    console.log("this props:", this.props.subject_sid); 
+    console.log("this props:", this.props.subject_sid);
     const iconZone = {
-      width: "64px",
-      height: "64px",
+      width: "50px",
+      height: "50px",
       borderRadius: "50%",
       backgroundColor: "#F7ECEB",
-      marginRight: "30px",
-      marginLeft: "-8%"
+      marginRight: "20px",
+      marginLeft: "-8%",
+    };
+    const infoIcon = {
+      width: "25px",
+      height: "25px",
+      margin: "8px"
     };
     return (
       <>
         <div className="subject-page d-flex">
-          {/* <div className="subject-page-left"></div> */}
-
-          {/* 報名表 */}
-          {/* <OrderInfo/> */}
-          {this.state.showOrder === true ? (
-            <OrderInfo subject_sid={this.props.subject_sid} />
-          ) : null}
+          <div className="subject-page-left">
+            {/* 報名表 */}
+            {this.state.showOrder === true ? (
+              <OrderInfo subject_sid={this.props.subject_sid} />
+            ) : null}
+          </div>
           {/* 開課圖 */}
-          {/* <div className="subject-img">
+          <div className="subject-img">
             <img
               className="slider-image"
               src={`/image/${this.state.subject_img}`}
             />
-          </div> */}
+          </div>
           <div className="subject-page-center">
+            {/* 連結至老師頁面 */}
+            <div className="teacher-link">
+              <Link to="/handmade/teacher">Teacher List</Link>
+            </div>
             <div className="subject-name">
               <div className="subject-name-box">
                 <p>{this.state.subject_name}</p>
@@ -111,49 +155,25 @@ class Subject extends Component {
               </div>
             </div>
 
-            <div className="subject-info ">
+            <div className="subject-info">
               <div className="subject-info-box d-flex">
                 {/* 開課日期 */}
-                <div>
-                  <MdDateRange
-                    style={{
-                      width: 30 + "px",
-                      height: 30 + "px",
-                      margin: 8 + "px"
-                    }}
-                  />
+                <div className="info-box">
+                  <MdDateRange style={infoIcon} />
                   <p>{this.state.suject_date}</p>
                 </div>
-                <div>
-                  <MdSchedule
-                    style={{
-                      width: 30 + "px",
-                      height: 30 + "px",
-                      margin: 8 + "px"
-                    }}
-                  />
+                <div className="info-box">
+                  <MdSchedule style={infoIcon} />
                   <p>{this.state.subject_spend_time}</p>
                 </div>
-                <div>
-                  <MdMap
-                    style={{
-                      width: 30 + "px",
-                      height: 30 + "px",
-                      margin: 8 + "px"
-                    }}
-                  />
+                <div className="info-box">
+                  <MdMap style={infoIcon} />
                   <p>Taipei</p>
                 </div>
-                <div>
-                  <MdPerson
-                    style={{
-                      width: 30 + "px",
-                      height: 30 + "px",
-                      margin: 8 + "px"
-                    }}
-                  />
-                  剩餘人數
-                  <p>{}</p>
+                <div className="info-box">
+                  <MdPerson style={infoIcon} />
+                  {/* 剩餘人數 */}
+                  <p>{this.state.last_people - this.state.orderPeople}</p>
                 </div>
               </div>
             </div>
@@ -166,7 +186,7 @@ class Subject extends Component {
                     className="d-flex justify-content-center align-items-center"
                   >
                     <MdLocationOn
-                      style={{ color: "#EBD0CE", fontSize: "30px" }}
+                      style={{ color: "#EBD0CE", fontSize: "25px" }}
                     />
                   </figure>
                   {/* 開課地址 */}
@@ -178,7 +198,7 @@ class Subject extends Component {
                     className="d-flex justify-content-center align-items-center"
                   >
                     <FaQuoteLeft
-                      style={{ color: "#EBD0CE", fontSize: "30px" }}
+                      style={{ color: "#EBD0CE", fontSize: "20px" }}
                     />
                   </figure>
                   {/* 開課特色 */}
