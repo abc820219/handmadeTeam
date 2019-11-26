@@ -81,7 +81,7 @@ $color-LeftName: #FFFFFF;
         .recipeNameRight {
             position: absolute;
             z-index: 2;
-            top: calc( 50% + 5px );
+            top: 50%;
             left: -65px;
             transform: translate( 0, -50% );
             p { 
@@ -89,6 +89,7 @@ $color-LeftName: #FFFFFF;
                 color: $color-RightName;
                 font-size: 130px;
                 line-height: 130px;
+                text-shadow: 0 0 20px #999999;
                 writing-mode: vertical-lr;
                 text-orientation: mixed;
             }
@@ -319,10 +320,526 @@ $color-LeftName: #FFFFFF;
         display: block;
         background-color: $bgc-dark;
         .ingredientsTop {
+            width: 100%;
+            position: relative;
+            overflow: hidden;
             .ingredientsTopTop {
                 width: 100%;
                 height: 60px;
-                background: rgba($bgc-topLeft,.9);
+                position: fixed !important;
+                z-index: 500;
+                top: 0;
+                left: 0;                
+                background-color: #968472;
+            }
+            .recipeBigImages {
+                margin-top: 60px;
+                .recipeBigImagesSlider {
+                    .slick-list {
+                        width: 100%;
+                        height: 600px;
+                        .slick-track {
+                            .slick-slide {
+                                div {
+                                    .recipeSliderRight {
+                                        img {
+                                            width: 100%;
+                                            // height: 100%;
+                                            object-fit: cover;
+                                            object-position: center;
+                                        }
+                                    }
+                                }
+                             }
+                        }
+                    }
+                }                
+            }
+            .recipeNameTop {
+                width: 100%;
+                height: 130px;
+                position: absolute;
+                z-index: 50;
+                bottom: 0;
+                left: 0;
+                transform: translate( 0, 50% );
+                display: flex;
+                justify-content: center;
+                p {
+                    font-family: "SourceSerifVariable";
+                    color: $color-RightName;
+                    font-size: 130px;
+                    line-height: 130px; 
+                    text-shadow: 0 0 20px #999999;
+                }
+            }
+        }
+        .ingredientsDown {
+            width: 100%;
+            .recipeNameDown {
+                width: 100%;
+                height: 130px;
+                margin-top: -65px;
+                display: flex;
+                justify-content: center;                
+                p {
+                    font-family: "SourceSerifVariable";
+                    color: $color-LeftName;
+                    font-size: 130px;
+                    line-height: 130px; 
+                }
+            }
+            .recipeChoose {
+
+            }
+            .recipeChooseMain {
+                margin-top: 60px;
+                width: 100%;
+                .buttonRightRecipeLeft {
+                    margin: 0 auto;
+                    width: 80%;
+                    div {
+                        margin: 20px 0;
+                        width: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        .recipeTitle {
+                            font-size: 50px;
+                            line-height: 55px;
+                            color: $bgc-topLeft;
+                        }
+                        .clickToIngredientsBuyCard {
+                            text-decoration: none;
+                           p {
+                                text-align: center;
+                                width: 150px;
+                                height: 50px;
+                                background: #E9756E;
+                                color: #FFFFFF;
+                                border-radius: 20px;
+                                font-size: 30px;
+                                line-height: 55px;
+                            }
+                        }
+                    }
+                    .recipeMain {
+                        margin: 0;
+                        font-size: 25px;
+                        color: $bgc-topLeft;
+                    }
+                    .ingredientsBuyCardGroup {
+                        margin: 0;
+                        width: 100%;    
+                        .ingredientsBuyCardUl {
+                            width: 100%;
+                            margin: 0;
+                            .ingredientsBuyCardLi {
+                                margin: 20px auto;
+                                width: 90%;
+                                height: 100%;
+                                border-radius: 15px;
+                                background-color: $bgc-topLeft;
+                                color: $bgc-dark;
+                                display: flex;
+                                align-items: center;
+                                .ingredientsImage {
+                                    margin: 20px;
+                                    width: 150px;
+                                    height: 150px;
+                                    border-radius: 50%;
+                                    object-fit: cover;
+                                    object-position: center;
+                                }
+                                .ingredientsCardGroup {
+                                    position: relative;
+                                    margin: 20px;
+                                    width: 100%;
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: flex-start;
+                                    .ingredientsName{   
+                                        font-size: 25px;
+                                        margin: 0;
+                                    }
+                                    .ingredientsDetail {
+
+                                    }
+                                    .ingredientsDown {
+                                        margin: 0;
+                                        width: 100%;
+                                        .ingredientsMain {
+                                            display: flex;
+                                            flex-direction: column;
+                                            align-items: flex-start;
+                                            margin: 0;
+                                            .ingredientsPlace {
+                                                margin: 0;
+                                            }
+                                            .ingredientsSize {
+                                                margin: 0;
+                                            }
+                                            .ingredientsPrice {
+                                                margin: 0;
+                                            }
+                                        }
+                                    }
+                                    .ingredientsCartButton {
+                                        position: absolute;
+                                        bottom: 0px;
+                                        right: 0px;
+                                        margin-right: 20px;
+                                        width: 150px;
+                                        height: 40px;
+                                        background: #E9756E;
+                                        color: #FFFFFF;
+                                        border-radius: 20px;
+                                        text-decoration: none;
+                                        display: flex;
+                                        justify-content: center;
+                                        align-items: center;
+                                        .cartReactIcon {
+                                            font-size: 20px;
+                                        }
+                                        p {
+                                            margin: 0;
+                                            font-size: 20px;                 
+                                            line-height: 50px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// max-width 850px
+@media screen and (max-width: 850px) {
+    .ingredientsAllMin {
+        .ingredientsTop {
+            .ingredientsTopTop {
+
+            }
+            .recipeBigImages {
+                margin-top: 60px;
+                .recipeBigImagesSlider {
+                    .slick-list {
+                        width: 100%;
+                        height: 400px;
+                        .slick-track {
+                            .slick-slide {
+                                div {
+                                    .recipeSliderRight {
+                                        img {
+                                            width: 100%;
+                                            height: 100%;
+                                            object-fit: cover;
+                                            object-position: center;
+                                        }
+                                    }
+                                }
+                             }
+                        }
+                    }
+                }                
+            }
+            .recipeNameTop {
+                height: 100px;
+                p {
+                    font-size: 100px;
+                    line-height: 100px; 
+                }
+            }
+        }
+        .ingredientsDown {
+            .recipeNameDown {
+                height: 100px;
+                margin-top: -50px;
+                p {
+                    font-size: 100px;
+                    line-height: 100px; 
+                }
+            }
+            .recipeChoose {
+
+            }
+            .recipeChooseMain {
+                .buttonRightRecipeLeft {
+                    div {
+                        flex-direction: column;
+                        .recipeTitle {
+
+                        }
+                        .clickToIngredientsBuyCard {
+                           p {
+                                
+                            }
+                        }
+                    }
+                    .recipeMain {
+
+                    }
+                    .ingredientsBuyCardGroup {
+                        .ingredientsBuyCardUl {
+                            .ingredientsBuyCardLi {
+                                .ingredientsImage {
+                                    
+                                }
+                                .ingredientsCardGroup {
+                                    .ingredientsName{
+
+                                    }
+                                    .ingredientsDetail {
+
+                                    }
+                                    .ingredientsDown {
+                                        .ingredientsMain {
+                                            .ingredientsPlace {
+
+                                            }
+                                            .ingredientsSize {
+
+                                            }
+                                            .ingredientsPrice {
+
+                                            }
+                                        }
+                                    }
+                                    .ingredientsCartButton {
+                                        position: relative;
+                                        margin: 10px 0 auto;
+                                        width: 100%;
+                                        .cartReactIcon {
+                                            
+                                        }
+                                        p {
+
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// max-width 625px
+@media screen and (max-width: 625px) {
+    .ingredientsAllMin {
+        .ingredientsTop {
+            .ingredientsTopTop {
+
+            }
+            .recipeBigImages {
+                .recipeBigImagesSlider {
+                    .slick-list {
+                        .slick-track {
+                            .slick-slide {
+                                div {
+                                    .recipeSliderRight {
+                                        img {
+                                            
+                                        }
+                                    }
+                                }
+                             }
+                        }
+                    }
+                }                
+            }
+            .recipeNameTop {
+                height: 70px;
+                p {
+                    font-size: 70px;
+                    line-height: 70px; 
+                }
+            }
+        }
+        .ingredientsDown {
+            .recipeNameDown {
+                height: 70px;
+                margin-top: -35px;
+                p {
+                    font-size: 70px;
+                    line-height: 70px; 
+                }
+            }
+            .recipeChoose {
+
+            }
+            .recipeChooseMain {
+                .buttonRightRecipeLeft {
+                    div {
+                        
+                        .recipeTitle {
+
+                        }
+                        .clickToIngredientsBuyCard {
+                           p {
+                                
+                            }
+                        }
+                    }
+                    .recipeMain {
+
+                    }
+                    .ingredientsBuyCardGroup {
+                        .ingredientsBuyCardUl {
+                            .ingredientsBuyCardLi {
+                                width: 100%;
+                                flex-direction: column;
+                                .ingredientsImage {
+                                    width: 120px;
+                                    height: 120px;
+                                }
+                                .ingredientsCardGroup {
+                                    width: 80%;
+                                    .ingredientsName{
+
+                                    }
+                                    .ingredientsDetail {
+
+                                    }
+                                    .ingredientsDown {
+                                        .ingredientsMain {
+                                            .ingredientsPlace {
+
+                                            }
+                                            .ingredientsSize {
+
+                                            }
+                                            .ingredientsPrice {
+
+                                            }
+                                        }
+                                    }
+                                    .ingredientsCartButton {
+                                        
+                                        .cartReactIcon {
+                                            font-size: 16px;
+                                        }
+                                        p {
+                                            font-size: 16px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// max-width 443px
+@media screen and (max-width: 443px) {
+    .ingredientsAllMin {
+        .ingredientsTop {
+            .ingredientsTopTop {
+
+            }
+            .recipeBigImages {
+                .recipeBigImagesSlider {
+                    .slick-list {
+                        height: 300px;
+                        .slick-track {
+                            .slick-slide {
+                                div {
+                                    .recipeSliderRight {
+                                        img {
+                                            
+                                        }
+                                    }
+                                }
+                             }
+                        }
+                    }
+                }                
+            }
+            .recipeNameTop {
+                height: 60px;
+                p {
+                    font-size: 60px;
+                    line-height: 60px; 
+                }
+            }
+        }
+        .ingredientsDown {
+            .recipeNameDown {
+                height: 60px;
+                margin-top: -30px;
+                p {
+                    font-size: 60px;
+                    line-height: 60px; 
+                }
+            }
+            .recipeChoose {
+
+            }
+            .recipeChooseMain {
+                .buttonRightRecipeLeft {
+                    div {
+                        
+                        .recipeTitle {
+
+                        }
+                        .clickToIngredientsBuyCard {
+                           p {
+                                
+                            }
+                        }
+                    }
+                    .recipeMain {
+
+                    }
+                    .ingredientsBuyCardGroup {
+                        .ingredientsBuyCardUl {
+                            .ingredientsBuyCardLi {
+                                
+                                .ingredientsImage {
+
+                                }
+                                .ingredientsCardGroup {
+                                    .ingredientsName{
+
+                                    }
+                                    .ingredientsDetail {
+                                        font-size: 20px;
+                                    }
+                                    .ingredientsDown {
+                                        .ingredientsMain {
+                                            .ingredientsPlace {
+
+                                            }
+                                            .ingredientsSize {
+
+                                            }
+                                            .ingredientsPrice {
+
+                                            }
+                                        }
+                                    }
+                                    .ingredientsCartButton {
+                                        
+                                        .cartReactIcon {
+                                        }
+                                        p {
+
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
