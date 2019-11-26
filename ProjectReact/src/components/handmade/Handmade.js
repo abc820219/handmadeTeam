@@ -11,7 +11,7 @@ class Handmade extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showIntroduce: false,
+      showIntroduce: true,
       showClass: false,
       showTeacher: false,
       showStore: false,
@@ -96,7 +96,7 @@ class Handmade extends Component {
       // fade: true,
       responsive: [
         {
-          breakpoint: 1000,
+          breakpoint: 1300,
           settings: {
             slidesToShow: 1,
             fade: true
@@ -109,6 +109,22 @@ class Handmade extends Component {
   render() {
     return (
       <>
+        <div
+          className={this.state.showIntroduce ? "background1 background" : ""}
+        ></div>
+        <div
+          className={this.state.showClass ? "background2 background" : ""}
+        ></div>
+        <div
+          className={this.state.showTeacher ? "background3 background" : ""}
+        ></div>
+        <div
+          className={this.state.showStore ? "background4 background" : ""}
+        ></div>
+        <div
+          className={this.state.showFood ? "background5 background" : ""}
+        ></div>
+
         <main className="main">
           <ul className="main__slider main__slider--sports">
             <li className="main__item" onClick={this.handleClickIntroduce}>
@@ -227,8 +243,6 @@ class Handmade extends Component {
             close
           </div>
 
-      
-
           {this.state.showIntroduce ? (
             <div className="frame1">
               <div className="interFrame1">
@@ -242,7 +256,12 @@ class Handmade extends Component {
                 </div>
               </div>
               <div className="interFrame2">
-                <div className="innerWord"></div>
+                <div className="spaceNone"></div>
+                <div className="innerWord">
+                  這個時候就是該輪到drop-shadow出場了，drop-shadow是CSS3中filter（濾鏡）中陰影濾鏡，它就符合真實世界的投影，非透明的顏色，就有投影；透明部分，光線穿過，沒投影。
+                  而我們的圖形剛好又是SVG格式的，每一個元素就是些文本節點，剛好符合drop-shadow概念中的那樣，有透明和非透明部分，所以用它再適合不過了。
+                  原文網址：https://kknews.cc/code/nenm9k8.html
+                </div>
               </div>
             </div>
           ) : (
@@ -261,7 +280,12 @@ class Handmade extends Component {
                 </div>
               </div>
               <div className="interFrame2">
-                <div className="innerWord"></div>
+                <div className="spaceNone"></div>
+                <div className="innerWord">
+                  這個時候就是該輪到drop-shadow出場了，drop-shadow是CSS3中filter（濾鏡）中陰影濾鏡，它就符合真實世界的投影，非透明的顏色，就有投影；透明部分，光線穿過，沒投影。
+                  而我們的圖形剛好又是SVG格式的，每一個元素就是些文本節點，剛好符合drop-shadow概念中的那樣，有透明和非透明部分，所以用它再適合不過了。
+                  原文網址：https://kknews.cc/code/nenm9k8.html
+                </div>
               </div>
             </div>
           ) : (
@@ -280,7 +304,12 @@ class Handmade extends Component {
                 </div>
               </div>
               <div className="interFrame2">
-                <div className="innerWord"></div>
+                <div className="spaceNone"></div>
+                <div className="innerWord">
+                  這個時候就是該輪到drop-shadow出場了，drop-shadow是CSS3中filter（濾鏡）中陰影濾鏡，它就符合真實世界的投影，非透明的顏色，就有投影；透明部分，光線穿過，沒投影。
+                  而我們的圖形剛好又是SVG格式的，每一個元素就是些文本節點，剛好符合drop-shadow概念中的那樣，有透明和非透明部分，所以用它再適合不過了。
+                  原文網址：https://kknews.cc/code/nenm9k8.html
+                </div>
               </div>
             </div>
           ) : (
@@ -299,7 +328,12 @@ class Handmade extends Component {
                 </div>
               </div>
               <div className="interFrame2">
-                <div className="innerWord"></div>
+                <div className="spaceNone"></div>
+                <div className="innerWord">
+                  這個時候就是該輪到drop-shadow出場了，drop-shadow是CSS3中filter（濾鏡）中陰影濾鏡，它就符合真實世界的投影，非透明的顏色，就有投影；透明部分，光線穿過，沒投影。
+                  而我們的圖形剛好又是SVG格式的，每一個元素就是些文本節點，剛好符合drop-shadow概念中的那樣，有透明和非透明部分，所以用它再適合不過了。
+                  原文網址：https://kknews.cc/code/nenm9k8.html
+                </div>
               </div>
             </div>
           ) : (
@@ -318,23 +352,18 @@ class Handmade extends Component {
                 </div>
               </div>
               <div className="interFrame2">
-                <div className="innerWord"></div>
+                <div className="spaceNone"></div>
+                <div className="innerWord">
+                  這個時候就是該輪到drop-shadow出場了，drop-shadow是CSS3中filter（濾鏡）中陰影濾鏡，它就符合真實世界的投影，非透明的顏色，就有投影；透明部分，光線穿過，沒投影。
+                  而我們的圖形剛好又是SVG格式的，每一個元素就是些文本節點，剛好符合drop-shadow概念中的那樣，有透明和非透明部分，所以用它再適合不過了。
+                  原文網址：https://kknews.cc/code/nenm9k8.html
+                </div>
               </div>
             </div>
           ) : (
             ""
           )}
 
-          {this.state.showIntroduce ? (
-            <Link to="/handmade/member">
-              {/* <button type="submit" className="linkOut outline green-white"><div>member</div></button> */}
-              <div class="container-login100-form-btn">
-                <button class="login100-form-btn ">member</button>
-              </div>
-            </Link>
-          ) : (
-            ""
-          )}
           {this.state.showClass ? (
             <Link to="/handmade/store/course">
               <div class="container-login100-form-btn">

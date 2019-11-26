@@ -30,6 +30,8 @@ export const cartCourseReducer = (state, { type, payload }) => {
           newCour.course_order_choose !== cancelCourse.course_order_choose
         );
       });
+      console.log(cancelCourse);
+      console.log(newCourse);
       const id = payload.id;
       localStorage.setItem(`courseCart${id}`, JSON.stringify(newCourse));
       return newCourse;
