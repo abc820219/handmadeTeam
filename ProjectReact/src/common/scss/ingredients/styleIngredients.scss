@@ -134,6 +134,28 @@ $color-LeftName: #FFFFFF;
 .recipeSliderLeft {
     width: 100%;
     height: 140px;
+    position: relative;
+    .recipeSliderLeftBakeName {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 106.5%;
+        z-index: 500;
+        color: #ffffff;
+        background-color: rgba(#000000,0.6);
+        opacity: 0;
+        transition: .5s;
+        .recipeSliderLeftBakeNameText {
+            position: absolute;
+            font-size: 30px;
+            left: 20px;
+            bottom: -10px;
+        }
+    }
+    .recipeSliderLeftBakeName:hover {
+        opacity: 1;
+    }
     img{
         filter:brightness(.8);
         width: 100%;

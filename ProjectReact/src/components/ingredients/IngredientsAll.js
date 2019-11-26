@@ -73,7 +73,10 @@ const IngredientsAll = (props) => {
                         >
                             {bakeAllDataShow.map((bakeAll) => (
                                 <div className="recipeSliderLeft">
-                                    <img src={`/image/ingredientsMin/${bakeAll.bake_image}`} onClick={() => { selectBakeName(bakeAll.bake_sid, bakeAllDataShow) }} />
+                                    <div className="recipeSliderLeftBakeName" onClick={() => { selectBakeName(bakeAll.bake_sid, bakeAllDataShow) }}>
+                                        <p className="recipeSliderLeftBakeNameText" >{bakeAll.bake_name}</p>
+                                    </div>
+                                    <img src={`/image/ingredientsMin/${bakeAll.bake_image}`}/>
                                 </div>
                             ))}
                         </Slider>
