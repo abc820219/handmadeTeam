@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import "../../../commom/scss/member/orderDeListCourse.scss";
 import { FaDollarSign } from "react-icons/fa";
 import { FaRegClock } from "react-icons/fa";
-import { FaRegTrashAlt } from "react-icons/fa";
 import { MdAttachMoney } from "react-icons/md";
 import { FaCheck } from "react-icons/fa";
 import { FaExchangeAlt } from "react-icons/fa";
@@ -10,6 +9,8 @@ import { MdCancel } from "react-icons/md";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaQuoteLeft } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
+
+import {Link} from 'react-router-dom';
 
 const OrderDeListCourse = ({orderDetail}) => {
   if(!orderDetail){
@@ -33,14 +34,15 @@ const OrderDeListCourse = ({orderDetail}) => {
     marginRight: "80px"
   };
 
-  const fetchDetail = async () => {
-    const id = await localStorage.getItem("member_id");
-    const dataJson = await fetch(`http://localhost:5000/orderDetail/${id}`);
-    const data = await dataJson.json();
-    await console.log(data);
-  };
+  // const fetchDetail = async () => {
+  //   const id = await localStorage.getItem("member_id");
+  //   const dataJson = await fetch(`http://localhost:5000/orderDetail/${id}`);
+  //   const data = await dataJson.json();
+  //   await console.log(data);
+  // };
+  
   const {
-    couse_order_choose,
+    course_order_choose,
     course_list,
     course_order_applicants,
     course_name,
@@ -50,11 +52,13 @@ const OrderDeListCourse = ({orderDetail}) => {
     course_taste,
     course_price,
     course_ingredient,
-    course_difficult
+    course_difficult,
+    store_address
   } = orderDetail;
+  console.log(orderDetail);
 
   useEffect(() => {
-    fetchDetail();
+    // fetchDetail();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -64,7 +68,7 @@ const OrderDeListCourse = ({orderDetail}) => {
         <div className="container-fluid orderDeCourse d-flex flex-column">
           <wrapper className="d-flex flex-column justify-content-center">
             <div className="d-flex justify-content-between align-items-center px-4">
-              <h5>{couse_order_choose}</h5>
+              <h5>{course_order_choose}</h5>
               <div>
                 <p className="mr-3">
                   <FaRegClock className="mr-2" />
@@ -95,7 +99,7 @@ const OrderDeListCourse = ({orderDetail}) => {
                       </div>
                       <div>
                         <p>訂購日期</p>
-                        <h5>{order_create_time}</h5>
+                        <h5>{order_create_time.split(" ")[0]}</h5>
                       </div>
                     </div>
                     <div className="ml-auto">
@@ -141,10 +145,10 @@ const OrderDeListCourse = ({orderDetail}) => {
             >
               <FaMapMarkerAlt style={{ color: "#EBD0CE", fontSize: "30px" }} />
             </figure>
-            <p style={{ color: "#544741" }}>235新北市中和區連城路160號後棟</p>
-            <div className="orderIconRight ml-auto">
+            <p style={{ color: "#544741" }}>{store_address}</p>
+            <a className="orderIconRight ml-auto" href={'https://www.google.com/maps/search/'+store_address} target="_blank">
               <p style={{ color: "#544741", maxWidth: "500px" }}>Google Map</p>
-            </div>
+            </a>
           </div>
           <div className="orderDeCourseList d-flex align-items-center">
             <figure
