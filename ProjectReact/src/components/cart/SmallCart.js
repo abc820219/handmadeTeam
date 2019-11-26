@@ -1,15 +1,15 @@
-import React, { useEffect, useState, useContext, useCallback } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "../../commom/scss/cart/memberCart.scss";
 import CartCourse from "./CartCourse";
 import CartIngre from "./CartIngre";
 import { Link } from "react-router-dom";
 import CartStore from "./CartStore";
-import { courseCartRerender, ingreCartRerender } from './CartAction';
+
+
 
 const SmallCart = ({ openCart, showCart }) => {
 
-  let { courseCart, ingreCart, id, cartCourseDispatch, cartIngreDispatch } = useContext(CartStore);
-console.log(courseCart, ingreCart);
+  let { courseCart, ingreCart } = useContext(CartStore);
 
   const [cartBtn , setCartBtn] = useState(false)
 
@@ -43,7 +43,8 @@ console.log(courseCart, ingreCart);
       return "沒有商品";
     }
   };
-  console.log(cartBtn);
+
+
   return (
     <>
       <div
@@ -64,11 +65,11 @@ console.log(courseCart, ingreCart);
               {courseCart.map((courseC, index) => {
                 return <CartCourse
                   key={`c_${index}`}
+                  courseSid = {courseC.course_sid}
                   courseName={courseC.course_name}
                   courseOrderApplicants={courseC.course_order_applicants}
                   courseOrderChoose={courseC.course_order_choose}
-                  courseOrderTime={courseC.course_order_time}
-                  courseLists={courseC.course_lists}
+                  courseList={courseC.course_list}
                 />
               })}
               <hr className="hr-bottom"></hr>
@@ -79,6 +80,7 @@ console.log(courseCart, ingreCart);
               {ingreCart.map((ingreC, index) => {
                return  <CartIngre 
                  key={`i_${index}`}
+                 ngreSid={ingreC.ingredient_sid}
                   ingreName={ingreC.ingredient_name}
                   ingreOrderQty={ingreC.ingredient_order_quantity}
                   ingreEnName={ingreC.ingredients_en_name}

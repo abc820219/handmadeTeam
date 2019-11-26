@@ -1,34 +1,10 @@
-const CART_PREV_PAGE = "CART_PREV_PAGE";
-const CART_NEXT_PAGE = "CART_NEXT_PAGE";
 const SELECT_COURSE = "SELECT_COURSE";
 const UN_SELECT_COURSE = "UN_SELECT_COURSE";
 const ADD_COURSE_ITEM = "ADD_COURSE_ITEM";
 const CANCEL_COURSE_ITEM = "CANCEL_COURSE_ITEM";
 const CANCEL_INGRE_ITEM = "CANCEL_INGRE_ITEM";
 const ADD_INGRE_ITEM = "ADD_INGRE_ITEM";
-const CORSE_CART_RERENDER = "CORSE_CART_RERENDER";
-const INGRE_CART_RERENDER = "INGRE_CART_RERENDER";
 const CHECK_OUT = "CHECK_OUT";
-
-const courseCartRerender = id => ({
-  type: CART_PREV_PAGE,
-  payload: id
-});
-
-const ingreCartRerender = id => ({
-  type: INGRE_CART_RERENDER,
-  payload: id
-});
-
-const cartPrev = () => ({
-  type: CART_PREV_PAGE,
-  payload: 0
-});
-
-const cartNext = () => ({
-  type: CART_NEXT_PAGE,
-  payload: 1
-});
 
 const addCourse = (item, id) => ({
   type: ADD_COURSE_ITEM,
@@ -66,10 +42,6 @@ const checkoutAction = () => ({
 });
 
 export {
-  CART_PREV_PAGE,
-  CART_NEXT_PAGE,
-  cartNext,
-  cartPrev,
   SELECT_COURSE,
   UN_SELECT_COURSE,
   selectCourse,
@@ -82,10 +54,6 @@ export {
   CANCEL_INGRE_ITEM,
   addIngre,
   cancelIngre,
-  CORSE_CART_RERENDER,
-  INGRE_CART_RERENDER,
-  courseCartRerender,
-  ingreCartRerender,
   CHECK_OUT,
   checkoutAction
 };

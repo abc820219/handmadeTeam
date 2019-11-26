@@ -18,7 +18,7 @@ const Member = ({ login }) => {
   }
   return (
     <>
-      <div className="d-flex">
+      <div className="d-flex" style={{ backgroundColor: "#eec1b1" }}>
         {size.width < 1200 ? (
           <GiHamburgerMenu
             style={{
@@ -48,7 +48,11 @@ const Member = ({ login }) => {
             component={MemberOrder}
           />
           <Route exact path={`/handmade/member/coupon`} component={Coupon} />
-          <Route exact path={`/handmade/member/cart`} component={Cart} />
+          <Route
+            exact
+            path={`/handmade/member/cart`}
+            component={() => <Cart setPage={setPage} />}
+          />
           <Route
             exact
             path={`/handmade/member/passwordEdit`}

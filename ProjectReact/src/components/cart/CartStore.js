@@ -21,7 +21,6 @@ if(localStorage.getItem("courseCart" + id)){
 
 export const CartStoreStatus = {
   id: id,
-  step: 0,
   courseCart: courseCart,
   ingreCart: ingreCart,
   courseCartCf: courseCart,

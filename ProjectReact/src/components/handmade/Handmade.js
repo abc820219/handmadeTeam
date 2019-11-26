@@ -11,7 +11,7 @@ class Handmade extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showIntroduce: false,
+      showIntroduce: true,
       showClass: false,
       showTeacher: false,
       showStore: false,
@@ -96,7 +96,7 @@ class Handmade extends Component {
       // fade: true,
       responsive: [
         {
-          breakpoint: 1000,
+          breakpoint: 1300,
           settings: {
             slidesToShow: 1,
             fade: true
@@ -109,6 +109,22 @@ class Handmade extends Component {
   render() {
     return (
       <>
+        <div
+          className={this.state.showIntroduce ? "background1 background" : ""}
+        ></div>
+        <div
+          className={this.state.showClass ? "background2 background" : ""}
+        ></div>
+        <div
+          className={this.state.showTeacher ? "background3 background" : ""}
+        ></div>
+        <div
+          className={this.state.showStore ? "background4 background" : ""}
+        ></div>
+        <div
+          className={this.state.showFood ? "background5 background" : ""}
+        ></div>
+
         <main className="main">
           <ul className="main__slider main__slider--sports">
             <li className="main__item" onClick={this.handleClickIntroduce}>
@@ -183,11 +199,41 @@ class Handmade extends Component {
                 : ""}
             </div>
             <div className="innerEnter" onClick={this.handleClickIsShow}>
-              {this.state.showIntroduce ? "ENTER" : ""}
-              {this.state.showClass ? "ENTER" : ""}
-              {this.state.showTeacher ? "ENTER" : ""}
-              {this.state.showStore ? "ENTER" : ""}
-              {this.state.showFood ? "ENTER" : ""}
+              {this.state.showIntroduce ? (
+                <div class="container-login100-form-btn fix">
+                  <button class="login100-form-btn ">ENTER</button>
+                </div>
+              ) : (
+                ""
+              )}
+              {this.state.showClass ? (
+                <div class="container-login100-form-btn fix">
+                  <button class="login100-form-btn ">ENTER</button>
+                </div>
+              ) : (
+                ""
+              )}
+              {this.state.showTeacher ? (
+                <div class="container-login100-form-btn fix">
+                  <button class="login100-form-btn ">ENTER</button>
+                </div>
+              ) : (
+                ""
+              )}
+              {this.state.showStore ? (
+                <div class="container-login100-form-btn fix">
+                  <button class="login100-form-btn ">ENTER</button>
+                </div>
+              ) : (
+                ""
+              )}
+              {this.state.showFood ? (
+                <div class="container-login100-form-btn fix">
+                  <button class="login100-form-btn ">ENTER</button>
+                </div>
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </div>
@@ -197,59 +243,127 @@ class Handmade extends Component {
             close
           </div>
 
-          {this.state.showIntroduce ? <h1>網站介紹</h1> : ""}
-          {this.state.showClass ? <h1>課程瀏覽</h1> : ""}
-          {this.state.showTeacher ? <h1>老師瀏覽</h1> : ""}
-          {this.state.showStore ? <h1>店家瀏覽</h1> : ""}
-          {this.state.showFood ? <h1>精選食材</h1> : ""}
-
           {this.state.showIntroduce ? (
-            <div>
-              網站介紹
-              <div>課程瀏覽</div>
+            <div className="frame1">
+              <div className="interFrame1">
+                <div className="wordBox">
+                  <div className="wordBoxUp">
+                    <div className="wordHalfUp">INTRODUCE</div>
+                  </div>
+                  <div className="wordBoxDown">
+                    <div className="wordHalfDown">INTRODUCE</div>
+                  </div>
+                </div>
+              </div>
+              <div className="interFrame2">
+                <div className="spaceNone"></div>
+                <div className="innerWord">
+                  這個時候就是該輪到drop-shadow出場了，drop-shadow是CSS3中filter（濾鏡）中陰影濾鏡，它就符合真實世界的投影，非透明的顏色，就有投影；透明部分，光線穿過，沒投影。
+                  而我們的圖形剛好又是SVG格式的，每一個元素就是些文本節點，剛好符合drop-shadow概念中的那樣，有透明和非透明部分，所以用它再適合不過了。
+                  原文網址：https://kknews.cc/code/nenm9k8.html
+                </div>
+              </div>
             </div>
           ) : (
             ""
           )}
           {this.state.showClass ? (
-            <div>
-              課程瀏覽<div>課程瀏覽</div>
+            <div className="frame1">
+              <div className="interFrame1">
+                <div className="wordBox">
+                  <div className="wordBoxUp">
+                    <div className="wordHalfUp">COURSE</div>
+                  </div>
+                  <div className="wordBoxDown">
+                    <div className="wordHalfDown">COURSE</div>
+                  </div>
+                </div>
+              </div>
+              <div className="interFrame2">
+                <div className="spaceNone"></div>
+                <div className="innerWord">
+                  這個時候就是該輪到drop-shadow出場了，drop-shadow是CSS3中filter（濾鏡）中陰影濾鏡，它就符合真實世界的投影，非透明的顏色，就有投影；透明部分，光線穿過，沒投影。
+                  而我們的圖形剛好又是SVG格式的，每一個元素就是些文本節點，剛好符合drop-shadow概念中的那樣，有透明和非透明部分，所以用它再適合不過了。
+                  原文網址：https://kknews.cc/code/nenm9k8.html
+                </div>
+              </div>
             </div>
           ) : (
             ""
           )}
           {this.state.showTeacher ? (
-            <div>
-              課程瀏覽<div>課程瀏覽</div>
+            <div className="frame1">
+              <div className="interFrame1">
+                <div className="wordBox">
+                  <div className="wordBoxUp">
+                    <div className="wordHalfUp">TEACHER</div>
+                  </div>
+                  <div className="wordBoxDown">
+                    <div className="wordHalfDown">TEACHER</div>
+                  </div>
+                </div>
+              </div>
+              <div className="interFrame2">
+                <div className="spaceNone"></div>
+                <div className="innerWord">
+                  這個時候就是該輪到drop-shadow出場了，drop-shadow是CSS3中filter（濾鏡）中陰影濾鏡，它就符合真實世界的投影，非透明的顏色，就有投影；透明部分，光線穿過，沒投影。
+                  而我們的圖形剛好又是SVG格式的，每一個元素就是些文本節點，剛好符合drop-shadow概念中的那樣，有透明和非透明部分，所以用它再適合不過了。
+                  原文網址：https://kknews.cc/code/nenm9k8.html
+                </div>
+              </div>
             </div>
           ) : (
             ""
           )}
           {this.state.showStore ? (
-            <div>
-              課程瀏覽<div>課程瀏覽</div>
+            <div className="frame1">
+              <div className="interFrame1">
+                <div className="wordBox">
+                  <div className="wordBoxUp">
+                    <div className="wordHalfUp">FINDSTROE</div>
+                  </div>
+                  <div className="wordBoxDown">
+                    <div className="wordHalfDown">FINDSTROE</div>
+                  </div>
+                </div>
+              </div>
+              <div className="interFrame2">
+                <div className="spaceNone"></div>
+                <div className="innerWord">
+                  這個時候就是該輪到drop-shadow出場了，drop-shadow是CSS3中filter（濾鏡）中陰影濾鏡，它就符合真實世界的投影，非透明的顏色，就有投影；透明部分，光線穿過，沒投影。
+                  而我們的圖形剛好又是SVG格式的，每一個元素就是些文本節點，剛好符合drop-shadow概念中的那樣，有透明和非透明部分，所以用它再適合不過了。
+                  原文網址：https://kknews.cc/code/nenm9k8.html
+                </div>
+              </div>
             </div>
           ) : (
             ""
           )}
           {this.state.showFood ? (
-            <div>
-              課程瀏覽<div>課程瀏覽</div>
+            <div className="frame1">
+              <div className="interFrame1">
+                <div className="wordBox">
+                  <div className="wordBoxUp">
+                    <div className="wordHalfUp">FINDFOOD</div>
+                  </div>
+                  <div className="wordBoxDown">
+                    <div className="wordHalfDown">FINDFOOD</div>
+                  </div>
+                </div>
+              </div>
+              <div className="interFrame2">
+                <div className="spaceNone"></div>
+                <div className="innerWord">
+                  這個時候就是該輪到drop-shadow出場了，drop-shadow是CSS3中filter（濾鏡）中陰影濾鏡，它就符合真實世界的投影，非透明的顏色，就有投影；透明部分，光線穿過，沒投影。
+                  而我們的圖形剛好又是SVG格式的，每一個元素就是些文本節點，剛好符合drop-shadow概念中的那樣，有透明和非透明部分，所以用它再適合不過了。
+                  原文網址：https://kknews.cc/code/nenm9k8.html
+                </div>
+              </div>
             </div>
           ) : (
             ""
           )}
 
-          {this.state.showIntroduce ? (
-            <Link to="/handmade/member">
-              {/* <button type="submit" className="linkOut outline green-white"><div>member</div></button> */}
-              <div class="container-login100-form-btn">
-                <button class="login100-form-btn ">member</button>
-              </div>
-            </Link>
-          ) : (
-            ""
-          )}
           {this.state.showClass ? (
             <Link to="/handmade/store/course">
               <div class="container-login100-form-btn">

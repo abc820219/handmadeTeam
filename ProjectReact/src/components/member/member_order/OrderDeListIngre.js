@@ -3,7 +3,6 @@ import "../../../commom/scss/member/orderDeListIngre.scss";
 
 const OrderDeListIngre = ({orderDetail}) => {
 
-  console.log(orderDetail);
   if(!orderDetail){
     orderDetail = {
       ingredients_name: '',

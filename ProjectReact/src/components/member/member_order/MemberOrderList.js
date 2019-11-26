@@ -14,7 +14,9 @@ import {
   receiveIngreOrder,
   requestOrderDetail,
   receiveOrderDetail,
-  receiveOrderSid
+  receiveOrderSid,
+  requestSubjectOrder,
+  receiveSubjectOrder
 } from "./OrderAction";
 import { resetWarningCache } from "prop-types";
 const MemberOrderList = ({ changeOrderType }) => {
@@ -27,12 +29,19 @@ const MemberOrderList = ({ changeOrderType }) => {
     ingreIsFetch,
     odlDispatch,
     orderSid,
-    odsDispatch
+    odsDispatch,
+    slDispatch,
+    subjectList,
+    subjectIsFetch
   } = useContext(Store);
-  //
+
   const [open, setOpen] = useState("");
+  const [orderPage, setOrderPage] = useState(0);
+  const [totalOrderPage, setTotalOrderPage] = useState(0);
+  const [totalDataCount, setTotalDataCount] = useState(0);
+  const [nowOrderPage, setNowOrderPage] = useState([]);
+
   const openStatus = i => {
-    console.log(i);
     if (open === i) {
       setOpen(null);
     } else {
@@ -62,7 +71,23 @@ const MemberOrderList = ({ changeOrderType }) => {
         `http://localhost:5000/handmade/member/order/ingre/${user}`
       );
       const datas = await dataJson.json();
+      console.log(datas);
       await ilDispatch(receiveIngreOrder(datas));
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const orderSubjectData = async () => {
+    try {
+      const user = await localStorage.getItem("member_id");
+      await slDispatch(requestSubjectOrder());
+      const dataJson = await fetch(
+        `http://localhost:5000/handmade/member/order/subject/${user}`
+      );
+      const datas = await dataJson.json();
+      console.log(datas);
+      await slDispatch(receiveSubjectOrder(datas));
     } catch (e) {
       console.log(e);
     }
@@ -76,20 +101,35 @@ const MemberOrderList = ({ changeOrderType }) => {
       );
       const datas = await dataJson.json();
       await odsDispatch(receiveOrderSid(datas));
+      await calcauPage(datas);
+      await setTotalDataCount(datas.length);
     } catch (e) {
       console.log(e);
     }
   };
 
+  const calcauPage = (datas) => {
+    let pageTotal = Math.ceil(datas.length / 8);
+    let pageTotalFn = [];
+    for (let i = 1; i <= pageTotal; i++) {
+      pageTotalFn.push(i);
+    }
+    setTotalOrderPage(pageTotalFn);
+  }
+
   useEffect(() => {
     orderSidData();
   }, []);
+
+  useEffect(() => {
+    changePage(1,orderSid)
+  }, [orderSid]);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    Promise.all([orderCourseData(), orderIngreData()]);
+    Promise.all([orderCourseData(), orderIngreData(), orderSubjectData()]);
     //eslint-disable-next-line import/no-extraneous-dependencies
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [courseIsFetch, ingreIsFetch]);
+  }, [courseIsFetch, ingreIsFetch, subjectIsFetch]);
 
   const orderDetailData = async (orderType, item) => {
     try {
@@ -113,21 +153,37 @@ const MemberOrderList = ({ changeOrderType }) => {
     }
   };
 
-  console.log(courseLists);
-  console.log(ingreLists);
-  console.log(orderSid);
+  const changePage = (orderPage,orderSid) => {
+    const newOrderNum = [];
+    let startPage = (orderPage-1)*8;
+    let finishPage = (orderPage*8)-1<orderSid.length-1?(orderPage*8)-1:orderSid.length-1;
+    for(let i = startPage; i<= finishPage ; i++){
+      newOrderNum.push(orderSid[i]);
+    }
+    setNowOrderPage(newOrderNum);
+  }
+
+  console.log(nowOrderPage);
 
   return (
     <>
       <Container className="memberOrderList container">
         <div className="orderListTitle-bar d-flex align-items-center">
-          <h3 className="ml-5 mt-5 mb-5">訂單紀錄</h3>
+          <h3 className="ml-5 mt-5 mb-5">訂單紀錄--------總筆數: {totalDataCount}</h3>
         </div>
+        <nav aria-label="...">
+          <ul class="pagination">
+            {totalOrderPage?totalOrderPage.map(orderPage => (
+              <li class="page-item">
+                <a class="page-link" href="#" onClick={()=>{changePage(orderPage,orderSid)}}>{orderPage}</a>
+              </li>
+            )):''}
+          </ul>
+        </nav>
         <div className="memberOrderList-info pl-2">
           <ul className="orderTitle_border">
-            <h3 className="orderList_title">訂單編號</h3>
-
-            {orderSid.map((v, index) => (
+            <h3 className="orderList_title"></h3>
+            {nowOrderPage?nowOrderPage.map((v, index) => (
               // <MemberOrderListCourse
               //   orderDetailData={orderDetailData}
               //   key={courseList.order_sid}
@@ -137,17 +193,31 @@ const MemberOrderList = ({ changeOrderType }) => {
               //   coursePrice={courseList.course_price}
               // />
               <ul>
-                <div className="d-flex justify-content-between align-items-center">
+                <div
+                  className="d-flex justify-content-between align-items-center flex-wrap"
+                  style={{ color: "#9597A6" }}
+                >
                   <div
                     className="d-flex justify-content-between align-items-center"
                     style={{ color: "#fff" }}
                   >
-                    <div className="p-2">訂單編號:{v.order_sid}</div>
+                    <div
+                      className="p-2"
+                      style={{ fontWeight: "bold", fontSize: "18px" }}
+                    >
+                      訂單編號:{v.order_sid}
+                    </div>
                     <FaPlus onClick={() => openStatus(index)} />
                   </div>
-                  <h5>總金額:寫不出來</h5>
+                  <div>
+                    {v.coupon_sid === 0 ? "" : "使用優惠卷代碼:" + v.coupon_sid}
+                  </div>
+                  <div>
+                    {"訂單創建日期:" + v.order_create_time.split("T")[0]}
+                  </div>
+                  <div>總金額:{v.order_total_price}</div>
                 </div>
-                <li className={open === index ? "" : "d-none"}>
+                <li className={open === index ? "" : "d-none"} id="orderItem">
                   {courseLists.map(row => {
                     if (row.order_sid === v.order_sid) {
                       return (
@@ -156,8 +226,15 @@ const MemberOrderList = ({ changeOrderType }) => {
                             <li className="p-3">
                               <div>課程名稱:{row.course_name}</div>
                               <div>開課時間:{row.course_order_choose}</div>
+                              <div>報名人數:{row.course_order_applicants}</div>
                             </li>
-                            <button>詳細內容</button>
+                            <button
+                              onClick={() => {
+                                orderDetailData(1, row.course_order_sid);
+                              }}
+                            >
+                              詳細內容
+                            </button>
                           </ul>
                         </>
                       );
@@ -173,7 +250,37 @@ const MemberOrderList = ({ changeOrderType }) => {
                             <div>食材名稱:{row.ingredients_name}</div>
                             <div>購買數量:{row.ingredients_order_quantity}</div>
                           </li>
-                          <button>詳細內容</button>
+                          <button
+                            onClick={() => {
+                              orderDetailData(2, row.ingredients_order_sid);
+                            }}
+                          >
+                            詳細內容
+                          </button>
+                        </ul>
+                      );
+                    } else {
+                      return "";
+                    }
+                  })}
+                </li>
+                <li className={open === index ? "" : "d-none"}>
+                  {subjectList.map(row => {
+                    if (row.order_sid === v.order_sid) {
+                      return (
+                        <ul className="d-flex justify-content-between align-items-center">
+                          <li className="p-3">
+                            <div>開課名稱:{row.subject_name}</div>
+                            <div>開課時間:{row.subject_date}</div>
+                            <div>報名人數:{row.subject_applicants}</div>
+                          </li>
+                          <button
+                            onClick={() => {
+                              orderDetailData(3, row.subject_order_sid);
+                            }}
+                          >
+                            詳細內容
+                          </button>
                         </ul>
                       );
                     } else {
@@ -182,7 +289,7 @@ const MemberOrderList = ({ changeOrderType }) => {
                   })}
                 </li>
               </ul>
-            ))}
+            )):''}
           </ul>
           {/* <ul className="orderTitle_border">
             <h3 className="orderList_title">食材</h3>

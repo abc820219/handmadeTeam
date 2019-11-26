@@ -1,10 +1,5 @@
 @import url("https://use.typekit.net/eqs2axx.css");
-* {
-  border-style: none;
-  font-family: basic-sans, sans-serif, "微軟正黑體";
-  font-weight: 500;
-  font-style: normal;
-}
+$errorColor: #b8817d;
 .MemberEdit {
   height: 100%;
 }
@@ -18,14 +13,14 @@
       padding: 3% 19%;
     }
   }
-}
-.MemberEditHeader::after {
-  content: "";
-  margin: auto;
-  display: block;
-  width: 95%;
-  border-width: 10px;
-  border-bottom: 1px solid #544641;
+  &::after {
+    content: "";
+    margin: auto;
+    display: block;
+    width: 95%;
+    border-width: 10px;
+    border-bottom: 1px solid #544641;
+  }
 }
 .MemberPasswordEdit {
   height: 100vh;
@@ -43,29 +38,34 @@
     padding: 10px 35px;
     background-color: rgba($color: #000000, $alpha: 0.07);
     border: 1px solid #fff;
+    &:-webkit-autofill {
+      box-shadow: 0 0 0px 1000px rgb(252, 187, 134) inset !important;
+    }
   }
-  input:-webkit-autofill {
-    box-shadow: 0 0 0px 1000px rgba(0, 0, 0, 0.119) inset !important;
-  }
+
   .date-input {
     padding: 8px 0px 8px 35px;
   }
+
   .titleH {
     line-height: 60px;
   }
+
   .longe-input {
     width: 635px;
     margin: 10px 2%;
   }
-  .error {
-    border: 1px solid #b8817d;
 
+  .error {
+    border: 1px solid $errorColor;
   }
+
   .errorText {
-    color: #b8817d;
+    color: $errorColor;
     font-size: 1em;
   }
 }
+
 .MemberEditFooter::before {
   content: "";
   margin: auto;
@@ -92,21 +92,21 @@
     span {
       margin-left: 10%;
     }
+    &::after {
+      content: "";
+      margin: auto;
+      display: block;
+      width: 95%;
+      border-width: 10px;
+      border-bottom: 1px solid #fff;
+      padding: 20px 0;
+    }
   }
   ul {
     padding: 10px 20px;
     li {
       padding: 10px;
     }
-  }
-  h4::after {
-    content: "";
-    margin: auto;
-    display: block;
-    width: 95%;
-    border-width: 10px;
-    border-bottom: 1px solid #fff;
-    padding: 20px 0;
   }
 }
 
@@ -125,6 +125,9 @@
   }
 }
 @media (max-width: 1200px) {
+  .bg-linear {
+    background-color: #eec1b1;
+  }
   .edit-rwd {
     flex-direction: column;
   }
