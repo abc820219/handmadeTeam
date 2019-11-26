@@ -68,7 +68,7 @@ function App() {
   return (
     <>
       <Router history={BrowserRouter}>
-        <Switch>
+      
           <CartStore.Provider
             value={{
               id: id,
@@ -77,7 +77,7 @@ function App() {
               cartIngreDispatch,
               ingreCart: cartIngreState
             }}
-          >
+          >  <Switch>
             <Route path="/" exact component={Navgation}></Route>
             <Route
               path="/handmade/"
@@ -147,8 +147,9 @@ function App() {
                 <Ingredients login={{ login }} checkLogIn={checkLogIn} />
               )}
             ></Route>
+            <Route path="" component={()=>(404)} />
+            </Switch>
           </CartStore.Provider>
-        </Switch>
       </Router>
     </>
   );
