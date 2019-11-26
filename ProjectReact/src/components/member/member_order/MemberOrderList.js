@@ -34,10 +34,14 @@ const MemberOrderList = ({ changeOrderType }) => {
     subjectList,
     subjectIsFetch
   } = useContext(Store);
-  //
+
   const [open, setOpen] = useState("");
+  const [orderPage, setOrderPage] = useState(0);
+  const [totalOrderPage, setTotalOrderPage] = useState(0);
+  const [totalDataCount, setTotalDataCount] = useState(0);
+  const [nowOrderPage, setNowOrderPage] = useState([]);
+
   const openStatus = i => {
-    console.log(i);
     if (open === i) {
       setOpen(null);
     } else {
@@ -67,6 +71,7 @@ const MemberOrderList = ({ changeOrderType }) => {
         `http://localhost:5000/handmade/member/order/ingre/${user}`
       );
       const datas = await dataJson.json();
+      console.log(datas);
       await ilDispatch(receiveIngreOrder(datas));
     } catch (e) {
       console.log(e);
@@ -96,14 +101,29 @@ const MemberOrderList = ({ changeOrderType }) => {
       );
       const datas = await dataJson.json();
       await odsDispatch(receiveOrderSid(datas));
+      await calcauPage(datas);
+      await setTotalDataCount(datas.length);
     } catch (e) {
       console.log(e);
     }
   };
 
+  const calcauPage = (datas) => {
+    let pageTotal = Math.ceil(datas.length / 8);
+    let pageTotalFn = [];
+    for (let i = 1; i <= pageTotal; i++) {
+      pageTotalFn.push(i);
+    }
+    setTotalOrderPage(pageTotalFn);
+  }
+
   useEffect(() => {
     orderSidData();
   }, []);
+
+  useEffect(() => {
+    changePage(1,orderSid)
+  }, [orderSid]);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     Promise.all([orderCourseData(), orderIngreData(), orderSubjectData()]);
@@ -133,16 +153,37 @@ const MemberOrderList = ({ changeOrderType }) => {
     }
   };
 
+  const changePage = (orderPage,orderSid) => {
+    const newOrderNum = [];
+    let startPage = (orderPage-1)*8;
+    let finishPage = (orderPage*8)-1<orderSid.length-1?(orderPage*8)-1:orderSid.length-1;
+    for(let i = startPage; i<= finishPage ; i++){
+      newOrderNum.push(orderSid[i]);
+    }
+    setNowOrderPage(newOrderNum);
+  }
+
+  console.log(nowOrderPage);
+
   return (
     <>
       <Container className="memberOrderList container">
         <div className="orderListTitle-bar d-flex align-items-center">
-          <h3 className="ml-5 mt-5 mb-5">訂單紀錄</h3>
+          <h3 className="ml-5 mt-5 mb-5">訂單紀錄--------總筆數: {totalDataCount}</h3>
         </div>
+        <nav aria-label="...">
+          <ul class="pagination">
+            {totalOrderPage?totalOrderPage.map(orderPage => (
+              <li class="page-item">
+                <a class="page-link" href="#" onClick={()=>{changePage(orderPage,orderSid)}}>{orderPage}</a>
+              </li>
+            )):''}
+          </ul>
+        </nav>
         <div className="memberOrderList-info pl-2">
           <ul className="orderTitle_border">
-            <h3 className="orderList_title">訂單編號</h3>
-            {orderSid.map((v, index) => (
+            <h3 className="orderList_title"></h3>
+            {nowOrderPage?nowOrderPage.map((v, index) => (
               // <MemberOrderListCourse
               //   orderDetailData={orderDetailData}
               //   key={courseList.order_sid}
@@ -229,7 +270,7 @@ const MemberOrderList = ({ changeOrderType }) => {
                       return (
                         <ul className="d-flex justify-content-between align-items-center">
                           <li className="p-3">
-                            <div>課程名稱:{row.subject_name}</div>
+                            <div>開課名稱:{row.subject_name}</div>
                             <div>開課時間:{row.subject_date}</div>
                             <div>報名人數:{row.subject_applicants}</div>
                           </li>
@@ -248,7 +289,7 @@ const MemberOrderList = ({ changeOrderType }) => {
                   })}
                 </li>
               </ul>
-            ))}
+            )):''}
           </ul>
           {/* <ul className="orderTitle_border">
             <h3 className="orderList_title">食材</h3>
