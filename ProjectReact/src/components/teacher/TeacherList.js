@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "../../commom/scss/teacher/productslider.scss";
 // import { MdVisibility } from "react-icons/md";
 // import Subject from  "../../components/teacher/Subject"
+import { IoIosPlay } from "react-icons/io";
 
 class TeacherList extends Component {
   constructor(props) {
@@ -180,41 +181,34 @@ class TeacherList extends Component {
     });
   };
 
-//
+  //
   clickRightImage = () => {
     console.log("點到圖了");
     let key_img = this.state.subject_img;
     console.log("key_img::::", key_img);
     let img_id = this.state.subject_sid;
     console.log("img_id:", img_id);
-
-    // switch (key_img) {
-    //   case "t3-sub1.png":
-    //    history.push(`/handmade/teacher/subject/img01`)
-    //   break;
-    //    case "t3-sub2.png":
-    //    history.push(`/handmade/teacher/subject/img02`)
-    //   break;
-    //    case "t3-sub3.png":
-    //    history.push(`/handmade/teacher/subject/img02`)
-    //   break;
-    //    case "t3-sub4.png":
-    //    history.push(`/handmade/teacher/subject/img02`)
-    //   break;
-    //    case "t3-sub5.png":
-    //    history.push(`/handmade/teacher/subject/img02`)
-    //   break;
-    //  default:
-    //   break;
-    //  }
   };
 
   render() {
     const { activeItemIndex, children, teacher } = this.state;
     //http://localhost:3000/handmade/teacher/subject/13  (subject後面變數為開課編號)
-    let image_id = this.state.subject_sid;  //開課編號
+    let image_id = this.state.subject_sid; //開課編號
     // console.log(this.state);
-    console.log("subject_sid:", image_id);  //抓開課編號要顯示在網址上
+    console.log("subject_sid:", image_id); //抓開課編號要顯示在網址上
+    // let apiImage = this.state.subject_img;
+    // let img = "/image/${apiImag}";
+    // console.log("apiImage:", this.state.subject_img);
+    // let imgStyle = {
+    //   width: "960px",
+    //   height: "960px",
+    //   position: "absolute",
+    //   top: "60px",
+    //   right: "0",
+    //   // background:"#fff",
+    //   clipPath: "polygon(100% 0, 0 0, 100% 100%)",
+    //   backgroundImage: `url( ${apiImage} )`
+    // };
 
     return (
       <>
@@ -226,24 +220,6 @@ class TeacherList extends Component {
               src={`/image/${this.state.teacher_big_img}`}
             />
           </div>
-          {/* 按鈕切換照片及變更資料 */}
-          <div className="slider-btn-box">
-            <button className="btn-slide" onClick={this.callImage1}>
-              ●
-            </button>
-            <button className="btn-slide" onClick={this.callImage2}>
-              ●
-            </button>
-            <button className="btn-slide" onClick={this.callImage3}>
-              ●
-            </button>
-            <button className="btn-slide" onClick={this.callImage4}>
-              ●
-            </button>
-            <button className="btn-slide" onClick={this.callImage5}>
-              ●
-            </button>
-          </div>
           {/* 老師小圖 */}
           <div className="silder-circle">
             <div className="slider-box">
@@ -251,31 +227,34 @@ class TeacherList extends Component {
                 className="slider-image"
                 src={`/image/${this.state.teacherNumber}`}
               />
-              {/* <div className="image-box">
-                  <img
-                    className="slider-image"
-                    src={`/image/${this.state.teacher[0]}`}
-                  />
-                </div> */}
-              {/* </Slider> */}
             </div>
           </div>
           {/* 老師開課圖 */}
           <div className="right-img">
-            <Link
-              to={`/handmade/teacher/subject/${image_id}`}
-              onClick={this.clickRightImage}
-            >
-              {" "}
-              img link →
-            </Link>
-
-            <button className="btn-right-link">img link →</button>
+            {/* <button className="btn-right-link">img link →</button> */}
             {/* <input type="image" className="slider-image clickRight" /> */}
+            <div className="link-subject">
+              <Link
+                to={`/handmade/teacher/subject/${image_id}`}
+                onClick={this.clickRightImage}
+              >
+                <IoIosPlay />
+              </Link>
+            </div>
             <img
               className="slider-image clickRight"
-              src={`/images/${this.state.subject_img}`}
+              src={`/image/${this.state.subject_img}`}
             />
+            {/* <div style={imgStyle}>
+              <div className="teacher-link">
+                <Link
+                  to={`/handmade/teacher/subject/${image_id}`}
+                  onClick={this.clickRightImage}
+                >
+                  img link →
+                </Link>
+              </div>
+            </div> */}
           </div>
 
           <div className="teacher-page-left"></div>
@@ -285,6 +264,7 @@ class TeacherList extends Component {
               <div className="teacher-name">
                 <h1>{this.state.teacher_name}</h1>
               </div>
+
               <div className="teacher-intro">
                 <div className="teacher-intro-box">
                   <h3>INTRODUCE</h3>
@@ -296,6 +276,23 @@ class TeacherList extends Component {
                   <h2>EXPERTISE</h2>
                   <p>{this.state.teacher_skill}</p>
                 </div>
+              </div>
+              <div className="slider-btn-box">
+                <button className="btn-slide" onClick={this.callImage1}>
+                  ●
+                </button>
+                <button className="btn-slide" onClick={this.callImage2}>
+                  ●
+                </button>
+                <button className="btn-slide" onClick={this.callImage3}>
+                  ●
+                </button>
+                <button className="btn-slide" onClick={this.callImage4}>
+                  ●
+                </button>
+                <button className="btn-slide" onClick={this.callImage5}>
+                  ●
+                </button>
               </div>
             </section>
           </div>

@@ -1,4 +1,35 @@
 @import url("https://use.typekit.net/zkl0auq.css")
+.background
+    background-size: cover
+    background-repeat: no-repeat
+    position: fixed
+    top: 0
+    left: 0
+    width: 100%
+    height: 100vh
+    transition: 0.5s
+    opacity: 0.5
+
+.background1
+
+    background-image: url("/image/ingredients/abstract01.jpg")
+    background-position: 0 -400px
+.background2
+    background-image: url("/image/ingredients/abstract02.jpg")
+    background-position: 0 -200px
+
+.background3
+
+    background-image: url("/image/ingredients/abstract03.jpg")
+    background-position: 0 -400px
+
+.background4
+    background-image: url("/image/ingredients/abstract04.jpg")
+    background-position: 0 -100px
+
+.background5
+    background-image: url("/image/ingredients/abstract05.jpg")
+    background-position: 0 -400px
 
 .part2
     // background: #ccc
@@ -10,28 +41,34 @@
 
         text-align: center
         font-weight: 700
-        color: #342B29
+        color: #F0F1F7
+        text-shadow: 0 0 5px #362D2B
         h1
-            color: #342B29
+            color: #F0F1F7
+            text-shadow: 0 0 10px #362D2B
+
         .innerInfo
             font-size: 18px
             max-width: 960px
             margin: auto
-            color: #342B29
+            color: #F0F1F7
             font-weight: 700
             padding: 20px
+            text-shadow: 0 0 5px #362D2B
+
 .part3
     width: 80vw
     height: 80vh
-    background: #F78177
+    background: #362D2B
     position: fixed
     top: 55%
     left: 50%
     margin-top: -40vh
     margin-left: -40vw
     transition: 0.7s
-    box-shadow: 0 0 30px #F78177
+    box-shadow: 0 0 30px #cccccc
     border-radius: 10px
+    overflow: hidden
 
     h1
         text-align: center
@@ -98,10 +135,13 @@ button
         background-size: cover
         background-repeat: no-repeat
         border-radius: 11px 0 0 11px
-        position: re
+
     .interFrame2
         width: 50%
         height: 100%
+        display: flex
+        flex-direction: column
+
 .green-white
     font-weight: 700
     color: #362D2B
@@ -141,7 +181,7 @@ button
     width: 100%
     height: 50px
     border-radius: 25px
-    background: #362D2B
+    background: #fff
     display: -webkit-box
     display: -webkit-flex
     display: -moz-box
@@ -150,16 +190,16 @@ button
     justify-content: center
     align-items: center
     padding: 0 25px
-
+    box-shadow: 0 0 20px #ffffff
     -webkit-transition: all 0.4s
     -o-transition: all 0.4s
     -moz-transition: all 0.4s
     transition: all 0.4s
 
 .login100-form-btn:hover
-    background: #fff
-    color: #362D2B
-    box-shadow: 0 0 20px #ffffff
+    background: #362D2B
+    color: #ffffff
+    box-shadow: 0 0 10px #F78177
 
 .fix
     width: 20%
@@ -194,9 +234,83 @@ button
         position: relative
         overflow: hidden
         .wordHalfDown
-            
+
             font-family: niagara, serif
             position: absolute
             font-size: 256px
             top: -75%
             color: #F78177
+.spaceNone
+    height: 30%
+    width: 100%
+    // background: #F78177
+
+.innerWord
+    height: 30%
+    width: 100%
+    padding: 70px
+    color: #cccccc
+@media screen and (max-width: 1000px) 
+    .background1
+        background-image: url("/image/ingredients/abstract01.jpg")
+        background-position: 0 0
+
+    .background2
+        background-image: url("/image/ingredients/abstract02.jpg")
+        background-position: 0 0
+
+    .background3
+        background-image: url("/image/ingredients/abstract03.jpg")
+        background-position: 0 0
+
+    .background4
+        background-image: url("/image/ingredients/abstract04.jpg")
+        background-position: 0 0
+
+    .background5
+        background-image: url("/image/ingredients/abstract05.jpg")
+        background-position: 0 0
+@media screen and (max-width: 1650px) 
+    .wordBox
+        top: 20%
+@media screen and (max-width: 1000px) 
+    .wordBox
+        top: 0%
+@media screen and (max-width: 800px) 
+    .wordBox
+        top: -1.3%
+        left: 0
+        transform: rotate(0deg)
+
+        .wordBoxUp
+            .wordHalfUp
+                font-size: 128px
+                top: 60%
+
+        .wordBoxDown
+            .wordHalfDown
+                font-size: 128px
+                top: -40%
+    .spaceNone
+        height: 0%
+        width: 100%
+        // background: #F78177
+
+    .frame1
+        width: 100%
+        height: 100%
+        display: flex
+        flex-direction: column
+        overflow: hidden
+        .interFrame1
+            width: 100%
+            height: 30%
+            background-image: url("/image/ingredients/abstract01.jpg")
+            background-size: cover
+            background-position: 0  -200px
+            background-repeat: no-repeat
+            border-radius: 10px 10px 0 0
+
+        .interFrame2
+            width: 100%
+            height: 70%
