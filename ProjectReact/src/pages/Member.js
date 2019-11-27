@@ -18,29 +18,31 @@ const Member = ({ login }) => {
   }
   return (
     <>
-      <div className="d-flex" style={{ backgroundColor: "#eec1b1" }}>
-        {size.width < 1200 ? (
-          <GiHamburgerMenu
-            style={{
-              position: "fixed",
-              top: "10px",
-              left: "10px",
-              zIndex: "999",
-              fontSize: "24px",
-              color: "#fff"
-            }}
-            onClick={() => {
-              setShowSideBar(!showSideBar);
-            }}
-          />
-        ) : (
-          ""
-        )}
-        <MemberSideBar
-          showSideBar={showSideBar}
-          page={page}
-          setPage={setPage}
+      {size.width < 1200 ? (
+        <GiHamburgerMenu
+          style={{
+            position: "fixed",
+            top: "10px",
+            left: "10px",
+            zIndex: "999",
+            fontSize: "24px",
+            color: "#fff"
+          }}
+          onClick={() => {
+            setShowSideBar(!showSideBar);
+          }}
         />
+      ) : (
+        ""
+      )}
+      <MemberSideBar showSideBar={showSideBar} page={page} setPage={setPage} />
+      <div
+        className="d-flex"
+        style={{
+          backgroundColor: "#eec1b1",
+          marginLeft: size.width > 1200 ? "375px" : ""
+        }}
+      >
         <Switch>
           <Route
             exact

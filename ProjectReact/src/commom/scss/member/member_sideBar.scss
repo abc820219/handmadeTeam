@@ -1,6 +1,8 @@
 .member-side-bar {
   height: 100vh;
   color: #ffffff;
+  position: fixed;
+  z-index: 900;
   min-width: 375px;
   min-height: 100vh;
   background-color: #362d2b;
