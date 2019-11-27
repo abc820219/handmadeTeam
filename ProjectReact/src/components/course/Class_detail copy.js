@@ -9,7 +9,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { Switch, Route, NavLink, Redirect, withRouter } from 'react-router-dom';
 import {
   addCourse,
-  cancelCourse,
+  cancelCourse
 } from "../../components/cart/CartAction";
 
 
