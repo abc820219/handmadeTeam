@@ -167,7 +167,7 @@ const MemberOrderList = ({ changeOrderType }) => {
 
   return (
     <>
-      <Container className="memberOrderList container">
+      <div className="memberOrderList container-fluid px-4">
         <div className="orderListTitle-bar d-flex align-items-center">
           <h3 className="ml-5 mt-5 mb-5">訂單紀錄--------總筆數: {totalDataCount}</h3>
         </div>
@@ -309,7 +309,7 @@ const MemberOrderList = ({ changeOrderType }) => {
             <MemberOrderListTeacher />
           </ul> */}
         </div>
-      </Container>
+      </div>
     </>
   );
 };
