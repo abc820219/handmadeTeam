@@ -137,11 +137,26 @@ class Subject extends Component {
             ) : null}
           </div>
           {/* 開課圖 */}
+          <div className="small-img">
+            <img
+              className="slider-image"
+              src={`/image/${this.state.subject_img}`}
+            />
+          </div>
           <div className="subject-img">
             <img
               className="slider-image"
               src={`/image/${this.state.subject_img}`}
             />
+          </div>
+          {/* 文字裝飾區塊 */}
+          <div className="wordBox">
+            <div className="wordBoxUp">
+              <div className="wordHalfUp">TEACHER</div>
+            </div>
+            <div className="wordBoxDown">
+              <div className="wordHalfDown">TEACHER</div>
+            </div>
           </div>
           <div className="subject-page-center">
             {/* 連結至老師頁面 */}

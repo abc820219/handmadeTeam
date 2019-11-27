@@ -3,10 +3,10 @@ import "../commom/scss/page_navBar.scss";
 import "../commom/scss/normalize.scss";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaTimesCircle } from "react-icons/fa";
+import { GoHome } from "react-icons/go";
 import NavBarSign from "./NavBarSign";
 import NavBarUnSign from "./NavBarUnSign";
 import MemberBox from "./MemberBox";
-import { relative } from "path";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 
@@ -66,13 +66,17 @@ const NavBar = ({ checkLogIn, login, ...props }) => {
             className={showMenuBtn ? "move  navbarBtn" : "navbarBtn"}
             onMouseLeave={MenuListLeave}
           >
-            <FaTimesCircle
-              onClick={() => setshowMenuBtn(false)}
-              style={{ margin: "30px 0 30px 0" }}
-            />
-            <li>
-              <Link style={{ color: "#fff" }} to="/handmade/store/course">
-                精選課程
+            <li className="w-100">
+              <FaTimesCircle
+                onClick={() => setshowMenuBtn(false)}
+                style={{ margin: "30px 0 30px 0" }}
+              />
+              <Link
+                style={{ color: "#fff" }}
+                to="/handmade"
+                style={{ marginLeft: "79px" }}
+              >
+                <img src="/image/logo/logo-03.png" alt="" width="180px" />
               </Link>
             </li>
             <li>
@@ -91,20 +95,26 @@ const NavBar = ({ checkLogIn, login, ...props }) => {
               </Link>
             </li>
             <li>
-              <Link style={{ color: "#fff" }} to="/handmade">
-                首頁
-              </Link>
-            </li>
-            <li>
               <Link style={{ color: "#fff" }} to="/handmade/test">
                 測試
               </Link>
             </li>
+            <li>
+              <Link
+                style={{
+                  color: "#fff",
+                  position: "absolute",
+                  bottom: "10px",
+                  right: "50px",
+                  fontSize: "30px"
+                }}
+                to="/handmade/"
+              >
+                <GoHome style={{ marginBottom: "10px" ,marginRight:"5px"}} />
+                <span>回首頁</span>
+              </Link>
+            </li>
           </ul>
-          <div className="logoBox">
-            <img />
-            LOGO
-          </div>
         </div>
         {login.login == false ? (
           <NavBarUnSign
