@@ -10,9 +10,9 @@ import IngredientsRight from './IngredientsRight';
 
 import { TiShoppingCart } from 'react-icons/ti';
 
+import $ from 'jquery';
 
 import "../../common/scss/ingredients/styleIngredients.scss"
-
 
 const IngredientsAll = (props) => {
     let slider1 = props.slider1;
@@ -26,13 +26,16 @@ const IngredientsAll = (props) => {
     const [nav4, setNav4] = useState(null);
     const [bakeAllDataShow, setBakeAllDataShow] = useState([]);
     const [bakeEngName, setBakeEngName] = useState('');
+    const [bakebool, setBakebool] = useState(false);
+    const [ingredientData, setIngredientData] = useState([]);
+    const [bakeName, setBakeName] = useState();
+    const [bakeDetail, setBakeDetail] = useState();
 
     const backAllData = async () => {
         const backAllDataLoad = await fetch("http://localhost:5000/handmade/ingredients");
         const backAllDataJson = await backAllDataLoad.json();
         console.log(backAllDataJson);
         setBakeAllDataShow(backAllDataJson);
-
     }
 
     useEffect(() => {
@@ -41,17 +44,50 @@ const IngredientsAll = (props) => {
         setNav3(slider3);
         setNav4(slider4);
         backAllData();
+        setBakebool(true);
+
+        window.setTimeout(function () {
+            $("#root").find("#recipeSliderLoadClick").click();
+        }, 300);
     }, [])
 
-    const selectBakeName = (bakeSid, bakeAllDataShow) => {
-        let chosenBake = bakeAllDataShow.filter(bakeAll => {
-            return bakeAll.bake_sid === bakeSid;
-        });
+    // const selectBakeName = (bakeSid, bakeAllDataShow) => {
+    //     console.log(bakeAllDataShow);
+    //     console.log(bakeSid);
+    //     let chosenBake = bakeAllDataShow.filter(bakeAll => {
+    //         return bakeAll.bake_sid === bakeSid;
+    //     });
+    //     console.log(chosenBake);
+    //     setBakeEngName(chosenBake[0].bake_engName);
+    //     setBakebool(false);
+    // }
 
-        setBakeEngName(chosenBake[0].bake_engName);
+    const selectBakeItem = async (bakeSid) => {
+        bakeSid = JSON.stringify({ bakeSid: bakeSid });
+        try {
+            const url = 'http://localhost:5000/handmade/ingredients';
+            const bakeSelect = await fetch(url, {
+                method: "POST",
+                body: bakeSid,
+                headers: { "Content-Type": "application/json" }
+            });
+            const bake_Data = await bakeSelect.json();
+            console.log(bake_Data);
+            setBakeEngName(bake_Data[0].bake_engName);
+            setIngredientData(bake_Data[1]);
+            setBakeName(bake_Data[0].bake_name);
+            setBakeDetail(bake_Data[0].bake_detial);
+        } catch (e) {
+            console.log(e);
+        }
     }
 
-
+    if (bakeAllDataShow.length > 0) {
+        if (bakebool) {
+            setBakeEngName("CREPE CAKE");
+            setBakebool(false);
+        }
+    }
     return (
         <>
             <div className="ingredientsAll">
@@ -72,11 +108,11 @@ const IngredientsAll = (props) => {
                             arrows={false}
                         >
                             {bakeAllDataShow.map((bakeAll) => (
-                                <div className="recipeSliderLeft">
-                                    <div className="recipeSliderLeftBakeName" onClick={() => { selectBakeName(bakeAll.bake_sid, bakeAllDataShow) }}>
+                                <div className="recipeSliderLeft" id="recipeSliderLoadClick">
+                                    <div className="recipeSliderLeftBakeName" onClick={() => { selectBakeItem(bakeAll.bake_sid) }}>
                                         <p className="recipeSliderLeftBakeNameText" >{bakeAll.bake_name}</p>
                                     </div>
-                                    <img src={`/image/ingredientsMin/${bakeAll.bake_image}`}/>
+                                    <img src={`/image/ingredientsMin/${bakeAll.bake_image}`} />
                                 </div>
                             ))}
                         </Slider>
@@ -106,7 +142,7 @@ const IngredientsAll = (props) => {
                         </Slider>
                     </div>
                     <div className="recipeRightButton">
-                        <IngredientsRight />
+                        <IngredientsRight ingredientData={ingredientData} bakeName={bakeName} bakeDetail={bakeDetail}/>
                     </div>
                 </div>
             </div>
@@ -151,7 +187,7 @@ const IngredientsAll = (props) => {
                         >
                             {bakeAllDataShow.map((bakeAll) => (
                                 <div className="recipeSliderLeft">
-                                    <img src={`/image/ingredientsMin/${bakeAll.bake_image}`} onClick={() => { selectBakeName(bakeAll.bake_sid, bakeAllDataShow) }} />
+                                    <img src={`/image/ingredientsMin/${bakeAll.bake_image}`} onClick={() => { selectBakeItem(bakeAll.bake_sid) }} />
                                 </div>
                             ))}
                         </Slider>
@@ -178,28 +214,10 @@ const IngredientsAll = (props) => {
                                                     <p className="ingredientsPlace">產地：日本</p>
                                                     <p className="ingredientsSize">尺寸：50克</p>
                                                     <p className="ingredientsPrice">價格：500元</p>
-                                                </div>    
+                                                </div>
                                             </div>
                                             <a className="ingredientsCartButton">
-                                                    <TiShoppingCart className="cartReactIcon"/>
-                                                    <p>放入購物車</p>
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li className="ingredientsBuyCardLi">
-                                        <img className="ingredientsImage" src={`/image/ingredients/ingredients_15.jpg`} />
-                                        <div className="ingredientsCardGroup">
-                                            <p className="ingredientsName">低筋麵粉</p>
-                                            <p className="ingredientsDetail">日本製粉鑽石日本製粉低筋麵粉鑽石。</p>
-                                            <div className="ingredientsDown">
-                                                <div className="ingredientsMain">
-                                                    <p className="ingredientsPlace">產地：日本</p>
-                                                    <p className="ingredientsSize">尺寸：50克</p>
-                                                    <p className="ingredientsPrice">價格：500元</p>
-                                                </div>    
-                                            </div>
-                                            <a className="ingredientsCartButton">
-                                                <TiShoppingCart className="cartReactIcon"/>
+                                                <TiShoppingCart className="cartReactIcon" />
                                                 <p>放入購物車</p>
                                             </a>
                                         </div>
@@ -214,10 +232,10 @@ const IngredientsAll = (props) => {
                                                     <p className="ingredientsPlace">產地：日本</p>
                                                     <p className="ingredientsSize">尺寸：50克</p>
                                                     <p className="ingredientsPrice">價格：500元</p>
-                                                </div>    
+                                                </div>
                                             </div>
                                             <a className="ingredientsCartButton">
-                                                <TiShoppingCart className="cartReactIcon"/>
+                                                <TiShoppingCart className="cartReactIcon" />
                                                 <p>放入購物車</p>
                                             </a>
                                         </div>
@@ -232,10 +250,10 @@ const IngredientsAll = (props) => {
                                                     <p className="ingredientsPlace">產地：日本</p>
                                                     <p className="ingredientsSize">尺寸：50克</p>
                                                     <p className="ingredientsPrice">價格：500元</p>
-                                                </div>    
+                                                </div>
                                             </div>
                                             <a className="ingredientsCartButton">
-                                                <TiShoppingCart className="cartReactIcon"/>
+                                                <TiShoppingCart className="cartReactIcon" />
                                                 <p>放入購物車</p>
                                             </a>
                                         </div>
@@ -250,10 +268,28 @@ const IngredientsAll = (props) => {
                                                     <p className="ingredientsPlace">產地：日本</p>
                                                     <p className="ingredientsSize">尺寸：50克</p>
                                                     <p className="ingredientsPrice">價格：500元</p>
-                                                </div>    
+                                                </div>
                                             </div>
                                             <a className="ingredientsCartButton">
-                                                <TiShoppingCart className="cartReactIcon"/>
+                                                <TiShoppingCart className="cartReactIcon" />
+                                                <p>放入購物車</p>
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li className="ingredientsBuyCardLi">
+                                        <img className="ingredientsImage" src={`/image/ingredients/ingredients_15.jpg`} />
+                                        <div className="ingredientsCardGroup">
+                                            <p className="ingredientsName">低筋麵粉</p>
+                                            <p className="ingredientsDetail">日本製粉鑽石日本製粉低筋麵粉鑽石。</p>
+                                            <div className="ingredientsDown">
+                                                <div className="ingredientsMain">
+                                                    <p className="ingredientsPlace">產地：日本</p>
+                                                    <p className="ingredientsSize">尺寸：50克</p>
+                                                    <p className="ingredientsPrice">價格：500元</p>
+                                                </div>
+                                            </div>
+                                            <a className="ingredientsCartButton">
+                                                <TiShoppingCart className="cartReactIcon" />
                                                 <p>放入購物車</p>
                                             </a>
                                         </div>

@@ -170,7 +170,11 @@ const MemberOrderList = ({ changeOrderType }) => {
 
   return (
     <>
+<<<<<<< HEAD
       <div className="memberOrderList">
+=======
+      <div className="memberOrderList container-fluid px-4">
+>>>>>>> 9bc3abda8c7555e735c14c15966e9052ea600d9a
         <div className="orderListTitle-bar d-flex align-items-center">
           <h3 className="d-flex justify-content-between  px-5">
             <p>訂單紀錄</p>
