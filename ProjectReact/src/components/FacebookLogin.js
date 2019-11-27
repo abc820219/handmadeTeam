@@ -22,7 +22,7 @@ class Facebook extends Component {
       />
     );
 
-    return <div className="mt-5">{fbContent}</div>;
+    return <div className="mt-3">{fbContent}</div>;
   }
   responseFacebook = response => {
     console.log(response);

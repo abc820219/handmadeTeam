@@ -220,6 +220,12 @@ class TeacherList extends Component {
               src={`/image/${this.state.teacher_big_img}`}
             />
           </div>
+          <div className="teacherimg-small">
+            <img
+              className="slider-image"
+              src={`/image/${this.state.teacher_big_img}`}
+            />
+          </div>
           {/* 老師小圖 */}
           <div className="silder-circle">
             <div className="slider-box">
