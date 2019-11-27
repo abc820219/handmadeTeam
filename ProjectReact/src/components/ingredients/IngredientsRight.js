@@ -18,7 +18,7 @@ const useStyles = makeStyles({
   },
 });
 
-function IngredientsRight({ ingredientData ,bakeName ,bakeDetail}) {
+function IngredientsRight({ ingredientData, bakeName, bakeDetail }) {
   const classes = useStyles();
   const [state, setState] = React.useState({
     right: false,
@@ -31,6 +31,9 @@ function IngredientsRight({ ingredientData ,bakeName ,bakeDetail}) {
 
     setState({ ...state, [side]: open });
   };
+  function createMarkup() {
+    return { __html: bakeDetail };
+  }
 
   console.log(bakeDetail);
   const sideList = side => (
@@ -41,104 +44,30 @@ function IngredientsRight({ ingredientData ,bakeName ,bakeDetail}) {
       onKeyDown={toggleDrawer(side, false)}
     >
       <List className="buttonRightList">
-
         <div className="buttonRightRecipe">
           <div className="buttonRightRecipeLeft">
             <p>{bakeName}</p>
-            <p>{bakeDetail}</p>
+            <p dangerouslySetInnerHTML={createMarkup()} />;
           </div>
           <div className="buttonRightRecipeRight">
             <ul className="buttonRightRecipeRightUl">
-              <li className="buttonRightRecipeRightLi">
-                <img className="ingredientsImage" src={`/image/ingredients/ingredients_15.jpg`} />
-                <div className="ingredientsCardGroup">
-                  <p className="ingredientsName">低筋麵粉</p>
-                  <p className="ingredientsDetail">日本製粉鑽石日本製粉低筋麵粉鑽石。</p>
-                  <div className="ingredientsDown">
-                    <div className="ingredientsMain">
-                      <p className="ingredientsPlace">產地：日本</p>
-                      <p className="ingredientsSize">尺寸：50克</p>
-                      <p className="ingredientsPrice">價格：500元</p>
+              {ingredientData.map((ingredient) => (
+                <li className="buttonRightRecipeRightLi">
+                  <img className="ingredientsImage" src={`/image/ingredients/${ingredient.ingredients_image}`} />
+                  <div className="ingredientsCardGroup">
+                    <p className="ingredientsName">{ingredient.ingredients_name}</p>
+                    <p className="ingredientsDetail">{ingredient.ingredients_detial}</p>
+                    <div className="ingredientsDown">
+                      <div className="ingredientsMain">
+                        <p className="ingredientsPlace">產地：{ingredient.ingredients_place}</p>
+                        <p className="ingredientsSize">尺寸：{ingredient.ingredients_size}</p>
+                        <p className="ingredientsPrice">價格：{ingredient.ingredients_price}元</p>
+                      </div>
+                      <a className="ingredientsCartButton"><TiShoppingCart /> 放入購物車</a>
                     </div>
-                    <a className="ingredientsCartButton"><TiShoppingCart /> 放入購物車</a>
                   </div>
-                </div>
-              </li>
-              <li className="buttonRightRecipeRightLi">
-                <img className="ingredientsImage" src={`/image/ingredients/ingredients_15.jpg`} />
-                <div className="ingredientsCardGroup">
-                  <p className="ingredientsName">低筋麵粉</p>
-                  <p className="ingredientsDetail">日本製粉鑽石日本製粉低筋麵粉鑽石。</p>
-                  <div className="ingredientsDown">
-                    <div className="ingredientsMain">
-                      <p className="ingredientsPlace">產地：日本</p>
-                      <p className="ingredientsSize">尺寸：50克</p>
-                      <p className="ingredientsPrice">價格：500元</p>
-                    </div>
-                    <a className="ingredientsCartButton"><TiShoppingCart /> 放入購物車</a>
-                  </div>
-                </div>
-              </li>
-              <li className="buttonRightRecipeRightLi">
-                <img className="ingredientsImage" src={`/image/ingredients/ingredients_15.jpg`} />
-                <div className="ingredientsCardGroup">
-                  <p className="ingredientsName">低筋麵粉</p>
-                  <p className="ingredientsDetail">日本製粉鑽石日本製粉低筋麵粉鑽石。</p>
-                  <div className="ingredientsDown">
-                    <div className="ingredientsMain">
-                      <p className="ingredientsPlace">產地：日本</p>
-                      <p className="ingredientsSize">尺寸：50克</p>
-                      <p className="ingredientsPrice">價格：500元</p>
-                    </div>
-                    <a className="ingredientsCartButton"><TiShoppingCart /> 放入購物車</a>
-                  </div>
-                </div>
-              </li>
-              <li className="buttonRightRecipeRightLi">
-                <img className="ingredientsImage" src={`/image/ingredients/ingredients_15.jpg`} />
-                <div className="ingredientsCardGroup">
-                  <p className="ingredientsName">低筋麵粉</p>
-                  <p className="ingredientsDetail">日本製粉鑽石日本製粉低筋麵粉鑽石。</p>
-                  <div className="ingredientsDown">
-                    <div className="ingredientsMain">
-                      <p className="ingredientsPlace">產地：日本</p>
-                      <p className="ingredientsSize">尺寸：50克</p>
-                      <p className="ingredientsPrice">價格：500元</p>
-                    </div>
-                    <a className="ingredientsCartButton"><TiShoppingCart /> 放入購物車</a>
-                  </div>
-                </div>
-              </li>
-              <li className="buttonRightRecipeRightLi">
-                <img className="ingredientsImage" src={`/image/ingredients/ingredients_15.jpg`} />
-                <div className="ingredientsCardGroup">
-                  <p className="ingredientsName">低筋麵粉</p>
-                  <p className="ingredientsDetail">日本製粉鑽石日本製粉低筋麵粉鑽石。</p>
-                  <div className="ingredientsDown">
-                    <div className="ingredientsMain">
-                      <p className="ingredientsPlace">產地：日本</p>
-                      <p className="ingredientsSize">尺寸：50克</p>
-                      <p className="ingredientsPrice">價格：500元</p>
-                    </div>
-                    <a className="ingredientsCartButton"><TiShoppingCart /> 放入購物車</a>
-                  </div>
-                </div>
-              </li>
-              <li className="buttonRightRecipeRightLi">
-                <img className="ingredientsImage" src={`/image/ingredients/ingredients_15.jpg`} />
-                <div className="ingredientsCardGroup">
-                  <p className="ingredientsName">低筋麵粉</p>
-                  <p className="ingredientsDetail">日本製粉鑽石日本製粉低筋麵粉鑽石。</p>
-                  <div className="ingredientsDown">
-                    <div className="ingredientsMain">
-                      <p className="ingredientsPlace">產地：日本</p>
-                      <p className="ingredientsSize">尺寸：50克</p>
-                      <p className="ingredientsPrice">價格：500元</p>
-                    </div>
-                    <a className="ingredientsCartButton"><TiShoppingCart /> 放入購物車</a>
-                  </div>
-                </div>
-              </li>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
