@@ -68,7 +68,6 @@ function App() {
   return (
     <>
       <Router history={BrowserRouter}>
-      
           <CartStore.Provider
             value={{
               id: id,
