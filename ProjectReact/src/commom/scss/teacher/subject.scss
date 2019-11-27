@@ -17,16 +17,21 @@ $maincolor: #f78177;
   position: relative;
   align-items: center;
   text-align: center;
+  overflow: hidden;
 
+  //-----開課圖-----
+  .small-img {
+    display: none;
+  }
   .subject-img {
-    height: 750px;
-    width: 850px;
+    height: 960px;
+    width: 960px;
     position: fixed;
     bottom: 0;
     left: 0;
     clip-path: polygon(0 0, 0% 100%, 100% 100%);
     background-color: #456;
-    img{
+    img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -42,8 +47,48 @@ $maincolor: #f78177;
   .subject-page-right {
     width: 20%;
     height: 100vh;
-    background:#F78177;
+    background: #f78177;
     opacity: 66%;
+  }
+  // ----文字裝飾區塊-----
+  .wordBox {
+    // width: 100vw;
+    height: 67%;
+    transform: rotate(45deg);
+    pointer-events: none;
+    left: 8.5%;
+    top: 46%;
+    overflow: hidden;
+
+    .wordBoxUp {
+      // width: 100vw;
+      height: 25vh;
+      position: relative;
+      overflow: hidden;
+      .wordHalfUp {
+        font-family: niagara, serif;
+        position: absolute;
+        // font-size: 256px;
+        font-size: 280px;
+        top: 25%;
+        overflow: hidden;
+      }
+    }
+    .wordBoxDown {
+      // width: 100vw;
+      height: 25vh;
+      position: relative;
+      overflow: hidden;
+      .wordHalfDown {
+        font-family: niagara, serif;
+        position: absolute;
+        // font-size: 256px;
+        font-size: 280px;
+        top: -75%;
+        // color: #cccccc;
+        overflow: hidden;
+      }
+    }
   }
 
   // ----主要內容區塊-----
@@ -56,14 +101,14 @@ $maincolor: #f78177;
 
     .subject-name {
       // height: 10%;
-      padding-left: 31%;
+      padding-left: 30%;
       display: flex;
 
       .subject-name-box {
-        width: 100%;
-        
+        width: 78%;
+
         p {
-          margin: 0;
+          // margin: 0;
           font-family: niagara, serif; // 主要字型
           font-weight: 400;
           font-style: normal;
@@ -73,9 +118,9 @@ $maincolor: #f78177;
 
         .color-section {
           margin-top: -22%;
-          margin-left: 35%;
-          width: 55%;
-          // width: 447px;
+          margin-left: 53%;
+          // width: 55%;
+          width: 447px;
           height: 100px;
           // height: 90%;
           background: $maincolor;
@@ -83,9 +128,10 @@ $maincolor: #f78177;
         }
       }
     }
+    // ----連結至老師頁面-----
     .teacher-link {
       width: 25%;
-      padding-top: 4%;
+      padding-top: 5%;
       padding-left: 10%;
       font-size: 34px;
       a {
@@ -106,7 +152,7 @@ $maincolor: #f78177;
       font-family: basic-sans, sans-serif;
       font-weight: 700;
       font-style: normal;
-
+      // ----開課日期-----
       .info-box {
         width: 50%;
         margin-left: 1px;
@@ -117,8 +163,7 @@ $maincolor: #f78177;
 
     .subject-detail {
       width: 34%;
-      height: 47%;
-      // border: 1px solid #900;
+      height: 40%;
       margin-top: 1.5%;
       margin-left: 66%;
 
@@ -133,21 +178,20 @@ $maincolor: #f78177;
         font-style: normal;
         font-size: 16px;
         flex-direction: column;
-       
+
         .subject-address {
-          // background-color: yellow;
           padding-top: 1%;
-          // align-items: center;
           p {
-            text-align:left;
+            text-align: left;
             margin-top: 3%;
+            max-width: 100%;
             padding-left: 8%;
           }
         }
         .subject-feature {
           padding-top: 1%;
           p {
-            text-align:left;
+            text-align: left;
             max-width: 70%;
             padding-left: 10%;
           }
@@ -178,7 +222,7 @@ $maincolor: #f78177;
 
     .book-btn-box {
       width: 15%;
-      margin-left: 76.5%;
+      margin-left: 80%;
       margin-top: -2%;
 
       // border: 1px solid red;
@@ -196,7 +240,7 @@ $maincolor: #f78177;
 
         &:focus {
           // 按下有藍色邊框問題要解決
-          outline: none ;
+          outline: none;
           border-color: #ffffff;
         }
         // &:hover {
@@ -204,11 +248,98 @@ $maincolor: #f78177;
         // }
         &:active {
           // 按下有藍色邊框問題要解決
-          outline: none ;
+          outline: none;
           border-color: transparent;
           color: #ffffff;
           background-color: #362d2b;
         }
+      }
+    }
+  }
+}
+
+// =========RWD (max-width: 400px)============
+@media (max-width: 500px) {
+  .subject-page {
+    .subject-page-right {
+      width: 5%;
+      display: none;
+    }
+    .small-img {
+      width: 100%;
+      height: 20%;
+      overflow: hidden;
+      position: absolute;
+      left: 0px;
+      top: 22%;
+      // background: #362d2b;
+      display: block;
+      img {
+        width: 100%;
+      }
+    }
+    .subject-img {
+      display: none;
+      img {
+      }
+    }
+    .subject-page-left {
+      // width: 5%;
+      width: 100%;
+      position: fixed;
+      left: 0px;
+      z-index: 4;
+    }
+
+    .wordBox {
+      display: none;
+    }
+
+    .subject-page-center {
+      width: 100%;
+      .teacher-link {
+        width: 50%;
+        padding-top: 1%;
+        margin-top: 70px;
+        font-size: 25px;
+      }
+      .subject-name {
+        padding-left: 0%;
+        .subject-name-box {
+          width: 97%;
+          p {
+            font-size: 65px;
+          }
+          .color-section {
+            display: none;
+          }
+        }
+      }
+      .subject-info {
+        margin: 0;
+        width: 100%;
+        margin-top: 57%;
+        .info-box {
+          height: 90px;
+        }
+      }
+      .subject-detail {
+        margin: 0;
+        width: 100%;
+        margin-top: 9%;
+        margin-left: 9%;
+        margin-top: 10%;
+        .subject-detail-box {
+          .subject-price {
+            p {
+              padding-left: 35%;
+            }
+          }
+        }
+      }
+      .book-btn-box {
+        margin-left: 27%;
+        margin-top: -7%;
       }
     }
   }

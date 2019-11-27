@@ -1,7 +1,37 @@
 @import url("https://use.typekit.net/eqs2axx.css");
 $errorColor: #b8817d;
-.MemberEdit {
+.MemberEdit,
+.MemberPasswordEdit {
   height: 100%;
+
+  .control {
+    overflow: hidden;
+    position: relative;
+    padding: 0 80px;
+    @media (max-width: 1200px) {
+      padding: 80px 20px;
+    }
+    .bottomText {
+      font-size: 150px;
+      line-height: 150px;
+      position: absolute;
+      left: -75px;
+      top: 50%;
+      transform: translate(0, -50%);
+      writing-mode: vertical-lr;
+      text-orientation: mixed;
+      color: #e9756e;
+      @media (max-width: 768px) {
+        font-size: 75px;
+        line-height: 75px;
+        top: -37.5px;
+        left: 50%;
+        transform: translate(-50%, 0);
+        writing-mode: unset;
+        text-orientation: none;
+      }
+    }
+  }
 }
 .bg-linear {
   height: "100%";
@@ -11,6 +41,9 @@ $errorColor: #b8817d;
     span {
       display: block;
       padding: 3% 19%;
+      @media (max-width: 1200px) {
+        padding: 3% 3%;
+      }
     }
   }
   &::after {
@@ -87,7 +120,9 @@ $errorColor: #b8817d;
 
 //--------------------------------------------------------------------------------------------------
 .memberInfo {
-  padding: 30px 0;
+  position: relative;
+  overflow: hidden;
+  padding: 50px 80px;
   h4 {
     span {
       margin-left: 10%;
@@ -106,6 +141,28 @@ $errorColor: #b8817d;
     padding: 10px 20px;
     li {
       padding: 10px;
+    }
+  }
+  .topText {
+    font-size: 150px;
+    line-height: 150px;
+    position: absolute;
+    right: -75px;
+    top: 50%;
+    transform: translate(0, -50%);
+    writing-mode: vertical-lr;
+    text-orientation: mixed;
+    @media (max-width: 768px) {
+      text-align: center;
+      font-size: 75px;
+      line-height: 75px;
+      bottom: 0;
+      top: unset;
+      left: 50%;
+      transform: translate(-50%, 75%);
+      writing-mode: unset;
+      text-orientation: none;
+      width: 300px;
     }
   }
 }
