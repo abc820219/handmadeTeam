@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../../commom/scss/course/course_list_navbar.scss";
-import { FaAngleDoubleLeft, FaAngleDoubleRight } from "react-icons/fa";
-import $ from "jquery";
+import { FaCaretRight,FaCaretLeft ,FaCaretSquareLeft,FaCaretSquareRight} from "react-icons/fa";
+
 
 class Course_filter extends Component {
 
@@ -13,8 +13,8 @@ class Course_filter extends Component {
             <>
                 <div className="course_filter_bar">
                     <div className="course_option">
-                        <FaAngleDoubleLeft className="course_option_left" onClick={this.props.pre_page} />
-                        <FaAngleDoubleRight className="course_option_right" onClick={this.props.next_page} />
+                        <FaCaretLeft className="course_option_left" onClick={this.props.pre_page} />
+                        <FaCaretRight className="course_option_right" onClick={this.props.next_page} />
                     </div>
                     
                     <button type="button" className="course_search_bar" onClick={this.props.search} >搜尋
