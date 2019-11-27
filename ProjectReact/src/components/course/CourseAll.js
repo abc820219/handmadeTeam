@@ -112,6 +112,11 @@ class CourseAll extends Component {
                 price: '',
             }
         })
+        this.setState({
+            course_search: {
+                name: ""
+            }
+        })
     }
 
     course_blur_fn = () => {
@@ -279,12 +284,12 @@ class CourseAll extends Component {
                 <section className="course_navbar">
 
                     <nav className="course_navbar_b close_move">
-                        <div className="wordBox">
-                            <div className="wordBoxUp">
-                                <div className="wordHalfUp">CLASS</div>
+                        <div className="course_wordBox">
+                            <div className="course_wordBoxUp course_bar">
+                                <p className="course_wordHalfUp">CLASS</p>
                             </div>
-                            <div className="wordBoxDown">
-                                <div className="wordHalfDown">CLASS</div>
+                            <div className="course_wordBoxDown course_bar">
+                                <p className="course_wordHalfDown">CLASS</p>
                             </div>
                         </div>
                         <FaRegTimesCircle className="close_option " />
