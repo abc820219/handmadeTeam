@@ -22,40 +22,53 @@
     .detail_move {
       display: none;
     }
-    .wordBox {
+    .course_detail_wordBox {
       width: 100%;
-      height: 15%;
-      pointer-events: none;
+      height: 80px;
       opacity: 0.89;
-      .wordBoxUp {
+      p {
+        font-size: 70px;
+        line-height: 70px;
+      }
+      .course_detail_bar {
         width: 100%;
-        height: 35%;
+        height: 60px;
+      }
+      .course_detail_wordBoxUp {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         position: relative;
         overflow: hidden;
         background: #f4dcb9;
-        .wordHalfUp {
+        .course_detail_wordHalfUp {
           font-family: niagara, serif;
           position: absolute;
-          font-size: 150px;
-          top: -100%;
-          left: 20%;
+          bottom: 0;
+          left: 80%;
+          transform: translate(-50%, 50%);
+          margin: 0;
           color: #f78177;
           opacity: 0.68;
         }
       }
-      .wordBoxDown {
-        width: 100%;
-        height: 50%;
+      .course_detail_wordBoxDown {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         position: relative;
         overflow: hidden;
-        .wordHalfDown {
+        position: relative;
+
+        .course_detail_wordHalfDown {
           font-family: niagara, serif;
+          margin: 0;
           position: absolute;
-          font-size: 150px;
-          top: -170%;
-          left: 20%;
+          top: 0;
+          left: 80%;
+          transform: translate(-50%, -50%);
           color: #f2f3f1;
-          opacity: 0.79;
+          opacity: 0.69;
         }
       }
     }
@@ -64,7 +77,7 @@
       width: 100%;
       position: absolute;
       transform: translateX(-50%);
-      top: 6vh;
+      top: 10vh;
       left: 50%;
       .course_detail_info {
         // border: 1px red solid;
@@ -95,12 +108,12 @@
             }
           }
           .course_name {
-            font-size: 1.6vw;
+            font-size: 1.4vw;
             span {
               font-family: adobe-devanagari, sans-serif;
               font-weight: 700;
               font-style: normal;
-              font-size: 1.5vw;
+              font-size: 1.2vw;
             }
           }
           div {
@@ -119,7 +132,7 @@
             font-family: open-sans, sans-serif;
             font-weight: 400;
             font-style: normal;
-            font-size: 18px;
+            font-size: 16px;
             color: #959595;
             margin: 8px 18px;
           }
@@ -128,9 +141,9 @@
             border: 1px #f0f1f7 solid;
             border-radius: 5px;
             display: flex;
-            width: 90%;
+            width: 60%;
             .time_btn {
-              width: 70%;
+              width: 100%;
               vertical-align: middle;
               background: #ffffff;
               border: #f0f1f7 1px solid;
@@ -139,7 +152,7 @@
                 justify-content: center;
                 .time_btn_icon {
                   color: #ebd0ce;
-                  font-size: 25px;
+                  font-size: 20px;
                 }
               }
               .detail_time_btn {
@@ -170,42 +183,48 @@
             font-family: open-sans, sans-serif;
             font-weight: 400;
             font-style: normal;
-            font-size: 18px;
+            font-size: 16px;
             color: #959595;
-            margin: 18px 18px 0 18px;
+            margin: 11px 18px 0 18px;
           }
           .react-datepicker {
             border: none;
             width: 98%;
             height: 400px;
             background: transparent;
+            margin: -20px 0 0 0;
 
             .react-datepicker__navigation--previous {
               position: absolute;
               transform: translateX(-50%);
-              left: 60%;
-              border-top: 14px solid transparent;
-              border-bottom: 14px solid transparent;
-              border-right: 14px solid #ccc;
+              // left: 44%;
+              left: 12vw;
+              top: 15px;
+              border-top: 12px solid transparent;
+              border-bottom: 12px solid transparent;
+              border-right: 12px solid #ccc;
               // width: 30px;
               // height: 30px;
             }
             .react-datepicker__navigation--next {
               position: absolute;
               transform: translateX(-50%);
-              left: 100%;
-              right: 0;
-              border-top: 14px solid transparent;
-              border-bottom: 14px solid transparent;
-              border-left: 14px solid #ccc;
+              top: 15px;
+              // right: 5px;
+              right: -0.78vw;
+              border-top: 12px solid transparent;
+              border-bottom: 12px solid transparent;
+              border-left: 12px solid #ccc;
             }
             .react-datepicker__month-container {
               width: 90%;
-              height: 350px;
+              height: 48vh;
               position: absolute;
               transform: translateX(-50%);
-              left: 50%;
+              left: 45%;
               top: 0%;
+              margin: 0 1.2vw;
+              // border: 1px black solid;
               .react-datepicker__header {
                 background: transparent;
                 border-bottom: none;
@@ -214,7 +233,7 @@
                   position: absolute;
                   width: 50px;
                   transform: translateX(-50%);
-                  left: 82%;
+                  left: 73%;
                   color: #e9756e;
                 }
                 .react-datepicker__day-names {
@@ -225,11 +244,11 @@
                     // border: 1px blue solid;
                     background: #4d4d4d;
                     color: #959595;
-                    width: 10%;
-                    height: 42px;
-                    line-height: 42px;
+                    width: 2.5vw;
+                    height: 2.2vw;
+                    line-height: 2.2vw;
                     border-radius: 6px;
-                    font-size: 18px;
+                    font-size: 1.2vw;
                   }
                 }
               }
@@ -242,11 +261,11 @@
                   .react-datepicker__day {
                     background: #ffffff;
                     box-shadow: #0000000a 0px 10px 20px;
-                    width: 10%;
-                    height: 42px;
-                    line-height: 42px;
+                    width: 2.5vw;
+                    height: 2.2vw;
+                    line-height: 2.2vw;
                     border-radius: 6px;
-                    font-size: 18px;
+                    font-size: 1.2vw;
                   }
                   .react-datepicker__day--selected {
                     background: #e9756e;
@@ -263,6 +282,8 @@
           display: flex;
           flex-direction: row;
           justify-content: center;
+          // border:1px blue solid;
+          margin: -11vh 0 0 0;
           .person_count {
             align-self: center;
             margin: -16px 20px;
@@ -271,15 +292,15 @@
           }
           .detail_person_btn {
             background: transparent;
-            width: 50px;
-            height: 50px;
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
             border: 1px solid #eec9b2;
             position: relative;
             .person_icon {
               position: absolute;
               transform: translateX(-50%);
-              top: 35%;
+              top: 20%;
               left: 50%;
               color: #f5f5f5;
             }
@@ -291,20 +312,20 @@
           justify-content: center;
           .detail_cart_icon_btn {
             // border: 5px blue solid;
-            width: 50%;
-            margin: 5px;
+            width: 60%;
+            margin: 0 0 5px 0;
             background: #e9756e;
             box-shadow: #e71c4c41 0px 16px 18px;
             display: flex;
             flex-direction: row;
             border-radius: 50px;
-            height: 50px;
+            height: 45px;
             align-items: center;
             justify-content: center;
-            line-height: 50px;
+            line-height: 40px;
             color: #ffffff;
             .cart_icon {
-              margin: 0px 5px 0 0;
+              margin: 0px 10px 0 0;
             }
           }
         }
@@ -316,7 +337,7 @@
     // border: steelblue 5px solid;
     top: 0;
     left: 25%;
-    width: 75%;
+    width: 75vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -424,7 +445,7 @@
           // border: springgreen 1px solid;
           color: #ffffff;
           text-shadow: #c57647 3px 3px 12px;
-          font-size: 1.5vw;
+          font-size: 1.1vw;
           width: 80%;
           margin: 30px 0 0 0;
         }
@@ -456,47 +477,60 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 33%;
+      width: 33.3%;
       height: 100%;
       background-color: #362d2b;
       z-index: 99;
       .detail_move {
         display: none;
       }
-      .wordBox {
+      .course_detail_wordBox {
         width: 100%;
-        height: 15%;
-        pointer-events: none;
+        height: 80px;
         opacity: 0.89;
-        .wordBoxUp {
+        p {
+          font-size: 70px;
+          line-height: 70px;
+        }
+        .course_detail_bar {
           width: 100%;
-          height: 35%;
+          height: 60px;
+        }
+        .course_detail_wordBoxUp {
+          display: flex;
+          justify-content: center;
+          align-items: center;
           position: relative;
           overflow: hidden;
           background: #f4dcb9;
-          .wordHalfUp {
+          .course_detail_wordHalfUp {
             font-family: niagara, serif;
             position: absolute;
-            font-size: 130px;
-            top: -110%;
-            left: 20%;
+            bottom: 0;
+            left: 75%;
+            transform: translate(-50%, 50%);
+            margin: 0;
             color: #f78177;
             opacity: 0.68;
           }
         }
-        .wordBoxDown {
-          width: 100%;
-          height: 50%;
+        .course_detail_wordBoxDown {
+          display: flex;
+          justify-content: center;
+          align-items: center;
           position: relative;
           overflow: hidden;
-          .wordHalfDown {
+          position: relative;
+
+          .course_detail_wordHalfDown {
             font-family: niagara, serif;
+            margin: 0;
             position: absolute;
-            font-size: 130px;
-            top: -170%;
-            left: 20%;
+            top: 0;
+            left: 75%;
+            transform: translate(-50%, -50%);
             color: #f2f3f1;
-            opacity: 0.79;
+            opacity: 0.69;
           }
         }
       }
@@ -505,7 +539,7 @@
         width: 100%;
         position: absolute;
         transform: translateX(-50%);
-        top: 6vh;
+        top: 10vh;
         left: 50%;
         .course_detail_info {
           // border: 1px red solid;
@@ -517,11 +551,11 @@
           .course_detail_price {
             background: #e9756e;
             box-shadow: #e71c4c40 0px 18px 18px;
-            width: 10vw;
+            width: 7.2vw;
             height: 6vh;
             line-height: 6vh;
             border-radius: 10px;
-            font-size: 2.4vw;
+            font-size: 2.1vw;
             align-self: center;
           }
           .course_detail_name {
@@ -531,17 +565,17 @@
               display: flex;
               width: 100%;
               div {
-                font-size: 15px;
-                margin: 0 0.5vw 0 0;
+                font-size: 1.5vw;
+                margin: 0 0.7vw 0 0;
               }
             }
             .course_name {
-              font-size: 2.2vw;
+              font-size: 2vw;
               span {
                 font-family: adobe-devanagari, sans-serif;
                 font-weight: 700;
                 font-style: normal;
-                font-size: 1.8vw;
+                font-size: 1.5vw;
               }
             }
             div {
@@ -560,18 +594,18 @@
               font-family: open-sans, sans-serif;
               font-weight: 400;
               font-style: normal;
-              font-size: 18px;
+              font-size: 16px;
               color: #959595;
-              margin: 12px;
+              margin: 8px 18px;
             }
             .detail_time_btn_wrap {
               margin: auto;
               border: 1px #f0f1f7 solid;
               border-radius: 5px;
               display: flex;
-              width: 90%;
+              width: 60%;
               .time_btn {
-                width: 60%;
+                width: 100%;
                 vertical-align: middle;
                 background: #ffffff;
                 border: #f0f1f7 1px solid;
@@ -580,7 +614,7 @@
                   justify-content: center;
                   .time_btn_icon {
                     color: #ebd0ce;
-                    font-size: 25px;
+                    font-size: 20px;
                   }
                 }
                 .detail_time_btn {
@@ -611,21 +645,21 @@
               font-family: open-sans, sans-serif;
               font-weight: 400;
               font-style: normal;
-              font-size: 18px;
+              font-size: 16px;
               color: #959595;
-              margin: 12px;
+              margin: 11px 18px 0 18px;
             }
             .react-datepicker {
               border: none;
               width: 98%;
               height: 400px;
               background: transparent;
+              margin: -20px 0 0 0;
 
               .react-datepicker__navigation--previous {
                 position: absolute;
                 transform: translateX(-50%);
                 left: 60%;
-                top: 4px;
                 border-top: 14px solid transparent;
                 border-bottom: 14px solid transparent;
                 border-right: 14px solid #ccc;
@@ -635,28 +669,28 @@
               .react-datepicker__navigation--next {
                 position: absolute;
                 transform: translateX(-50%);
-                left: 100%;
-                top: 4px;
+                // left: 100%;
+                right: -2.5vw;
                 border-top: 14px solid transparent;
                 border-bottom: 14px solid transparent;
                 border-left: 14px solid #ccc;
               }
               .react-datepicker__month-container {
-                // border: 2px blue solid;
                 width: 90%;
-                height: 380px;
+                height: 320px;
                 position: absolute;
                 transform: translateX(-50%);
                 left: 50%;
-                top: -15px;
+                top: 0%;
                 .react-datepicker__header {
                   background: transparent;
                   border-bottom: none;
                   .react-datepicker__current-month {
+                    // border: 1px blue solid;
                     position: absolute;
-                    width: 60px;
+                    width: 50px;
                     transform: translateX(-50%);
-                    left: 82%;
+                    left: 76%;
                     color: #e9756e;
                   }
                   .react-datepicker__day-names {
@@ -664,13 +698,14 @@
                     border: transparent;
                     margin: 42px 0 auto;
                     .react-datepicker__day-name {
+                      // border: 1px blue solid;
                       background: #4d4d4d;
                       color: #959595;
-                      width: 10%;
-                      height: 40px;
-                      line-height: 40px;
+                      width: 2.8vw;
+                      height: 3vw;
+                      line-height: 3vw;
                       border-radius: 6px;
-                      font-size: 16px;
+                      font-size: 1.6vw;
                     }
                   }
                 }
@@ -683,11 +718,11 @@
                     .react-datepicker__day {
                       background: #ffffff;
                       box-shadow: #0000000a 0px 10px 20px;
-                      width: 10%;
-                      height: 40px;
-                      line-height: 40px;
+                      width: 2.8vw;
+                      height: 3vw;
+                      line-height: 3vw;
                       border-radius: 6px;
-                      font-size: 16px;
+                      font-size: 1.6vw;
                     }
                     .react-datepicker__day--selected {
                       background: #e9756e;
@@ -700,40 +735,43 @@
             }
           }
           .course_detail_person {
-            // border: cadetblue 1px solid;
             width: 100%;
             display: flex;
-            margin: -50px 0 0 0;
             flex-direction: row;
             justify-content: center;
+            // border:1px blue solid;
+            margin: -105px 0 0 0;
             .person_count {
               align-self: center;
-              margin: 0 20px;
+              margin: -16px 20px;
               font-size: 28px;
               color: #f5f5f5;
             }
             .detail_person_btn {
               background: transparent;
-              width: 50px;
-              height: 50px;
+              width: 30px;
+              height: 30px;
               border-radius: 50%;
               border: 1px solid #eec9b2;
               position: relative;
               .person_icon {
                 position: absolute;
                 transform: translateX(-50%);
-                top: 35%;
+                top: 20%;
                 left: 50%;
                 color: #f5f5f5;
               }
             }
           }
           .course_detail_cart {
+            margin: 1px;
             display: flex;
             justify-content: center;
             .detail_cart_icon_btn {
+              // border: 5px blue solid;
               width: 60%;
-              margin: 10px;
+              height: 50px;
+              margin: 5px;
               background: #e9756e;
               box-shadow: #e71c4c41 0px 16px 18px;
               display: flex;
@@ -745,7 +783,7 @@
               line-height: 50px;
               color: #ffffff;
               .cart_icon {
-                margin: 0 5px 0 0;
+                margin: 0px 5px 0 0;
               }
             }
           }
@@ -757,7 +795,7 @@
       // border: steelblue 5px solid;
       top: 0;
       left: 25%;
-      width: 85%;
+      width: 75vw;
       height: 100vh;
       display: flex;
       flex-direction: column;
@@ -766,9 +804,9 @@
       .detail_img_note_wrap_move_open {
         position: absolute;
         transform: translateX(-50%);
-        left: 80%;
-        font-size: 6vw;
-        top: 60%;
+        left: 92%;
+        font-size: 8vw;
+        top: 50%;
         color: #e9756e;
       }
       .course_detail_img_wrap {
@@ -780,8 +818,8 @@
         overflow: hidden;
         .course_detail_img {
           margin: 40px 0 0 0;
-          width: 85%;
-          height: 95%;
+          width: 75%;
+          height: 85%;
           object-fit: cover;
         }
       }
@@ -789,24 +827,24 @@
       .course_detail_note_wrap {
         // border: 5px greenyellow solid;
         position: absolute;
-        top: 60%;
+        top: 50%;
         transform: translateX(-50%);
-        left: 59.5vw;
-        width: 40%;
-        height: 366px;
+        left: 55vw;
+        width: 40vw;
+        height: 466px;
         display: flex;
         flex-direction: column;
+
         .detail_note_title {
           color: #959595;
           background: #362d2b;
           flex-direction: row;
           display: flex;
           height: 50px;
-          font-size: 1.5vw;
+          font-size: 1.8vw;
           width: 100%;
           align-items: center;
-          padding: 0px 0px 0 20px;
-          padding: 10px;
+          flex-grow: 1;
           justify-content: space-between;
           // border:  1px solid greenyellow;
           .detail_note_title_txt {
@@ -821,13 +859,14 @@
             background: #e9756e;
             box-shadow: #e71c4c2e 0 18px 18px;
             color: #ffffff;
-            width: 26%;
+            width: 10%;
             flex-direction: row;
             display: flex;
             height: 50px;
-            font-size: 1.5vw;
+            font-size: 1.8vw;
             align-items: center;
-            margin: 0 0px 0 -10px;
+            margin: 0 0px 0 8px;
+            flex-grow: 1;
           }
         }
         .note_content {
@@ -852,7 +891,7 @@
               position: absolute;
               transform: translateX(-50%);
               top: 5px;
-              left: 95%;
+              left: 100%;
               font-size: 4vw;
             }
             .note_content_title {
@@ -865,7 +904,7 @@
             // border: springgreen 1px solid;
             color: #ffffff;
             text-shadow: #c57647 3px 3px 12px;
-            font-size: 1.6vw;
+            font-size: 1.8vw;
             width: 80%;
             margin: 30px 0 0 0;
           }
@@ -876,7 +915,7 @@
       }
       .detail_img_note_wrap_move {
         position: absolute;
-        left: 125%;
+        left: 135%;
         display: flex;
         flex-direction: column;
         transition: 0.8s;
@@ -902,43 +941,57 @@
       height: 100%;
       background-color: #362d2b;
       z-index: 99;
+      overflow: hidden;
       .detail_move {
         display: none;
       }
-      .wordBox {
+      .course_detail_wordBox {
         width: 100%;
-        height: 15%;
-        pointer-events: none;
+        height: 80px;
         opacity: 0.89;
-        .wordBoxUp {
+        p {
+          font-size: 65px;
+          line-height: 65px;
+        }
+        .course_detail_bar {
           width: 100%;
-          height: 38%;
+          height: 60px;
+        }
+        .course_detail_wordBoxUp {
+          display: flex;
+          justify-content: center;
+          align-items: center;
           position: relative;
           overflow: hidden;
           background: #f4dcb9;
-          .wordHalfUp {
+          .course_detail_wordHalfUp {
             font-family: niagara, serif;
             position: absolute;
-            font-size: 140px;
-            top: -90%;
-            left: 20%;
+            bottom: 0;
+            left: 80%;
+            transform: translate(-50%, 50%);
+            margin: 0;
             color: #f78177;
             opacity: 0.68;
           }
         }
-        .wordBoxDown {
-          width: 100%;
-          height: 50%;
+        .course_detail_wordBoxDown {
+          display: flex;
+          justify-content: center;
+          align-items: center;
           position: relative;
           overflow: hidden;
-          .wordHalfDown {
+          position: relative;
+
+          .course_detail_wordHalfDown {
             font-family: niagara, serif;
+            margin: 0;
             position: absolute;
-            font-size: 140px;
-            top: -175%;
-            left: 20%;
+            top: 0;
+            left: 80%;
+            transform: translate(-50%, -50%);
             color: #f2f3f1;
-            opacity: 0.79;
+            opacity: 0.69;
           }
         }
       }
@@ -947,7 +1000,7 @@
         width: 100%;
         position: absolute;
         transform: translateX(-50%);
-        top: 6vh;
+        top: 10.9vh;
         left: 50%;
         .course_detail_info {
           // border: 1px red solid;
@@ -973,17 +1026,17 @@
               display: flex;
               width: 100%;
               div {
-                font-size: 17px;
+                font-size: 2vw;
                 margin: 0 0.5vw 0 0;
               }
             }
             .course_name {
-              font-size: 3.1vw;
+              font-size: 2.6vw;
               span {
                 font-family: adobe-devanagari, sans-serif;
                 font-weight: 700;
                 font-style: normal;
-                font-size: 2vw;
+                font-size: 2.4vw;
               }
             }
             div {
@@ -1002,7 +1055,7 @@
               font-family: open-sans, sans-serif;
               font-weight: 400;
               font-style: normal;
-              font-size: 20px;
+              font-size: 2.2vw;
               color: #959595;
               margin: 12px;
             }
@@ -1011,7 +1064,8 @@
               border: 1px #f0f1f7 solid;
               border-radius: 5px;
               display: flex;
-              width: 88%;
+              width: 78%;
+              height: 8vh;
               .time_btn {
                 width: 70%;
                 vertical-align: middle;
@@ -1053,7 +1107,7 @@
               font-family: open-sans, sans-serif;
               font-weight: 400;
               font-style: normal;
-              font-size: 20px;
+              font-size: 2.2vw;
               color: #959595;
               margin: 12px;
             }
@@ -1096,9 +1150,10 @@
                   border-bottom: none;
                   .react-datepicker__current-month {
                     position: absolute;
+                    // border: 1px blue solid;
                     width: 60px;
                     transform: translateX(-50%);
-                    left: 82%;
+                    left: 80%;
                     color: #e9756e;
                   }
                   .react-datepicker__day-names {
@@ -1109,11 +1164,11 @@
                       // border: 1px blue solid;
                       background: #4d4d4d;
                       color: #959595;
-                      width: 12%;
-                      height: 35px;
-                      line-height: 35px;
+                      width: 11%;
+                      height: 4.5vh;
+                      line-height: 4.5vh;
                       border-radius: 6px;
-                      font-size: 16px;
+                      font-size: 2vw;
                     }
                   }
                 }
@@ -1126,11 +1181,11 @@
                     .react-datepicker__day {
                       background: #ffffff;
                       box-shadow: #0000000a 0px 10px 20px;
-                      width: 12%;
-                      height: 36px;
-                      line-height: 36px;
+                      width: 11%;
+                      height: 4.5vh;
+                      line-height: 4.5vh;
                       border-radius: 6px;
-                      font-size: 17px;
+                      font-size: 2vw;
                     }
                     .react-datepicker__day--selected {
                       background: #e9756e;
@@ -1144,29 +1199,28 @@
           }
           .course_detail_person {
             // border: 2px blue solid;
-            margin: -90px 0 0 0;
-
+            margin: -130px 0 0 0;
             width: 100%;
             display: flex;
             flex-direction: row;
             justify-content: center;
             .person_count {
               align-self: center;
-              margin: 0 20px;
+              margin: -10px 30px;
               font-size: 28px;
               color: #f5f5f5;
             }
             .detail_person_btn {
               background: transparent;
-              width: 50px;
-              height: 50px;
+              width: 30px;
+              height: 30px;
               border-radius: 50%;
               border: 1px solid #eec9b2;
               position: relative;
               .person_icon {
                 position: absolute;
                 transform: translateX(-50%);
-                top: 35%;
+                top: 20%;
                 left: 50%;
                 color: #f5f5f5;
               }
@@ -1175,6 +1229,9 @@
           .course_detail_cart {
             display: flex;
             justify-content: center;
+            // top:-3vh;
+            // border: lawngreen 1px solid;
+
             .detail_cart_icon_btn {
               width: 60%;
               margin: 10px;
@@ -1207,24 +1264,23 @@
       flex-direction: column;
       justify-content: flex-start;
       align-content: flex-end;
-
-      // justify-content:flex-end;
       .detail_img_note_wrap_move_open {
-        // position: absolute;
-        // transform: translateX(-50%);
-        // left: 8%;
-        // font-size: 6vw;
-        // top:60%;
-        // color: #e9756e;
-        display: none;
+        position: absolute;
+        transform: translateX(-50%);
+        left: 92%;
+        font-size: 8vw;
+        top: 50%;
+        color: #e9756e;
       }
       .course_detail_img_wrap {
         // border: 1px red solid;
         width: 100%;
+        height: 65%;
         display: flex;
+        margin: -7.5vw 0 0 6vw;
+        // justify-content: flex-end;
         overflow: hidden;
         .course_detail_img {
-          margin: 50px 0 0 70px;
           width: 100%;
           height: 100%;
           object-fit: contain;
@@ -1233,13 +1289,15 @@
 
       .course_detail_note_wrap {
         position: absolute;
-        top: 61%;
+        top: 50%;
         transform: translateX(-50%);
         left: 30vw;
         width: 100%;
         height: 366px;
         display: flex;
         flex-direction: column;
+        overflow: hidden;
+        // border:  1px solid greenyellow;
         .detail_note_title {
           color: #959595;
           background: #362d2b;
@@ -1307,7 +1365,7 @@
             text-shadow: #c57647 3px 3px 12px;
             font-size: 2.1vw;
             width: 80%;
-            margin: 30px 0 0 0;
+            margin: 15px 0 0 0;
           }
           .note_content_none {
             display: none;
@@ -1315,11 +1373,7 @@
         }
       }
       .detail_img_note_wrap_move {
-        position: absolute;
-        left: 125%;
-        display: flex;
-        flex-direction: column;
-        transition: 0.8s;
+        display: none;
       }
     }
   }
@@ -1327,72 +1381,83 @@
 
 @media screen and(max-width:675px) {
   .course_detail {
-    // border: 1px blue solid;
     position: relative;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    width: 100%;
-    // height: 220vh;
-    // overflow: hidden;
+    width: 100vw;
     overflow: visible;
+    // border: 1px blue solid;
     .detail_navbar_wrap {
+      position: static;
       // border: 1px blue solid;
+      height: 100vh;
       display: block;
-      width: 100%;
+      width: inherit;
       position: relative;
       background-color: #362d2b;
-      height: 950px;
-      .wordBox {
-        width: 100%;
-        height: 15%;
-        pointer-events: none;
+      height: 105%;
+      overflow: visible;
+
+      .course_detail_wordBox {
+        width: auto;
+        height: 90px;
         opacity: 0.89;
-        .wordBoxUp {
+        p {
+          font-size: 85px;
+          line-height: 90px;
+        }
+        .course_detail_bar {
           width: 100%;
-          height: 35%;
+          height: 60px;
+        }
+        .course_detail_wordBoxUp {
+          display: flex;
+          justify-content: center;
+          align-items: center;
           position: relative;
           overflow: hidden;
           background: #f4dcb9;
-          .wordHalfUp {
+          .course_detail_wordHalfUp {
             font-family: niagara, serif;
             position: absolute;
-            font-size: 110px;
-            transform: translateX(-50%);
-            top: -90%;
+            bottom: 0;
             left: 50%;
+            transform: translate(-50%, 50%);
+            margin: 0;
             color: #f78177;
             opacity: 0.68;
           }
         }
-        .wordBoxDown {
-          width: 100%;
-          height: 50%;
+        .course_detail_wordBoxDown {
+          display: flex;
+          justify-content: center;
+          align-items: center;
           position: relative;
           overflow: hidden;
-          .wordHalfDown {
+          position: relative;
+
+          .course_detail_wordHalfDown {
             font-family: niagara, serif;
+            margin: 0;
             position: absolute;
-            font-size: 110px;
-            top: -140%;
+            top: 0;
             left: 50%;
+            transform: translate(-50%, -50%);
             color: #f2f3f1;
-            opacity: 0.79;
-            transform: translateX(-50%);
+            opacity: 0.69;
           }
         }
       }
       .detail_navbar {
-        // border: 1px blue solid;
+        // border: 5px blue solid;
         position: static;
-        width: 100%;
-        height: 290px;
-        transform: translateX(0%);
-        margin: -90px 0 0 0;
+        width: 85vw;
+        margin: 0 auto;
 
+        transform: translateX(0%);
         .course_detail_info {
           // border: 1px red solid;
-        
           color: #ffffff;
           text-shadow: #c57647 3px 3px 12px;
           display: flex;
@@ -1401,11 +1466,11 @@
           .course_detail_price {
             background: #e9756e;
             box-shadow: #e71c4c40 0px 18px 18px;
-            width: 18vw;
-            height: 8vh;
-            line-height: 8vh;
+            width: 26vw;
+            height: 10vh;
+            line-height: 10vh;
             border-radius: 12px;
-            font-size: 5vw;
+            font-size: 8vw;
             align-self: center;
           }
           .course_detail_name {
@@ -1415,53 +1480,48 @@
               display: flex;
               width: 100%;
               div {
-                font-size: 20px;
+                font-size: 3.3vw;
                 margin: 0 0.5vw 0 0;
               }
             }
             .course_name {
-              font-size: 6vw;
+              font-size: 4.8vw;
               span {
                 font-family: adobe-devanagari, sans-serif;
                 font-weight: 700;
                 font-style: normal;
-                font-size: 4vw;
+                font-size: 3.8vw;
               }
             }
             div {
               font-family: adobe-devanagari, sans-serif;
               font-weight: 700;
               font-style: normal;
-              font-size: 3.8vw;
+              font-size: 3.6vw;
             }
           }
         }
         .course_detail_data {
           // border: 1px red solid;
-          margin: 1px 0;
           width: 100%;
           .course_detail_time {
-            display: flex;
-            justify-content: space-around;
             h5 {
               font-family: open-sans, sans-serif;
               font-weight: 400;
               font-style: normal;
-              font-size: 25px;
+              font-size: 4vw;
               color: #959595;
-            
+              margin: 12px;
             }
             .detail_time_btn_wrap {
-              margin: 0 10px 0 0;
+              margin: auto;
               border: 1px #f0f1f7 solid;
               border-radius: 5px;
               display: flex;
-              flex-direction: row;
-              width: 230px;
-              flex-wrap: wrap;
-              justify-content: center;
+              width: 78%;
+              height: 8vh;
               .time_btn {
-                width: 100%;
+                width: 70%;
                 vertical-align: middle;
                 background: #ffffff;
                 border: #f0f1f7 1px solid;
@@ -1494,16 +1554,17 @@
             }
           }
         }
-        .course_detail_mon_cart_wrap {
 
+        .course_detail_mon_cart_wrap {
+          // border: 1px red solid;
           .course_detail_mon {
             h5 {
               font-family: open-sans, sans-serif;
               font-weight: 400;
               font-style: normal;
-              font-size: 25px;
+              font-size: 4vw;
               color: #959595;
-              margin: 0 0 0 8vw;
+              margin: 12px;
             }
             .react-datepicker {
               border: none;
@@ -1514,18 +1575,18 @@
               .react-datepicker__navigation--previous {
                 position: absolute;
                 transform: translateX(-50%);
-                left: 65%;
+                left: 60%;
                 border-top: 14px solid transparent;
                 border-bottom: 14px solid transparent;
                 border-right: 14px solid #ccc;
                 // width: 30px;
                 // height: 30px;
-                top:-11px;
+                top: -11px;
               }
               .react-datepicker__navigation--next {
                 position: absolute;
                 transform: translateX(-50%);
-                left: 100%;
+                left: 99.5%;
                 top: -11px;
                 border-top: 14px solid transparent;
                 border-bottom: 14px solid transparent;
@@ -1533,26 +1594,27 @@
               }
               .react-datepicker__month-container {
                 // border: 1px red solid;
-                width: 70%;
+                width: 88%;
                 height: 400px;
                 position: absolute;
                 transform: translateX(-50%);
-                left: 60%;
-                top: -30px;
+                left: 50%;
+                top: -32px;
                 .react-datepicker__header {
                   background: transparent;
                   border-bottom: none;
+
                   .react-datepicker__current-month {
                     // border: 1px red solid;
                     position: absolute;
-                    width: 110px;
-                    font-size:18px;
+                    width: 99px;
+                    font-size: 16px;
                     transform: translateX(-50%);
                     left: 82%;
+                    top: 2vh;
                     color: #e9756e;
                   }
                   .react-datepicker__day-names {
-                    
                     background: transparent;
                     border: transparent;
                     margin: 55px 0 auto;
@@ -1560,9 +1622,9 @@
                       // border: 1px red solid;
                       background: #4d4d4d;
                       color: #959595;
-                      width: 12%;
-                      height: 42px;
-                      line-height: 42px;
+                      width: 35px;
+                      height: 25px;
+                      line-height: 25px;
                       border-radius: 6px;
                       font-size: 18px;
                     }
@@ -1577,9 +1639,9 @@
                     .react-datepicker__day {
                       background: #ffffff;
                       box-shadow: #0000000a 0px 10px 20px;
-                      width: 12%;
-                      height: 42px;
-                      line-height: 42px;
+                      width: 35px;
+                      height: 25px;
+                      line-height: 25px;
                       border-radius: 6px;
                       font-size: 18px;
                     }
@@ -1595,7 +1657,7 @@
           }
           .course_detail_person {
             // border: 2px blue solid;
-            margin: -40px 0 0 0;
+            margin: -160px 0 0 0;
             width: 100%;
             display: flex;
             flex-direction: row;
@@ -1608,16 +1670,17 @@
             }
             .detail_person_btn {
               background: transparent;
-              width: 50px;
-              height: 50px;
+              width: 40px;
+              height: 40px;
               border-radius: 50%;
               border: 1px solid #eec9b2;
               position: relative;
               .person_icon {
                 position: absolute;
                 transform: translateX(-50%);
-                top: 35%;
+                top: 30%;
                 left: 50%;
+                // line-height: 40px;
                 color: #f5f5f5;
               }
             }
@@ -1633,10 +1696,10 @@
               display: flex;
               flex-direction: row;
               border-radius: 50px;
-              height: 50px;
+              height: 40px;
               align-items: center;
               justify-content: center;
-              line-height: 50px;
+              line-height: 40px;
               color: #ffffff;
               .cart_icon {
                 margin: 0 5px 0 0;
@@ -1647,19 +1710,23 @@
       }
     }
     .detail_img_note_wrap {
+      // border: 1px red solid;
       position: static;
       display: block;
       width: 100%;
+      overflow: hidden;
+      margin: 80px 0 0 0;
       .detail_img_note_wrap_move_open {
         display: none;
       }
       .course_detail_img_wrap {
         // border: 1px red solid;
+        position: static;
         width: 100%;
         display: flex;
         overflow: hidden;
         .course_detail_img {
-          margin: 0px 0 0 0 ;
+          margin: -35px 0 0 0;
           width: 100%;
           height: 100%;
           object-fit: contain;
@@ -1669,8 +1736,9 @@
       .course_detail_note_wrap {
         position: static;
         transform: translateX(0%);
+        margin: -60px 0 0 0;
         width: 100%;
-        height: 366px;
+        height: 450px;
         display: flex;
         flex-direction: column;
         .detail_note_title {
@@ -1682,8 +1750,6 @@
           font-size: 4vw;
           width: 100%;
           align-items: center;
-          padding: 0px 0px 0 20px;
-          padding: 10px;
           justify-content: space-between;
           // border:  1px solid greenyellow;
           .detail_note_title_txt {
@@ -1698,21 +1764,19 @@
             background: #e9756e;
             box-shadow: #e71c4c2e 0 18px 18px;
             color: #ffffff;
-            width: 30%;
+            width: 25%;
             flex-direction: row;
             display: flex;
             height: 50px;
-            font-size:4vw;
+            font-size: 4vw;
             align-items: center;
-            // margin: 0 0px 0 -10px;
           }
         }
         .note_content {
-        
           display: flex;
           flex-direction: column;
           background: #362d2b;
-          height: 100%;
+          // height: 100%;
           align-items: center;
 
           .note_content_close_title {
@@ -1726,18 +1790,17 @@
               display: none;
             }
             .note_content_title {
-              font-size: 4vw;
+              font-size: 4.5vw;
               line-height: 60px;
             }
           }
           .note_content_txt_wrap {
             position: static;
-      
             color: #ffffff;
             text-shadow: #c57647 3px 3px 12px;
-            font-size: 4vw;
+            font-size: 3.6vw;
             width: 80%;
-            margin: 30px 0 0 0;
+            margin: 10px 0 0 0;
           }
           .note_content_none {
             display: none;
