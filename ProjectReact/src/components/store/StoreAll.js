@@ -23,7 +23,11 @@ const StoreAll = () => {
     const [storeDataLoad, setStoreDataLoad] = useState([]);
     const [storeAllData, setStoreAllData] = useState([]);
     const [areaNowName, setAreaNowName] = useState(0);
-    const [areaNowCatch, setAreaNowCatch] = useState("全島")
+    const [areaNowCatch, setAreaNowCatch] = useState("全島");
+    const [accompanyChild, setAccompanyChild] = useState(0);
+    const [accompanyPartner, setAccompanyPartner] = useState(0);
+    const [location_sid, setLocationSid] = useState(0);
+    let areaStoreMapValue;
 
     // const getAreaClick = (areaStoreMapValue) => {
     // console.log(areaStoreMapValue);
@@ -43,7 +47,7 @@ const StoreAll = () => {
     // }
 
     useEffect(() => {
-        storeData()
+        Promise.all([storeData(), allStoreData()])
     }, [])
 
     useEffect(() => {
@@ -51,8 +55,11 @@ const StoreAll = () => {
     }, [areaNowName])
 
     useEffect(() => {
-        allStoreData()
-    }, [])
+        setLocationSid(location_sid);
+        storeAreaHoverNow(location_sid);
+        storeConditionSelect(location_sid,accompanyPartner, accompanyChild);
+        // setAreaNowCatch(areaNowCatch);
+    }, [accompanyPartner, accompanyChild])
 
     const allStoreData = async () => {
         const storeAllDataFirst = await fetch("http://localhost:5000/handmade/store");
@@ -61,17 +68,15 @@ const StoreAll = () => {
     }
 
     const storeData = async (areaStoreMapValue) => {
-        const storeDataFirst = await fetch("http://localhost:5000/handmade/store");
-        let storeDataJson = await storeDataFirst.json();
+        let url = "http://localhost:5000/handmade/store";
         if (areaStoreMapValue) {
-            let arr = [];
-            for (let i = 0; i < storeDataLoad.length; i++) {
-                if (storeDataLoad[i].area_sid == areaStoreMapValue) {
-                    arr.push(storeDataLoad[i]);
-                }
-            }
-            setStoreDataLoad(arr);
+            await setLocationSid(areaStoreMapValue);
+            const storeDataSelect = await fetch(url + "/" + areaStoreMapValue);
+            let storeDataSelectJson = await storeDataSelect.json();
+            setStoreDataLoad(storeDataSelectJson);
         } else {
+            const storeDataFirst = await fetch(url);
+            let storeDataJson = await storeDataFirst.json();
             setStoreDataLoad(storeDataJson);
         }
         // console.log(storeDataJson);
@@ -99,12 +104,35 @@ const StoreAll = () => {
         }
     };
 
+    const storeConditionSelect = async (location_sid,accompanyPartner,accompanyChild) => {
+        const condition = JSON.stringify({
+            locate_sid: location_sid,
+            accompanyPartner: accompanyPartner,
+            accompanyChild: accompanyChild
+        });
+        console.log(condition);
+        try {
+            const url = 'http://localhost:5000/handmade/store';
+            const dataJson = await fetch(url, {
+                method: "POST",
+                body: condition,
+                headers: { "Content-Type": "application/json" }
+            });
+            const data = await dataJson.json();
+            setStoreDataLoad(data);
+        } catch (e) {
+            console.log(e);
+        }
+    };
+
     // console.log(storeDataLoad); // 是否抓到資料庫
 
     const areaHaveStore = {};
     storeDataLoad.forEach(v => {
         areaHaveStore[v.area_sid] = 1;
     });
+    
+    console.log(areaHaveStore)
     // console.log(areaHaveStore); // 地區是否有店家
 
     const areaAllHaveStoreData = {};
@@ -137,7 +165,7 @@ const StoreAll = () => {
                             <p className="areaNowName">{areaNowCatch}</p>
                         </div>
                         <div className="storeSelect">
-                            <StoreSelect />
+                            <StoreSelect storeDataLoad={storeDataLoad} storeAllData={storeAllData}/>
                         </div>
                         <div className="storeButtonGroup">
                             <ul class="storeCheckboxGroup list">
@@ -148,8 +176,9 @@ const StoreAll = () => {
                                             name="numbers[]"
                                             value="1"
                                             class="item-checkbox"
+                                            onClick={() => { setAccompanyPartner(accompanyPartner ? accompanyPartner - 1 : accompanyPartner + 1) }}
                                         />
-                                        <span><MdPeopleOutline /><br/>攜伴同行</span>
+                                        <span><MdPeopleOutline /><br />攜伴同行</span>
                                     </label>
                                 </li>
                                 <li class="storeCheckboxItem storeCheckboxItem2">
@@ -159,8 +188,9 @@ const StoreAll = () => {
                                             name="numbers[]"
                                             value="1"
                                             class="item-checkbox"
+                                            onClick={() => { setAccompanyChild(accompanyChild ? accompanyChild - 1 : accompanyChild + 1) }}
                                         />
-                                        <span><MdChildCare /><br/>攜伴孩童</span>
+                                        <span><MdChildCare /><br />攜伴孩童</span>
                                     </label>
                                 </li>
                             </ul>

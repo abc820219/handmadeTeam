@@ -116,7 +116,7 @@ router.get("/", (req, res) => {
 });
 
 //post表單資料
-router.route("/subject/order").post(function(req, res) {
+router.route("/subject/order").post(function(req, response) {
   // console.lusernameog(subjectId);
   console.log(req.body);
   let user = req.body.usersid;
@@ -130,7 +130,7 @@ router.route("/subject/order").post(function(req, res) {
       [user]
     ).then(res => {
       console.log(res[0].order_sid);
-      db.query(
+      db.queryAsync(
         "INSERT INTO `subject_order`(`order_sid`, `subject_sid`, `subject_applicants_name`, `subject_applicants_phone`, `subject_applicants`) VALUES (?,?,?,?,?)",
         [
           res[0].order_sid,
@@ -138,13 +138,16 @@ router.route("/subject/order").post(function(req, res) {
           req.body.username,
           req.body.phone,
           req.body.people
-        ],
-        function(error) {
-          if (error) throw error;
-          res.json({ message: "成功送出" });
-        }
+        ]
+      ).then(results =>
+        results.affectedRows >= 1
+          ? response.json({ status: 200 })
+          : response.json({ status: 400 })
       );
-    });
+    })
+    .catch((error)=>{
+      console.log("Sql錯誤",error)
+    })
   });
 });
 

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "../../commom/scss/member/memberEdit.scss";
-
+import UseWinSize from "../../components/UseWinSize";
 const MemberInfo = () => {
   //會員----------------------------------------------------------
+  const size = UseWinSize();
   const [member_address, setmember_address] = useState("");
   const [member_birthday, setmember_birthday] = useState("");
   const [member_email, setmember_email] = useState("");
@@ -71,6 +72,7 @@ const MemberInfo = () => {
           <li>生日:</li>
           <li>地址:</li>
         </ul>
+        <p className="topText">MEMBER</p>
       </div>
     );
   }
@@ -90,6 +92,7 @@ const MemberInfo = () => {
         <li>生日:{member_birthday ? member_birthday : "未填寫"}</li>
         <li>地址:{member_address ? member_address : "未填寫"}</li>
       </ul>
+      <p className="topText">MEMBER</p>
     </div>
   );
 };

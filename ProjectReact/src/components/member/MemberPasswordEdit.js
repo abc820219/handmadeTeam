@@ -78,7 +78,8 @@ const MemberPasswordEdit = () => {
     <div className="container-fluid MemberPasswordEdit">
       <div className="row">
         <MemberInfo />
-        <div className="col-12 col-md-8 d-flex flex-column bg-linear">
+        <div className="col-12 col-md-8 d-flex flex-column bg-linear control">
+          <p className="bottomText">MEMBER</p>
           <form>
             <div className="MemberEditHeader my-3">
               <h4>
@@ -151,7 +152,6 @@ const MemberPasswordEdit = () => {
                         color: "#fff"
                       }}
                       onClick={() => setShown2(!shown2)}
-
                     />
                   </div>
                 </div>
