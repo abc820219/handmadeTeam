@@ -17,6 +17,14 @@
     border-radius: 15px;
     background-color: #fff;
   }
+  ul {
+    ul {
+      border-bottom: 1px solid #fff;
+      button{
+        white-space: nowrap;
+      }
+    }
+  }
 }
 
 .memberOrderList h3 {
@@ -35,6 +43,11 @@
 
 .orderListTitle-bar {
   height: 90px;
+  h3 {
+    margin: 0 auto;
+    width: 80%;
+    font-size: 36px;
+  }
 }
 
 .orderList_title {
@@ -45,10 +58,17 @@
 
 .orderTitle_border {
   border-top: 1px white solid;
+  width: 80%;
+  margin: 0 auto;
 }
 
 ::-webkit-scrollbar {
   width: 0 !important;
+}
+.orderList-list-content {
+  li {
+    color: #fff;
+  }
 }
 
 // .memberOrderList-info figure {

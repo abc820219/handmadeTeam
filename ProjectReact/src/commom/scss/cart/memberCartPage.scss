@@ -2,10 +2,13 @@
   height: 100vh;
   .checkLeftBox {
     background-color: #544641;
+    width: 450px;
   }
 }
 
 .checkPageIconBox {
+  margin: 0 auto;
+  width: 90%;
   height: 108px;
   h5 {
     white-space: nowrap;
@@ -22,7 +25,12 @@
     margin: 0px 10px 0px 10px;
   }
 }
-
+@media (max-width: 576px) {
+  .checkPageIconBox {
+    flex-direction: column;
+    margin-top: 30px;
+  }
+}
 .checkPageIcon {
   width: 32px;
   height: 32px;

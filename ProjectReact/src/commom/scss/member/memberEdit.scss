@@ -9,7 +9,7 @@ $errorColor: #b8817d;
     position: relative;
     padding: 0 80px;
     @media (max-width: 1200px) {
-      padding: 80px 20px;
+      padding: 30px 60px;
     }
     .bottomText {
       font-size: 150px;
@@ -72,7 +72,7 @@ $errorColor: #b8817d;
     background-color: rgba($color: #000000, $alpha: 0.07);
     border: 1px solid #fff;
     &:-webkit-autofill {
-      box-shadow: 0 0 0px 1000px rgb(252, 187, 134) inset !important;
+      box-shadow: 0 0 0px 1000px #ead3b3 inset !important;
     }
   }
 

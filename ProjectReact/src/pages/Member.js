@@ -22,8 +22,8 @@ const Member = ({ login }) => {
         <GiHamburgerMenu
           style={{
             position: "fixed",
-            top: "10px",
-            left: "10px",
+            top: "15px",
+            left: "15px",
             zIndex: "999",
             fontSize: "24px",
             color: "#fff"
