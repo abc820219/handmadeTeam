@@ -80,9 +80,10 @@ const SmallCart = ({ openCart, showCart }) => {
               {ingreCart.map((ingreC, index) => {
                return  <CartIngre 
                  key={`i_${index}`}
-                 ngreSid={ingreC.ingredient_sid}
-                  ingreName={ingreC.ingredient_name}
-                  ingreOrderQty={ingreC.ingredient_order_quantity}
+                 ngreSid={ingreC.ingredients_sid}
+                  ingreName={ingreC.ingredients_name}
+                  ingrePic={ingreC.ingredients_img}
+                  ingreOrderQty={ingreC.ingredients_order_quantity}
                   ingreEnName={ingreC.ingredients_en_name}
                   ingrePrice={ingreC.ingredients_price}
                />

@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { Component, useState, useEffect ,useContext } from "react";
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -48,7 +48,7 @@ const IngredientsAll = (props) => {
 
         window.setTimeout(function () {
             $("#root").find("#recipeSliderLoadClick").click();
-        }, 300);
+        }, 350);
     }, [])
 
     // const selectBakeName = (bakeSid, bakeAllDataShow) => {
