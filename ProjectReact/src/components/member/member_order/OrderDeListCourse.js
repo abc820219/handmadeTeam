@@ -40,8 +40,8 @@ const OrderDeListCourse = ({orderDetail}) => {
   //   const data = await dataJson.json();
   //   await console.log(data);
   // };
-  
   const {
+    course_sid,
     course_order_choose,
     course_list,
     course_order_applicants,
@@ -53,9 +53,9 @@ const OrderDeListCourse = ({orderDetail}) => {
     course_price,
     course_ingredient,
     course_difficult,
-    store_address
+    store_address,
+    store_sid
   } = orderDetail;
-  console.log(orderDetail);
 
   useEffect(() => {
     // fetchDetail();
@@ -161,7 +161,7 @@ const OrderDeListCourse = ({orderDetail}) => {
               {course_ingredient}
             </p>
             <div className="orderIconRight ml-auto">
-              <p style={{ color: "#544741" }}>Go Item page</p>
+              <a style={{ color: "#544741" ,whiteSpace: 'nowrap'}} href={`/handmade/store/${store_sid}/course/${course_sid}`}>Go Item page</a>
             </div>
           </div>
           <div className="orderDeCourseList d-flex align-items-center">
@@ -174,7 +174,7 @@ const OrderDeListCourse = ({orderDetail}) => {
             <div>
               <div>
                 <p>成品名稱</p>
-                <h5>超級巧克男孩</h5>
+                <h5>{course_name}</h5>
               </div>
               <div className="mt-3 ml-3">
                 <p>課程難度: {" "+course_difficult}</p>
