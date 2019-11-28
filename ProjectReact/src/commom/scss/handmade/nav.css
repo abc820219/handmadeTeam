@@ -1,16 +1,17 @@
 
   html, body {
-    width: 100%;
+    /* width: 100%;
     height: 100%;
-    margin: 0px;
-    overflow: hidden;
+    margin: 0px; */
+    /* overflow: hidden; */
   
   }
   .outside{
     width: 100%;
-    height: 1200px;
+    height: 100vh;
     margin: 0px;
-    background: #362D2B
+    background: #362D2B;
+    overflow: hidden;
 
    
   }
@@ -20,9 +21,9 @@
     
   }
   body {
-    background-color: transparent;
-    /* transform: perspective(1920px) matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); */
-    transform-style: preserve-3d;
+    /* background-color: transparent;
+    transform: perspective(1920px) matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    transform-style: preserve-3d; */
   }
   .left{
     transform: scale(0.95) translateX(67px) translateY(-35px);
@@ -49,7 +50,7 @@
   }
   .lightbox{
     width: 100%;
-    height: 1500px;
+    height: 100%;
     background: rgba(0, 0, 0, 0.5);
     transition: 0.7s;
     
