@@ -46,7 +46,6 @@ function Class_detail(props) {
   const [note_btn_now, setNote_btn_now] = useState("體驗包含")
 
   const [correctDay, setCorrectDay] = useState("")
-
   const [checkCart, setCheckCart] = useState(false);
 
   useEffect(() => {
@@ -307,11 +306,9 @@ function Class_detail(props) {
   }
 
   const checkBottom = () => {
-    if (correctDay && course_time_select) {
-      console.log("checkcheckTrue");
+    if (correctDay && course_time_select && course_person) {
       setCheckCart(true);
     } else {
-      console.log("checkcheckFalse");
       setCheckCart(false);
     }
   }
@@ -439,7 +436,7 @@ function Class_detail(props) {
               <button className="detail_person_btn" onClick={() => setCourse_person(course_person + 1)}><FaPlus className="person_icon" /></button>
             </div>
             <div className="course_detail_cart">
-            <button type="button" className="detail_cart_icon_btn" disabled={!checkCart} style={!checkCart ? { opacity: '0.3', pointerEvent: 'none', cursor: 'not-allowed' } : {}}
+            <button type="button" className="detail_cart_icon_btn mt-2" style={{transform:'translateY(100px)'}} disabled={!checkCart} style={!checkCart ? { opacity: '0.3', pointerEvent: 'none', cursor: 'not-allowed' } : {}}
                 onClick={() => { putInCart(productDetail, correctDay, course_time_select, course_person, courseCart, id) }}>
                 <FaShoppingBasket className="cart_icon" />
                 <div>Add to Cart</div>
