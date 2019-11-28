@@ -107,8 +107,7 @@ class Subject extends Component {
   showOrder = () => {
     this.setState({
       showOrder: !this.state.showOrder
-    });
-    console.log(!this.state.showOrder);
+    },()=>{console.log(this.state.showOrder)});  
   };
 
   render() {
