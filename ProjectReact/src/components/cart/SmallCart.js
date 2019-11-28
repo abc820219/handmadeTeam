@@ -35,7 +35,7 @@ const SmallCart = ({ openCart, showCart }) => {
       let ingreTotal = ingreCart.reduce((ingreCardA, ingreCardB) => {
         return (
           ingreCardA +
-          ingreCardB.ingredient_order_quantity * ingreCardB.ingredients_price
+          ingreCardB.ingredients_order_quantity * ingreCardB.ingredients_price
         );
       }, 0);
       return courseTotal + ingreTotal;
@@ -82,7 +82,7 @@ const SmallCart = ({ openCart, showCart }) => {
                   key={`i_${index}`}
                   ingreSid={ingreC.ingredients_sid}
                   ingreName={ingreC.ingredients_name}
-                  ingrePic={ingreC.ingredients_img}
+                  ingrePic={ingreC.ingredients_pic}
                   ingreOrderQty={ingreC.ingredients_order_quantity}
                   ingreEnName={ingreC.ingredients_en_name}
                   ingrePrice={ingreC.ingredients_price}
