@@ -422,7 +422,7 @@ function Class_detail(props) {
             <div className="course_detail_mon">
               <h5>Choose date</h5>
               <div
-                onClick={() => date()}
+                // onClick={() => date()}
               >
                 <DatePicker
                   selected={startDate}
