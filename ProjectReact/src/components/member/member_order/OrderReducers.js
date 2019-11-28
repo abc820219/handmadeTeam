@@ -42,7 +42,6 @@ export const ingreListReducer = (state, action) => {
     default:
       return state;
   }
-
 };
 
 export const subjectListReducer = (state, action) => {
@@ -60,13 +59,13 @@ export const subjectListReducer = (state, action) => {
     default:
       return state;
   }
-
 };
 //------------------------------------------
 export const orderSidReducer = (state, action) => {
   switch (action.type) {
     case REC_ORDER_SID:
       const newOrderSid = action.payload;
+      console.log(newOrderSid.reverse());
       return Object.assign({}, state, {
         order_sid: newOrderSid
       });

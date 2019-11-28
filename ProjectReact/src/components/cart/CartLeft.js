@@ -128,7 +128,7 @@ const CartLeft = ({
   console.log(couponUse.length);
   return (
     <>
-      <div className="col-4 px-3 checkLeftBox">
+      <div className="col-md-4  col-12 px-3 checkLeftBox">
         <div>
           <div className="checkPageIconBox d-flex align-items-center justify-content-around">
             <div

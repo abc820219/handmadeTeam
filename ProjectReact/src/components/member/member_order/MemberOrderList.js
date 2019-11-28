@@ -108,21 +108,21 @@ const MemberOrderList = ({ changeOrderType }) => {
     }
   };
 
-  const calcauPage = (datas) => {
+  const calcauPage = datas => {
     let pageTotal = Math.ceil(datas.length / 8);
     let pageTotalFn = [];
     for (let i = 1; i <= pageTotal; i++) {
       pageTotalFn.push(i);
     }
     setTotalOrderPage(pageTotalFn);
-  }
+  };
 
   useEffect(() => {
     orderSidData();
   }, []);
 
   useEffect(() => {
-    changePage(1,orderSid)
+    changePage(1, orderSid);
   }, [orderSid]);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
@@ -153,143 +153,173 @@ const MemberOrderList = ({ changeOrderType }) => {
     }
   };
 
-  const changePage = (orderPage,orderSid) => {
+  const changePage = (orderPage, orderSid) => {
     const newOrderNum = [];
-    let startPage = (orderPage-1)*8;
-    let finishPage = (orderPage*8)-1<orderSid.length-1?(orderPage*8)-1:orderSid.length-1;
-    for(let i = startPage; i<= finishPage ; i++){
+    let startPage = (orderPage - 1) * 8;
+    let finishPage =
+      orderPage * 8 - 1 < orderSid.length - 1
+        ? orderPage * 8 - 1
+        : orderSid.length - 1;
+    for (let i = startPage; i <= finishPage; i++) {
       newOrderNum.push(orderSid[i]);
     }
     setNowOrderPage(newOrderNum);
-  }
+  };
 
   console.log(nowOrderPage);
 
   return (
     <>
-      <div className="memberOrderList container-fluid px-4">
+      <div className="memberOrderList">
         <div className="orderListTitle-bar d-flex align-items-center">
-          <h3 className="ml-5 mt-5 mb-5">訂單紀錄--------總筆數: {totalDataCount}</h3>
+          <h3 className="d-flex justify-content-between  px-5">
+            <p>訂單紀錄</p>
+            <p>總筆數: {totalDataCount}</p>
+          </h3>
         </div>
         <nav aria-label="...">
-          <ul class="pagination">
-            {totalOrderPage?totalOrderPage.map(orderPage => (
-              <li class="page-item">
-                <a class="page-link" href="#" onClick={()=>{changePage(orderPage,orderSid)}}>{orderPage}</a>
-              </li>
-            )):''}
+          <ul class="pagination justify-content-center">
+            {totalOrderPage
+              ? totalOrderPage.map(orderPage => (
+                  <li class="page-item">
+                    <a
+                      class="page-link"
+                      href="#"
+                      onClick={() => {
+                        changePage(orderPage, orderSid);
+                      }}
+                    >
+                      {orderPage}
+                    </a>
+                  </li>
+                ))
+              : ""}
           </ul>
         </nav>
         <div className="memberOrderList-info pl-2">
           <ul className="orderTitle_border">
             <h3 className="orderList_title"></h3>
-            {nowOrderPage?nowOrderPage.map((v, index) => (
-              // <MemberOrderListCourse
-              //   orderDetailData={orderDetailData}
-              //   key={courseList.order_sid}
-              //   orderSid={courseList.order_sid}
-              //   courseName={courseList.course_name}
-              //   courseOrderChoose={courseList.course_order_choose}
-              //   coursePrice={courseList.course_price}
-              // />
-              <ul>
-                <div
-                  className="d-flex justify-content-between align-items-center flex-wrap"
-                  style={{ color: "#9597A6" }}
-                >
-                  <div
-                    className="d-flex justify-content-between align-items-center"
-                    style={{ color: "#fff" }}
-                  >
+            {nowOrderPage
+              ? nowOrderPage.map((v, index) => (
+                  // <MemberOrderListCourse
+                  //   orderDetailData={orderDetailData}
+                  //   key={courseList.order_sid}
+                  //   orderSid={courseList.order_sid}
+                  //   courseName={courseList.course_name}
+                  //   courseOrderChoose={courseList.course_order_choose}
+                  //   coursePrice={courseList.course_price}
+                  // />
+                  <ul>
                     <div
-                      className="p-2"
-                      style={{ fontWeight: "bold", fontSize: "18px" }}
+                      className="d-flex justify-content-between align-items-center flex-wrap"
+                      style={{ color: "#9597A6" }}
                     >
-                      訂單編號:{v.order_sid}
+                      <div
+                        className="d-flex justify-content-between align-items-center"
+                        style={{ color: "#fff" }}
+                      >
+                        <div
+                          className="p-2"
+                          style={{ fontWeight: "bold", fontSize: "18px" }}
+                        >
+                          訂單編號:{v.order_sid}
+                        </div>
+                        <FaPlus onClick={() => openStatus(index)} />
+                      </div>
+                      <div>
+                        {v.coupon_sid === 0
+                          ? ""
+                          : "使用優惠卷代碼:" + v.coupon_sid}
+                      </div>
+                      <div>
+                        {"訂單創建日期:" + v.order_create_time.split("T")[0]}
+                      </div>
+                      <div>總金額:{v.order_total_price}</div>
                     </div>
-                    <FaPlus onClick={() => openStatus(index)} />
-                  </div>
-                  <div>
-                    {v.coupon_sid === 0 ? "" : "使用優惠卷代碼:" + v.coupon_sid}
-                  </div>
-                  <div>
-                    {"訂單創建日期:" + v.order_create_time.split("T")[0]}
-                  </div>
-                  <div>總金額:{v.order_total_price}</div>
-                </div>
-                <li className={open === index ? "" : "d-none"} id="orderItem">
-                  {courseLists.map(row => {
-                    if (row.order_sid === v.order_sid) {
-                      return (
-                        <>
-                          <ul className="d-flex justify-content-between align-items-center">
-                            <li className="p-3">
-                              <div>課程名稱:{row.course_name}</div>
-                              <div>開課時間:{row.course_order_choose}</div>
-                              <div>報名人數:{row.course_order_applicants}</div>
-                            </li>
-                            <button
-                              onClick={() => {
-                                orderDetailData(1, row.course_order_sid);
-                              }}
+                    <li
+                      className={open === index ? "" : "d-none"}
+                      id="orderItem"
+                    >
+                      {courseLists.map(row => {
+                        if (row.order_sid === v.order_sid) {
+                          return (
+                            <>
+                              <ul className="d-flex justify-content-between align-items-center orderList-list-content">
+                                <li className="p-3">
+                                  <div>課程名稱2:{row.course_name}</div>
+                                  <div>開課時間:{row.course_order_choose}</div>
+                                  <div>
+                                    報名人數:{row.course_order_applicants}
+                                  </div>
+                                </li>
+                                <button
+                                  onClick={() => {
+                                    orderDetailData(1, row.course_order_sid);
+                                  }}
+                                >
+                                  詳細內容
+                                </button>
+                              </ul>
+                            </>
+                          );
+                        } else {
+                          return "";
+                        }
+                      })}
+                      {ingreLists.map(row => {
+                        if (row.order_sid === v.order_sid) {
+                          return (
+                            <ul className="d-flex justify-content-between align-items-center orderList-list-content">
+                              <li className="p-3">
+                                <div>食材名稱:{row.ingredients_name}</div>
+                                <div>
+                                  購買數量:{row.ingredients_order_quantity}
+                                </div>
+                              </li>
+                              <button
+                                onClick={() => {
+                                  orderDetailData(2, row.ingredients_order_sid);
+                                }}
+                              >
+                                詳細內容
+                              </button>
+                            </ul>
+                          );
+                        } else {
+                          return "";
+                        }
+                      })}
+                    </li>
+                    <li className={open === index ? "" : "d-none"}>
+                      {subjectList.map(row => {
+                        if (row.order_sid === v.order_sid) {
+                          return (
+                            <ul
+                              className="d-flex justify-content-between align-items-center orderList-list-content"
+                              style={{ color: "#fff" }}
                             >
-                              詳細內容
-                            </button>
-                          </ul>
-                        </>
-                      );
-                    } else {
-                      return "";
-                    }
-                  })}
-                  {ingreLists.map(row => {
-                    if (row.order_sid === v.order_sid) {
-                      return (
-                        <ul className="d-flex justify-content-between align-items-center">
-                          <li className="p-3">
-                            <div>食材名稱:{row.ingredients_name}</div>
-                            <div>購買數量:{row.ingredients_order_quantity}</div>
-                          </li>
-                          <button
-                            onClick={() => {
-                              orderDetailData(2, row.ingredients_order_sid);
-                            }}
-                          >
-                            詳細內容
-                          </button>
-                        </ul>
-                      );
-                    } else {
-                      return "";
-                    }
-                  })}
-                </li>
-                <li className={open === index ? "" : "d-none"}>
-                  {subjectList.map(row => {
-                    if (row.order_sid === v.order_sid) {
-                      return (
-                        <ul className="d-flex justify-content-between align-items-center">
-                          <li className="p-3">
-                            <div>開課名稱:{row.subject_name}</div>
-                            <div>開課時間:{row.subject_date}</div>
-                            <div>報名人數:{row.subject_applicants}</div>
-                          </li>
-                          <button
-                            onClick={() => {
-                              orderDetailData(3, row.subject_order_sid);
-                            }}
-                          >
-                            詳細內容
-                          </button>
-                        </ul>
-                      );
-                    } else {
-                      return "";
-                    }
-                  })}
-                </li>
-              </ul>
-            )):''}
+                              <li className="p-3">
+                                <div>開課名稱:{row.subject_name}</div>
+                                <div>開課時間:{row.subject_date}</div>
+                                <div>報名人數:{row.subject_applicants}</div>
+                              </li>
+                              <button
+                                onClick={() => {
+                                  orderDetailData(3, row.subject_order_sid);
+                                }}
+                              >
+                                詳細內容
+                              </button>
+                            </ul>
+                          );
+                        } else {
+                          return "";
+                        }
+                      })}
+                    </li>
+                  </ul>
+                ))
+              : ""}
           </ul>
           {/* <ul className="orderTitle_border">
             <h3 className="orderList_title">食材</h3>

@@ -371,12 +371,12 @@ function Class_detail(props) {
   return (
     <div className="course_detail">
       <div className="detail_navbar_wrap">
-        <div className="wordBox">
-          <div className="wordBoxUp">
-            <div className="wordHalfUp">CLASS</div>
+        <div className="course_detail_wordBox">
+          <div className="course_detail_wordBoxUp course_detail_bar">
+            <p className="course_detail_wordHalfUp">CLASS</p>
           </div>
-          <div className="wordBoxDown">
-            <div className="wordHalfDown">CLASS</div>
+          <div className="course_detail_wordBoxDown course_detail_bar">
+            <p className="course_detail_wordHalfDown">CLASS</p>
           </div>
         </div>
         <div className="detail_navbar">

@@ -19,7 +19,7 @@ router.get("/course/:id", (req, res) => {
     memberId;
   db.queryAsync(sql).then(results => {
     const formatDate = "YYYY-MM-DD HH:mm:ss";
-    results.forEach(function (v) {
+    results.forEach(function(v) {
       v.course_order_choose = moment(v.course_order_choose)
         .tz("Asia/Taipei")
         .format(formatDate);
@@ -39,7 +39,7 @@ router.get("/orderSid/:id", (req, res) => {
 router.get("/ingre/:id", (req, res) => {
   const memberId = req.params.id;
   sql =
-    "SELECT * FROM `order` `o` JOIN `ingredients_order` `io` JOIN `ingredients` `i` ON `o`.`order_sid` = `io`.`order_sid` AND `i`.`ingredients_sid` = `io`.`ingredients_sid` WHERE `o`.`member_sid` = " +
+    "SELECT * FROM ((`order` NATURAL JOIN `ingredients_order`) NATURAL JOIN `ingredients`) WHERE `order`.`member_sid` = " +
     memberId;
   db.queryAsync(sql).then(results => {
     res.json(results);
@@ -49,14 +49,8 @@ router.get("/ingre/:id", (req, res) => {
 router.get("/subject/:id", (req, res) => {
   const memberId = req.params.id;
   sql =
-    "SELECT * FROM `order` o JOIN `subject_order` so JOIN `subject` s ON o.order_sid = so.order_sid AND so.subject_sid = s.subject_sid WHERE o.member_sid = " + memberId;
+    "SELECT * FROM `order` o JOIN `subject_order` so JOIN `subject` s ON o.order_sid = so.order_sid AND so.subject_sid = s.subject_sid WHERE o.member_sid = "+memberId;
   db.queryAsync(sql).then(results => {
-    const formatDate = "YYYY-MM-DD HH:mm:ss";
-    results.forEach(function (v) {
-      v.subject_date = moment(v.subject_date)
-        .tz("Asia/Taipei")
-        .format(formatDate);
-    });
     res.json(results);
   });
 });
@@ -70,16 +64,15 @@ class OrderDetail {
   orderDetailSQL() {
     let sql = "";
     switch (this.orderType) {
-      case 1: {
+      case 1:
         sql =
-          "SELECT * FROM `order` `o` JOIN `course_order` `co` JOIN `course` `c` JOIN `course_img` `ci` JOIN `store` `s` ON `o`.order_sid = `co`.order_sid AND `co`.`course_sid` = `c`.`course_sid` AND `co`.`course_sid` = `ci`.`course_sid` WHERE `s`.store_sid = `c`.`store_sid` AND `o`.member_sid = " +
+          "SELECT * FROM `order` `o` JOIN `course_order` `co` JOIN `course` `c` JOIN `course_img` `ci` ON `o`.order_sid = `co`.order_sid AND `co`.`course_sid` = `c`.`course_sid` AND `co`.`course_sid` = `ci`.`course_sid` WHERE `o`.member_sid = " +
           this.user +
           " AND `co`.course_order_sid = " +
           this.item;
         return sql;
         break;
-      }
-      case 2: {
+      case 2:
         sql =
           "SELECT * FROM ((`order` NATURAL JOIN `ingredients_order`) NATURAL JOIN `ingredients`) WHERE `order`.`member_sid` = " +
           this.user +
@@ -87,17 +80,6 @@ class OrderDetail {
           this.item;
         return sql;
         break;
-      }
-      case 3: {
-        sql =
-          "SELECT * FROM `order` JOIN `subject_order` JOIN `subject` JOIN `subject_img` JOIN `teacher` ON `subject`.`subject_sid` = `subject_order`.`subject_sid` AND `order`.`order_sid` = `subject_order`.`order_sid` AND `subject_img`.`subject_sid` = `subject`.`subject_sid` AND `subject`.`teacher_sid` = `teacher`.`teacher_sid` WHERE `order`.`member_sid` ="
-        +this.user +
-          " AND `subject_order`.`subject_order_sid` = " +
-          this.item;
-          console.log(sql);
-        return sql;
-        break;
-      }
       default:
         return;
     }
@@ -117,7 +99,6 @@ router.post("/orderDetail", (req, res, next) => {
     req.body.item
   );
   db.query(orderDetail.orderDetailSQL(), (error, rows) => {
-    console.log(rows);
     if (error) {
       res.json({
         status: "404",
@@ -127,23 +108,13 @@ router.post("/orderDetail", (req, res, next) => {
     } else {
       const formatDate = "YYYY-MM-DD HH:mm:ss";
       if (rows[0].course_order_choose) {
-        console.log("Course");
         rows[0].course_order_choose = moment(rows[0].course_order_choose)
           .tz("Asia/Taipei")
           .format(formatDate);
         rows[0].order_create_time = moment(rows[0].order_create_time)
           .tz("Asia/Taipei")
           .format(formatDate);
-      } else if (rows[0].subject_date) {
-        console.log("Teacher");
-        rows[0].subject_date = moment(rows[0].subject_date)
-          .tz("Asia/Taipei")
-          .format(formatDate);
-        rows[0].order_create_time = moment(rows[0].order_create_time)
-          .tz("Asia/Taipei")
-          .format(formatDate);
       } else {
-        console.log("Ingredient");
         rows[0].order_create_time = moment(rows[0].order_create_time)
           .tz("Asia/Taipei")
           .format(formatDate);

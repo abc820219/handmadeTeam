@@ -18,10 +18,13 @@ export const orderSidState = { order_sid: [] };
 export const subjectInitState = { subjectList: [] };
 
 const MemberOrder = () => {
-  const { orderDetailFetch , subjectList } = useContext(Store);
+  const { orderDetailFetch, subjectList } = useContext(Store);
   const [clState, clDispatch] = useReducer(courseListReducer, courseInitState);
   const [ilState, ilDispatch] = useReducer(ingreListReducer, ingreInitState);
-  const [slState, slDispatch] = useReducer(subjectListReducer, subjectInitState);
+  const [slState, slDispatch] = useReducer(
+    subjectListReducer,
+    subjectInitState
+  );
   // const [orderType, setOrderType] = useState(1);
   // const changeOrderType = a => {
   //   setOrderType(a);
