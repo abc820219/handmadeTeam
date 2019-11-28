@@ -50,16 +50,16 @@
   }
   .lightbox{
     width: 100%;
-    height: 100%;
+    height: 101%;
     background: rgba(0, 0, 0, 0.5);
     transition: 0.7s;
     
     position: absolute;
-    top: 50%;
+    top: 52%;
     left: 50%;
     z-index: 99;
     margin-left: -50%;
-    margin-top: -750px;
+    margin-top: -26.7%;
   }
   .lightimage{
     margin: auto;
