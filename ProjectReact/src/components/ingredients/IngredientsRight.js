@@ -44,17 +44,17 @@ function IngredientsRight({ ingredientData, bakeName, bakeDetail }) {
   const ingreSelectLoop = (v,ingreCart) => {
     return ingreCart.some(ingre=>ingre.ingredients_sid === v.ingredients_sid)
   }
-  const putInCart = (id,ingredient,ingreCart) => {
-    const {ingredients_sid , ingredients_name, ingredients_en_name, ingredients_pic, ingredients_price} = ingredient;
+  const putInCart = (id,ingredient) => {
+    const {ingredients_sid , ingredients_name, ingredients_en_name, ingredients_image, ingredients_price} = ingredient;
     const newIngre = {
       ingredients_sid: ingredients_sid,
       ingredients_name: ingredients_name,
       ingredients_en_name : ingredients_en_name,
-      ingredients_pic: ingredients_pic,
+      ingredients_pic: ingredients_image,
       ingredients_price: ingredients_price,
-      ingredient_order_quantity: 1
+      ingredients_order_quantity: 1
     }
-    cartIngreDispatch(addIngre(id,newIngre))
+    cartIngreDispatch(addIngre(newIngre,id))
   }
 
   console.log(ingreCart);
@@ -73,7 +73,8 @@ function IngredientsRight({ ingredientData, bakeName, bakeDetail }) {
           </div>
           <div className="buttonRightRecipeRight">
             <ul className="buttonRightRecipeRightUl">
-              {ingredientData.map((ingredient) => (
+              {ingredientData.map((ingredient) =>(
+    
                 <li className="buttonRightRecipeRightLi">
                   <img className="ingredientsImage" src={`/image/ingredients/${ingredient.ingredients_image}`} alt='no_img'/>
                   <div className="ingredientsCardGroup">
@@ -87,7 +88,7 @@ function IngredientsRight({ ingredientData, bakeName, bakeDetail }) {
                       </div>
                       <a className="ingredientsCartButton"
                       style={ingreCart.length!==0 && ingreSelectLoop(ingredient,ingreCart)?{backgroundColor: 'grey',pointerEvents:'none'}:{}}
-                      onClick={()=>{putInCart(id,ingredient,ingreCart)}}
+                      onClick={()=>{putInCart(id,ingredient)}}
                       href
                       ><TiShoppingCart /> 放入購物車</a>
                     </div>
