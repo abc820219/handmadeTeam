@@ -428,10 +428,9 @@ function Class_detail(props) {
               >
                 <DatePicker
                   selected={startDate}
-                  onChange={date => setStartDate(date)}
+                  onChange={date => setCorrectDate(date)}
                   inline
                 />
-
               </div>
             </div>
             <div className="course_detail_person">
@@ -440,7 +439,8 @@ function Class_detail(props) {
               <button className="detail_person_btn" onClick={() => setCourse_person(course_person + 1)}><FaPlus className="person_icon" /></button>
             </div>
             <div className="course_detail_cart">
-            <button type="button" className="detail_cart_icon_btn">
+            <button type="button" className="detail_cart_icon_btn" disabled={!checkCart} style={!checkCart ? { opacity: '0.3', pointerEvent: 'none', cursor: 'not-allowed' } : {}}
+                onClick={() => { putInCart(productDetail, correctDay, course_time_select, course_person, courseCart, id) }}>
                 <FaShoppingBasket className="cart_icon" />
                 <div>Add to Cart</div>
               </button>
