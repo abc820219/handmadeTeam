@@ -29,6 +29,7 @@ router.get("/getcoupon/:id",(req,res)=>{
 router.post("/submitcart", (req, res) => {
   const courseCart = JSON.parse(req.body.courseCart);
   const ingreCart = JSON.parse(req.body.ingreCart);
+  console.log(ingreCart);
   const user = req.body.user;
   const coupon = req.body.coupon || 0;
   const totalPrice = req.body.totalPrice;
@@ -69,8 +70,8 @@ router.post("/submitcart", (req, res) => {
               "INSERT INTO `ingredients_order` (order_sid, ingredients_sid, ingredients_order_quantity) VALUES (?, ?,?)",
               [
                 order_sid,
-                ingreCart[i].ingredient_sid,
-                ingreCart[i].ingredient_order_quantity
+                ingreCart[i].ingredients_sid,
+                ingreCart[i].ingredients_order_quantity
               ]
             );
           }
@@ -92,8 +93,8 @@ router.post("/submitcart", (req, res) => {
               "INSERT INTO `ingredients_order` (order_sid, ingredients_sid, ingredients_order_quantity) VALUES (?, ?,?)",
               [
                 order_sid,
-                ingreCart[i].ingredient_sid,
-                ingreCart[i].ingredient_order_quantity
+                ingreCart[i].ingredients_sid,
+                ingreCart[i].ingredients_order_quantity
               ]
             );
           }

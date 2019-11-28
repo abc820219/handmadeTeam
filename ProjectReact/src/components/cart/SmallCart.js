@@ -9,8 +9,9 @@ import CartStore from "./CartStore";
 
 const SmallCart = ({ openCart, showCart }) => {
 
-  let { courseCart, ingreCart } = useContext(CartStore);
+  let { courseCart, ingreCart ,id} = useContext(CartStore);
 
+  console.log(id);
   const [cartBtn, setCartBtn] = useState(false)
 
   useEffect(() => {
@@ -103,7 +104,7 @@ const SmallCart = ({ openCart, showCart }) => {
           <span className="cartTotal">$ {CartTotal(courseCart, ingreCart)}</span>
         </div>
         <div>
-          <Link to="/handmade/member/cart" style={cartBtn ? { color: 'white' } : { color: 'white', pointerEvents: 'none' }}>
+          <Link to="/handmade/member/cart" style={cartBtn ? { color: 'white' } : { color: 'white', pointerEvents: 'none' }} onClick={!id?()=>{alert('請先登入')}:''}>
             <div
               className="cartBtn"
             >
