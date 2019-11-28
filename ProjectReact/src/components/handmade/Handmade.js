@@ -369,7 +369,7 @@ class Handmade extends Component {
             ""
           )}
           {this.state.showTeacher ? (
-            <Link to="/handmade/store">
+            <Link to="/handmade/teacher">
               <div class="container-login100-form-btn">
                 <button class="login100-form-btn ">Teacher</button>
               </div>
@@ -378,7 +378,7 @@ class Handmade extends Component {
             ""
           )}
           {this.state.showStore ? (
-            <Link to="/handmade/teacher">
+            <Link to="/handmade/store">
               <div class="container-login100-form-btn">
                 <button class="login100-form-btn ">Store</button>
               </div>
