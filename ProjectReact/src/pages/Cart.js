@@ -59,9 +59,9 @@ const Cart = props => {
 
   const ingreAmountBtn = async (pos, value) => {
     const newIngreCards = [...ingreCards];
-    const newIngreQty = await newIngreCards[pos].ingredient_order_quantity;
+    const newIngreQty = await newIngreCards[pos].ingredients_order_quantity;
     if ((await newIngreQty) + value >= 1) {
-      newIngreCards[pos].ingredient_order_quantity =
+      newIngreCards[pos].ingredients_order_quantity =
         (await newIngreQty) + value;
     }
     await setIngreCards(newIngreCards);

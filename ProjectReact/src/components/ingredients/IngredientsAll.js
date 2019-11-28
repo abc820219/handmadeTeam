@@ -1,4 +1,9 @@
-import React, { Component, useState, useEffect ,useContext } from "react";
+import React, { Component, useState, useEffect, useContext } from "react";
+import CartStore from "../cart/CartStore";
+import {
+    addIngre,
+    cancelIngre
+} from "../../components/cart/CartAction";
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -15,6 +20,7 @@ import $ from 'jquery';
 import "../../common/scss/ingredients/styleIngredients.scss"
 
 const IngredientsAll = (props) => {
+    const { ingreCart, id, cartIngreDispatch } = useContext(CartStore);
     let slider1 = props.slider1;
     let slider2 = props.slider2;
     let slider3 = props.slider3;
@@ -30,6 +36,7 @@ const IngredientsAll = (props) => {
     const [ingredientData, setIngredientData] = useState([]);
     const [bakeName, setBakeName] = useState();
     const [bakeDetail, setBakeDetail] = useState();
+
 
     const backAllData = async () => {
         const backAllDataLoad = await fetch("http://localhost:5000/handmade/ingredients");
@@ -92,6 +99,23 @@ const IngredientsAll = (props) => {
     function createMarkup() {
         return { __html: bakeDetail };
     }
+
+    const ingreSelectLoop = (v, ingreCart) => {
+        return ingreCart.some(ingre => ingre.ingredients_sid === v.ingredients_sid)
+    }
+    const putInCart = (id, ingredient) => {
+        const { ingredients_sid, ingredients_name, ingredients_en_name, ingredients_image, ingredients_price } = ingredient;
+        const newIngre = {
+            ingredients_sid: ingredients_sid,
+            ingredients_name: ingredients_name,
+            ingredients_en_name: ingredients_en_name,
+            ingredients_pic: ingredients_image,
+            ingredients_price: ingredients_price,
+            ingredients_order_quantity: 1
+        }
+        cartIngreDispatch(addIngre(newIngre, id))
+    }
+
     return (
         <>
             <div className="ingredientsAll">
@@ -220,7 +244,11 @@ const IngredientsAll = (props) => {
                                                         <p className="ingredientsPrice">價格：{ingredient.ingredients_price}元</p>
                                                     </div>
                                                 </div>
-                                                <a className="ingredientsCartButton">
+                                                <a className="ingredientsCartButton"
+                                                    style={ingreCart.length !== 0 && ingreSelectLoop(ingredient, ingreCart) ? { backgroundColor: 'grey', pointerEvents: 'none' } : {}}
+                                                    onClick={() => { putInCart(id, ingredient) }}
+                                                    href
+                                                >
                                                     <TiShoppingCart className="cartReactIcon" />
                                                     <p>放入購物車</p>
                                                 </a>

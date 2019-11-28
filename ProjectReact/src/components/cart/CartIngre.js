@@ -7,6 +7,7 @@ import CartStore from './CartStore'
 
 const CartIngre = ({ingreSid,ingreName,ingrePic,ingreOrderQty,ingreEnName,ingrePrice}) => {
   const { ingreCart, id, cartIngreDispatch } = useContext(CartStore);
+  console.log(id);
 
   const ingreSelect = (ingreSid) => {
     console.log(ingreSid);
@@ -39,7 +40,7 @@ const CartIngre = ({ingreSid,ingreName,ingrePic,ingreOrderQty,ingreEnName,ingreP
         </li>
         <figure>
           <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRBVl9lhK94mJ5MxzGptFKO5FLRXoXVNDmjYndWy1H4kCaqDqOw"
+            src={`/image/ingredients/${ingrePic}`}
             alt=""
             width="80px"
             height="80px"

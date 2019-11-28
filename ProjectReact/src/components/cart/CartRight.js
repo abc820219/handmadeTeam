@@ -124,10 +124,10 @@ const CartRight = ({ courseCards,
               <CartIngreCard
                 pos={index}
                 key={"ingre_" + index}
-                ingre_sid={ingreCard.ingredient_sid}
-                ingre_name={ingreCard.ingredient_name}
+                ingre_sid={ingreCard.ingredients_sid}
+                ingre_name={ingreCard.ingredients_name}
                 ingre_en_name={ingreCard.ingredients_en_name}
-                ingre_order_quantity={ingreCard.ingredient_order_quantity}
+                ingre_order_quantity={ingreCard.ingredients_order_quantity}
                 ingre_pic={ingreCard.ingredients_pic}
                 ingre_price={ingreCard.ingredients_price}
                 ingreAmountBtn={ingreAmountBtn}
