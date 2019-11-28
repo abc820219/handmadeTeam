@@ -12,9 +12,10 @@ const CustomOption = props => {
   );
 };
 function StoreSelect(props) {
-  console.log(Object.keys(props.areaHaveStore));
-  let optionsControl = Object.keys(props.areaHaveStore);
-  let newArry = [];
+  console.log(Object.keys(props.areaAllHaveStoreData));
+  let optionsControl = Object.keys(props.areaAllHaveStoreData);
+  console.log(optionsControl);
+  let newArray = [];
   let options = [
     { value: "0", label: "全島" },
     { value: "1", label: "基隆市" },
@@ -36,13 +37,19 @@ function StoreSelect(props) {
     { value: "18", label: "台東市" },
     { value: "19", label: "屏東市" }
   ];
-  console.log(
-    optionsControl.filter(rows => {
-      // rows === true;
-      options.some(rows2 => rows.value === rows2);
-    })
+
+  newArray = options.filter(rows => {
+    return optionsControl.some(rows2 => rows.value == rows2);
+  });
+  newArray.unshift({ value: "0", label: "全島" });
+
+  return (
+    <Select
+      components={{ Option: CustomOption }}
+      options={newArray}
+      onChange={e =>  props.storeData(e.value)}
+    />
   );
-  return <Select components={{ Option: CustomOption }} options={options} />;
 }
 
 export default StoreSelect;
