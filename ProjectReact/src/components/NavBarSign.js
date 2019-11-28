@@ -33,6 +33,7 @@ const NavBarSign = ({ openCart, showCart, login, ...props }) => {
                   ? "http://g.udn.com.tw/upfiles/B_AN/andy2946/PSN_PHOTO/813/f_23140813_1.jpg"
                   : `http://localhost:5000/images/member/member${props.memberImgName}`
               }
+              
             ></img>
           </div>
           {memberList ? (
