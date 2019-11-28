@@ -95,6 +95,11 @@ const NavBar = ({ checkLogIn, login, ...props }) => {
               </Link>
             </li>
             <li>
+              <Link style={{ color: "#fff" }} to="/handmade/findstore">
+                地圖
+              </Link>
+            </li>
+            <li>
               <Link style={{ color: "#fff" }} to="/handmade/test">
                 測試
               </Link>
@@ -110,7 +115,7 @@ const NavBar = ({ checkLogIn, login, ...props }) => {
                 }}
                 to="/handmade/"
               >
-                <GoHome style={{ marginBottom: "10px" ,marginRight:"5px"}} />
+                <GoHome style={{ marginBottom: "10px", marginRight: "5px" }} />
                 <span>回首頁</span>
               </Link>
             </li>

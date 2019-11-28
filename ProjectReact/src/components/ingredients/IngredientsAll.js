@@ -93,6 +93,7 @@ const IngredientsAll = (props) => {
         if (bakebool) {
             setBakeEngName("CREPE CAKE");
             setBakebool(false);
+            selectBakeItem(5);
         }
     }
 
@@ -101,6 +102,7 @@ const IngredientsAll = (props) => {
     }
 
     const ingreSelectLoop = (v, ingreCart) => {
+
         return ingreCart.some(ingre => ingre.ingredients_sid === v.ingredients_sid)
     }
     const putInCart = (id, ingredient) => {
