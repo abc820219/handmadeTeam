@@ -165,7 +165,7 @@ const StoreAll = () => {
                             <p className="areaNowName">{areaNowCatch}</p>
                         </div>
                         <div className="storeSelect">
-                            <StoreSelect storeDataLoad={storeDataLoad} storeAllData={storeAllData}/>
+                            <StoreSelect storeDataLoad={storeDataLoad} storeAllData={storeAllData} areaHaveStore={areaHaveStore}/>
                         </div>
                         <div className="storeButtonGroup">
                             <ul class="storeCheckboxGroup list">
