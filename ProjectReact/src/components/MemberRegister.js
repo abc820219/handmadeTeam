@@ -144,7 +144,7 @@ function MemberRegister(props) {
     return (
       <>
         <div className="login-wrap d-flex flex-column align-items-center">
-          <div className="mt-4">LOGO</div>
+          <div className="mt-4"><img src="/image/logo/logo-03.png" alt="" width="180px"/></div>
           <p className="mt-4 mb-3" style={{color:"#fff"}}>註冊個人帳號</p>
           <form>
             <ul>

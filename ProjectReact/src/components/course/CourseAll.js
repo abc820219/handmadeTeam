@@ -5,7 +5,8 @@ import Course_navbar from "./Course_navbar";
 import Course_list from "./Course_list";
 import Course_filter from "./Course_filter";
 import $ from "jquery";
-import {Switch,Route,NavLink,Redirect,withRouter} from 'react-router-dom' ;
+import { Switch, Route, NavLink, Redirect, withRouter } from 'react-router-dom';
+import { FaRegTimesCircle, FaSearch } from "react-icons/fa";
 
 
 
@@ -36,22 +37,28 @@ class CourseAll extends Component {
             aging_course_list: [],
             course_filter_start: [],
             course_filter_title_content: [["蛋糕", "點心", "餅乾"], ["巧克力", "覆盆子", "草莓", "香草", "抹茶", "茶類", "檸檬", "其他"], ["4吋", "5吋", "6吋", "8吋"], ["1顆星", "2顆星", "3顆星"], ["500元~700元", "700元-1000元", "1000元-1500元", "1500元以上"]]
-            
+
         }
         console.log(this.props)
         console.log(this.props.match.params)
     }
-    
-    
+
+
     componentDidMount() {
-        
+
         this.courseAll();
         $(".course_store_info ").click(function () {
             $(this).addClass("activeImg");
             $(this).siblings().removeClass("activeImg");
         })
-
-
+        $(".close_option").click(function () {
+            $(".course_navbar_b").addClass("close_move")
+            $(".open_option").removeClass("open_close")
+        })
+        $(".open_option").click(function () {
+            $(".course_navbar_b").removeClass("close_move")
+            $(".open_option").addClass("open_close")
+        })
     }
 
 
@@ -89,6 +96,8 @@ class CourseAll extends Component {
             console.log("react fetch all failed")
         }
     }
+
+
     course_total_onclick = () => {
         this.setState({ course_list: this.state.course_total })
         this.setState({ course_filter_start: "" })
@@ -101,6 +110,11 @@ class CourseAll extends Component {
                 size: '',
                 difficult: '',
                 price: '',
+            }
+        })
+        this.setState({
+            course_search: {
+                name: ""
             }
         })
     }
@@ -122,7 +136,7 @@ class CourseAll extends Component {
     }
 
     course_filter_search = (key, param) => {
-        this.setState({course_search_fn:false})
+        this.setState({ course_search_fn: false })
         const course_list = this.state.course_list;
         let new_course_search = {
             ...this.state.course_search,
@@ -237,17 +251,17 @@ class CourseAll extends Component {
             .filter(obj => {
                 let { price } = new_course_filter
                 if (price) {
-                    let course_price = parseInt (obj.course_price)
-                    if(price=="500元~700元"){
-                        return (500<course_price && course_price <700)
-                    }else if(price=="700元-1000元"){
-                        return(700<=course_price && course_price<1000)
-                    }else if(price =="1000元-1500元"){
-                        return(1000<=course_price && course_price<1500)
-                    }else{
-                        return(1500<=course_price)
+                    let course_price = parseInt(obj.course_price)
+                    if (price == "500元~700元") {
+                        return (500 < course_price && course_price < 700)
+                    } else if (price == "700元-1000元") {
+                        return (700 <= course_price && course_price < 1000)
+                    } else if (price == "1000元-1500元") {
+                        return (1000 <= course_price && course_price < 1500)
+                    } else {
+                        return (1500 <= course_price)
                     }
-                    
+
                 } else {
                     return true;
                 }
@@ -268,7 +282,17 @@ class CourseAll extends Component {
         return (
             <>
                 <section className="course_navbar">
-                    <nav className="course_navbar_b">
+
+                    <nav className="course_navbar_b close_move">
+                        <div className="course_wordBox">
+                            <div className="course_wordBoxUp course_bar">
+                                <p className="course_wordHalfUp">CLASS</p>
+                            </div>
+                            <div className="course_wordBoxDown course_bar">
+                                <p className="course_wordHalfDown">CLASS</p>
+                            </div>
+                        </div>
+                        <FaRegTimesCircle className="close_option " />
                         <Course_filter course_list={this.course_total_onclick.bind(this)}
                             kid_name={this.state.course_filter_title_content}
                             title={this.state.course_filter_title_wrap}
@@ -285,7 +309,7 @@ class CourseAll extends Component {
 
                     </nav>
                     <section className="course_store">
-
+                        <FaSearch className="open_option " />
                         {/* 店家選單  */}
                         <Course_navbar />
                         <section className="course_store_content_wrap">
@@ -295,7 +319,7 @@ class CourseAll extends Component {
                             </div>
                         </section>
                         {/* 店家選單結束 */}
-                        
+
                         {/* filter bar開始 */}
                         {this.state.course_search.name === "" ? (this.state.course_filter_start.length > 0 ?
                             (this.state.new_course_list.length > 0 ? <Course_list list={this.state.new_course_list} /> : null)
@@ -313,4 +337,4 @@ class CourseAll extends Component {
     }
 }
 
-export default withRouter (CourseAll);
+export default withRouter(CourseAll);

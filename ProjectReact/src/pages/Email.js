@@ -71,8 +71,12 @@ const Email = props => {
         className="login-wrap d-flex flex-column align-items-center"
         style={{ backgroundColor: "#eec1a5" }}
       >
-        <div className="mt-4">LOGO</div>
-        <p className="mt-4 mb-3">請填寫新密碼</p>
+        <div className="mt-4">
+          <img src="/image/logo/logo-03.png" alt="" width="180px" />
+        </div>
+        <p className="mt-4 mb-3" style={{ color: "#fff" }}>
+          請填寫新密碼
+        </p>
         <form>
           <ul>
             <li>

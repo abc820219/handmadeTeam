@@ -107,7 +107,9 @@ function MemberLogin(props, { checkLogIn }) {
     return (
       <>
         <div className="login-wrap d-flex flex-column align-items-center">
-          <div className="mt-4">LOGO</div>
+          <div className="mt-4">
+            <img src="/image/logo/logo-03.png" alt="" width="180px" />
+          </div>
           <FacebookLogin />
           <p className="mt-4 mb-3" style={{ color: "#fff" }}>
             使用handmade帳號登入
