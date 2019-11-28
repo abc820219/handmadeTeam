@@ -272,7 +272,7 @@ const MemberEdit = () => {
       },
       body: JSON.stringify({
         member_sid: localStorage.getItem("member_id"),
-        member_email: email ? email : member_name,
+        member_email: email ? email : member_email,
         member_name: name ? name : member_name,
         member_nickname: nickname ? nickname : member_nickname,
         member_birth: birthday ? birthday : member_birthday,

@@ -10,6 +10,7 @@ import Teacher_Subject from "../pages/Teacher_Subject";
 import Ingredients from "../pages/Ingredients";
 import MemberEmail from "../pages/Email";
 import TestStore from "../pages/TestStore";
+import FindStore from "../pages/FindStore";
 
 export { Handmade };
 export { Navgation };
@@ -23,3 +24,4 @@ export { Ingredients };
 export { Teacher_Subject };
 export { MemberEmail };
 export { TestStore };
+export { FindStore };
