@@ -10,7 +10,7 @@
 
 # production
 /build
-public/image/course_img
+public/image/course_img/detail/新資料夾
 Class_detail2.js
 package-lock.json
 package.json
