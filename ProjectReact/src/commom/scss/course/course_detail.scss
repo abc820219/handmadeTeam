@@ -283,7 +283,7 @@
           flex-direction: row;
           justify-content: center;
           // border:1px blue solid;
-          margin: -11vh 0 0 0;
+          margin: -1.5vh 0 0 0;
           .person_count {
             align-self: center;
             margin: -16px 20px;
@@ -373,7 +373,7 @@
       transform: translateX(-50%);
       left: 60.8vw;
       width: 40%;
-      height: 466px;
+      bottom: 0;
       display: flex;
       flex-direction: column;
       .detail_note_title {
@@ -740,7 +740,7 @@
             flex-direction: row;
             justify-content: center;
             // border:1px blue solid;
-            margin: -105px 0 0 0;
+            margin: -8vh 0 0 0;
             .person_count {
               align-self: center;
               margin: -16px 20px;
@@ -1199,7 +1199,7 @@
           }
           .course_detail_person {
             // border: 2px blue solid;
-            margin: -130px 0 0 0;
+            margin: -70px 0 0 0;
             width: 100%;
             display: flex;
             flex-direction: row;
@@ -1269,7 +1269,7 @@
         transform: translateX(-50%);
         left: 92%;
         font-size: 8vw;
-        top: 50%;
+        top: 60%;
         color: #e9756e;
       }
       .course_detail_img_wrap {
@@ -1289,11 +1289,12 @@
 
       .course_detail_note_wrap {
         position: absolute;
-        top: 50%;
+        top: 60%;
         transform: translateX(-50%);
         left: 30vw;
         width: 100%;
         height: 366px;
+        // bottom: 0;
         display: flex;
         flex-direction: column;
         overflow: hidden;
@@ -1391,7 +1392,7 @@
     .detail_navbar_wrap {
       position: static;
       // border: 1px blue solid;
-      height: 100vh;
+      // height: 100vh;
       display: block;
       width: inherit;
       position: relative;
@@ -1400,9 +1401,17 @@
       overflow: visible;
 
       .course_detail_wordBox {
-        width: auto;
-        height: 90px;
-        opacity: 0.89;
+        // border: 1px red solid;
+        position: fixed;
+        top: 0;
+        left: 50%;
+        z-index: 5;
+        transform: translateX(-50%);
+        width: 100%;
+        height: 120px;
+        opacity: 1;
+        overflow: hidden;
+        // background-color: #362d2b;
         p {
           font-size: 85px;
           line-height: 90px;
@@ -1410,6 +1419,7 @@
         .course_detail_bar {
           width: 100%;
           height: 60px;
+          // border: 1px red solid;
         }
         .course_detail_wordBoxUp {
           display: flex;
@@ -1436,6 +1446,7 @@
           position: relative;
           overflow: hidden;
           position: relative;
+          background-color: #362d2b;
 
           .course_detail_wordHalfDown {
             font-family: niagara, serif;
@@ -1453,8 +1464,8 @@
         // border: 5px blue solid;
         position: static;
         width: 85vw;
-        margin: 0 auto;
-
+        margin: 120px auto;
+      
         transform: translateX(0%);
         .course_detail_info {
           // border: 1px red solid;
