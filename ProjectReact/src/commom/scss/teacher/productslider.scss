@@ -7,8 +7,9 @@ $orange: #f5ddba;
 @import url("https://use.typekit.net/wuz0itu.css");
 
 body {
-  background: linear-gradient(135deg, #f0c7b3, #f4dcb9);
+  // background: linear-gradient(135deg, #f0c7b3, #f4dcb9);
   font-family: franklin-gothic-compressed, sans-serif;
+  // height: 100vh;
 }
 
 .teacher-list-page {
@@ -22,8 +23,8 @@ body {
     z-index: 1;
     position: fixed;
     bottom: 0;
-    width: 900px;
-    height: 600px;
+    width: 1180px;
+    height: 790px;
     // background: rgb(207, 163, 80);
     clip-path: polygon(0 36%, 31% 0, 100% 100%, 0% 100%);
 
@@ -33,14 +34,17 @@ body {
       background: #000;
     }
   }
+  .teacherimg-small {
+    display: none;
+  }
 
   //----切換照片的按鈕----
   .slider-btn-box {
     left: 20%;
     width: 30%;
-    margin-left: 10%;
+    margin-left: 13%;
     position: absolute;
-    bottom: 9%;
+    bottom: 7%;
     z-index: 2;
 
     button {
@@ -76,8 +80,8 @@ body {
       width: 350px;
       height: 350px;
       position: absolute;
-      left: 34%;
-      bottom: 5%;
+      left: 39%;
+      bottom: 4%;
       border-radius: 50%;
       overflow: hidden;
       border: 10px solid #f0c7b3;
@@ -93,8 +97,9 @@ body {
     position: fixed;
     top: 0;
     right: 0;
-    height: 730px;
-    width: 850px;
+    height: 900px;
+    width: 960px;
+    overflow: hidden;
     // object-fit: cover;
     // overflow: hidden;
     // background: #683;
@@ -129,8 +134,6 @@ body {
     // }
   }
 
-  // --------老師課程圖--------
-
   .teacher-page-left {
     width: 10%;
     height: 100%;
@@ -142,18 +145,20 @@ body {
     height: 100%;
   }
 
+  // 老師資料區塊
   .teacher-page-center {
     width: 80%;
     z-index: 4;
+    // height: 1020px;
     // background: #882;
-    height: 100%;
+    height: 93.5vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
 
     .teacher-name {
-      height: 50%;
-      padding-top: 5%;
+      // height: 50%;
+      padding-top: 9%;
       // background: #922;
       h1 {
         font-family: niagara, serif;
@@ -168,9 +173,9 @@ body {
       height: 30%;
       text-align: right;
       //往左移
-      padding-right: 9%;
-      padding-bottom: 2%;
-      padding-top: 3%;
+      padding-right: 15%;
+      padding-bottom: 3%;
+      padding-top: 6%;
       display: flex;
       justify-content: flex-end;
 
@@ -194,18 +199,16 @@ body {
       }
     }
 
-    // ----老師介紹introduce----
-
     // ----老師專長expertise----
     .teacher-expe {
-      height: 20%;
+      height: 30%;
       text-align: right;
       // padding-right: 1%;
 
       .teacher-expe-box {
         // background: rgb(241, 135, 28);
         width: 90%;
-        padding-top: 2%;
+        padding-top: 3%;
       }
 
       h2 {
@@ -220,27 +223,66 @@ body {
         font-family: franklin-gothic-compressed, sans-serif;
         font-weight: 600;
         font-style: medium ltalic;
-        font-size: 25px;
+        font-size: 22px;
+        // text-align: right;
       }
     }
   }
 }
-// =========RWD============
-@media (max-width: 400px) {
-  // 開課圖
-  .subject-img {
-    display: none;
-  }
-  //報名頁
-  .subject-page-left {
-    display: none;
-    z-index: 2;
-  }
-  .subject-page-right {
-    display: none;
-  }
-  // 主要區塊
-  .subject-page-center {
-    width: 100%;
+
+// =========RWD (max-width: 400px)============
+@media (max-width: 500px) {
+  .teacher-list-page {
+    .left-img {
+      display: none;
+    }
+    .silder-circle {
+      .slider-box {
+        width: 300px;
+        height: 300px;
+        position: absolute;
+        left: 11%;
+        top: 25%;
+      }
+    }
+    .right-img {
+      // display: none;
+      width: 100%;
+      height: 300px;
+      z-index: 1;
+      position: absolute;
+      overflow: hidden;
+      bottom: 0px;
+      left: 0px;
+    }
+    .teacher-page-left {
+      width: 0%;
+    }
+    .teacher-page-right {
+      width: 0%;
+    }
+    .teacher-page-center {
+      height: 100%;
+      width: 100%;
+      .teacher-name {
+        padding-top: 13%;
+        h1 {
+          font-size: 100px;
+        }
+      }
+      .teacher-intro {
+        padding-top: 80%;
+        .teacher-intro-box {
+          width: 100%;
+          margin-left: 19%;
+        }
+      }
+      .teacher-expe {
+        display: none;
+      }
+      .slider-btn-box{
+        top: 50%;
+      }
+    }
   }
 }

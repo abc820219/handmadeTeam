@@ -8,15 +8,17 @@ class OrderInfo extends Component {
     super(props);
     this.state = {
       subject_name: "",
+      subject_number:'',
       people: "1",
       // 最大可報名人數
-      maxPeople: "4"
+      maxPeople: ""
     };
   }
 
   componentDidMount() {
     // this.getApiData();
     this.getSubjectInfo();
+    this.getSubjectOrder();
   }
 
   // ------------ 取得開課資料------------
@@ -43,15 +45,44 @@ class OrderInfo extends Component {
             subject_date: Data.subject_date,
             subject_address: Data.subject_address,
             subject_price: Data.subject_price,
-            subject_img: Data.subject_img
+            subject_img: Data.subject_img,
+            subject_number:Data.subject_number
           },
           () => {
-            console.log(Data.subject_date);
+            console.log(Data.subject_number);  //開課人數
           }
         );
       });
   };
 
+  // ========取得開課訂單資料========
+  getSubjectOrder = () => {
+    console.log("this props:", this.props.subject_sid);
+    fetch(
+      "http://localhost:5000/handmade/teacher/order/" + this.props.subject_sid,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "content-type": "application/json"
+        }
+      }
+    )
+      .then(res => res.json())
+      .then(data => {
+        let Data = data[0];
+        // console.log("subject data:", Data[0]);
+        console.log("total:", Data[0].OrderTotal);
+        this.setState(
+          {
+            orderPeople: Data[0].OrderTotal
+          },
+          () => {
+            console.log(this.state.orderPeople); //總報名人數
+          }
+        );
+      });
+  };
   // ------ get API 取得報名人數、載入報名資料 ------
   // getApiData = () => {
   //   fetch("http://localhost:3000/teacher/")
@@ -69,12 +100,12 @@ class OrderInfo extends Component {
     // console.log("plus");
     this.setState({
       people:
-        this.state.people >= this.state.maxPeople
-          ? this.state.maxPeople
+        this.state.people >= (this.state.subject_number - this.state.orderPeople)
+          ? (this.state.subject_number - this.state.orderPeople)
           : this.state.people * 1 + 1
       // totalPrice:this.state.people*this.state.subjectPrice
     });
-    // console.log(this.state.people * 1 + 1);
+    console.log((this.state.subject_number-this.state.orderPeople));
   };
 
   //------------ 報名人數減少處理------------
@@ -90,13 +121,12 @@ class OrderInfo extends Component {
   // // 改變文字onChange功能
   handleChange = e => {
     // 判斷名字英文或中文都可
-    let regex = /^[u4E00-\u9FA5]+$/      
-    let value=e.target.value
-    if (!(regex.test(value) || value === '')) 
-      return false
+    let regex = /^[u4E00-\u9FA5]+$/;
+    let value = e.target.value;
+    if (!(regex.test(value) || value === "")) return false;
     this.setState({ [e.target.name]: e.target.value }, () => {
       // console.log("order_sid:",localStorage.getItem('member_id'))
-      console.log("subject_sid:",this.props.subject_sid)
+      console.log("subject_sid:", this.props.subject_sid);
       // console.log("phone:", this.state.phone);
       console.log("username:", this.state.username);
     });
@@ -106,13 +136,13 @@ class OrderInfo extends Component {
   // ------------post API 上傳報名資料------------
   //post表單到資料庫
   postMeberInfo = () => {
-    let usersid = localStorage.getItem('member_id'); //(在Application裡看)抓localStorage裡key為member_id的value
-     
-    console.log("order_sid:",usersid) ;
-    console.log("subject_sid:",this.props.subject_sid,);
-    console.log("username:",this.state.username)
-    console.log("phone:",this.state.phone);
-    console.log("people:",this.state.people);
+    let usersid = localStorage.getItem("member_id"); //(在Application裡看)抓localStorage裡key為member_id的value
+
+    console.log("order_sid:", usersid);
+    console.log("subject_sid:", this.props.subject_sid);
+    console.log("username:", this.state.username);
+    console.log("phone:", this.state.phone);
+    console.log("people:", this.state.people);
     console.log(this.state.subject_price * this.state.people);
 
     let postData = {
@@ -121,14 +151,14 @@ class OrderInfo extends Component {
       username: this.state.username,
       phone: this.state.phone,
       people: this.state.people,
-      totalPrice: this.state.subject_price * this.state.people  //訂單總價
+      totalPrice: this.state.subject_price * this.state.people //訂單總價
     };
-    if (this.state.username !== '' && this.state.phone !== ''){
-       fetch("http://localhost:5000/handmade/teacher/subject/order", {
+    if (this.state.username !== "" && this.state.phone !== "") {
+      fetch("http://localhost:5000/handmade/teacher/subject/order", {
         method: "POST",
-         headers: {
-        "Content-Type": "application/json"
-      },
+        headers: {
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify(postData)
       })
         .then(function(response) {
@@ -140,9 +170,9 @@ class OrderInfo extends Component {
         .catch(error => {
           console.log(error);
         });
-    }else{
-       alert('請輸入完整資料哦');
-    }   
+    } else {
+      alert("請輸入完整資料哦");
+    }
   };
 
   render() {

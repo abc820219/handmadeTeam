@@ -1,6 +1,4 @@
-import React, { useEffect } from 'react'
-
-
+import React, { useEffect ,useState} from 'react'
 
 const SvgComponent = props => {
   // console.log(props); 
@@ -26,16 +24,10 @@ const SvgComponent = props => {
     let areaNumber = document.querySelectorAll(".taiwanMap path");
     // console.log(areaNumber) // 地區號碼
     areaNumber.forEach(element => {
-      // console.log(element);
-      // console.log(element.getAttribute("mapValue"));
-      // console.log(areaHaveStore[element.getAttribute("mapValue")]); 
       if(areaHaveStore[element.getAttribute("mapValue")]){
-        // element.classList.add('prefix__storeCountry');
-        // element.classList.remove('areaNoHaveStore');
         let areaStoreMapValue = element.getAttribute("mapValue");
         // console.log(element); //有店家
         element.addEventListener('click',()=>{storeData(areaStoreMapValue)})
-        
       } else{
         // console.log(element); //沒店家
         // element.classList.add('areaNoHaveStore');

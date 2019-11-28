@@ -36,7 +36,6 @@ const CartLeft = ({
   } = usePaymentInputs();
   const { erroredInputs, touchedInputs } = meta;
 
-  console.log(courseCart, ingreCart);
   let CartTotal = (courseCards, ingreCards) => {
     if (courseCards && ingreCards) {
       let courseTotal = courseCards.reduce((courseCardA, courseCardB) => {
@@ -48,7 +47,7 @@ const CartLeft = ({
       let ingreTotal = ingreCards.reduce((ingreCardA, ingreCardB) => {
         return (
           ingreCardA +
-          ingreCardB.ingredient_order_quantity * ingreCardB.ingredients_price
+          ingreCardB.ingredients_order_quantity * ingreCardB.ingredients_price
         );
       }, 0);
       return courseTotal + ingreTotal;
@@ -128,7 +127,7 @@ const CartLeft = ({
   console.log(couponUse.length);
   return (
     <>
-      <div className="col-4 px-3 checkLeftBox">
+      <div className="col-md-4  col-12 px-3 checkLeftBox">
         <div>
           <div className="checkPageIconBox d-flex align-items-center justify-content-around">
             <div
