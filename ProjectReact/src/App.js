@@ -23,7 +23,8 @@ import {
   Ingredients,
   MemberEmail,
   Course_detail,
-  TestStore
+  TestStore,
+  FindStore
 } from "./routes/index";
 
 import CartStore from "./components/cart/CartStore";
@@ -68,15 +69,17 @@ function App() {
   return (
     <>
       <Router history={BrowserRouter}>
-          <CartStore.Provider
-            value={{
-              id: id,
-              cartCourseDispatch,
-              courseCart: cartCourseState,
-              cartIngreDispatch,
-              ingreCart: cartIngreState
-            }}
-          >  <Switch>
+        <CartStore.Provider
+          value={{
+            id: id,
+            cartCourseDispatch,
+            courseCart: cartCourseState,
+            cartIngreDispatch,
+            ingreCart: cartIngreState
+          }}
+        >
+          {" "}
+          <Switch>
             <Route path="/" exact component={Navgation}></Route>
             <Route
               path="/handmade/"
@@ -124,6 +127,13 @@ function App() {
               )}
             ></Route>
             <Route
+              path="/handmade/findstore/"
+              exact
+              component={() => (
+                <FindStore login={{ login }} checkLogIn={checkLogIn} />
+              )}
+            ></Route>
+            <Route
               path="/handmade/teacher/"
               exact
               component={() => (
@@ -146,9 +156,9 @@ function App() {
                 <Ingredients login={{ login }} checkLogIn={checkLogIn} />
               )}
             ></Route>
-            <Route path="" component={()=>(404)} />
-            </Switch>
-          </CartStore.Provider>
+            <Route path="" component={() => 404} />
+          </Switch>
+        </CartStore.Provider>
       </Router>
     </>
   );
