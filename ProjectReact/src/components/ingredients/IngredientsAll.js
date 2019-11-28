@@ -102,11 +102,15 @@ const IngredientsAll = (props) => {
     }
 
     const ingreSelectLoop = (v, ingreCart) => {
-
-        return ingreCart.some(ingre => ingre.ingredients_sid === v.ingredients_sid)
+        console.log(v);
+        console.log(ingreCart);
+        return ingreCart.some(ingre => {
+            // console.log(ingre.ingredients_name == v.ingredients_name);
+            return ingre.ingredients_name === v.ingredients_name
+        })
     }
     const putInCart = (id, ingredient) => {
-        const { ingredients_sid, ingredients_name, ingredients_en_name, ingredients_image, ingredients_price } = ingredient;
+        const { ingredients_sid, ingredients_name, ingredients_en_name, ingredients_image, ingredients_price} = ingredient;
         const newIngre = {
             ingredients_sid: ingredients_sid,
             ingredients_name: ingredients_name,
@@ -252,7 +256,7 @@ const IngredientsAll = (props) => {
                                                     href
                                                 >
                                                     <TiShoppingCart className="cartReactIcon" />
-                                                    <p>放入購物車</p>
+                                                    <p>{ingreCart.length !== 0 && ingreSelectLoop(ingredient, ingreCart)?'取出購物車':'放入購物車'}</p>
                                                 </a>
                                             </div>
                                         </li>
