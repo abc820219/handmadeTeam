@@ -69,6 +69,8 @@ const IngredientsAll = (props) => {
     //     setBakebool(false);
     // }
 
+    console.log(bakeAllDataShow)
+
     const selectBakeItem = async (bakeSid) => {
         bakeSid = JSON.stringify({ bakeSid: bakeSid });
         try {
@@ -102,8 +104,8 @@ const IngredientsAll = (props) => {
     }
 
     const ingreSelectLoop = (v, ingreCart) => {
-        console.log(v);
-        console.log(ingreCart);
+        console.log(v.ingredients_name);
+        console.log(ingreCart.ingredients_name);
         return ingreCart.some(ingre => {
             // console.log(ingre.ingredients_name == v.ingredients_name);
             return ingre.ingredients_name === v.ingredients_name
