@@ -11,12 +11,12 @@ const SmallCart = ({ openCart, showCart }) => {
 
   let { courseCart, ingreCart } = useContext(CartStore);
 
-  const [cartBtn , setCartBtn] = useState(false)
+  const [cartBtn, setCartBtn] = useState(false)
 
   useEffect(() => {
-    if(courseCart.length!==0 || ingreCart.length!==0){
+    if (courseCart.length !== 0 || ingreCart.length !== 0) {
       setCartBtn(true)
-    }else{
+    } else {
       setCartBtn(false)
     }
   }, [])
@@ -65,7 +65,7 @@ const SmallCart = ({ openCart, showCart }) => {
               {courseCart.map((courseC, index) => {
                 return <CartCourse
                   key={`c_${index}`}
-                  courseSid = {courseC.course_sid}
+                  courseSid={courseC.course_sid}
                   courseName={courseC.course_name}
                   courseOrderApplicants={courseC.course_order_applicants}
                   courseOrderChoose={courseC.course_order_choose}
@@ -78,15 +78,15 @@ const SmallCart = ({ openCart, showCart }) => {
               <div className="course-title py-3">食材訂單</div>
               <hr className="hr-bottom"></hr>
               {ingreCart.map((ingreC, index) => {
-               return  <CartIngre 
-                 key={`i_${index}`}
-                 ngreSid={ingreC.ingredients_sid}
+                return <CartIngre
+                  key={`i_${index}`}
+                  ingreSid={ingreC.ingredients_sid}
                   ingreName={ingreC.ingredients_name}
                   ingrePic={ingreC.ingredients_img}
                   ingreOrderQty={ingreC.ingredients_order_quantity}
                   ingreEnName={ingreC.ingredients_en_name}
                   ingrePrice={ingreC.ingredients_price}
-               />
+                />
               })}
               <hr className="hr-bottom"></hr>
             </div>
@@ -103,11 +103,11 @@ const SmallCart = ({ openCart, showCart }) => {
           <span className="cartTotal">$ {CartTotal(courseCart, ingreCart)}</span>
         </div>
         <div>
-          <Link to="/handmade/member/cart" style={cartBtn?{color:'white'}:{color:'white',pointerEvents:'none'}}>
+          <Link to="/handmade/member/cart" style={cartBtn ? { color: 'white' } : { color: 'white', pointerEvents: 'none' }}>
             <div
               className="cartBtn"
             >
-            購買
+              購買
             </div>
           </Link>
         </div>

@@ -5,7 +5,7 @@ import { MdCancel } from "react-icons/md";
 import { cancelIngre } from './CartAction';
 import CartStore from './CartStore'
 
-const CartIngre = ({ingreName,ingreOrderQty, ingreEnName,ingrePrice ,ingreSid}) => {
+const CartIngre = ({ingreSid,ingreName,ingrePic,ingreOrderQty,ingreEnName,ingrePrice}) => {
   const { ingreCart, id, cartIngreDispatch } = useContext(CartStore);
 
   const ingreSelect = (ingreSid) => {
