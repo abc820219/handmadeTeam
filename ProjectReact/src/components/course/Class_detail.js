@@ -11,7 +11,8 @@ import {
   addCourse,
   cancelCourse,
 } from "../../components/cart/CartAction";
-
+import { IoIosClose, IoIosRewind } from "react-icons/io";
+import $ from "jquery";
 
 function Class_detail(props) {
   let productDetail;
@@ -41,6 +42,9 @@ function Class_detail(props) {
   const [order_afternoon, setOrder_afternoon] = useState("")
   const [order_noon, setOrder_noon] = useState("")
   const [start, setStart] = useState("")
+  const [course_note_title, setCourse_note_title] = useState(["體驗包含", "費用包含", "注意事項", "取消辦法"])
+  const [note_btn_now, setNote_btn_now] = useState("體驗包含")
+
   const [correctDay, setCorrectDay] = useState("")
 
   const [checkCart, setCheckCart] = useState(false);
@@ -60,6 +64,20 @@ function Class_detail(props) {
       let afternoon = "15:00"
       let noon_str = "T04:00:00.000Z";
       let afternoon_str = "T07:00:00.000Z";
+
+      //////////////////////////
+      $(".detail_note_title_txt").click(function (event) {
+        $(this).addClass("detail_title_click").siblings().removeClass("detail_title_click")
+        setNote_btn_now($(event.target).text())
+      })
+
+      $(".note_content_close").click(function () {
+        $(".course_detail_note_wrap").addClass("detail_img_note_wrap_move")
+      })
+      $(".detail_img_note_wrap_move_open").click(function () {
+        $(".course_detail_note_wrap").removeClass("detail_img_note_wrap_move")
+      })
+
       //////////人數相加////////
       let person_sum = (arr) => {
         let sum = 0;
@@ -289,9 +307,11 @@ function Class_detail(props) {
   }
 
   const checkBottom = () => {
-    if (correctDay && course_time_select && course_person) {
+    if (correctDay && course_time_select) {
+      console.log("checkcheckTrue");
       setCheckCart(true);
     } else {
+      console.log("checkcheckFalse");
       setCheckCart(false);
     }
   }
@@ -351,6 +371,14 @@ function Class_detail(props) {
   return (
     <div className="course_detail">
       <div className="detail_navbar_wrap">
+        <div className="course_detail_wordBox">
+          <div className="course_detail_wordBoxUp course_detail_bar">
+            <p className="course_detail_wordHalfUp">CLASS</p>
+          </div>
+          <div className="course_detail_wordBoxDown course_detail_bar">
+            <p className="course_detail_wordHalfDown">CLASS</p>
+          </div>
+        </div>
         <div className="detail_navbar">
           <div className="course_detail_info">
             <div className="course_detail_name">
@@ -400,7 +428,7 @@ function Class_detail(props) {
               >
                 <DatePicker
                   selected={startDate}
-                  onChange={date => setCorrectDate(date)}
+                  onChange={date => setStartDate(date)}
                   inline
                 />
 
@@ -412,8 +440,7 @@ function Class_detail(props) {
               <button className="detail_person_btn" onClick={() => setCourse_person(course_person + 1)}><FaPlus className="person_icon" /></button>
             </div>
             <div className="course_detail_cart">
-              <button type="button" className="detail_cart_icon_btn" disabled={!checkCart} style={!checkCart ? { opacity: '0.3', pointerEvent: 'none', cursor: 'not-allowed' } : {}}
-                onClick={() => { putInCart(productDetail, correctDay, course_time_select, course_person, courseCart, id) }}>
+            <button type="button" className="detail_cart_icon_btn">
                 <FaShoppingBasket className="cart_icon" />
                 <div>Add to Cart</div>
               </button>
@@ -422,6 +449,33 @@ function Class_detail(props) {
         </div>
 
       </div>
+
+      <div className="detail_img_note_wrap">
+        <figure className="course_detail_img_wrap">
+          <img className="course_detail_img" src={`/image/course_img/detail/${order_data.course_detail}`} />
+        </figure>
+        <IoIosRewind className="detail_img_note_wrap_move_open" />
+        <div className="course_detail_note_wrap ">
+          <div className="detail_note_title">
+            {course_note_title && course_note_title.map((str, index) => <button className={note_btn_now == str ? "detail_note_title_txt detail_title_click" : "detail_note_title_txt "} key={index}>{str}</button>)}
+          </div>
+          <div className="note_content">
+            <div className="note_content_close_title">
+              <IoIosClose className="note_content_close" />
+              {course_note_title && course_note_title.map((str, index) => <div className={note_btn_now == str ? "note_content_title " : "note_content_none"} key={index}>{str}</div>)}
+            </div>
+            <div className="note_content_txt_wrap">
+              <div style={{ whiteSpace: 'pre-wrap' }} className={note_btn_now == course_note_title[0] ? "note_content_txt" : "note_content_none"}>{dataNote[1]}</div>
+              <div style={{ whiteSpace: 'pre-wrap' }} className={note_btn_now == course_note_title[1] ? "note_content_txt" : "note_content_none"} >{dataNote[2]}</div>
+              <div style={{ whiteSpace: 'pre-wrap' }} className={note_btn_now == course_note_title[2] ? "note_content_txt" : "note_content_none"}>{dataNote[4]}</div>
+              <div style={{ whiteSpace: 'pre-wrap' }} className={note_btn_now == course_note_title[3] ? "note_content_txt" : "note_content_none"} >{dataNote[0]}</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
     </div>
 
   )

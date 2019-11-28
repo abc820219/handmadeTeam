@@ -1,22 +1,22 @@
-import React, { useEffect, useState, useContext, useCallback } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "../../commom/scss/cart/memberCart.scss";
 import CartCourse from "./CartCourse";
 import CartIngre from "./CartIngre";
 import { Link } from "react-router-dom";
 import CartStore from "./CartStore";
-import { courseCartRerender, ingreCartRerender } from './CartAction';
+
+
 
 const SmallCart = ({ openCart, showCart }) => {
 
-  let { courseCart, ingreCart, id, cartCourseDispatch, cartIngreDispatch } = useContext(CartStore);
-console.log(courseCart, ingreCart);
+  let { courseCart, ingreCart } = useContext(CartStore);
 
-  const [cartBtn , setCartBtn] = useState(false)
+  const [cartBtn, setCartBtn] = useState(false)
 
   useEffect(() => {
-    if(courseCart.length!==0 || ingreCart.length!==0){
+    if (courseCart.length !== 0 || ingreCart.length !== 0) {
       setCartBtn(true)
-    }else{
+    } else {
       setCartBtn(false)
     }
   }, [])
@@ -35,7 +35,7 @@ console.log(courseCart, ingreCart);
       let ingreTotal = ingreCart.reduce((ingreCardA, ingreCardB) => {
         return (
           ingreCardA +
-          ingreCardB.ingredient_order_quantity * ingreCardB.ingredients_price
+          ingreCardB.ingredients_order_quantity * ingreCardB.ingredients_price
         );
       }, 0);
       return courseTotal + ingreTotal;
@@ -43,7 +43,8 @@ console.log(courseCart, ingreCart);
       return "沒有商品";
     }
   };
-  console.log(cartBtn);
+
+
   return (
     <>
       <div
@@ -64,11 +65,11 @@ console.log(courseCart, ingreCart);
               {courseCart.map((courseC, index) => {
                 return <CartCourse
                   key={`c_${index}`}
+                  courseSid={courseC.course_sid}
                   courseName={courseC.course_name}
                   courseOrderApplicants={courseC.course_order_applicants}
                   courseOrderChoose={courseC.course_order_choose}
-                  courseOrderTime={courseC.course_order_time}
-                  courseLists={courseC.course_lists}
+                  courseList={courseC.course_list}
                 />
               })}
               <hr className="hr-bottom"></hr>
@@ -77,13 +78,15 @@ console.log(courseCart, ingreCart);
               <div className="course-title py-3">食材訂單</div>
               <hr className="hr-bottom"></hr>
               {ingreCart.map((ingreC, index) => {
-               return  <CartIngre 
-                 key={`i_${index}`}
-                  ingreName={ingreC.ingredient_name}
-                  ingreOrderQty={ingreC.ingredient_order_quantity}
+                return <CartIngre
+                  key={`i_${index}`}
+                  ingreSid={ingreC.ingredients_sid}
+                  ingreName={ingreC.ingredients_name}
+                  ingrePic={ingreC.ingredients_pic}
+                  ingreOrderQty={ingreC.ingredients_order_quantity}
                   ingreEnName={ingreC.ingredients_en_name}
                   ingrePrice={ingreC.ingredients_price}
-               />
+                />
               })}
               <hr className="hr-bottom"></hr>
             </div>
@@ -100,11 +103,11 @@ console.log(courseCart, ingreCart);
           <span className="cartTotal">$ {CartTotal(courseCart, ingreCart)}</span>
         </div>
         <div>
-          <Link to="/handmade/member/cart" style={cartBtn?{color:'white'}:{color:'white',pointerEvents:'none'}}>
+          <Link to="/handmade/member/cart" style={cartBtn ? { color: 'white' } : { color: 'white', pointerEvents: 'none' }}>
             <div
               className="cartBtn"
             >
-            購買
+              購買
             </div>
           </Link>
         </div>

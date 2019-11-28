@@ -8,15 +8,17 @@ class OrderInfo extends Component {
     super(props);
     this.state = {
       subject_name: "",
+      subject_number:'',
       people: "1",
       // 最大可報名人數
-      maxPeople: "4",
+      maxPeople: ""
     };
   }
 
   componentDidMount() {
     // this.getApiData();
     this.getSubjectInfo();
+    this.getSubjectOrder();
   }
 
   // ------------ 取得開課資料------------
@@ -35,23 +37,52 @@ class OrderInfo extends Component {
     )
       .then(res => res.json())
       .then(data => {
-        let Data = data[0];
+        let Data = data;
         console.log("subject data:", Data);
         this.setState(
           {
-            subject_name: Data[0].subject_name,
-            subject_date: Data[0].subject_date,
-            subject_address: Data[0].subject_address,
-            subject_price: Data[0].subject_price,
-            subject_img: Data[0].subject_img
+            subject_name: Data.subject_name,
+            subject_date: Data.subject_date,
+            subject_address: Data.subject_address,
+            subject_price: Data.subject_price,
+            subject_img: Data.subject_img,
+            subject_number:Data.subject_number
           },
           () => {
-           console.log(Data[0].subject_date);
+            console.log(Data.subject_number);  //開課人數
           }
         );
       });
   };
 
+  // ========取得開課訂單資料========
+  getSubjectOrder = () => {
+    console.log("this props:", this.props.subject_sid);
+    fetch(
+      "http://localhost:5000/handmade/teacher/order/" + this.props.subject_sid,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "content-type": "application/json"
+        }
+      }
+    )
+      .then(res => res.json())
+      .then(data => {
+        let Data = data[0];
+        // console.log("subject data:", Data[0]);
+        console.log("total:", Data[0].OrderTotal);
+        this.setState(
+          {
+            orderPeople: Data[0].OrderTotal
+          },
+          () => {
+            console.log(this.state.orderPeople); //總報名人數
+          }
+        );
+      });
+  };
   // ------ get API 取得報名人數、載入報名資料 ------
   // getApiData = () => {
   //   fetch("http://localhost:3000/teacher/")
@@ -69,12 +100,12 @@ class OrderInfo extends Component {
     // console.log("plus");
     this.setState({
       people:
-        this.state.people >= this.state.maxPeople
-          ? this.state.maxPeople
+        this.state.people >= (this.state.subject_number - this.state.orderPeople)
+          ? (this.state.subject_number - this.state.orderPeople)
           : this.state.people * 1 + 1
       // totalPrice:this.state.people*this.state.subjectPrice
     });
-    // console.log(this.state.people * 1 + 1);
+    console.log((this.state.subject_number-this.state.orderPeople));
   };
 
   //------------ 報名人數減少處理------------
@@ -88,34 +119,64 @@ class OrderInfo extends Component {
   };
 
   // // 改變文字onChange功能
-  // handleChange = e => {
-  //   this.setState({ [e.target.name]: e.target.value }, () => {
-  //     console.log(this.state.username);
-  //   });
-  //   // console.log(this.state.username)  <= 會慢一步，錯誤寫法
-  // };
+  handleChange = e => {
+    // 判斷名字英文或中文都可
+    let regex = /^[u4E00-\u9FA5]+$/;
+    let value = e.target.value;
+    if (!(regex.test(value) || value === "")) return false;
+    this.setState({ [e.target.name]: e.target.value }, () => {
+      // console.log("order_sid:",localStorage.getItem('member_id'))
+      console.log("subject_sid:", this.props.subject_sid);
+      // console.log("phone:", this.state.phone);
+      console.log("username:", this.state.username);
+    });
+    // console.log(this.state.username)  <= 會慢一步，錯誤寫法
+  };
 
   // ------------post API 上傳報名資料------------
+  //post表單到資料庫
   postMeberInfo = () => {
+    let usersid = localStorage.getItem("member_id"); //(在Application裡看)抓localStorage裡key為member_id的value
+
+    console.log("order_sid:", usersid);
+    console.log("subject_sid:", this.props.subject_sid);
+    console.log("username:", this.state.username);
+    console.log("phone:", this.state.phone);
+    console.log("people:", this.state.people);
+    console.log(this.state.subject_price * this.state.people);
+
     let postData = {
+      usersid: usersid, //會員訂單編號
+      subject_sid: this.props.subject_sid,
       username: this.state.username,
       phone: this.state.phone,
-      pepple:this.state.people
+      people: this.state.people,
+      totalPrice: this.state.subject_price * this.state.people //訂單總價
     };
-    fetch("http://localhost:3000/api/upload", {
-      method: "POST",
-      body: postData
-    })
-      .then(function(response) {
-        return response.json();
+    if (this.state.username !== "" && this.state.phone !== "") {
+      fetch("http://localhost:5000/handmade/teacher/subject/order", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(postData)
       })
-      .then(function(data) {
-        alert("上傳成功");
-      });
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(data) {
+          alert("上傳成功");
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    } else {
+      alert("請輸入完整資料哦");
+    }
   };
 
   render() {
-    console.log("props:", this.props.subject_sid);
+    // console.log("props:", this.props.subject_sid);
     // console.log(this.state.username);
     return (
       <>
@@ -124,7 +185,10 @@ class OrderInfo extends Component {
             <div className="subject-header"></div>
             {/* 開課圖 */}
             <div className="subject-smallimg">
-              <img className="sub-img" src={`/image/${this.state.subject_img}`}></img>
+              <img
+                className="sub-img"
+                src={`/image/${this.state.subject_img}`}
+              ></img>
             </div>
             <div className="subject-data">
               <div className="order-subject-name">
@@ -133,8 +197,32 @@ class OrderInfo extends Component {
               <div className="order-subject-date">
                 {this.state.subject_date}
               </div>
-              <div className="order-subject-address">{this.state.subject_address}</div>
-              <div>會員xxx</div>
+              {/* <div className="order-subject-address">
+                {this.state.subject_address}
+              </div> */}
+              {/* <div className="member-name">會員xxx</div> */}
+              <div className="user-box">
+                <label>報名人 :</label>
+                <input
+                  className="input-box"
+                  type="text"
+                  name="username"
+                  value={this.state.username}
+                  onChange={e => this.handleChange(e)}
+                  placeholder="Enter UserName"
+                />
+              </div>
+              <div className="phone-box">
+                <label>Phone :</label>
+                <input
+                  className="input-box"
+                  type="number"
+                  name="phone"
+                  value={this.state.phone}
+                  onChange={e => this.handleChange(e)}
+                  placeholder="Enter Phone"
+                />
+              </div>
             </div>
             <div className="price-info">
               <div className="price-info-line">
@@ -149,9 +237,7 @@ class OrderInfo extends Component {
                 <button className="minus" onClick={this.minus}>
                   -
                 </button>
-                <span className="price-right">
-                  {this.state.people}
-                </span>
+                <span className="price-right">{this.state.people}</span>
                 <button className="plus" onClick={this.plus}>
                   +
                 </button>

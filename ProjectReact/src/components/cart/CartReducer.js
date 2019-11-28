@@ -56,6 +56,7 @@ export const cartIngreReducer = (state, { type, payload }) => {
         `ingreCart${id}`,
         JSON.stringify([...newIngre, addIngre])
       );
+      console.log(addIngre);
       return [...newIngre, addIngre];
       break;
     }

@@ -21,7 +21,7 @@ $color-storeDown: #E9756E;
         width: 470px;
         .storeUp {
             height: 60px;
-            background-color: rgba($bgc-topLeft,0.5);
+            background-color: #968472;
             overflow: hidden;
             p {
                 font-size: 120px;
@@ -37,7 +37,7 @@ $color-storeDown: #E9756E;
                 p {
                     font-size: 120px;
                     line-height: 120px;
-                    margin-left: 95px;
+                    margin-left: 90px;
                     margin-top: -55px;
                     font-weight: 600;
                     color: $color-storeDown;
@@ -298,7 +298,7 @@ $color-storeDown: #E9756E;
 
 
 
-// max-width 1200px
+// max-width 939px
 @media screen and (max-width: 939px) {
     .storeAll {
         display: block;
@@ -307,6 +307,10 @@ $color-storeDown: #E9756E;
             position: relative;
             width: 100%;
             .storeUp {
+                position: fixed;
+                z-index: 500;
+                top: 0;
+                width: 100%;
                 display: flex;
                 justify-content: center;
                 p {
@@ -315,10 +319,16 @@ $color-storeDown: #E9756E;
             }
             .storeDown {
                 .storeDownName {
+                    position: fixed;
+                    z-index: 500;
+                    width: 100%;
+                    top: 60px;
+                    height: 60px;
+                    background-color: $bgc-dark;
                     p {
                         display: flex;
                         justify-content: center;
-                        margin-left: 10px;
+                        margin-left: 0px;
                     }
                 }                
                 .storeMap {
@@ -329,13 +339,17 @@ $color-storeDown: #E9756E;
                 }
                 .storeSelect {
                     display: block;
+                    margin-top: 120px;
                 }
             }
         }
         .storeList {
-            margin-left: 0px;
-            width: 100%;
+            margin: 0 auto;
+            width: 99%;
         }
+    }
+    .storeMasonryCard {
+        margin: 0 15px 15px 15px;
     }
 }
 
@@ -348,12 +362,30 @@ $color-storeDown: #E9756E;
             position: relative;
             width: 100%;
             .storeUp {
-                
+                p{
+                    font-size: 80px;
+                    line-height: 90px;
+                    margin-left: 30px;
+                    margin-top: 15px;
+                    font-weight: 600;
+                }
             }
             .storeDown {
+                .storeDownName {
+                    p {
+                        font-size: 80px;
+                        line-height: 90px;
+                        margin-left: 30px;
+                        margin-top: -45px;
+                        font-weight: 600;
+                        color: $color-storeDown;
+                    }
+                }
                 .storeButtonGroup {
                     ul.storeCheckboxGroup {
+                        width: 355px;
                         li.storeCheckboxItem label span {
+                            width: 175px;
                             height: 50px;
                             line-height: 22px;
                             font-size: 20px;

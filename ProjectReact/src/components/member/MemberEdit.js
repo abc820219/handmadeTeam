@@ -3,10 +3,12 @@ import "../../commom/scss/member/memberEdit.scss";
 import { FaUserAlt, FaBirthdayCake, FaAddressCard } from "react-icons/fa";
 import { MdEmail, MdPhoneAndroid } from "react-icons/md";
 import { FiXCircle } from "react-icons/fi";
-
 import MemberInfo from "./MemberInfo";
+import UseWinSize from "../../components/UseWinSize";
+
 const MemberEdit = () => {
   //會員----------------------------------------------------------
+  const size = UseWinSize();
   const [member_address, setmember_address] = useState("");
   const [member_birthday, setmember_birthday] = useState("");
   const [member_email, setmember_email] = useState("");
@@ -70,12 +72,12 @@ const MemberEdit = () => {
     return () => (isSub = false);
   }, []);
   //資料載入完成-------------------------------------------------
-
   return (
     <div className="container-fluid MemberEdit">
       <div className="row">
         <MemberInfo></MemberInfo>
-        <div className="col-12 col-md-8 d-flex flex-column bg-linear">
+        <div className="col-12 col-md-8 d-flex flex-column bg-linear control">
+          <p className="bottomText">MEMBER</p>
           <form>
             <div className="MemberEditHeader ">
               <h4>

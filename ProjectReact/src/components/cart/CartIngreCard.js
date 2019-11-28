@@ -15,12 +15,12 @@ const CartIngreCard = ({
 }) => {
   const { step,id, cartIngreDispatch,ingreCart} = useContext(CartStore);
   let invisible_button = { visibility: step ? "hidden" : "visible" };
-  console.log(ingreCart);
   const courseInfo = {
-    ingredient_sid: ingre_sid,
-    ingredient_name: ingre_name,
-    ingredients_price: ingre_pic,
-    ingredient_order_quantity: ingre_order_quantity,
+    ingredients_sid: ingre_sid,
+    ingredients_name: ingre_name,
+    ingredients_pic : ingre_pic,
+    ingredients_price: ingre_price,
+    ingredients_order_quantity: ingre_order_quantity,
     ingredients_en_name: ingre_en_name,
   };
 
@@ -36,7 +36,6 @@ const CartIngreCard = ({
           <h4>
             <span>{ingre_en_name}</span>
             <br/>
-            February 20th
           </h4>
           <h2>{ingre_name}</h2>
         </div>
@@ -66,7 +65,7 @@ const CartIngreCard = ({
         </div>
         <figure>
           <img
-            src="https://lumiere-a.akamaihd.net/v1/images/c94eed56a5e84479a2939c9172434567c0147d4f.jpeg?region=0,0,600,600"
+            src={"/image/ingredients/"+ingre_pic}
             alt="product pic"
           />
         </figure>

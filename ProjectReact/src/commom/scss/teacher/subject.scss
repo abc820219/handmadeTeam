@@ -9,13 +9,20 @@ $maincolor: #f78177;
 @import url("https://use.typekit.net/wuz0itu.css");
 // subject-price字體
 @import url("https://use.typekit.net/wuz0itu.css");
+//teacher-link字體
+@import url("https://use.typekit.net/wuz0itu.css");
 
 .subject-page {
   background: linear-gradient(135deg, #f0c7b3, #f4dcb9);
   position: relative;
   align-items: center;
   text-align: center;
+  overflow: hidden;
 
+  //-----開課圖-----
+  .small-img {
+    display: none;
+  }
   .subject-img {
     height: 960px;
     width: 960px;
@@ -24,18 +31,64 @@ $maincolor: #f78177;
     left: 0;
     clip-path: polygon(0 0, 0% 100%, 100% 100%);
     background-color: #456;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
 
   .subject-page-left {
     width: 20%;
-    height: 100%;
-    background: #726;
+    // height: 100%;
+    z-index: 2;
   }
 
   .subject-page-right {
     width: 20%;
-    height: 100%;
-    background: rgb(61, 160, 61)
+    height: 100vh;
+    background: #f78177;
+    opacity: 66%;
+  }
+  // ----文字裝飾區塊-----
+  .wordBox {
+    // width: 100vw;
+    height: 67%;
+    transform: rotate(45deg);
+    pointer-events: none;
+    left: 8.5%;
+    top: 46%;
+    overflow: hidden;
+
+    .wordBoxUp {
+      // width: 100vw;
+      height: 25vh;
+      position: relative;
+      overflow: hidden;
+      .wordHalfUp {
+        font-family: niagara, serif;
+        position: absolute;
+        // font-size: 256px;
+        font-size: 280px;
+        top: 25%;
+        overflow: hidden;
+      }
+    }
+    .wordBoxDown {
+      // width: 100vw;
+      height: 25vh;
+      position: relative;
+      overflow: hidden;
+      .wordHalfDown {
+        font-family: niagara, serif;
+        position: absolute;
+        // font-size: 256px;
+        font-size: 280px;
+        top: -75%;
+        // color: #cccccc;
+        overflow: hidden;
+      }
+    }
   }
 
   // ----主要內容區塊-----
@@ -44,71 +97,82 @@ $maincolor: #f78177;
     height: 100%;
     display: flex;
     flex-direction: column;
+    z-index: 2;
 
     .subject-name {
-      height: 20%;
-      padding-left: 41%;
+      // height: 10%;
+      padding-left: 30%;
       display: flex;
-      // border: 1px solid red;
 
       .subject-name-box {
-        width: 100%;
-        // border: 1px solid #123;
-        margin-top: 1%;
+        width: 78%;
 
-        // padding-right: 20%;
         p {
-          margin: 0;
+          // margin: 0;
           font-family: niagara, serif; // 主要字型
           font-weight: 400;
           font-style: normal;
-          font-size: 140px;
-          z-index: 2;
+          font-size: 130px;
+          // z-index: 2;
         }
 
         .color-section {
-          margin-top: -20%;
-          margin-left: 43%;
+          margin-top: -22%;
+          margin-left: 53%;
+          // width: 55%;
           width: 447px;
-          height: 120px;
+          height: 100px;
+          // height: 90%;
           background: $maincolor;
+          // opacity: 66%;
         }
       }
     }
-
+    // ----連結至老師頁面-----
+    .teacher-link {
+      width: 25%;
+      padding-top: 5%;
+      padding-left: 10%;
+      font-size: 34px;
+      a {
+        color: #362d2b;
+        font-family: franklin-gothic-compressed, sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
     .subject-info {
-      width: 80%;
-      margin-top: 6%;
-      margin-left: 35%;
-      color: #9597A6;
-      font-family: basic-sans,
-        sans-serif;
+      width: 64%;
+      margin-top: 3%;
+      margin-left: 31%;
+      color: #9597a6;
+      font-family: basic-sans, sans-serif;
       font-weight: 700;
       font-style: normal;
-
-      div {
-        width: 75%;
-        // 中間空隙問題待解決
-        border: 1px solid red;
+      // ----開課日期-----
+      .info-box {
+        width: 50%;
         margin-left: 1px;
-        // width: 185px;
-        height: 80px;
+        height: 70px;
         background: #ffffff;
-
       }
     }
 
     .subject-detail {
-      width: 35%;
-      // border: 1px solid #900;
-      margin-top: 2%;
-      margin-left: 70%;
+      width: 34%;
+      height: 40%;
+      margin-top: 1.5%;
+      margin-left: 66%;
 
       .subject-detail-box {
         width: 85%;
-        height: 416px;
+        height: 100%;
         background: $maincolor;
-        color: #FFFFFF;
+        // opacity: 66%;
+        color: #ffffff;
         font-family: basic-sans, sans-serif;
         font-weight: 700;
         font-style: normal;
@@ -116,40 +180,39 @@ $maincolor: #f78177;
         flex-direction: column;
 
         .subject-address {
-          // background-color: yellow;
-          padding-top: 5%;
-          // padding-left: 3%;
-          // align-items: center;
+          padding-top: 1%;
           p {
+            text-align: left;
             margin-top: 3%;
-            padding-left: 12%;
+            max-width: 100%;
+            padding-left: 8%;
           }
         }
-        .subject-feature{
-          padding-top: 5%;
-          p{
+        .subject-feature {
+          padding-top: 1%;
+          p {
+            text-align: left;
             max-width: 70%;
-            padding-left: 12%;
+            padding-left: 10%;
           }
         }
 
         .subject-price {
           color: #545871;
           font-size: 28px;
+          padding-bottom: 8%;
 
           p {
-            font-family: basic-sans,
-              sans-serif;
+            font-family: basic-sans, sans-serif;
             font-weight: 700;
             font-style: normal;
             margin: 0;
-            padding-left:65%;
-            padding-top: 20%;
+            padding-left: 50%;
+            padding-top: 12%;
           }
 
           span {
-            font-family: basic-sans,
-              sans-serif;
+            font-family: basic-sans, sans-serif;
             font-weight: 700;
             font-style: normal;
           }
@@ -158,19 +221,18 @@ $maincolor: #f78177;
     }
 
     .book-btn-box {
-      width: 20%;
-      margin-left: 78%;
+      width: 15%;
+      margin-left: 80%;
       margin-top: -2%;
 
       // border: 1px solid red;
       .book-btn {
         width: 192px;
         height: 56px;
-        color: #362D2B;
+        color: #362d2b;
         border: 1px solid transparent;
-        background: #F0F1F7;
-        font-family: basic-sans,
-          sans-serif;
+        background: #f0f1f7;
+        font-family: basic-sans, sans-serif;
         font-weight: 300;
         font-style: normal;
         font-size: 24px;
@@ -179,16 +241,111 @@ $maincolor: #f78177;
         &:focus {
           // 按下有藍色邊框問題要解決
           outline: none;
+          border-color: #ffffff;
         }
-
         // &:hover {
         //   color: blueviolet;
         // }
         &:active {
           // 按下有藍色邊框問題要解決
           outline: none;
-          color: #FFFFFF;
-          background-color: #362D2B;
+          border-color: transparent;
+          color: #ffffff;
+          background-color: #362d2b;
+        }
+      }
+    }
+  }
+}
+
+// =========RWD (max-width: 400px)============
+@media (max-width: 500px) {
+  .subject-page {
+    height: 100%;
+    .subject-page-right {
+      width: 5%;
+      display: none;
+    }
+    .small-img {
+      width: 100%;
+      height: 20%;
+      overflow: hidden;
+      position: absolute;
+      left: 0px;
+      top: 26%;
+      // background: #362d2b;
+      display: block;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    .subject-img {
+      display: none;
+      img {
+      }
+    }
+    .subject-page-left {
+      // width: 5%;
+      width: 100%;
+      position: fixed;
+      left: 0px;
+      z-index: 4;
+    }
+
+    .wordBox {
+      display: none;
+    }
+
+    .subject-page-center {
+      width: 100%;
+      .teacher-link {
+        width: 50%;
+        padding-top: 1%;
+        margin-top: 70px;
+        font-size: 25px;
+      }
+      .subject-name {
+        padding-left: 0%;
+        .subject-name-box {
+          width: 97%;
+          p {
+            font-size: 65px;
+          }
+          .color-section {
+            display: none;
+          }
+        }
+      }
+      .subject-info {
+        margin: 0;
+        width: 100%;
+        margin-top: 50%;
+        .info-box {
+          height: 90px;
+        }
+      }
+      .subject-detail {
+        margin: 0;
+        width: 100%;
+        margin-left: 9%;
+        margin-top: 5%;
+        .subject-detail-box {
+          .subject-price {
+            margin-top: -12%;
+            p {
+              // padding-left: 35%;
+            }
+          }
+        }
+      }
+      .book-btn-box {
+        margin-top: -7%;
+        margin-left: 46%;
+        .book-btn {
+          width: 180px;
+          height: 50px;
         }
       }
     }
