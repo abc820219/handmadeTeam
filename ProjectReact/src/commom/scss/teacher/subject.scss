@@ -94,7 +94,7 @@ $maincolor: #f78177;
   // ----主要內容區塊-----
   .subject-page-center {
     width: 80%;
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     z-index: 2;
@@ -261,6 +261,7 @@ $maincolor: #f78177;
 // =========RWD (max-width: 400px)============
 @media (max-width: 500px) {
   .subject-page {
+    height: 100%;
     .subject-page-right {
       width: 5%;
       display: none;
@@ -271,11 +272,13 @@ $maincolor: #f78177;
       overflow: hidden;
       position: absolute;
       left: 0px;
-      top: 22%;
+      top: 26%;
       // background: #362d2b;
       display: block;
       img {
         width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
     }
     .subject-img {
@@ -318,7 +321,7 @@ $maincolor: #f78177;
       .subject-info {
         margin: 0;
         width: 100%;
-        margin-top: 57%;
+        margin-top: 50%;
         .info-box {
           height: 90px;
         }
@@ -326,20 +329,24 @@ $maincolor: #f78177;
       .subject-detail {
         margin: 0;
         width: 100%;
-        margin-top: 9%;
         margin-left: 9%;
-        margin-top: 10%;
+        margin-top: 5%;
         .subject-detail-box {
           .subject-price {
+            margin-top: -12%;
             p {
-              padding-left: 35%;
+              // padding-left: 35%;
             }
           }
         }
       }
       .book-btn-box {
-        margin-left: 27%;
         margin-top: -7%;
+        margin-left: 46%;
+        .book-btn {
+          width: 180px;
+          height: 50px;
+        }
       }
     }
   }

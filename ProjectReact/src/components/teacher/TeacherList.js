@@ -237,8 +237,6 @@ class TeacherList extends Component {
           </div>
           {/* 老師開課圖 */}
           <div className="right-img">
-            {/* <button className="btn-right-link">img link →</button> */}
-            {/* <input type="image" className="slider-image clickRight" /> */}
             <div className="link-subject">
               <Link
                 to={`/handmade/teacher/subject/${image_id}`}
@@ -251,16 +249,21 @@ class TeacherList extends Component {
               className="slider-image clickRight"
               src={`/image/${this.state.subject_img}`}
             />
-            {/* <div style={imgStyle}>
-              <div className="teacher-link">
-                <Link
-                  to={`/handmade/teacher/subject/${image_id}`}
-                  onClick={this.clickRightImage}
-                >
-                  img link →
-                </Link>
-              </div>
-            </div> */}
+          </div>
+          {/* 老師開課圖(手機板) */}
+          <div className="right-img-subject">
+            <div className="link-subject">
+              <Link
+                to={`/handmade/teacher/subject/${image_id}`}
+                onClick={this.clickRightImage}
+              >
+                <IoIosPlay />
+              </Link>
+            </div>
+            <img
+              className="slider-image clickRight"
+              src={`/image/${this.state.subject_img}`}
+            />
           </div>
 
           <div className="teacher-page-left"></div>
