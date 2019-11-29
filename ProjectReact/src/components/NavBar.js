@@ -11,7 +11,6 @@ import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 
 const NavBar = ({ checkLogIn, login, ...props }) => {
-  console.log(login.login);
   const [showLightBox, setShowLightBox] = useState(false);
   const [showMenuBtn, setshowMenuBtn] = useState(false);
   const [showCart, setShowCart] = useState(false);

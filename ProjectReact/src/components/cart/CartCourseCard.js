@@ -13,11 +13,11 @@ const CartCourseCard = ({
   course_lists,
   course_price,
   courseAmountBtn,
-  courseDelBtn
+  courseDelBtn,
+  step
 }) => {
-  const { step, courseCartCf, courseCartCfDispatch,cartCourseDispatch,id,courseCart} = useContext(CartStore);
+  const {courseCartCf, courseCartCfDispatch,cartCourseDispatch,id,courseCart} = useContext(CartStore);
   let invisible_button = { visibility: step ? "hidden" : "visible" };
-  console.log(courseCart);
   const [checkCourse, setCheckCourse] = useState(true);
 
   const courseInfo = {

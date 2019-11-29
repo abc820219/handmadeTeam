@@ -62,123 +62,65 @@ const OrderDeListTeacher = ({orderDetail}) => {
   } = orderDetail;
   return (
     <>
-      <div className="container-fluid orderDeCourse d-flex flex-column">
-        <wrapper className="d-flex flex-column justify-content-center">
-          <div className="d-flex justify-content-between align-items-center px-4">
-            <h5>{subject_date}</h5>
-            <div>
-              <p className="mr-3">
-                <FaRegClock className="mr-2" />
-                {subject_name}
-              </p>
-              <p className="mr-3">
-                <FaDollarSign className="mr-2" />
-                訂單編號: {order_sid}
-              </p>
+      <div className="orderDeListCourse">
+        <div className="orderDeListCourseTitle d-flex justify-content-between align-items-center flex-wrap pb-2">
+          <p>上課時間: {subject_date}</p>
+          <p className="d-flex">
+            訂單編號: {order_sid}
+          </p>
+          <p className='w-50'>課程難度: {subject_nervous}</p>
+          <p>{subject_name}</p>
+        </div>
+        <hr className="orderDeListCourseHr"></hr>
+        <div className="d-flex justify-content-between orderDeListCourseContent">
+          <div className="d-flex">
+            <div className="imgBox">
+              <img src={`/image/${teacher_big_img}`} alt="picture" />
             </div>
+            <ul>
+              <li>
+                <div className="title">教師名稱</div>
+                <div className="title-detail">{teacher_name}</div>
+              </li>
+              <li>
+                <div className="title">訂購日期</div>
+                <div className="title-detail">{order_create_time}</div>
+              </li>
+              <li>
+                <div className="title">上課時數</div>
+                <div className="title-detail">{subject_spend_time}</div>
+              </li>
+            </ul>
           </div>
-        </wrapper>
-        <div>
           <div>
-            <div className="d-flex align-items-center">
-              <div className='orderDeCourseList'>
-                <div className='d-flex'>
-                  <figure style={iconZone}>
-                    <img
-                      src={"/image/"+teacher_big_img}
-                      alt=""
-                    />
-                  </figure>
-                  <div>
-                    <div>
-                      <p>教師名稱</p>
-                      <h5>{teacher_name}</h5>
-                    </div>
-                    <div>
-                      <p>訂購日期</p>
-                      <h5>{order_create_time.split(" ")[0]}</h5>
-                    </div>
-                  </div>
-                  <div className='ml-auto'>
-                    <div className='d-flex justify-content-around align-items-center pt-3'>
-                      <MdAttachMoney />
-                      <p style={{ fontWeight: 'bold' }}>{subject_price}</p>
-                    </div>
-                  </div>
-                </div>
-                <ul className='orderCourseStatus d-flex'>
-                  <li>
-                    <div className='my-1 d-flex justify-content-center align-items-center orderCourseIcon'>
-                      <FaRegClock style={{ color: '#EBD0CE' }} />
-                    </div>
-                    <p>購買數</p>
-                  </li>
-                  <li>
-                    <div className='my-1 mt-2 d-flex justify-content-center align-items-center'>
-                      <h4 style={{ color: "#9597A6" , fontSize: '18px', fontWeight:'bold', whiteSpace:'nowrap'}}>{subject_spend_time}</h4>
-                    </div>
-                  </li>
-                  <li>
-                    <div className='my-1 d-flex justify-content-center align-items-center orderCourseIcon'>
-                      <FaCheck style={{ color: '#EBD0CE' }} />
-                    </div>
-                    <p>Payed</p>
-                  </li>
-                  <li>
-                    <div className='my-1 mt-2 d-flex justify-content-center align-items-center'>
-                      <h4 style={{ color: '#9597A6' }}>15/20</h4>
-                    </div>
-                    <p>Occupied</p>
-                  </li>
-                </ul>
-              </div>
-            </div>
+            <p>
+              金額:<span>$ </span>{subject_price}
+            </p>
           </div>
         </div>
-        <div className='orderDeCourseList d-flex align-items-center'>
-          <figure style={iconZone} className='d-flex justify-content-center align-items-center'>
-            <FaMapMarkerAlt style={{ color: '#EBD0CE', fontSize: '30px' }} />
-          </figure>
-          <p style={{ color: '#544741' }}>{subject_address}</p>
-          <a className="orderIconRight ml-auto" href={'https://www.google.com/maps/search/'+subject_address} target="_blank">
-            <p style={{ color: '#544741', maxWidth: '500px' }}>Google Map</p>
-          </a>
-        </div>
-        <div className='orderDeCourseList d-flex align-items-center'>
-          <figure style={iconZone} className='d-flex justify-content-center align-items-center'>
-            <FaQuoteLeft style={{ color: '#EBD0CE', fontSize: '30px' }} />
-          </figure>
-          <p style={{ color: '#544741', maxWidth: '500px' }}>{subject_feature}</p>
-          <div className='orderIconRight ml-auto'>
-            <a style={{ color: '#544741' ,whiteSpace: 'nowrap'}} href={"/handmade/teacher/subject/"+subject_sid}>Go Item page</a>
-          </div>
-        </div>
-        <div className='orderDeCourseList d-flex align-items-center'>
-          <figure style={iconZone} className='d-flex justify-content-center align-items-center'>
-            <img src={"/image/"+subject_img} alt='' />
-          </figure>
-          <div>
-            <div>
-              <p>成品名稱</p>
-              <h5>{subject_name}</h5>
-            </div>
-            <div className='mt-3 ml-3'>
-              <p>課程難度: {subject_nervous}</p>
-            </div>
-          </div>
-          <div className='orderIconRight ml-auto'>
-            <FaStar />
-            <p style={{ color: '#544741' }}>Reviews</p>
-          </div>
-        </div>
-        <div className='orderDeCourseList d-flex justify-content-between align-items-center flex-md-wrap'>
-          <button className='orderIconBottom'>
-            <p style={{whiteSpace:'nowrap'}}>修改參加者資訊</p>
-          </button>
-          <button className='orderIconBottom'>
-            <MdCancel style={{ fontSize: '16px', color: '#545871' }} />
-            <p>取消訂單</p>
-          </button>
+        <hr className="orderDeListCourseHr"></hr>
+        <ul className="orderDeListMap d-flex justify-content-between align-items-center">
+          <li className="iconBox">
+            <FaMapMarkerAlt className="orderIcon" />
+          </li>
+          <li>{subject_address}</li>
+          <li className="orderBtn">
+            <a href={'https://www.google.com/maps/search/' + subject_address} target="_blank">Google Map</a>
+          </li>
+        </ul>
+        <hr className="orderDeListCourseHr"></hr>
+        <ul className="orderDeListLink d-flex justify-content-between align-items-center">
+          <li className="iconBox">
+            <FaQuoteLeft className="orderIcon" />
+          </li>
+          <li style={{ width: '60%' }}>{subject_feature}</li>
+          <li className="orderBtn">
+            <a href={`/handmade/subject/`}>返回老師頁</a>
+          </li>
+        </ul>
+        <hr className="orderDeListCourseHr"></hr>
+        <div className="orderFooter d-flex justify-content-end">
+          <input type="button" value="問題回報" className="orderBtn" />
         </div>
       </div>
     </>
