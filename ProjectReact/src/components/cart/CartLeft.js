@@ -23,6 +23,8 @@ const CartLeft = ({
   const [bonusUse, setBonusUse] = useState(0);
   const [bonus, setBonus] = useState(0);
 
+  console.log(courseCards);
+  console.log(ingreCards);
   const {
     cartCourseDispatch,
     cartIngreDispatch,
@@ -243,7 +245,6 @@ const CartLeft = ({
                         max={(bonusUse + "")}
                         maxLength={(bonusUse + "").length}
                       />
-                      {/* <p style={{ color: 'red', fontWeight: 'bold' }}>{bonus > bonusUse ? '超過擁有紅利' : ''}</p> */}
                     </li>
                   ) : ''}
                 </ul>
@@ -345,7 +346,7 @@ const CartLeft = ({
         {!step ? (
           <button onClick={() => setStep(1)}>NEXT</button>
         ) : (
-            <button onClick={() => cartSubmit()}>CHECK</button>
+            <button disable={ingreCards.length && courseCards.length} onClick={() => cartSubmit()}>CHECK</button>
           )}
       </div>
     </>
