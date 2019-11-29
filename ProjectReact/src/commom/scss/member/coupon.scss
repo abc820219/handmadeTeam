@@ -12,10 +12,11 @@ $BtnBgc: #f5b3aa;
   display: inline-block;
   overflow: hidden;
   border-radius: 10px;
-  margin: 10px;
+  width: 100%;
+  margin: 20px 0;
   .coupon-left {
     float: left;
-    width: 150px;
+    width: 40%;
     height: 150px;
     position: relative;
     .coupon-left-content {
@@ -43,7 +44,7 @@ $BtnBgc: #f5b3aa;
   }
   .coupon-con {
     float: left;
-    width: 350px;
+    width: 60%;
     height: 150px;
     position: relative;
     .couponSid {
@@ -110,8 +111,6 @@ $BtnBgc: #f5b3aa;
   .coupon {
     .coupon-con {
       float: left;
-      width: 200px;
-      height: 150px;
       position: relative;
       .couponSid {
         position: absolute;
