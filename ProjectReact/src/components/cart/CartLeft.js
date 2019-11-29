@@ -22,7 +22,7 @@ const CartLeft = ({
 
   const {
     cartCourseDispatch,
-    ingreCartDispatch,
+    cartIngreDispatch,
     id,
     courseCart,
     ingreCart
@@ -35,6 +35,8 @@ const CartLeft = ({
     getCVCProps
   } = usePaymentInputs();
   const { erroredInputs, touchedInputs } = meta;
+
+  console.log(courseCart,ingreCart);
 
   let CartTotal = (courseCards, ingreCards) => {
     if (courseCards && ingreCards) {
@@ -100,11 +102,13 @@ const CartLeft = ({
       await cartCourseDispatch(checkoutAction());
       localStorage.setItem(`ingreCart${user}`, "[]");
       await setIngreCards();
-      await ingreCartDispatch(checkoutAction());
+      await cartIngreDispatch(checkoutAction());
     } catch (e) {
       console.log(e);
     }
   };
+
+
 
   useEffect(() => {
 
@@ -120,11 +124,11 @@ const CartLeft = ({
   useEffect(() => {
     const couponAfter =
       cartTotal * (couponSelect > 10 ? couponSelect / 100 : couponSelect / 10);
-    setFnCartTotal(couponAfter);
+    setFnCartTotal(Math.floor(couponAfter));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [couponSelect]);
 
-  console.log(couponUse.length);
+
   return (
     <>
       <div className="col-md-4  col-12 px-3 checkLeftBox">

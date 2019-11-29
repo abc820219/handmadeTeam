@@ -57,7 +57,8 @@ const OrderDeListTeacher = ({orderDetail}) => {
     subject_img,
     teacher_name,
     teacher_small_img,
-    teacher_big_img
+    teacher_big_img,
+    subject_sid
   } = orderDetail;
   return (
     <>
@@ -149,7 +150,7 @@ const OrderDeListTeacher = ({orderDetail}) => {
           </figure>
           <p style={{ color: '#544741', maxWidth: '500px' }}>{subject_feature}</p>
           <div className='orderIconRight ml-auto'>
-            <p style={{ color: '#544741' }}>Go Item page</p>
+            <a style={{ color: '#544741' ,whiteSpace: 'nowrap'}} href={"/handmade/teacher/subject/"+subject_sid}>Go Item page</a>
           </div>
         </div>
         <div className='orderDeCourseList d-flex align-items-center'>

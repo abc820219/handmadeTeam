@@ -4,8 +4,10 @@ import { FaUserAlt, FaKey, FaEye } from "react-icons/fa";
 import Captcha from "captcha-mini";
 import "../commom/scss/MemberLogin.scss";
 import { withRouter } from "react-router-dom";
+import { useAlert } from "react-alert";
 
 function MemberLogin(props, { checkLogIn }) {
+  const alert = useAlert();
   const [MemberLogin, setMemberLogin] = useState(true);
   const [account, setaccount] = useState("");
   const [password, setpassword] = useState("");
@@ -67,7 +69,8 @@ function MemberLogin(props, { checkLogIn }) {
   const submitForm = event => {
     event.preventDefault();
     if (captchaValue != captchaAgree) {
-      alert("驗證碼錯誤");
+      // alert("驗證碼錯誤");
+      alert.error("驗證碼錯誤");
       setCaptchaErr(true);
       return;
     }
@@ -89,14 +92,16 @@ function MemberLogin(props, { checkLogIn }) {
         localStorage.setItem("member_id", member_data.info.member_sid);
         localStorage.setItem("member_data", JSON.stringify(member_data.info));
         console.log(member_data.info);
-        alert(member_data.message);
+        // alert(member_data.message);
+        alert.show(member_data.message);
         setTimeout(() => {
           window.location = `http://localhost:3000${props.location.pathname}`;
         });
       })
       .catch(async err => {
         console.log(err);
-        alert("登入失敗");
+        // alert("登入失敗");
+        alert.show("Oh look, an alert!");
       });
     setaccount("");
     setpassword("");
