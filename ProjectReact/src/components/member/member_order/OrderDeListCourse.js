@@ -42,7 +42,7 @@ const OrderDeListCourse = ({ orderDetail }) => {
   // };
   const {
     course_sid,
-    course_order_choose,//選擇時間
+    course_order_choose, //選擇時間
     course_list,
     course_order_applicants,
     course_name,
@@ -58,26 +58,85 @@ const OrderDeListCourse = ({ orderDetail }) => {
   } = orderDetail;
   return (
     <>
-    <div className="orderDeListCourse">
-     <div className="orderDeListCourseTitle d-flex justify-content-between align-items-center ">
-        <p>星期五</p>
-        <p className="d-flex flex-column "> 
-          <span>巧克力派</span>
-          <span>訂單編號</span>
-        </p>
-     </div>
-     <hr className="orderDeListCourseHr"></hr>
-    </div>
-     </>
+      <div className="orderDeListCourse">
+        <div className="orderDeListCourseTitle d-flex justify-content-between align-items-center ">
+          <p>星期五</p>
+          <p className="d-flex flex-column ">
+            <span>巧克力派</span>
+            <span>訂單編號</span>
+          </p>
+        </div>
+        <hr className="orderDeListCourseHr"></hr>
+        <div className="d-flex justify-content-between orderDeListCourseContent">
+          <div className="d-flex">
+            <div className="imgBox">
+              <img src="/image/course_img/360/小心心s.png" alt="picture" />
+            </div>
+            <ul>
+              <li>
+                <div className="title">老師名稱</div>
+                <div className="title-detail">123456</div>
+              </li>
+              <li>
+                <div className="title">訂購日期</div>
+                <div className="title-detail">2001-02-30</div>
+              </li>
+              <li>
+                <div className="title">上課時數</div>
+                <div className="title-detail">1.5HR</div>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <p>
+              金額:<span>3000</span>$
+            </p>
+          </div>
+        </div>
+        <hr className="orderDeListCourseHr"></hr>
+        <ul className="orderDeListMap d-flex justify-content-between align-items-center">
+          <li className="iconBox">
+            <FaMapMarkerAlt className="orderIcon" />
+          </li>
+          <li>新北市中和區連城路130號</li>
+          <li className="orderBtn">
+            <a>Google Map</a>
+          </li>
+        </ul>
+        <hr className="orderDeListCourseHr"></hr>
+        <ul className="orderDeListLink d-flex justify-content-between align-items-center">
+          <li className="iconBox">
+            <FaQuoteLeft className="orderIcon" />
+          </li>
+          <li>商品介紹</li>
+          <li className="orderBtn">
+            <a>返回商品頁</a>
+          </li>
+        </ul>
+        <hr className="orderDeListCourseHr"></hr>
+        <ul className="orderDeListName d-flex justify-content-between align-items-center">
+          <li className="imgBox">
+            <img src="/image/course_img/360/小心心s.png" alt="picture" />
+          </li>
+          <li>商品介紹</li>
+          <li className="orderBtn">
+            <a>review??</a>
+          </li>
+        </ul>
+        <hr className="orderDeListCourseHr"></hr>
+        <div className="orderFooter d-flex justify-content-end">
+          <input type="button" value="問題回報" className="orderBtn" />
+        </div>
+      </div>
+    </>
   );
 };
 
-  /* <div className="orderIconRight ml-auto">
+/* <div className="orderIconRight ml-auto">
               <a style={{ color: "#544741" ,whiteSpace: 'nowrap'}} href={`/handmade/store/${store_sid}/course/${course_sid}`}>Go Item page</a>
             </div> */
 
-
-  /* <a className="orderIconRight ml-auto" href={'https://www.google.com/maps/search/'+store_address} target="_blank">
+/* <a className="orderIconRight ml-auto" href={'https://www.google.com/maps/search/'+store_address} target="_blank">
               <p style={{ color: "#544741", maxWidth: "500px" }}>Google Map</p>
             </a> */
 
