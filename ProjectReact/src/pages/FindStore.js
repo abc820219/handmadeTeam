@@ -121,10 +121,10 @@ function FindStore(props) {
         console.log("Latitude : " + crd.latitude);
         console.log("Longitude: " + crd.longitude);
         console.log("More or less " + crd.accuracy + " meters.");
-        setDefaultLat(crd.latitude);
-        setDefaultLng(crd.longitude);
+        setDefaultLat(25.040741099999998);
+        setDefaultLng(121.543399);
         setDefaultZoomMap(15);
-        setCrdUserPosition({ lat: crd.latitude, lng: crd.longitude });
+        setCrdUserPosition({ lat: 25.040741099999998, lng: 121.543399 });
       }
       function error() {
         alert("無法取得你的位置");
