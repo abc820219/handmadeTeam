@@ -83,7 +83,6 @@ const OrderDeListIngre = ({orderDetail}) => {
             <p style={{fontSize:'24px'}}>
               總價:<span>$ {ingredients_price*ingredients_order_quantity}</span>
             </p>
-            <input type="button" value="取消訂單"></input>
           </div>
         </div>
       </div>
