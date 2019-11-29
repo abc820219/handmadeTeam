@@ -57,5 +57,17 @@ router.post("/getLocateName", (req, res) => {
     res.json(results[0]);
   });
 });
+//----------------------------------- 漢文的
+class storeSelect {
+  constructor(store_sid, area_sid) {
+    this.store_sid = store_sid;
+    this.area_sid = area_sid;
+  }
+  storeOne() {
+    let sql;
+    return sql = `SELECT * FROM store WHERE store_sid = ${this.store_sid}`;
+  }
+}
 
+//----------------------------------- 漢文的
 module.exports = router;
