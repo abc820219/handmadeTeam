@@ -8,13 +8,24 @@ import {
 } from "react-google-maps";
 import mapStyles from "../data/mapStyles";
 
-function Map({ selectedPark, setSelectedPark, storeData, setStoreData }) {
-  // const [mapZoom,setMapZoom]=
+function Map({
+  selectedPark,
+  setSelectedPark,
+  storeData,
+  defaultLng,
+  defaultLat,
+  defaultZoomMap,
+  setDefaultLat,
+  setDefaultLng,
+  setDefaultZoomMap
+}) {
   return (
     <GoogleMap
-      defaultZoom={15}
-      defaultCenter={{ lat: 25.033858, lng: 121.543410 }}
+      defaultZoom={8}
+      defaultCenter={{ lat: 23.6, lng: 121 }}
       defaultOptions={{ styles: mapStyles }}
+      zoom={defaultZoomMap}
+      center={{ lat: defaultLat, lng: defaultLng }}
     >
       {storeData.map(store => (
         <>
@@ -27,11 +38,14 @@ function Map({ selectedPark, setSelectedPark, storeData, setStoreData }) {
             onClick={() => {
               setSelectedPark(store);
               console.log(selectedPark);
+              setDefaultLat(store.store_latitude);
+              setDefaultLng(store.store_longitude);
+              setDefaultZoomMap(30);
             }}
-            // icon={{
-            //   url: `/image/store/${store.properties.PICTURELogo}`,
-            //   scaledSize: new window.google.maps.Size(20, 20)
-            // }}
+            icon={{
+              url: `/image/store/${store.store_logo}`,
+              scaledSize: new window.google.maps.Size(30, 30)
+            }}
           />
         </>
       ))}
@@ -58,8 +72,12 @@ function Map({ selectedPark, setSelectedPark, storeData, setStoreData }) {
 
 const MapWrapped = withScriptjs(withGoogleMap(Map));
 function FindStore(props) {
+  console.log(navigator.geolocation);
   const [selectedPark, setSelectedPark] = useState(null);
   const [storeData, setStoreData] = useState([]);
+  const [defaultLat, setDefaultLat] = useState(23.6);
+  const [defaultLng, setDefaultLng] = useState(121);
+  const [defaultZoomMap, setDefaultZoomMap] = useState(8);
   useEffect(() => {
     const listener = e => {
       if (e.key === "Escape") {
@@ -82,9 +100,35 @@ function FindStore(props) {
     allStoreData();
   }, []);
   console.log(storeData);
+
+  //------------------------------------
+  function nowPosition() {
+    if (navigator.geolocation) {
+      console.log("a");
+      function success(pos) {
+        var crd = pos.coords;
+        console.log("Your current position is:");
+        console.log("Latitude : " + crd.latitude);
+        console.log("Longitude: " + crd.longitude);
+        console.log("More or less " + crd.accuracy + " meters.");
+        setDefaultLat(crd.latitude);
+        setDefaultLng(crd.longitude);
+        setDefaultZoomMap(15);
+      }
+      function error() {
+        alert("無法取得你的位置");
+      }
+      navigator.geolocation.getCurrentPosition(success, error);
+    } else {
+      alert("Sorry, 你的裝置不支援地理位置功能。");
+    }
+  }
+  //------------------------------------
+
   return (
     <>
-      <div style={{ width: "100vh", height: "100vh" }}>
+      <p onClick={nowPosition}>目前位置</p>
+      <div style={{ width: "50wh", height: "50vh" }}>
         <MapWrapped
           googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCBFbHL-7A0VFRRARWIQCNJsE2HXq53z1g`}
           loadingElement={<div style={{ height: `100%` }} />}
@@ -94,6 +138,12 @@ function FindStore(props) {
           setSelectedPark={setSelectedPark}
           storeData={storeData}
           setStoreData={setStoreData}
+          defaultLat={defaultLat}
+          defaultLng={defaultLng}
+          defaultZoomMap={defaultZoomMap}
+          setDefaultLat={setDefaultLat}
+          setDefaultLng={setDefaultLng}
+          setDefaultZoomMap={setDefaultZoomMap}
         />
       </div>
     </>
