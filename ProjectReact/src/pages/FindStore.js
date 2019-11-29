@@ -17,7 +17,9 @@ function Map({
   defaultZoomMap,
   setDefaultLat,
   setDefaultLng,
-  setDefaultZoomMap
+  setDefaultZoomMap,
+  setCrdUserPosition,
+  crdUserPosition
 }) {
   return (
     <GoogleMap
@@ -27,27 +29,33 @@ function Map({
       zoom={defaultZoomMap}
       center={{ lat: defaultLat, lng: defaultLng }}
     >
+      {crdUserPosition && (
+        <Marker
+          position={{
+            lat: crdUserPosition.lat,
+            lng: crdUserPosition.lng
+          }} //定位
+        />
+      )}
       {storeData.map(store => (
-        <>
-          <Marker
-            key={store.store_sid}
-            position={{
-              lat: parseFloat(store.store_latitude),
-              lng: parseFloat(store.store_longitude)
-            }} //定位
-            onClick={() => {
-              setSelectedPark(store);
-              console.log(selectedPark);
-              setDefaultLat(store.store_latitude);
-              setDefaultLng(store.store_longitude);
-              setDefaultZoomMap(30);
-            }}
-            icon={{
-              url: `/image/store/${store.store_logo}`,
-              scaledSize: new window.google.maps.Size(30, 30)
-            }}
-          />
-        </>
+        <Marker
+          key={store.store_sid}
+          position={{
+            lat: parseFloat(store.store_latitude),
+            lng: parseFloat(store.store_longitude)
+          }} //定位
+          onClick={() => {
+            setSelectedPark(store);
+            console.log(selectedPark);
+            setDefaultLat(store.store_latitude);
+            setDefaultLng(store.store_longitude);
+            setDefaultZoomMap(25);
+          }}
+          icon={{
+            url: `/image/store/${store.store_logo}`,
+            scaledSize: new window.google.maps.Size(30, 30)
+          }}
+        />
       ))}
       {/* 點擊息提示 */}
       {selectedPark && (
@@ -78,6 +86,8 @@ function FindStore(props) {
   const [defaultLat, setDefaultLat] = useState(23.6);
   const [defaultLng, setDefaultLng] = useState(121);
   const [defaultZoomMap, setDefaultZoomMap] = useState(8);
+  const [crdUserPosition, setCrdUserPosition] = useState("");
+
   useEffect(() => {
     const listener = e => {
       if (e.key === "Escape") {
@@ -114,6 +124,7 @@ function FindStore(props) {
         setDefaultLat(crd.latitude);
         setDefaultLng(crd.longitude);
         setDefaultZoomMap(15);
+        setCrdUserPosition({ lat: crd.latitude, lng: crd.longitude });
       }
       function error() {
         alert("無法取得你的位置");
@@ -144,6 +155,8 @@ function FindStore(props) {
           setDefaultLat={setDefaultLat}
           setDefaultLng={setDefaultLng}
           setDefaultZoomMap={setDefaultZoomMap}
+          setCrdUserPosition={setCrdUserPosition}
+          crdUserPosition={crdUserPosition}
         />
       </div>
     </>
