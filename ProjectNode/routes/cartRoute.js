@@ -14,7 +14,6 @@ router.get("/getbonus/:id",(req,res)=>{
   const memberBonus = req.params.id;
   sql = "SELECT `member`.member_bonus FROM `member` WHERE `member`.`member_sid` = "+ memberBonus;
   db.queryAsync(sql).then(results => {
-    console.log(results[0]);
     res.json(results[0].member_bonus);
   });
 })
@@ -61,7 +60,6 @@ router.post("/submitcart", (req, res) => {
             `UPDATE member_coupon SET member_coupon_used = 1 WHERE member_sid = ${user} AND coupon_sid = ${coupon}`)
         }
         if (courseCart.length !== 0 && ingreCart.length !== 0) {
-          console.log(courseCart,ingreCart);
           for (i = 0; i < courseCart.length; i++) {
             db.query(
               "INSERT INTO `course_order` (order_sid, course_sid, course_order_choose, course_order_applicants) VALUES (?, ?,?,?)",
