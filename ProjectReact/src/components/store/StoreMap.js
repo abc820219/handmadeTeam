@@ -71,63 +71,63 @@ const SvgComponent = props => {
       <path
         onMouseEnter={(event) => areaNow(event)}
         className={ locateClick ===11 ? "prefix__st0  prefix__storeCountry nantouMap fillBackGround" : "prefix__st0  prefix__storeCountry nantouMap"}
-        onClick={setLocateClick(11)}
+        // onClick={setLocateClick(11)}
         mapValue="11"
         d="M188.1 414.2v-85.6l50.3-28.8L360 269.6v30.9l-29 119.1-46.4 44.3z"
       />
       <path
         onMouseEnter={(event) => areaNow(event)}
         className={ locateClick ===12 ? "prefix__st1 prefix__storeCountry hualienMap fillBackGround" : "prefix__st1 prefix__storeCountry hualienMap"}
-        onClick={setLocateClick(12)}
+        // onClick={setLocateClick(12)}
         mapValue="12"
         d="M342.2 544.4L291.8 499 281 466.5l4.4 2.3 49.5-47.3 29.3-120.6v-33.2l25.3-27.7 83.1 11.7-46.5 86.3-29.3 126.1-17.3-3.3-24.1 83.6z"
       />
       <path
         onMouseEnter={(event) => areaNow(event)}
         className={ locateClick ===9 ? "prefix__st2 prefix__storeCountry taichungMap fillBackGround" : "prefix__st2 prefix__storeCountry taichungMap"}
-        onClick={setLocateClick(9)}
+        // onClick={setLocateClick(9)}
         mapValue="9"
         d="M154.4 277.1l35.3-58.8 22.4 33.8 45.3 3.1 2.7-9.5 16.5.6 11.5 9.2 68.1-38.3 13.3 21.4 13.3-4.6 2.4 4.7-24.3 26.6-124.3 30.9-39.9 22.9z"
       />
       <path
         onMouseEnter={(event) => areaNow(event)}
         className={ locateClick ===10 ? "prefix__st1 prefix__storeCountry changhuaMap fillBackGround" : "prefix__st1 prefix__storeCountry changhuaMap"}
-        onClick={setLocateClick(10)}
+        // onClick={setLocateClick(10)}
         mapValue="10"
         d="M94 363.4l22.8-47.4 18.1-1.2 18-33.3 40.1 39.7-9.2 5.2v47.8z"
       />
       <path
         onMouseEnter={(event) => areaNow(event)}
         className={ locateClick ===13 ? "prefix__st2 prefix__storeCountry yunlinMap fillBackGround" : "prefix__st2 prefix__storeCountry yunlinMap"}
-        onClick={setLocateClick(13)}
+        // onClick={setLocateClick(13)}
         mapValue="13"
         d="M73.7 441.3l-6.3-25.1 25-49.1 91.4 11v38.4l23.9 12.3-43.6-4-8.1-11.1-28.4 1.4-48.2 30.8z"
       />
       <path
         onMouseEnter={(event) => areaNow(event)}
         className={ locateClick ===15 ? "prefix__st1 prefix__storeCountry chiayiMap fillBackGround" : "prefix__st1 prefix__storeCountry chiayiMap"}
-        onClick={setLocateClick(15)}
+        // onClick={setLocateClick(15)}
         mapValue="15"
         d="M161.2 510.2l10.4-24.5-43.6-21.5-45 34.1-23.3-5 2.5-43.7 9.3-4.9 7.5 6.2 50-32 24.8-1.2 7.9 10.8 55.2 5 39.9 20.5-44.5 40.7-24.3 2.7 1.8 17.6z"
       />
       <path
         onMouseEnter={(event) => areaNow(event)}
         className={ locateClick ===17 ? "prefix__st2 prefix__storeCountry kaohsiungMap fillBackGround" : "prefix__st2 prefix__storeCountry kaohsiungMap"}
-        onClick={setLocateClick(17)}
+        // onClick={setLocateClick(17)}
         mapValue="17"
         d="M96.1 646l-18.7-56 49.6-.5 56.7-41.9 10.6-30-1.7-16.7 21.7-2.5 46.3-42.4 15.1 7.8 12.4 37.3.2.2-57.8 79.5 16.6 25v4.8l-99.2-2.2-14 86.3z"
       />
       <path
         onMouseEnter={(event) => areaNow(event)}
         className={ locateClick ===16 ? "prefix__st0 prefix__storeCountry tainanMap fillBackGround" : "prefix__st0 prefix__storeCountry tainanMap"}
-        onClick={setLocateClick(16)}
+        // onClick={setLocateClick(16)}
         mapValue="16"
         d="M47.1 530.5l10.5-33.6 26.5 5.6 44.4-33.6 37.8 18.6-10.9 25.7 34 5.7-9.4 26.3-54.5 40.4-48.6.5z"
       />
       <path
         onMouseEnter={(event) => areaNow(event)}
         className={ locateClick ===18 ? "prefix__st0 prefix__storeCountry taitungMap fillBackGround" : "prefix__st0 prefix__storeCountry taitungMap"}
-        onClick={setLocateClick(18)}
+        // onClick={setLocateClick(18)}
         mapValue="18"
         className="prefix__st0 prefix__storeCountry taitungMap"
         d="M210.2 679.5l41.2-66.4v-8.4l-15.9-23.8 55.9-76.9 49 44.3h18.2l23.9-82.9 13.1 2.5L347.5 587l-70.8 70.1L251 757.5l-14.9 2.3z"

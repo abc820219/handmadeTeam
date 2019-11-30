@@ -5,6 +5,7 @@ import { Nav } from "react-bootstrap";
 import "../../commom/scss/member/coupon.scss";
 import CouponGet from "../member/CouponGet";
 import MyCoupon from "../member/MyCoupon";
+import MemberChart from "../member/MemberChart";
 const Coupon = ({ props }) => {
   const [couponPage, setCouponPage] = useState(0);
   const PageChange = page => {
@@ -47,7 +48,7 @@ const Coupon = ({ props }) => {
                         onClick={() => PageChange(0)}
                         className={couponPage === 0 && "active"}
                       >
-                        優惠專區{bonuns}
+                        優惠專區
                       </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
@@ -68,9 +69,11 @@ const Coupon = ({ props }) => {
                     </Nav.Item> */}
                   </Nav>
                   <div>
-                    <article className="py-5">
-                      <h2>好康優惠(紅利累積)</h2>
-                      <div></div>
+                    <article className="py-3">
+                      <h2>好康優惠(目前紅利累積:{bonuns+"$"})</h2>
+                      <div>
+                        <MemberChart></MemberChart>
+                      </div>
                       <h2 className="mt-5">好康優惠(點擊領取優惠卷)</h2>
                       <ul>
                         <li>
