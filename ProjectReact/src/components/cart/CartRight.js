@@ -9,9 +9,9 @@ const CartRight = ({ courseCards,
   courseDelBtn,
   ingreCards,
   ingreAmountBtn,
-  ingreDelBtn
+  ingreDelBtn,
+  step
 }) => {
-  const { step, id } = useContext(CartStore);
   let invisible_button = { visibility: step ? "hidden" : "visible" };
 
   // const [courseCards, setCourseCards] = useState();
@@ -99,10 +99,11 @@ const CartRight = ({ courseCards,
                 course_order_choose={courseCard.course_order_choose}
                 course_order_time={courseCard.course_order_time}
                 course_order_applicants={courseCard.course_order_applicants}
-                course_lists={courseCard.course_lists}
+                course_lists={courseCard.course_list}
                 course_price={courseCard.course_price}
                 courseAmountBtn={courseAmountBtn}
                 courseDelBtn={courseDelBtn}
+                step={step}
               />
             ))
           ) : (
@@ -132,6 +133,7 @@ const CartRight = ({ courseCards,
                 ingre_price={ingreCard.ingredients_price}
                 ingreAmountBtn={ingreAmountBtn}
                 ingreDelBtn={ingreDelBtn}
+                step={step}
               />
             ))
           ) : (

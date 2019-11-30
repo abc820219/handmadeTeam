@@ -1,0 +1,46 @@
+{
+  "features": [
+    {
+      "properties": {
+        "PARK_ID": 3,
+        "NAME": "台北市松山區復興北路361巷12號",
+        "NAME_FR": "Planchodrome Bearbrook",
+        "ADDRESS": "台北市松山區復興北路361巷12號",
+        "DESCRIPTIO": "Welcome Bake 堅持優質食材與友善環境，有無障礙坡道、親子廁所、寬敞明亮的空間，從小小朋友...",
+        "Phone": "02-27189178",
+        "PICTURELogo": "welcomeBakeLogo.png",
+        "PICTURESpace": null,
+        "PICTURE3": null
+      },
+      "geometry": {
+        "coordinates": [25.0603256, 121.5455881]
+      }
+    }
+  ]
+}
+
+area_sid: 3
+store_address: "新北市永和區仁愛路49號
+↵"
+store_child: 0
+store_create: "2019-11-21T09:21:36.000Z"
+store_end: "18:00:00"
+store_evaluate: 4
+store_introduce: "花貓蛋糕實驗室帶來多元化的蛋糕裝飾課程，不論你是否有烘培的經驗或底子，循序漸進式的課程教學，除了各式蛋糕裝飾技巧教學，課程著重在蛋糕設計的創意培養與發想，讓每一位同學都可輕鬆容易的上手，並從此愛上烘培這件事。亦或是在送禮時苦於買不到心中完美蛋糕的你，都歡迎親身來花貓蛋糕實驗室體驗 DIY 的樂趣。
+↵"
+store_latitude: "25.01322
+↵"
+store_logo: "hananecoLogo.jpg
+↵"
+store_longitude: "121.513778
+↵"
+store_max_number: 20
+store_name: "Hananeco 花貓蛋糕實驗室
+↵"
+store_open: "09:00:00"
+store_partner: 0
+store_phone: "02-29239556
+↵"
+store_sid: 24
+store_space_photo: "hananecoSpace.jpg
+↵"
