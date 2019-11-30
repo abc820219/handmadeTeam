@@ -35,6 +35,20 @@ class getMemberData {
     return sql;
   }
 }
+class getMemberBonus {
+  constructor(member_sid) {
+    this.member_sid = member_sid;
+  }
+  getUserBonusByIdSQL() {
+    let sql =
+      "SELECT CEILING((`order_total_price`)*0.08-`member_used_bonus`) total , `order_sid` FROM `order` WHERE `member_sid` = " +
+      this.member_sid +
+      " LIMIT 10";
+    this.member_sid;
+    return sql;
+  }
+}
+
 class register {
   constructor(account, password, email) {
     this.member_account = account;
@@ -431,4 +445,27 @@ router.post("/mailEdit", (req, res) => {
 
 //------------------------------------------------------------------------------ mail
 
+router.post("/bonus", (req, res) => {
+  console.log(req.body);
+  let member_sid = req.body.member_sid;
+  let Member = new getMemberBonus(member_sid);
+  console.log(Member.getUserBonusByIdSQL());
+  db.query(Member.getUserBonusByIdSQL(), (error, rows) => {
+    console.log(rows);
+    if (rows.length >= 1) {
+      res.json({
+        status: "202",
+        message: "資料取得",
+        data: rows
+      });
+    } else {
+      res.json({
+        status: "404",
+        message: "沒有訂單資訊"
+      });
+    }
+  });
+});
+
+//------------------------------------------------------------------------------
 module.exports = router;

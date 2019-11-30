@@ -79,6 +79,7 @@ const SvgComponent = props => {
         onMouseEnter={(event) => areaNow(event)}
         className={ locateClick ===12 ? "prefix__st1 prefix__storeCountry hualienMap fillBackGround" : "prefix__st1 prefix__storeCountry hualienMap"}
         onClick={()=>setLocateClick(12)}
+
         mapValue="12"
         d="M342.2 544.4L291.8 499 281 466.5l4.4 2.3 49.5-47.3 29.3-120.6v-33.2l25.3-27.7 83.1 11.7-46.5 86.3-29.3 126.1-17.3-3.3-24.1 83.6z"
       />
