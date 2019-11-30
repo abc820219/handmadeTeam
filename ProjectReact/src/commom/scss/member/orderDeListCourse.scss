@@ -10,6 +10,16 @@ $titleC: #544741;
   background-color: $bgc;
   min-height: 100vh;
   height: 100%;
+  div {
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      li {
+        margin: 20px 0;
+      }
+    }
+  }
   .orderDeListCourseTitle {
     @extend %order;
     color: $titleC;
@@ -25,7 +35,7 @@ $titleC: #544741;
       margin: auto 0;
 
       ul {
-        padding: 0 6rem;
+        padding: 0 pxToVw(200);
         margin: 0;
         li {
           padding: 0.3rem 0;
@@ -55,6 +65,20 @@ $titleC: #544741;
   }
   .orderDeListMap {
     @extend %order;
+    @media (max-width: 768px) {
+      flex-direction: column;
+      li {
+        margin: 20px 0;
+      }
+    }
+  }
+  .orderDeListLink {
+    @media (max-width: 768px) {
+      flex-direction: column;
+      li {
+        margin: 20px 0;
+      }
+    }
   }
   .orderDeListCourseHr {
     border: 1px solid white;
@@ -83,6 +107,7 @@ $titleC: #544741;
     background-color: #fff;
   }
 }
+///----------------------rwd
 
 // .orderDeCourse {
 //   height: 100vh;
