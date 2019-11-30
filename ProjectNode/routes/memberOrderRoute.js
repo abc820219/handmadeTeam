@@ -6,6 +6,7 @@ const db = mysql.createConnection(db_Obj);
 const bluebird = require("bluebird"); //使用兩次sql
 bluebird.promisifyAll(db);
 const moment = require("moment-timezone");
+const nodemailer = require('nodemailer');
 // import OrderDetail from "../domain/memberOrder";
 
 router.get("/", (req, res) => {
@@ -110,6 +111,7 @@ class OrderDetail {
   }
 }
 
+
 router.post("/orderDetail", (req, res, next) => {
   let orderDetail = new OrderDetail(
     req.body.orderType,
@@ -172,6 +174,47 @@ router.get("/orderDetail/:id", (req, res, next) => {
       return;
     }
   });
+});
+
+
+router.post("/mailToReport", (req, res) => {
+  let email = req.body.email;
+  let account = req.body.member;
+  let productName = req.body.productName;
+  let report = req.body.message;
+const customerFeedBack = (email,account,productName,report) => {
+    console.log(email,account,productName,report);
+      let transporter = nodemailer.createTransport({
+        service: "Gmail",
+        auth: {
+          user: "handmade20190927@gmail.com",
+          pass: "Aa27089433"
+        }
+      });
+      let mailOptions = {
+        from: "handmade20190927@gmail.com",
+        to: email,
+        subject: "商品問題回報"+ productName,
+        html: `
+        <h1>${productName} 問題回報</h1>
+        <textarea>${report}</textarea>
+        <p>目前已在處理中，請靜待回覆</p>
+        `
+      };
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          return res.json({
+            status: "404",
+            message: error
+          });
+        }
+      });
+      return res.json({
+        status: "202",
+        message: "問題已送至客服,請至信箱確認"
+      });
+  };
+  customerFeedBack(email,account,productName,report);
 });
 
 module.exports = router;
