@@ -23,8 +23,6 @@ const CartLeft = ({
   const [bonusUse, setBonusUse] = useState(0);
   const [bonus, setBonus] = useState(0);
 
-  console.log(courseCards);
-  console.log(ingreCards);
   const {
     cartCourseDispatch,
     cartIngreDispatch,
@@ -176,7 +174,7 @@ const CartLeft = ({
             <hr style={step ? { background: "#f78177" } : {}} />
             <div
               className="d-flex align-items-center"
-              onClick={() => setStep(1)}
+              onClick={() => {courseCards.length || ingreCards.length ?setStep(1):setStep(0)}}
             >
               <div
                 className="checkPageIcon cartStep2"
@@ -344,9 +342,9 @@ const CartLeft = ({
             ""
           )}
         {!step ? (
-          <button onClick={() => setStep(1)}>NEXT</button>
+          <button onClick={() => {courseCards.length || ingreCards.length ?setStep(1):setStep(0)}}>NEXT</button>
         ) : (
-            <button disable={ingreCards.length && courseCards.length} onClick={() => cartSubmit()}>CHECK</button>
+            <button onClick={() => cartSubmit()}>CHECK</button>
           )}
       </div>
     </>
