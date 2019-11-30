@@ -73,6 +73,7 @@ const Coupon = ({ props }) => {
                       <h2>好康優惠(目前紅利累積:{bonuns+"$"})</h2>
                       <div>
                         <MemberChart></MemberChart>
+                        
                       </div>
                       <h2 className="mt-5">好康優惠(點擊領取優惠卷)</h2>
                       <ul>
