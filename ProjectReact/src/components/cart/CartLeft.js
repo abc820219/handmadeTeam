@@ -22,6 +22,7 @@ const CartLeft = ({
   const [couponUse, setCouponUse] = useState(0);
   const [bonusUse, setBonusUse] = useState(0);
   const [bonus, setBonus] = useState(0);
+  const [bonusStandard,setBonusStandard] = useState(0);
 
   const {
     cartCourseDispatch,
@@ -59,6 +60,12 @@ const CartLeft = ({
     }
   };
 
+  const getBonusStandard = async() => {
+    const bonusStandardJson = await fetch("http://localhost:5000/handmade/cart/getbonusstandard/");
+    const bonusStandardInit = await bonusStandardJson.json();
+    setBonusStandard(bonusStandardInit);
+  }
+
   const getBonus = async () => {
     const bonusJson = await fetch(
       "http://localhost:5000/handmade/cart/getbonus/" + id
@@ -88,9 +95,9 @@ const CartLeft = ({
       const ingreCart = localStorage.getItem(`ingreCart${user}`);
       let afterBonus
       if(coupon) {
-        afterBonus = bonusUse-bonus+Math.ceil(fnCartTotal*0.08);
+        afterBonus = bonusUse-bonus+Math.ceil(fnCartTotal*bonusStandard);
       }else {
-        afterBonus = bonusUse-bonus+Math.ceil(cartTotal*0.08);
+        afterBonus = bonusUse-bonus+Math.ceil(cartTotal*bonusStandard);
       };
       const cart = JSON.stringify({
         courseCart: courseCart,
@@ -119,6 +126,7 @@ const CartLeft = ({
       localStorage.setItem(`ingreCart${user}`, "[]");
       await setIngreCards();
       await cartIngreDispatch(checkoutAction());
+      window.location = 'http://localhost:3000/handmade/member/order';
     } catch (e) {
       console.log(e);
     }
@@ -140,9 +148,7 @@ const CartLeft = ({
   }, [courseCards, ingreCards, bonus]);
 
   useEffect(() => {
-    setPage(4);
-    getCoupon();
-    getBonus();
+    Promise.all([setPage(4),getBonus(),getCoupon(),getBonusStandard()]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -252,8 +258,8 @@ const CartLeft = ({
                   <p>結帳總額</p>
                   <h4>$ {step ? (fnCartTotal ? fnCartTotal : cartTotal) : cartTotal}</h4>
                 </div>
-                <p style={{color:'white',fontWeight:'bold'}}>可獲得紅利:  {step ? (fnCartTotal ? Math.ceil(fnCartTotal*0.08) : Math.ceil(cartTotal*0.08)) : Math.ceil(cartTotal*0.08)}</p>
-                <p style={{color:'white'}}>紅利計算率: 0.08</p>
+                <p style={{color:'white',fontWeight:'bold'}}>可獲得紅利:  {step ? (fnCartTotal ? Math.ceil(fnCartTotal*bonusStandard) : Math.ceil(cartTotal*bonusStandard)) : Math.ceil(cartTotal*bonusStandard)}</p>
+                <p style={{color:'white'}}>紅利計算率: {bonusStandard}</p>
               </div>
             </div>
           </div>
