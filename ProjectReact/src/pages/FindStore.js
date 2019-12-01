@@ -6,7 +6,9 @@ import {
   Marker,
   InfoWindow
 } from "react-google-maps";
+import { MarkerClusterer } from "react-google-maps/lib/components/addons/MarkerClusterer";
 import mapStyles from "../data/mapStyles";
+//
 import NavBar from "../components/NavBar";
 
 // ICON import
@@ -19,6 +21,22 @@ import { FaStore } from "react-icons/fa";
 // style scss
 import "../common/scss/store/styleFindStore.scss";
 import StoreSelect from "../components/store/StoreSelect";
+//
+
+const markerClustererCalculator = (markers, numStyles) => {
+  const index = markers.find(marker => marker.icon.condition === "anormal")
+    ? 3
+    : markers.find(marker => marker.icon.condition === "alerta")
+    ? 2
+    : markers.find(marker => marker.icon.condition === "normal")
+    ? 1
+    : 4;
+
+  return {
+    index: index,
+    text: markers.length
+  };
+};
 
 function Map({
   selectedPark,
@@ -49,28 +67,36 @@ function Map({
           }} //定位
         />
       )}
-      {storeData.map(store => (
-        <Marker
-          key={store.store_sid}
-          position={{
-            lat: parseFloat(store.store_latitude),
-            lng: parseFloat(store.store_longitude)
-          }} //定位
-          onClick={() => {
-            console.log(parseFloat(store.store_latitude));
-            console.log(store.store_latitude);
-            setDefaultLat(store.store_latitude);
-            setDefaultLng(store.store_longitude);
-            setDefaultZoomMap(15);
-            setSelectedPark(store);
-          }}
-          icon={{
-            url: `/image/store/${store.store_logo}`,
-            scaledSize: new window.google.maps.Size(30, 30)
-          }}
-          animation={{ animation: "DROP" }}
-        />
-      ))}
+
+      <MarkerClusterer
+        averageCenter
+        calculator={markerClustererCalculator}
+        enableRetinaIcons
+        gridSize={30}
+      >
+        {storeData.map(store => (
+          <Marker
+            key={store.store_sid}
+            position={{
+              lat: parseFloat(store.store_latitude),
+              lng: parseFloat(store.store_longitude)
+            }} //定位
+            onClick={() => {
+              console.log(parseFloat(store.store_latitude));
+              console.log(store.store_latitude);
+              setDefaultLat(store.store_latitude);
+              setDefaultLng(store.store_longitude);
+              setDefaultZoomMap(15);
+              setSelectedPark(store);
+            }}
+            icon={{
+              url: `/image/store/${store.store_logo}`,
+              scaledSize: new window.google.maps.Size(30, 30)
+            }}
+            animation={{ animation: "DROP" }}
+          />
+        ))}
+      </MarkerClusterer>
       {/* 點擊息提示 */}
       {selectedPark && (
         <InfoWindow
