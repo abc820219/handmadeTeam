@@ -27,6 +27,8 @@ body {
     height: 790px;
     // background: rgb(207, 163, 80);
     clip-path: polygon(0 36%, 31% 0, 100% 100%, 0% 100%);
+    
+  
 
     .big_img {
       height: 300px;
@@ -104,10 +106,13 @@ body {
     // overflow: hidden;
     // background: #683;
     clip-path: polygon(100% 0, 0 0, 100% 100%);
+    
+    
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+  
     }
     .link-subject {
       position: fixed;
@@ -115,7 +120,7 @@ body {
       right: 30px;
       z-index: 5;
       a {
-        color: #c57647;
+        color: #f78177;
         font-size: 50px;
       }
     }
