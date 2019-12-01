@@ -714,11 +714,7 @@ function Class_detail(props) {
               <button className="detail_person_btn" onClick={(course_select_max[$(".react-datepicker__day--selected").text()] === course_person) ? null : () => setCourse_person(course_person + 1)}><FaPlus className="person_icon" /></button>
             </div>
             <div className="course_detail_cart">
-<<<<<<< HEAD
-              <button type="button" className="detail_cart_icon_btn" disabled={!checkCart} style={!checkCart ? { opacity: '0.3', pointerEvent: 'none', cursor: 'not-allowed' } : {}}
-=======
             <button type="button" className="detail_cart_icon_btn mt-2" style={{transform:'translateY(100px)'}} disabled={!checkCart} style={!checkCart ? { opacity: '0.3', pointerEvent: 'none', cursor: 'not-allowed' } : {}}
->>>>>>> bigup/master
                 onClick={() => { putInCart(productDetail, correctDay, course_time_select, course_person, courseCart, id) }}>
                 <FaShoppingBasket className="cart_icon" />
                 <div>Add to Cart</div>
