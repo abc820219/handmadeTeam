@@ -13,12 +13,13 @@ const CartCourseCard = ({
   course_lists,
   course_price,
   courseAmountBtn,
-  courseDelBtn
+  courseDelBtn,
+  step
 }) => {
-  const { step, courseCartCf, courseCartCfDispatch,cartCourseDispatch,id,courseCart} = useContext(CartStore);
+  const {courseCartCf, courseCartCfDispatch,cartCourseDispatch,id,courseCart} = useContext(CartStore);
   let invisible_button = { visibility: step ? "hidden" : "visible" };
-  console.log(courseCart);
   const [checkCourse, setCheckCourse] = useState(true);
+  console.log(course_lists);
 
   const courseInfo = {
     course_sid: course_sid,
@@ -83,8 +84,8 @@ const CartCourseCard = ({
         /> */}
         <div className="checkListBox">
           <h4>
-            <span>{course_order_time}</span>
-            {course_order_choose}
+            <span className='mr-2'>{course_order_choose.split(" ")[0]}</span>
+            <span className='badge badge-pill badge-warning'>{course_order_choose.split(" ")[1]}</span>
           </h4>
           <h2>{course_name}</h2>
         </div>
@@ -114,7 +115,7 @@ const CartCourseCard = ({
         </div>
         <figure>
           <img
-            src="https://lumiere-a.akamaihd.net/v1/images/c94eed56a5e84479a2939c9172434567c0147d4f.jpeg?region=0,0,600,600"
+            src={"/image/course_img/360/"+course_lists}
             alt="product pic"
           />
         </figure>

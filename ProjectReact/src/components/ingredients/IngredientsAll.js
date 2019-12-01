@@ -81,7 +81,6 @@ const IngredientsAll = (props) => {
                 headers: { "Content-Type": "application/json" }
             });
             const bake_Data = await bakeSelect.json();
-            console.log(bake_Data);
             setBakeEngName(bake_Data[0].bake_engName);
             setIngredientData(bake_Data[1]);
             setBakeName(bake_Data[0].bake_name);
@@ -103,13 +102,8 @@ const IngredientsAll = (props) => {
         return { __html: bakeDetail };
     }
 
-    const ingreSelectLoop = (v, ingreCart) => {
-        console.log(v.ingredients_name);
-        console.log(ingreCart.ingredients_name);
-        return ingreCart.some(ingre => {
-            // console.log(ingre.ingredients_name == v.ingredients_name);
-            return ingre.ingredients_name === v.ingredients_name
-        })
+    const ingreSelectLoop = (ingredients_name, ingreCart) => { 
+        return ingreCart.some(ingre =>  ingre.ingredients_name === ingredients_name )
     }
     const putInCart = (id, ingredient) => {
         const { ingredients_sid, ingredients_name, ingredients_en_name, ingredients_image, ingredients_price} = ingredient;
@@ -253,7 +247,7 @@ const IngredientsAll = (props) => {
                                                     </div>
                                                 </div>
                                                 <a className="ingredientsCartButton"
-                                                    style={ingreCart.length !== 0 && ingreSelectLoop(ingredient, ingreCart) ? { backgroundColor: 'grey', pointerEvents: 'none' } : {}}
+                                                    style={ingreCart.length !== 0 && ingreSelectLoop(ingredient.ingredients_name, ingreCart) ? { backgroundColor: 'grey', pointerEvents: 'none' } : {}}
                                                     onClick={() => { putInCart(id, ingredient) }}
                                                     href
                                                 >

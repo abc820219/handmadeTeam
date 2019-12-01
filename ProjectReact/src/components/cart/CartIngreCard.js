@@ -11,9 +11,10 @@ const CartIngreCard = ({
   ingre_pic,
   ingre_price,
   ingreAmountBtn,
-  ingreDelBtn
+  ingreDelBtn,
+  step
 }) => {
-  const { step,id, cartIngreDispatch,ingreCart} = useContext(CartStore);
+  const { id, cartIngreDispatch,ingreCart} = useContext(CartStore);
   let invisible_button = { visibility: step ? "hidden" : "visible" };
   const courseInfo = {
     ingredients_sid: ingre_sid,

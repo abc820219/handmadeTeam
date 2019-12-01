@@ -4,12 +4,13 @@ import CartCourse from "./CartCourse";
 import CartIngre from "./CartIngre";
 import { Link } from "react-router-dom";
 import CartStore from "./CartStore";
+import { MdCancel } from "react-icons/md";
 
 
 
 const SmallCart = ({ openCart, showCart }) => {
 
-  let { courseCart, ingreCart ,id} = useContext(CartStore);
+  let { courseCart, ingreCart, id } = useContext(CartStore);
 
   console.log(id);
   const [cartBtn, setCartBtn] = useState(false)
@@ -54,6 +55,7 @@ const SmallCart = ({ openCart, showCart }) => {
         onMouseLeave={() => openCart(false)}
         style={{ right: showCart ? "0" : "100%" }}
       >
+        <MdCancel className='cartBigCancel' onClick={() => openCart(false)}/>
         <div className="d-flex flex-column">
           <div className="cartHead">
             <p className="cart-title">購物車</p>
@@ -104,7 +106,7 @@ const SmallCart = ({ openCart, showCart }) => {
           <span className="cartTotal">$ {CartTotal(courseCart, ingreCart)}</span>
         </div>
         <div>
-          <Link to="/handmade/member/cart" style={cartBtn ? { color: 'white' } : { color: 'white', pointerEvents: 'none' }} onClick={!id?()=>{alert('請先登入')}:''}>
+          <Link to="/handmade/member/cart" style={cartBtn ? { color: 'white' } : { color: 'white', pointerEvents: 'none' }} onClick={!id ? () => { alert('請先登入') } : ''}>
             <div
               className="cartBtn"
             >
