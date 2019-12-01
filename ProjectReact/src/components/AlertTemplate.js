@@ -57,7 +57,6 @@ const getIcon = type => {
   switch (type) {
     case "error":
         return `/image/logo/logo-03.png`;
-    //   return `https://cdn.shopify.com/s/files/1/1198/0996/products/giphy.gif?v=1478770210`;
     case "info":
         return `/image/logo/logo-03.png`;
     case "success":

@@ -74,6 +74,12 @@ function MemberLogin(props, { checkLogIn }) {
       setCaptchaErr(true);
       return;
     }
+    if (!account || !password) {
+      // alert("驗證碼錯誤");
+      alert.error("請輸入正確資訊");
+      setCaptchaErr(true);
+      return;
+    }
     fetch("http://localhost:5000/handmade/member/login", {
       method: "post",
       headers: {
@@ -93,15 +99,17 @@ function MemberLogin(props, { checkLogIn }) {
         localStorage.setItem("member_data", JSON.stringify(member_data.info));
         console.log(member_data.info);
         // alert(member_data.message);
-        alert.show(member_data.message);
+        alert.success(member_data.message);
         setTimeout(() => {
           window.location = `http://localhost:3000${props.location.pathname}`;
         });
       })
       .catch(async err => {
         console.log(err);
-        // alert("登入失敗");
-        alert.show("Oh look, an alert!");
+        setaccount("")
+        setpassword("");
+        setCaptchaValue("");
+        alert.error("登入失敗");
       });
     setaccount("");
     setpassword("");
@@ -115,7 +123,7 @@ function MemberLogin(props, { checkLogIn }) {
           <div className="mt-4">
             <img src="/image/logo/logo-03.png" alt="" width="180px" />
           </div>
-          <FacebookLogin />
+          <FacebookLogin alert={alert} />
           <p className="mt-4 mb-3" style={{ color: "#fff" }}>
             使用handmade帳號登入
           </p>

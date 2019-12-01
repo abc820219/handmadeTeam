@@ -2,8 +2,9 @@ import React from "react";
 import { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../commom/scss/member/coupon.scss";
-
+import { useAlert } from "react-alert";
 const CouponGet = () => {
+  const alert = useAlert();
   const [couponData, setCouponData] = useState("");
   const getCoupon = e => {
     e.preventDefault();
@@ -24,7 +25,7 @@ const CouponGet = () => {
       })
       .then(rows => {
         console.log(rows);
-        alert(rows.message);
+        alert.error(rows.message);
       });
   };
   useEffect(() => {
