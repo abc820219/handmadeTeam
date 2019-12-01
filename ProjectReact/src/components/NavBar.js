@@ -11,7 +11,6 @@ import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 
 const NavBar = ({ checkLogIn, login, ...props }) => {
-  console.log(login.login);
   const [showLightBox, setShowLightBox] = useState(false);
   const [showMenuBtn, setshowMenuBtn] = useState(false);
   const [showCart, setShowCart] = useState(false);
@@ -95,6 +94,11 @@ const NavBar = ({ checkLogIn, login, ...props }) => {
               </Link>
             </li>
             <li>
+              <Link style={{ color: "#fff" }} to="/handmade/findstore">
+                地圖
+              </Link>
+            </li>
+            <li>
               <Link style={{ color: "#fff" }} to="/handmade/test">
                 測試
               </Link>
@@ -110,7 +114,7 @@ const NavBar = ({ checkLogIn, login, ...props }) => {
                 }}
                 to="/handmade/"
               >
-                <GoHome style={{ marginBottom: "10px" ,marginRight:"5px"}} />
+                <GoHome style={{ marginBottom: "10px", marginRight: "5px" }} />
                 <span>回首頁</span>
               </Link>
             </li>

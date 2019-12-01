@@ -1,0 +1,790 @@
+// background-color
+
+$bgc-dark: #362D2B;
+$bgc-topLeft: #F6DCB9;
+$bgc-right: #F78177;
+
+// color
+
+$color-storeUp: #F4DBB9;
+$color-storeDown: #E9756E;
+$color-RightName: #F78177;
+$color-LeftName: #FFFFFF;
+
+// style css
+
+.findStoreAll {
+    max-width: 1920px;
+    min-height: 100vh;
+    background-color: $bgc-dark;
+    // overflow: hidden;
+    display: flex;
+    .findStoreLeft {
+        width: 470px;
+        .findStoreLeftTop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 50;
+            width: 470px;
+            height: 60px;
+            background-color: #968472;
+            overflow: hidden;
+            .findStoreLeftTopName {
+                font-size: 120px;
+                line-height: 130px;
+                margin-left: 90px;
+                font-weight: 600;
+                color: $color-storeUp;
+            }
+        }
+        .findStoreLeftDown {
+            position: fixed;
+            top: 60px;
+            left: 0;
+            z-index: 50;
+            background-color: $bgc-dark;
+            width: 470px;
+            overflow: hidden;
+            .findStoreLeftDownName {
+                font-size: 120px;
+                line-height: 120px;
+                margin-left: 90px;
+                margin-top: -55px;
+                font-weight: 600;
+                color: $color-storeDown;
+            }
+        }
+        .findStoreCardGroup {
+            .findStoreCardButton {
+                position: fixed;
+                top: 140px;
+                left: 0;
+                z-index: 50;
+                width: 470px;
+                margin: -20px 0 0 0 ;
+                background-color: $bgc-dark;
+                .findStoreHere {
+                    width: 405px;
+                    height: 50px;
+                    margin: 0 auto;
+                    ul.findStoreHereCheckbox {
+                        width: 405px;
+                        margin: 0 auto;
+                        list-style: none;
+                        padding: 0;
+                        li.findStoreHereCheckboxItem {
+                            display: inline-block;
+                        }
+                        li.findStoreHereCheckboxItem label span {
+                            display: inline-block;
+                            margin: 5px auto;
+                            border-radius: 10px;
+                            width: 405px;
+                            height: 50px;
+                            /* background: lightgreen; */
+                            background-color: #fff;
+                            text-align: center;
+                            line-height: 50px;
+                            user-select: none;
+                            cursor: pointer;
+                            color: #9597A6;
+                            font-weight: bold;
+                            font-family: "微軟正黑體";
+                            font-size: 25px;
+                        }
+                        li.findStoreHereCheckboxItem label input {
+                            display: none;
+                        }
+                        li.findStoreHereCheckboxItem label input:checked + span {
+                            background: #E9756E;
+                            color: #FFFFFF;
+                        }
+                    }
+                }
+                ul.findStoreCheckboxGroup {
+                    width: 405px;
+                    margin: 5px auto;
+                    list-style: none;
+                    padding: 0;
+                    li.findStoreCheckboxItem {
+                        display: inline-block;
+                    }
+                    li.findStoreCheckboxItem label span {
+                        display: inline-block;
+                        margin-top: 5px;
+                        width: 200px;
+                        height: 50px;
+                        /* background: lightgreen; */
+                        background-color: #fff;
+                        text-align: center;
+                        line-height: 50px;
+                        user-select: none;
+                        cursor: pointer;
+                        color: #9597A6;
+                        font-weight: bold;
+                        font-family: "微軟正黑體";
+                        font-size: 25px;
+                    }
+                    li.findStoreCheckboxItem1 label span {
+                        border-radius: 10px 0 0 10px;
+                    }
+                    li.findStoreCheckboxItem2 label span {
+                        margin-left: 5px;
+                        border-radius: 0 10px 10px 0;
+                    }
+                    li.findStoreCheckboxItem label input {
+                        display: none;
+                    }
+                    li.findStoreCheckboxItem label input:checked + span {
+                        background: #E9756E;
+                        color: #FFFFFF;
+                    }
+                }
+            }
+            .findStoreCardGroupUl {
+                position: absolute;
+                top: 250px;
+                left: 0;
+                width: 470px;
+                background-color: $bgc-dark;
+                margin: 0;
+                .findStoreCardGroupLi {
+                    margin: 10px auto;
+                    width: 405px;
+                    border-radius: 10px;
+                    overflow: hidden;
+                    position: relative;
+                    .findStoreSpacePhoto {
+                        width: 100%;
+                        height: 200px;
+                        object-fit: cover;
+                    }
+                    .findStoreCardTop {
+                        .findStoreName {
+                            width: 50% ;
+                            position: absolute;
+                            top: 0; 
+                            left: 0;
+                            p {
+                                color: #FFFFFF;
+                                overflow:hidden;
+                                white-space: nowrap;
+                                text-overflow: ellipsis;
+                                padding: 0 10px 0 5px;
+                                font-size: 20px;
+                                background-color: $bgc-dark;
+                                border-radius: 0 0 40px 0;
+                            }
+                        }
+                    }
+                    .findStoreCardDown {
+                        width: 100%;
+                        height: 200px;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        opacity: 0;
+                        align-items: center;
+                        transition: .5s;
+                        .findStoreCardDownMain {
+                            width: 100%;
+                            height: 200px;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            display: flex;
+                            align-items: center;
+                            background-color: rgba(0, 0, 0, 0.8);        
+                            .findStoreLogoPhoto {
+                                margin: 10px;
+                                min-width: 100px;
+                                max-height: 100px;
+                                border-radius: 50%;
+                                object-fit: cover;
+                                object-position: 50% 50%;
+                            }
+                            .findStoreIntroduce {
+
+                                p { 
+                                    color: #FFFFFF;
+                                    margin: 0 10px;
+                                    overflow:hidden;
+                                    white-space: nowrap;
+                                    text-overflow: ellipsis;
+                                    display: -webkit-box;
+                                    -webkit-line-clamp: 4; //行數
+                                    -webkit-box-orient: vertical;
+                                    white-space: normal;
+                                    font-size: 16px;
+                                }
+                            }
+                        }
+                        .findStoreEnterButton {
+                            position: absolute;
+                            bottom: 10px;
+                            right: 25px;
+                            .findStoreEnterStore {
+                                padding: 2px 10px;
+                                border-radius: 22px;
+                                color: #9597A6;
+                                background: #FFFFFF;
+                                font-size: 18px;
+                                line-height: 18px;
+                                cursor: pointer;
+                                text-decoration: none;
+                                svg {
+                                    font-size: 20px;
+                                }
+                            }
+                            .findStoreEnterStore:hover {
+                                background: #E9756E;
+                                color: #FFFFFF;
+                            }
+                        }
+                    }
+                }
+                .findStoreCardGroupLi:hover .findStoreCardDown {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+    .findStoreRight {
+        width: calc(100% - 470px);
+        position: fixed;
+        right: 0;
+        top: 0;
+        .findStoreRightTop {
+            width: 100%;
+            height: 60px;
+            background-color: $bgc-dark;
+        }
+        .findStoreGoogleMap {
+            .findStoreGoogleMapIn {
+
+            }
+        }
+    }
+}
+
+
+// max-width 939px
+@media screen and (max-width: 939px) {
+    .findStoreAll {
+        max-width: 1920px;
+        min-height: 100vh;
+        background-color: $bgc-dark;
+        // overflow: hidden;
+        display: flex;
+        flex-direction: column-reverse;
+        .findStoreLeft {
+            width: 100%;
+            .findStoreLeftTop {
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 50;
+                width: 100%;
+                height: 60px;
+                background-color: #968472;
+                overflow: hidden;
+                .findStoreLeftTopName {
+                    text-align: center;
+                    font-size: 120px;
+                    line-height: 130px;
+                    margin-left: 0;
+                    font-weight: 600;
+                    color: $color-storeUp;
+                }
+            }
+            .findStoreLeftDown {
+                position: fixed;
+                top: 60px;
+                left: 0;
+                z-index: 50;
+                background-color: $bgc-dark;
+                width: 100%;
+                overflow: hidden;
+                .findStoreLeftDownName {
+                    text-align: center;
+                    font-size: 120px;
+                    line-height: 120px;
+                    margin-left: 0;
+                    margin-top: -55px;
+                    font-weight: 600;
+                    color: $color-storeDown;
+                }
+            }
+            .findStoreCardGroup {
+                margin-top: -220px;
+                .findStoreCardButton {
+                    position: fixed;
+                    top: 140px;
+                    left: 0;
+                    z-index: 50;
+                    width: 100%;
+                    margin: -20px 0 0 0 ;
+                    background-color: $bgc-dark;
+                    .findStoreHere {
+                        width: 405px;
+                        height: 50px;
+                        margin: 0 auto;
+                        ul.findStoreHereCheckbox {
+                            width: 405px;
+                            margin: 0 auto;
+                            list-style: none;
+                            padding: 0;
+                            li.findStoreHereCheckboxItem {
+                                display: inline-block;
+                            }
+                            li.findStoreHereCheckboxItem label span {
+                                display: inline-block;
+                                margin: 5px auto;
+                                border-radius: 10px;
+                                width: 405px;
+                                height: 50px;
+                                /* background: lightgreen; */
+                                background-color: #fff;
+                                text-align: center;
+                                line-height: 50px;
+                                user-select: none;
+                                cursor: pointer;
+                                color: #9597A6;
+                                font-weight: bold;
+                                font-family: "微軟正黑體";
+                                font-size: 25px;
+                            }
+                            li.findStoreHereCheckboxItem label input {
+                                display: none;
+                            }
+                            li.findStoreHereCheckboxItem label input:checked + span {
+                                background: #E9756E;
+                                color: #FFFFFF;
+                            }
+                        }
+                    }
+                    ul.findStoreCheckboxGroup {
+                        width: 405px;
+                        margin: 5px auto;
+                        list-style: none;
+                        padding: 0;
+                        li.findStoreCheckboxItem {
+                            display: inline-block;
+                        }
+                        li.findStoreCheckboxItem label span {
+                            display: inline-block;
+                            margin-top: 5px;
+                            width: 200px;
+                            height: 50px;
+                            /* background: lightgreen; */
+                            background-color: #fff;
+                            text-align: center;
+                            line-height: 50px;
+                            user-select: none;
+                            cursor: pointer;
+                            color: #9597A6;
+                            font-weight: bold;
+                            font-family: "微軟正黑體";
+                            font-size: 25px;
+                        }
+                        li.findStoreCheckboxItem1 label span {
+                            border-radius: 10px 0 0 10px;
+                        }
+                        li.findStoreCheckboxItem2 label span {
+                            margin-left: 5px;
+                            border-radius: 0 10px 10px 0;
+                        }
+                        li.findStoreCheckboxItem label input {
+                            display: none;
+                        }
+                        li.findStoreCheckboxItem label input:checked + span {
+                            background: #E9756E;
+                            color: #FFFFFF;
+                        }
+                    }
+                }
+                .findStoreCardGroupUl {
+                    position: relative;
+                    width: 100%;
+                    background-color: $bgc-dark;
+                    margin: 0;
+                    .findStoreCardGroupLi {
+                        margin: 20px auto 0 auto;
+                        width: 90%;
+                        border-radius: 10px;
+                        overflow: hidden;
+                        position: relative;
+                        .findStoreSpacePhoto {
+                            width: 100%;
+                            height: 200px;
+                            object-fit: cover;
+                        }
+                        .findStoreCardTop {
+                            .findStoreName {
+                                width: 50% ;
+                                position: absolute;
+                                top: 0; 
+                                left: 0;
+                                p {
+                                    color: #FFFFFF;
+                                    overflow:hidden;
+                                    white-space: nowrap;
+                                    text-overflow: ellipsis;
+                                    padding: 0 10px 0 5px;
+                                    font-size: 20px;
+                                    background-color: $bgc-dark;
+                                    border-radius: 0 0 40px 0;
+                                }
+                            }
+                        }
+                        .findStoreCardDown {
+                            width: 100%;
+                            height: 200px;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            opacity: 0;
+                            align-items: center;
+                            transition: .5s;
+                            .findStoreCardDownMain {
+                                width: 100%;
+                                height: 200px;
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                display: flex;
+                                align-items: center;
+                                background-color: rgba(0, 0, 0, 0.8);        
+                                .findStoreLogoPhoto {
+                                    margin: 10px;
+                                    min-width: 100px;
+                                    max-height: 100px;
+                                    border-radius: 50%;
+                                    object-fit: cover;
+                                    object-position: 50% 50%;
+                                }
+                                .findStoreIntroduce {
+    
+                                    p { 
+                                        color: #FFFFFF;
+                                        margin: 0 10px;
+                                        overflow:hidden;
+                                        white-space: nowrap;
+                                        text-overflow: ellipsis;
+                                        display: -webkit-box;
+                                        -webkit-line-clamp: 4; //行數
+                                        -webkit-box-orient: vertical;
+                                        white-space: normal;
+                                        font-size: 16px;
+                                    }
+                                }
+                            }
+                            .findStoreEnterButton {
+                                position: absolute;
+                                bottom: 10px;
+                                right: 25px;
+                                .findStoreEnterStore {
+                                    padding: 2px 10px;
+                                    border-radius: 22px;
+                                    color: #9597A6;
+                                    background: #FFFFFF;
+                                    font-size: 18px;
+                                    line-height: 18px;
+                                    cursor: pointer;
+                                    text-decoration: none;
+                                    svg {
+                                        font-size: 20px;
+                                    }
+                                }
+                                .findStoreEnterStore:hover {
+                                    background: #E9756E;
+                                    color: #FFFFFF;
+                                }
+                            }
+                        }
+                    }
+                    .findStoreCardGroupLi:hover .findStoreCardDown {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+        .findStoreRight {
+            width: 90%;
+            margin: 0 auto;
+            position: relative;
+            .findStoreRightTop {
+                display: none;
+                width: 100%;
+                height: 60px;
+                background-color: $bgc-dark;
+            }
+            .findStoreGoogleMap {
+                .findStoreGoogleMapIn {
+                    height: 600px !important;
+                }
+            }
+        }
+    }
+}
+
+// max-width 49px
+@media screen and (max-width: 449px) {
+    .findStoreAll {
+        max-width: 1920px;
+        min-height: 100vh;
+        background-color: $bgc-dark;
+        // overflow: hidden;
+        display: flex;
+        flex-direction: column-reverse;
+        .findStoreLeft {
+            width: 100%;
+            .findStoreLeftTop {
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 50;
+                width: 100%;
+                height: 60px;
+                background-color: #968472;
+                overflow: hidden;
+                .findStoreLeftTopName {
+                    text-align: center;
+                    font-size: 120px;
+                    line-height: 130px;
+                    margin-left: 0;
+                    font-weight: 600;
+                    color: $color-storeUp;
+                }
+            }
+            .findStoreLeftDown {
+                position: fixed;
+                top: 60px;
+                left: 0;
+                z-index: 50;
+                background-color: $bgc-dark;
+                width: 100%;
+                overflow: hidden;
+                .findStoreLeftDownName {
+                    text-align: center;
+                    font-size: 120px;
+                    line-height: 120px;
+                    margin-left: 0;
+                    margin-top: -55px;
+                    font-weight: 600;
+                    color: $color-storeDown;
+                }
+            }
+            .findStoreCardGroup {
+                margin-top: -220px;
+                .findStoreCardButton {
+                    position: fixed;
+                    top: 140px;
+                    left: 0;
+                    z-index: 50;
+                    width: 100%;
+                    margin: -20px 0 0 0 ;
+                    background-color: $bgc-dark;
+                    .findStoreHere {
+                        width: 305px;
+                        height: 50px;
+                        margin: 0 auto;
+                        ul.findStoreHereCheckbox {
+                            width: 305px;
+                            margin: 0 auto;
+                            list-style: none;
+                            padding: 0;
+                            li.findStoreHereCheckboxItem {
+                                display: inline-block;
+                            }
+                            li.findStoreHereCheckboxItem label span {
+                                display: inline-block;
+                                margin: 5px auto;
+                                border-radius: 10px;
+                                width: 305px;
+                                height: 50px;
+                                /* background: lightgreen; */
+                                background-color: #fff;
+                                text-align: center;
+                                line-height: 50px;
+                                user-select: none;
+                                cursor: pointer;
+                                color: #9597A6;
+                                font-weight: bold;
+                                font-family: "微軟正黑體";
+                                font-size: 25px;
+                            }
+                            li.findStoreHereCheckboxItem label input {
+                                display: none;
+                            }
+                            li.findStoreHereCheckboxItem label input:checked + span {
+                                background: #E9756E;
+                                color: #FFFFFF;
+                            }
+                        }
+                    }
+                    ul.findStoreCheckboxGroup {
+                        width: 305px;
+                        margin: 5px auto;
+                        list-style: none;
+                        padding: 0;
+                        li.findStoreCheckboxItem {
+                            display: inline-block;
+                        }
+                        li.findStoreCheckboxItem label span {
+                            display: inline-block;
+                            margin-top: 5px;
+                            width: 150px;
+                            height: 50px;
+                            /* background: lightgreen; */
+                            background-color: #fff;
+                            text-align: center;
+                            line-height: 50px;
+                            user-select: none;
+                            cursor: pointer;
+                            color: #9597A6;
+                            font-weight: bold;
+                            font-family: "微軟正黑體";
+                            font-size: 25px;
+                        }
+                        li.findStoreCheckboxItem1 label span {
+                            border-radius: 10px 0 0 10px;
+                        }
+                        li.findStoreCheckboxItem2 label span {
+                            margin-left: 5px;
+                            border-radius: 0 10px 10px 0;
+                        }
+                        li.findStoreCheckboxItem label input {
+                            display: none;
+                        }
+                        li.findStoreCheckboxItem label input:checked + span {
+                            background: #E9756E;
+                            color: #FFFFFF;
+                        }
+                    }
+                }
+                .findStoreCardGroupUl {
+                    position: relative;
+                    width: 100%;
+                    background-color: $bgc-dark;
+                    margin: 0;
+                    .findStoreCardGroupLi {
+                        margin: 20px auto 0 auto;
+                        width: 90%;
+                        border-radius: 10px;
+                        overflow: hidden;
+                        position: relative;
+                        .findStoreSpacePhoto {
+                            width: 100%;
+                            height: 200px;
+                            object-fit: cover;
+                        }
+                        .findStoreCardTop {
+                            .findStoreName {
+                                width: 50% ;
+                                position: absolute;
+                                top: 0; 
+                                left: 0;
+                                p {
+                                    color: #FFFFFF;
+                                    overflow:hidden;
+                                    white-space: nowrap;
+                                    text-overflow: ellipsis;
+                                    padding: 0 10px 0 5px;
+                                    font-size: 20px;
+                                    background-color: $bgc-dark;
+                                    border-radius: 0 0 40px 0;
+                                }
+                            }
+                        }
+                        .findStoreCardDown {
+                            width: 100%;
+                            height: 200px;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            opacity: 0;
+                            align-items: center;
+                            transition: .5s;
+                            .findStoreCardDownMain {
+                                width: 100%;
+                                height: 200px;
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                display: flex;
+                                align-items: center;
+                                background-color: rgba(0, 0, 0, 0.8);        
+                                .findStoreLogoPhoto {
+                                    margin: 10px;
+                                    min-width: 100px;
+                                    max-height: 100px;
+                                    border-radius: 50%;
+                                    object-fit: cover;
+                                    object-position: 50% 50%;
+                                }
+                                .findStoreIntroduce {
+    
+                                    p { 
+                                        color: #FFFFFF;
+                                        margin: 0 10px;
+                                        overflow:hidden;
+                                        white-space: nowrap;
+                                        text-overflow: ellipsis;
+                                        display: -webkit-box;
+                                        -webkit-line-clamp: 4; //行數
+                                        -webkit-box-orient: vertical;
+                                        white-space: normal;
+                                        font-size: 16px;
+                                    }
+                                }
+                            }
+                            .findStoreEnterButton {
+                                position: absolute;
+                                bottom: 10px;
+                                right: 25px;
+                                .findStoreEnterStore {
+                                    padding: 2px 10px;
+                                    border-radius: 22px;
+                                    color: #9597A6;
+                                    background: #FFFFFF;
+                                    font-size: 18px;
+                                    line-height: 18px;
+                                    cursor: pointer;
+                                    text-decoration: none;
+                                    svg {
+                                        font-size: 20px;
+                                    }
+                                }
+                                .findStoreEnterStore:hover {
+                                    background: #E9756E;
+                                    color: #FFFFFF;
+                                }
+                            }
+                        }
+                    }
+                    .findStoreCardGroupLi:hover .findStoreCardDown {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+        .findStoreRight {
+            width: 90%;
+            margin: 0 auto;
+            position: relative;
+            .findStoreRightTop {
+                display: none;
+                width: 100%;
+                height: 60px;
+                background-color: $bgc-dark;
+            }
+            .findStoreGoogleMap {
+                .findStoreGoogleMapIn {
+                    height: 600px !important;
+                }
+            }
+        }
+    }
+}

@@ -1738,7 +1738,9 @@
             justify-content: center;
             .detail_cart_icon_btn {
               width: 60%;
-              margin: 10px;
+              margin-top: 10px;
+              position:absolute;
+              z-index: 20;
               background: #e9756e;
               box-shadow: #e71c4c41 0px 16px 18px;
               display: flex;

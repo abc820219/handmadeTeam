@@ -164,6 +164,7 @@ const StoreAll = () => {
                 areaHaveStore={areaHaveStore}
                 setAreaNowCatch={setAreaNowCatch}
                 setAreaNowName={setAreaNowName}
+                storeDataLoad={storeDataLoad}
               />
             </div>
             <div className="storeCountryName">

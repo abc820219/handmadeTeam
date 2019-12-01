@@ -1,0 +1,203 @@
+.theTitle{
+    display: flex;
+    align-items: center;
+    height: 120px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    z-index: 99;
+    pointer-events: none;
+}
+.right_logo, .left_logo{
+    width: 50%;
+    overflow: hidden;
+}
+.theTitle h1{
+    margin: 0;
+    height: 120px;
+    line-height: 120px;
+    vertical-align: middle;
+    font-family: Tahoma;
+    font-weight: 900;
+    font-size: 7rem;
+    color: #333;
+    transform: translateX(100%);
+    transition: transform 0.6s ease-out .1s;
+}
+.theTitle h1 img{
+    height: 90px;
+    transform: translateX(150px) translateY(-13px);
+}
+
+.theTitle .separator{
+    background-color: #fff;
+    width: 4px;
+    transform: rotate(90deg);
+    height: 0;
+    display: block;
+    margin: 0 6px 0 0;
+    transition: height 0.3s ease 0.9s, transform 0.3s ease 0.6s;
+}
+
+.active .separator{
+    height: 100%;
+    transform: rotate(0);
+    transition: height 0.3s ease, transform 0.3s ease 0.4s;
+
+}
+.theTitle.active h1{
+    transform: translateX(0);
+    transition: transform 0.6s ease-out 0.8s;
+}
+.theTitle.active p{
+    transform: translateX(0);
+    transition: transform 0.5s ease-out 0.7s;
+}
+.theTitle .right_logo{
+    /* display: flex;
+    align-items: center; */
+    width: 50%;
+}
+.moverout_logo{
+    transform: translate(-1200px);
+}
+.moverout_bg{
+    transform: translate(-2000px);
+}
+.theTitle p{
+    margin: 0;
+    padding: 0;
+    font-family: 'Concert One', cursive;
+    font-size: 2.8rem;
+    line-height: 0.8;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    color: #333;
+    transform: translateX(-100%);
+    transition: transform 0.5s ease-out;
+}
+.logo-letter-spacing{
+    letter-spacing: 3px;
+}
+.toggleClass{
+    background: none;
+    /* border: none;  */
+    /* border: 2px solid #333;  */
+    font-size: 2rem;
+    font-family: Calibri;
+    font-weight: 100; 
+    text-transform: uppercase; 
+    cursor: pointer;
+    outline: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transition: transform 1s ease-out 1s;
+    z-index: 50;
+}
+/* .toggleClass:hover{
+    background-color: #333;
+    color: #fff;
+}
+.toggleClass:active{
+    background-color: #2a2a2a;
+} */
+.down_logo{
+    position: absolute;
+    top: -40px;
+    left: -4px;
+}
+
+.mylink{
+  position: absolute;
+  z-index: 150;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  text-align: right;
+  padding: .6rem;
+}
+
+.mylink a{
+  font-family: Calibri;
+  color: #000;
+  border-bottom: 1px solid #000;
+  opacity: .5;
+  transition: opacity .3s;
+  text-decoration: none
+}
+.mylink a:hover{
+  opacity: 1
+}
+
+.background_first{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(-45deg, #362D2B, #E9756E, #F5DDBA, #EABEAE);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    z-index: 44;
+    transition: 2s;
+}
+/* .svg-wrapper {
+    height: 60px;
+    margin: 0 auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 320px;
+  } */
+  
+.shape {
+    fill: transparent;
+    stroke-dasharray: 140 540;
+    stroke-dashoffset: -474;
+    stroke-width: 8px;
+    stroke: #fff;
+    
+    
+  }
+  
+.text_hover {
+    color: #fff;
+    font-family: 'Roboto Condensed';
+    font-size: 22px;
+    letter-spacing: 8px;
+    line-height: 32px;
+    position: relative;
+    top: -68px;
+  }
+  
+@keyframes draw {
+    0% {
+      stroke-dasharray: 140 540;
+      stroke-dashoffset: -474;
+      stroke-width: 8px;
+    }
+    100% {
+      stroke-dasharray: 760;
+      stroke-dashoffset: 0;
+      stroke-width: 8px;
+    }
+  }
+  
+.toggleClass:hover .shape {
+    -webkit-animation: 0.5s draw linear forwards;
+    animation: 0.5s draw linear forwards;
+  }
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}

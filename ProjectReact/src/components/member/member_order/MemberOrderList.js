@@ -109,7 +109,7 @@ const MemberOrderList = ({ changeOrderType }) => {
   };
 
   const calcauPage = datas => {
-    let pageTotal = Math.ceil(datas.length / 8);
+    let pageTotal = Math.ceil(datas.length / 10);
     let pageTotalFn = [];
     for (let i = 1; i <= pageTotal; i++) {
       pageTotalFn.push(i);
@@ -155,18 +155,16 @@ const MemberOrderList = ({ changeOrderType }) => {
 
   const changePage = (orderPage, orderSid) => {
     const newOrderNum = [];
-    let startPage = (orderPage - 1) * 8;
+    let startPage = (orderPage - 1) * 10;
     let finishPage =
-      orderPage * 8 - 1 < orderSid.length - 1
-        ? orderPage * 8 - 1
+      orderPage * 10 - 1 < orderSid.length - 1
+        ? orderPage * 10 - 1
         : orderSid.length - 1;
     for (let i = startPage; i <= finishPage; i++) {
       newOrderNum.push(orderSid[i]);
     }
     setNowOrderPage(newOrderNum);
   };
-
-  console.log(nowOrderPage);
 
   return (
     <>
@@ -219,14 +217,14 @@ const MemberOrderList = ({ changeOrderType }) => {
                         style={{ color: "#fff" }}
                       >
                         <div
-                          className="p-2"
+                          className="p-2 w-100"
                           style={{ fontWeight: "bold", fontSize: "18px" }}
                         >
                           訂單編號:{v.order_sid}
                         </div>
                         <FaPlus onClick={() => openStatus(index)} />
                       </div>
-                      <div>
+                      <div className='w-100'>
                         {v.coupon_sid === 0
                           ? ""
                           : "使用優惠卷代碼:" + v.coupon_sid}
@@ -234,6 +232,7 @@ const MemberOrderList = ({ changeOrderType }) => {
                       <div>
                         {"訂單創建日期:" + v.order_create_time.split("T")[0]}
                       </div>
+                      <div>使用紅利: {v.member_used_bonus}</div>
                       <div>總金額:{v.order_total_price}</div>
                     </div>
                     <li
@@ -246,7 +245,7 @@ const MemberOrderList = ({ changeOrderType }) => {
                             <>
                               <ul className="d-flex justify-content-between align-items-center orderList-list-content">
                                 <li className="p-3">
-                                  <div>課程名稱2:{row.course_name}</div>
+                                  <div>課程名稱:{row.course_name}</div>
                                   <div>開課時間:{row.course_order_choose}</div>
                                   <div>
                                     報名人數:{row.course_order_applicants}

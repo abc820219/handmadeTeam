@@ -122,12 +122,12 @@ class OrderInfo extends Component {
   handleChange = e => {
     // 判斷名字英文或中文都可
     let regex = /^[u4E00-\u9FA5]+$/;
+    let re = /^09[0-9]{8}$/;
     let value = e.target.value;
     if (!(regex.test(value) || value === "")) return false;
     this.setState({ [e.target.name]: e.target.value }, () => {
       // console.log("order_sid:",localStorage.getItem('member_id'))
       console.log("subject_sid:", this.props.subject_sid);
-      // console.log("phone:", this.state.phone);
       console.log("username:", this.state.username);
     });
     // console.log(this.state.username)  <= 會慢一步，錯誤寫法
@@ -216,7 +216,7 @@ class OrderInfo extends Component {
                 <label>Phone :</label>
                 <input
                   className="input-box"
-                  type="number"
+                  type="text"
                   name="phone"
                   value={this.state.phone}
                   onChange={e => this.handleChange(e)}
@@ -249,7 +249,7 @@ class OrderInfo extends Component {
               </div>
             </div>
             <div className="subject-btn">
-              <button className="order-btn" onClick={this.postMeberInfo}>
+              <button className="order-btn"  onClick={this.postMeberInfo}>
                 order
               </button>
             </div>

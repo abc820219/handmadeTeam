@@ -59,7 +59,7 @@ const MemberOrder = () => {
           <div className="col-md-4 p-0  col-12">
             <MemberOrderList style={{ paddingTop: "60px" }} />
           </div>
-          <div className="col-md-8 p-0 col-12">
+          <div className="col-md-8 p-0 col-12" style={{ backgroundColor: "#eec1b1" }}>
             <MemberOrderDetail style={{ paddingTop: "60px" }} />
           </div>
         </div>

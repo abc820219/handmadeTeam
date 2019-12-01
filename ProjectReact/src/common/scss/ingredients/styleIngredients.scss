@@ -22,6 +22,8 @@ $color-LeftName: #FFFFFF;
     src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/2101521/SourceSerifVariable-Roman.ttf");
   }
 
+  @import url("https://use.typekit.net/zkl0auq.css");
+
 // style css 
 .ingredientsAllMin {
     display: none;
@@ -112,6 +114,7 @@ $color-LeftName: #FFFFFF;
                     top: calc( 50% - 75px );
                     right: -75px;
                     z-index: 99;
+                    outline: none;
                     .MuiButton-label {
                         width: 150px;
                         height: 150px;
@@ -123,6 +126,9 @@ $color-LeftName: #FFFFFF;
                         font-size: 30px;
                         color: #FFFFFF;
                     }
+                }
+                .recipeRightButtonShow:hover {
+                    background-color: rgba(#000000,0);
                 }
             }
         }

@@ -5,6 +5,7 @@ import "../../commom/scss/member/coupon.scss";
 
 const MyCoupon0 = () => {
   const [couponData, setCouponData] = useState("");
+
   useEffect(() => {
     fetch("http://localhost:5000/handmade/coupon/couponStatus0", {
       method: "POST",
@@ -27,9 +28,7 @@ const MyCoupon0 = () => {
     return (
       <>
         <div className="d-flex justify-content-center">
-          <p className="py-3" style={{ textAlign: "center" }}>
-            尚未領取優惠卷
-          </p>
+          <p className="py-3" style={{ textAlign: "center" }}></p>
         </div>
       </>
     );
@@ -39,11 +38,11 @@ const MyCoupon0 = () => {
       {couponData.map((v, index) => {
         return (
           <div
-            className="d-flex justify-content-center"
+            className="d-flex justify-content-center "
             key={index}
           >
-            <div className="py-3">
-              <div className="coupon d-flex flex-nowrap ">
+            <div className="py-1 w-100 ">
+              <div className="coupon d-flex flex-nowrap  w-100 ">
                 <div className="coupon-left">
                   <p className="coupon-left-content">
                     <span>{v.coupon_price}折</span>

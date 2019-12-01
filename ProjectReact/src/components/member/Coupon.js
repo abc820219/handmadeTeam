@@ -1,15 +1,35 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Nav } from "react-bootstrap";
 import "../../commom/scss/member/coupon.scss";
 import CouponGet from "../member/CouponGet";
 import MyCoupon from "../member/MyCoupon";
+import MemberChart from "../member/MemberChart";
 const Coupon = ({ props }) => {
   const [couponPage, setCouponPage] = useState(0);
   const PageChange = page => {
     setCouponPage(page);
   };
+  const [bonuns, setBonus] = useState("");
+  useEffect(() => {
+    fetch("http://localhost:5000/handmade/member/getMemberData", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        member_sid: localStorage.getItem("member_id")
+      })
+    })
+      .then(res => {
+        return res.json();
+      })
+      .then(row => {
+        console.log(row);
+        setBonus(row.info.member_bonus);
+      });
+  }, []);
   return (
     <>
       <div className="container-fluid couponDetail">
@@ -28,7 +48,7 @@ const Coupon = ({ props }) => {
                         onClick={() => PageChange(0)}
                         className={couponPage === 0 && "active"}
                       >
-                        優惠卷領取專區
+                        優惠專區
                       </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
@@ -49,8 +69,13 @@ const Coupon = ({ props }) => {
                     </Nav.Item> */}
                   </Nav>
                   <div>
-                    <article className="p-4">
-                      <h2>好康優惠(點擊領取優惠卷)</h2>
+                    <article className="py-3">
+                      <h2>好康優惠(目前紅利累積:{bonuns+"$"})</h2>
+                      <div>
+                        <MemberChart></MemberChart>
+                        
+                      </div>
+                      <h2 className="mt-5">好康優惠(點擊領取優惠卷)</h2>
                       <ul>
                         <li>
                           折價券使用說明:
@@ -72,23 +97,6 @@ const Coupon = ({ props }) => {
                             點選「結帳」按鈕,登入客戶帳號/密碼
                             於訂購資料頁選擇欲使用的折價券之序號
                           </p>
-                        </li>
-                        <li>
-                          注意事項
-                          <ul>
-                            <li className="p-2">
-                              1.折價券限會員使用，不得折抵現金，不得轉讓。若會員未在截止日期前，使用折價券(購物金)做購物折抵，則逾期無效，不再補發。
-                            </li>
-                            <li className="p-2">
-                              2.折價券不再另開立發票，發票金額以該訂單「購買時實際支付的金額」來計算。
-                            </li>
-                            <li className="p-2">
-                              3.訂單取消時，退貨的金額是以「購買時實際支付的金額」來計算，也就是扣除折價券(購物金)後的金額。該次消費使用之折價券(購物金)將無法退回。
-                            </li>
-                            <li className="p-1">
-                              4.折價券不得兌換現金、找零或折換其他贈品。
-                            </li>
-                          </ul>
                         </li>
                       </ul>
                     </article>

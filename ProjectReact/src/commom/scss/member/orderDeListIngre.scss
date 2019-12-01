@@ -1,9 +1,10 @@
 .Ingre {
+  background-color: #eec1b1;
   .IngreHeader {
     padding: 20px 10px 0 10px;
   }
   .IngreMain {
-    height: -webkit-calc(100vh - 190px);
+    height: 100%;
     overflow-y: scroll;
     ul {
       padding: 0 20px;
