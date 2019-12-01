@@ -6,7 +6,9 @@ const db = mysql.createConnection(db_Obj);
 const bluebird = require("bluebird"); //使用兩次sql
 bluebird.promisifyAll(db);
 const moment = require("moment-timezone");
-const nodemailer = require('nodemailer');
+const nodemailer = require("nodemailer");
+var smtpTransport = require("nodemailer-smtp-transport");
+
 // import OrderDetail from "../domain/memberOrder";
 
 router.get("/", (req, res) => {
@@ -20,7 +22,7 @@ router.get("/course/:id", (req, res) => {
     memberId;
   db.queryAsync(sql).then(results => {
     const formatDate = "YYYY-MM-DD HH:mm:ss";
-    results.forEach(function (v) {
+    results.forEach(function(v) {
       v.course_order_choose = moment(v.course_order_choose)
         .tz("Asia/Taipei")
         .format(formatDate);
@@ -50,10 +52,11 @@ router.get("/ingre/:id", (req, res) => {
 router.get("/subject/:id", (req, res) => {
   const memberId = req.params.id;
   sql =
-    "SELECT * FROM `order` o JOIN `subject_order` so JOIN `subject` s ON o.order_sid = so.order_sid AND so.subject_sid = s.subject_sid WHERE o.member_sid = " + memberId;
+    "SELECT * FROM `order` o JOIN `subject_order` so JOIN `subject` s ON o.order_sid = so.order_sid AND so.subject_sid = s.subject_sid WHERE o.member_sid = " +
+    memberId;
   db.queryAsync(sql).then(results => {
     const formatDate = "YYYY-MM-DD HH:mm:ss";
-    results.forEach(function (v) {
+    results.forEach(function(v) {
       v.subject_date = moment(v.subject_date)
         .tz("Asia/Taipei")
         .format(formatDate);
@@ -91,11 +94,11 @@ class OrderDetail {
       }
       case 3: {
         sql =
-          "SELECT * FROM `order` JOIN `subject_order` JOIN `subject` JOIN `subject_img` JOIN `teacher` ON `subject`.`subject_sid` = `subject_order`.`subject_sid` AND `order`.`order_sid` = `subject_order`.`order_sid` AND `subject_img`.`subject_sid` = `subject`.`subject_sid` AND `subject`.`teacher_sid` = `teacher`.`teacher_sid` WHERE `order`.`member_sid` ="
-        +this.user +
+          "SELECT * FROM `order` JOIN `subject_order` JOIN `subject` JOIN `subject_img` JOIN `teacher` ON `subject`.`subject_sid` = `subject_order`.`subject_sid` AND `order`.`order_sid` = `subject_order`.`order_sid` AND `subject_img`.`subject_sid` = `subject`.`subject_sid` AND `subject`.`teacher_sid` = `teacher`.`teacher_sid` WHERE `order`.`member_sid` =" +
+          this.user +
           " AND `subject_order`.`subject_order_sid` = " +
           this.item;
-          console.log(sql);
+        console.log(sql);
         return sql;
         break;
       }
@@ -110,7 +113,6 @@ class OrderDetail {
       " order by `o`.`order_sid` DESC LIMIT 1";
   }
 }
-
 
 router.post("/orderDetail", (req, res, next) => {
   let orderDetail = new OrderDetail(
@@ -176,45 +178,46 @@ router.get("/orderDetail/:id", (req, res, next) => {
   });
 });
 
-
 router.post("/mailToReport", (req, res) => {
   let email = req.body.email;
   let account = req.body.member;
   let productName = req.body.productName;
   let report = req.body.message;
-const customerFeedBack = (email,account,productName,report) => {
-    console.log(email,account,productName,report);
-      let transporter = nodemailer.createTransport({
-        service: "Gmail",
-        auth: {
-          user: "handmade20190927@gmail.com",
-          pass: "Aa27089433"
-        }
-      });
-      let mailOptions = {
-        from: "handmade20190927@gmail.com",
-        to: email,
-        subject: "商品問題回報"+ productName,
-        html: `
-        <h1>${productName} 問題回報</h1>
-        <textarea>${report}</textarea>
-        <p>目前已在處理中，請靜待回覆</p>
+  let orderSid = req.body.orderSid;
+  const customerFeedBack = (email, account, productName, report, orderSid) => {
+    let transporter = nodemailer.createTransport({
+      service: "Gmail",
+      auth: {
+        user: "handmade20190927@gmail.com",
+        pass: "Aa27089433"
+      }
+    });
+    let mailOptions = {
+      from: "handmade20190927@gmail.com",
+      to: email,
+      subject: "商品問題回報:" + productName + "------ 訂單編號" + orderSid,
+      html: `
+        <h2>${productName} 問題回報</h2>
+        <br>
+        <h2>親愛的會員: ${account}</h2>
+        <h4>${report}</h4>
+        <br>
+        <h4>目前已在處理中，請靜待回覆</h4>
         `
-      };
-      transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-          return res.json({
-            status: "404",
-            message: error
-          });
-        }
-      });
-      return res.json({
-        status: "202",
-        message: "問題已送至客服,請至信箱確認"
-      });
+    };
+    transporter.sendMail(mailOptions, function(error, info){
+      if(error){
+        return console.log(error);
+      }else{
+        return   console.log('訊息發送: ' + info.response);
+      }
+  });
+    return res.json({
+      status: "202",
+      message: "問題已送至客服,請至信箱確認"
+    });
   };
-  customerFeedBack(email,account,productName,report);
+  customerFeedBack(email, account, productName, report, orderSid);
 });
 
 module.exports = router;
