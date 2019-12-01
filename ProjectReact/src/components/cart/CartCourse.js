@@ -22,17 +22,15 @@ const CartCourse = ({ courseName, courseOrderApplicants, courseOrderChoose, cour
         <div className='cancel_sm_cart'>
           <MdCancel style={{ cursor: 'pointer',color:'white'}} onClick={() => courseSelect(courseSid,courseOrderChoose)} />
         </div>
-        <li className="d-flex flex-column align-items-between py-3">
-          <div className="product-title">{courseOrderChoose ? courseOrderChoose.split(" ")[0] : ''}</div>
-          <div className="d-flex align-items-center">
+        <li className="d-flex flex-column align-items-between py-3" style={{lineHeight:'30px'}}>
+          <div className="product-title" style={{fontSize:'20px'}}>{courseOrderChoose ? courseOrderChoose.split(" ")[0] : ''}</div>
+          <div className="d-flex align-items-center" style={{fontSize:'14px'}}>
             <AiOutlineBook className="cartList_icons" />
-            商品名稱:
-            <br/>
             {courseName}
           </div>
           <div className="d-flex align-items-center">
             <FaRegClock className="cartList_icons" />
-            時間: {courseOrderChoose ? courseOrderChoose.split(" ")[1] : ''}
+            {courseOrderChoose ? courseOrderChoose.split(" ")[1] : ''}
           </div>
           <div className="d-flex align-items-center">
             <GoPerson className="cartList_icons" />

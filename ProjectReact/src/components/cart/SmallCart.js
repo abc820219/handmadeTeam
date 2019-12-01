@@ -75,7 +75,6 @@ const SmallCart = ({ openCart, showCart }) => {
                   courseList={courseC.course_list}
                 />
               })}
-              <hr className="hr-bottom"></hr>
             </div>
             <div style={{ marginBottom: "150px" }}>
               <div className="course-title py-3">食材訂單</div>
@@ -91,7 +90,6 @@ const SmallCart = ({ openCart, showCart }) => {
                   ingrePrice={ingreC.ingredients_price}
                 />
               })}
-              <hr className="hr-bottom"></hr>
             </div>
           </div>
         </div>
