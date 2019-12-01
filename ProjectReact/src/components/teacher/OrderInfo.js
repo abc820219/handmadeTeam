@@ -8,7 +8,7 @@ class OrderInfo extends Component {
     super(props);
     this.state = {
       subject_name: "",
-      subject_number:'',
+      subject_number: "",
       people: "1",
       // 最大可報名人數
       maxPeople: ""
@@ -46,10 +46,10 @@ class OrderInfo extends Component {
             subject_address: Data.subject_address,
             subject_price: Data.subject_price,
             subject_img: Data.subject_img,
-            subject_number:Data.subject_number
+            subject_number: Data.subject_number
           },
           () => {
-            console.log(Data.subject_number);  //開課人數
+            console.log(Data.subject_number); //開課人數
           }
         );
       });
@@ -100,12 +100,12 @@ class OrderInfo extends Component {
     // console.log("plus");
     this.setState({
       people:
-        this.state.people >= (this.state.subject_number - this.state.orderPeople)
-          ? (this.state.subject_number - this.state.orderPeople)
+        this.state.people >= this.state.subject_number - this.state.orderPeople
+          ? this.state.subject_number - this.state.orderPeople
           : this.state.people * 1 + 1
       // totalPrice:this.state.people*this.state.subjectPrice
     });
-    console.log((this.state.subject_number-this.state.orderPeople));
+    console.log(this.state.subject_number - this.state.orderPeople);
   };
 
   //------------ 報名人數減少處理------------
@@ -129,6 +129,7 @@ class OrderInfo extends Component {
       // console.log("order_sid:",localStorage.getItem('member_id'))
       console.log("subject_sid:", this.props.subject_sid);
       console.log("username:", this.state.username);
+      console.log("phone:", this.state.phone);
     });
     // console.log(this.state.username)  <= 會慢一步，錯誤寫法
   };
@@ -153,7 +154,12 @@ class OrderInfo extends Component {
       people: this.state.people,
       totalPrice: this.state.subject_price * this.state.people //訂單總價
     };
-    if (this.state.username !== "" && this.state.phone !== "") {
+    if (
+      this.state.username !== "" &&
+      this.state.phone !== "" &&
+      this.state.username !== undefined &&
+      this.state.phone !== undefined
+    ) {
       fetch("http://localhost:5000/handmade/teacher/subject/order", {
         method: "POST",
         headers: {
@@ -165,7 +171,7 @@ class OrderInfo extends Component {
           return response.json();
         })
         .then(function(data) {
-          alert("上傳成功");
+          alert("已完成預訂");
         })
         .catch(error => {
           console.log(error);
@@ -180,7 +186,7 @@ class OrderInfo extends Component {
     // console.log(this.state.username);
     return (
       <>
-        <div className="d-flex">
+        <div className="d-flex"> 
           <sidebar className="booking-sidebar">
             <div className="subject-header"></div>
             {/* 開課圖 */}
@@ -249,8 +255,8 @@ class OrderInfo extends Component {
               </div>
             </div>
             <div className="subject-btn">
-              <button className="order-btn"  onClick={this.postMeberInfo}>
-                order
+              <button className="order-btn" onClick={this.postMeberInfo}>
+                Submit
               </button>
             </div>
           </sidebar>

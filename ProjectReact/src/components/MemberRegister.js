@@ -3,11 +3,13 @@ import { FaUserAlt, FaKey, FaEye } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import Captcha from "captcha-mini";
 import "../commom/scss/MemberLogin.scss";
+import { useAlert } from "react-alert";
 const emailRegex = RegExp(
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 ); //信箱正規
 
 function MemberRegister(props) {
+  const alert = useAlert();
   const [MemberLogin] = useState(true);
   const [account, setaccount] = useState("");
   const [email, setemail] = useState("");
@@ -72,12 +74,12 @@ function MemberRegister(props) {
     event.preventDefault();
     console.log();
     if (account.length <= 3 || password <= 3 || !emailRegex.test(email)) {
-      alert("請輸入正確資訊");
+      alert.success("請輸入正確資訊");
       return;
     }
     console.log(account.length);
     if (captchaValue != captchaAgree) {
-      alert("驗證碼錯誤");
+      alert.error("驗證碼錯誤");
       setCaptchaErr(true);
       return;
     }
@@ -120,19 +122,19 @@ function MemberRegister(props) {
               JSON.stringify(member_data.info)
             );
             console.log(member_data.info);
-            alert(member_data.message);
+            alert.success(member_data.message);
             setTimeout(() => {
               window.location = "http://localhost:3000/handmade/member";
             });
           })
           .catch(async err => {
             console.log(err);
-            alert("此帳號已註冊");
+            alert.error("此帳號已註冊");
           });
       })
       .catch(async err => {
         console.log(err);
-        alert("註冊失敗");
+        alert.error("註冊失敗");
       });
     setaccount("");
     setpassword("");
@@ -144,8 +146,12 @@ function MemberRegister(props) {
     return (
       <>
         <div className="login-wrap d-flex flex-column align-items-center">
-          <div className="mt-4"><img src="/image/logo/logo-03.png" alt="" width="180px"/></div>
-          <p className="mt-4 mb-3" style={{color:"#fff"}}>註冊個人帳號</p>
+          <div className="mt-4">
+            <img src="/image/logo/logo-03.png" alt="" width="180px" />
+          </div>
+          <p className="mt-4 mb-3" style={{ color: "#fff" }}>
+            註冊個人帳號
+          </p>
           <form>
             <ul>
               <li>
@@ -218,7 +224,10 @@ function MemberRegister(props) {
               />
             </div>
             <div className="text-center m-3">
-              <span className="register" onClick={()=>props.boxStateChange(0)}>
+              <span
+                className="register"
+                onClick={() => props.boxStateChange(0)}
+              >
                 切換到登入頁&nbsp;
               </span>
               <span className="register">/&nbsp;閱讀條款</span>
