@@ -71,7 +71,6 @@ const MemberOrderList = ({ changeOrderType }) => {
         `http://localhost:5000/handmade/member/order/ingre/${user}`
       );
       const datas = await dataJson.json();
-      console.log(datas);
       await ilDispatch(receiveIngreOrder(datas));
     } catch (e) {
       console.log(e);
@@ -86,7 +85,6 @@ const MemberOrderList = ({ changeOrderType }) => {
         `http://localhost:5000/handmade/member/order/subject/${user}`
       );
       const datas = await dataJson.json();
-      console.log(datas);
       await slDispatch(receiveSubjectOrder(datas));
     } catch (e) {
       console.log(e);
