@@ -1,24 +1,39 @@
 
-  html, body {
-    /* width: 100%;
-    height: 100%;
-    margin: 0px; */
-    /* overflow: hidden; */
-  
-  }
+
   .outside{
     width: 100%;
     height: 100vh;
     margin: 0px;
     background: #362D2B;
     overflow: hidden;
-
+   
+  }
+  .outside1{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    background: #ccc;
+    overflow: hidden;
+    position: absolute;
+    top: -1200px;
+    
    
   }
   .htmlNoPages{
     width: 100%;
     height: 100%;
+    transition: ease-out 2s;
+    position: relative;
+
     
+  }
+  .remover_1{
+    transform: translate(2000px);
+
+  }
+  .remover_2{
+    /* transform: translate(4000px); */
+    transform: scale(0.85) translateX(54px)
   }
   body {
     /* background-color: transparent;
@@ -30,7 +45,10 @@
 
   }
   .right{
-    transform: scale(0.85) translateX(54px) 
+    
+    transform: scale(1.8) translateX(3000x);
+    transition: 3s ease-out;
+
   }
   .displaynone{
     opacity: 0;
