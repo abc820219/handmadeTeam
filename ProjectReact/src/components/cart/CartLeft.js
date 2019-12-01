@@ -23,6 +23,7 @@ const CartLeft = ({
   const [bonusUse, setBonusUse] = useState(0);
   const [bonus, setBonus] = useState(0);
   const [bonusStandard,setBonusStandard] = useState(0);
+  const [bonusDuration,setBonusDuration] = useState('');
 
   const {
     cartCourseDispatch,
@@ -63,7 +64,8 @@ const CartLeft = ({
   const getBonusStandard = async() => {
     const bonusStandardJson = await fetch("http://localhost:5000/handmade/cart/getbonusstandard/");
     const bonusStandardInit = await bonusStandardJson.json();
-    setBonusStandard(bonusStandardInit);
+    setBonusStandard(bonusStandardInit.bonus_percentage);
+    setBonusDuration(bonusStandardInit.bonus_duration)
   }
 
   const getBonus = async () => {
@@ -260,6 +262,7 @@ const CartLeft = ({
                 </div>
                 <p style={{color:'white',fontWeight:'bold'}}>可獲得紅利:  {step ? (fnCartTotal ? Math.ceil(fnCartTotal*bonusStandard) : Math.ceil(cartTotal*bonusStandard)) : Math.ceil(cartTotal*bonusStandard)}</p>
                 <p style={{color:'white'}}>紅利計算率: {bonusStandard}</p>
+                <p style={{color:'white'}}>紅利截止日期: {bonusDuration}</p>
               </div>
             </div>
           </div>
@@ -313,35 +316,6 @@ const CartLeft = ({
                   </Form.Group>
                 </Form.Row>
               </Form>
-              {/* <ul className="d-flex justify-content-between mt-4 row">
-                <li>
-                  <input
-                    type="radio"
-                    name="pay"
-                    value="LINE Pay"
-                    className="col-lg-8"
-                  />
-                  <p>LINE Pay</p>
-                </li>
-                <li>
-                  <input
-                    type="radio"
-                    name="pay"
-                    value="APPLE Pay"
-                    className="col-lg-8"
-                  />
-                  <p>APPLE Pay</p>
-                </li>
-                <li>
-                  <input
-                    type="radio"
-                    name="pay"
-                    value="GOOGLE Pay"
-                    className="col-lg-8"
-                  />
-                  <p>GOOGLE Pay</p>
-                </li>
-              </ul> */}
             </div>
           </>
         ) : (
