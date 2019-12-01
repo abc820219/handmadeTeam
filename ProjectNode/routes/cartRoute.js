@@ -10,6 +10,14 @@ router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
 const moment = require("moment-timezone");
 
+
+router.get("/getbonusstandard",(req,res)=>{
+  sql = "SELECT * FROM `bonus` WHERE DATEDIFF(`bonus`.bonus_duration,NOW()) > 0 limit 1";
+  db.queryAsync(sql).then(results => {
+    res.json(results[0].bonus_percentage);
+  });
+})
+
 router.get("/getbonus/:id",(req,res)=>{
   const memberBonus = req.params.id;
   sql = "SELECT `member`.member_bonus FROM `member` WHERE `member`.`member_sid` = "+ memberBonus;
@@ -114,6 +122,7 @@ router.post("/submitcart", (req, res) => {
       });
   });
 });
+
 
 router.post("/checkCourseAttendee", (req, res) => {});
 
