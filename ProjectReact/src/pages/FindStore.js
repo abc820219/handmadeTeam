@@ -138,6 +138,7 @@ function FindStore(props) {
   const [location_sid, setLocationSid] = useState(0);
   const [lot, setLot] = useState(0);
   const [lat, setLat] = useState(0);
+  const [nowPositionHandler, setNowPositionHandler] = useState(false);
 
   useEffect(() => {
     const listener = e => {
@@ -152,27 +153,55 @@ function FindStore(props) {
   }, []);
   //------------------------------------
   function nowPosition(props) {
-    if (navigator.geolocation) {
-      console.log("a");
-      function success(pos) {
-        var crd = pos.coords;
-        console.log("Your current position is:");
-        console.log("Latitude : " + crd.latitude);
-        console.log("Longitude: " + crd.longitude);
-        console.log("More or less " + crd.accuracy + " meters.");
-        setDefaultLat(25.040741099999998);
-        setDefaultLng(121.543399);
-        setDefaultZoomMap(15);
-        setCrdUserPosition({ lat: 25.040741099999998, lng: 121.543399 });
-        setLot(121.543399);
-        setLat(25.040741099999998);
+    if (nowPositionHandler == false) {
+      if (navigator.geolocation) {
+        console.log("a");
+        function success(pos) {
+          var crd = pos.coords;
+          console.log("Your current position is:");
+          console.log("Latitude : " + crd.latitude);
+          console.log("Longitude: " + crd.longitude);
+          console.log("More or less " + crd.accuracy + " meters.");
+          setDefaultLat(25.040741099999998);
+          setDefaultLng(121.543399);
+          setDefaultZoomMap(15);
+          setCrdUserPosition({ lat: 25.040741099999998, lng: 121.543399 });
+          setLot(121.543399);
+          setLat(25.040741099999998);
+          setNowPositionHandler(true);
+        }
+        function error() {
+          alert("無法取得你的位置");
+        }
+        navigator.geolocation.getCurrentPosition(success, error);
+      } else {
+        alert("Sorry, 你的裝置不支援地理位置功能。");
       }
-      function error() {
-        alert("無法取得你的位置");
+    }
+    if (nowPositionHandler == true) {
+      if (navigator.geolocation) {
+        console.log("a");
+        function success(pos) {
+          var crd = pos.coords;
+          console.log("Your current position is:");
+          console.log("Latitude : " + crd.latitude);
+          console.log("Longitude: " + crd.longitude);
+          console.log("More or less " + crd.accuracy + " meters.");
+          setDefaultLat(23.6);
+          setDefaultLng(121);
+          setDefaultZoomMap(8);
+          setCrdUserPosition({ lat: 25.040741099999998, lng: 121.543399 });
+          setLot(0);
+          setLat(0);
+          setNowPositionHandler(false);
+        }
+        function error() {
+          alert("無法取得你的位置");
+        }
+        navigator.geolocation.getCurrentPosition(success, error);
+      } else {
+        alert("Sorry, 你的裝置不支援地理位置功能。");
       }
-      navigator.geolocation.getCurrentPosition(success, error);
-    } else {
-      alert("Sorry, 你的裝置不支援地理位置功能。");
     }
   }
   //---------------------------------------child
