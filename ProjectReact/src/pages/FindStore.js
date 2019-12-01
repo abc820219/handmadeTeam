@@ -136,6 +136,8 @@ function FindStore(props) {
   const [accompanyChild, setAccompanyChild] = useState(0);
   const [accompanyPartner, setAccompanyPartner] = useState(0);
   const [location_sid, setLocationSid] = useState(0);
+  const [lot, setLot] = useState(0);
+  const [lat, setLat] = useState(0);
 
   useEffect(() => {
     const listener = e => {
@@ -162,6 +164,8 @@ function FindStore(props) {
         setDefaultLng(121.543399);
         setDefaultZoomMap(15);
         setCrdUserPosition({ lat: 25.040741099999998, lng: 121.543399 });
+        setLot(121.543399);
+        setLat(25.040741099999998);
       }
       function error() {
         alert("無法取得你的位置");
@@ -175,12 +179,16 @@ function FindStore(props) {
   const storeConditionSelect = async (
     location_sid,
     accompanyPartner,
-    accompanyChild
+    accompanyChild,
+    lot,
+    lat
   ) => {
     const condition = JSON.stringify({
       locate_sid: location_sid,
       accompanyPartner: accompanyPartner,
-      accompanyChild: accompanyChild
+      accompanyChild: accompanyChild,
+      lot: lot,
+      lat: lat
     });
     console.log("child:" + condition);
     try {
@@ -200,11 +208,14 @@ function FindStore(props) {
 
   useEffect(() => {
     console.log("click");
-    // setLocationSid(location_sid);
-    // storeAreaHoverNow(location_sid);
-    // setAreaNowCatch(areaNowCatch);
-    storeConditionSelect(location_sid, accompanyPartner, accompanyChild);
-  }, [accompanyChild, accompanyPartner, location_sid]);
+    storeConditionSelect(
+      location_sid,
+      accompanyPartner,
+      accompanyChild,
+      lot,
+      lat
+    );
+  }, [accompanyChild, accompanyPartner, location_sid, lot, lat]);
   //------------------------------------
   return (
     <>
@@ -305,8 +316,16 @@ function FindStore(props) {
                     </div>
                     {/* 篩選ICON */}
                     <div className="findShowConditionGroup">
-                      <div className="findShowConditionPeople"><MdPeopleOutline /></div>
-                      <div className="findShowConditionChild"><MdChildCare /></div>
+                      {value.store_partner === 1 && (
+                        <div className="findShowConditionPeople">
+                          <MdPeopleOutline />
+                        </div>
+                      )}
+                      {value.store_child === 1 && (
+                        <div className="findShowConditionChild">
+                          <MdChildCare />
+                        </div>
+                      )}
                     </div>
                     <div className="findStoreCardDown">
                       <div className="findStoreCardDownMain">

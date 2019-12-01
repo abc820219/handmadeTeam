@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import { FaUserAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import "../commom/scss/MemberLogin.scss";
+import { useAlert } from "react-alert";
 const emailRegex = RegExp(
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 ); //信箱正規
 function MemberEmail(props) {
+  const alert = useAlert();
   const [account, setaccount] = useState("");
   const [email, setemail] = useState("");
   const [password] = useState("");
@@ -37,7 +39,7 @@ function MemberEmail(props) {
     event.preventDefault();
     console.log();
     if (account.length <= 3 || !emailRegex.test(email)) {
-      alert("請輸入正確資訊");
+      alert.success("請輸入正確資訊");
       return;
     }
     fetch("http://localhost:5000/handmade/member/mail", {
@@ -55,7 +57,7 @@ function MemberEmail(props) {
         return res.json();
       })
       .then(info => {
-        alert(info.message);
+        alert.success(info.message);
       });
     console.log(account.length);
     setaccount("");
