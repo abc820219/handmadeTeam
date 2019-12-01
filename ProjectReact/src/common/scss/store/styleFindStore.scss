@@ -31,9 +31,10 @@ $color-LeftName: #FFFFFF;
             background-color: #968472;
             overflow: hidden;
             .findStoreLeftTopName {
+                text-align: center;
                 font-size: 120px;
                 line-height: 130px;
-                margin-left: 90px;
+                margin-left: 0px;
                 font-weight: 600;
                 color: $color-storeUp;
             }
@@ -79,9 +80,10 @@ $color-LeftName: #FFFFFF;
             width: 470px;
             overflow: hidden;
             .findStoreLeftDownName {
+                text-align: center;
                 font-size: 120px;
                 line-height: 120px;
-                margin-left: 90px;
+                margin-left: 0px;
                 margin-top: -55px;
                 font-weight: 600;
                 color: $color-storeDown;
