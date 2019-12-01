@@ -3,6 +3,32 @@
 ::-webkit-scrollbar {
   width: 0 !important;
 }
+
+.react-datepicker__day_below_person {
+  color: #f78177 !important;
+  background: #f4dcb9 !important;
+  font-weight: bold !important;
+  box-shadow: #0000000A 0px 10px 20px !important;
+}
+.react-datepicker__day--selected.react-datepicker__day_below_person{
+  color: #ffffff !important;
+  background: #e9756e!important;
+  box-shadow: #0000000A 0px 10px 20px !important;
+}
+.react-datepicker__zero_day {
+  color:  #959595!important;
+  background:  #4d4d4d !important;
+  font-weight: 400 !important;
+  pointer-events: none !important;
+}
+
+.react-datepicker__day--outside-month {
+  background: #909090 !important;
+  color: #909090 !important;
+  pointer-events: none !important;
+}
+
+
 .course_detail {
   position: relative;
   width: inherit;
@@ -10,6 +36,12 @@
   flex-direction: row;
   height: 100vh;
   overflow: hidden;
+  button {
+    outline: none;
+  }
+  button:focus {
+    outline: none;
+  }
   .detail_navbar_wrap {
     // border: 1px blue solid;
     position: fixed;
@@ -193,7 +225,6 @@
             height: 400px;
             background: transparent;
             margin: -20px 0 0 0;
-
             .react-datepicker__navigation--previous {
               position: absolute;
               transform: translateX(-50%);
@@ -241,9 +272,10 @@
                   border: transparent;
                   margin: 42px 0 auto;
                   .react-datepicker__day-name {
-                    // border: 1px blue solid;
-                    background: #4d4d4d;
-                    color: #959595;
+                    font-weight: 580;
+                    font-weight: 580;
+                    background:  #909090;
+                    color: #ffffff;
                     width: 2.5vw;
                     height: 2.2vw;
                     line-height: 2.2vw;
@@ -268,12 +300,15 @@
                     font-size: 1.2vw;
                   }
                   .react-datepicker__day--selected {
-                    background: #e9756e;
+                    background: #e9756e ; 
                     box-shadow: #0000000a 0 10px 20px;
                     color: #ffffff;
                   }
                 }
               }
+            }
+            .course_pointer-events {
+              pointer-events: none;
             }
           }
         }
@@ -292,8 +327,8 @@
           }
           .detail_person_btn {
             background: transparent;
-            width: 28px;
-            height: 28px;
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
             border: 1px solid #eec9b2;
             position: relative;
@@ -698,9 +733,9 @@
                     border: transparent;
                     margin: 42px 0 auto;
                     .react-datepicker__day-name {
-                      // border: 1px blue solid;
-                      background: #4d4d4d;
-                      color: #959595;
+                      font-weight: 580;
+                      background:  #909090;
+                      color: #ffffff;
                       width: 2.8vw;
                       height: 3vw;
                       line-height: 3vw;
@@ -1162,8 +1197,9 @@
                     margin: 42px 0 auto;
                     .react-datepicker__day-name {
                       // border: 1px blue solid;
-                      background: #4d4d4d;
-                      color: #959595;
+                      font-weight: 580;
+                      background:  #909090;
+                      color: #ffffff;
                       width: 11%;
                       height: 4.5vh;
                       line-height: 4.5vh;
@@ -1465,7 +1501,7 @@
         position: static;
         width: 85vw;
         margin: 120px auto;
-      
+
         transform: translateX(0%);
         .course_detail_info {
           // border: 1px red solid;
@@ -1631,8 +1667,9 @@
                     margin: 55px 0 auto;
                     .react-datepicker__day-name {
                       // border: 1px red solid;
-                      background: #4d4d4d;
-                      color: #959595;
+                      font-weight: 580;
+                      background:  #909090;
+                      color: #ffffff;
                       width: 35px;
                       height: 25px;
                       line-height: 25px;

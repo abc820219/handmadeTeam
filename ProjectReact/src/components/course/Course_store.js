@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FaFacebookSquare, FaInstagram ,FaLine} from "react-icons/fa";
+import { FaFacebookSquare, FaInstagram, FaLine } from "react-icons/fa";
 
 
 class Course_store extends Component {
@@ -10,7 +10,7 @@ class Course_store extends Component {
             return (
                 <>
 
-                    <div id="carouselExampleIndicators" className="carousel"  data-interval="false">
+                    <div id="carouselExampleIndicators" className="carousel" data-interval="false">
                         <div className="carousel-inner" data-wrap="false">
                             <div className="carousel-item active">
                                 <div className="carousel_store_info">
@@ -19,25 +19,25 @@ class Course_store extends Component {
                                         INFO
                                     {/* <span className="carousel_store_title_min">SUPER EAT BAKERY</span> */}
                                     </h5>
-                                    {this.props.state[0].map((str,index)=><li key={index}>{str}</li>)}
+                                    {this.props.state[0].map((str, index) => <li key={index}>{str}</li>)}
                                 </div>
                             </div>
                             <div className="carousel-item">
                                 <div className="carousel_store_info">
-                                <h5 className="carousel_store_title">
+                                    <h5 className="carousel_store_title">
                                         {/* <span className="carousel_store_title_min" >SUPER EAT BAKERY</span> */}
                                         WEB
                                     {/* <span className="carousel_store_title_min">SUPER EAT BAKERY</span> */}
                                     </h5>
                                     <li>
-                                    <FaFacebookSquare/>
-                                    {this.props.state[1][0]}</li>
+                                        <FaFacebookSquare />
+                                        {this.props.state[1][0]}</li>
                                     <li>
-                                    <FaInstagram/>
-                                    {this.props.state[1][1]}</li>
+                                        <FaInstagram />
+                                        {this.props.state[1][1]}</li>
                                     <li>
-                                    <FaLine/>
-                                    {this.props.state[1][2]}</li>
+                                        <FaLine />
+                                        {this.props.state[1][2]}</li>
                                 </div>
                             </div>
                             <div className="carousel-item">
@@ -63,7 +63,9 @@ class Course_store extends Component {
             )
         else
             return (<>
-                <h1>Course_store 資料讀取中...</h1>
+                <div className="course_loading">
+                    <h3>資料讀取中...</h3>
+                </div>
             </>)
     }
 }
