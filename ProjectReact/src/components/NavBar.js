@@ -63,37 +63,43 @@ const NavBar = ({ checkLogIn, login, ...props }) => {
           </div>
           <ul
             className={showMenuBtn ? "move  navbarBtn" : "navbarBtn"}
-            onMouseLeave={MenuListLeave}
+            // onMouseLeave={MenuListLeave}
           >
             <li className="w-100">
-              <FaTimesCircle
-                onClick={() => setshowMenuBtn(false)}
-                style={{ margin: "30px 0 30px 0" }}
-              />
+              
               <Link
                 style={{ color: "#fff" }}
                 to="/handmade"
-                style={{ marginLeft: "79px" }}
               >
-                <img src="/image/logo/logo-03.png" alt="" width="180px" />
+                <img src="/image/logo/logo-03.png" alt="" width="220px" />
               </Link>
+              <FaTimesCircle
+                className="closeMenuButton"
+                onClick={() => setshowMenuBtn(false)}
+              />
             </li>
-            <li>
-              <Link style={{ color: "#fff" }} to="/handmade/store">
-                烘焙店家
+            <li className="chooseLiHover">
+              <Link className="chooseLinkHover" style={{ color: "#fff" }} to="/handmade/store">
+                玩樂烘焙
               </Link>
+              <Link className="choosePHover" to="/handmade/store">尋找店家 / 課程</Link>
+              <img className="chooseImageHover" style={{ marginTop: "-300px" }} src="/image/sideBarImage/classroom.png"></img>
             </li>
-            <li>
-              <Link style={{ color: "#fff" }} to="/handmade/teacher">
-                優質老師
+            <li className="chooseLiHover">
+              <Link className="chooseLinkHover" style={{ color: "#fff" }} to="/handmade/teacher">
+                異國薈萃
               </Link>
+              <Link className="choosePHover"  to="/handmade/teacher">國際名師開課</Link>
+              <img className="chooseImageHover" style={{ marginTop: "-450px" }} src="/image/sideBarImage/t5.png"></img>
             </li>
-            <li>
-              <Link style={{ color: "#fff" }} to="/handmade/ingredients">
-                精緻食材
+            <li className="chooseLiHover">
+              <Link className="chooseLinkHover" style={{ color: "#fff" }} to="/handmade/ingredients">
+                譜出滋味
               </Link>
+              <Link className="choosePHover" to="/handmade/ingredients">推薦食譜 / 購買食材</Link>
+              <img className="chooseImageHover" style={{ marginTop: "-600px" }} src="/image/sideBarImage/info.png"></img>
             </li>
-            <li>
+            {/* <li>
               <Link style={{ color: "#fff" }} to="/handmade/findstore">
                 地圖
               </Link>
@@ -102,13 +108,13 @@ const NavBar = ({ checkLogIn, login, ...props }) => {
               <Link style={{ color: "#fff" }} to="/handmade/test">
                 測試
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link
                 style={{
                   color: "#fff",
                   position: "absolute",
-                  bottom: "10px",
+                  bottom: "-200px",
                   right: "50px",
                   fontSize: "30px"
                 }}
