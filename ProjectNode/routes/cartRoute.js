@@ -11,16 +11,18 @@ router.use(bodyParser.json());
 const moment = require("moment-timezone");
 
 
-router.get("/getbonusstandard",(req,res)=>{
+router.get("/getbonusstandard", (req, res) => {
   sql = "SELECT * FROM `bonus` WHERE DATEDIFF(`bonus`.bonus_duration,NOW()) > 0 limit 1";
   db.queryAsync(sql).then(results => {
-    res.json(results[0].bonus_percentage);
+    const formatDate = "YYYY-MM-DD";
+    results[0].bonus_duration = moment(results[0].bonus_duration).tz('Asia/Taipei').format(formatDate);
+      res.json(results[0]);
   });
 })
 
-router.get("/getbonus/:id",(req,res)=>{
+router.get("/getbonus/:id", (req, res) => {
   const memberBonus = req.params.id;
-  sql = "SELECT `member`.member_bonus FROM `member` WHERE `member`.`member_sid` = "+ memberBonus;
+  sql = "SELECT `member`.member_bonus FROM `member` WHERE `member`.`member_sid` = " + memberBonus;
   db.queryAsync(sql).then(results => {
     res.json(results[0].member_bonus);
   });
@@ -28,10 +30,10 @@ router.get("/getbonus/:id",(req,res)=>{
 
 
 
-router.get("/getcoupon/:id",(req,res)=>{
+router.get("/getcoupon/:id", (req, res) => {
   const memberId = req.params.id;
   sql =
-    "SELECT * FROM `member_coupon` JOIN `coupon` ON `member_coupon`.`coupon_sid` = `coupon`.`coupon_sid` AND `member_coupon`.`member_coupon_used` = 0 WHERE `member_coupon`.`member_sid` = "+
+    "SELECT * FROM `member_coupon` JOIN `coupon` ON `member_coupon`.`coupon_sid` = `coupon`.`coupon_sid` AND `member_coupon`.`member_coupon_used` = 0 WHERE `member_coupon`.`member_sid` = " +
     memberId;
   db.queryAsync(sql).then(results => {
     res.json(results);
@@ -51,7 +53,7 @@ router.post("/submitcart", (req, res) => {
   let courseCartInsert = [];
 
 
-  if(bonus) db.query( `UPDATE member SET member_bonus = ${bonus} WHERE member_sid = ${user}`);
+  if (bonus) db.query(`UPDATE member SET member_bonus = ${bonus} WHERE member_sid = ${user}`);
   db.queryAsync("INSERT INTO `order` (member_sid, coupon_sid, order_total_price,member_used_bonus) VALUES (?, ?, ? ,?)", [
     user,
     coupon,
@@ -63,7 +65,7 @@ router.post("/submitcart", (req, res) => {
     )
       .then(results => {
         order_sid = results[0].order_sid;
-        if(coupon){
+        if (coupon) {
           db.query(
             `UPDATE member_coupon SET member_coupon_used = 1 WHERE member_sid = ${user} AND coupon_sid = ${coupon}`)
         }
@@ -101,7 +103,7 @@ router.post("/submitcart", (req, res) => {
               ]
             );
           }
-        } else{
+        } else {
           for (i = 0; i < ingreCart.length; i++) {
             db.query(
               "INSERT INTO `ingredients_order` (order_sid, ingredients_sid, ingredients_order_quantity) VALUES (?, ?,?)",
@@ -124,6 +126,6 @@ router.post("/submitcart", (req, res) => {
 });
 
 
-router.post("/checkCourseAttendee", (req, res) => {});
+router.post("/checkCourseAttendee", (req, res) => { });
 
 module.exports = router;
