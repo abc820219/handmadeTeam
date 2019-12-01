@@ -2,6 +2,7 @@
   padding: 0;
   margin: 0;
 }
+
 .page-nav {
   position: fixed !important;
   top: 0;
@@ -28,6 +29,9 @@
     }
     ul {
       padding: 0 0 0 0;
+      .showMenuBackgroundImage {
+        display: none;
+      }
       li {
         width: 100%;
         height: 150px;
@@ -63,7 +67,7 @@
           top: 0;
           left: 0;
           width: 470px;
-          height: 1150px;
+          height: 1200px;
           object-fit: cover;
           z-index: -1;
           transition: .5s;
@@ -188,4 +192,97 @@
     }
   }
 }
+
 //------------------------------
+
+//max-width 470px
+@media screen and (max-width: 470px) {
+  .page-nav {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    padding: 0 30px;
+    z-index: 9999;
+    .page-nav-aside {
+      z-index: 2000;
+      height: 100%;
+      h3 {
+        font-size: 25px;
+        color: #362d2b;
+        margin: 0px;
+      }
+      .logoBox {
+        margin-left: 40%;
+      }
+      .fa-bars {
+        width: 16px;
+        height: 14px;
+        margin-right: 0px;
+      }
+      ul {
+        padding: 0 0 0 0;
+        .showMenuBackgroundImage {
+          display: block;
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          filter: brightness(.5);
+        }
+        li {
+          width: 100%;
+          height: 120px;
+          padding: 10px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          transition: .5s;
+          position: relative;
+          .chooseLinkHover {
+            opacity: 1;
+          }
+          a {
+            font-size: 40px;
+            text-decoration: none;
+          }
+          .choosePHover {
+            width: 230px;
+            height: 30px;
+            font-size: 25px;
+            color: #ffffff;
+            position: absolute;
+            top: 90px;
+            left: 130px;
+            bottom: 0;
+            right: 0;
+            line-height: 30px;
+            margin: 0 10px 0 0;
+            text-align: right;
+            opacity: 1;
+            transition: .5s;
+            cursor: pointer;
+          }
+          .chooseImageHover {
+            display: none;
+          }
+        }
+        .chooseLiHover {
+          justify-content: flex-start;
+          align-items: flex-start;
+        }
+        .chooseLiHover:hover .choosePHover{
+
+        }
+        .chooseLiHover:hover .chooseLinkHover  {
+
+        }
+        .chooseLiHover:hover .chooseImageHover {
+
+        }
+      }
+    }    
+  }
+}
