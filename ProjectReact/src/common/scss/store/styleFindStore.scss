@@ -38,6 +38,38 @@ $color-LeftName: #FFFFFF;
                 color: $color-storeUp;
             }
         }
+        .findShowConditionGroup {
+            display: flex;
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            .findShowConditionPeople {
+                margin: 0 0 0 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 40px;
+                height: 40px;
+                box-shadow: 0 0 5px #000000 ;
+                border-radius: 50%;
+                font-size: 30px;
+                background-color: #ffffff;
+                color: #000000;
+            }
+            .findShowConditionChild {
+                margin: 0 0 0 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 40px;
+                height: 40px;
+                box-shadow: 0 0 5px #000000 ;
+                border-radius: 50%;
+                font-size: 30px;
+                background-color: #ffffff;
+                color: #000000;
+            }
+        }
         .findStoreLeftDown {
             position: fixed;
             top: 60px;

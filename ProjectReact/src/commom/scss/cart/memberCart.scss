@@ -1,5 +1,5 @@
 .memberCartList {
-  background: rgba(110, 91, 83, 0.3);
+  background: #362d2b;
   backdrop-filter: blur(5px);
   position: absolute;
   top: 0;
@@ -32,7 +32,9 @@
         top: 6px;
         right: 40px;
       }
-    
+      div{
+        color: white;
+      }
     img{
       border-radius: 5px;
     }
@@ -62,10 +64,10 @@
     font-size: 20px;
   }
   .cartMain {
-    line-height: 30px;
+    line-height: 20px;
     .course-title {
-      font-size: 20px;
-      padding-left: 130px;
+      font-size: 18px;
+      padding-left: 40px;
       color: #fff;
     }
   }
