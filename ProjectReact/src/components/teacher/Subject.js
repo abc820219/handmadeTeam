@@ -258,9 +258,8 @@ class Subject extends Component {
                 onClick={this.showOrder}
                 className={
                   this.state.showOrder === true ? "active-now" : "book-btn"
-                }
-              >
-                book
+                }>
+                Book Course 
               </button>
             </div>
           </div>
