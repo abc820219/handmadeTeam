@@ -26,8 +26,7 @@ export const cartCourseReducer = (state, { type, payload }) => {
       let newCourse = [...state];
       newCourse = newCourse.filter(newCour => {
         return (
-          newCour.course_sid !== cancelCourse.course_sid ||
-          newCour.course_order_choose !== cancelCourse.course_order_choose
+          newCour.course_sid !== cancelCourse.course_sid || newCour.course_order_choose !== cancelCourse.course_order_choose
         );
       });
       const id = payload.id;

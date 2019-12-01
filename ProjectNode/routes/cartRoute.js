@@ -10,9 +10,21 @@ router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
 const moment = require("moment-timezone");
 
-// router.get('/',(req,res)=>{
-//     res.send("cart-Page");
-// });
+
+router.get("/getbonusstandard",(req,res)=>{
+  sql = "SELECT * FROM `bonus` WHERE DATEDIFF(`bonus`.bonus_duration,NOW()) > 0 limit 1";
+  db.queryAsync(sql).then(results => {
+    res.json(results[0].bonus_percentage);
+  });
+})
+
+router.get("/getbonus/:id",(req,res)=>{
+  const memberBonus = req.params.id;
+  sql = "SELECT `member`.member_bonus FROM `member` WHERE `member`.`member_sid` = "+ memberBonus;
+  db.queryAsync(sql).then(results => {
+    res.json(results[0].member_bonus);
+  });
+})
 
 
 
@@ -32,15 +44,19 @@ router.post("/submitcart", (req, res) => {
   const user = req.body.user;
   const coupon = req.body.coupon || 0;
   const totalPrice = req.body.totalPrice;
+  const bonus = req.body.bonus;
+  const bonusUsed = req.body.bonusUsed || 0;
   const outPut = [];
   let order_sid;
-
   let courseCartInsert = [];
 
-  db.queryAsync("INSERT INTO `order` (member_sid, coupon_sid, order_total_price) VALUES (?, ?, ?)", [
+
+  if(bonus) db.query( `UPDATE member SET member_bonus = ${bonus} WHERE member_sid = ${user}`);
+  db.queryAsync("INSERT INTO `order` (member_sid, coupon_sid, order_total_price,member_used_bonus) VALUES (?, ?, ? ,?)", [
     user,
     coupon,
-    totalPrice
+    totalPrice,
+    bonusUsed
   ]).then((results, fields) => {
     db.queryAsync(
       "SELECT `order`.`order_sid`,`order`.`order_create_time` FROM `order` ORDER BY `order`.`order_create_time` DESC LIMIT 1"
@@ -52,7 +68,6 @@ router.post("/submitcart", (req, res) => {
             `UPDATE member_coupon SET member_coupon_used = 1 WHERE member_sid = ${user} AND coupon_sid = ${coupon}`)
         }
         if (courseCart.length !== 0 && ingreCart.length !== 0) {
-          console.log(courseCart,ingreCart);
           for (i = 0; i < courseCart.length; i++) {
             db.query(
               "INSERT INTO `course_order` (order_sid, course_sid, course_order_choose, course_order_applicants) VALUES (?, ?,?,?)",
@@ -69,8 +84,8 @@ router.post("/submitcart", (req, res) => {
               "INSERT INTO `ingredients_order` (order_sid, ingredients_sid, ingredients_order_quantity) VALUES (?, ?,?)",
               [
                 order_sid,
-                ingreCart[i].ingredient_sid,
-                ingreCart[i].ingredient_order_quantity
+                ingreCart[i].ingredients_sid,
+                ingreCart[i].ingredients_order_quantity
               ]
             );
           }
@@ -92,8 +107,8 @@ router.post("/submitcart", (req, res) => {
               "INSERT INTO `ingredients_order` (order_sid, ingredients_sid, ingredients_order_quantity) VALUES (?, ?,?)",
               [
                 order_sid,
-                ingreCart[i].ingredient_sid,
-                ingreCart[i].ingredient_order_quantity
+                ingreCart[i].ingredients_sid,
+                ingreCart[i].ingredients_order_quantity
               ]
             );
           }
@@ -107,6 +122,7 @@ router.post("/submitcart", (req, res) => {
       });
   });
 });
+
 
 router.post("/checkCourseAttendee", (req, res) => {});
 

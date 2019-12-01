@@ -69,6 +69,8 @@ const IngredientsAll = (props) => {
     //     setBakebool(false);
     // }
 
+    console.log(bakeAllDataShow)
+
     const selectBakeItem = async (bakeSid) => {
         bakeSid = JSON.stringify({ bakeSid: bakeSid });
         try {
@@ -79,7 +81,6 @@ const IngredientsAll = (props) => {
                 headers: { "Content-Type": "application/json" }
             });
             const bake_Data = await bakeSelect.json();
-            console.log(bake_Data);
             setBakeEngName(bake_Data[0].bake_engName);
             setIngredientData(bake_Data[1]);
             setBakeName(bake_Data[0].bake_name);
@@ -93,6 +94,7 @@ const IngredientsAll = (props) => {
         if (bakebool) {
             setBakeEngName("CREPE CAKE");
             setBakebool(false);
+            selectBakeItem(5);
         }
     }
 
@@ -100,11 +102,11 @@ const IngredientsAll = (props) => {
         return { __html: bakeDetail };
     }
 
-    const ingreSelectLoop = (v, ingreCart) => {
-        return ingreCart.some(ingre => ingre.ingredients_sid === v.ingredients_sid)
+    const ingreSelectLoop = (ingredients_name, ingreCart) => { 
+        return ingreCart.some(ingre =>  ingre.ingredients_name === ingredients_name )
     }
     const putInCart = (id, ingredient) => {
-        const { ingredients_sid, ingredients_name, ingredients_en_name, ingredients_image, ingredients_price } = ingredient;
+        const { ingredients_sid, ingredients_name, ingredients_en_name, ingredients_image, ingredients_price} = ingredient;
         const newIngre = {
             ingredients_sid: ingredients_sid,
             ingredients_name: ingredients_name,
@@ -245,12 +247,12 @@ const IngredientsAll = (props) => {
                                                     </div>
                                                 </div>
                                                 <a className="ingredientsCartButton"
-                                                    style={ingreCart.length !== 0 && ingreSelectLoop(ingredient, ingreCart) ? { backgroundColor: 'grey', pointerEvents: 'none' } : {}}
+                                                    style={ingreCart.length !== 0 && ingreSelectLoop(ingredient.ingredients_name, ingreCart) ? { backgroundColor: 'grey', pointerEvents: 'none' } : {}}
                                                     onClick={() => { putInCart(id, ingredient) }}
                                                     href
                                                 >
                                                     <TiShoppingCart className="cartReactIcon" />
-                                                    <p>放入購物車</p>
+                                                    <p>{ingreCart.length !== 0 && ingreSelectLoop(ingredient, ingreCart)?'取出購物車':'放入購物車'}</p>
                                                 </a>
                                             </div>
                                         </li>

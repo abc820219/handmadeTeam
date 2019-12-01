@@ -46,9 +46,9 @@ const CouponGet = () => {
       {couponData.map((v, index) => {
         return (
           <form name={v.coupon_sid} onSubmit={getCoupon}>
-            <div className="d-flex justify-content-center" key={index}>
-              <div className="py-1">
-                <div className="coupon d-flex flex-nowrap ">
+            <div className="d-flex justify-content-center w-100" key={index}>
+              <div className="py-1  w-100">
+                <div className="coupon d-flex flex-nowrap  w-100 ">
                   <div className="coupon-left">
                     <p className="coupon-left-content">
                       <span>{v.coupon_price}折</span>

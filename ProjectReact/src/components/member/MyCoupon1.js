@@ -27,7 +27,9 @@ const MyCoupon1 = () => {
     return (
       <>
         <div className="d-flex justify-content-center">
-          <p className="py-3"    style={{ textAlign: "center" }}>尚未使用優惠卷</p>
+          <p className="py-3" style={{ textAlign: "center" }}>
+            尚未使用優惠卷
+          </p>
         </div>
       </>
     );
@@ -36,9 +38,13 @@ const MyCoupon1 = () => {
     <>
       {couponData.map((v, index) => {
         return (
-          <div className="d-flex justify-content-center" key={index}>
-            <div className="py-3">
-              <div className="coupon d-flex flex-nowrap ">
+          <div
+            className="d-flex justify-content-center"
+    
+            key={index}
+          >
+            <div className="py-1 w-100 ">
+              <div className="coupon d-flex flex-nowrap  w-100 ">
                 <div className="coupon-left">
                   <p className="coupon-left-content">
                     <span>{v.coupon_price}折</span>
