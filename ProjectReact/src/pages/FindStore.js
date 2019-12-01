@@ -8,6 +8,18 @@ import {
 } from "react-google-maps";
 import mapStyles from "../data/mapStyles";
 
+// ICON import
+
+import { MdPeopleOutline } from "react-icons/md";
+import { MdChildCare } from "react-icons/md";
+import { MdGpsFixed } from "react-icons/md";
+import { FaStore } from 'react-icons/fa';
+
+
+// style scss
+import "../common/scss/store/styleFindStore.scss";
+
+
 function Map({
   selectedPark,
   setSelectedPark,
@@ -143,26 +155,243 @@ function FindStore(props) {
 
   return (
     <>
-      <p onClick={nowPosition}>目前位置</p>
-      <div style={{ width: "100wh", height: "100vh" }}>
-        <MapWrapped
-          googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCBFbHL-7A0VFRRARWIQCNJsE2HXq53z1g`}
-          loadingElement={<div style={{ height: `100%` }} />}
-          containerElement={<div style={{ height: `100%` }} />}
-          mapElement={<div style={{ height: `100%` }} />}
-          selectedPark={selectedPark}
-          setSelectedPark={setSelectedPark}
-          storeData={storeData}
-          setStoreData={setStoreData}
-          defaultLat={defaultLat}
-          defaultLng={defaultLng}
-          defaultZoomMap={defaultZoomMap}
-          setDefaultLat={setDefaultLat}
-          setDefaultLng={setDefaultLng}
-          setDefaultZoomMap={setDefaultZoomMap}
-          setCrdUserPosition={setCrdUserPosition}
-          crdUserPosition={crdUserPosition}
-        />
+      <div className="findStoreAll">
+        <div className="findStoreLeft">
+          <div className="findStoreLeftTop">
+            <p className="findStoreLeftTopName">FIND</p>
+          </div>
+          <div className="findStoreLeftDown">
+            <p className="findStoreLeftDownName">FIND</p>
+          </div>
+          <div className="findStoreCardGroup">
+            <div className="findStoreCardButton">
+              <div className="findStoreHere">
+                <ul class="findStoreHereCheckbox list">
+                  <li onClick={nowPosition} class="findStoreHereCheckboxItem findStoreHereCheckboxItem1">
+                    <label class="number-item">
+                      <input
+                        type="checkbox"
+                        name="numbers[]"
+                        value="1"
+                        class="item-checkbox"
+                      />
+                      <span>
+                        <MdGpsFixed />
+                        目前位置
+                    </span>
+                    </label>
+                  </li>
+                </ul>
+              </div>
+              <div className="findStoreButtonCheckbox">
+                <ul class="findStoreCheckboxGroup list">
+                  <li class="findStoreCheckboxItem findStoreCheckboxItem1">
+                    <label class="number-item">
+                      <input
+                        type="checkbox"
+                        name="numbers[]"
+                        value="1"
+                        class="item-checkbox"
+                      />
+                      <span>
+                        <MdPeopleOutline />
+                        攜伴同行
+                    </span>
+                    </label>
+                  </li>
+                  <li class="findStoreCheckboxItem findStoreCheckboxItem2">
+                    <label class="number-item">
+                      <input
+                        type="checkbox"
+                        name="numbers[]"
+                        value="1"
+                        class="item-checkbox"
+                      />
+                      <span>
+                        <MdChildCare />
+                        攜伴孩童
+                    </span>
+                    </label>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <ul className="findStoreCardGroupUl">
+              <li className="findStoreCardGroupLi">
+                <img className="findStoreSpacePhoto" src={`/image/store/chezsoiSpace.jpg`} />
+                <div className="findStoreCardTop">
+                  <div className="findStoreName">
+                    <p>chez soi, a cooking house手繹</p>
+                  </div>
+
+                </div>
+                <div className="findStoreCardDown">
+                  <div className="findStoreCardDownMain">
+                    <img className="findStoreLogoPhoto" src={`/image/store/chezsoiLogo.png`} />
+                    <div className="findStoreIntroduce">
+                      <p>chez soi 是法文「回到一個自在的家」之意，這是手繹的設計概念，也是我們想營造的空間氣息與生活質感。充滿獨特個性的陳設，真心溫暖的微笑問候，在這裡，人與食物之間的關係將更具生命力，揉捏的每個手作烘焙點心都有段溫暖的小故事，鍋鏟翻攪的盡是充滿人文滋味的料理，這裡有滿滿生命記憶的美味關係，個人歷程與當下生活的交織，我們真心想成為一間讓人每天都想去的廚藝空間。手繹融合了關於人的生活藝術與美學文化，以最貼近生活的美味食物與廚藝為媒介，用心地為您尋找生活中重要的幸福元素。手繹希望成為一處您可停下腳步，自由自在地分享、學習、創作和快樂的廚藝空間， 期待您來親手實作屬於自己的美味關係 !
+                      </p>
+                    </div>
+                  </div>
+                  <div className="findStoreEnterButton">
+                    <a className="findStoreEnterStore" href={`/handmade/store/`}><FaStore /> GO TO Store</a>
+                  </div>
+                </div>
+              </li>
+              <li className="findStoreCardGroupLi">
+                <img className="findStoreSpacePhoto" src={`/image/store/chezsoiSpace.jpg`} />
+                <div className="findStoreCardTop">
+                  <div className="findStoreName">
+                    <p>chez soi, a cooking house手繹</p>
+                  </div>
+
+                </div>
+                <div className="findStoreCardDown">
+                  <div className="findStoreCardDownMain">
+                    <img className="findStoreLogoPhoto" src={`/image/store/chezsoiLogo.png`} />
+                    <div className="findStoreIntroduce">
+                      <p>chez soi 是法文「回到一個自在的家」之意，這是手繹的設計概念，也是我們想營造的空間氣息與生活質感。充滿獨特個性的陳設，真心溫暖的微笑問候，在這裡，人與食物之間的關係將更具生命力，揉捏的每個手作烘焙點心都有段溫暖的小故事，鍋鏟翻攪的盡是充滿人文滋味的料理，這裡有滿滿生命記憶的美味關係，個人歷程與當下生活的交織，我們真心想成為一間讓人每天都想去的廚藝空間。手繹融合了關於人的生活藝術與美學文化，以最貼近生活的美味食物與廚藝為媒介，用心地為您尋找生活中重要的幸福元素。手繹希望成為一處您可停下腳步，自由自在地分享、學習、創作和快樂的廚藝空間， 期待您來親手實作屬於自己的美味關係 !
+                      </p>
+                    </div>
+                  </div>
+                  <div className="findStoreEnterButton">
+                    <a className="findStoreEnterStore" href={`/handmade/store/`}><FaStore /> GO TO Store</a>
+                  </div>
+                </div>
+              </li>
+              <li className="findStoreCardGroupLi">
+                <img className="findStoreSpacePhoto" src={`/image/store/chezsoiSpace.jpg`} />
+                <div className="findStoreCardTop">
+                  <div className="findStoreName">
+                    <p>chez soi, a cooking house手繹</p>
+                  </div>
+
+                </div>
+                <div className="findStoreCardDown">
+                  <div className="findStoreCardDownMain">
+                    <img className="findStoreLogoPhoto" src={`/image/store/chezsoiLogo.png`} />
+                    <div className="findStoreIntroduce">
+                      <p>chez soi 是法文「回到一個自在的家」之意，這是手繹的設計概念，也是我們想營造的空間氣息與生活質感。充滿獨特個性的陳設，真心溫暖的微笑問候，在這裡，人與食物之間的關係將更具生命力，揉捏的每個手作烘焙點心都有段溫暖的小故事，鍋鏟翻攪的盡是充滿人文滋味的料理，這裡有滿滿生命記憶的美味關係，個人歷程與當下生活的交織，我們真心想成為一間讓人每天都想去的廚藝空間。手繹融合了關於人的生活藝術與美學文化，以最貼近生活的美味食物與廚藝為媒介，用心地為您尋找生活中重要的幸福元素。手繹希望成為一處您可停下腳步，自由自在地分享、學習、創作和快樂的廚藝空間， 期待您來親手實作屬於自己的美味關係 !
+                      </p>
+                    </div>
+                  </div>
+                  <div className="findStoreEnterButton">
+                    <a className="findStoreEnterStore" href={`/handmade/store/`}><FaStore /> GO TO Store</a>
+                  </div>
+                </div>
+              </li>
+              <li className="findStoreCardGroupLi">
+                <img className="findStoreSpacePhoto" src={`/image/store/chezsoiSpace.jpg`} />
+                <div className="findStoreCardTop">
+                  <div className="findStoreName">
+                    <p>chez soi, a cooking house手繹</p>
+                  </div>
+
+                </div>
+                <div className="findStoreCardDown">
+                  <div className="findStoreCardDownMain">
+                    <img className="findStoreLogoPhoto" src={`/image/store/chezsoiLogo.png`} />
+                    <div className="findStoreIntroduce">
+                      <p>chez soi 是法文「回到一個自在的家」之意，這是手繹的設計概念，也是我們想營造的空間氣息與生活質感。充滿獨特個性的陳設，真心溫暖的微笑問候，在這裡，人與食物之間的關係將更具生命力，揉捏的每個手作烘焙點心都有段溫暖的小故事，鍋鏟翻攪的盡是充滿人文滋味的料理，這裡有滿滿生命記憶的美味關係，個人歷程與當下生活的交織，我們真心想成為一間讓人每天都想去的廚藝空間。手繹融合了關於人的生活藝術與美學文化，以最貼近生活的美味食物與廚藝為媒介，用心地為您尋找生活中重要的幸福元素。手繹希望成為一處您可停下腳步，自由自在地分享、學習、創作和快樂的廚藝空間， 期待您來親手實作屬於自己的美味關係 !
+                      </p>
+                    </div>
+                  </div>
+                  <div className="findStoreEnterButton">
+                    <a className="findStoreEnterStore" href={`/handmade/store/`}><FaStore /> GO TO Store</a>
+                  </div>
+                </div>
+              </li>
+              <li className="findStoreCardGroupLi">
+                <img className="findStoreSpacePhoto" src={`/image/store/chezsoiSpace.jpg`} />
+                <div className="findStoreCardTop">
+                  <div className="findStoreName">
+                    <p>chez soi, a cooking house手繹</p>
+                  </div>
+
+                </div>
+                <div className="findStoreCardDown">
+                  <div className="findStoreCardDownMain">
+                    <img className="findStoreLogoPhoto" src={`/image/store/chezsoiLogo.png`} />
+                    <div className="findStoreIntroduce">
+                      <p>chez soi 是法文「回到一個自在的家」之意，這是手繹的設計概念，也是我們想營造的空間氣息與生活質感。充滿獨特個性的陳設，真心溫暖的微笑問候，在這裡，人與食物之間的關係將更具生命力，揉捏的每個手作烘焙點心都有段溫暖的小故事，鍋鏟翻攪的盡是充滿人文滋味的料理，這裡有滿滿生命記憶的美味關係，個人歷程與當下生活的交織，我們真心想成為一間讓人每天都想去的廚藝空間。手繹融合了關於人的生活藝術與美學文化，以最貼近生活的美味食物與廚藝為媒介，用心地為您尋找生活中重要的幸福元素。手繹希望成為一處您可停下腳步，自由自在地分享、學習、創作和快樂的廚藝空間， 期待您來親手實作屬於自己的美味關係 !
+                      </p>
+                    </div>
+                  </div>
+                  <div className="findStoreEnterButton">
+                    <a className="findStoreEnterStore" href={`/handmade/store/`}><FaStore /> GO TO Store</a>
+                  </div>
+                </div>
+              </li>
+              <li className="findStoreCardGroupLi">
+                <img className="findStoreSpacePhoto" src={`/image/store/chezsoiSpace.jpg`} />
+                <div className="findStoreCardTop">
+                  <div className="findStoreName">
+                    <p>chez soi, a cooking house手繹</p>
+                  </div>
+
+                </div>
+                <div className="findStoreCardDown">
+                  <div className="findStoreCardDownMain">
+                    <img className="findStoreLogoPhoto" src={`/image/store/chezsoiLogo.png`} />
+                    <div className="findStoreIntroduce">
+                      <p>chez soi 是法文「回到一個自在的家」之意，這是手繹的設計概念，也是我們想營造的空間氣息與生活質感。充滿獨特個性的陳設，真心溫暖的微笑問候，在這裡，人與食物之間的關係將更具生命力，揉捏的每個手作烘焙點心都有段溫暖的小故事，鍋鏟翻攪的盡是充滿人文滋味的料理，這裡有滿滿生命記憶的美味關係，個人歷程與當下生活的交織，我們真心想成為一間讓人每天都想去的廚藝空間。手繹融合了關於人的生活藝術與美學文化，以最貼近生活的美味食物與廚藝為媒介，用心地為您尋找生活中重要的幸福元素。手繹希望成為一處您可停下腳步，自由自在地分享、學習、創作和快樂的廚藝空間， 期待您來親手實作屬於自己的美味關係 !
+                      </p>
+                    </div>
+                  </div>
+                  <div className="findStoreEnterButton">
+                    <a className="findStoreEnterStore" href={`/handmade/store/`}><FaStore /> GO TO Store</a>
+                  </div>
+                </div>
+              </li>
+              <li className="findStoreCardGroupLi">
+                <img className="findStoreSpacePhoto" src={`/image/store/chezsoiSpace.jpg`} />
+                <div className="findStoreCardTop">
+                  <div className="findStoreName">
+                    <p>chez soi, a cooking house手繹</p>
+                  </div>
+
+                </div>
+                <div className="findStoreCardDown">
+                  <div className="findStoreCardDownMain">
+                    <img className="findStoreLogoPhoto" src={`/image/store/chezsoiLogo.png`} />
+                    <div className="findStoreIntroduce">
+                      <p>chez soi 是法文「回到一個自在的家」之意，這是手繹的設計概念，也是我們想營造的空間氣息與生活質感。充滿獨特個性的陳設，真心溫暖的微笑問候，在這裡，人與食物之間的關係將更具生命力，揉捏的每個手作烘焙點心都有段溫暖的小故事，鍋鏟翻攪的盡是充滿人文滋味的料理，這裡有滿滿生命記憶的美味關係，個人歷程與當下生活的交織，我們真心想成為一間讓人每天都想去的廚藝空間。手繹融合了關於人的生活藝術與美學文化，以最貼近生活的美味食物與廚藝為媒介，用心地為您尋找生活中重要的幸福元素。手繹希望成為一處您可停下腳步，自由自在地分享、學習、創作和快樂的廚藝空間， 期待您來親手實作屬於自己的美味關係 !
+                      </p>
+                    </div>
+                  </div>
+                  <div className="findStoreEnterButton">
+                    <a className="findStoreEnterStore" href={`/handmade/store/`}><FaStore /> GO TO Store</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className="findStoreRight">
+          <div className="findStoreRightTop"></div>
+          <div className="findStoreGoogleMap">
+            <div className="findStoreGoogleMapIn" style={{ width: "100wh", height: "calc( 100vh - 60px )" }}>
+              <MapWrapped
+                googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCBFbHL-7A0VFRRARWIQCNJsE2HXq53z1g`}
+                loadingElement={<div style={{ height: `100%` }} />}
+                containerElement={<div style={{ height: `100%` }} />}
+                mapElement={<div style={{ height: `100%` }} />}
+                selectedPark={selectedPark}
+                setSelectedPark={setSelectedPark}
+                storeData={storeData}
+                setStoreData={setStoreData}
+                defaultLat={defaultLat}
+                defaultLng={defaultLng}
+                defaultZoomMap={defaultZoomMap}
+                setDefaultLat={setDefaultLat}
+                setDefaultLng={setDefaultLng}
+                setDefaultZoomMap={setDefaultZoomMap}
+                setCrdUserPosition={setCrdUserPosition}
+                crdUserPosition={crdUserPosition}
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
