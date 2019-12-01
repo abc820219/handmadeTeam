@@ -303,6 +303,11 @@ function FindStore(props) {
                         <p>{value.store_name}</p>
                       </div>
                     </div>
+                    {/* 篩選ICON */}
+                    <div className="findShowConditionGroup">
+                      <div className="findShowConditionPeople"><MdPeopleOutline /></div>
+                      <div className="findShowConditionChild"><MdChildCare /></div>
+                    </div>
                     <div className="findStoreCardDown">
                       <div className="findStoreCardDownMain">
                         <img

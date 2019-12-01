@@ -31,11 +31,44 @@ $color-LeftName: #FFFFFF;
             background-color: #968472;
             overflow: hidden;
             .findStoreLeftTopName {
+                text-align: center;
                 font-size: 120px;
                 line-height: 130px;
-                margin-left: 90px;
+                margin-left: 0px;
                 font-weight: 600;
                 color: $color-storeUp;
+            }
+        }
+        .findShowConditionGroup {
+            display: flex;
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            .findShowConditionPeople {
+                margin: 0 0 0 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 40px;
+                height: 40px;
+                box-shadow: 0 0 5px #000000 ;
+                border-radius: 50%;
+                font-size: 30px;
+                background-color: #ffffff;
+                color: #000000;
+            }
+            .findShowConditionChild {
+                margin: 0 0 0 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 40px;
+                height: 40px;
+                box-shadow: 0 0 5px #000000 ;
+                border-radius: 50%;
+                font-size: 30px;
+                background-color: #ffffff;
+                color: #000000;
             }
         }
         .findStoreLeftDown {
@@ -47,9 +80,10 @@ $color-LeftName: #FFFFFF;
             width: 470px;
             overflow: hidden;
             .findStoreLeftDownName {
+                text-align: center;
                 font-size: 120px;
                 line-height: 120px;
-                margin-left: 90px;
+                margin-left: 0px;
                 margin-top: -55px;
                 font-weight: 600;
                 color: $color-storeDown;
