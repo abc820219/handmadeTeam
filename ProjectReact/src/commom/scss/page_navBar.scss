@@ -27,10 +27,65 @@
       margin-right: 0px;
     }
     ul {
-      padding: 0 0 0 30px;
+      padding: 0 0 0 0;
       li {
+        width: 100%;
+        height: 150px;
         padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: .5s;
+        position: relative;
+        .chooseLinkHover {
+          opacity: 1;
+        }
+        a {
+          font-size: 50px;
+          text-decoration: none;
+        }
+        .choosePHover {
+          width: 100%;
+          height: 150px;
+          font-size: 30px;
+          color: #ffffff;
+          position: absolute;
+          top: 0;
+          left: 0;
+          line-height: 150px;
+          text-align: center;
+          opacity: 0;
+          transition: .5s;
+          cursor: pointer;
+        }
+        .chooseImageHover {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 470px;
+          height: 1150px;
+          object-fit: cover;
+          z-index: -1;
+          transition: .5s;
+          filter: brightness(.5);
+          opacity: 0;
+        }
       }
+      .chooseLiHover:hover .choosePHover{
+        opacity: 1;
+        background-color: rgba(#000000,.5);
+        transition: .5s;
+      }
+      .chooseLiHover:hover .chooseLinkHover  {
+        opacity: 0;
+      }
+      .chooseLiHover:hover .chooseImageHover {
+        opacity: 1;
+      }
+    }
+    .closeMenuButton {
+      position: absolute;
+      right: 20px;
     }
   }
   .page-nav-rightside {

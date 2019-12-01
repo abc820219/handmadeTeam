@@ -1,14 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect , useState} from "react";
 import "../../../commom/scss/member/orderDeListCourse.scss";
-import { FaDollarSign } from "react-icons/fa";
-import { FaRegClock } from "react-icons/fa";
-import { MdAttachMoney } from "react-icons/md";
-import { MdCancel } from "react-icons/md";
+import { FaDollarSign,FaRegClock } from "react-icons/fa";
+import { MdAttachMoney,MdCancel } from "react-icons/md";
 import { FaMapMarkerAlt, FaQuoteLeft, FaCheck, FaExchangeAlt, FaStar } from "react-icons/fa";
 
-import { Link } from "react-router-dom";
-
 const OrderDeListCourse = ({ orderDetail }) => {
+
+  const [email, setEmail] = useState("");
+  const [member, setMember] = useState("");
+  const [productName, setProductName] = useState("");
+  const [message, setMessage] = useState("");
+  const [loadPage, setLoadPage] = useState(false);
   if (!orderDetail) {
     orderDetail = {
       couse_order_choose: "",
@@ -29,6 +31,8 @@ const OrderDeListCourse = ({ orderDetail }) => {
     backgroundColor: "#F7ECEB",
     marginRight: "80px"
   };
+
+
 
   // const fetchDetail = async () => {
   //   const id = await localStorage.getItem("member_id");
@@ -52,6 +56,50 @@ const OrderDeListCourse = ({ orderDetail }) => {
     store_address,
     store_sid
   } = orderDetail;
+
+  let member_data;
+  useEffect(() => {
+    if (localStorage.getItem("member_data")) {
+      member_data = JSON.parse(localStorage.getItem("member_data"));
+      setEmail(member_data.member_email);
+      setMember(member_data.member_account);
+      setProductName(course_name);
+    }
+    setLoadPage(true);
+  }, [course_name, member_data]);
+
+  useEffect(() => {
+    if (loadPage) {
+      reportProduct(member, email, productName, message, order_sid);
+    }
+  }, [message]);
+
+  const sendText = async () => {
+    let message123 = await prompt("請輸入回報問題");
+    await setMessage(message123);
+  };
+
+  const reportProduct = async (member, email, productName, message, orderSid) => {
+    const report = JSON.stringify({
+      member: member,
+      email: email,
+      productName: productName,
+      message: message,
+      orderSid: orderSid
+    });
+    const url = `http://localhost:5000/handmade/member/order/mailToReport/`;
+    const dataJson = await fetch(url, {
+      method: "POST",
+      body: report,
+      headers: { "Content-Type": "application/json" }
+    });
+    const data = await dataJson.json();
+    if (data.status === "202") {
+      alert(data.message);
+    } else {
+      alert(data.message);
+    }
+  };
 
   return (
     <>
@@ -113,7 +161,7 @@ const OrderDeListCourse = ({ orderDetail }) => {
         </ul>
         <hr className="orderDeListCourseHr"></hr>
         <div className="orderFooter d-flex justify-content-end">
-          <input type="button" value="問題回報" className="orderBtn" />
+          <input type="button" value="問題回報" className="orderBtn" onClick={()=>{sendText()}}/>
         </div>
       </div>
     </>

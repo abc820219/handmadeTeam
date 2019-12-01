@@ -18,31 +18,36 @@ const CartCourse = ({ courseName, courseOrderApplicants, courseOrderChoose, cour
 
   return (
     <>
-      <ul className="d-flex justify-content-around align-items-center px-5 course_sm_cart">
+      <ul className="d-flex justify-content-around align-items-center px-4 course_sm_cart mb-0">
         <div className='cancel_sm_cart'>
-          <MdCancel style={{ cursor: 'pointer' }} onClick={() => courseSelect(courseSid,courseOrderChoose)} />
+          <MdCancel style={{ cursor: 'pointer',color:'white'}} onClick={() => courseSelect(courseSid,courseOrderChoose)} />
         </div>
-        <li className="d-flex flex-column align-items-between py-3">
-          <div className="product-title">{courseOrderChoose ? courseOrderChoose.split(" ")[0] : ''}</div>
-          <div className="d-flex align-items-center">
+        <li className="d-flex flex-column align-items-between py-3" style={{lineHeight:'30px'}}>
+          <div className="product-title" style={{fontSize:'20px'}}>{courseOrderChoose ? courseOrderChoose.split(" ")[0] : ''}</div>
+          <div className="d-flex align-items-center" style={{fontSize:'14px'}}>
             <AiOutlineBook className="cartList_icons" />
-            商品名稱:{courseName}
+            {courseName}
           </div>
           <div className="d-flex align-items-center">
             <FaRegClock className="cartList_icons" />
-            時間: {courseOrderChoose ? courseOrderChoose.split(" ")[1] : ''}
+            {courseOrderChoose ? courseOrderChoose.split(" ")[1] : ''}
           </div>
           <div className="d-flex align-items-center">
             <GoPerson className="cartList_icons" />
             {courseOrderApplicants}
           </div>
         </li>
-        <figure>
+        <figure style={{
+          height:"100%",
+          width:'40%'
+        }}
+        className='mb-0'
+        >
           <img
             src={"/image/course_img/360/" + courseList}
             alt=""
-            width="80px"
-            height="80px"
+            width="100%"
+            height="100%"
           />
         </figure>
       </ul>

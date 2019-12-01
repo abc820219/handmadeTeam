@@ -1,23 +1,86 @@
 
-  html, body {
-    /* width: 100%;
-    height: 100%;
-    margin: 0px; */
-    /* overflow: hidden; */
-  
-  }
+
   .outside{
     width: 100%;
     height: 100vh;
     margin: 0px;
     background: #362D2B;
     overflow: hidden;
-
+    transition: ease-in 1.5s;
+   
+  }
+  .outside1{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    background: #ccc;
+    overflow: hidden;
+    position: absolute;
+    top: 0px;
+    transition: ease-out 2s;
+    
+    
+   
+  }
+  .outside2{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    background: #ccc;
+    overflow: hidden;
+    position: absolute;
+    top: 0px;
+    transition: ease-out 2s;
+    
+    
    
   }
   .htmlNoPages{
     width: 100%;
     height: 100%;
+    transition: ease-out 2s;
+    position: relative;
+
+    
+  }
+  .htmlNoPages1{
+    width: 100%;
+    height: 100%;
+    transition: ease-out 2s;
+    position: relative;
+    background: #362D2B;
+
+    
+  }
+  .displaynone1{
+    display: none;
+  }
+  .remover_1{
+    transform: translate(2000px);
+
+  }
+  .remover_2{
+    /* transform: translate(4000px); */
+    transform: scale(0.85) translateX(54px)
+  }
+  .movein1{
+    transform: translateY(-1200px);
+  }
+  .moveout1{
+    transform: translateY(1200px); 
+    opacity: 0;
+    
+  }
+  @keyframes displayNone{
+    0%{
+
+    }
+    100%{
+      transform: scale(0);
+    }
+  }
+  .animationDisplayNone{
+    animation:  0s 1 2s forwards displayNone;
     
   }
   body {
@@ -30,7 +93,10 @@
 
   }
   .right{
-    transform: scale(0.85) translateX(54px) 
+    
+    transform: scale(1.8) translateX(3000x);
+    transition: 3s ease-out;
+
   }
   .displaynone{
     opacity: 0;

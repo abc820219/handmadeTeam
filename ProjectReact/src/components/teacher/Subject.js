@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Container, Button } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import "../../commom/scss/teacher/subject.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import OrderInfo from "../../components/teacher/OrderInfo";
@@ -12,6 +12,8 @@ import {
   MdPerson
 } from "react-icons/md";
 import { FaQuoteLeft } from "react-icons/fa";
+import { FacebookShareButton, LineShareButton } from "react-share";
+import { FacebookIcon, LineIcon } from "react-share";
 
 class Subject extends Component {
   constructor(props) {
@@ -26,7 +28,7 @@ class Subject extends Component {
       subject_price: "",
       showOrder: false,
       last_people: "",
-      orderPeople:""
+      orderPeople: ""
     };
   }
 
@@ -36,10 +38,9 @@ class Subject extends Component {
   }
   // ========取得開課訂單資料========
   getSubjectOrder = () => {
-   console.log("this props:", this.props.subject_sid);
+    console.log("this props:", this.props.subject_sid);
     fetch(
-      "http://localhost:5000/handmade/teacher/order/" +
-        this.props.subject_sid,
+      "http://localhost:5000/handmade/teacher/order/" + this.props.subject_sid,
       {
         method: "GET",
         headers: {
@@ -52,7 +53,7 @@ class Subject extends Component {
       .then(data => {
         let Data = data[0];
         // console.log("subject data:", Data[0]);
-        console.log("total:", Data[0].OrderTotal);  //報名人數
+        console.log("total:", Data[0].OrderTotal); //報名人數
         this.setState(
           {
             orderPeople: Data[0].OrderTotal
@@ -92,7 +93,6 @@ class Subject extends Component {
             subject_price: Data.subject_price,
             subject_img: Data.subject_img,
             last_people: Data.subject_number
-            
           },
           () => {
             console.log(Data);
@@ -105,12 +105,20 @@ class Subject extends Component {
 
   // 呼叫orderInfo
   showOrder = () => {
-    this.setState({
-      showOrder: !this.state.showOrder
-    },()=>{console.log(this.state.showOrder)});  
+    console.log(this.state.showOrder);
+    this.setState(
+      {
+        showOrder: !this.state.showOrder
+      },
+      () => {
+        console.log(this.state.showOrder);
+      }
+    );
   };
 
   render() {
+    const shareUrl = "http://github.com";
+    const title = "Handmade";
     // console.log(this.props.match.params.subject_img)
     console.log("this props:", this.props.subject_sid);
     const iconZone = {
@@ -119,7 +127,7 @@ class Subject extends Component {
       borderRadius: "50%",
       backgroundColor: "#F7ECEB",
       marginRight: "20px",
-      marginLeft: "-8%",
+      marginLeft: "-8%"
     };
     const infoIcon = {
       width: "25px",
@@ -151,10 +159,10 @@ class Subject extends Component {
           {/* 文字裝飾區塊 */}
           <div className="wordBox">
             <div className="wordBoxUp">
-              <div className="wordHalfUp">TEACHER</div>
+              <div className="wordHalfUp">{this.state.subject_name}</div>
             </div>
             <div className="wordBoxDown">
-              <div className="wordHalfDown">TEACHER</div>
+              <div className="wordHalfDown">{this.state.subject_name}</div>
             </div>
           </div>
           <div className="subject-page-center">
@@ -190,6 +198,24 @@ class Subject extends Component {
                   <p>{this.state.last_people - this.state.orderPeople}</p>
                 </div>
               </div>
+            </div>
+            {/* 分享按鈕 */}
+            {/* <div className="shareFacebook">
+              <FacebookShareButton
+                url="http://127.0.0.1/handmade/teacher/"
+                className="Demo__some-network__share-button"
+              >
+                <FacebookIcon size={32} round />
+              </FacebookShareButton>
+            </div> */}
+            <div className="shareLine">
+              <LineShareButton
+                url="http://localhost:3000/handmade/teacher/"
+                className="Demo__some-network__share-button"
+                title={title}
+              >
+                <LineIcon size={32} round />
+              </LineShareButton>
             </div>
 
             <div className="subject-detail">
@@ -228,13 +254,20 @@ class Subject extends Component {
               </div>
             </div>
             <div className="book-btn-box">
-              <Button className="book-btn" onClick={this.showOrder}>
+              <button
+                onClick={this.showOrder}
+                className={
+                  this.state.showOrder === true ? "active-now" : "book-btn"
+                }
+              >
                 book
-              </Button>
+              </button>
             </div>
           </div>
           {/* <sidebar className="order-sidebar"></sidebar> */}
-          <div className="subject-page-right"></div>
+          <div className="subject-page-right">
+            <p className="bg-name">{this.state.subject_name}</p>
+          </div>
         </div>
       </>
     );

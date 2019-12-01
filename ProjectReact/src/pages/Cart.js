@@ -35,7 +35,8 @@ const Cart = props => {
   const courseAmountBtn = async (pos, value) => {
     const newCourseCards = await [...courseCards];
     const newCourseQty = await newCourseCards[pos].course_order_applicants;
-    if ((await newCourseQty) + value >= 1) {
+    const newCourseMaxQty = await newCourseCards[pos].course_remaining_seat;
+    if ((await newCourseQty) + value >= 1 && (await newCourseQty) + value <= newCourseMaxQty) {
       newCourseCards[pos].course_order_applicants =
         (await newCourseQty) + value;
     }
