@@ -160,3 +160,29 @@ $active: #E74C3C;
 		transition: all .6s ease-in-out;
 	}
 }
+
+.wrap_right{
+	width: 42%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	background-repeat: repeat;
+	background-size: cover;
+}
+.background_img_1_change{
+	background-image: url("/image/handmade/01.jpeg")
+}
+.background_img_2_change{
+	background-image: url("/image/handmade/02.jpg")
+}
+.background_img_3_change{
+	background-image: url("/image/handmade/03.jpeg")
+}
+.background_img_4_change{
+	background-image: url("/image/handmade/04.jpeg")
+}
+.background_img_5_change{
+	background-image: url("/image/handmade/05.jpeg");
+}
