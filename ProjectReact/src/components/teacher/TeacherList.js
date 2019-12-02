@@ -196,117 +196,123 @@ class TeacherList extends Component {
     let image_id = this.state.subject_sid; //開課編號
     // console.log(this.state);
     console.log("subject_sid:", image_id); //抓開課編號要顯示在網址上
-    // let apiImage = this.state.subject_img;
-    // let img = "/image/${apiImag}";
-    // console.log("apiImage:", this.state.subject_img);
-    // let imgStyle = {
-    //   width: "960px",
-    //   height: "960px",
-    //   position: "absolute",
-    //   top: "60px",
-    //   right: "0",
-    //   // background:"#fff",
-    //   clipPath: "polygon(100% 0, 0 0, 100% 100%)",
-    //   backgroundImage: `url( ${apiImage} )`
-    // };
-
+   
     return (
       <>
-        <div className="teacher-list-page">
-          {/* 老師大圖 */}
-          <div className="left-img">
-            <img
-              className="slider-image"
-              src={`/image/${this.state.teacher_big_img}`}
-            />
-          </div>
-          <div className="teacherimg-small">
-            <img
-              className="slider-image"
-              src={`/image/${this.state.teacher_big_img}`}
-            />
-          </div>
-          {/* 老師小圖 */}
-          <div className="silder-circle">
-            <div className="slider-box">
+        <div className="background_first">
+          <div className="teacher-list-page">
+            {/* 老師大圖 */}
+            <div className="left-img">
               <img
                 className="slider-image"
-                src={`/image/${this.state.teacherNumber}`}
+                src={`/image/${this.state.teacher_big_img}`}
               />
             </div>
-          </div>
-          {/* 老師開課圖 */}
-          <div className="right-img">
-            <div className="link-subject">
-              <Link
-                to={`/handmade/teacher/subject/${image_id}`}
-                onClick={this.clickRightImage}
-              >
-                <IoIosPlay />
-              </Link>
+            <div className="shadow-tea1"></div>
+            <div className="shadow-tea2"></div>
+            <div className="teacherlist">Teacher List</div>
+            <div className="teacherimg-small">
+              <img
+                className="slider-image"
+                src={`/image/${this.state.teacher_big_img}`}
+              />
             </div>
-            <img
-              className="slider-image clickRight"
-              src={`/image/${this.state.subject_img}`}
-            />
-          </div>
-          {/* 老師開課圖(手機板) */}
-          <div className="right-img-subject">
-            <div className="link-subject">
-              <Link
-                to={`/handmade/teacher/subject/${image_id}`}
-                onClick={this.clickRightImage}
-              >
-                <IoIosPlay />
-              </Link>
-            </div>
-            <img
-              className="slider-image clickRight"
-              src={`/image/${this.state.subject_img}`}
-            />
-          </div>
-
-          <div className="teacher-page-left"></div>
-          {/* 老師資料區塊 */}
-          <div className="teacher-page-center">
-            <section className="teacher-page">
-              <div className="teacher-name">
-                <h1>{this.state.teacher_name}</h1>
+            {/* 老師小圖 */}
+            <div className="silder-circle">
+              <div className="slider-box">
+                <img
+                  className="slider-image"
+                  src={`/image/${this.state.teacherNumber}`}
+                />
               </div>
-
-              <div className="teacher-intro">
-                <div className="teacher-intro-box">
-                  <h3>INTRODUCE</h3>
-                  <p>{this.state.teacher_detail}</p>
+            </div>
+            {/* 老師開課圖 */}
+            <div className="right-img">
+              <div className="link-subject">
+                <Link
+                  to={`/handmade/teacher/subject/${image_id}`}
+                  onClick={this.clickRightImage}
+                >
+                  <IoIosPlay />
+                </Link>
+              </div>
+              <img
+                className="slider-image clickRight"
+                src={`/image/${this.state.subject_img}`}
+              />
+              {/* 遮色片 */}
+              <div className="cover"></div>
+              {/* 裝飾文字 */}
+              <div className="wordBox">
+                <div className="wordBoxUp">
+                  <div className="wordHalfUp">BAKER</div>
+                </div>
+                <div className="wordBoxDown">
+                  <div className="wordHalfDown">BAKER</div>
                 </div>
               </div>
-              <div className="teacher-expe">
-                <div className="teacher-expe-box">
-                  <h2>EXPERTISE</h2>
-                  <p>{this.state.teacher_skill}</p>
-                </div>
-              </div>
-              <div className="slider-btn-box">
-                <button className="btn-slide" onClick={this.callImage1}>
-                  ●
-                </button>
-                <button className="btn-slide" onClick={this.callImage2}>
-                  ●
-                </button>
-                <button className="btn-slide" onClick={this.callImage3}>
-                  ●
-                </button>
-                <button className="btn-slide" onClick={this.callImage4}>
-                  ●
-                </button>
-                <button className="btn-slide" onClick={this.callImage5}>
-                  ●
-                </button>
-              </div>
-            </section>
-          </div>
+            </div>
+            <div className="shadow-sub"></div>
 
-          <div className="teacher-page-right"></div>
+            {/* 老師開課圖(手機版) */}
+            <div className="right-img-subject">
+              <div className="link-subject">
+                <Link
+                  to={`/handmade/teacher/subject/${image_id}`}
+                  onClick={this.clickRightImage}
+                >
+                  <IoIosPlay />
+                </Link>
+              </div>
+              <img
+                className="slider-image clickRight"
+                src={`/image/${this.state.subject_img}`}
+              />
+            </div>
+
+            <div className="teacher-page-left"></div>
+            {/* 老師資料區塊 */}
+            <div className="teacher-page-center">
+              <section className="teacher-page">
+                <div className="teacher-name">
+                  <p className="baker">BAKER</p>
+                  <h1>{this.state.teacher_name}</h1>
+                </div>
+
+                <div className="teacher-intro">
+                  <div className="teacher-intro-box">
+                    <h3>INTRODUCE</h3>
+                    <p>{this.state.teacher_detail}</p>
+                  </div>
+                </div>
+                <div className="teacher-expe">
+                  <div className="teacher-expe-box">
+                    <h2>EXPERTISE</h2>
+                    <p>{this.state.teacher_skill}</p>
+                  </div>
+                </div>
+                <div className="slider-btn-box">
+                  <button className="btn-slide" onClick={this.callImage1}>
+                    ●
+                  </button>
+                  <button className="btn-slide" onClick={this.callImage2}>
+                    ●
+                  </button>
+                  <button className="btn-slide" onClick={this.callImage3}>
+                    ●
+                  </button>
+                  <button className="btn-slide" onClick={this.callImage4}>
+                    ●
+                  </button>
+                  <button className="btn-slide" onClick={this.callImage5}>
+                    ●
+                  </button>
+                </div>
+              </section>
+            </div>
+
+            <div className="teacher-page-right"></div>
+          </div>
         </div>
       </>
     );
