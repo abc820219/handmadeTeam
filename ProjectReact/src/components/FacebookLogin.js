@@ -11,7 +11,7 @@ const Alertf = ({ step }) => {
 class Facebook extends Component {
   constructor(props) {
     super(props);
-    this.state = { step: false };
+    this.state = { step: 0 };
   }
   render() {
     let fbContent;
@@ -54,18 +54,20 @@ class Facebook extends Component {
         console.log(member_data.info);
         localStorage.setItem("member_id", member_data.info.member_sid);
         localStorage.setItem("member_data", JSON.stringify(member_data.info));
-        this.setState({ step: 1 }, () => {
-          setTimeout(() => {
-            window.location = window.location = `http://localhost:3000${this.props.location.pathname}`;
-          }, 1000);
-        });
         this.setState({ step: 2 }, () => {
           setTimeout(() => {
             window.location = window.location = `http://localhost:3000${this.props.location.pathname}`;
           }, 1000);
         });
+        this.setState({ step: 0 });
       })
       .catch(async err => {
+        this.setState({ step: 1 }, () => {
+          setTimeout(() => {
+            window.location = window.location = `http://localhost:3000${this.props.location.pathname}`;
+          }, 1000);
+          this.setState({ step: 0 });
+        });
         console.log(err);
       });
   };
