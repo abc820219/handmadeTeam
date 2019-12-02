@@ -2,11 +2,15 @@ import React, { Component } from "react";
 import FacebookLogin from "react-facebook-login";
 import { withRouter } from "react-router-dom";
 import { useAlert } from "react-alert";
-
+const Alertf = ({step}) => {
+  let alert = useAlert();
+  if(step===1) alert.error("123")
+  return <></>;
+};
 class Facebook extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {step: 0};
   }
   render() {
     let fbContent;
@@ -21,8 +25,9 @@ class Facebook extends Component {
         textButton="FACEBOOK"
         style={{ fontSize: "25px" }}
       />
+     
     );
-    return <div className="mt-3">{fbContent}</div>;
+    return (this.state.step===0)? <div className="mt-3">{fbContent}</div> : <Alertf step={this.state.step} />;
   }
   responseFacebook = response => {
     console.log(response);
@@ -45,9 +50,14 @@ class Facebook extends Component {
         console.log(member_data.info);
         localStorage.setItem("member_id", member_data.info.member_sid);
         localStorage.setItem("member_data", JSON.stringify(member_data.info));
-        setTimeout(() => {
+       
+        this.setState({step:1}, ()=>{
+          setTimeout(() => {
           window.location = window.location = `http://localhost:3000${this.props.location.pathname}`;
-        });
+          },1000);
+      })
+       
+      
       })
       .catch(async err => {
         console.log(err);

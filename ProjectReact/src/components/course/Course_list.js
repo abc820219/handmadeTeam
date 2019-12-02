@@ -26,7 +26,7 @@ class Course_list extends Component {
                                 <div className="course_card_hover">
                                     <Link key={thing.course_sid} to={`/handmade/store/${thing.store_sid}/course/${thing.course_sid}`} >
                                     {/* <NavLink key={thing.course_sid} to={"/handmade/store/course/"+ thing.course_sid} > */}
-                                        <div className="course_add_cart">ADD TO CART</div>
+                                        <div className="course_add_cart">MORE</div>
                                     </Link>
                                     <div className="course_card_mark">
                                         <div className="course_card_mark_s">{thing.course_mark}</div>
