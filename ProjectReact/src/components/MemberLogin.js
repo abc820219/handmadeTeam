@@ -43,6 +43,7 @@ function MemberLogin(props) {
     });
   }, [Change]);
 
+  
   //------事件處理-------
   const handleChange = event => {
     event.preventDefault();
@@ -207,7 +208,9 @@ function MemberLogin(props) {
         {/* <div className="login-backdrop" onClick={props.memberSignIn}></div> */}
         <div className="backdropChange" onClick={props.memberSignIn}></div>
         <div
-          className={props.bgImg ? `login-backdrop${props.bgImg}` : props.bgImg}
+          className={
+            props.bgImg ? `login-backdrop${props.bgImg}` : "login-backdrop"
+          }
           onClick={props.memberSignIn}
         >
           {props.bgImg && (
