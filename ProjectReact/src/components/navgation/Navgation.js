@@ -4,6 +4,7 @@ import "../../commom/scss/handmade/nav.css";
 import "../../commom/scss/handmade/logoanimation.css";
 import "../../commom/scss/handmade/info.css";
 import "../../commom/scss/handmade/array.scss";
+import "../../commom/scss/handmade/check.scss";
 
 import $ from "jquery";
 
@@ -156,7 +157,36 @@ class Navgational extends Component {
   }
 
   componentDidMount() {
-    document.querySelector(".toggleClass").onclick = function() {
+    
+    $(function () {
+      $(".fancy-button").mousedown(function () {
+        $(this).bind('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function () {
+          $(this).removeClass('active');
+        })
+        $(this).addClass("active");
+        $(".lighttext2").removeClass("displaynone");
+        var NewStringValue = $(".lighttext2").text();
+        let obj = {
+          小蛋糕:1,
+          馬卡龍:2,
+          蝴蝶餅:3,
+          小甜點:4,
+          鹹蛋糕:5,
+          檸檬塔:6,
+          抹茶塔:7
+        }
+        localStorage.setItem('dessert_prefer',JSON.stringify(obj[NewStringValue]));
+        // if (this.state.showpic1 && this.state.showpic5) {
+
+        // }
+
+      });
+    });
+
+
+
+
+    document.querySelector(".toggleClass").onclick = function () {
       document.querySelector(".theTitle").classList.toggle("active");
       document.querySelector(".toggleClass").classList.toggle("moverout_logo");
       document
@@ -166,7 +196,7 @@ class Navgational extends Component {
       document.querySelector(".right").classList.add("remover_2");
     };
 
-    document.querySelector(".howtouseinfo").onclick = function() {
+    document.querySelector(".howtouseinfo").onclick = function () {
       document.querySelector(".coverright").classList.remove("getoutR");
 
       document.querySelector(".first-word").classList.add("loadIn-1");
@@ -176,14 +206,14 @@ class Navgational extends Component {
       document.querySelector(".last-word-1").classList.add("loadIn-5");
       document.querySelector(".last-last-word-1").classList.add("loadIn-6");
 
-      setTimeout(function() {
+      setTimeout(function () {
         document.querySelector(".coverright").classList.add("getoutR");
         document.querySelector(".arrow").classList.remove("appenhoho");
 
         document.querySelector(".coverleft").classList.remove("getoutL");
       }, 9500);
     };
-    document.querySelector(".arrow").onclick = function() {
+    document.querySelector(".arrow").onclick = function () {
       document.querySelector(".coverleft").classList.add("getoutL");
       document.querySelector(".arrow").classList.add("appenhoho");
       document.querySelector(".first-word").classList.remove("loadIn-1");
@@ -193,74 +223,10 @@ class Navgational extends Component {
       document.querySelector(".last-word-1").classList.remove("loadIn-5");
       document.querySelector(".last-last-word-1").classList.remove("loadIn-6");
     };
-
-
-    if(this.state.showpic1&&this.state.showpic5){
-      document.querySelector(".lighttext2").innerHTML="小蛋糕";
-    }
-    if(this.state.showpic1&&this.state.showpic6){
-      document.querySelector(".lighttext2").innerHTML="小蛋糕";
-    }
-    if(this.state.showpic1&&this.state.showpic7){
-      document.querySelector(".lighttext2").innerHTML="小蛋糕";
-    }
-    if(this.state.showpic1&&this.state.showpic8){
-      document.querySelector(".lighttext2").innerHTML="小蛋糕";
-    }
-
-
-
-
-    if(this.state.showpic2&&this.state.showpic5){
-      document.querySelector(".lighttext2").innerHTML="2";
-    }
-    if(this.state.showpic2&&this.state.showpic6){
-      document.querySelector(".lighttext2").innerHTML="2";
-    }
-    if(this.state.showpic2&&this.state.showpic7){
-      document.querySelector(".lighttext2").innerHTML="2";
-    }
-    if(this.state.showpic2&&this.state.showpic8){
-      document.querySelector(".lighttext2").innerHTML="2";
-    }
-
-
-
-
-
-    if(this.state.showpic3&&this.state.showpic5){
-      document.querySelector(".lighttext2").innerHTML="3";
-    }
-    if(this.state.showpic3&&this.state.showpic6){
-      document.querySelector(".lighttext2").innerHTML="3";
-    }
-    if(this.state.showpic3&&this.state.showpic7){
-      document.querySelector(".lighttext2").innerHTML="3";
-    }
-    if(this.state.showpic3&&this.state.showpic8){
-      document.querySelector(".lighttext2").innerHTML="3";
-    }
-
-
-
-
-
-    if(this.state.showpic4&&this.state.showpic5){
-      document.querySelector(".lighttext2").innerHTML="4";
-    }
-    if(this.state.showpic4&&this.state.showpic6){
-      document.querySelector(".lighttext2").innerHTML="4";
-    }
-    if(this.state.showpic4&&this.state.showpic7){
-      document.querySelector(".lighttext2").innerHTML="4";
-    }
-    if(this.state.showpic4&&this.state.showpic8){
-      document.querySelector(".lighttext2").innerHTML="4";
-    }
-
-
-
-
+      // document.querySelector(".frame_lightbox").onMouseEnter = function() {
+      //   let textValue = document.querySelector(".lightText2").value;
+      //   console.log(textValue);
+      // }
   }
 
   render() {
@@ -309,16 +275,115 @@ class Navgational extends Component {
               className={
                 this.state.showclass ? "lighttext " : "lighttext displaynone"
               }
+
             >
               您適合的烘焙為
             </div>
             <div
-              className={
-                this.state.showclass ? "lighttext2 " : "lighttext2 displaynone"
-              }
+              className=
+              "lighttext2 displaynone"
             >
-           
-              
+              {this.state.showpic1 && this.state.showpic5  && this.state.showpic9 ? "小蛋糕" : ""}
+              {this.state.showpic1 && this.state.showpic5 && this.state.showpic10? "馬卡龍" : ""}
+              {this.state.showpic1 && this.state.showpic5 && this.state.showpic11? "蝴蝶餅" : ""}
+              {this.state.showpic1 && this.state.showpic5 && this.state.showpic12? "小甜點" : ""}
+
+
+              {this.state.showpic1 && this.state.showpic6  && this.state.showpic9 ? "鹹蛋糕" : ""}
+              {this.state.showpic1 && this.state.showpic6 && this.state.showpic10? "小蛋糕" : ""}
+              {this.state.showpic1 && this.state.showpic6 && this.state.showpic11? "馬卡龍" : ""}
+              {this.state.showpic1 && this.state.showpic6 && this.state.showpic12? "檸檬塔" : ""}
+
+
+              {this.state.showpic1 && this.state.showpic7  && this.state.showpic9 ? "抹茶塔" : ""}
+              {this.state.showpic1 && this.state.showpic7 && this.state.showpic10? "馬卡龍" : ""}
+              {this.state.showpic1 && this.state.showpic7 && this.state.showpic11? "蝴蝶餅" : ""}
+              {this.state.showpic1 && this.state.showpic7 && this.state.showpic12? "鹹蛋糕" : ""}
+
+
+              {this.state.showpic1 && this.state.showpic8  && this.state.showpic9 ? "檸檬塔" : ""}
+              {this.state.showpic1 && this.state.showpic8 && this.state.showpic10? "馬卡龍" : ""}
+              {this.state.showpic1 && this.state.showpic8 && this.state.showpic11? "小甜點" : ""}
+              {this.state.showpic1 && this.state.showpic8 && this.state.showpic12? "小蛋糕" : ""}
+
+
+
+              {this.state.showpic2 && this.state.showpic5  && this.state.showpic9 ? "小蛋糕" : ""}
+              {this.state.showpic2 && this.state.showpic5 && this.state.showpic10? "抹茶塔" : ""}
+              {this.state.showpic2 && this.state.showpic5 && this.state.showpic11? "蝴蝶餅" : ""}
+              {this.state.showpic2 && this.state.showpic5 && this.state.showpic12? "檸檬塔" : ""}
+
+
+              {this.state.showpic2 && this.state.showpic6  && this.state.showpic9 ? "小蛋糕" : ""}
+              {this.state.showpic2 && this.state.showpic6 && this.state.showpic10? "小甜點" : ""}
+              {this.state.showpic2 && this.state.showpic6 && this.state.showpic11? "蝴蝶餅" : ""}
+              {this.state.showpic2 && this.state.showpic6 && this.state.showpic12? "馬卡龍" : ""}
+
+
+              {this.state.showpic2 && this.state.showpic7  && this.state.showpic9 ? "鹹蛋糕" : ""}
+              {this.state.showpic2 && this.state.showpic7 && this.state.showpic10? "蝴蝶餅" : ""}
+              {this.state.showpic2 && this.state.showpic7 && this.state.showpic11? "小甜點" : ""}
+              {this.state.showpic2 && this.state.showpic7 && this.state.showpic12? "馬卡龍" : ""}
+
+
+              {this.state.showpic2 && this.state.showpic8  && this.state.showpic9 ? "小蛋糕" : ""}
+              {this.state.showpic2 && this.state.showpic8 && this.state.showpic10? "抹茶塔" : ""}
+              {this.state.showpic2 && this.state.showpic8 && this.state.showpic11? "小甜點" : ""}
+              {this.state.showpic2 && this.state.showpic8 && this.state.showpic12? "檸檬塔" : ""}
+
+
+              {this.state.showpic3 && this.state.showpic5  && this.state.showpic9 ? "鹹蛋糕" : ""}
+              {this.state.showpic3 && this.state.showpic5 && this.state.showpic10? "小蛋糕" : ""}
+              {this.state.showpic3 && this.state.showpic5 && this.state.showpic11? "馬卡龍" : ""}
+              {this.state.showpic3 && this.state.showpic5 && this.state.showpic12? "蝴蝶餅" : ""}
+
+
+              {this.state.showpic3 && this.state.showpic6  && this.state.showpic9 ? "小蛋糕" : ""}
+              {this.state.showpic3 && this.state.showpic6 && this.state.showpic10? "抹茶塔" : ""}
+              {this.state.showpic3 && this.state.showpic6 && this.state.showpic11? "小蛋糕" : ""}
+              {this.state.showpic3 && this.state.showpic6 && this.state.showpic12? "蝴蝶餅" : ""}
+
+
+              {this.state.showpic3 && this.state.showpic7  && this.state.showpic9 ? "小甜點" : ""}
+              {this.state.showpic3 && this.state.showpic7 && this.state.showpic10? "馬卡龍" : ""}
+              {this.state.showpic3 && this.state.showpic7 && this.state.showpic11? "抹茶塔" : ""}
+              {this.state.showpic3 && this.state.showpic7 && this.state.showpic12? "檸檬塔" : ""}
+
+
+              {this.state.showpic3 && this.state.showpic8  && this.state.showpic9 ? "小蛋糕" : ""}
+              {this.state.showpic3 && this.state.showpic8 && this.state.showpic10? "檸檬塔" : ""}
+              {this.state.showpic3 && this.state.showpic8 && this.state.showpic11? "馬卡龍" : ""}
+              {this.state.showpic3 && this.state.showpic8 && this.state.showpic12? "抹茶塔" : ""}
+
+              {this.state.showpic4 && this.state.showpic5  && this.state.showpic9 ? "檸檬塔" : ""}
+              {this.state.showpic4 && this.state.showpic5 && this.state.showpic10? "鹹蛋糕" : ""}
+              {this.state.showpic4 && this.state.showpic5 && this.state.showpic11? "抹茶塔" : ""}
+              {this.state.showpic4 && this.state.showpic5 && this.state.showpic12? "小蛋糕" : ""}
+
+
+              {this.state.showpic4 && this.state.showpic6  && this.state.showpic9 ? "小蛋糕" : ""}
+              {this.state.showpic4 && this.state.showpic6 && this.state.showpic10? "馬卡龍" : ""}
+              {this.state.showpic4 && this.state.showpic6 && this.state.showpic11? "蝴蝶餅" : ""}
+              {this.state.showpic4 && this.state.showpic6 && this.state.showpic12? "抹茶塔" : ""}
+
+
+              {this.state.showpic4 && this.state.showpic7  && this.state.showpic9 ? "檸檬塔" : ""}
+              {this.state.showpic4 && this.state.showpic7 && this.state.showpic10? "鹹蛋糕" : ""}
+              {this.state.showpic4 && this.state.showpic7 && this.state.showpic11? "蝴蝶餅" : ""}
+              {this.state.showpic4 && this.state.showpic7 && this.state.showpic12? "小蛋糕" : ""}
+
+
+              {this.state.showpic4 && this.state.showpic8  && this.state.showpic9 ? "小蛋糕" : ""}
+              {this.state.showpic4 && this.state.showpic8 && this.state.showpic10? "抹茶塔" : ""}
+              {this.state.showpic4 && this.state.showpic8 && this.state.showpic11? "馬卡龍" : ""}
+              {this.state.showpic4 && this.state.showpic8 && this.state.showpic12? "檸檬塔" : ""}
+
+
+            </div>
+            <div class="fancy-button">
+              <div class="left-frills frills margin-top-frills"></div>
+              <div class="button">FI ND!</div>
+              <div class="right-frills frills margin-top-frills"></div>
             </div>
             <Link to="/handmade">
               <div
@@ -329,6 +394,7 @@ class Navgational extends Component {
                 }
               >
                 <img src="/image/handmade/LOGO1.svg" />
+                <div className="button2_handmade">START USE!</div>
               </div>
             </Link>
           </div>
@@ -519,10 +585,10 @@ class Navgational extends Component {
           className={
             this.state.showclass
               ? `${
-                  this.state.showclass2
-                    ? "outside1 moveout1 animationDisplayNone"
-                    : "outside1"
-                }`
+              this.state.showclass2
+                ? "outside1 moveout1 animationDisplayNone"
+                : "outside1"
+              }`
               : "outside1 movein1"
           }
         >

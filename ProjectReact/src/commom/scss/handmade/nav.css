@@ -131,6 +131,7 @@
     margin: auto;
     transform: scale(0.9) ;
     margin-top: 150px;
+    text-align: center;
   }
   .lighttext{
     color: aliceblue;

@@ -18,39 +18,41 @@ const CartCourse = ({ courseName, courseOrderApplicants, courseOrderChoose, cour
 
   return (
     <>
-      <ul className="d-flex justify-content-around align-items-center px-4 course_sm_cart mb-0">
+      <div className="d-flex justify-content-between align-items-center px-4 course_sm_cart mb-0">
         <div className='cancel_sm_cart'>
           <MdCancel style={{ cursor: 'pointer',color:'white'}} onClick={() => courseSelect(courseSid,courseOrderChoose)} />
         </div>
-        <li className="d-flex flex-column align-items-between py-3" style={{lineHeight:'30px'}}>
+        <li className="d-flex flex-column align-items-between py-3 ml-3" style={{lineHeight:'30px'}}>
           <div className="product-title" style={{fontSize:'20px'}}>{courseOrderChoose ? courseOrderChoose.split(" ")[0] : ''}</div>
           <div className="d-flex align-items-center" style={{fontSize:'14px'}}>
             <AiOutlineBook className="cartList_icons" />
             {courseName}
           </div>
           <div className="d-flex align-items-center">
-            <FaRegClock className="cartList_icons" />
+            <FaRegClock className="cartList_icons" style={{marginRight:'5px'}}/>
             {courseOrderChoose ? courseOrderChoose.split(" ")[1] : ''}
           </div>
           <div className="d-flex align-items-center">
-            <GoPerson className="cartList_icons" />
+            <GoPerson className="cartList_icons" style={{marginRight:'5px'}}/>
             {courseOrderApplicants}
           </div>
         </li>
         <figure style={{
-          height:"100%",
-          width:'40%'
+          height:"125px",
+          width:'125px',
+          overflow: "hidden"
+
         }}
-        className='mb-0'
+        className='m-0 mt-1'
         >
           <img
             src={"/image/course_img/360/" + courseList}
             alt=""
             width="100%"
-            height="100%"
+            // height="100%"
           />
         </figure>
-      </ul>
+      </div>
     </>
   );
 };
