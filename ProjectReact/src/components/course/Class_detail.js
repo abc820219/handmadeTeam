@@ -281,6 +281,10 @@ function Class_detail(props) {
 
         if (course_time_select === "09:00") {
           $(".react-datepicker__day").removeClass("react-datepicker__day_below_person")
+          $(".react-datepicker__day").removeClass("react-datepicker__select_zero_day")
+          // $(".react-datepicker__day").removeClass("react-datepicker__day--selected")
+          // $(".react-datepicker__day--today").addClass("react-datepicker__day--selected ")
+
           let day_morning = []
           for (let i = 0; i < day.length; i++) {
             day_morning.push(day[i] && day[i].filter(obj => {
@@ -336,10 +340,30 @@ function Class_detail(props) {
             }
 
           }
+          let zero_person = []
+          day_select_person.forEach((item, index) => {
+            if (item === 0) {
+              zero_person.push(index)
+            }
+          })
+          console.log("教室上午已滿", zero_person)
+          for (let i = 0; i < zero_person.length; i++) {
+            let zero_day = (zero_person[i]) && zero_person[i] + ""
+            if (zero_day.length > 1) {
+              zero_day = "0" + zero_day
+              $(".react-datepicker__day--" + zero_day).addClass("react-datepicker__select_zero_day")
+            } else {
+              zero_day = "00" + zero_day
+              $(".react-datepicker__day--" + zero_day).addClass("react-datepicker__select_zero_day")
+            }
+          }
 
           /////////////////上午統計結束///////////////
         } else if (course_time_select === "12:00") {
           $(".react-datepicker__day").removeClass("react-datepicker__day_below_person")
+          $(".react-datepicker__day").removeClass("react-datepicker__select_zero_day")
+          // $(".react-datepicker__day").removeClass("react-datepicker__day--selected")
+          // $(".react-datepicker__day--today").addClass("react-datepicker__day--selected ")
           let day_noon = []
           for (let i = 0; i < day.length; i++) {
             day_noon.push(day[i] && day[i].filter(obj => {
@@ -395,9 +419,30 @@ function Class_detail(props) {
             }
 
           }
+          let zero_person = []
+          day_select_person.forEach((item, index) => {
+            if (item === 0) {
+              zero_person.push(index)
+            }
+          })
+          console.log("教室中午已滿", zero_person)
+          for (let i = 0; i < zero_person.length; i++) {
+            let zero_day = (zero_person[i]) && zero_person[i] + ""
+            if (zero_day.length > 1) {
+              zero_day = "0" + zero_day
+              $(".react-datepicker__day--" + zero_day).addClass("react-datepicker__select_zero_day")
+            } else {
+              zero_day = "00" + zero_day
+              $(".react-datepicker__day--" + zero_day).addClass("react-datepicker__select_zero_day")
+            }
+          }
+
 
         } else {
           $(".react-datepicker__day").removeClass("react-datepicker__day_below_person")
+          $(".react-datepicker__day").removeClass("react-datepicker__select_zero_day")
+          // $(".react-datepicker__day").removeClass("react-datepicker__day--selected")
+          // $(".react-datepicker__day--today").addClass("react-datepicker__day--selected ")
           let day_afternoon = []
           for (let i = 0; i < day.length; i++) {
             day_afternoon.push(day[i] && day[i].filter(obj => {
@@ -445,12 +490,30 @@ function Class_detail(props) {
 
           for (let i = 0; i < below_person.length; i++) {
             let below_day = (below_person[i]) && below_person[i] + ""
+     
             if (below_day.length > 1) {
               below_day = "0" + below_day
               $(".react-datepicker__day--" + below_day).addClass("react-datepicker__day_below_person")
             } else {
               below_day = "00" + below_day
               $(".react-datepicker__day--" + below_day).addClass("react-datepicker__day_below_person")
+            }
+          }
+          let zero_person = []
+          day_select_person.forEach((item, index) => {
+            if (item === 0) {
+              zero_person.push(index)
+            }
+          })
+          console.log("教室下午已滿", zero_person)
+          for (let i = 0; i < zero_person.length; i++) {
+            let zero_day = (zero_person[i]) && zero_person[i] + ""
+            if (zero_day.length > 1) {
+              zero_day = "0" + zero_day
+              $(".react-datepicker__day--" + zero_day).addClass("react-datepicker__select_zero_day")
+            } else {
+              zero_day = "00" + zero_day
+              $(".react-datepicker__day--" + zero_day).addClass("react-datepicker__select_zero_day")
             }
           }
         }
