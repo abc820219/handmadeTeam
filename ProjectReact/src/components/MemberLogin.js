@@ -5,8 +5,9 @@ import Captcha from "captcha-mini";
 import "../commom/scss/MemberLogin.scss";
 import { withRouter } from "react-router-dom";
 import { useAlert } from "react-alert";
+import { get } from "http";
 
-function MemberLogin(props, { checkLogIn }) {
+function MemberLogin(props) {
   const alert = useAlert();
   const [MemberLogin, setMemberLogin] = useState(true);
   const [account, setaccount] = useState("");
@@ -21,7 +22,7 @@ function MemberLogin(props, { checkLogIn }) {
   const [captchaAgree, setCaptchaAgreee] = useState("");
   const [captchaErr, setCaptchaErr] = useState(false);
   const [shown, setShown] = React.useState(false);
-
+  console.log(props.bgImg);
   useEffect(() => {
     let captcha = new Captcha({
       lineWidth: 1, //线条宽度
@@ -66,6 +67,7 @@ function MemberLogin(props, { checkLogIn }) {
     setformErrors({ formErrors, ...formErrors });
     setCaptchaErr(false);
   }; //錯誤訊息篩選順便更新狀態
+
   const submitForm = event => {
     event.preventDefault();
     if (captchaValue != captchaAgree) {
@@ -102,11 +104,11 @@ function MemberLogin(props, { checkLogIn }) {
         alert.success(member_data.message);
         setTimeout(() => {
           window.location = `http://localhost:3000${props.location.pathname}`;
-        },1500);
+        }, 1500);
       })
       .catch(async err => {
         console.log(err);
-        setaccount("")
+        setaccount("");
         setpassword("");
         setCaptchaValue("");
         alert.error("登入失敗");
@@ -202,8 +204,18 @@ function MemberLogin(props, { checkLogIn }) {
             <div className="text-center"></div>
           </form>
         </div>
-        <div className="login-backdrop" onClick={props.memberSignIn}></div>
+        {/* <div className="login-backdrop" onClick={props.memberSignIn}></div> */}
         <div className="backdropChange" onClick={props.memberSignIn}></div>
+        <div
+          className={props.bgImg ? `login-backdrop${props.bgImg}` : props.bgImg}
+          onClick={props.memberSignIn}
+        >
+          {props.bgImg && (
+            <div className="perf-link">
+              <a href="">12345678</a>
+            </div>
+          )}
+        </div>
       </>
     );
   }

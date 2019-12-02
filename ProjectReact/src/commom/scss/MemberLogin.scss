@@ -1,4 +1,20 @@
 $formErrorColor: #fff;
+%backdrop {
+  z-index: 900;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-position: 80% 5%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+%perf-link {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
 
 .login-wrap {
   background-color: rgba(0, 0, 0, 0.1) !important;
@@ -96,17 +112,53 @@ $formErrorColor: #fff;
   }
 }
 .login-backdrop {
-  z-index: 900;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  // background-color: #000;
+  @extend %backdrop;
   background-image: url("/image/member/loginBack.jpg");
-  background-position: 80% 5%;
-  background-repeat: no-repeat;
-  background-size: cover;
+  .perf-link {
+    @extend %perf-link;
+  }
+}
+.login-backdrop1 {
+  @extend %backdrop;
+  background-image: url("/image/member/loginBack.jpg");
+  .perf-link {
+    @extend %perf-link;
+  }
+}
+.login-backdrop2 {
+  @extend %backdrop;
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlxWoO85vYeUR7FfYCTcpcVZuLaVy6JoHP9HDgQ6Ehtpioq29v&s");
+  .perf-link {
+    @extend %perf-link;
+  }
+}
+.login-backdrop3 {
+  @extend %backdrop;
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlxWoO85vYeUR7FfYCTcpcVZuLaVy6JoHP9HDgQ6Ehtpioq29v&s");
+  .perf-link {
+    @extend %perf-link;
+  }
+}
+.login-backdrop4 {
+  @extend %backdrop;
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlxWoO85vYeUR7FfYCTcpcVZuLaVy6JoHP9HDgQ6Ehtpioq29v&s");
+  .perf-link {
+    @extend %perf-link;
+  }
+}
+.login-backdrop5 {
+  @extend %backdrop;
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlxWoO85vYeUR7FfYCTcpcVZuLaVy6JoHP9HDgQ6Ehtpioq29v&s");
+  .perf-link {
+    @extend %perf-link;
+  }
+}
+.login-backdrop6 {
+  @extend %backdrop;
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlxWoO85vYeUR7FfYCTcpcVZuLaVy6JoHP9HDgQ6Ehtpioq29v&s");
+  .perf-link {
+    @extend %perf-link;
+  }
 }
 .captchatextInput {
   width: 148px;
