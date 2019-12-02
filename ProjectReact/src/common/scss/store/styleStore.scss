@@ -230,6 +230,38 @@ $color-storeDown: #E9756E;
                 border-radius: 0 0 40px 0;
             }
         }
+        .showConditionGroup {
+            display: flex;
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            .showConditionPeople {
+                margin: 0 0 0 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 40px;
+                height: 40px;
+                box-shadow: 0 0 5px #000000 ;
+                border-radius: 50%;
+                font-size: 30px;
+                background-color: #ffffff;
+                color: #000000;
+            }
+            .showConditionChild {
+                margin: 0 0 0 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 40px;
+                height: 40px;
+                box-shadow: 0 0 5px #000000 ;
+                border-radius: 50%;
+                font-size: 30px;
+                background-color: #ffffff;
+                color: #000000;
+            }
+        }
     }
     .storeCardDown {
         width: 100%;
@@ -370,7 +402,7 @@ $color-storeDown: #E9756E;
                 p{
                     font-size: 80px;
                     line-height: 90px;
-                    margin-left: 30px;
+                    margin-left: 0px;
                     margin-top: 15px;
                     font-weight: 600;
                 }
@@ -380,7 +412,7 @@ $color-storeDown: #E9756E;
                     p {
                         font-size: 80px;
                         line-height: 90px;
-                        margin-left: 30px;
+                        margin-left: 0px;
                         margin-top: -45px;
                         font-weight: 600;
                         color: $color-storeDown;

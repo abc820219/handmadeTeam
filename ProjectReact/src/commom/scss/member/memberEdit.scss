@@ -3,10 +3,10 @@ $errorColor: #b8817d;
 .MemberEdit,
 .MemberPasswordEdit {
   height: 100%;
-
   .control {
     overflow: hidden;
     position: relative;
+    margin: auto;
     padding: 0 80px;
     @media (max-width: 1200px) {
       padding: 30px 60px;
@@ -122,10 +122,15 @@ $errorColor: #b8817d;
 .memberInfo {
   position: relative;
   overflow: hidden;
-  padding: 50px 80px;
+  padding: 0px 80px;
+
   h4 {
+    margin: 220px auto 0 auto;
+    @media (max-width: 768px) {
+      margin: 60px auto 0 auto;
+    }
     span {
-      margin-left: 10%;
+      margin-left: 7%;
     }
     &::after {
       content: "";
@@ -138,8 +143,19 @@ $errorColor: #b8817d;
     }
   }
   ul {
-    padding: 10px 20px;
+    padding: 45px 20px;
+    .fontW {
+      font-size: 12px;
+      div {
+        font-size: 20px;
+      }
+    }
     li {
+      @media (max-width: 768px) {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
       padding: 10px;
     }
   }
@@ -165,6 +181,7 @@ $errorColor: #b8817d;
       width: 300px;
     }
   }
+  ///-------
 }
 
 //--------------------------------------------------------------------------------------------------

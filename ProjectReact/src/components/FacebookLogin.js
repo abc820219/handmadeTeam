@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import FacebookLogin from "react-facebook-login";
 import { withRouter } from "react-router-dom";
+import { useAlert } from "react-alert";
 
 class Facebook extends Component {
   constructor(props) {
@@ -21,7 +22,6 @@ class Facebook extends Component {
         style={{ fontSize: "25px" }}
       />
     );
-
     return <div className="mt-3">{fbContent}</div>;
   }
   responseFacebook = response => {
@@ -45,14 +45,12 @@ class Facebook extends Component {
         console.log(member_data.info);
         localStorage.setItem("member_id", member_data.info.member_sid);
         localStorage.setItem("member_data", JSON.stringify(member_data.info));
-        alert(member_data.message);
         setTimeout(() => {
           window.location = window.location = `http://localhost:3000${this.props.location.pathname}`;
         });
       })
       .catch(async err => {
         console.log(err);
-        alert("註冊失敗");
       });
   };
 }

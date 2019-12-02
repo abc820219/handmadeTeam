@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import { FaUserAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import "../commom/scss/MemberLogin.scss";
+import { useAlert } from "react-alert";
 const emailRegex = RegExp(
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 ); //信箱正規
 function MemberEmail(props) {
+  const alert = useAlert();
   const [account, setaccount] = useState("");
   const [email, setemail] = useState("");
   const [password] = useState("");
@@ -37,7 +39,7 @@ function MemberEmail(props) {
     event.preventDefault();
     console.log();
     if (account.length <= 3 || !emailRegex.test(email)) {
-      alert("請輸入正確資訊");
+      alert.success("請輸入正確資訊");
       return;
     }
     fetch("http://localhost:5000/handmade/member/mail", {
@@ -55,7 +57,8 @@ function MemberEmail(props) {
         return res.json();
       })
       .then(info => {
-        alert(info.message);
+        info.message == "請至信箱確認密碼" && alert.success(info.message);
+        info.message == "請輸入正確的資訊" && alert.error(info.message);
       });
     console.log(account.length);
     setaccount("");
@@ -67,7 +70,9 @@ function MemberEmail(props) {
   return (
     <>
       <div className="login-wrap d-flex flex-column align-items-center">
-        <div className="mt-4"><img src="/image/logo/logo-03.png" alt="" width="180px"/></div>
+        <div className="mt-4">
+          <img src="/image/logo/logo-03.png" alt="" width="180px" />
+        </div>
         <p className="mt-4 mb-3" style={{ color: "white" }}>
           請填寫帳號與信箱
         </p>
@@ -117,7 +122,17 @@ function MemberEmail(props) {
           <div className="text-center"></div>
         </form>
       </div>
-      <div className="login-backdrop" onClick={props.memberSignIn}></div>
+      <div className="backdropChange" onClick={props.memberSignIn}></div>
+      <div
+        className={props.bgImg ? `login-backdrop${props.bgImg}` : props.bgImg}
+        onClick={props.memberSignIn}
+      >
+        {props.bgImg && (
+          <div className="perf-link">
+            <a href="">12345678</a>
+          </div>
+        )}
+      </div>
     </>
   );
 }

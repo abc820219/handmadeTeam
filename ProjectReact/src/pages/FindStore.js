@@ -6,7 +6,9 @@ import {
   Marker,
   InfoWindow
 } from "react-google-maps";
+import { MarkerClusterer } from "react-google-maps/lib/components/addons/MarkerClusterer";
 import mapStyles from "../data/mapStyles";
+//
 import NavBar from "../components/NavBar";
 
 // ICON import
@@ -19,6 +21,39 @@ import { FaStore } from "react-icons/fa";
 // style scss
 import "../common/scss/store/styleFindStore.scss";
 import StoreSelect from "../components/store/StoreSelect";
+//
+
+// const markerClustererCalculator = (markers, numStyles) => {
+//   //create an index for icon styles
+//   var index = 4,
+//     //Count the total number of markers in this cluster
+//     count = markers.length,
+//     //Set total to loop through (starts at total number)
+//     index = Math.min(index);
+// // Cluster level 1 (index = 1)
+// // Cluster level 2 (index = 2)
+// // Cluster level 3 (index = 3)
+// // Cluster level 4 (index = 4)
+// // Cluster level 5 (index = 5)
+//   //Tell MarkerCluster this clusters details (and how to style it)
+//   return {
+//     text: count,
+//     index: index
+//   };
+// };
+const markerClustererCalculator = (markers, numStyles) => {
+  const index = markers.find(marker => marker.icon.condition === 'anormal')
+    ? 3
+    : markers.find(marker => marker.icon.condition === 'alerta')
+    ? 2
+    : markers.find(marker => marker.icon.condition === 'normal')
+    ? 1
+    : 4
+  return {
+    index: index,
+    text: markers.length,
+  }
+}
 
 function Map({
   selectedPark,
@@ -49,28 +84,36 @@ function Map({
           }} //定位
         />
       )}
-      {storeData.map(store => (
-        <Marker
-          key={store.store_sid}
-          position={{
-            lat: parseFloat(store.store_latitude),
-            lng: parseFloat(store.store_longitude)
-          }} //定位
-          onClick={() => {
-            console.log(parseFloat(store.store_latitude));
-            console.log(store.store_latitude);
-            setDefaultLat(store.store_latitude);
-            setDefaultLng(store.store_longitude);
-            setDefaultZoomMap(15);
-            setSelectedPark(store);
-          }}
-          icon={{
-            url: `/image/store/${store.store_logo}`,
-            scaledSize: new window.google.maps.Size(30, 30)
-          }}
-          animation={{ animation: "DROP" }}
-        />
-      ))}
+
+      <MarkerClusterer
+        // averageCenter
+        calculator={markerClustererCalculator}
+        // enableRetinaIcons
+        gridSize={30}
+      >
+        {storeData.map(store => (
+          <Marker
+            key={store.store_sid}
+            position={{
+              lat: parseFloat(store.store_latitude),
+              lng: parseFloat(store.store_longitude)
+            }} //定位
+            onClick={() => {
+              console.log(parseFloat(store.store_latitude));
+              console.log(store.store_latitude);
+              setDefaultLat(store.store_latitude);
+              setDefaultLng(store.store_longitude);
+              setDefaultZoomMap(15);
+              setSelectedPark(store);
+            }}
+            icon={{
+              url: `/image/store/${store.store_logo}`,
+              scaledSize: new window.google.maps.Size(30, 30)
+            }}
+            animation={{ animation: "DROP" }}
+          />
+        ))}
+      </MarkerClusterer>
       {/* 點擊息提示 */}
       {selectedPark && (
         <InfoWindow
@@ -86,7 +129,7 @@ function Map({
         >
           <div style={{ padding: "30px" }}>
             <li className="findStoreCardGroupLi">
-              <img
+              <img  
                 className="findStoreSpacePhoto"
                 src={`/image/store/${selectedPark.store_space_photo}`}
               />
@@ -136,6 +179,9 @@ function FindStore(props) {
   const [accompanyChild, setAccompanyChild] = useState(0);
   const [accompanyPartner, setAccompanyPartner] = useState(0);
   const [location_sid, setLocationSid] = useState(0);
+  const [lot, setLot] = useState(0);
+  const [lat, setLat] = useState(0);
+  const [nowPositionHandler, setNowPositionHandler] = useState(false);
 
   useEffect(() => {
     const listener = e => {
@@ -150,37 +196,71 @@ function FindStore(props) {
   }, []);
   //------------------------------------
   function nowPosition(props) {
-    if (navigator.geolocation) {
-      console.log("a");
-      function success(pos) {
-        var crd = pos.coords;
-        console.log("Your current position is:");
-        console.log("Latitude : " + crd.latitude);
-        console.log("Longitude: " + crd.longitude);
-        console.log("More or less " + crd.accuracy + " meters.");
-        setDefaultLat(25.040741099999998);
-        setDefaultLng(121.543399);
-        setDefaultZoomMap(15);
-        setCrdUserPosition({ lat: 25.040741099999998, lng: 121.543399 });
+    if (nowPositionHandler == false) {
+      if (navigator.geolocation) {
+        console.log("a");
+        function success(pos) {
+          var crd = pos.coords;
+          console.log("Your current position is:");
+          console.log("Latitude : " + crd.latitude);
+          console.log("Longitude: " + crd.longitude);
+          console.log("More or less " + crd.accuracy + " meters.");
+          setDefaultLat(25.040741099999998);
+          setDefaultLng(121.543399);
+          setDefaultZoomMap(15);
+          setCrdUserPosition({ lat: 25.040741099999998, lng: 121.543399 });
+          setLot(121.543399);
+          setLat(25.040741099999998);
+          setNowPositionHandler(true);
+        }
+        function error() {
+          alert("無法取得你的位置");
+        }
+        navigator.geolocation.getCurrentPosition(success, error);
+      } else {
+        alert("Sorry, 你的裝置不支援地理位置功能。");
       }
-      function error() {
-        alert("無法取得你的位置");
+    }
+    if (nowPositionHandler == true) {
+      if (navigator.geolocation) {
+        console.log("a");
+        function success(pos) {
+          var crd = pos.coords;
+          console.log("Your current position is:");
+          console.log("Latitude : " + crd.latitude);
+          console.log("Longitude: " + crd.longitude);
+          console.log("More or less " + crd.accuracy + " meters.");
+          setDefaultLat(23.6);
+          setDefaultLng(121);
+          setDefaultZoomMap(8);
+          setCrdUserPosition({ lat: 25.040741099999998, lng: 121.543399 });
+          setLot(0);
+          setLat(0);
+          setNowPositionHandler(false);
+        }
+        function error() {
+          alert("無法取得你的位置");
+        }
+        navigator.geolocation.getCurrentPosition(success, error);
+      } else {
+        alert("Sorry, 你的裝置不支援地理位置功能。");
       }
-      navigator.geolocation.getCurrentPosition(success, error);
-    } else {
-      alert("Sorry, 你的裝置不支援地理位置功能。");
     }
   }
   //---------------------------------------child
   const storeConditionSelect = async (
     location_sid,
     accompanyPartner,
-    accompanyChild
+    accompanyChild,
+    lot,
+    lat
   ) => {
     const condition = JSON.stringify({
       locate_sid: location_sid,
       accompanyPartner: accompanyPartner,
-      accompanyChild: accompanyChild
+      accompanyChild: accompanyChild,
+      lot: lot,
+      lat: lat
     });
     console.log("child:" + condition);
     try {
@@ -200,11 +280,14 @@ function FindStore(props) {
 
   useEffect(() => {
     console.log("click");
-    // setLocationSid(location_sid);
-    // storeAreaHoverNow(location_sid);
-    // setAreaNowCatch(areaNowCatch);
-    storeConditionSelect(location_sid, accompanyPartner, accompanyChild);
-  }, [accompanyChild, accompanyPartner, location_sid]);
+    storeConditionSelect(
+      location_sid,
+      accompanyPartner,
+      accompanyChild,
+      lot,
+      lat
+    );
+  }, [accompanyChild, accompanyPartner, location_sid, lot, lat]);
   //------------------------------------
   return (
     <>
@@ -302,6 +385,19 @@ function FindStore(props) {
                       <div className="findStoreName">
                         <p>{value.store_name}</p>
                       </div>
+                    </div>
+                    {/* 篩選ICON */}
+                    <div className="findShowConditionGroup">
+                      {value.store_partner === 1 && (
+                        <div className="findShowConditionPeople">
+                          <MdPeopleOutline />
+                        </div>
+                      )}
+                      {value.store_child === 1 && (
+                        <div className="findShowConditionChild">
+                          <MdChildCare />
+                        </div>
+                      )}
                     </div>
                     <div className="findStoreCardDown">
                       <div className="findStoreCardDownMain">

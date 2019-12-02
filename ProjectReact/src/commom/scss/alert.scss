@@ -1,0 +1,13 @@
+.alert-box {
+  position: relative;
+  top: 300px;
+  .alert-message {
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 110px;
+    color: white;
+    font-weight: 700;
+    font-size: 26px;
+  }
+}

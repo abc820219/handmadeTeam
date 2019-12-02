@@ -593,30 +593,36 @@ function Class_detail(props) {
 
   console.log(id);
 
-  const putInCart = (productDetail, choseDate, courseTimeSelect, course_person, courseCart, id) => {
-    console.log(productDetail);
-    console.log(choseDate);
-    console.log(courseTimeSelect);
+  const putInCart = (productDetail, choseDate, courseTimeSelect, course_person, courseCart, id,course_select_max) => {
+    // course_select_max[]
+    // console.log(productDetail);
+    // console.log("choseDate:"+choseDate.split('-')[2]);
+    // console.log("當天剩餘人數: "+course_select_max[choseDate.split('-')[2]]);
+    // console.log(courseTimeSelect);
+
+    const remainingSeat = course_select_max[choseDate.split('-')[2]];
     if (id) {
       const courseSid = productDetail.courseSid;
       const courseTime = `${choseDate} ${courseTimeSelect}`;
       let checkCart;
       if (courseCart) {
         checkCart = courseCart.filter(courseC => {
-          return courseC.course_sid == courseSid && courseC.course_choose == courseTime;
+          // console.log("courseC.course_choose: "+courseC.course_order_choose == courseTime);
+          return courseC.course_sid == courseSid && courseC.course_order_choose == courseTime;
         });
-        console.log(checkCart);
+        // console.log(checkCart);
         if (checkCart.length) {
           alert.error("時間重複了");
         } else {
-          console.log(checkCart);
+          // console.log(checkCart);
           let orderCf = {
             course_sid: productDetail.courseSid,
             course_name: productDetail.courseName,
             course_price: productDetail.coursePrice,
             course_order_applicants: course_person,
             course_list: productDetail.courseList,
-            course_order_choose: courseTime
+            course_order_choose: courseTime,
+            course_remaining_seat: remainingSeat
           }
           cartCourseDispatch(addCourse(orderCf, id));
         }
@@ -627,7 +633,8 @@ function Class_detail(props) {
           course_price: productDetail.coursePrice,
           course_order_applicants: course_person,
           course_list: productDetail.courseList,
-          course_order_choose: courseTime
+          course_order_choose: courseTime,
+          course_remaining_seat: remainingSeat
         }
         cartCourseDispatch(addCourse(orderCf2, id));
       }
@@ -716,7 +723,7 @@ function Class_detail(props) {
             </div>
             <div className="course_detail_cart">
             <button type="button" className="detail_cart_icon_btn mt-2" style={{transform:'translateY(100px)'}} disabled={!checkCart} style={!checkCart ? { opacity: '0.3', pointerEvent: 'none', cursor: 'not-allowed' } : {}}
-                onClick={() => { putInCart(productDetail, correctDay, course_time_select, course_person, courseCart, id) }}>
+                onClick={() => { putInCart(productDetail, correctDay, course_time_select, course_person, courseCart, id,course_select_max) }}>
                 <FaShoppingBasket className="cart_icon" />
                 <div>Add to Cart</div>
               </button>

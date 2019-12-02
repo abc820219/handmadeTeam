@@ -31,6 +31,9 @@ const NavBar = ({ checkLogIn, login, ...props }) => {
   if (showLightBox) {
     console.log("clicked");
   }
+
+  const [bgImg, setBgImg] = useState(false);
+
   useEffect(() => {
     fetch("http://localhost:5000/handmade/member/getMemberImg", {
       method: "POST",
@@ -49,6 +52,7 @@ const NavBar = ({ checkLogIn, login, ...props }) => {
         setMemberImgName(rows.info[0].member_photo_name);
       })
       .catch(error => console.log(error));
+    setBgImg(localStorage.getItem("dessert_prefer"));
   }, [imgHand]);
   return (
     <>
@@ -63,37 +67,73 @@ const NavBar = ({ checkLogIn, login, ...props }) => {
           </div>
           <ul
             className={showMenuBtn ? "move  navbarBtn" : "navbarBtn"}
-            onMouseLeave={MenuListLeave}
+            // onMouseLeave={MenuListLeave}
           >
+            <img
+              className="showMenuBackgroundImage"
+              src="/image/sideBarImage/info.png"
+            ></img>
             <li className="w-100">
+              <Link style={{ color: "#fff" }} to="/handmade">
+                <img src="/image/logo/logo-03.png" alt="" width="220px" />
+              </Link>
               <FaTimesCircle
+                className="closeMenuButton"
                 onClick={() => setshowMenuBtn(false)}
-                style={{ margin: "30px 0 30px 0" }}
               />
+            </li>
+            <li className="chooseLiHover">
               <Link
+                className="chooseLinkHover"
                 style={{ color: "#fff" }}
-                to="/handmade"
-                style={{ marginLeft: "79px" }}
+                to="/handmade/store"
               >
-                <img src="/image/logo/logo-03.png" alt="" width="180px" />
+                玩樂烘焙
               </Link>
-            </li>
-            <li>
-              <Link style={{ color: "#fff" }} to="/handmade/store">
-                烘焙店家
+              <Link className="choosePHover" to="/handmade/store">
+                尋找店家 / 課程
               </Link>
+              <img
+                className="chooseImageHover"
+                style={{ marginTop: "-300px" }}
+                src="/image/sideBarImage/classroom.png"
+              ></img>
             </li>
-            <li>
-              <Link style={{ color: "#fff" }} to="/handmade/teacher">
-                優質老師
+            <li className="chooseLiHover">
+              <Link
+                className="chooseLinkHover"
+                style={{ color: "#fff" }}
+                to="/handmade/teacher"
+              >
+                異國薈萃
               </Link>
-            </li>
-            <li>
-              <Link style={{ color: "#fff" }} to="/handmade/ingredients">
-                精緻食材
+              <Link className="choosePHover" to="/handmade/teacher">
+                國際名師開課
               </Link>
+              <img
+                className="chooseImageHover"
+                style={{ marginTop: "-450px" }}
+                src="/image/sideBarImage/t5.png"
+              ></img>
             </li>
-            <li>
+            <li className="chooseLiHover">
+              <Link
+                className="chooseLinkHover"
+                style={{ color: "#fff" }}
+                to="/handmade/ingredients"
+              >
+                譜出滋味
+              </Link>
+              <Link className="choosePHover" to="/handmade/ingredients">
+                推薦食譜 / 購買食材
+              </Link>
+              <img
+                className="chooseImageHover"
+                style={{ marginTop: "-600px" }}
+                src="/image/sideBarImage/info.png"
+              ></img>
+            </li>
+            {/* <li>
               <Link style={{ color: "#fff" }} to="/handmade/findstore">
                 地圖
               </Link>
@@ -102,13 +142,13 @@ const NavBar = ({ checkLogIn, login, ...props }) => {
               <Link style={{ color: "#fff" }} to="/handmade/test">
                 測試
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link
                 style={{
                   color: "#fff",
                   position: "absolute",
-                  bottom: "10px",
+                  bottom: "-200px",
                   right: "50px",
                   fontSize: "30px"
                 }}
@@ -126,6 +166,7 @@ const NavBar = ({ checkLogIn, login, ...props }) => {
             openCart={openCart}
             showCart={showCart}
             login={login}
+            setShowLightBox={setShowLightBox}
           />
         ) : (
           <NavBarSign
@@ -136,9 +177,14 @@ const NavBar = ({ checkLogIn, login, ...props }) => {
           />
         )}
       </nav>
+
+      {/* ---------rwd min--------- */}
+
       {/* ------------------ */}
+
       {showLightBox ? (
         <MemberBox
+          bgImg={bgImg}
           LoginBox={login}
           memberSignIn={memberSignIn}
           checkLogIn={checkLogIn}

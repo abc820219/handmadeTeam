@@ -37,7 +37,7 @@ const Coupon = ({ props }) => {
           <div className="col-md-12">
             <article>
               <div className="row">
-                <div className=" p-5 col-md-6 col-12 couponBg-color">
+                <div className=" p-5 col-md-6 col-12 couponBg-color-left">
                   <Nav
                     variant="tabs"
                     fill
@@ -71,9 +71,8 @@ const Coupon = ({ props }) => {
                   <div>
                     <article className="py-3">
                       <h2>好康優惠(目前紅利累積:{bonuns+"$"})</h2>
-                      <div>
+                      <div className="chart">
                         <MemberChart></MemberChart>
-                        
                       </div>
                       <h2 className="mt-5">好康優惠(點擊領取優惠卷)</h2>
                       <ul>

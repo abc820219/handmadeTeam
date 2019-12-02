@@ -5,8 +5,9 @@ import Captcha from "captcha-mini";
 import "../commom/scss/MemberLogin.scss";
 import { withRouter } from "react-router-dom";
 import { useAlert } from "react-alert";
+import { get } from "http";
 
-function MemberLogin(props, { checkLogIn }) {
+function MemberLogin(props) {
   const alert = useAlert();
   const [MemberLogin, setMemberLogin] = useState(true);
   const [account, setaccount] = useState("");
@@ -21,7 +22,7 @@ function MemberLogin(props, { checkLogIn }) {
   const [captchaAgree, setCaptchaAgreee] = useState("");
   const [captchaErr, setCaptchaErr] = useState(false);
   const [shown, setShown] = React.useState(false);
-
+  console.log(props.bgImg);
   useEffect(() => {
     let captcha = new Captcha({
       lineWidth: 1, //线条宽度
@@ -66,11 +67,18 @@ function MemberLogin(props, { checkLogIn }) {
     setformErrors({ formErrors, ...formErrors });
     setCaptchaErr(false);
   }; //錯誤訊息篩選順便更新狀態
+
   const submitForm = event => {
     event.preventDefault();
     if (captchaValue != captchaAgree) {
       // alert("驗證碼錯誤");
       alert.error("驗證碼錯誤");
+      setCaptchaErr(true);
+      return;
+    }
+    if (!account || !password) {
+      // alert("驗證碼錯誤");
+      alert.error("請輸入正確資訊");
       setCaptchaErr(true);
       return;
     }
@@ -93,15 +101,17 @@ function MemberLogin(props, { checkLogIn }) {
         localStorage.setItem("member_data", JSON.stringify(member_data.info));
         console.log(member_data.info);
         // alert(member_data.message);
-        alert.show(member_data.message);
+        alert.success(member_data.message);
         setTimeout(() => {
           window.location = `http://localhost:3000${props.location.pathname}`;
-        });
+        }, 1500);
       })
       .catch(async err => {
         console.log(err);
-        // alert("登入失敗");
-        alert.show("Oh look, an alert!");
+        setaccount("");
+        setpassword("");
+        setCaptchaValue("");
+        alert.error("登入失敗");
       });
     setaccount("");
     setpassword("");
@@ -115,7 +125,7 @@ function MemberLogin(props, { checkLogIn }) {
           <div className="mt-4">
             <img src="/image/logo/logo-03.png" alt="" width="180px" />
           </div>
-          <FacebookLogin />
+          <FacebookLogin alert={alert} />
           <p className="mt-4 mb-3" style={{ color: "#fff" }}>
             使用handmade帳號登入
           </p>
@@ -194,8 +204,18 @@ function MemberLogin(props, { checkLogIn }) {
             <div className="text-center"></div>
           </form>
         </div>
-        <div className="login-backdrop" onClick={props.memberSignIn}></div>
+        {/* <div className="login-backdrop" onClick={props.memberSignIn}></div> */}
         <div className="backdropChange" onClick={props.memberSignIn}></div>
+        <div
+          className={props.bgImg ? `login-backdrop${props.bgImg}` : props.bgImg}
+          onClick={props.memberSignIn}
+        >
+          {props.bgImg && (
+            <div className="perf-link">
+              <a href="">12345678</a>
+            </div>
+          )}
+        </div>
       </>
     );
   }
