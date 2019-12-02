@@ -212,11 +212,18 @@ function MemberLogin(props) {
           }
           onClick={props.memberSignIn}
         >
-          {props.bgImg && (
-            <div className="perf-link">
-              <a href="">12345678</a>
-            </div>
-          )}
+        <div className="go-to-item ">前往商品頁</div>
+
+       <div className="perf-link ">
+           
+           {props.bgImg == 1 ? <a href="" className="btn1 btn-2">小蛋糕</a> : ""}
+           {props.bgImg == 2 ? <a href="" className="btn1 btn-2">馬卡龍</a> : ""}
+           {props.bgImg == 3 ? <a href="" className="btn1 btn-2">蝴蝶餅</a> : ""}
+           {props.bgImg == 4 ? <a href="" className="btn1 btn-2">小甜點</a> : ""}
+           {props.bgImg == 5 ? <a href="" className="btn1 btn-2">鹹蛋糕</a> : ""}
+           {props.bgImg == 6 ? <a href="" className="btn1 btn-2">檸檬塔</a> : ""}
+           {props.bgImg == 7 ? <a href="" className="btn1 btn-2">抹茶塔</a> : ""}
+         </div>
         </div>
       </>
     );
