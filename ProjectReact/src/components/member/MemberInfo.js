@@ -62,15 +62,15 @@ const MemberInfo = () => {
         style={{ background: "#635E59", color: "#fff" }}
       >
         <h4>
-          <span>會員基本資料</span>
+          <span className="fontW">會員基本資料</span>
         </h4>
         <ul>
-          <li>姓名:</li>
-          <li>暱稱:</li>
-          <li>信箱:</li>
-          <li>手機:</li>
-          <li>生日:</li>
-          <li>地址:</li>
+          <li className="fontW">姓名</li>
+          <li className="fontW">暱稱</li>
+          <li className="fontW">信箱</li>
+          <li className="fontW">手機</li>
+          <li className="fontW">生日</li>
+          <li className="fontW">地址</li>
         </ul>
         <p className="topText">MEMBER</p>
       </div>
@@ -82,15 +82,33 @@ const MemberInfo = () => {
       style={{ background: "#635E59", color: "#fff" }}
     >
       <h4>
-        <span>會員基本資料</span>
+        <span className="fontW">會員基本資料</span>
       </h4>
       <ul>
-        <li>姓名:{member_name ? member_name : "未填寫"}</li>
-        <li>暱稱:{member_nickname ? member_nickname : "未填寫"}</li>
-        <li>信箱:{member_email ? member_email : "未填寫"}</li>
-        <li>手機:{member_phone ? member_phone : "未填寫"}</li>
-        <li>生日:{member_birthday ? member_birthday : "未填寫"}</li>
-        <li>地址:{member_address ? member_address : "未填寫"}</li>
+        <li className="fontW">
+          姓名
+          <div> {member_name ? member_name : "未填寫"}</div>
+        </li>
+        <li className="fontW">
+          暱稱
+          <div>{member_nickname ? member_nickname : "未填寫"}</div>
+        </li>
+        <li className="fontW">
+          信箱
+          <div>{member_email ? member_email : "未填寫"}</div>
+        </li>
+        <li className="fontW">
+          手機
+          <div>{member_phone ? member_phone : "未填寫"}</div>
+        </li>
+        <li className="fontW">
+          生日
+          <div>{member_birthday ? member_birthday : "未填寫"}</div>
+        </li>
+        <li className="fontW">
+          地址
+          <div>{member_address ? member_address : "未填寫"}</div>
+        </li>
       </ul>
       <p className="topText">MEMBER</p>
     </div>

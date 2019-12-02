@@ -1,7 +1,13 @@
 import React, { Component } from "react";
-import { Container, Button } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import "../../commom/scss/teacher/OrderInfo.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useAlert } from "react-alert";
+
+const AlerS = () => {
+  
+  return <></>
+}
 
 class OrderInfo extends Component {
   constructor(props) {
@@ -13,8 +19,8 @@ class OrderInfo extends Component {
       // 最大可報名人數
       maxPeople: ""
     };
+    const alert = useAlert();
   }
-
   componentDidMount() {
     // this.getApiData();
     this.getSubjectInfo();
@@ -171,13 +177,13 @@ class OrderInfo extends Component {
           return response.json();
         })
         .then(function(data) {
-          alert("已完成預訂");
+          alert.sccess("已完成預訂");
         })
         .catch(error => {
           console.log(error);
         });
     } else {
-      alert("請輸入完整資料哦");
+      alert.error("請輸入完整資料哦");
     }
   };
 
@@ -186,8 +192,12 @@ class OrderInfo extends Component {
     // console.log(this.state.username);
     return (
       <>
-        <div className="d-flex"> 
-          <sidebar className="booking-sidebar">
+        <div className="d-flex">
+          <sidebar
+            className={
+              this.props.isShowOrderNow ? "booking-sidebar" : "closeOrder"
+            }
+          >
             <div className="subject-header"></div>
             {/* 開課圖 */}
             <div className="subject-smallimg">

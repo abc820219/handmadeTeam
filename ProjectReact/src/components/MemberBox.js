@@ -3,7 +3,7 @@ import MemberLogin from "./MemberLogin";
 import MemberRegister from "./MemberRegister";
 import MemberEmail from "./MemberEmail";
 function MemberBox(props, { checkLogIn }) {
-  console.log(props);
+  console.log(props.bgImg);
   const [boxState, setBxState] = useState(0);
   function boxStateChange(v) {
     setBxState(v);
@@ -12,6 +12,7 @@ function MemberBox(props, { checkLogIn }) {
     return (
       <>
         <MemberLogin
+          bgImg={props.bgImg}
           memberSignIn={props.memberSignIn}
           boxStateChange={boxStateChange}
           checkLogIn={checkLogIn}
@@ -22,6 +23,7 @@ function MemberBox(props, { checkLogIn }) {
     return (
       <>
         <MemberRegister
+          bgImg={props.bgImg}
           memberSignIn={props.memberSignIn}
           boxStateChange={boxStateChange}
         />
@@ -31,6 +33,7 @@ function MemberBox(props, { checkLogIn }) {
     return (
       <>
         <MemberEmail
+          bgImg={props.bgImg}
           memberSignIn={props.memberSignIn}
           boxStateChange={boxStateChange}
         />
