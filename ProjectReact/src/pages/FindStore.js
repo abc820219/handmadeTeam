@@ -19,7 +19,6 @@ import { MdGpsFixed } from "react-icons/md";
 import { FaStore } from "react-icons/fa";
 import { MdArrowBack } from "react-icons/md";
 
-
 // style scss
 import "../common/scss/store/styleFindStore.scss";
 import StoreSelect from "../components/store/StoreSelect";
@@ -44,18 +43,18 @@ import StoreSelect from "../components/store/StoreSelect";
 //   };
 // };
 const markerClustererCalculator = (markers, numStyles) => {
-  const index = markers.find(marker => marker.icon.condition === 'anormal')
+  const index = markers.find(marker => marker.icon.condition === "anormal")
     ? 3
-    : markers.find(marker => marker.icon.condition === 'alerta')
-      ? 2
-      : markers.find(marker => marker.icon.condition === 'normal')
-        ? 1
-        : 4
+    : markers.find(marker => marker.icon.condition === "alerta")
+    ? 2
+    : markers.find(marker => marker.icon.condition === "normal")
+    ? 1
+    : 4;
   return {
     index: index,
-    text: markers.length,
-  }
-}
+    text: markers.length
+  };
+};
 
 function Map({
   selectedPark,
@@ -68,7 +67,8 @@ function Map({
   setDefaultLat,
   setDefaultLng,
   setCrdUserPosition,
-  crdUserPosition
+  crdUserPosition,
+  nowPositionHandler
 }) {
   return (
     <GoogleMap
@@ -78,7 +78,7 @@ function Map({
       zoom={defaultZoomMap}
       center={{ lat: defaultLat, lng: defaultLng }}
     >
-      {crdUserPosition && (
+      {nowPositionHandler && (
         <Marker
           position={{
             lat: crdUserPosition.lat,
@@ -109,7 +109,7 @@ function Map({
               setSelectedPark(store);
             }}
             icon={{
-              url: `/image/store/${store.store_logo}`,
+              url: `/image/store/circleLogo/${store.store_logo}`,
               scaledSize: new window.google.maps.Size(30, 30)
             }}
             animation={{ animation: "DROP" }}
@@ -129,7 +129,6 @@ function Map({
             lng: parseFloat(selectedPark.store_longitude * 1)
           }}
         >
-
           <div style={{ padding: "0 15px 0 0" }}>
             <li className="findStoreMapCardGroupLi">
               <img
@@ -156,7 +155,7 @@ function Map({
                     className="findStoreMapEnterStore"
                     href={`/handmade/store/${selectedPark.store_sid}/course`}
                   >
-                    <FaStore /> &nbsp;&nbsp;  
+                    <FaStore /> &nbsp;&nbsp;
                     <p>GO TO Store</p>
                   </a>
                 </div>
@@ -178,7 +177,7 @@ function FindStore(props) {
   const [defaultLng, setDefaultLng] = useState(121);
   const [defaultZoomMap, setDefaultZoomMap] = useState(8);
   const [crdUserPosition, setCrdUserPosition] = useState("");
-
+  // const [markOpen, setMarkOpen] = useState(fasle);
   //---------
   const [accompanyChild, setAccompanyChild] = useState(0);
   const [accompanyPartner, setAccompanyPartner] = useState(0);
@@ -435,8 +434,7 @@ function FindStore(props) {
           </div>
         </div>
         <div className="findStoreRight">
-          <div className="findStoreRightTop">
-          </div>
+          <div className="findStoreRightTop"></div>
           <div className="findStoreGoogleMap">
             <div
               className="findStoreGoogleMapIn"
@@ -459,6 +457,7 @@ function FindStore(props) {
                 setDefaultZoomMap={setDefaultZoomMap}
                 setCrdUserPosition={setCrdUserPosition}
                 crdUserPosition={crdUserPosition}
+                nowPositionHandler={nowPositionHandler}
               />
             </div>
           </div>
