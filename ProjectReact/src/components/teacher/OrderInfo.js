@@ -186,8 +186,12 @@ class OrderInfo extends Component {
     // console.log(this.state.username);
     return (
       <>
-        <div className="d-flex"> 
-          <sidebar className="booking-sidebar">
+        <div className="d-flex">
+          <sidebar
+            className={
+              this.props.isShowOrderNow ? "booking-sidebar" : "closeOrder"
+            }
+          >
             <div className="subject-header"></div>
             {/* 開課圖 */}
             <div className="subject-smallimg">

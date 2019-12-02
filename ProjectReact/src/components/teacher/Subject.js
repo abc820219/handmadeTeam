@@ -136,71 +136,78 @@ class Subject extends Component {
     };
     return (
       <>
-        <div className="subject-page d-flex">
-          <div className="subject-page-left">
-            {/* 報名表 */}
-            {this.state.showOrder === true ? (
-              <OrderInfo subject_sid={this.props.subject_sid} />
-            ) : null}
-          </div>
-          {/* 開課圖 */}
-          <div className="small-img">
-            <img
-              className="slider-image"
-              src={`/image/${this.state.subject_img}`}
-            />
-          </div>
-          <div className="subject-img">
-            <img
-              className="slider-image"
-              src={`/image/${this.state.subject_img}`}
-            />
-          </div>
-          {/* 文字裝飾區塊 */}
-          <div className="wordBox">
-            <div className="wordBoxUp">
-              <div className="wordHalfUp">{this.state.subject_name}</div>
+        <div className="background_first">
+          <div className="subject-page d-flex">
+            <div className="subject-page-left">
+              {/* 報名表 */}
+              {/* {this.state.showOrder === true ? (
+                <OrderInfo subject_sid={this.props.subject_sid} />
+              ) : null} */}
+              <OrderInfo
+                isShowOrderNow={this.state.showOrder}
+                subject_sid={this.props.subject_sid}
+              />
             </div>
-            <div className="wordBoxDown">
-              <div className="wordHalfDown">{this.state.subject_name}</div>
+            {/* 手機版開課圖 */}
+            <div className="small-img">
+              <img
+                className="slider-image"
+                src={`/image/${this.state.subject_img}`}
+              />
             </div>
-          </div>
-          <div className="subject-page-center">
-            {/* 連結至老師頁面 */}
-            <div className="teacher-link">
-              <Link to="/handmade/teacher">Teacher List</Link>
+            {/* 開課圖 */}
+            <div className="subject-img">
+              <img
+                className="slider-image"
+                src={`/image/${this.state.subject_img}`}
+              />
             </div>
-            <div className="subject-name">
-              <div className="subject-name-box">
-                <p>{this.state.subject_name}</p>
-                <div className="color-section"></div>
+            <div className="shadow-sub1"></div>
+            {/* 文字裝飾區塊 */}
+            <div className="wordBox">
+              <div className="wordBoxUp">
+                <div className="wordHalfUp">{this.state.subject_name}</div>
+              </div>
+              <div className="wordBoxDown">
+                <div className="wordHalfDown">{this.state.subject_name}</div>
               </div>
             </div>
+            <div className="subject-page-center">
+              {/* 連結至老師頁面 */}
+              <div className="teacher-link">
+                <Link to="/handmade/teacher">Teacher List</Link>
+              </div>
+              <div className="subject-name">
+                <div className="subject-name-box">
+                  <p>{this.state.subject_name}</p>
+                  <div className="color-section"></div>
+                </div>
+              </div>
 
-            <div className="subject-info">
-              <div className="subject-info-box d-flex">
-                {/* 開課日期 */}
-                <div className="info-box">
-                  <MdDateRange style={infoIcon} />
-                  <p>{this.state.suject_date}</p>
-                </div>
-                <div className="info-box">
-                  <MdSchedule style={infoIcon} />
-                  <p>{this.state.subject_spend_time}</p>
-                </div>
-                <div className="info-box">
-                  <MdMap style={infoIcon} />
-                  <p>Taipei</p>
-                </div>
-                <div className="info-box">
-                  <MdPerson style={infoIcon} />
-                  {/* 剩餘人數 */}
-                  <p>{this.state.last_people - this.state.orderPeople}</p>
+              <div className="subject-info">
+                <div className="subject-info-box d-flex">
+                  {/* 開課日期 */}
+                  <div className="info-box">
+                    <MdDateRange style={infoIcon} />
+                    <p>{this.state.suject_date}</p>
+                  </div>
+                  <div className="info-box">
+                    <MdSchedule style={infoIcon} />
+                    <p>{this.state.subject_spend_time}</p>
+                  </div>
+                  <div className="info-box">
+                    <MdMap style={infoIcon} />
+                    <p>Taipei</p>
+                  </div>
+                  <div className="info-box">
+                    <MdPerson style={infoIcon} />
+                    {/* 剩餘人數 */}
+                    <p>{this.state.last_people - this.state.orderPeople}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-            {/* 分享按鈕 */}
-            {/* <div className="shareFacebook">
+              {/* 分享按鈕 */}
+              {/* <div className="shareFacebook">
               <FacebookShareButton
                 url="http://127.0.0.1/handmade/teacher/"
                 className="Demo__some-network__share-button"
@@ -208,64 +215,66 @@ class Subject extends Component {
                 <FacebookIcon size={32} round />
               </FacebookShareButton>
             </div> */}
-            <div className="shareLine">
-              <LineShareButton
-                url="http://localhost:3000/handmade/teacher/"
-                className="Demo__some-network__share-button"
-                title={title}
-              >
-                <LineIcon size={32} round />
-              </LineShareButton>
-            </div>
+              <div className="shareLine">
+                <LineShareButton
+                  url="http://localhost:3000/handmade/teacher/"
+                  className="Demo__some-network__share-button"
+                  title={title}
+                >
+                  <LineIcon size={32} round />
+                </LineShareButton>
+              </div>
 
-            <div className="subject-detail">
-              <div className="subject-detail-box d-flex">
-                <div className="subject-address d-flex">
-                  <figure
-                    style={iconZone}
-                    className="d-flex justify-content-center align-items-center"
-                  >
-                    <MdLocationOn
-                      style={{ color: "#EBD0CE", fontSize: "25px" }}
-                    />
-                  </figure>
-                  {/* 開課地址 */}
-                  <p>{this.state.subject_address}</p>
-                </div>
-                <div className="subject-feature d-flex">
-                  <figure
-                    style={iconZone}
-                    className="d-flex justify-content-center align-items-center"
-                  >
-                    <FaQuoteLeft
-                      style={{ color: "#EBD0CE", fontSize: "20px" }}
-                    />
-                  </figure>
-                  {/* 開課特色 */}
-                  <p>{this.state.subject_feature}</p>
-                </div>
-                <div className="subject-price d-flex">
-                  {/* 開課價格 */}
-                  <p style={{ maxWidth: "150px" }}>
-                    <span>$</span>
-                    {this.state.subject_price}
-                  </p>
+              <div className="subject-detail">
+                <div className="subject-detail-box d-flex">
+                  <div className="subject-address d-flex">
+                    <figure
+                      style={iconZone}
+                      className="d-flex justify-content-center align-items-center"
+                    >
+                      <MdLocationOn
+                        style={{ color: "#EBD0CE", fontSize: "25px" }}
+                      />
+                    </figure>
+                    {/* 開課地址 */}
+                    <p>{this.state.subject_address}</p>
+                  </div>
+                  <div className="subject-feature d-flex">
+                    <figure
+                      style={iconZone}
+                      className="d-flex justify-content-center align-items-center"
+                    >
+                      <FaQuoteLeft
+                        style={{ color: "#EBD0CE", fontSize: "20px" }}
+                      />
+                    </figure>
+                    {/* 開課特色 */}
+                    <p>{this.state.subject_feature}</p>
+                  </div>
+                  <div className="subject-price d-flex">
+                    {/* 開課價格 */}
+                    <p>
+                      <span>$</span>
+                      {this.state.subject_price}
+                    </p>
+                  </div>
                 </div>
               </div>
+              <div className="book-btn-box">
+                <button
+                  onClick={this.showOrder}
+                  className={
+                    this.state.showOrder === true ? "active-now" : "book-btn"
+                  }
+                >
+                  Book
+                </button>
+              </div>
             </div>
-            <div className="book-btn-box">
-              <button
-                onClick={this.showOrder}
-                className={
-                  this.state.showOrder === true ? "active-now" : "book-btn"
-                }>
-                Book Course 
-              </button>
+            {/* <sidebar className="order-sidebar"></sidebar> */}
+            <div className="subject-page-right">
+              <p className="bg-name">{this.state.subject_name}</p>
             </div>
-          </div>
-          {/* <sidebar className="order-sidebar"></sidebar> */}
-          <div className="subject-page-right">
-            <p className="bg-name">{this.state.subject_name}</p>
           </div>
         </div>
       </>
