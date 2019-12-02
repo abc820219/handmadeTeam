@@ -12,292 +12,355 @@ $maincolor: #f78177;
 //teacher-link字體
 @import url("https://use.typekit.net/wuz0itu.css");
 
-.subject-page {
-  background: linear-gradient(135deg, #f0c7b3, #f4dcb9);
-  position: relative;
-  align-items: center;
-  text-align: center;
-  overflow: hidden;
-  .btn.focus,
-  .btn:active.focus,
-  .btn.active.focus {
-    outline: none;
-  }
-
-  //-----開課圖-----
-  .small-img {
-    display: none;
-  }
-  .subject-img {
-    height: 1050px;
-    width: 1050px;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    clip-path: polygon(0 0, 0% 100%, 100% 100%);
-    
-    background-color: #456;
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+.background_first {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(-45deg, #362d2b, #e9756e, #f5ddba, #eabeae);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  z-index: 44;
+  transition: 2s;
+  @keyframes gradientBG {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
     }
   }
-
-  .subject-page-left {
-    width: 25%;
-    // height: 100%;
-    z-index: 2;
-  }
-
-  .subject-page-right {
-    width: 15%;
-    height: 100vh;
-    background: #f78177;
-    opacity: 66%;
-    .bg-name {
-      width: 100vh;
-      font-family: niagara, serif;
-      transform: rotate(90deg);
-      font-size: 250px;
-      color: #ffffff;
-      opacity: 66%;
-      position: absolute;
-      top: 60%;
-      left: 73%;
-    }
-  }
-  // ----文字裝飾區塊-----
-  .wordBox {
-    // width: 100vw;
-    height: 65%;
-    transform: rotate(45deg);
-
-    pointer-events: none;
-    left: 8.5%;
-    top: 36%;
+  .subject-page {
+    // background: linear-gradient(135deg, #f0c7b3, #f4dcb9);
+    position: relative;
+    align-items: center;
+    text-align: center;
     overflow: hidden;
+    .btn.focus,
+    .btn:active.focus,
+    .btn.active.focus {
+      outline: none;
+    }
 
-    .wordBoxUp {
-      width: 100vw;
-      height: 25vh;
-      position: relative;
-      transform: translateX(-10px);
+    //-----開課圖-----
+    .small-img {
+      display: none;
+    }
+    .subject-img {
+      height: 1200px;
+      width: 1200px;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      clip-path: polygon(0 0, 0% 100%, 100% 100%);
       overflow: hidden;
-      .wordHalfUp {
-        font-family: niagara, serif;
-        position: absolute;
-        font-size: 250px;
-        // font-size: 280px;
-        top: 25%;
-        overflow: hidden;
+      z-index: 1;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        // transform: scale(1,1);
+        // transition: all 1s ease-out;
+        // transition: transform .3s;
+        transition: all 0.6s;
+        &:hover img {
+          transform: scale(1.2, 1.2);
+        }
       }
     }
-    .wordBoxDown {
+    .shadow-sub1 {
+      clip-path: polygon(0 0, 0% 100%, 100% 100%);
+      position: fixed;
+      bottom: 0px;
+      left: 10px;
+      height: 1200px;
+      width: 1200px;
+      background: #fff;
+      filter: blur(100px);
+    }
+    .subject-page-left {
+      width: 25%;
+      // height: 100%;
+      z-index: 2;
+      // 報名表
+      .booking-sidebar {
+        height: 100% !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        overflow-x: hidden !important;
+        transition: 0.3s !important; // <= 時間
+        width: 20% !important;
+      }
+      .closeOrder {
+        // display: none  !important;
+        height: 100% !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        overflow-x: hidden !important;
+        transition: 0.3s !important; // <= 時間
+        width: 0px !important;
+      }
+    }
+
+    .subject-page-right {
+      width: 15%;
+      height: 100vh;
+      background: #f78177;
+      opacity: 66%;
+      .bg-name {
+        width: 100vh;
+        font-family: niagara, serif;
+        transform: rotate(90deg);
+        font-size: 250px;
+        color: #ffffff;
+        opacity: 66%;
+        position: absolute;
+        top: 60%;
+        left: 73%;
+      }
+    }
+    // ----文字裝飾區塊-----
+    .wordBox {
       // width: 100vw;
-      height: 25vh;
-      position: relative;
+      height: 77%;
+      transform: rotate(45deg);
+      pointer-events: none;
+      left: 15%;
+      top: 36%;
       overflow: hidden;
-      .wordHalfDown {
-        font-family: niagara, serif;
-        position: absolute;
-        font-size: 250px;
-        // font-size: 280px;
-        top: -75%;
-        // color: #cccccc;
+      z-index: 3;
+
+      .wordBoxUp {
+        width: 100vw;
+        height: 25vh;
+        position: relative;
+        transform: translateX(-10px);
         overflow: hidden;
+        .wordHalfUp {
+          font-family: niagara, serif;
+          position: absolute;
+          font-size: 250px;
+          // font-size: 280px;
+          top: 25%;
+          overflow: hidden;
+        }
+      }
+      .wordBoxDown {
+        // width: 100vw;
+        height: 25vh;
+        position: relative;
+        overflow: hidden;
+        .wordHalfDown {
+          font-family: niagara, serif;
+          position: absolute;
+          font-size: 250px;
+          // font-size: 280px;
+          top: -75%;
+          // color: #cccccc;
+          overflow: hidden;
+        }
       }
     }
-  }
 
-  // ----主要內容區塊-----
-  .subject-page-center {
-    width: 80%;
-    // height: 100%;
-    display: flex;
-    flex-direction: column;
-    z-index: 2;
-
-    .subject-name {
-      // height: 10%;
-      padding-left: 36%;
+    // ----主要內容區塊-----
+    .subject-page-center {
+      width: 80%;
+      // height: 100%;
       display: flex;
+      flex-direction: column;
+      z-index: 2;
 
-      .subject-name-box {
-        width: 80%;
+      .subject-name {
+        // height: 10%;
+        padding-left: 34%;
+        display: flex;
 
-        p {
-          // margin: 0;
-          font-family: niagara, serif; // 主要字型
+        .subject-name-box {
+          width: 92%;
+
+          p {
+            // margin: 0;
+            font-family: niagara, serif; // 主要字型
+            font-weight: 400;
+            font-style: normal;
+            font-size: 200px;
+            // z-index: 2;
+          }
+
+          .color-section {
+            margin-top: -25%;
+            margin-left: 57%;
+            // width: 55%;
+            width: 405px;
+            height: 100px;
+            // height: 90%;
+            background: $maincolor;
+            // opacity: 66%;
+          }
+        }
+      }
+      // ----連結至老師頁面-----
+      .teacher-link {
+        width: 25%;
+        // padding-top: 2%;
+        padding-left: 10%;
+        padding-top: 3%;
+        font-size: 34px;
+        a {
+          color: #362d2b;
+          font-family: franklin-gothic-compressed, sans-serif;
           font-weight: 400;
           font-style: normal;
-          font-size: 130px;
-          // z-index: 2;
-        }
-
-        .color-section {
-          margin-top: -25%;
-          margin-left: 57%;
-          // width: 55%;
-          width: 380px;
-          height: 100px;
-          // height: 90%;
-          background: $maincolor;
-          // opacity: 66%;
+          &:hover {
+            text-decoration: none;
+          }
         }
       }
-    }
-    // ----連結至老師頁面-----
-    .teacher-link {
-      width: 25%;
-      // padding-top: 2%;
-      padding-left: 10%;
-      font-size: 34px;
-      a {
-        color: #362d2b;
-        font-family: franklin-gothic-compressed, sans-serif;
-        font-weight: 400;
-        font-style: normal;
-        &:hover {
-          text-decoration: none;
-        }
-      }
-    }
-    .subject-info {
-      width: 64%;
-      margin-top: 3%;
-      margin-left: 31%;
-      color: #9597a6;
-      font-family: basic-sans, sans-serif;
-      font-weight: 700;
-      font-style: normal;
-      // ----開課日期-----
-      .info-box {
-        width: 50%;
-        margin-left: 1px;
-        height: 70px;
-        border-radius: 5px;
-        background: #ffffff;
-      }
-    }
-    .shareFacebook {
-      position: absolute;
-      top: 50%;
-      left: 60%;
-    }
-    .shareLine {
-      position: absolute;
-      top: 46%;
-      left: 60%;
-      outline: none;
-      button:focus {
-        outline: none;
-      }
-    }
-    .subject-detail {
-      width: 34%;
-      height: 40%;
-      margin-top: 1.5%;
-      margin-left: 66%;
-
-      .subject-detail-box {
-        width: 83%;
-        height: 100%;
-        background: $maincolor;
-        // opacity: 66%;
-        color: #ffffff;
+      .subject-info {
+        width: 64%;
+        margin-top: 3%;
+        margin-left: 36%;
+        color: #9597a6;
         font-family: basic-sans, sans-serif;
         font-weight: 700;
         font-style: normal;
-        font-size: 16px;
-        flex-direction: column;
-
-        .subject-address {
-          padding-top: 3%;
-          p {
-            text-align: left;
-            margin-top: 4%;
-            max-width: 100%;
-            padding-left: 8%;
-          }
-        }
-        .subject-feature {
-          padding-top: 1%;
-          p {
-            text-align: left;
-            max-width: 70%;
-            padding-left: 10%;
-            margin-top: 3%;
-          }
-        }
-
-        .subject-price {
-          color: #545871;
-          font-size: 28px;
-          padding-bottom: 20%;
-          padding-top: 15%;
-
-          p {
-            font-family: basic-sans, sans-serif;
-            font-weight: 700;
-            font-style: normal;
-            margin: 0;
-            padding-left: 50%;
-            padding-top: 12%;
-          }
-
-          span {
-            font-family: basic-sans, sans-serif;
-            font-weight: 700;
-            font-style: normal;
+        // ----開課日期-----
+        .info-box {
+          width: 50%;
+          margin-left: 1px;
+          height: 70px;
+          border-radius: 5px;
+          background: #ffffff;
+          &:hover {
+            background-color: #e9756e;
+            color: #ffffff;
+            opacity: 66%;
+            transition: 0.4s;
           }
         }
       }
-    }
-
-    .book-btn-box {
-      width: 15%;
-      margin-left: 79.5%;
-      margin-top: -2%;
-      .active-now {
-        width: 192px;
-        height: 56px;
-        color: #f0f1f7;
-        border: 1px solid transparent;
-        background: #362d2b;
-        font-family: basic-sans, sans-serif;
-        font-weight: 300;
-        font-style: normal;
-        font-size: 24px;
-        border-radius: 30px;
+      // .shareFacebook {
+      //   position: absolute;
+      //   top: 60%;
+      //   left: 60%;
+      // }
+      .shareLine {
+        position: absolute;
+        top: 30%;
+        left: 85%;
         outline: none;
+        button:focus {
+          outline: none;
+        }
       }
-      .book-btn {
-        width: 192px;
-        height: 56px;
-        color: #362d2b;
-        border: 1px solid transparent;
-        background: #f0f1f7;
-        font-family: basic-sans, sans-serif;
-        font-weight: 300;
-        font-style: normal;
-        font-size: 24px;
-        border-radius: 30px;
-        outline: none;
-        &:focus {
-          // 按下有藍色邊框問題要解決
-          outline: none;
-          border-color: #ffffff;
-        }
-        &:hover {
-          color: #362d2b;
-        }
-        &:active {
-          // 按下有藍色邊框問題要解決
-          outline: none;
-          border-color: transparent;
+      .subject-detail {
+        width: 34%;
+        height: 40%;
+        margin-top: 1.5%;
+        margin-left: 72%;
+
+        .subject-detail-box {
+          width: 83%;
+          height: 100%;
+          background: $maincolor;
+          // opacity: 66%;
           color: #ffffff;
-          background-color: #362d2b;
+          font-family: basic-sans, sans-serif;
+          font-weight: 700;
+          font-style: normal;
+          font-size: 16px;
+          flex-direction: column;
+
+          .subject-address {
+            padding-top: 3%;
+            p {
+              text-align: left;
+              margin-top: 4%;
+              max-width: 100%;
+              padding-left: 8%;
+            }
+          }
+          .subject-feature {
+            padding-top: 1%;
+            p {
+              text-align: left;
+              max-width: 70%;
+              padding-left: 10%;
+              margin-top: 3%;
+            }
+          }
+
+          .subject-price {
+            color: #545871;
+            font-size: 28px;
+            padding-bottom: 20%;
+            padding-top: 10%;
+
+            p {
+              font-family: basic-sans, sans-serif;
+              font-weight: 700;
+              font-style: normal;
+              margin: 0;
+              padding-left: 36%;
+              padding-top: 12%;
+              font-size: 40px;
+            }
+
+            span {
+              font-family: basic-sans, sans-serif;
+              font-weight: 700;
+              font-style: normal;
+            }
+          }
+        }
+      }
+
+      .book-btn-box {
+        width: 15%;
+        margin-left: 79.5%;
+        margin-top: -2%;
+        .active-now {
+          width: 192px;
+          height: 56px;
+          color: #f0f1f7;
+          border: 1px solid transparent;
+          background: #362d2b;
+          font-family: basic-sans, sans-serif;
+          font-weight: 300;
+          font-style: normal;
+          font-size: 24px;
+          border-radius: 30px;
+          outline: none;
+        }
+        .book-btn {
+          width: 192px;
+          height: 56px;
+          color: #362d2b;
+          border: 1px solid transparent;
+          background: #f0f1f7;
+          font-family: basic-sans, sans-serif;
+          font-weight: 300;
+          font-style: normal;
+          font-size: 24px;
+          border-radius: 30px;
+          outline: none;
+          &:focus {
+            outline: none;
+            border-color: #ffffff;
+          }
+          &:hover {
+            color: #362d2b;
+          }
+          &:active {
+            outline: none;
+            border-color: transparent;
+            color: #ffffff;
+            background-color: #362d2b;
+          }
         }
       }
     }
@@ -306,92 +369,98 @@ $maincolor: #f78177;
 
 // =========RWD (max-width: 400px)============
 @media (max-width: 500px) {
-  .subject-page {
-    height: 100vh;
-    .subject-page-right {
-      width: 5%;
-      display: none;
-    }
-    .small-img {
-      width: 100%;
-      height: 20%;
-      overflow: hidden;
-      position: absolute;
-      left: 0px;
-      top: 26%;
-      // background: #362d2b;
-      display: block;
-      img {
+  .background_first {
+    background: linear-gradient(135deg, #f0c7b3, #f4dcb9);
+    .subject-page {
+      height: 100vh;
+      .subject-page-right {
+        width: 5%;
+        display: none;
+      }
+      .small-img {
         width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-    }
-    .subject-img {
-      display: none;
-      img {
-      }
-    }
-    .subject-page-left {
-      // width: 5%;
-      width: 100%;
-      position: fixed;
-      left: 0px;
-      z-index: 4;
-    }
-
-    .wordBox {
-      display: none;
-    }
-
-    .subject-page-center {
-      width: 100%;
-      .teacher-link {
-        width: 50%;
-        padding-top: 4%;
-        margin-top: 70px;
-        font-size: 25px;
-      }
-      .subject-name {
-        padding-left: 0%;
-        .subject-name-box {
-          width: 97%;
-          p {
-            font-size: 65px;
-          }
-          .color-section {
-            display: none;
-          }
+        height: 20%;
+        overflow: hidden;
+        position: absolute;
+        left: 0px;
+        top: 26%;
+        // background: #362d2b;
+        display: block;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
       }
-      .subject-info {
-        margin: 0;
-        width: 100%;
-        margin-top: 50%;
-        .info-box {
-          height: 90px;
+      .subject-img {
+        display: none;
+        img {
         }
       }
-      .subject-detail {
-        margin: 0;
+      // 報名表
+      .subject-page-left {
+        // width: 5%;
         width: 100%;
-        margin-left: 9%;
-        margin-top: 5%;
-        .subject-detail-box {
-          .subject-price {
-            margin-top: -12%;
+        position: fixed;
+        left: 0px;
+        z-index: 4;
+      }
+      .shadow-sub1 {
+        display: none;
+      }
+      .wordBox {
+        display: none;
+      }
+
+      .subject-page-center {
+        width: 100%;
+        .teacher-link {
+          width: 50%;
+          padding-top: 4%;
+          margin-top: 70px;
+          font-size: 25px;
+        }
+        .subject-name {
+          padding-left: 0%;
+          .subject-name-box {
+            width: 97%;
             p {
-              // padding-left: 35%;
+              font-size: 65px;
+            }
+            .color-section {
+              display: none;
             }
           }
         }
-      }
-      .book-btn-box {
-        margin-top: -7%;
-        margin-left: 46%;
-        .book-btn {
-          width: 180px;
-          height: 50px;
+        .subject-info {
+          margin: 0;
+          width: 100%;
+          margin-top: 50%;
+          .info-box {
+            height: 90px;
+          }
+        }
+        .subject-detail {
+          margin: 0;
+          width: 100%;
+          margin-left: 9%;
+          margin-top: 5%;
+          .subject-detail-box {
+            .subject-price {
+              margin-top: -24%;
+              p {
+                // padding-left: 35%;
+              }
+            }
+          }
+        }
+        .book-btn-box {
+          margin-top: -7%;
+          margin-left: 46%;
+          .book-btn {
+            width: 180px;
+            height: 50px;
+          }
         }
       }
     }
