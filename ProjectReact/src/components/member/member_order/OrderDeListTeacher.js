@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../../../commom/scss/member/orderDeListCourse.scss";
 import { FaDollarSign } from "react-icons/fa";
 import { FaRegClock } from "react-icons/fa";
@@ -9,9 +9,10 @@ import { MdCancel } from "react-icons/md";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaQuoteLeft } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
+import { useAlert } from "react-alert";
 
 
-const OrderDeListTeacher = ({orderDetail}) => {
+const OrderDeListTeacher = ({ orderDetail }) => {
   const iconZone = {
     width: '64px',
     height: '64px',
@@ -21,8 +22,14 @@ const OrderDeListTeacher = ({orderDetail}) => {
   };
 
   console.log(orderDetail);
+  const alert = useAlert();
+  const [email, setEmail] = useState("");
+  const [member, setMember] = useState("");
+  const [productName, setProductName] = useState("");
+  const [message, setMessage] = useState("");
+  const [loadPage, setLoadPage] = useState(false);
 
-  if(!orderDetail){
+  if (!orderDetail) {
     orderDetail = {
       subject_name: '',
       subject_address: '',
@@ -33,12 +40,12 @@ const OrderDeListTeacher = ({orderDetail}) => {
       subject_applicants_phone: '',
       subject_feature: '',
       subject_price: '',
-      order_sid:'',
+      order_sid: '',
       subject_date: '',
-      subject_img:'',
-      teacher_name:'',
-      teacher_small_img:'',
-      teacher_big_img:'' 
+      subject_img: '',
+      teacher_name: '',
+      teacher_small_img: '',
+      teacher_big_img: ''
     };
   }
 
@@ -60,6 +67,54 @@ const OrderDeListTeacher = ({orderDetail}) => {
     teacher_big_img,
     subject_sid
   } = orderDetail;
+
+  let member_data;
+  useEffect(() => {
+    if (localStorage.getItem("member_data")) {
+      member_data = JSON.parse(localStorage.getItem("member_data"));
+      setEmail(member_data.member_email);
+      setMember(member_data.member_account);
+      setProductName(subject_name);
+    }
+    setLoadPage(true);
+  }, [subject_name, member_data]);
+
+  useEffect(() => {
+    if (loadPage) {
+      reportProduct(member, email, productName, message, order_sid);
+    }
+  }, [message]);
+
+  const sendText = async () => {
+    let message123 = await prompt("請輸入回報問題");
+    if (message123) {
+      await setMessage(message123);
+    }
+  };
+
+
+  const reportProduct = async (member, email, productName, message, orderSid) => {
+    const report = JSON.stringify({
+      member: member,
+      email: email,
+      productName: productName,
+      message: message,
+      orderSid: orderSid
+    });
+    const url = `http://localhost:5000/handmade/member/order/mailToReport/`;
+    const dataJson = await fetch(url, {
+      method: "POST",
+      body: report,
+      headers: { "Content-Type": "application/json" }
+    });
+    const data = await dataJson.json();
+    if (data.status === "202") {
+      alert.success(data.message);
+    } else {
+      alert.error(data.message);
+    }
+  };
+
   return (
     <>
       <div className="orderDeListCourse">
@@ -120,7 +175,7 @@ const OrderDeListTeacher = ({orderDetail}) => {
         </ul>
         <hr className="orderDeListCourseHr"></hr>
         <div className="orderFooter d-flex justify-content-end">
-          <input type="button" value="問題回報" className="orderBtn" />
+          <button className='p-1' style={{ borderRadius: '5px', backgroundColor: 'white' }} onClick={() => sendText()}>問題回報</button>
         </div>
       </div>
     </>

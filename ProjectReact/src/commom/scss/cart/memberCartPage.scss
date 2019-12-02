@@ -198,6 +198,14 @@
     width: 80%;
     padding: 16px 0px;
     margin: 0 auto;
+    .checkOrder {
+      position: relative;
+      figure{
+        position: absolute;
+        top: 30px;
+        right: 60px;
+      }
+    }
     li {
       position: relative;
       display: flex;
