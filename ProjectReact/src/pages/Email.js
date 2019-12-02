@@ -2,10 +2,12 @@ import React, { useState, useEffect, Component } from "react";
 import { withRouter } from "react-router-dom";
 import { FaKey, FaEye } from "react-icons/fa";
 import "../commom/scss/MemberLogin.scss";
+import { useAlert } from "react-alert";
 const emailRegex = RegExp(
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 ); //信箱正規
 const Email = props => {
+  const alert = useAlert();
   const [password, setPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [formErrors, setformErrors] = useState({
@@ -35,9 +37,14 @@ const Email = props => {
   const submitForm = event => {
     event.preventDefault();
     if (formErrors.password || formErrors.newPassword) {
-      alert("請檢查輸入的資訊");
+      alert.error("請檢查輸入的資訊");
       return;
     }
+    if (!password || !newPassword) {
+      alert.error("請檢查輸入的資訊");
+      return;
+    }
+
     console.log();
     fetch("http://localhost:5000/handmade/member/mailEdit", {
       method: "post",
@@ -54,12 +61,14 @@ const Email = props => {
         return member_data;
       })
       .then(member_data => {
-        alert(member_data.message + ",跳轉中");
-        window.location = "http://localhost:3000/handmade/";
+        alert.success(member_data.message + ",跳轉中");
+        setTimeout(() => {
+          window.location = "http://localhost:3000/handmade/";
+        }, 1000);
       })
       .catch(async err => {
         console.log(err);
-        alert("修改失敗");
+        alert.error("修改失敗");
         window.location = window.location = window.location.href;
       });
     setPassword("");

@@ -5,8 +5,9 @@ import { MdEmail, MdPhoneAndroid } from "react-icons/md";
 import { FiXCircle } from "react-icons/fi";
 import MemberInfo from "./MemberInfo";
 import UseWinSize from "../../components/UseWinSize";
-
+import { useAlert } from "react-alert";
 const MemberEdit = () => {
+  const alert = useAlert();
   //會員----------------------------------------------------------
   const size = UseWinSize();
   const [member_address, setmember_address] = useState("");
@@ -261,7 +262,7 @@ const MemberEdit = () => {
   function formSubmit(event) {
     event.preventDefault();
     if (formErrors.email || formErrors.phone) {
-      alert("請輸入正確資訊");
+      alert.success("請輸入正確資訊");
       return;
     }
     console.log("formSubmit");
@@ -272,7 +273,7 @@ const MemberEdit = () => {
       },
       body: JSON.stringify({
         member_sid: localStorage.getItem("member_id"),
-        member_email: email ? email : member_name,
+        member_email: email ? email : member_email,
         member_name: name ? name : member_name,
         member_nickname: nickname ? nickname : member_nickname,
         member_birth: birthday ? birthday : member_birthday,
@@ -285,11 +286,13 @@ const MemberEdit = () => {
       })
       .then(row => {
         console.log(row);
-        window.location = "http://localhost:3000/handmade/member/edit";
-        alert(row.message);
+        alert.success(row.message);
+        setTimeout(() => {
+          window.location = "http://localhost:3000/handmade/member/edit";
+        }, 500);
       })
       .catch(error => {
-        console.log(error);
+        alert.error(error);
       });
   }
   function handleChange(event) {

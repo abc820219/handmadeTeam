@@ -8,14 +8,22 @@ $BtnBgc: #f5b3aa;
 .couponBg-color {
   background-color: #eec1b1;
 }
+.couponBg-color-left {
+  background-color: rgb(99, 94, 89);
+  color: #fff;
+  .chart {
+    color: #b8817d;
+  }
+}
 .coupon {
   display: inline-block;
   overflow: hidden;
   border-radius: 10px;
-  margin: 10px;
+  width: 100%;
+  margin: 20px 0;
   .coupon-left {
     float: left;
-    width: 150px;
+    width: 40%;
     height: 150px;
     position: relative;
     .coupon-left-content {
@@ -43,7 +51,7 @@ $BtnBgc: #f5b3aa;
   }
   .coupon-con {
     float: left;
-    width: 350px;
+    width: 60%;
     height: 150px;
     position: relative;
     .couponSid {
@@ -110,8 +118,6 @@ $BtnBgc: #f5b3aa;
   .coupon {
     .coupon-con {
       float: left;
-      width: 200px;
-      height: 150px;
       position: relative;
       .couponSid {
         position: absolute;

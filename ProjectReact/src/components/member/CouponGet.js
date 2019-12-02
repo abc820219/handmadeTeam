@@ -2,8 +2,9 @@ import React from "react";
 import { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../commom/scss/member/coupon.scss";
-
+import { useAlert } from "react-alert";
 const CouponGet = () => {
+  const alert = useAlert();
   const [couponData, setCouponData] = useState("");
   const getCoupon = e => {
     e.preventDefault();
@@ -24,7 +25,7 @@ const CouponGet = () => {
       })
       .then(rows => {
         console.log(rows);
-        alert(rows.message);
+        alert.error(rows.message);
       });
   };
   useEffect(() => {
@@ -46,9 +47,9 @@ const CouponGet = () => {
       {couponData.map((v, index) => {
         return (
           <form name={v.coupon_sid} onSubmit={getCoupon}>
-            <div className="d-flex justify-content-center" key={index}>
-              <div className="py-1">
-                <div className="coupon d-flex flex-nowrap ">
+            <div className="d-flex justify-content-center w-100" key={index}>
+              <div className="py-1  w-100">
+                <div className="coupon d-flex flex-nowrap  w-100 ">
                   <div className="coupon-left">
                     <p className="coupon-left-content">
                       <span>{v.coupon_price}折</span>

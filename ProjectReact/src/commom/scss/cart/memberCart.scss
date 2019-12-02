@@ -1,5 +1,5 @@
 .memberCartList {
-  background: rgba(110, 91, 83, 0.3);
+  background: #362d2b;
   backdrop-filter: blur(5px);
   position: absolute;
   top: 0;
@@ -17,47 +17,56 @@
     color: #fff;
   }
 
-  .course_sm_cart {
-    position: relative;
-      .cancel_sm_cart {
-        position: absolute;
-        top: 6px;
-        right: 40px;
-      }
-    
-    img{
-      border-radius: 5px;
-    }
+  .cartBigCancel {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    color: white;
+    font-size: 30px;
   }
 
-  .ingre_sm_cart {
+  .course_sm_cart {
     position: relative;
-    .cancel_sm_cart {
-      position: absolute;
-      top: 6px;
-      right: 40px;
-    }
+    background: #362d2b;
+    transition: .5s;
+      .cancel_sm_cart {
+        position: absolute;
+        top: 0px;
+        right: 10px;
+        transform: scale(1.5);
+      }
+      div{
+        color: white;
+      }
+      figure{
+        overflow: hidden;
+      }
     img{
       border-radius: 5px;
     }
   }
-  .cartHead::after {
-    content: "";
-    display: block;
-    border: 1px solid #fff;
-    color: #fff;
-    width: 85%;
-    margin: auto;
+  .course_sm_cart:hover{
+    background: ivory;
+    div{
+      color: #362d2b}
   }
+  // .cartHead::after {
+  //   content: "";
+  //   display: block;
+  //   border: 1px solid #fff;
+  //   color: #fff;
+  //   width: 85%;
+  //   margin: auto;
+  // }
   .product-title {
     color: #fff;
     font-size: 20px;
   }
   .cartMain {
-    line-height: 30px;
+    line-height: 20px;
     .course-title {
-      font-size: 20px;
-      padding-left: 130px;
+      font-size: 18px;
+      padding-left: 40px;
       color: #fff;
     }
   }
@@ -65,7 +74,6 @@
     font-size: 60px;
   }
   .cartBtn {
-    padding: 10px;
     font-size: 60px;
     color: white;
   }
@@ -77,11 +85,18 @@
   bottom: 0;
   width: 375px;
   height: 150px;
-  background-color: #ed8c69;
+  background-color: #E9756E;
+  font-family: basic-sans, sans-serif, "微軟正黑體";
 }
 .hr-bottom {
   background-color: #fff;
   width: 85%;
   height: 1px;
   margin: auto;
+}
+
+@media (min-width:500px) {
+  .memberCartList {
+    margin-bottom: 300px;
+  }
 }

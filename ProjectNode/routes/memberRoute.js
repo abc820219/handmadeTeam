@@ -35,6 +35,36 @@ class getMemberData {
     return sql;
   }
 }
+class getMemberBonus {
+  constructor(member_sid, page_sid) {
+    this.member_sid = member_sid;
+    this.page_sid = page_sid;
+  }
+  getUserBonusByIdSQL() {
+    let sql =
+      "SELECT CEILING((`order_total_price`)*0.08-`member_used_bonus`) total , `order_sid` FROM `order` WHERE `member_sid` = " +
+      this.member_sid;
+    return sql;
+  }
+  getUserBonusByIdSQL10() {
+    let sql =
+      "SELECT CEILING((`order_total_price`)*0.08-`member_used_bonus`) total , `order_sid` FROM `order` WHERE `member_sid` = " +
+      this.member_sid +
+      " ORDER BY `order_create_time` DESC  LIMIT 0,10";
+    return sql;
+  }
+  pageChangeSQL() {
+    let sql =
+      "SELECT CEILING((`order_total_price`)*0.08-`member_used_bonus`) total , `order_sid` FROM `order` WHERE `member_sid` = " +
+      this.member_sid +
+      " ORDER BY `order_create_time` DESC  LIMIT " +
+      (this.page_sid == 0 ? this.page_sid * 10 : this.page_sid * 10) +
+      "," +
+      10;
+    return sql;
+  }
+}
+
 class register {
   constructor(account, password, email) {
     this.member_account = account;
@@ -353,7 +383,7 @@ router.post("/MemberPasswordEdit", (req, res) => {
   db.query(Member.MemberPasswordEdit(), (error, rows) => {
     console.log(rows);
     if (rows) {
-      return res.json({ status: "202", message: "修改成功" });
+      return res.json({ status: "202", message: "修改成功,請重新登入" });
     } else {
       return res.json({ status: "404", message: "修改失敗" });
     }
@@ -397,7 +427,7 @@ router.post("/mail", (req, res) => {
       });
       return res.json({
         status: "202",
-        message: "重設密碼信件已發送,請至信箱確認"
+        message: "請至信箱確認密碼"
       });
     } else {
       res.json({
@@ -431,4 +461,73 @@ router.post("/mailEdit", (req, res) => {
 
 //------------------------------------------------------------------------------ mail
 
+router.post("/bonus", (req, res) => {
+  console.log(req.body);
+  let member_sid = req.body.member_sid;
+  let Member = new getMemberBonus(member_sid);
+  console.log(Member.getUserBonusByIdSQL());
+  db.query(Member.getUserBonusByIdSQL(), (error, rows) => {
+    console.log(rows);
+    if (rows.length >= 1) {
+      res.json({
+        status: "202",
+        message: "資料取得",
+        data: rows
+      });
+    } else {
+      res.json({
+        status: "404",
+        message: "沒有訂單資訊"
+      });
+    }
+  });
+});
+router.post("/bonus10", (req, res) => {
+  console.log(req.body);
+  let member_sid = req.body.member_sid;
+  let Member = new getMemberBonus(member_sid);
+  console.log(Member.getUserBonusByIdSQL10());
+  db.query(Member.getUserBonusByIdSQL10(), (error, rows) => {
+    console.log(rows);
+    if (rows.length >= 1) {
+      res.json({
+        status: "202",
+        message: "資料取得",
+        data: rows
+      });
+    } else {
+      res.json({
+        status: "404",
+        message: "沒有訂單資訊"
+      });
+    }
+  });
+});
+router.post("/bonuspage", (req, res) => {
+  console.log(req.body);
+  let member_sid = req.body.member_sid;
+  if(req.body.page_sid<0){
+    req.body.page_sid=0
+  }
+  let page_sid = req.body.page_sid;
+  let Member = new getMemberBonus(member_sid, page_sid);
+  console.log(Member.pageChangeSQL());
+  db.query(Member.pageChangeSQL(), (error, rows) => {
+    console.log(rows);
+    if (rows.length >= 1) {
+      res.json({
+        status: "202",
+        message: "資料取得",
+        data: rows
+      });
+    } else {
+      res.json({
+        status: "404",
+        message: "沒有訂單資訊"
+      });
+    }
+  });
+});
+
+//------------------------------------------------------------------------------
 module.exports = router;

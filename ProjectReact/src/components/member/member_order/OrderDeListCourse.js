@@ -1,29 +1,27 @@
-import React, { useEffect } from "react";
+import React, { useEffect , useState} from "react";
 import "../../../commom/scss/member/orderDeListCourse.scss";
-import { FaDollarSign } from "react-icons/fa";
-import { FaRegClock } from "react-icons/fa";
-import { MdAttachMoney } from "react-icons/md";
-import { FaCheck } from "react-icons/fa";
-import { FaExchangeAlt } from "react-icons/fa";
-import { MdCancel } from "react-icons/md";
-import { FaMapMarkerAlt } from "react-icons/fa";
-import { FaQuoteLeft } from "react-icons/fa";
-import { FaStar } from "react-icons/fa";
+import { FaDollarSign,FaRegClock } from "react-icons/fa";
+import { MdAttachMoney,MdCancel } from "react-icons/md";
+import { FaMapMarkerAlt, FaQuoteLeft, FaCheck, FaExchangeAlt, FaStar } from "react-icons/fa";
 
-import {Link} from 'react-router-dom';
+const OrderDeListCourse = ({ orderDetail }) => {
 
-const OrderDeListCourse = ({orderDetail}) => {
-  if(!orderDetail){
+  const [email, setEmail] = useState("");
+  const [member, setMember] = useState("");
+  const [productName, setProductName] = useState("");
+  const [message, setMessage] = useState("");
+  const [loadPage, setLoadPage] = useState(false);
+  if (!orderDetail) {
     orderDetail = {
-      couse_order_choose: '',
-      course_list: '',
-      course_order_applicant: '',
-      course_name: '',
-      order_create_time: '',
-      order_sid: '',
-      course_spend_time: '',
-      course_taste: '',
-      course_price: ''
+      couse_order_choose: "",
+      course_list: "",
+      course_order_applicant: "",
+      course_name: "",
+      order_create_time: "",
+      order_sid: "",
+      course_spend_time: "",
+      course_taste: "",
+      course_price: ""
     };
   }
   const iconZone = {
@@ -34,15 +32,17 @@ const OrderDeListCourse = ({orderDetail}) => {
     marginRight: "80px"
   };
 
+
+
   // const fetchDetail = async () => {
   //   const id = await localStorage.getItem("member_id");
   //   const dataJson = await fetch(`http://localhost:5000/orderDetail/${id}`);
   //   const data = await dataJson.json();
   //   await console.log(data);
   // };
-  
   const {
-    course_order_choose,
+    course_sid,
+    course_order_choose, //選擇時間
     course_list,
     course_order_applicants,
     course_name,
@@ -53,151 +53,119 @@ const OrderDeListCourse = ({orderDetail}) => {
     course_price,
     course_ingredient,
     course_difficult,
-    store_address
+    store_address,
+    store_sid
   } = orderDetail;
-  console.log(orderDetail);
+
+  let member_data;
+  useEffect(() => {
+    if (localStorage.getItem("member_data")) {
+      member_data = JSON.parse(localStorage.getItem("member_data"));
+      setEmail(member_data.member_email);
+      setMember(member_data.member_account);
+      setProductName(course_name);
+    }
+    setLoadPage(true);
+  }, [course_name, member_data]);
 
   useEffect(() => {
-    // fetchDetail();
+    if (loadPage) {
+      reportProduct(member, email, productName, message, order_sid);
+    }
+  }, [message]);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const sendText = async () => {
+    let message123 = await prompt("請輸入回報問題");
+    await setMessage(message123);
+  };
 
-    return (
-      <>
-        <div className="container-fluid orderDeCourse d-flex flex-column">
-          <wrapper className="d-flex flex-column justify-content-center">
-            <div className="d-flex justify-content-between align-items-center px-4">
-              <h5>{course_order_choose}</h5>
-              <div>
-                <p className="mr-3">
-                  <FaRegClock className="mr-2" />
-                  {course_taste}
-                </p>
-                <p className="mr-3">
-                  <FaDollarSign className="mr-2" />
-                  訂單編號: {order_sid}
-                </p>
-              </div>
+  const reportProduct = async (member, email, productName, message, orderSid) => {
+    const report = JSON.stringify({
+      member: member,
+      email: email,
+      productName: productName,
+      message: message,
+      orderSid: orderSid
+    });
+    const url = `http://localhost:5000/handmade/member/order/mailToReport/`;
+    const dataJson = await fetch(url, {
+      method: "POST",
+      body: report,
+      headers: { "Content-Type": "application/json" }
+    });
+    const data = await dataJson.json();
+    if (data.status === "202") {
+      alert(data.message);
+    } else {
+      alert(data.message);
+    }
+  };
+
+  return (
+    <>
+      <div className="orderDeListCourse">
+        <div className="orderDeListCourseTitle d-flex justify-content-between align-items-center flex-wrap pb-2">
+          <p>上課時間: {course_order_choose}</p>
+          <p className="d-flex">
+            訂單編號: {order_sid}
+          </p>
+          <p className='w-50'>課程難度: {course_difficult}</p>
+          <p>{course_taste}</p>
+        </div>
+        <hr className="orderDeListCourseHr"></hr>
+        <div className="d-flex justify-content-between orderDeListCourseContent">
+          <div className="d-flex">
+            <div className="imgBox">
+              <img src={`/image/course_img/360/${course_list}`} alt="picture" />
             </div>
-          </wrapper>
+            <ul>
+              <li>
+                <div className="title">課程名稱</div>
+                <div className="title-detail">{course_name}</div>
+              </li>
+              <li>
+                <div className="title">訂購日期</div>
+                <div className="title-detail">{order_create_time}</div>
+              </li>
+              <li>
+                <div className="title">上課時數</div>
+                <div className="title-detail">{course_spend_time}</div>
+              </li>
+            </ul>
+          </div>
           <div>
-            <div>
-              <div className="d-flex align-items-center">
-                <div className="orderDeCourseList">
-                  <div className="d-flex">
-                    <figure style={iconZone}>
-                      <img
-                        src={"/image/course_img/360/"+course_list}
-                        alt=""
-                      />
-                    </figure>
-                    <div>
-                      <div>
-                        <p>課程名稱</p>
-                        <h5>{course_name}</h5>
-                      </div>
-                      <div>
-                        <p>訂購日期</p>
-                        <h5>{order_create_time.split(" ")[0]}</h5>
-                      </div>
-                    </div>
-                    <div className="ml-auto">
-                      <div className="d-flex justify-content-around align-items-center pt-3">
-                        <MdAttachMoney />
-                        <p style={{ fontWeight: "bold" }}>{course_price * course_order_applicants}</p>
-                      </div>
-                    </div>
-                  </div>
-                  <ul className="orderCourseStatus d-flex">
-                    <li>
-                      <div className="my-1 d-flex justify-content-center align-items-center orderCourseIcon">
-                        <FaRegClock style={{ color: "#EBD0CE" }} />
-                      </div>
-                      <p>購買數</p>
-                    </li>
-                    <li>
-                      <div className="my-1 mt-2 d-flex justify-content-center align-items-center">
-                        <h5 style={{ color: "#9597A6" , fontSize: '18px', fontWeight:'bold', whiteSpace:'nowrap'}}>{course_spend_time}</h5>
-                      </div>
-                    </li>
-                    <li>
-                      <div className="my-1 d-flex justify-content-center align-items-center orderCourseIcon">
-                        <FaCheck style={{ color: "#EBD0CE" }} />
-                      </div>
-                      <p>Payed</p>
-                    </li>
-                    <li>
-                      <div className="my-1 mt-2 d-flex justify-content-center align-items-center">
-                        <h4 style={{ color: "#9597A6" }}>15/20</h4>
-                      </div>
-                      <p>Occupied</p>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="orderDeCourseList d-flex align-items-center">
-            <figure
-              style={iconZone}
-              className="d-flex justify-content-center align-items-center"
-            >
-              <FaMapMarkerAlt style={{ color: "#EBD0CE", fontSize: "30px" }} />
-            </figure>
-            <p style={{ color: "#544741" }}>{store_address}</p>
-            <a className="orderIconRight ml-auto" href={'https://www.google.com/maps/search/'+store_address} target="_blank">
-              <p style={{ color: "#544741", maxWidth: "500px" }}>Google Map</p>
-            </a>
-          </div>
-          <div className="orderDeCourseList d-flex align-items-center">
-            <figure
-              style={iconZone}
-              className="d-flex justify-content-center align-items-center"
-            >
-              <FaQuoteLeft style={{ color: "#EBD0CE", fontSize: "30px" }} />
-            </figure>
-            <p style={{ color: "#544741", maxWidth: "500px" }}>
-              {course_ingredient}
+            <p>
+              金額:<span>$ </span>{course_price}
             </p>
-            <div className="orderIconRight ml-auto">
-              <p style={{ color: "#544741" }}>Go Item page</p>
-            </div>
-          </div>
-          <div className="orderDeCourseList d-flex align-items-center">
-            <figure
-              style={iconZone}
-              className="d-flex justify-content-center align-items-center"
-            >
-              <img src="https://i.vimeocdn.com/portrait/4703572_640x640" alt="" />
-            </figure>
-            <div>
-              <div>
-                <p>成品名稱</p>
-                <h5>超級巧克男孩</h5>
-              </div>
-              <div className="mt-3 ml-3">
-                <p>課程難度: {" "+course_difficult}</p>
-              </div>
-            </div>
-            <div className="orderIconRight ml-auto">
-              <FaStar />
-              <p style={{ color: "#544741" }}>Reviews</p>
-            </div>
-          </div>
-          <div className="orderDeCourseList d-flex justify-content-between align-items-center flex-md-wrap">
-            <button className="orderIconBottom">
-              <FaExchangeAlt style={{ fontSize: "16px", color: "#545871" }} />
-              <p>轉讓訂單</p>
-            </button>
-            <button className="orderIconBottom">
-              <MdCancel style={{ fontSize: "16px", color: "#545871" }} />
-              <p>取消訂單</p>
-            </button>
           </div>
         </div>
-      </>
-    );
-  };
+        <hr className="orderDeListCourseHr"></hr>
+        <ul className="orderDeListMap d-flex justify-content-between align-items-center">
+          <li className="iconBox">
+            <FaMapMarkerAlt className="orderIcon" />
+          </li>
+          <li>{store_address}</li>
+          <li className="orderBtn">
+            <a href={'https://www.google.com/maps/search/' + store_address} target="_blank">Google Map</a>
+          </li>
+        </ul>
+        <hr className="orderDeListCourseHr"></hr>
+        <ul className="orderDeListLink d-flex justify-content-between align-items-center">
+          <li className="iconBox">
+            <FaQuoteLeft className="orderIcon" />
+          </li>
+          <li style={{ width: '60%' }}>{course_ingredient}</li>
+          <li className="orderBtn">
+            <a href={`/handmade/store/${store_sid}/course/${course_sid}`}>返回商品頁</a>
+          </li>
+        </ul>
+        <hr className="orderDeListCourseHr"></hr>
+        <div className="orderFooter d-flex justify-content-end">
+          <input type="button" value="問題回報" className="orderBtn" onClick={()=>{sendText()}}/>
+        </div>
+      </div>
+    </>
+  );
+};
 
 export default OrderDeListCourse;

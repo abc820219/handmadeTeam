@@ -41,9 +41,10 @@ function IngredientsRight({ ingredientData, bakeName, bakeDetail }) {
   }
 
 
-  const ingreSelectLoop = (v,ingreCart) => {
-    return ingreCart.some(ingre=>ingre.ingredients_sid === v.ingredients_sid)
+  const ingreSelectLoop = (ingredients_name, ingreCart) => { 
+    return ingreCart.some(ingre =>  ingre.ingredients_name === ingredients_name )
   }
+
   const putInCart = (id,ingredient) => {
     const {ingredients_sid , ingredients_name, ingredients_en_name, ingredients_image, ingredients_price} = ingredient;
     const newIngre = {
@@ -87,7 +88,7 @@ function IngredientsRight({ ingredientData, bakeName, bakeDetail }) {
                         <p className="ingredientsPrice">價格：{ingredient.ingredients_price}元</p>
                       </div>
                       <a className="ingredientsCartButton"
-                      style={ingreCart.length!==0 && ingreSelectLoop(ingredient,ingreCart)?{backgroundColor: 'grey',pointerEvents:'none'}:{}}
+                      style={ingreCart.length!==0 && ingreSelectLoop(ingredient.ingredients_name,ingreCart)?{backgroundColor: 'grey',pointerEvents:'none'}:{}}
                       onClick={()=>{putInCart(id,ingredient)}}
                       href
                       ><TiShoppingCart /> 放入購物車</a>

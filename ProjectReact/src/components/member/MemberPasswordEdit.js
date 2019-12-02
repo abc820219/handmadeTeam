@@ -4,8 +4,10 @@ import Captcha from "captcha-mini";
 import { FaKey, FaEye } from "react-icons/fa";
 import { FiXCircle } from "react-icons/fi";
 import MemberInfo from "./MemberInfo";
+import { useAlert } from "react-alert";
 
 const MemberPasswordEdit = () => {
+  const alert = useAlert();
   //輸入值------------------------------------------------------------
   const [password, setPassword] = useState("");
   const [newPassword, setnewPassword] = useState("");
@@ -245,11 +247,12 @@ const MemberPasswordEdit = () => {
     event.preventDefault();
     console.log(captchaValue);
     console.log(captchaCheck);
-    if (captchaValue !== captchaCheck) return alert("驗證碼錯誤");
-    if (newPassword !== newPassword2) return alert("密碼錯誤");
-    if (newPassword === "" || newPassword2 == "") return alert("密碼不得為空");
-    if (MemberPassword !== password) return alert("舊密碼輸入錯誤");
-    if (newPassword == password) return alert("新密碼不得與舊密碼重複");
+    if (captchaValue !== captchaCheck) return alert.error("驗證碼錯誤");
+    if (newPassword !== newPassword2) return alert.error("密碼錯誤");
+    if (newPassword === "" || newPassword2 == "")
+      return alert.error("密碼不得為空");
+    if (MemberPassword !== password) return alert.error("舊密碼輸入錯誤");
+    if (newPassword == password) return alert.error("新密碼不得與舊密碼重複");
     fetch("http://localhost:5000/handmade/member/MemberPasswordEdit", {
       method: "post",
       headers: {
@@ -265,12 +268,14 @@ const MemberPasswordEdit = () => {
       })
       .then(rows => {
         console.log(rows);
-        alert(rows.message);
-        if (rows.message === "修改成功請重新登入") {
-          window.location = "http://localhost:3000/handmade";
-          localStorage.removeItem("member_id");
-          localStorage.removeItem("member_id_data");
-        }
+        alert.success(rows.message);
+        setTimeout(() => {
+          if ((rows.message == "修改成功,請重新登入")) {
+            window.location = "http://localhost:3000/handmade";
+            localStorage.removeItem("member_id");
+            localStorage.removeItem("member_id_data");
+          }
+        }, 1000);
       });
   }
 };

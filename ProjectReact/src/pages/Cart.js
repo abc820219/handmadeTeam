@@ -5,7 +5,7 @@ import "../commom/scss/cart/memberCartPage.scss";
 import CartStore, { CartStoreStatus } from "../components/cart/CartStore";
 
 const Cart = props => {
-  const { id, courseCartCf, step } = useContext(CartStore);
+  const { id, courseCartCf } = useContext(CartStore);
   const setPage = props.setPage
 
   // const [cartCourseState, cartCourseDispatch] = useReducer(
@@ -22,7 +22,7 @@ const Cart = props => {
   //   courseCartCfReducer,
   //   courseCartCf
   // )
-
+  const [step, setStep] = useState(0);
   const [courseCards, setCourseCards] = useState();
   const [ingreCards, setIngreCards] = useState();
   let courseCard, ingreCard;
@@ -35,7 +35,8 @@ const Cart = props => {
   const courseAmountBtn = async (pos, value) => {
     const newCourseCards = await [...courseCards];
     const newCourseQty = await newCourseCards[pos].course_order_applicants;
-    if ((await newCourseQty) + value >= 1) {
+    const newCourseMaxQty = await newCourseCards[pos].course_remaining_seat;
+    if ((await newCourseQty) + value >= 1 && (await newCourseQty) + value <= newCourseMaxQty) {
       newCourseCards[pos].course_order_applicants =
         (await newCourseQty) + value;
     }
@@ -119,6 +120,8 @@ const Cart = props => {
             ingreCards={ingreCards}
             setIngreCards={setIngreCards}
             setPage={setPage}
+            step={step}
+            setStep={setStep}
           />
           <CartRight
             {...props}
@@ -128,6 +131,7 @@ const Cart = props => {
             ingreCards={ingreCards}
             ingreAmountBtn={ingreAmountBtn}
             ingreDelBtn={ingreDelBtn}
+            step={step}
           />
         </div>
       </div>

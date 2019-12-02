@@ -3,8 +3,9 @@ import LogOut from "./MemberLogout";
 import { AiFillPicture } from "react-icons/ai";
 import "../../commom/scss/member/member_sideBar.scss";
 import { Link } from "react-router-dom";
-
-const MemberSideBar = ({ match, showSideBar,page,setPage }) => {
+import { useAlert } from "react-alert";
+const MemberSideBar = ({ match, showSideBar, page, setPage }) => {
+  const alert = useAlert();
   const [memberImgName, setMemberImgName] = useState("");
   const [imgHand, setImgHand] = useState(false);
   const [tokeId, setTokenId] = useState("");
@@ -55,7 +56,7 @@ const MemberSideBar = ({ match, showSideBar,page,setPage }) => {
             return res.json();
           })
           .then(res => {
-            alert(res.message);
+            alert.success(res.message);
             setImgHand(!imgHand);
           });
       })
