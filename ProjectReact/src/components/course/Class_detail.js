@@ -16,6 +16,7 @@ import $ from "jquery";
 import { useAlert } from "react-alert";
 
 function Class_detail(props) {
+  const alert = useAlert();
   let productDetail;
   console.log(props)
   const { courseCart, id, cartCourseDispatch } = useContext(CartStore);
