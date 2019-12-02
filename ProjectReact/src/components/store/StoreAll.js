@@ -9,6 +9,8 @@ import "intersection-observer";
 
 import { MdPeopleOutline } from "react-icons/md";
 import { MdChildCare } from "react-icons/md";
+import { MdGpsFixed } from "react-icons/md";
+
 
 // Components
 
@@ -17,15 +19,18 @@ import StoreMasonryCards from "./StoreMasonryCards";
 import StoreSelect from "./StoreSelect";
 import { element } from "prop-types";
 
+let areaStoreMapValueState = 0
+
 const StoreAll = () => {
   const [storeDataLoad, setStoreDataLoad] = useState([]);
   const [storeAllData, setStoreAllData] = useState([]);
-  const [areaNowName, setAreaNowName] = useState(0);
+  const [areaNowName, setAreaNowName] = useState("全島");
   const [areaNowCatch, setAreaNowCatch] = useState("全島");
   const [accompanyChild, setAccompanyChild] = useState(0);
   const [accompanyPartner, setAccompanyPartner] = useState(0);
   const [location_sid, setLocationSid] = useState(0);
-  let areaStoreMapValue;
+  //const [areaStoreMapValueState, setAreaStoreMapValueState] = useState(0);
+ // let areaStoreMapValue;
 
   // const getAreaClick = (areaStoreMapValue) => {
   // console.log(areaStoreMapValue);
@@ -48,16 +53,22 @@ const StoreAll = () => {
     Promise.all([storeData(), allStoreData()]);
   }, []);
 
-  useEffect(() => {
-    storeAreaHoverNow(areaNowName);
-  }, [areaNowName]);
+  // useEffect(() => {
+  //   storeAreaHoverNow(areaNowName);
+  // }, [areaNowName]);
 
   useEffect(() => {
-    setLocationSid(location_sid);
-    storeAreaHoverNow(location_sid);
+    //setLocationSid(location_sid);
+    // storeAreaHoverNow(location_sid);
     storeConditionSelect(location_sid, accompanyPartner, accompanyChild);
     // setAreaNowCatch(areaNowCatch);
   }, [accompanyPartner, accompanyChild]);
+
+  useEffect(() => {
+    setLocationSid(location_sid); 
+    // setAreaNowCatch(areaNowCatch);
+  }, [location_sid]);
+
 
   const allStoreData = async () => {
     const storeAllDataFirst = await fetch(
@@ -68,6 +79,17 @@ const StoreAll = () => {
   };
 
   const storeData = async areaStoreMapValue => {
+
+    console.log('areaStoreMapValue',areaStoreMapValue);
+    console.log('areaStoreMapValueState',areaStoreMapValueState);
+
+    if(areaStoreMapValue === areaStoreMapValueState) return
+    if(!areaStoreMapValue) return
+
+    areaStoreMapValueState = areaStoreMapValue
+
+    console.log('fetch',areaStoreMapValue);
+
     let url = "http://localhost:5000/handmade/store";
     if (areaStoreMapValue) {
       await setLocationSid(areaStoreMapValue);
@@ -79,30 +101,35 @@ const StoreAll = () => {
       let storeDataJson = await storeDataFirst.json();
       setStoreDataLoad(storeDataJson);
     }
-    // console.log(storeDataJson);
+     
+     
+
   };
 
-  const storeAreaHoverNow = async locate_sid => {
-    // const storeDataFirst = await fetch("http://localhost:5000/handmade/store"+locate_sid);
-    // let storeDataJson = await storeDataFirst.json();
-    // // console.log(storeDataJson);
-    // setStoreDataLoad(storeDataJson);
-    const areaName = JSON.stringify({
-      locate_sid: locate_sid
-    });
-    try {
-      const url = "http://localhost:5000/handmade/store/getLocateName";
-      const dataJson = await fetch(url, {
-        method: "POST",
-        body: areaName,
-        headers: { "Content-Type": "application/json" }
-      });
-      const data = await dataJson.json();
-      setAreaNowCatch(data.area_name);
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  // const storeAreaHoverNow = async locate_sid => {
+  //   // const storeDataFirst = await fetch("http://localhost:5000/handmade/store"+locate_sid);
+  //   // let storeDataJson = await storeDataFirst.json();
+  //   // // console.log(storeDataJson);
+  //   // setStoreDataLoad(storeDataJson);
+  //   if(locate_sid === location_sid) return 
+
+  //   const areaName = JSON.stringify({
+  //     locate_sid: locate_sid
+  //   });
+  //   try {
+  //     const url = "http://localhost:5000/handmade/store/getLocateName";
+  //     const dataJson = await fetch(url, {
+  //       method: "POST",
+  //       body: areaName,
+  //       headers: { "Content-Type": "application/json" }
+  //     });
+  //     const data = await dataJson.json();
+  //     setAreaNowCatch(data.area_name);
+  //     setLocationSid(locate_sid);
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
 
   const storeConditionSelect = async (
     location_sid,
@@ -136,7 +163,7 @@ const StoreAll = () => {
     areaHaveStore[v.area_sid] = 1;
   });
 
-  console.log(areaHaveStore);
+  // console.log(areaHaveStore);
   // console.log(areaHaveStore); // 地區是否有店家
 
   const areaAllHaveStoreData = {};
@@ -157,6 +184,12 @@ const StoreAll = () => {
             <div className="storeDownName">
               <p>STORE</p>
             </div>
+            <div className="storeFindStoreForGoogle">
+              <a className="storeFindStoreForIconA" href="/handmade/findstore">
+                <MdGpsFixed />
+                <p className="storeFindStoreForIconText">找附近</p>
+              </a>
+            </div>
             <div className="storeMap">
               <StoreMap
                 areaAllHaveStoreData={areaAllHaveStoreData}
@@ -168,7 +201,7 @@ const StoreAll = () => {
               />
             </div>
             <div className="storeCountryName">
-              <p className="areaNowName">{areaNowCatch}</p>
+              <p className="areaNowName">{areaNowName}</p>
             </div>
             <div className="storeSelect">
               <StoreSelect
@@ -229,7 +262,15 @@ const StoreAll = () => {
           </div>
         </div>
         <div className="storeList">
-          <div className="storeListTop"></div>
+          <div className="storeFindStoreRWDForGoogle">
+            <a className="storeFindStoreRWDForIconA" href="/handmade/findstore">
+              <MdGpsFixed /> 
+              <p className="storeFindStoreRWDForIconText"> 找附近</p>
+            </a>
+          </div>
+          <div className="storeListTop">
+            <p className="storeListTopNowCountry">目前選取縣市：全島</p>
+          </div>
           <StoreMasonryCards
             className="storeListMasonryCardsGroup"
             storeDataLoad={storeDataLoad}
