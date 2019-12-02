@@ -237,7 +237,9 @@ function MemberRegister(props) {
         </div>
         <div className="backdropChange" onClick={props.memberSignIn}></div>
         <div
-          className={props.bgImg ? `login-backdrop${props.bgImg}` : props.bgImg}
+          className={
+            props.bgImg ? `login-backdrop${props.bgImg}` : "login-backdrop"
+          }
           onClick={props.memberSignIn}
         >
           {props.bgImg && (
