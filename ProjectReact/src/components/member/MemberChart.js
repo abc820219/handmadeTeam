@@ -1,17 +1,21 @@
 import React, { Component } from "react";
 import Chart from "react-apexcharts";
-import { Pagination } from "react-bootstrap";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
+import "../../commom/scss/member/memberChart.scss";
 class MemberChart extends Component {
   constructor(props) {
     super(props);
     this.state = {
       options: {
         chart: {
-          id: "apexchart-example"
+          id: "apexchart-example",
+          background: "#fff",
+          foreColor: "#b8817d"
         },
         xaxis: {
           categories: []
-        }
+        },
+        colors: ["#b8817d"]
       },
       series: [
         {
@@ -164,7 +168,6 @@ class MemberChart extends Component {
 
     return (
       <>
-        <div>最新10筆</div>
         <Chart
           options={this.state.options}
           series={this.state.series}
@@ -172,25 +175,31 @@ class MemberChart extends Component {
           maxWidth={1000}
           height={320}
         />
-        <Pagination className="d-flex justify-content-center">
-          <Pagination.Prev
+        <ul className="d-flex justify-content-center memberChart">
+          <li
+            className="page-item"
             onClick={() => changePage(this.state.pageIndexNow - 1)}
-          />
+          >
+            <FaAngleLeft />
+          </li>
           {this.state.totalPage.map((v, index) => {
             return (
-              <Pagination.Item
+              <li
                 key={index}
                 onClick={() => changePage(index)}
-                active={this.state.pageIndexNow === index && true}
+                className={this.state.pageIndexNow === index && "active"}
               >
                 {index + 1}
-              </Pagination.Item>
+              </li>
             );
           })}
-          <Pagination.Next
+          <li
+            className="page-item"
             onClick={() => changePage(this.state.pageIndexNow + 1)}
-          />
-        </Pagination>
+          >
+            <FaAngleRight />
+          </li>
+        </ul>
       </>
     );
   }

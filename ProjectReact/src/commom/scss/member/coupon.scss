@@ -8,6 +8,13 @@ $BtnBgc: #f5b3aa;
 .couponBg-color {
   background-color: #eec1b1;
 }
+.couponBg-color-left {
+  background-color: rgb(99, 94, 89);
+  color: #fff;
+  .chart {
+    color: #b8817d;
+  }
+}
 .coupon {
   display: inline-block;
   overflow: hidden;
