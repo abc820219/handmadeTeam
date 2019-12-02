@@ -83,7 +83,8 @@ const StoreAll = () => {
     if (areaStoreMapValue === areaStoreMapValueState) return;
     if (!areaStoreMapValue) return;
 
-    areaStoreMapValueState = areaStoreMapValue;
+    areaStoreMapValueState =
+      areaStoreMapValue == 20 ? (areaStoreMapValue = 0) : areaStoreMapValue;
 
     console.log("fetch", areaStoreMapValue);
 
