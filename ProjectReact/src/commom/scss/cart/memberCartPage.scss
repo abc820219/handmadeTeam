@@ -238,8 +238,8 @@
       }
       .cartOrderCancel {
         position: absolute;
-        top: 30px;
-        right: 30px;
+        top: 15px;
+        right: 15px;
         flex-shrink: 0;
         font-size: 30px;
       }
@@ -273,10 +273,66 @@
   }
   .cartListTotal {
     letter-spacing: 2px;
+    position: absolute;
+    top: 95px;
+    left: 53.5%;
   }
   .cartButtonAdd {
     margin-top: 18px;
   }
+.pic_cart_position{
+  position: absolute;
+  right: 40px;
+  top: 35px;
+}
+.position_card_middle{
+  position: absolute;
+  left: 55%;
+  top: 35px;
+}
+@media (max-width: 1450px)  {
+  .position_card_middle{
+    position: absolute;
+    left: 45%;
+    top: 35px;}
+  .cartListTotal {
+    letter-spacing: 2px;
+    position: absolute;
+    top: 95px;
+    left: 43.5%;
+    }
+
+}
+@media (max-width: 1320px)  {
+  .position_card_middle{
+    position: absolute;
+    left: 20px;
+    bottom: -20px;
+}
+.cartListTotal {
+  letter-spacing: 2px;
+  position: absolute;
+  left: 210px;
+  top: 120px;
+  
+  }
+}
+@media (max-width: 400px)  {
+  .position_card_middle{
+    position: absolute;
+    left: 20px;
+    bottom: -20px;
+}
+.cartListTotal {
+  letter-spacing: 2px;
+  position: absolute;
+  left: 10px;
+  top: 125px;
+  
+  }
+}
+
+
 
   @media (max-width: 575px) {
     .checkListBox {

@@ -41,7 +41,7 @@ const CartIngreCard = ({
           <h2>{ingre_name}</h2>
         </div>
         <div className="d-flex justify-content-center flex-column mr-3">
-          <div className="d-flex align-items-center cartButtonAdd">
+          <div className="d-flex align-items-center cartButtonAdd position_card_middle">
             <button
               style={invisible_button}
               onClick={() => {
@@ -64,7 +64,7 @@ const CartIngreCard = ({
             Total Count : $ {ingre_price * ingre_order_quantity}
           </p>
         </div>
-        <figure className='ml-auto mr-5'>
+        <figure className='pic_cart_position'>
           <img
             src={"/image/ingredients/"+ingre_pic}
             alt="product pic"
