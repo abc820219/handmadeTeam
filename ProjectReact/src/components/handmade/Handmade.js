@@ -107,100 +107,95 @@ class Handmade extends Component {
       ]
     });
 
+    $(function() {
+      $(".choose").on("click", function() {
+        $(".choose").addClass("active");
+        $(".choose > .icon").addClass("active");
+        $(".pay").removeClass("active");
+        $(".wrap").removeClass("active");
+        $(".ship").removeClass("active");
+        $(".pay > .icon").removeClass("active");
+        $(".wrap > .icon").removeClass("active");
+        $(".ship > .icon").removeClass("active");
+        $("#line").addClass("one");
+        $("#line").removeClass("two");
+        $("#line").removeClass("three");
+        $("#line").removeClass("four");
+      });
 
-    $(".choose").click(function() {
-      $(".choose").addClass("active");
-      $(".choose > .icon").addClass("active");
-      $(".pay").removeClass("active");
-      $(".wrap").removeClass("active");
-      $(".ship").removeClass("active");
-      $(".pay > .icon").removeClass("active");
-      $(".wrap > .icon").removeClass("active");
-      $(".ship > .icon").removeClass("active");
-      $("#line").addClass("one");
-      $("#line").removeClass("two");
-      $("#line").removeClass("three");
-      $("#line").removeClass("four");
-    })
-    
-    $(".pay").click(function() {
-      $(".pay").addClass("active");
-      $(".pay > .icon").addClass("active");
-      $(".choose").removeClass("active");
-      $(".wrap").removeClass("active");
-      $(".ship").removeClass("active");
-      $(".choose > .icon").removeClass("active");
-      $(".wrap > .icon").removeClass("active");
-      $(".ship > .icon").removeClass("active");
-      $("#line").addClass("two");
-      $("#line").removeClass("one");
-      $("#line").removeClass("three");
-      $("#line").removeClass("four");
-    })
-    
-    $(".wrap").click(function() {
-      $(".wrap").addClass("active");
-      $(".wrap > .icon").addClass("active");
-      $(".pay").removeClass("active");
-      $(".choose").removeClass("active");
-      $(".ship").removeClass("active");
-      $(".pay > .icon").removeClass("active");
-      $(".choose > .icon").removeClass("active");
-      $(".ship > .icon").removeClass("active");
-      $("#line").addClass("three");
-      $("#line").removeClass("two");
-      $("#line").removeClass("one");
-      $("#line").removeClass("four");
-    })
-    
-    $(".ship").click(function() {
-      $(".ship").addClass("active");
-      $(".ship > .icon").addClass("active");
-      $(".pay").removeClass("active");
-      $(".wrap").removeClass("active");
-      $(".choose").removeClass("active");
-      $(".pay > .icon").removeClass("active");
-      $(".wrap > .icon").removeClass("active");
-      $(".choose > .icon").removeClass("active");
-      $("#line").addClass("four");
-      $("#line").removeClass("two");
-      $("#line").removeClass("three");
-      $("#line").removeClass("one");
-    })
-    
-    $(".choose").click(function() {
-      $("#first").addClass("active");
-      $("#second").removeClass("active");
-      $("#third").removeClass("active");
-      $("#fourth").removeClass("active");
-    })
-    
-    $(".pay").click(function() {
-      $("#first").removeClass("active");
-      $("#second").addClass("active");
-      $("#third").removeClass("active");
-      $("#fourth").removeClass("active");
-    })
-    
-    $(".wrap").click(function() {
-      $("#first").removeClass("active");
-      $("#second").removeClass("active");
-      $("#third").addClass("active");
-      $("#fourth").removeClass("active");
-    })
-    
-    $(".ship").click(function() {
-      $("#first").removeClass("active");
-      $("#second").removeClass("active");
-      $("#third").removeClass("active");
-      $("#fourth").addClass("active");
-    })
+      $(".pay").on("click", function() {
+        $(".pay").addClass("active");
+        $(".pay > .icon").addClass("active");
+        $(".choose").removeClass("active");
+        $(".wrap").removeClass("active");
+        $(".ship").removeClass("active");
+        $(".choose > .icon").removeClass("active");
+        $(".wrap > .icon").removeClass("active");
+        $(".ship > .icon").removeClass("active");
+        $("#line").addClass("two");
+        $("#line").removeClass("one");
+        $("#line").removeClass("three");
+        $("#line").removeClass("four");
+      });
 
+      $(".wrap").on("click", function() {
+        $(".wrap").addClass("active");
+        $(".wrap > .icon").addClass("active");
+        $(".pay").removeClass("active");
+        $(".choose").removeClass("active");
+        $(".ship").removeClass("active");
+        $(".pay > .icon").removeClass("active");
+        $(".choose > .icon").removeClass("active");
+        $(".ship > .icon").removeClass("active");
+        $("#line").addClass("three");
+        $("#line").removeClass("two");
+        $("#line").removeClass("one");
+        $("#line").removeClass("four");
+      });
 
+      $(".ship").on("click", function() {
+        $(".ship").addClass("active");
+        $(".ship > .icon").addClass("active");
+        $(".pay").removeClass("active");
+        $(".wrap").removeClass("active");
+        $(".choose").removeClass("active");
+        $(".pay > .icon").removeClass("active");
+        $(".wrap > .icon").removeClass("active");
+        $(".choose > .icon").removeClass("active");
+        $("#line").addClass("four");
+        $("#line").removeClass("two");
+        $("#line").removeClass("three");
+        $("#line").removeClass("one");
+      });
 
+      $(".choose").on("click", function() {
+        $("#first").addClass("active");
+        $("#second").removeClass("active");
+        $("#third").removeClass("active");
+        $("#fourth").removeClass("active");
+      });
 
+      $(".pay").on("click", function() {
+        $("#first").removeClass("active");
+        $("#second").addClass("active");
+        $("#third").removeClass("active");
+        $("#fourth").removeClass("active");
+      });
 
+      $(".wrap").on("click", function() {
+        $("#first").removeClass("active");
+        $("#second").removeClass("active");
+        $("#third").addClass("active");
+        $("#fourth").removeClass("active");
+      });
 
+      $(".ship").on("click", function() {
+        $("#first").removeClass("active");
+        $("#second").removeClass("active");
+        $("#third").removeClass("active");
+        $("#fourth").addClass("active");
+      });
+    });
   }
 
   render() {
@@ -301,276 +296,303 @@ class Handmade extends Component {
                   <button class="login100-form-btn ">ENTER</button>
                 </div>
               ) : (
-                  ""
-                )}
+                ""
+              )}
               {this.state.showClass ? (
                 <div class="container-login100-form-btn fix">
                   <button class="login100-form-btn ">ENTER</button>
                 </div>
               ) : (
-                  ""
-                )}
+                ""
+              )}
               {this.state.showTeacher ? (
                 <div class="container-login100-form-btn fix">
                   <button class="login100-form-btn ">ENTER</button>
                 </div>
               ) : (
-                  ""
-                )}
+                ""
+              )}
               {this.state.showStore ? (
                 <div class="container-login100-form-btn fix">
                   <button class="login100-form-btn ">ENTER</button>
                 </div>
               ) : (
-                  ""
-                )}
+                ""
+              )}
               {this.state.showFood ? (
                 <div class="container-login100-form-btn fix">
                   <button class="login100-form-btn ">ENTER</button>
                 </div>
               ) : (
-                  ""
-                )}
+                ""
+              )}
             </div>
           </div>
         </div>
 
         <div className={this.state.isShow ? "part3" : "part3Close"}>
-          <div className="close" onClick={this.handleClickIsClose}>
-            close
+          {this.state.showIntroduce ? "" : ""}
+
+          {this.state.showClass ? "" : ""}
+
+          {this.state.showTeacher ? "" : ""}
+
+          {this.state.showStore ? "" : ""}
+
+          {this.state.showFood ? "" : ""}
+
+          <div id="wrapper">
+            <div id="left-side">
+              <ul>
+                <li class="choose active">
+                  <div class="icon active"></div>
+
+                  {this.state.showIntroduce ? "網站發想" : ""}
+                  {this.state.showClass ? "精選課程" : ""}
+                  {this.state.showTeacher ? "名師開課" : ""}
+                  {this.state.showStore ? "在地店家" : ""}
+                  {this.state.showFood ? "食譜特搜" : ""}
+                </li>
+                <li class="pay">
+                  <div class="icon"></div>
+                  {this.state.showIntroduce ? "功能與展望" : ""}
+                  {this.state.showClass ? "優於同業" : ""}
+                  {this.state.showTeacher ? "來自哪裡" : ""}
+                  {this.state.showStore ? "GPS" : ""}
+                  {this.state.showFood ? "懶人設計" : ""}
+                </li>
+                <li class="wrap">
+                  <div class="icon"></div>
+                  {this.state.showIntroduce ? "理念" : ""}
+                  {this.state.showClass ? "自由安排" : ""}
+                  {this.state.showTeacher ? "精緻課程" : ""}
+                  {this.state.showStore ? "無所遁形" : ""}
+                  {this.state.showFood ? "精選食材" : ""}
+                </li>
+                <li class="ship">
+                  <div class="icon"></div>
+                  {this.state.showIntroduce ? "聯絡我們" : ""}
+                  {this.state.showClass ? "使用指引" : ""}
+                  {this.state.showTeacher ? "使用指引" : ""}
+                  {this.state.showStore ? "使用指引" : ""}
+                  {this.state.showFood ? "使用指引" : ""}
+                </li>
+              </ul>
+            </div>
+
+            <div id="border">
+              <div id="line" class="one"></div>
+            </div>
+
+            <div id="right-side">
+              <div id="first" class="active">
+                <div class="icon big"></div>
+                {this.state.showIntroduce ? <h1>享烘的起源</h1> : ""}
+                {this.state.showClass ? <h1>最優質的課程</h1> : ""}
+                {this.state.showTeacher ? <h1>與名師共度時光</h1> : ""}
+                {this.state.showStore ? <h1>不管你在哪</h1> : ""}
+                {this.state.showFood ? <h1>幫你準備好了</h1> : ""}
+
+                {this.state.showIntroduce ? (
+                  <p>
+                    2019的現今，媒合網站大量興起，但專門致力於烘焙媒合的網站卻寥寥可數，我們團隊致力於服務使用者。享烘的發想源自於「想」要讓不論烘焙新手與專業人士，都能在我們網站找到自己「想」要的資源，並且能夠「享」受烘焙帶來的精緻「饗」宴。
+                  </p>
+                ) : (
+                  ""
+                )}
+                {this.state.showClass ? (
+                  <p>
+                    匯集台灣知名手作烘焙店鋪，各式各樣的蛋糕或烘焙小物都能在這邊找到，從名店到你家巷口小店的預訂課程，都可以在我們網站裡做到，還能從介面中預先得知該課程的熱門程度，跟著大家學，準沒錯！
+                  </p>
+                ) : (
+                  ""
+                )}
+                {this.state.showTeacher ? (
+                  <p>
+                    想知道現在烘焙界最夯的明日之星教師是誰卻不知道門路嗎？想知道當今最熱門的蛋糕誰會製作嗎？不用費心了，享烘可以幫你解決一切問題，我們幫你準備了各大甜點麵包師傅的課程，讓你輕輕鬆鬆就能夠與帥哥美女烘焙師來一場轟轟烈烈的教學時光。
+                  </p>
+                ) : (
+                  ""
+                )}
+                {this.state.showStore ? (
+                  <p>
+                    台北、高雄、台中，不論你今天在哪裡，享烘知道你心中都會有一個想要製作手蛋糕的靈魂，幫你與在地店家做最快速的媒合，就算你有一些特殊需求，享烘一樣可以提供篩選的方式幫你解決一切問題。
+                  </p>
+                ) : (
+                  ""
+                )}
+                {this.state.showFood ? (
+                  <p>
+                    享烘明白獨立製作的美好，今天想在家裡自己製作手做蛋糕嗎？享烘幫你準備了各種類型的蛋糕食譜，讓你不出門也能做你想要的蛋糕。
+                  </p>
+                ) : (
+                  ""
+                )}
+              </div>
+              <div id="second">
+                <div class="icon big"></div>
+
+                {this.state.showIntroduce ? <h1>你能找到什麼</h1> : ""}
+                {this.state.showClass ? <h1>我們更好</h1> : ""}
+                {this.state.showTeacher ? <h1>輝煌歷程</h1> : ""}
+                {this.state.showStore ? <h1>直接定位</h1> : ""}
+                {this.state.showFood ? <h1>「享」要食材</h1> : ""}
+
+                {this.state.showIntroduce ? (
+                  <p>
+                    享烘提供課程、教師、店家、食材的線上訂購機制，在使用的過程中也能夠一步步去探索自己所想要的功能或者發掘自身的興趣與能耐，學習和成長是享烘最想提供給您的體驗。
+                  </p>
+                ) : (
+                  ""
+                )}
+                {this.state.showClass ? (
+                  <p>
+                    我們敢說我們更好，不僅能夠抓出你所傾向的喜好，在預定課程方面也能夠做的比其他同業網站更多更詳細。更專注於對消費者體驗的改善是我們追求的目標，如果有任何問題或想法，只要您願意提供，享烘一定虛心受教並且改善。
+                  </p>
+                ) : (
+                  ""
+                )}
+                {this.state.showTeacher ? (
+                  <p>
+                    你知道一直以來甜點世界盃大賽台灣健兒有參與，並且得有名次嗎？想立刻去上台灣之光的課程嗎？享烘幫你媒合，不僅可以成為他們追夢的力量，也可以一睹他們風光的專業事跡。
+                  </p>
+                ) : (
+                  ""
+                )}
+                {this.state.showStore ? (
+                  <p>
+                    我們使用了定位功能，不管你在哪裡，只要輕輕一按，就能夠直接馬上搜尋離你最近的店家，輕鬆不費力，省時又方便。
+                  </p>
+                ) : (
+                  ""
+                )}
+                {this.state.showFood ? (
+                  <p>
+                    當準備好了食譜，卻不知道哪裡可以最輕鬆的買到優質的食材或原料嗎？享烘知道初學的你可能會有這種困擾，不僅幫你準備了食譜，連預定食材的功能也有了，把你想要的通通都拉進你的購物車裡吧。
+                  </p>
+                ) : (
+                  ""
+                )}
+              </div>
+              <div id="third">
+                <div class="icon big"></div>
+
+                {this.state.showIntroduce ? <h1>目標與展望</h1> : ""}
+                {this.state.showClass ? <h1>隨選時間</h1> : ""}
+                {this.state.showTeacher ? <h1>老師們所擅長的</h1> : ""}
+                {this.state.showStore ? <h1>無所遁形</h1> : ""}
+                {this.state.showFood ? <h1>食材履歷</h1> : ""}
+
+                {this.state.showIntroduce ? (
+                  <p>
+                    享烘想要成為各位心中想到烘焙媒合網站第一個就能直覺反應的網站，並致力於改善網站環境成為更優秀的網頁。
+                  </p>
+                ) : (
+                  ""
+                )}
+                {this.state.showClass ? (
+                  <p>
+                    你想什麼時候上課就什麼時候上課，完全不受限，早中晚，隨你選擇，輕鬆自在，自由歡樂是我們會一直貫徹的理念與想法。
+                  </p>
+                ) : (
+                  ""
+                )}
+                {this.state.showTeacher ? (
+                  <p>
+                    享烘還幫各位匯集了名師擅長的私房烘焙品，想在自己的IG或FB上PO出沒人見過的自製小蛋糕並奪取大家目光嗎？想烘幫你完成你的夢想。
+                  </p>
+                ) : (
+                  ""
+                )}
+                {this.state.showStore ? (
+                  <p>
+                    大家是否有看過路旁的烘焙教室但卻不知道裡面的設備如何嗎？享烘知道你會有這個困擾，不僅把店家的內部擺置全部SHOW在你面前，還把店內可以做的蛋糕一併附上！
+                  </p>
+                ) : (
+                  ""
+                )}
+                {this.state.showFood ? (
+                  <p>
+                    食材把關是我們致力於完成的，每樣食材都是精挑細選，皆為成品主要完成的原料本身。
+                  </p>
+                ) : (
+                  ""
+                )}
+              </div>
+              <div id="fourth">
+                <div class="icon big"></div>
+
+                {this.state.showIntroduce ? <h1>聯絡我們</h1> : ""}
+                {this.state.showClass ? <h1>使用指引</h1> : ""}
+                {this.state.showTeacher ? <h1>使用指引</h1> : ""}
+                {this.state.showStore ? <h1>使用指引</h1> : ""}
+                {this.state.showFood ? <h1>使用指引</h1> : ""}
+
+                {this.state.showIntroduce ? (
+                  <p>
+                    地址：新北市中和區852號2樓 <br />
+                    電話：(02)-2255-5599 <br />
+                    信箱：handmadebakingtime@gmail.com
+                  </p>
+                ) : (
+                  ""
+                )}
+                {this.state.showClass ? (
+                  <p>點擊右側圖片就能開始課程導覽</p>
+                ) : (
+                  ""
+                )}
+                {this.state.showTeacher ? (
+                  <p>點擊右側圖片就能開始教師導覽</p>
+                ) : (
+                  ""
+                )}
+                {this.state.showStore ? (
+                  <p>點擊右側圖片就能開始店家導覽</p>
+                ) : (
+                  ""
+                )}
+                {this.state.showFood ? <p>點擊右側圖片就能開始食材導覽</p> : ""}
+              </div>
+            </div>
           </div>
 
           {this.state.showIntroduce ? (
-
-
-            <div id="wrapper">
-              <div id="left-side">
-                <ul>
-                  <li class="choose active">
-                    <div class="icon active">
-
-                    </div>
-                    網站發想
-      </li>
-                  <li class="pay">
-                    <div class="icon">
-
-                    </div>
-                    功能與展望
-      </li>
-                  <li class="wrap">
-                    <div class="icon">
-
-                    </div>
-                    理念
-      </li>
-                  <li class="ship">
-                    <div class="icon">
-
-                    </div>
-                    聯絡我們
-      </li>
-                </ul>
-              </div>
-
-              <div id="border">
-                <div id="line" class="one"></div>
-              </div>
-
-              <div id="right-side">
-                <div id="first" class="active">
-                  <div class="icon big">
-
-                  </div>
-
-                  <h1>享烘的起源</h1>
-
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at viverra est, eu finibus mauris. Quisque tempus vestibulum fringilla. Morbi tortor eros, sollicitudin eu arcu sit amet, aliquet sagittis dolor.</p>
-                </div>
-                <div id="second">
-                  <div class="icon big">
-
-                  </div>
-
-                  <h1>你能找到什麼</h1>
-
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at viverra est, eu finibus mauris. Quisque tempus vestibulum fringilla. Morbi tortor eros, sollicitudin eu arcu sit amet, aliquet sagittis dolor. </p>
-                </div>
-                <div id="third">
-                  <div class="icon big">
-
-                  </div>
-
-                  <h1>目標與展望</h1>
-
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at viverra est, eu finibus mauris. Quisque tempus vestibulum fringilla. Morbi tortor eros, sollicitudin eu arcu sit amet, aliquet sagittis dolor. </p>
-
-                </div>
-                <div id="fourth">
-                  <div class="icon big">
-
-                  </div>
-
-                  <h1>聯絡我們</h1>
-
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at viverra est, eu finibus mauris. Quisque tempus vestibulum fringilla. Morbi tortor eros, sollicitudin eu arcu sit amet, aliquet sagittis dolor. </p>
-
-                </div>
-              </div>
-            </div>
-
-
-            // <div className="frame1">
-            //   <div className="interFrame1">
-            //     <div className="wordBox">
-            //       <div className="wordBoxUp">
-            //         <div className="wordHalfUp">INTRODUCE</div>
-            //       </div>
-            //       <div className="wordBoxDown">
-            //         <div className="wordHalfDown">INTRODUCE</div>
-            //       </div>
-            //     </div>
-            //   </div>
-            //   <div className="interFrame2">
-            //     <div className="spaceNone"></div>
-            //     <div className="innerWord">
-            //     還記得最近一次陪媽媽散步是何時嗎？多久沒好好擁抱親愛的他了？生活過於忙碌，我們都太少時間去陪伴心中重要的人，無論是家人、男友或是閨蜜，趁對方生日時候表達心中滿滿的關愛以及感謝吧。最好的生日禮物叫做“陪伴”，送上親手為他做的暖心生日蛋糕，讓烘焙DIY親手做出美好的生日回憶吧！<br/>
-            //     希望生日蛋糕充滿驚喜嗎？享烘提供各種暖心手作精選食譜，詳細列出了價格、蛋糕尺寸、難易度、烘焙時間以及原料等資訊，可以親自挑選最能展現自己心意也符合壽星喜好的甜蜜蛋糕。同時也與米其林星級西點名廚平塚牧人合作，設計出『主廚系列』菜單，就算是新手也能輕鬆做出米其林蛋糕!
-            //     </div>
-            //   </div>
-            // </div>
+              <div className="wrap_right background_img_1_change"></div>
           ) : (
-              ""
-            )}
-          {this.state.showClass ? (
-            <div className="frame1">
-              <div className="interFrame1">
-                <div className="wordBox">
-                  <div className="wordBoxUp">
-                    <div className="wordHalfUp">COURSE</div>
-                  </div>
-                  <div className="wordBoxDown">
-                    <div className="wordHalfDown">COURSE</div>
-                  </div>
-                </div>
-              </div>
-              <div className="interFrame2">
-                <div className="spaceNone"></div>
-                <div className="innerWord">
-                  擔心手作蛋糕太難？還是怕自己做出來的生日蛋糕慘不忍睹？在這裡只需要盡情享受烘焙過程帶來的樂趣。Funsiamo在體驗前，提供平板影片DIY教學，跟著教學影片步驟進行，逐步完成生日蛋糕，還可以反覆觀看，不怕遺漏任何細節，不慌不忙的拿捏製作的進度！
-  
-  而烘焙作業中最麻煩的事前備料跟善後的清洗工作，都會有貼心的Daymaker幫你解決。而一人配置一台專屬材料車，不用再為了找材料、用具弄得手忙腳亂，也不需因為清洗碗盤而減低了烘焙的興致，優雅地完成每個步驟並享受成果吧！
-                </div>
-              </div>
-            </div>
-          ) : (
-              ""
-            )}
-          {this.state.showTeacher ? (
-            <div className="frame1">
-              <div className="interFrame1">
-                <div className="wordBox">
-                  <div className="wordBoxUp">
-                    <div className="wordHalfUp">TEACHER</div>
-                  </div>
-                  <div className="wordBoxDown">
-                    <div className="wordHalfDown">TEACHER</div>
-                  </div>
-                </div>
-              </div>
-              <div className="interFrame2">
-                <div className="spaceNone"></div>
-                <div className="innerWord">
-                  平凡的日子都能因為生日而變得獨一無二，許多人為了準備生日禮物絞盡腦汁，想著如何製造生日驚喜而苦惱。何不讓生日禮物、驚喜與生日蛋糕融為一體？<br />
-
-                  享烘打破親做糕點會弄的一團混亂的刻板印象，以「客自化」全新思維出發，採全自助烘焙體驗，將最困難的器具、備料、製作烘烤流程化繁至最簡，即便新手都能輕鬆完成，透過DIY手作傳遞甜蜜的情感，以手藝傳遞心意，讓生活處處充滿驚喜與歡樂。
-                </div>
-              </div>
-            </div>
-          ) : (
-              ""
-            )}
-          {this.state.showStore ? (
-            <div className="frame1">
-              <div className="interFrame1">
-                <div className="wordBox">
-                  <div className="wordBoxUp">
-                    <div className="wordHalfUp">FINDSTROE</div>
-                  </div>
-                  <div className="wordBoxDown">
-                    <div className="wordHalfDown">FINDSTROE</div>
-                  </div>
-                </div>
-              </div>
-              <div className="interFrame2">
-                <div className="spaceNone"></div>
-                <div className="innerWord">
-                  想知道在哪裡可以輕鬆找到適合你的需求的店家嗎，享烘幫你，享幹嘛就幹嘛，享做什麼就做什麼，這邊匯集台灣知名手做烘焙店家資訊，精美的地圖篩選，及完善的收尋設備，保證讓您有美好的體驗。
-                </div>
-              </div>
-            </div>
-          ) : (
-              ""
-            )}
-          {this.state.showFood ? (
-            <div className="frame1">
-              <div className="interFrame1">
-                <div className="wordBox">
-                  <div className="wordBoxUp">
-                    <div className="wordHalfUp">FINDFOOD</div>
-                  </div>
-                  <div className="wordBoxDown">
-                    <div className="wordHalfDown">FINDFOOD</div>
-                  </div>
-                </div>
-              </div>
-              <div className="interFrame2">
-                <div className="spaceNone"></div>
-                <div className="innerWord">
-                  懶得出門？但又忍受不了想做蛋糕的慾望嗎？想烘知道你的需求，想烘幫你不只幫你準備食材，連食譜資訊一併附上，讓你輕輕鬆鬆在家就能成為烘焙達人，保證不會有任何問題。
-                </div>
-              </div>
-            </div>
-          ) : (
-              ""
-            )}
-
+            ""
+          )}
           {this.state.showClass ? (
             <Link to="/handmade/store/course">
-              <div class="container-login100-form-btn">
-                <button class="login100-form-btn ">Class</button>
-              </div>
+              <div className="wrap_right background_img_2_change"></div>
             </Link>
           ) : (
-              ""
-            )}
+            ""
+          )}
           {this.state.showTeacher ? (
             <Link to="/handmade/teacher">
-              <div class="container-login100-form-btn">
-                <button class="login100-form-btn ">Teacher</button>
-              </div>
+            <div className="wrap_right background_img_3_change"></div>
             </Link>
           ) : (
-              ""
-            )}
+            ""
+          )}
           {this.state.showStore ? (
             <Link to="/handmade/store">
-              <div class="container-login100-form-btn">
-                <button class="login100-form-btn ">Store</button>
-              </div>
+            <div className="wrap_right background_img_4_change"></div>
             </Link>
           ) : (
-              ""
-            )}
+            ""
+          )}
           {this.state.showFood ? (
             <Link to="/handmade/ingredients">
-              <div class="container-login100-form-btn">
-                <button class="login100-form-btn ">Food</button>
-              </div>
+            <div className="wrap_right background_img_5_change"></div>
             </Link>
           ) : (
-              ""
-            )}
+            ""
+          )}
+          <div className="close" onClick={this.handleClickIsClose}>
+            close
+          </div>
         </div>
       </>
     );
