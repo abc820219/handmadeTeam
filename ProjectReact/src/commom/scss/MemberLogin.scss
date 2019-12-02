@@ -112,13 +112,6 @@ $formErrorColor: #fff;
     }
   }
 }
-.login-backdrop {
-  @extend %backdrop;
-  background-image: url("/image/member/loginBack.jpg");
-  .perf-link {
-    @extend %perf-link;
-  }
-}
 .login-backdrop1 {
   @extend %backdrop;
   background-image: url("/image/member/loginBack.jpg");
@@ -128,7 +121,7 @@ $formErrorColor: #fff;
 }
 .login-backdrop2 {
   @extend %backdrop;
-  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlxWoO85vYeUR7FfYCTcpcVZuLaVy6JoHP9HDgQ6Ehtpioq29v&s");
+  background-image: url("/image/member/loginBack.jpg");
   .perf-link {
     @extend %perf-link;
   }
@@ -156,7 +149,14 @@ $formErrorColor: #fff;
 }
 .login-backdrop6 {
   @extend %backdrop;
-  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlxWoO85vYeUR7FfYCTcpcVZuLaVy6JoHP9HDgQ6Ehtpioq29v&s");
+  background-image: url("/image/course_img/detail/法式經典檸檬塔b.png");
+  .perf-link {
+    @extend %perf-link;
+  }
+}
+.login-backdrop7 {
+  @extend %backdrop;
+  background-image: url("/image/course_img/detail/抹茶千層蛋糕b3.png");
   .perf-link {
     @extend %perf-link;
   }
