@@ -1,0 +1,15 @@
+.memberChart {
+  li {
+    padding: 5px 15px;
+    background-color: #fff;
+    cursor: pointer;
+    &:hover {
+      background-color: #b8817d;
+      color: #fff;
+    }
+    &.active {
+      background-color: #b8817d;
+      color: #fff;
+    }
+  }
+}
