@@ -6,9 +6,7 @@ import { Link } from "react-router-dom";
 import CartStore from "./CartStore";
 import { MdCancel } from "react-icons/md";
 
-
-
-const SmallCart = ({ openCart, showCart }) => {
+const SmallCart = ({ openCart, showCart ,setShowLightBox}) => {
 
   let { courseCart, ingreCart, id } = useContext(CartStore);
 
@@ -76,7 +74,7 @@ const SmallCart = ({ openCart, showCart }) => {
                 />
               })}
             </div>
-            <div style={{ marginBottom: "150px" }}>
+            <div style={{ marginBottom: "200px" }}>
               <div className="course-title py-3">食材訂單</div>
               <hr className="hr-bottom"></hr>
               {ingreCart.map((ingreC, index) => {
@@ -95,25 +93,26 @@ const SmallCart = ({ openCart, showCart }) => {
         </div>
       </div>
       <div
-        className="cartFooter d-flex justify-content-between p-5"
+        className="cartFooter d-flex flex-column justify-content-center p-3"
         onMouseEnter={() => openCart(true)}
         onMouseLeave={() => openCart(false)}
         style={{ right: showCart ? "0" : "100%" }}
       >
-        <div>
+        <div className='text-center'>
           <span className="cartTotal" 
-          style={{fontWeight:'bold',fontSize:'40px'}}
+          style={{fontSize:'30px'}}
           >$ {CartTotal(courseCart, ingreCart)}
           </span>
         </div>
-        <div>
-          <Link to="/handmade/member/cart" style={cartBtn ? { color: 'white' } : { color: 'white', pointerEvents: 'none' }} onClick={!id ? () => { alert('請先登入') } : ''}
-              className="cartBtn"
-              style={{fontWeight:'bold',fontSize:'20px'}}
-            >
-              購買
+        <button className="cartBtn" style={{fontWeight:'bold',fontSize:'20px'}}>
+        {id?
+        <Link to="/handmade/member/cart" style={cartBtn ? { color: 'white', textAlign:'center' } : { color: 'white', pointerEvents: 'none' }}>
+              Check-Out
           </Link>
-        </div>
+          :
+          <p onClick={()=>{setShowLightBox(true)}} style={{lineHeight:'32px'}}>Check-Out</p>
+          }
+          </button>
       </div>
     </>
   );
