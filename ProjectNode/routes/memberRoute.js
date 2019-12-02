@@ -383,7 +383,7 @@ router.post("/MemberPasswordEdit", (req, res) => {
   db.query(Member.MemberPasswordEdit(), (error, rows) => {
     console.log(rows);
     if (rows) {
-      return res.json({ status: "202", message: "修改成功" });
+      return res.json({ status: "202", message: "修改成功,請重新登入" });
     } else {
       return res.json({ status: "404", message: "修改失敗" });
     }
@@ -427,7 +427,7 @@ router.post("/mail", (req, res) => {
       });
       return res.json({
         status: "202",
-        message: "重設密碼信件已發送,請至信箱確認"
+        message: "請至信箱確認密碼"
       });
     } else {
       res.json({
