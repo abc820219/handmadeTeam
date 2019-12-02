@@ -23,20 +23,37 @@ import "../common/scss/store/styleFindStore.scss";
 import StoreSelect from "../components/store/StoreSelect";
 //
 
+// const markerClustererCalculator = (markers, numStyles) => {
+//   //create an index for icon styles
+//   var index = 4,
+//     //Count the total number of markers in this cluster
+//     count = markers.length,
+//     //Set total to loop through (starts at total number)
+//     index = Math.min(index);
+// // Cluster level 1 (index = 1)
+// // Cluster level 2 (index = 2)
+// // Cluster level 3 (index = 3)
+// // Cluster level 4 (index = 4)
+// // Cluster level 5 (index = 5)
+//   //Tell MarkerCluster this clusters details (and how to style it)
+//   return {
+//     text: count,
+//     index: index
+//   };
+// };
 const markerClustererCalculator = (markers, numStyles) => {
-  const index = markers.find(marker => marker.icon.condition === "anormal")
+  const index = markers.find(marker => marker.icon.condition === 'anormal')
     ? 3
-    : markers.find(marker => marker.icon.condition === "alerta")
+    : markers.find(marker => marker.icon.condition === 'alerta')
     ? 2
-    : markers.find(marker => marker.icon.condition === "normal")
+    : markers.find(marker => marker.icon.condition === 'normal')
     ? 1
-    : 4;
-
+    : 4
   return {
     index: index,
-    text: markers.length
-  };
-};
+    text: markers.length,
+  }
+}
 
 function Map({
   selectedPark,
@@ -69,9 +86,9 @@ function Map({
       )}
 
       <MarkerClusterer
-        averageCenter
+        // averageCenter
         calculator={markerClustererCalculator}
-        enableRetinaIcons
+        // enableRetinaIcons
         gridSize={30}
       >
         {storeData.map(store => (
