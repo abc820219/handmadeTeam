@@ -1,198 +1,190 @@
-.coverleft{
-    position: absolute;
-    background: rgba(0, 0, 0, 0.6);
-    top: 82px;
-    left: -117px;
-    width: 1100px;
-    height: 1200px;
-    z-index: 10000;
-    transition: 2s;
-}
-.coverright{
-    position: absolute;
-    background: rgba(0, 0, 0, 0.6);
-    top: 0;
-    left: 821px;
-    width: 1280px;
-    height: 1200px;
-    z-index: 9999;
-    transition: 2s;
+.coverleft {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.6);
+  top: 82px;
+  left: -117px;
+  width: 1100px;
+  height: 1200px;
+  z-index: 10000;
 
+  transition: 2s;
 }
-.text-align-right{
-    text-align:right
+
+.coverright {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.6);
+  top: 0;
+  left: 821px;
+  width: 1280px;
+  height: 1200px;
+  z-index: 9999;
+  transition: 2s;
 }
-.getoutL{
-    opacity: 0;
-    transform: translateY(1280px);
+.text-align-right {
+  text-align: right;
 }
-.getoutR{
-    opacity: 0;
-    transform: translateY(-1280px);
+.getoutL {
+  opacity: 0;
+  transform: translateY(1280px);
+}
+.getoutR {
+  opacity: 0;
+  transform: translateY(-1280px);
 }
 .container-word-1 {
-    width: 449px;
-    height: 80px;
-    overflow: hidden;
-    position: absolute; 
-    top: 45%;
-  }
-  .container-word-2 {
-    width: 449px;
-    height: 80px;
-    overflow: hidden;
-    position: absolute; 
-    top: 50%;
-  }
-  .container-word-3 {
-    width: 449px;
-    height: 80px;
-    overflow: hidden;
-    position: absolute; 
-    top: 55%;
-  }
-  .container-word-1-1 {
-    width: 449px;
-    height: 80px;
-    overflow: hidden;
-    position: absolute; 
-    top: 45%;
-    left: 485px;
-  }
-  .container-word-2-2 {
-    width: 449px;
-    height: 80px;
-    overflow: hidden;
-    position: absolute; 
-    top: 50%;
-    left: 485px;
-  }
-  .container-word-3-3 {
-    width: 449px;
-    height: 80px;
-    overflow: hidden;
-    position: absolute; 
-    top: 55%;
-    left: 485px;
-  }
-  .container-word-1 h1 {
-    color: white;
-    font-size: 64px;
-    font-family: 'Noto Sans TC', sans-serif;
-    font-weight: "700";
-  }
-  .container-word-2 h1 {
-    color: white;
-    font-size: 64px;
-    font-family: 'Noto Sans TC', sans-serif;
-    font-weight: "700";
-  }
-  .container-word-3 h1 {
-    color: white;
-    font-size: 64px;
-    font-family: 'Noto Sans TC', sans-serif;
-    font-weight: "700";
-  }
-  .container-word-1-1 h1 {
-    color: white;
-    font-size: 60px;
-    font-family: 'Noto Sans TC', sans-serif;
-    font-weight: "700";
-  }
-  .container-word-2-2 h1 {
-    color: white;
-    font-size: 60px;
-    font-family: 'Noto Sans TC', sans-serif;
-    font-weight: "700";
-  }
-  .container-word-3-3 h1 {
-    color: white;
-    font-size: 60px;
-    font-family: 'Noto Sans TC', sans-serif;
-    font-weight: "700";
-  }
-  .first-word {
-    position: absolute;
-    transform: translateY(80px);
-  }
-  
-  @keyframes loadIn {
-    0% {
-      transform: translateY(80px);
-    } 
-    100% {
-      transform: translateY(0px);
-    }
-  }
-  
-  .last-word {
-    position: absolute;
-    transform: translateY(80px);
-  }
-  .last-last-word{
-    position: absolute;
-    transform: translateY(80px);
-  }
+  width: 449px;
+  height: 80px;
+  overflow: hidden;
+  position: absolute;
+  top: 45%;
+}
+.container-word-2 {
+  width: 449px;
+  height: 80px;
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+}
+.container-word-3 {
+  width: 449px;
+  height: 80px;
+  overflow: hidden;
+  position: absolute;
+  top: 55%;
+}
+.container-word-1-1 {
+  width: 449px;
+  height: 80px;
+  overflow: hidden;
+  position: absolute;
+  top: 45%;
+  left: 485px;
+}
+.container-word-2-2 {
+  width: 449px;
+  height: 80px;
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  left: 485px;
+}
+.container-word-3-3 {
+  width: 449px;
+  height: 80px;
+  overflow: hidden;
+  position: absolute;
+  top: 55%;
+  left: 485px;
+}
+.container-word-1 h1 {
+  color: white;
+  font-size: 64px;
+  font-family: "Noto Sans TC", sans-serif;
+  font-weight: "700";
+}
+.container-word-2 h1 {
+  color: white;
+  font-size: 64px;
+  font-family: "Noto Sans TC", sans-serif;
+  font-weight: "700";
+}
+.container-word-3 h1 {
+  color: white;
+  font-size: 64px;
+  font-family: "Noto Sans TC", sans-serif;
+  font-weight: "700";
+}
+.container-word-1-1 h1 {
+  color: white;
+  font-size: 60px;
+  font-family: "Noto Sans TC", sans-serif;
+  font-weight: "700";
+}
+.container-word-2-2 h1 {
+  color: white;
+  font-size: 60px;
+  font-family: "Noto Sans TC", sans-serif;
+  font-weight: "700";
+}
+.container-word-3-3 h1 {
+  color: white;
+  font-size: 60px;
+  font-family: "Noto Sans TC", sans-serif;
+  font-weight: "700";
+}
+.first-word {
+  position: absolute;
+  transform: translateY(80px);
+}
 
+@keyframes loadIn {
+  0% {
+    transform: translateY(80px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
 
-  .first-word-1 {
-    position: absolute;
-    transform: translateY(80px);
-  }
-  .last-word-1 {
-    position: absolute;
-    transform: translateY(80px);
-  }
-  .last-last-word-1{
-    position: absolute;
-    transform: translateY(80px);
-  }
+.last-word {
+  position: absolute;
+  transform: translateY(80px);
+}
+.last-last-word {
+  position: absolute;
+  transform: translateY(80px);
+}
+
+.first-word-1 {
+  position: absolute;
+  transform: translateY(80px);
+}
+.last-word-1 {
+  position: absolute;
+  transform: translateY(80px);
+}
+.last-last-word-1 {
+  position: absolute;
+  transform: translateY(80px);
+}
 .loadIn-1 {
   animation: loadIn 2s ease 2s forwards;
-
 }
 .loadIn-2 {
   animation: loadIn 2s ease 3s forwards;
-
 }
 .loadIn-3 {
   animation: loadIn 2s ease 4s forwards;
-
 }
 .loadIn-4 {
   animation: loadIn 2s ease 10s forwards;
-
 }
 .loadIn-5 {
   animation: loadIn 2s ease 11s forwards;
-
 }
 .loadIn-6 {
   animation: loadIn 2s ease 12s forwards;
-
 }
-.button2_handmade{
-	-webkit-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
-	-moz-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
-	-ms-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
-	-o-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
-	transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
-	display: block;
-	margin: 20px auto;
-	max-width: 180px;
-	text-decoration: none;
-	border-radius: 4px;
-	padding: 20px 30px;
+.button2_handmade {
+  -webkit-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
+  -moz-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
+  -ms-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
+  -o-transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
+  transition: all 200ms cubic-bezier(0.39, 0.5, 0.15, 1.36);
+  display: block;
+  margin: 20px auto;
+  max-width: 180px;
+  text-decoration: none;
+  border-radius: 4px;
+  padding: 20px 30px;
 }
-
-
 
 .button2_handmade {
-	color: rgba(255, 255, 255, 0.85);
-	box-shadow: rgba(255, 255, 255, 0.85) 0 0px 0px 2px inset;
+  color: rgba(255, 255, 255, 0.85);
+  box-shadow: rgba(255, 255, 255, 0.85) 0 0px 0px 2px inset;
 }
 
 .button2_handmade:hover {
-	color: rgba(255, 255, 255, 0.85);
-	box-shadow:#F78177 0 80px 0px 2px inset;
+  color: rgba(255, 255, 255, 0.85);
+  box-shadow: #f78177 0 80px 0px 2px inset;
 }

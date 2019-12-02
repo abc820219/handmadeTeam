@@ -169,6 +169,7 @@
     width: 468px;
     height: 468px;
     top: 550px;
+    cursor: pointer;
   }
   .gwd-img-1j6y {
     position: absolute;
@@ -176,6 +177,7 @@
     height: 402px;
     left: -1px;
     top: 151px;
+    cursor: pointer;
   }
   .gwd-img-h17w {
     position: absolute;
@@ -183,6 +185,7 @@
     top: 82px;
     left: 350px;
     width: 468px;
+    cursor: pointer;
     height: 468px;
   }
   .gwd-img-1ehw {
@@ -190,6 +193,7 @@
     transform-origin: 196px 196px 0px;
     left: -117px;
     top: 550px;
+    cursor: pointer;
     width: 468px;
     height: 468px;
   }
@@ -199,10 +203,12 @@
     transform-origin: 610px 610px 0px;
     left: 821px;
     top: -74px;
+    cursor: pointer;
   }
   .gwd-img-iqv3 {
     left: -117px;
     top: 82px;
+    cursor: pointer;
     width: 468px;
     height: 468px;
   }
@@ -211,6 +217,7 @@
     width: 1364px;
     left: -311px;
     top: -238px;
+    cursor: pointer;
     height: 1422px;
     transform-origin: 682px 711px 0px;
     transform: scale(0.9);
@@ -220,6 +227,7 @@
     width: 77px;
     height: 39px;
     left: 999px;
+    cursor: pointer;
     top: 1212px;
     
   }
@@ -227,6 +235,7 @@
     position: absolute;
     left: 975px;
     top: 156px;
+    cursor: pointer;
     width: 78px;
     height: 68px;
     transform-origin: 39px 33.9351px 0px;
@@ -238,6 +247,7 @@
     width: 77px;
     height: 39px;
     left: 1577px;
+    cursor: pointer;
     top: -10px;
     transform-origin: 38.5px 19.5px;
     transform: translate3d(0px, 0px, 0px);
@@ -249,6 +259,7 @@
     width: 71px;
     height: 30px;
     left: 1366px;
+    cursor: pointer;
     top: 22px;
     transform: translate3d(0px, 0px, 0px);
   }
@@ -259,6 +270,7 @@
     transform-origin: 63.5698px 35.5px 0px;
     left: 1574px;
     top: 170px;
+    cursor: pointer;
     transform-style: preserve-3d;
     transform: translate3d(0px, 0px, 0px);
   }
@@ -269,6 +281,7 @@
     transform-origin: 27.842px 185px 0px;
     left: 1137px;
     top: -36px;
+    cursor: pointer;
     transform: rotateZ(0deg);
     transform-style: preserve-3d;
   }
@@ -278,6 +291,7 @@
     height: 88px;
     transform-origin: 50px 44.1558px 0px;
     left: 1749px;
+    cursor: pointer;
     top: 208px;
     transform-style: preserve-3d;
     transform: translate3d(0px, 0px, 0px);
@@ -287,6 +301,7 @@
     width: 77px;
     height: 74px;
     left: 1286px;
+    cursor: pointer;
     top: 110px;
     transform-origin: 38.5px 37px;
     transform: translate3d(0px, 0px, 0px);
@@ -296,6 +311,7 @@
     position: absolute;
     width: 77px;
     height: 77px;
+    cursor: pointer;
     left: 1833px;
     top: 22px;
     transform-origin: 38.5px 38.5px;
@@ -306,12 +322,14 @@
     position: absolute;
     width: 77px;
     height: 67px;
+    cursor: pointer;
     left: 1812px;
     top: 1389px;
   }
   .gwd-img-1rj8 {
     position: absolute;
     width: 77px;
+    cursor: pointer;
     height: 86px;
     left: 1767px;
     top: 1178px;
@@ -320,6 +338,7 @@
     position: absolute;
     width: 77px;
     height: 77px;
+    cursor: pointer;
     left: 1638px;
     top: 1393px;
   }
@@ -329,6 +348,7 @@
     width: 35px;
     height: 12px;
     left: 1744px;
+    cursor: pointer;
     top: 1347px;
   }
   .gwd-img-199q {
@@ -338,6 +358,7 @@
     transform-origin: 23.0383px 148px 0px;
     left: 1471px;
     top: 1146px;
+    cursor: pointer;
     transform-style: preserve-3d;
     transform: translate3d(-24px, 110px, 0px);
   }
@@ -345,6 +366,7 @@
     position: absolute;
     width: 77px;
     height: 77px;
+    cursor: pointer;
     left: 1613px;
     top: 1295px;
   }
@@ -355,12 +377,14 @@
     transform-origin: 257px 20.0781px 0px;
     left: 315px;
     top: 1344px;
+    cursor: pointer;
   }
   .gwd-img-elz4 {
     position: absolute;
     transform-origin: 53px 53px 0px;
     width: 13px;
     height: 13px;
+    cursor: pointer;
     left: 1072px;
     top: 1277px;
   }
