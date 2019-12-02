@@ -17,6 +17,8 @@ import { MdPeopleOutline } from "react-icons/md";
 import { MdChildCare } from "react-icons/md";
 import { MdGpsFixed } from "react-icons/md";
 import { FaStore } from "react-icons/fa";
+import { MdArrowBack } from "react-icons/md";
+
 
 // style scss
 import "../common/scss/store/styleFindStore.scss";
@@ -45,10 +47,10 @@ const markerClustererCalculator = (markers, numStyles) => {
   const index = markers.find(marker => marker.icon.condition === 'anormal')
     ? 3
     : markers.find(marker => marker.icon.condition === 'alerta')
-    ? 2
-    : markers.find(marker => marker.icon.condition === 'normal')
-    ? 1
-    : 4
+      ? 2
+      : markers.find(marker => marker.icon.condition === 'normal')
+        ? 1
+        : 4
   return {
     index: index,
     text: markers.length,
@@ -127,33 +129,35 @@ function Map({
             lng: parseFloat(selectedPark.store_longitude * 1)
           }}
         >
-          <div style={{ padding: "30px" }}>
-            <li className="findStoreCardGroupLi">
-              <img  
-                className="findStoreSpacePhoto"
+
+          <div style={{ padding: "0 15px 0 0" }}>
+            <li className="findStoreMapCardGroupLi">
+              <img
+                className="findStoreMapSpacePhoto"
                 src={`/image/store/${selectedPark.store_space_photo}`}
               />
-              <div className="findStoreCardTop">
-                <div className="findStoreName">
+              <img
+                className="findStoreMapLogoPhoto"
+                src={`/image/store/${selectedPark.store_logo}`}
+              />
+              <div className="findStoreMapCardTop">
+                <div className="findStoreMapName">
                   <p>{selectedPark.store_name}</p>
                 </div>
               </div>
-              <div className="findStoreCardDown">
-                <div className="findStoreCardDownMain">
-                  <img
-                    className="findStoreLogoPhoto"
-                    src={`/image/store/${selectedPark.store_logo}`}
-                  />
-                  <div className="findStoreIntroduce">
+              <div className="findStoreMapCardDown">
+                <div className="findStoreMapCardDownMain">
+                  <div className="findStoreMapIntroduce">
                     <p>{selectedPark.store_introduce}</p>
                   </div>
                 </div>
-                <div className="findStoreEnterButton">
+                <div className="findStoreMapEnterButton">
                   <a
-                    className="findStoreEnterStore"
+                    className="findStoreMapEnterStore"
                     href={`/handmade/store/${selectedPark.store_sid}/course`}
                   >
-                    <FaStore /> GO TO Store
+                    <FaStore /> &nbsp;&nbsp;  
+                    <p>GO TO Store</p>
                   </a>
                 </div>
               </div>
@@ -303,6 +307,12 @@ function FindStore(props) {
           </div>
           <div className="findStoreCardGroup">
             <div className="findStoreCardButton">
+              <div className="findStoreToStoreForGoogle">
+                <a className="findStoreToStoreForIconA" href="/handmade/store">
+                  <MdArrowBack />
+                  <p className="findStoreToStoreForIconText"> 回店家列表</p>
+                </a>
+              </div>
               <div className="findStoreHere">
                 <ul class="findStoreHereCheckbox list">
                   <li
@@ -425,7 +435,8 @@ function FindStore(props) {
           </div>
         </div>
         <div className="findStoreRight">
-          <div className="findStoreRightTop"></div>
+          <div className="findStoreRightTop">
+          </div>
           <div className="findStoreGoogleMap">
             <div
               className="findStoreGoogleMapIn"
