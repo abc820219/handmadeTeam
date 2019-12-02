@@ -17,7 +17,7 @@ function StoreSelect(props) {
   // console.log(optionsControl);
   let newArray = [];
   let options = [
-    { value: "0", label: "全島" },
+    { value: "", label: "全島" },
     { value: "1", label: "基隆市" },
     { value: "2", label: "台北市" },
     { value: "3", label: "新北市" },
@@ -41,13 +41,13 @@ function StoreSelect(props) {
   newArray = options.filter(rows => {
     return optionsControl.some(rows2 => rows.value == rows2);
   });
-  newArray.unshift({ value: "0", label: "全島" });
+  newArray.unshift({ value: "", label: "全島" });
 
   return (
     <Select
       components={{ Option: CustomOption }}
       options={newArray}
-      onChange={e =>  props.storeData(e.value)}
+      onChange={e => props.storeData(e.value)}
     />
   );
 }
