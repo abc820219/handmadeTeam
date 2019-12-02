@@ -40,14 +40,24 @@ router.post("/", (req, res) => {
   let accompanyChildSql = condition.accompanyChild
     ? ` AND store_child = 1`
     : "";
+  let lot = condition.lot
+    ? ` AND store_longitude BETWEEN (${condition.lot}-0.1) AND (${condition.lot}+0.1) `
+    : "";
+  let lat = condition.lat
+    ? ` AND  store_latitude BETWEEN (${condition.lat}-0.1) AND (${condition.lat}+0.1)`
+    : "";
+
   sql =
     "SELECT * FROM `store` WHERE 1" +
     locateSql +
     accompanyPartnerSql +
-    accompanyChildSql;
-  
+    accompanyChildSql +
+    lot +
+    lat;
+  console.log(sql);
   db.queryAsync(sql).then(results => {
     res.json(results);
+    console.log(results)
   });
 });
 

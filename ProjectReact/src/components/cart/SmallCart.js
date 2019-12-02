@@ -75,7 +75,6 @@ const SmallCart = ({ openCart, showCart }) => {
                   courseList={courseC.course_list}
                 />
               })}
-              <hr className="hr-bottom"></hr>
             </div>
             <div style={{ marginBottom: "150px" }}>
               <div className="course-title py-3">食材訂單</div>
@@ -91,7 +90,6 @@ const SmallCart = ({ openCart, showCart }) => {
                   ingrePrice={ingreC.ingredients_price}
                 />
               })}
-              <hr className="hr-bottom"></hr>
             </div>
           </div>
         </div>
@@ -103,15 +101,17 @@ const SmallCart = ({ openCart, showCart }) => {
         style={{ right: showCart ? "0" : "100%" }}
       >
         <div>
-          <span className="cartTotal">$ {CartTotal(courseCart, ingreCart)}</span>
+          <span className="cartTotal" 
+          style={{fontWeight:'bold',fontSize:'40px'}}
+          >$ {CartTotal(courseCart, ingreCart)}
+          </span>
         </div>
         <div>
-          <Link to="/handmade/member/cart" style={cartBtn ? { color: 'white' } : { color: 'white', pointerEvents: 'none' }} onClick={!id ? () => { alert('請先登入') } : ''}>
-            <div
+          <Link to="/handmade/member/cart" style={cartBtn ? { color: 'white' } : { color: 'white', pointerEvents: 'none' }} onClick={!id ? () => { alert('請先登入') } : ''}
               className="cartBtn"
+              style={{fontWeight:'bold',fontSize:'20px'}}
             >
               購買
-            </div>
           </Link>
         </div>
       </div>
