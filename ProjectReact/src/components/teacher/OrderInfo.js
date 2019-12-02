@@ -10,7 +10,7 @@ const AlerTeacher = props => {
     alert.success("報名成功");
   }
   if (props.step === 2) {
-    alert.error("資訊錯誤");
+    alert.error("請填寫完整資料");
   }
   return <></>;
 };
@@ -194,6 +194,7 @@ class OrderInfo extends Component {
         console.log("失敗");
       });
     }
+    };
 
   render() {
     // console.log("props:", this.props.subject_sid);
