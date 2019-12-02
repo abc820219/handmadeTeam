@@ -3,9 +3,10 @@ import "../../../commom/scss/member/orderDeListCourse.scss";
 import { FaDollarSign,FaRegClock } from "react-icons/fa";
 import { MdAttachMoney,MdCancel } from "react-icons/md";
 import { FaMapMarkerAlt, FaQuoteLeft, FaCheck, FaExchangeAlt, FaStar } from "react-icons/fa";
+import { useAlert } from "react-alert";
 
 const OrderDeListCourse = ({ orderDetail }) => {
-
+  const alert = useAlert();
   const [email, setEmail] = useState("");
   const [member, setMember] = useState("");
   const [productName, setProductName] = useState("");
@@ -76,7 +77,9 @@ const OrderDeListCourse = ({ orderDetail }) => {
 
   const sendText = async () => {
     let message123 = await prompt("請輸入回報問題");
-    await setMessage(message123);
+    if(message123){
+      await setMessage(message123);
+    }
   };
 
   const reportProduct = async (member, email, productName, message, orderSid) => {
@@ -95,9 +98,9 @@ const OrderDeListCourse = ({ orderDetail }) => {
     });
     const data = await dataJson.json();
     if (data.status === "202") {
-      alert(data.message);
+      alert.success(data.message);
     } else {
-      alert(data.message);
+      alert.error(data.message);
     }
   };
 

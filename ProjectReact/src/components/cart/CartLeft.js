@@ -5,6 +5,7 @@ import { FieldSet, InputField } from "fannypack";
 import { usePaymentInputs } from "react-payment-inputs";
 import images from "react-payment-inputs/images";
 import { Form, Col } from "react-bootstrap";
+import { useAlert } from "react-alert";
 
 const CartLeft = ({
   courseCards,
@@ -15,6 +16,7 @@ const CartLeft = ({
   step,
   setStep
 }) => {
+  const alert = useAlert();
   const [cartTotal, setCartTotal] = useState(0);
   // const [afterCoupon, setAfterCoupon] = useState(localStorage.getItem("afterTotal") ? localStorage.getItem("afterTotal") : 0);
   const [fnCartTotal, setFnCartTotal] = useState(0);
@@ -121,7 +123,7 @@ const CartLeft = ({
       let orderCreate_time = await data[0].order_create_time;
       let [orderDate, orderTime] = await orderCreate_time.split("T");
       orderTime = await orderTime.split(".")[0];
-      alert(`訂單${order_Sid}於${orderDate}---${orderTime}新增完成`);
+      alert.info(`訂單${order_Sid}於${orderDate}---${orderTime}新增完成`);
       localStorage.setItem(`courseCart${user}`, "[]");
       await setCourseCards();
       await cartCourseDispatch(checkoutAction());
