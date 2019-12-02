@@ -235,7 +235,19 @@ function MemberRegister(props) {
             <div className="text-center"></div>
           </form>
         </div>
-        <div className="login-backdrop" onClick={props.memberSignIn}></div>
+        <div className="backdropChange" onClick={props.memberSignIn}></div>
+        <div
+          className={
+            props.bgImg ? `login-backdrop${props.bgImg}` : "login-backdrop"
+          }
+          onClick={props.memberSignIn}
+        >
+          {props.bgImg && (
+            <div className="perf-link">
+              <a href="">12345678</a>
+            </div>
+          )}
+        </div>
       </>
     );
   }

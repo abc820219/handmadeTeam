@@ -13,8 +13,10 @@ import {
 } from "../../components/cart/CartAction";
 import { IoIosClose, IoIosRewind } from "react-icons/io";
 import $ from "jquery";
+import { useAlert } from "react-alert";
 
 function Class_detail(props) {
+  const alert = useAlert();
   let productDetail;
   console.log(props)
   const { courseCart, id, cartCourseDispatch } = useContext(CartStore);
@@ -611,7 +613,7 @@ function Class_detail(props) {
         });
         // console.log(checkCart);
         if (checkCart.length) {
-          alert("已經加入重複時間課程");
+          alert.error("時間重複了");
         } else {
           // console.log(checkCart);
           let orderCf = {
@@ -638,7 +640,7 @@ function Class_detail(props) {
         cartCourseDispatch(addCourse(orderCf2, id));
       }
     } else {
-      alert("請先登入")
+      alert.error("請先登入")
     }
   }
 
