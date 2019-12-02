@@ -12,9 +12,9 @@ const CustomOption = props => {
   );
 };
 function StoreSelect(props) {
-  console.log(Object.keys(props.areaAllHaveStoreData));
+  // console.log(Object.keys(props.areaAllHaveStoreData));
   let optionsControl = Object.keys(props.areaAllHaveStoreData);
-  console.log(optionsControl);
+  // console.log(optionsControl);
   let newArray = [];
   let options = [
     { value: "0", label: "全島" },

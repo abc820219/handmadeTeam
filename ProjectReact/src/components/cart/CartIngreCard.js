@@ -64,7 +64,7 @@ const CartIngreCard = ({
             Total Count : $ {ingre_price * ingre_order_quantity}
           </p>
         </div>
-        <figure>
+        <figure className='ml-auto mr-5'>
           <img
             src={"/image/ingredients/"+ingre_pic}
             alt="product pic"

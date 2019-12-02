@@ -72,7 +72,7 @@ const CartCourseCard = ({
 
   return (
     <>
-      <li className="d-flex flex-sm-wrap">
+      <li className="d-flex flex-sm-wrap checkCourseOrder">
         {/* <input
           type="checkbox"
           name="selectTotalCourse"
@@ -113,7 +113,7 @@ const CartCourseCard = ({
             Total Count : $ {course_price * course_order_applicants}
           </p>
         </div>
-        <figure>
+        <figure className='ml-auto'>
           <img
             src={"/image/course_img/360/"+course_lists}
             alt="product pic"

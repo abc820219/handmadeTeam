@@ -1,7 +1,19 @@
 import React, { Component } from "react";
-import { Container, Button } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import "../../commom/scss/teacher/OrderInfo.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useAlert } from "react-alert";
+
+const AlerTeacher = props => {
+  const alert = useAlert();
+  if (props.step === 1) {
+    alert.success("報名成功");
+  }
+  if (props.step === 2) {
+    alert.error("資訊錯誤");
+  }
+  return <></>;
+};
 
 class OrderInfo extends Component {
   constructor(props) {
@@ -11,10 +23,10 @@ class OrderInfo extends Component {
       subject_number: "",
       people: "1",
       // 最大可報名人數
-      maxPeople: ""
+      maxPeople: "",
+      step: false
     };
   }
-
   componentDidMount() {
     // this.getApiData();
     this.getSubjectInfo();
@@ -171,13 +183,16 @@ class OrderInfo extends Component {
           return response.json();
         })
         .then(function(data) {
-          alert("已完成預訂");
+          this.setState({ step: 1 }, () => {
+            console.log("成功");
+          });
+          // alert.sccess("已完成預訂");
         })
-        .catch(error => {
-          console.log(error);
-        });
+        .catch(error => {});
     } else {
-      alert("請輸入完整資料哦");
+      this.setState({ step: 2 }, () => {
+        console.log("失敗");
+      });
     }
   };
 
@@ -265,6 +280,7 @@ class OrderInfo extends Component {
             </div>
           </sidebar>
         </div>
+        {this.state.step && <AlerTeacher step={this.state.step} />}
       </>
     );
   }

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "../../../commom/scss/member/orderDeListIngre.scss";
+import { useAlert } from "react-alert";
 
 const OrderDeListIngre = ({ orderDetail }) => {
+  const alert = useAlert();
   const [email, setEmail] = useState("");
   const [member, setMember] = useState("");
   const [productName, setProductName] = useState("");
@@ -57,7 +59,9 @@ const OrderDeListIngre = ({ orderDetail }) => {
   console.log(email, member, productName);
   const sendText = async () => {
     let message123 = await prompt("請輸入回報問題");
-    await setMessage(message123);
+    if(message123){
+      await setMessage(message123);
+    }
   };
 
   const reportProduct = async (member, email, productName, message, orderSid) => {
@@ -76,9 +80,9 @@ const OrderDeListIngre = ({ orderDetail }) => {
     });
     const data = await dataJson.json();
     if (data.status === "202") {
-      alert(data.message);
+      alert.success(data.message);
     } else {
-      alert(data.message);
+      alert.error(data.message);
     }
   };
   return (
