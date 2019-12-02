@@ -185,7 +185,6 @@ class OrderInfo extends Component {
     } else {
       alert.error("請輸入完整資料哦");
     }
-  };
 
   render() {
     // console.log("props:", this.props.subject_sid);
