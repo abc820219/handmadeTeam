@@ -3,7 +3,7 @@ import { TiShoppingCart } from "react-icons/ti";
 import SmallCart from "./cart/SmallCart";
 import cartStore from "./cart/CartStore";
 
-const NavBarUnSign = ({ showLightBox, showCart, openCart, login }) => {
+const NavBarUnSign = ({ showLightBox, showCart, openCart, login ,setShowLightBox}) => {
   const { ingreCart, courseCart } = useContext(cartStore);
   const [cartLength, setCartLength] = useState(0);
   useEffect(() => {
@@ -27,7 +27,7 @@ const NavBarUnSign = ({ showLightBox, showCart, openCart, login }) => {
           </div>
         </div>
       </div>
-      <SmallCart openCart={openCart} showCart={showCart} login={login.login} />
+      <SmallCart openCart={openCart} showCart={showCart} login={login.login} setShowLightBox={setShowLightBox}/>
     </>
   );
 };

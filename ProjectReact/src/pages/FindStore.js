@@ -129,7 +129,7 @@ function Map({
         >
           <div style={{ padding: "30px" }}>
             <li className="findStoreCardGroupLi">
-              <img
+              <img  
                 className="findStoreSpacePhoto"
                 src={`/image/store/${selectedPark.store_space_photo}`}
               />
