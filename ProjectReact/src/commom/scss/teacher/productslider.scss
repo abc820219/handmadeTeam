@@ -5,234 +5,327 @@ $orange: #f5ddba;
 @import url("https://use.typekit.net/zcg2kdc.css");
 @import url("https://use.typekit.net/wuz0itu.css");
 @import url("https://use.typekit.net/wuz0itu.css");
+//teacher-link字體
+@import url("https://use.typekit.net/wuz0itu.css");
 
 body {
   // background: linear-gradient(135deg, #f0c7b3, #f4dcb9);
   font-family: franklin-gothic-compressed, sans-serif;
   // height: 100vh;
 }
-
-.teacher-list-page {
-  margin-top: 60px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-
-  //-----老師大圖------
-  .left-img {
-    z-index: 1;
-    position: fixed;
-    bottom: 0;
-    width: 1180px;
-    height: 790px;
-    // background: rgb(207, 163, 80);
-    clip-path: polygon(0 36%, 31% 0, 100% 100%, 0% 100%);
-    
-  
-
-    .big_img {
-      height: 300px;
-      width: 300px;
-      background: #000;
+.background_first {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(-45deg, #362d2b, #e9756e, #f5ddba, #eabeae);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  z-index: 44;
+  transition: 2s;
+  @keyframes gradientBG {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
     }
   }
-  .teacherimg-small {
-    display: none;
-  }
+  .teacher-list-page {
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+    text-align: center;
 
-  //----切換照片的按鈕----
-  .slider-btn-box {
-    left: 20%;
-    width: 30%;
-    margin-left: 13%;
-    position: absolute;
-    bottom: 7%;
-    z-index: 2;
-
-    button {
-      padding-left: 2%;
-      font-size: 18px;
-    }
-
-    .btn-slide {
-      background: transparent;
-      border: none;
-
-      &:focus {
-        outline: none;
-      }
-
-      &:hover {
-        color: #c57647;
-      }
-
-      &:active {
-        color: #c57647;
-      }
-    }
-  }
-
-  //----切換照片的按鈕----
-
-  // ----老師小圖----
-  .silder-circle {
-    z-index: 2;
-
-    .slider-box {
-      width: 350px;
-      height: 350px;
-      position: absolute;
-      left: 39%;
-      bottom: 4%;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 10px solid #f0c7b3;
-    }
-    .slider-image {
-      width: 100%;
-    }
-  }
-
-  // --------老師開課程圖--------
-  .right-img {
-    z-index: 3;
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 900px;
-    width: 960px;
-    overflow: hidden;
-    // object-fit: cover;
-    // overflow: hidden;
-    // background: #683;
-    clip-path: polygon(100% 0, 0 0, 100% 100%);
-    
-    
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-  
-    }
-    .link-subject {
+    //-----老師大圖------
+    .left-img {
+      z-index: 1;
       position: fixed;
-      top: 70px;
-      right: 30px;
-      z-index: 5;
-      a {
-        color: #f78177;
-        font-size: 50px;
+      bottom: 0;
+      width: 1180px;
+      height: 790px;
+      // background: rgb(207, 163, 80);
+      clip-path: polygon(0 36%, 31% 0, 100% 100%, 0% 100%);
+      filter: drop-shadow(-30px -30px 15px #362d2b);
+
+      .big_img {
+        height: 300px;
+        width: 300px;
+        background: #000;
       }
     }
-    // .btn-right-link{
-    //   margin-top:100px;
-    //   border:none;
-    //   background:#972;
-    //   border-radius:5px;
-    //   padding:5px;
-    //   &:hover{
-    //     cursor: pointer;
-    //   }
-    //   &:focus{
-    //     outline:none;
-    //   }
-    // }
-  }
-  .right-img-subject{
+    .shadow-tea2 {
+      clip-path: polygon(0 36%, 31% 0, 100% 100%, 0% 100%);
+      position: fixed;
+      bottom: 0px;
+      left: 10px;
+      width: 1180px;
+      height: 790px;
+      background: #fff;
+      filter: blur(100px);
+    }
+    .shadow-tea1 {
+      clip-path: polygon(0 36%, 31% 0, 100% 100%, 0% 100%);
+      position: fixed;
+      bottom: 10px;
+      left: 0px;
+      width: 1180px;
+      height: 790px;
+      background: #fff;
+      filter: blur(100px);
+    }
+    .teacherlist {
+      position: absolute;
+      top: 17%;
+      left: 1%;
+      font-size: 34px;
+      transform: rotate(-90deg);
+      font-family: franklin-gothic-compressed, sans-serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+    .teacherimg-small {
       display: none;
     }
 
-  .teacher-page-left {
-    width: 10%;
-    height: 100%;
-    // background: #726;
-  }
+    //----切換照片的按鈕----
+    .slider-btn-box {
+      left: 20%;
+      width: 30%;
+      margin-left: 13%;
+      position: absolute;
+      bottom: 7%;
+      z-index: 2;
 
-  .teacher-page-right {
-    width: 10%;
-    height: 100%;
-  }
+      button {
+        padding-left: 2%;
+        font-size: 18px;
+      }
 
-  // 老師資料區塊
-  .teacher-page-center {
-    width: 80%;
-    z-index: 4;
-    // height: 1020px;
-    // background: #882;
-    height: 93.5vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+      .btn-slide {
+        background: transparent;
+        border: none;
 
-    .teacher-name {
-      // height: 50%;
-      padding-top: 9%;
-      // background: #922;
-      h1 {
-        font-family: niagara, serif;
-        font-weight: 400;
-        font-style: normal;
-        font-size: 180px;
+        &:focus {
+          outline: none;
+        }
+
+        &:hover {
+          color: #c57647;
+        }
+
+        &:active {
+          color: #c57647;
+        }
       }
     }
 
-    // ----老師介紹introduce----
-    .teacher-intro {
-      height: 30%;
-      text-align: right;
-      //往左移
-      padding-right: 15%;
-      padding-bottom: 3%;
-      padding-top: 6%;
+    //----切換照片的按鈕----
+
+    // ----老師小圖----
+    .silder-circle {
+      z-index: 2;
+
+      .slider-box {
+        width: 350px;
+        height: 350px;
+        position: absolute;
+        left: 39%;
+        bottom: 4%;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 10px solid #f0c7b3;
+      }
+      .slider-image {
+        width: 100%;
+      }
+    }
+
+    // --------老師開課程圖--------
+    .right-img {
+      z-index: 3;
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 900px;
+      width: 960px;
+      overflow: hidden;
+      // object-fit: cover;
+      // overflow: hidden;
+      // background: #683;
+      clip-path: polygon(100% 0, 0 0, 100% 100%);
+      filter: drop-shadow(30px 0px 15px #362d2b);
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .link-subject {
+        position: fixed;
+        top: 70px;
+        right: 30px;
+        z-index: 5;
+        a {
+          color: #f78177;
+          font-size: 50px;
+        }
+      }
+    }
+    .shadow-sub {
+      clip-path: polygon(100% 0, 0 0, 100% 100%);
+      position: fixed;
+      top: 10px;
+      right: 0px;
+      height: 900px;
+      width: 960px;
+      background: #fff;
+      filter: blur(100px);
+    }
+    // 遮色片
+    .cover {
+      width: 450px;
+      height: 450px;
+      background: #f78177;
+      opacity: 66%;
+      position: absolute;
+      right: -25%;
+      bottom: 6.4%;
+      transform: rotate(43deg);
+      z-index: 6;
+    }
+    .wordBox {
+      width: 50vw;
+      height: 50vh;
+      pointer-events: none;
+      transform: rotate(-45deg);
+      position: absolute;
+      top: 1%;
+      left: 56.75%;
+      z-index: 7;
+      .wordBoxUp {
+        .wordHalfUp {
+          color: #f78177;
+        }
+      }
+      .wordBoxDown {
+        .wordHalfDown {
+          color: #f0f1f7;
+        }
+      }
+    }
+    .right-img-subject {
+      display: none;
+    }
+
+    .teacher-page-left {
+      width: 10%;
+      height: 100%;
+      // background: #726;
+    }
+
+    .teacher-page-right {
+      width: 10%;
+      height: 100%;
+    }
+
+    // 老師資料區塊
+    .teacher-page-center {
+      width: 80.5%;
+      z-index: 4;
+      // height: 1020px;
+      // background: #882;
+      height: 80vh;
       display: flex;
-      justify-content: flex-end;
+      flex-direction: column;
+      justify-content: center;
 
-      .teacher-intro-box {
-        // background: rgb(180, 19, 113);
-        width: 30%;
-        text-align: left;
-
-        h3 {
-          font-family: franklin-gothic-compressed, sans-serif;
+      .teacher-name {
+        // height: 50%;
+        padding-top: 9%;
+        // background: #922;
+        .baker {
+          font-size: 35px;
+          margin: 0;
+          margin-bottom: -4%;
+        }
+        h1 {
+          font-family: niagara, serif;
           font-weight: 400;
+          font-style: normal;
+          font-size: 250px;
+          color: #362d2b;
+          text-shadow: 0 0 10px #888;
+        }
+      }
+
+      // ----老師介紹introduce----
+      .teacher-intro {
+        height: 30%;
+        text-align: right;
+        //往左移
+        padding-right: 15%;
+        padding-bottom: 3%;
+        padding-top: 3%;
+        display: flex;
+        justify-content: flex-end;
+
+        .teacher-intro-box {
+          // background: rgb(180, 19, 113);
+          width: 30%;
+          text-align: left;
+
+          h3 {
+            font-family: franklin-gothic-compressed, sans-serif;
+            font-weight: 700;
+            font-style: medium;
+            font-size: 25px;
+            color: #f0f1f7;
+            text-shadow: 0 0 5px #362d2b;
+          }
+
+          p {
+            font-family: franklin-gothic-compressed, sans-serif;
+            font-weight: 700;
+            font-style: medium ltalic;
+            color: #f0f1f7;
+            text-shadow: 0 0 5px #362d2b;
+          }
+        }
+      }
+
+      // ----老師專長expertise----
+      .teacher-expe {
+        height: 30%;
+        text-align: right;
+        // padding-right: 1%;
+
+        .teacher-expe-box {
+          // background: rgb(241, 135, 28);
+          width: 90%;
+          padding-top: 1%;
+        }
+
+        h2 {
+          font-family: franklin-gothic-compressed, sans-serif;
+          font-weight: 700;
           font-style: medium;
-          font-size: 25px;
+          font-size: 47px;
+          padding-right: 10%;
+          color: #f0f1f7;
+          text-shadow: 0 0 5px #362d2b;
         }
 
         p {
           font-family: franklin-gothic-compressed, sans-serif;
-          font-weight: 400;
+          font-weight: 700;
           font-style: medium ltalic;
+          font-size: 22px;
+          color: #f0f1f7;
+          text-shadow: 0 0 5px #362d2b;
         }
-      }
-    }
-
-    // ----老師專長expertise----
-    .teacher-expe {
-      height: 30%;
-      text-align: right;
-      // padding-right: 1%;
-
-      .teacher-expe-box {
-        // background: rgb(241, 135, 28);
-        width: 90%;
-        padding-top: 3%;
-      }
-
-      h2 {
-        font-family: franklin-gothic-compressed, sans-serif;
-        font-weight: 500;
-        font-style: medium;
-        font-size: 47px;
-        padding-right: 10%;
-      }
-
-      p {
-        font-family: franklin-gothic-compressed, sans-serif;
-        font-weight: 600;
-        font-style: medium ltalic;
-        font-size: 22px;
-        // text-align: right;
       }
     }
   }
@@ -242,6 +335,15 @@ body {
 @media (max-width: 500px) {
   .teacher-list-page {
     .left-img {
+      display: none;
+    }
+    .shadow-tea1 {
+      display: none;
+    }
+    .shadow-tea2 {
+      display: none;
+    }
+    .teacherlist{
       display: none;
     }
     .silder-circle {
@@ -255,26 +357,25 @@ body {
     }
     .right-img {
       display: none;
-  
     }
-    .right-img-subject{
+    .right-img-subject {
       display: block;
       width: 100%;
       height: 250px;
       overflow: hidden;
       object-fit: cover;
       position: absolute;
-      bottom:-12%;
-      .link-subject{
+      bottom: -12%;
+      .link-subject {
         position: absolute;
         top: 7%;
         left: 89%;
-        a{
+        a {
           color: #c57647;
           font-size: 30px;
         }
       }
-      img{
+      img {
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -290,9 +391,9 @@ body {
       height: 100%;
       width: 100%;
       .teacher-name {
-        padding-top: 3%;
+        // padding-top: 3%;
         h1 {
-          font-size: 100px;
+          font-size: 150px;
         }
       }
       .teacher-intro {
@@ -305,7 +406,7 @@ body {
       .teacher-expe {
         display: none;
       }
-      .slider-btn-box{
+      .slider-btn-box {
         top: 51%;
       }
     }
