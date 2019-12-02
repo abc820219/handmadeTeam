@@ -65,6 +65,7 @@ const NavBar = ({ checkLogIn, login, ...props }) => {
             className={showMenuBtn ? "move  navbarBtn" : "navbarBtn"}
             // onMouseLeave={MenuListLeave}
           >
+            <img className="showMenuBackgroundImage" src="/image/sideBarImage/info.png"></img>
             <li className="w-100">
               
               <Link
@@ -142,7 +143,13 @@ const NavBar = ({ checkLogIn, login, ...props }) => {
           />
         )}
       </nav>
+
+      {/* ---------rwd min--------- */}
+
+      
+
       {/* ------------------ */}
+
       {showLightBox ? (
         <MemberBox
           LoginBox={login}

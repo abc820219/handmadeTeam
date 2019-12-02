@@ -102,7 +102,7 @@ function MemberLogin(props, { checkLogIn }) {
         alert.success(member_data.message);
         setTimeout(() => {
           window.location = `http://localhost:3000${props.location.pathname}`;
-        });
+        },1500);
       })
       .catch(async err => {
         console.log(err);

@@ -57,7 +57,8 @@ function MemberEmail(props) {
         return res.json();
       })
       .then(info => {
-        alert.success(info.message);
+        info.message == "請至信箱確認密碼" && alert.success(info.message);
+        info.message == "請輸入正確的資訊" && alert.error(info.message);
       });
     console.log(account.length);
     setaccount("");
@@ -69,7 +70,9 @@ function MemberEmail(props) {
   return (
     <>
       <div className="login-wrap d-flex flex-column align-items-center">
-        <div className="mt-4"><img src="/image/logo/logo-03.png" alt="" width="180px"/></div>
+        <div className="mt-4">
+          <img src="/image/logo/logo-03.png" alt="" width="180px" />
+        </div>
         <p className="mt-4 mb-3" style={{ color: "white" }}>
           請填寫帳號與信箱
         </p>

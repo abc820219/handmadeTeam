@@ -74,7 +74,7 @@ function MemberRegister(props) {
     event.preventDefault();
     console.log();
     if (account.length <= 3 || password <= 3 || !emailRegex.test(email)) {
-      alert.success("請輸入正確資訊");
+      alert.error("請輸入正確資訊");
       return;
     }
     console.log(account.length);
