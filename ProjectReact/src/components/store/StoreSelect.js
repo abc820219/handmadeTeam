@@ -41,13 +41,15 @@ function StoreSelect(props) {
   newArray = options.filter(rows => {
     return optionsControl.some(rows2 => rows.value == rows2);
   });
-  newArray.unshift({ value: "0", label: "全島" });
+  newArray.unshift({  value: 20, label: "全島" });
 
   return (
     <Select
       components={{ Option: CustomOption }}
       options={newArray}
-      onChange={e =>  props.storeData(e.value)}
+      onChange={e =>{ 
+        console.log(e.value)
+        props.storeData(e.value)}}
     />
   );
 }

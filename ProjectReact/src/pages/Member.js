@@ -18,7 +18,7 @@ const Member = ({ login }) => {
   }
   return (
     <>
-      {size.width < 1200 ? (
+      {size.width < 1200 ? (  
         <GiHamburgerMenu
           style={{
             position: "fixed",

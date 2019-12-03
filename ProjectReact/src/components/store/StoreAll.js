@@ -11,7 +11,6 @@ import { MdPeopleOutline } from "react-icons/md";
 import { MdChildCare } from "react-icons/md";
 import { MdGpsFixed } from "react-icons/md";
 
-
 // Components
 
 import StoreMap from "./StoreMap";
@@ -19,7 +18,7 @@ import StoreMasonryCards from "./StoreMasonryCards";
 import StoreSelect from "./StoreSelect";
 import { element } from "prop-types";
 
-let areaStoreMapValueState = 0
+let areaStoreMapValueState = 0;
 
 const StoreAll = () => {
   const [storeDataLoad, setStoreDataLoad] = useState([]);
@@ -30,7 +29,7 @@ const StoreAll = () => {
   const [accompanyPartner, setAccompanyPartner] = useState(0);
   const [location_sid, setLocationSid] = useState(0);
   //const [areaStoreMapValueState, setAreaStoreMapValueState] = useState(0);
- // let areaStoreMapValue;
+  // let areaStoreMapValue;
 
   // const getAreaClick = (areaStoreMapValue) => {
   // console.log(areaStoreMapValue);
@@ -65,10 +64,9 @@ const StoreAll = () => {
   }, [accompanyPartner, accompanyChild]);
 
   useEffect(() => {
-    setLocationSid(location_sid); 
+    setLocationSid(location_sid);
     // setAreaNowCatch(areaNowCatch);
   }, [location_sid]);
-
 
   const allStoreData = async () => {
     const storeAllDataFirst = await fetch(
@@ -79,16 +77,16 @@ const StoreAll = () => {
   };
 
   const storeData = async areaStoreMapValue => {
+    console.log("areaStoreMapValue", areaStoreMapValue);
+    console.log("areaStoreMapValueState", areaStoreMapValueState);
 
-    console.log('areaStoreMapValue',areaStoreMapValue);
-    console.log('areaStoreMapValueState',areaStoreMapValueState);
+    if (areaStoreMapValue === areaStoreMapValueState) return;
+    if (!areaStoreMapValue) return;
 
-    if(areaStoreMapValue === areaStoreMapValueState) return
-    if(!areaStoreMapValue) return
+    areaStoreMapValueState =
+      areaStoreMapValue == 20 ? (areaStoreMapValue = 0) : areaStoreMapValue;
 
-    areaStoreMapValueState = areaStoreMapValue
-
-    console.log('fetch',areaStoreMapValue);
+    console.log("fetch", areaStoreMapValue);
 
     let url = "http://localhost:5000/handmade/store";
     if (areaStoreMapValue) {
@@ -101,9 +99,6 @@ const StoreAll = () => {
       let storeDataJson = await storeDataFirst.json();
       setStoreDataLoad(storeDataJson);
     }
-     
-     
-
   };
 
   // const storeAreaHoverNow = async locate_sid => {
@@ -111,7 +106,7 @@ const StoreAll = () => {
   //   // let storeDataJson = await storeDataFirst.json();
   //   // // console.log(storeDataJson);
   //   // setStoreDataLoad(storeDataJson);
-  //   if(locate_sid === location_sid) return 
+  //   if(locate_sid === location_sid) return
 
   //   const areaName = JSON.stringify({
   //     locate_sid: locate_sid
@@ -264,12 +259,33 @@ const StoreAll = () => {
         <div className="storeList">
           <div className="storeFindStoreRWDForGoogle">
             <a className="storeFindStoreRWDForIconA" href="/handmade/findstore">
-              <MdGpsFixed /> 
+              <MdGpsFixed />
               <p className="storeFindStoreRWDForIconText"> 找附近</p>
             </a>
           </div>
           <div className="storeListTop">
-            <p className="storeListTopNowCountry">目前選取縣市：全島</p>
+            <p className="storeListTopNowCountry">
+              目前選取縣市：
+              {location_sid == 0 && "全島"}
+              {location_sid == 1 && "基隆市"}
+              {location_sid == 2 && "台北市"}
+              {location_sid == 3 && "新北市"}
+              {location_sid == 4 && "桃園市"}
+              {location_sid == 5 && "新竹市"}
+              {location_sid == 6 && "新竹縣"}
+              {location_sid == 7 && "宜蘭縣"}
+              {location_sid == 8 && "苗栗縣"}
+              {location_sid == 9 && "台中市"}
+              {location_sid == 10 && "彰化縣"}
+              {location_sid == 11 && "南投縣"}
+              {location_sid == 12 && "花蓮縣"}
+              {location_sid == 13 && "雲林縣"}
+              {location_sid == 15 && "嘉義縣"}
+              {location_sid == 16 && "台南市"}
+              {location_sid == 17 && "高雄市"}
+              {location_sid == 18 && "台東縣"}
+              {location_sid == 19 && "屏東縣"}
+            </p>
           </div>
           <StoreMasonryCards
             className="storeListMasonryCardsGroup"
