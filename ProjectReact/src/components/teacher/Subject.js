@@ -117,7 +117,7 @@ class Subject extends Component {
   };
 
   render() {
-    const shareUrl = "http://github.com";
+    // const shareUrl = "http://github.com";
     const title = "Handmade";
     // console.log(this.props.match.params.subject_img)
     console.log("this props:", this.props.subject_sid);
@@ -207,14 +207,14 @@ class Subject extends Component {
                 </div>
               </div>
               {/* 分享按鈕 */}
-              {/* <div className="shareFacebook">
+              <div className="shareFacebook">
               <FacebookShareButton
                 url="http://127.0.0.1/handmade/teacher/"
                 className="Demo__some-network__share-button"
               >
                 <FacebookIcon size={32} round />
               </FacebookShareButton>
-            </div> */}
+            </div>
               <div className="shareLine">
                 <LineShareButton
                   url="http://localhost:3000/handmade/teacher/"

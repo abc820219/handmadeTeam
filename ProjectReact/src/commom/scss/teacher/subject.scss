@@ -243,17 +243,24 @@ $maincolor: #f78177;
           }
         }
       }
-      // .shareFacebook {
-      //   position: absolute;
-      //   top: 60%;
-      //   left: 60%;
-      // }
+      .shareFacebook {
+        position: absolute;
+        top: 31%;
+        left: 82.5%;
+        button{
+          outline: none;
+        }
+      }
+     
       .shareLine {
         position: absolute;
-        top: 30%;
+        top: 31%;
         left: 85%;
+        button{
+          outline: none;
+        }
         outline: none;
-        button:focus {
+        &:focus {
           outline: none;
         }
       }
@@ -367,12 +374,12 @@ $maincolor: #f78177;
   }
 }
 
-// =========RWD (max-width: 400px)============
+// =========RWD (max-width: 500px)============
 @media (max-width: 500px) {
   .background_first {
     background: linear-gradient(135deg, #f0c7b3, #f4dcb9);
     .subject-page {
-      height: 100vh;
+      height: 100%;
       .subject-page-right {
         width: 5%;
         display: none;
@@ -383,8 +390,7 @@ $maincolor: #f78177;
         overflow: hidden;
         position: absolute;
         left: 0px;
-        top: 26%;
-        // background: #362d2b;
+        top: 24%;
         display: block;
         img {
           width: 100%;
@@ -399,11 +405,18 @@ $maincolor: #f78177;
       }
       // 報名表
       .subject-page-left {
-        // width: 5%;
         width: 100%;
         position: fixed;
         left: 0px;
-        z-index: 4;
+        z-index: 5;
+
+        .booking-sidebar {
+          height: 100%;
+          width: 100% !important;
+          position: fixed;
+          left: 0px;
+          z-index: 10;
+        }
       }
       .shadow-sub1 {
         display: none;
@@ -416,7 +429,7 @@ $maincolor: #f78177;
         width: 100%;
         .teacher-link {
           width: 50%;
-          padding-top: 4%;
+          padding-top: 1%;
           margin-top: 70px;
           font-size: 25px;
         }
@@ -435,7 +448,7 @@ $maincolor: #f78177;
         .subject-info {
           margin: 0;
           width: 100%;
-          margin-top: 50%;
+          margin-top: 45%;
           .info-box {
             height: 90px;
           }
@@ -447,7 +460,7 @@ $maincolor: #f78177;
           margin-top: 5%;
           .subject-detail-box {
             .subject-price {
-              margin-top: -24%;
+              margin-top: -21%;
               p {
                 // padding-left: 35%;
               }
@@ -455,8 +468,8 @@ $maincolor: #f78177;
           }
         }
         .book-btn-box {
-          margin-top: -7%;
-          margin-left: 46%;
+          margin-top: -9%;
+          margin-left: 33%;
           .book-btn {
             width: 180px;
             height: 50px;

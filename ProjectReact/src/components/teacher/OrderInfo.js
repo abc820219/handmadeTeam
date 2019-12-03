@@ -10,7 +10,7 @@ const AlerTeacher = props => {
     alert.success("報名成功");
   }
   if (props.step == 2) {
-    alert.error("資訊錯誤");
+    alert.error("請填寫完整資料");
   }
   return <></>;
 };
@@ -24,7 +24,7 @@ class OrderInfo extends Component {
       people: "1",
       // 最大可報名人數
       maxPeople: "",
-      step: 0,
+      step: false,
       usersid: ""
     };
   }
@@ -194,21 +194,19 @@ class OrderInfo extends Component {
           console.log(data);
           console.log("成功");
           this.setState({ step: 1 }, () => {
-            this.setState({ step: 0 });
+            this.setState({ step: false });
           });
         })
         .catch(error => {});
     } else {
       this.setState({ step: 2 }, () => {
         console.log("失敗");
-        this.setState({ step: 0 });
+        this.setState({ step: false });
       });
       console.log("206" + this.state.step);
     }
   };
-  function() {
-    return;
-  }
+
   render() {
     // console.log("props:", this.props.subject_sid);
     // console.log(this.state.username);
@@ -235,10 +233,6 @@ class OrderInfo extends Component {
               <div className="order-subject-date">
                 {this.state.subject_date}
               </div>
-              {/* <div className="order-subject-address">
-                {this.state.subject_address}
-              </div> */}
-              {/* <div className="member-name">會員xxx</div> */}
               <div className="user-box">
                 <label>報名人 :</label>
                 <input
