@@ -28,9 +28,8 @@ const NavBarUnSign = ({
           </p>
           <div className="shoppingCartWrapper">
             <TiShoppingCart
-              style={{ fontSize: "30px", color: "white" }}
-              onMouseEnter={() => openCart(true)}
-              onMouseLeave={() => openCart(false)}
+              style={{ fontSize: "30px", color: "white", cursor: "pointer" }}
+              onClick={() => openCart(!showCart)}
               name="cart"
             />
             <div className="itemTotal">{cartLength}</div>

@@ -168,6 +168,7 @@ const NavBar = ({ checkLogIn, login, ...props }) => {
             showCart={showCart}
             login={login}
             setShowLightBox={setShowLightBox}
+            
           />
         ) : (
           <NavBarSign
