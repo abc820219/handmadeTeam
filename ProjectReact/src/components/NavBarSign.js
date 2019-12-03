@@ -6,10 +6,6 @@ import SmallCart from "./cart/SmallCart";
 import LogOut from "./member/MemberLogout";
 import cartStore from "./cart/CartStore";
 const NavBarSign = ({ openCart, showCart, login, ...props }) => {
-  const logoPattern = {
-    fontSize: "30px",
-    color: "white"
-  };
   const { ingreCart, courseCart } = useContext(cartStore);
   const [cartLength, setCartLength] = useState(0);
   useEffect(() => {
@@ -33,7 +29,6 @@ const NavBarSign = ({ openCart, showCart, login, ...props }) => {
                   ? "http://g.udn.com.tw/upfiles/B_AN/andy2946/PSN_PHOTO/813/f_23140813_1.jpg"
                   : `http://localhost:5000/images/member/member${props.memberImgName}`
               }
-              
             ></img>
           </div>
           {memberList ? (
@@ -64,9 +59,8 @@ const NavBarSign = ({ openCart, showCart, login, ...props }) => {
 
         <div className="shoppingCartWrapper">
           <TiShoppingCart
-            style={logoPattern}
-            onClick={() => openCart(true)}
-            onMouseLeave={() => openCart(false)}
+            style={{ fontSize: "30px", color: "white", cursor: "pointer" }}
+            onClick={() => openCart(!showCart)}
             name="cart"
           />
           <div className="itemTotal">{cartLength}</div>

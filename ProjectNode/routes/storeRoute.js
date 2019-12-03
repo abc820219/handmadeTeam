@@ -57,7 +57,7 @@ router.post("/", (req, res) => {
   console.log(sql);
   db.queryAsync(sql).then(results => {
     res.json(results);
-    console.log(results)
+    console.log(results);
   });
 });
 
