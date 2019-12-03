@@ -75,7 +75,7 @@ const CartRight = ({ courseCards,
   }, []);
   return (
     <>
-      <div className="col-md-8  col-12 p-0 checkRightBox">
+      <div className="col-md-7  col-12 p-0 checkRightBox">
         <div className="cartRightTitle d-flex align-items-center">
           <h1>shopping-Cart</h1>
         </div>

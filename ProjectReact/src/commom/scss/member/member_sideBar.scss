@@ -7,6 +7,9 @@
   min-height: 100vh;
   background-color: #362d2b;
   box-shadow: 1px 1px 20px #000;
+  @media (max-width: 768px) {
+    box-shadow: 0 0 0;
+  }
   @media (max-width: 1200px) {
     &.member-side-bar-hide {
       position: fixed;

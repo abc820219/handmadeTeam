@@ -10,6 +10,20 @@
       padding: 0 20px;
       li {
         ul {
+          @media (max-width: 768px) {
+            &.main-content {
+              flex-direction: column;
+              justify-content: center;
+              // margin: 0 auto;
+              li {
+                margin: 20px 0;
+                div {
+                  margin: 10px 0;
+                }
+              }
+            }
+          }
+
           img {
             margin: auto;
             overflow: hidden;
@@ -18,10 +32,22 @@
             border-radius: 50%;
             object-fit: cover;
             object-position: top;
+            @media (max-width: 768px) {
+              margin: 0;
+            }
           }
           .Ingre-info {
             margin-left: 100px;
+            @media (max-width: 1200px) {
+              margin: 0 auto;
+            }
           }
+        }
+      }
+      .total {
+        @media (max-width: 768px) {
+          text-align: left;
+          margin: right;
         }
       }
     }
