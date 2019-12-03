@@ -20,7 +20,9 @@ $errorColor: #b8817d;
       transform: translate(0, -50%);
       writing-mode: vertical-lr;
       text-orientation: mixed;
-      color: #e9756e;
+      font-weight: 600;
+      font-family: basic-sans, sans-serif, "微軟正黑體";
+      color: #fff;
       @media (max-width: 768px) {
         font-size: 75px;
         line-height: 75px;
@@ -28,7 +30,9 @@ $errorColor: #b8817d;
         left: 50%;
         transform: translate(-50%, 0);
         writing-mode: unset;
+        font-weight: 600;
         text-orientation: none;
+        font-family: basic-sans, sans-serif, "微軟正黑體";
       }
     }
   }
@@ -160,6 +164,7 @@ $errorColor: #b8817d;
     }
   }
   .topText {
+    font-family: basic-sans, sans-serif, "微軟正黑體";
     font-size: 150px;
     line-height: 150px;
     position: absolute;
@@ -168,14 +173,19 @@ $errorColor: #b8817d;
     transform: translate(0, -50%);
     writing-mode: vertical-lr;
     text-orientation: mixed;
+    font-weight: 600;
+    color: #e9756e;
     @media (max-width: 768px) {
+      font-weight: 600;
+      font-family: basic-sans, sans-serif, "微軟正黑體";
       text-align: center;
       font-size: 75px;
       line-height: 75px;
       bottom: 0;
       top: unset;
       left: 50%;
-      transform: translate(-50%, 75%);
+      right: 0;
+      transform: translate(-50.75%, 75%);
       writing-mode: unset;
       text-orientation: none;
       width: 300px;
