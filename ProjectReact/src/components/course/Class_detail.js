@@ -11,7 +11,7 @@ import {
   addCourse,
   cancelCourse,
 } from "../../components/cart/CartAction";
-import { IoIosClose, IoIosRewind } from "react-icons/io";
+import { IoIosClose, IoIosRewind,IoMdArrowDropleft } from "react-icons/io";
 import $ from "jquery";
 import { useAlert } from "react-alert";
 
@@ -801,7 +801,7 @@ function Class_detail(props) {
         <figure className="course_detail_img_wrap">
           <img className="course_detail_img" src={`/image/course_img/detail/${order_data.course_detail}`} />
         </figure>
-        <IoIosRewind className="detail_img_note_wrap_move_open" />
+        <IoMdArrowDropleft className="detail_img_note_wrap_move_open" />
         <div className="course_detail_note_wrap ">
           <div className="detail_note_title">
             {course_note_title && course_note_title.map((str, index) => <button className={note_btn_now == str ? "detail_note_title_txt detail_title_click" : "detail_note_title_txt "} key={index}>{str}</button>)}
