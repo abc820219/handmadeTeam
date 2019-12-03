@@ -91,9 +91,9 @@ function Map({
       )}
 
       <MarkerClusterer
-        averageCenter
+        // averageCenter
         calculator={markerClustererCalculator}
-        enableRetinaIcons
+        // enableRetinaIcons
         gridSize={30}
       >
         {storeData.map(store => (
@@ -111,6 +111,13 @@ function Map({
               setDefaultZoomMap(15);
               setSelectedPark(store);
             }}
+            // onMouseEnter={() => {
+            //   console.log("a");
+            //   setDefaultLat(store.store_latitude);
+            //   setDefaultLng(store.store_longitude);
+            //   setDefaultZoomMap(15);
+            //   setSelectedPark(store);
+            // }}
             icon={{
               url: `/image/store/circleLogo/${store.store_logo}`,
               scaledSize: new window.google.maps.Size(30, 30)
@@ -215,7 +222,7 @@ function FindStore(props) {
           setDefaultLat(25.040741099999998);
           setDefaultLng(121.543399);
           setDefaultZoomMap(15);
-          setCrdUserPosition({ lat: 25.033934, lng: 121.543398 });
+          setCrdUserPosition({ lat: 25.0337107, lng: 121.5435752 });
           setLot(121.543399);
           setLat(25.040741099999998);
           setNowPositionHandler(true);
@@ -240,7 +247,7 @@ function FindStore(props) {
           setDefaultLat(23.6);
           setDefaultLng(121);
           setDefaultZoomMap(8);
-          setCrdUserPosition({ lat: 25.033934, lng: 121.543398 });
+          setCrdUserPosition({ lat: 25.0337107, lng: 121.5435752 });
           setLot(0);
           setLat(0);
           setNowPositionHandler(false);

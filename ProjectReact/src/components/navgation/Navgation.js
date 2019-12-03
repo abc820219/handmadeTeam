@@ -385,7 +385,7 @@ class Navgational extends Component {
               <div class="button">FI ND!</div>
               <div class="right-frills frills margin-top-frills"></div>
             </div>
-            <Link to="/handmade">
+            <Link to="/handmade" style={{textDecoration:"none"}}>
               <div
                 className={
                   this.state.showclass

@@ -21,6 +21,7 @@ $errorColor: #b8817d;
       writing-mode: vertical-lr;
       text-orientation: mixed;
       color: #e9756e;
+      font-family: "微軟正黑體";
       @media (max-width: 768px) {
         font-size: 75px;
         line-height: 75px;
@@ -29,6 +30,7 @@ $errorColor: #b8817d;
         transform: translate(-50%, 0);
         writing-mode: unset;
         text-orientation: none;
+        font-family: "微軟正黑體";
       }
     }
   }
@@ -160,6 +162,7 @@ $errorColor: #b8817d;
     }
   }
   .topText {
+    font-family: "微軟正黑體";
     font-size: 150px;
     line-height: 150px;
     position: absolute;
@@ -169,6 +172,7 @@ $errorColor: #b8817d;
     writing-mode: vertical-lr;
     text-orientation: mixed;
     @media (max-width: 768px) {
+      font-family: "微軟正黑體";
       text-align: center;
       font-size: 75px;
       line-height: 75px;
