@@ -10,7 +10,6 @@ const SmallCart = ({ openCart, showCart ,setShowLightBox}) => {
 
   let { courseCart, ingreCart, id } = useContext(CartStore);
 
-  console.log(id);
   const [cartBtn, setCartBtn] = useState(false);
 
   useEffect(() => {

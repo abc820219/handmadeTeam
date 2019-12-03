@@ -9,7 +9,7 @@
   transition: 0.5;
   overflow-y: scroll;
   width: 375px;
-  box-shadow: 0 0 30px #362d2b;
+  // box-shadow: 0 0 30px #362d2b;
   height: 937px;
   .cart-title {
     font-size: 24px;
@@ -120,6 +120,6 @@ color: #fff;
 
 @media (min-width:500px) {
   .memberCartList {
-    margin-bottom: 300px;
+    margin-bottom: 100px;
   }
 }

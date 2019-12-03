@@ -20,7 +20,7 @@ const CartCourse = ({ courseName, courseOrderApplicants, courseOrderChoose, cour
     <>
       <div className="d-flex justify-content-between align-items-center px-4 course_sm_cart mb-0">
         <div className='cancel_sm_cart'>
-          <MdCancel style={{ cursor: 'pointer',color:'white'}} onClick={() => courseSelect(courseSid,courseOrderChoose)} />
+          <MdCancel style={{ cursor: 'pointer'}} onClick={() => courseSelect(courseSid,courseOrderChoose)} />
         </div>
         <li className="d-flex flex-column align-items-between py-3 ml-3" style={{lineHeight:'30px'}}>
           <div className="product-title" style={{fontSize:'20px'}}>{courseOrderChoose ? courseOrderChoose.split(" ")[0] : ''}</div>
