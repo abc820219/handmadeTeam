@@ -39,7 +39,7 @@ function MemberEmail(props) {
     event.preventDefault();
     console.log();
     if (account.length <= 3 || !emailRegex.test(email)) {
-      alert.success("請輸入正確資訊");
+      alert.error("請輸入正確資訊");
       return;
     }
     fetch("http://localhost:5000/handmade/member/mail", {

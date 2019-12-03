@@ -19,6 +19,7 @@ function Class_detail(props) {
   const alert = useAlert();
   let productDetail;
   console.log(props)
+  
   const { courseCart, id, cartCourseDispatch } = useContext(CartStore);
   console.log(courseCart);
   const course_sid = props.match.params.cSid;

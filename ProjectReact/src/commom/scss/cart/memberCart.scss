@@ -9,6 +9,7 @@
   transition: 0.5;
   overflow-y: scroll;
   width: 375px;
+  // box-shadow: 0 0 30px #362d2b;
   height: 937px;
   .cart-title {
     font-size: 24px;
@@ -84,10 +85,32 @@
   position: fixed;
   bottom: 0;
   width: 375px;
-  height: 150px;
-  background-color: #E9756E;
+  height: 100px;
+  background-color: #000000;
   font-family: basic-sans, sans-serif, "微軟正黑體";
+
 }
+
+.cartFooter-left{
+  position: absolute;
+  left: 0;
+  bottom: 28px;
+  font-size: 30px;
+color: #fff;
+
+}
+.cartFooter-right{
+  position: absolute;
+  right: 0;
+  bottom: 18px;
+  width: 150px;
+  height: 60px;
+  background: #c8c523;
+  
+}
+
+
+
 .hr-bottom {
   background-color: #fff;
   width: 85%;
@@ -97,6 +120,6 @@
 
 @media (min-width:500px) {
   .memberCartList {
-    margin-bottom: 300px;
+    margin-bottom: 100px;
   }
 }

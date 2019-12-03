@@ -30,9 +30,7 @@ import {
 import CartStore from "./components/cart/CartStore";
 import {
   cartCourseReducer,
-  cartIngreReducer,
-  cartCheckoutReducer,
-  courseCartCfReducer
+  cartIngreReducer
 } from "./components/cart/CartReducer";
 import { transitions, positions, Provider as AlertProvider } from "react-alert";
 
@@ -54,7 +52,7 @@ function App() {
   };
   const [login, setLogin] = useState(false);
   const loginLocal = localStorage.getItem("member_id") || 0;
-  const { id, courseCartCf, courseCart, ingreCart, afterCoupon } = useContext(
+  const { id, courseCart, ingreCart} = useContext(
     CartStore
   );
   const [cartCourseState, cartCourseDispatch] = useReducer(

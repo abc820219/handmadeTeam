@@ -126,7 +126,7 @@
 
 .creditCard {
   width: 90%;
-  margin: 0 auto;
+  margin: 30px auto;
   height: 250px;
   background-color: #362d2b;
   border-radius: 36px;
@@ -152,6 +152,8 @@
 }
 
 .checkLeftBox {
+  overflow: scroll;
+  max-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -173,6 +175,7 @@
   }
 }
 .checkRightBox {
+  background-color: #eec1b1;
   height: 100vh;
   overflow: scroll;
   .cartRightTitle {
@@ -200,7 +203,7 @@
     margin: 0 auto;
     .checkOrder {
       position: relative;
-      figure{
+      figure {
         position: absolute;
         top: 30px;
         right: 60px;
@@ -238,8 +241,8 @@
       }
       .cartOrderCancel {
         position: absolute;
-        top: 30px;
-        right: 30px;
+        top: 15px;
+        right: 15px;
         flex-shrink: 0;
         font-size: 30px;
       }
@@ -273,20 +276,72 @@
   }
   .cartListTotal {
     letter-spacing: 2px;
+    position: absolute;
+    top: 95px;
+    left: 53.5%;
   }
   .cartButtonAdd {
     margin-top: 18px;
   }
+  .pic_cart_position {
+    position: absolute;
+    right: 40px;
+    top: 35px;
+  }
+  .position_card_middle {
+    position: absolute;
+    left: 55%;
+    top: 35px;
+  }
+  @media (max-width: 1450px) {
+    .position_card_middle {
+      position: absolute;
+      left: 45%;
+      top: 35px;
+    }
+    .cartListTotal {
+      letter-spacing: 2px;
+      position: absolute;
+      top: 95px;
+      left: 43.5%;
+    }
+  }
+  @media (max-width: 1320px) {
+    .position_card_middle {
+      position: absolute;
+      left: 20px;
+      bottom: -20px;
+    }
+    .cartListTotal {
+      letter-spacing: 2px;
+      position: absolute;
+      left: 210px;
+      top: 120px;
+    }
+  }
+  @media (max-width: 400px) {
+    .position_card_middle {
+      position: absolute;
+      left: 20px;
+      bottom: -20px;
+    }
+    .cartListTotal {
+      letter-spacing: 2px;
+      position: absolute;
+      left: 10px;
+      top: 125px;
+    }
+  }
 
   @media (max-width: 575px) {
     .checkListBox {
-      h4{
+      h4 {
         font-size: 16px;
       }
-      h2{
+      h2 {
         font-size: 20px;
       }
-      .flex-column{
+      .flex-column {
         width: 100%;
       }
     }
@@ -294,7 +349,7 @@
 
   @media (max-width: 575px) {
     .cartRightList {
-      li{
+      li {
         flex-direction: column;
       }
     }

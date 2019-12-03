@@ -23,8 +23,8 @@ export const CartStoreStatus = {
   id: id,
   courseCart: courseCart,
   ingreCart: ingreCart,
-  courseCartCf: courseCart,
-  ingreCartCf: ingreCart,
+  // courseCartCf: courseCart,
+  // ingreCartCf: ingreCart,
   checkoutFinish: false,
   afterCoupon:0,
   couponSelect:null

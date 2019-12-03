@@ -10,8 +10,7 @@ const SmallCart = ({ openCart, showCart ,setShowLightBox}) => {
 
   let { courseCart, ingreCart, id } = useContext(CartStore);
 
-  console.log(id);
-  const [cartBtn, setCartBtn] = useState(false)
+  const [cartBtn, setCartBtn] = useState(false);
 
   useEffect(() => {
     if (courseCart.length !== 0 || ingreCart.length !== 0) {
@@ -93,24 +92,23 @@ const SmallCart = ({ openCart, showCart ,setShowLightBox}) => {
         </div>
       </div>
       <div
-        className="cartFooter d-flex flex-column justify-content-center p-3"
+        className="cartFooter "
         onMouseEnter={() => openCart(true)}
         onMouseLeave={() => openCart(false)}
         style={{ right: showCart ? "0" : "100%" }}
       >
-        <div className='text-center'>
+        <div className='cartFooter-left'>
           <span className="cartTotal" 
-          style={{fontSize:'30px'}}
           >$ {CartTotal(courseCart, ingreCart)}
           </span>
         </div>
-        <button className="cartBtn" style={{fontWeight:'bold',fontSize:'20px'}}>
+        <button className="cartBtn cartFooter-right" style={{fontWeight:'bold',fontSize:'20px'}}>
         {id?
         <Link to="/handmade/member/cart" style={cartBtn ? { color: 'white', textAlign:'center' } : { color: 'white', pointerEvents: 'none' }}>
               Check-Out
           </Link>
           :
-          <p onClick={()=>{setShowLightBox(true)}} style={{lineHeight:'32px'}}>Check-Out</p>
+          <p onClick={()=>{setShowLightBox(true)}}  style={{lineHeight:'32px'}}>Check-Out</p>
           }
           </button>
       </div>

@@ -90,7 +90,7 @@ const CartCourseCard = ({
           <h2>{course_name}</h2>
         </div>
         <div className="d-flex justify-content-center flex-column mr-3">
-          <div className="d-flex align-items-center cartButtonAdd">
+          <div className="d-flex align-items-center cartButtonAdd position_card_middle">
             <button
               style={invisible_button}
               onClick={() => {
@@ -113,7 +113,7 @@ const CartCourseCard = ({
             Total Count : $ {course_price * course_order_applicants}
           </p>
         </div>
-        <figure className='ml-auto'>
+        <figure className='pic_cart_position'>
           <img
             src={"/image/course_img/360/"+course_lists}
             alt="product pic"
