@@ -59,12 +59,18 @@ const OrderDeListIngre = ({ orderDetail }) => {
   console.log(email, member, productName);
   const sendText = async () => {
     let message123 = await prompt("請輸入回報問題");
-    if(message123){
+    if (message123) {
       await setMessage(message123);
     }
   };
 
-  const reportProduct = async (member, email, productName, message, orderSid) => {
+  const reportProduct = async (
+    member,
+    email,
+    productName,
+    message,
+    orderSid
+  ) => {
     const report = JSON.stringify({
       member: member,
       email: email,
@@ -87,7 +93,7 @@ const OrderDeListIngre = ({ orderDetail }) => {
   };
   return (
     <>
-      <div className="container Ingre">
+      <div className="container Ingre py-3">
         <div className="IngreHeader">
           <div className="d-flex justify-content-between">
             <h2>食材訂單</h2>
@@ -98,7 +104,7 @@ const OrderDeListIngre = ({ orderDetail }) => {
         <div className="IngreMain">
           <ul className="d-flex flex-column">
             <li className="d-flex justify-content-between">
-              <ul className="d-flex align-content-center">
+              <ul className="d-flex align-content-center main-content">
                 <img
                   src={"/image/ingredients/" + ingredients_image}
                   alt="product"
@@ -110,7 +116,10 @@ const OrderDeListIngre = ({ orderDetail }) => {
                   >
                     食材名稱
                   </div>
-                  <span className="text-nowrap" style={{ fontSize: "16px" }}>
+                  <span
+                    className="text-nowrap w-100"
+                    style={{ fontSize: "16px" }}
+                  >
                     {ingredients_name}---{ingredients_en_name}
                   </span>
                   <div
@@ -120,17 +129,16 @@ const OrderDeListIngre = ({ orderDetail }) => {
                     訂購數量:
                   </div>
                   <span>{ingredients_order_quantity}</span>
+                  <div
+                    className="mt-2 text-nowrap"
+                    style={{ fontSize: "20px", fontWeight: "bold" }}
+                  >
+                    單價:
+                  </div>
+                  <span>${ingredients_price}</span>
                 </li>
               </ul>
             </li>
-            <div
-              className="align-self-end"
-              style={{ fontSize: "20px", fontWeight: "bold" }}
-            >
-              單價:
-              <br />
-              <span style={{ fontSize: "24px" }}>$ {ingredients_price}</span>
-            </div>
             <hr></hr>
           </ul>
           <ul className="d-flex flex-column">
@@ -139,11 +147,15 @@ const OrderDeListIngre = ({ orderDetail }) => {
                 <li className="Ingre-info">
                   <div
                     className="text-nowrap"
-                    style={{ fontSize: "20px", fontWeight: "bold" }}
+                    style={{
+                      fontSize: "20px",
+                      fontWeight: "bold",
+                      maxWidth: "600px"
+                    }}
                   >
                     食材簡介
                   </div>
-                  <span className="text-nowrap">{ingredients_detial}</span>
+                  <span className="">{ingredients_detial}</span>
                   <div
                     className="mt-2 text-nowrap"
                     style={{ fontSize: "20px", fontWeight: "bold" }}
@@ -151,22 +163,32 @@ const OrderDeListIngre = ({ orderDetail }) => {
                     食材尺寸:
                   </div>
                   <span>{ingredients_size}</span>
+                  <div
+                    className="mt-2 text-nowrap"
+                    style={{ fontSize: "16px", fontWeight: "bold" }}
+                  >
+                    <span>訂單創建時間 {order_create_time}</span>
+                  </div>
                 </li>
               </ul>
             </li>
-            <div className="align-self-end py-2">
-              <span>訂單創建時間 {order_create_time}</span>
-            </div>
+
             <hr></hr>
           </ul>
         </div>
-        <div className="IngreFooter">
+        <div className="IngreFooter px-4">
           <div className="totleBox d-flex justify-content-between">
-            <button className='p-1' style={{ borderRadius: '5px', backgroundColor: 'white' }} onClick={() => sendText()}>問題回報</button>
-            <p style={{ fontSize: "24px" }}>
+            <button
+              className="p-1"
+              style={{ borderRadius: "5px", backgroundColor: "white" }}
+              onClick={() => sendText()}
+            >
+              問題回報
+            </button>
+            <div style={{ fontSize: "24px" }}>
               總價:
               <span>$ {ingredients_price * ingredients_order_quantity}</span>
-            </p>
+            </div>
           </div>
         </div>
       </div>

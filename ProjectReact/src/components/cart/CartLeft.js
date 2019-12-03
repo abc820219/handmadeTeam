@@ -24,8 +24,8 @@ const CartLeft = ({
   const [couponUse, setCouponUse] = useState(0);
   const [bonusUse, setBonusUse] = useState(0);
   const [bonus, setBonus] = useState(0);
-  const [bonusStandard,setBonusStandard] = useState(0);
-  const [bonusDuration,setBonusDuration] = useState('');
+  const [bonusStandard, setBonusStandard] = useState(0);
+  const [bonusDuration, setBonusDuration] = useState("");
 
   const {
     cartCourseDispatch,
@@ -63,12 +63,14 @@ const CartLeft = ({
     }
   };
 
-  const getBonusStandard = async() => {
-    const bonusStandardJson = await fetch("http://localhost:5000/handmade/cart/getbonusstandard/");
+  const getBonusStandard = async () => {
+    const bonusStandardJson = await fetch(
+      "http://localhost:5000/handmade/cart/getbonusstandard/"
+    );
     const bonusStandardInit = await bonusStandardJson.json();
     setBonusStandard(bonusStandardInit.bonus_percentage);
-    setBonusDuration(bonusStandardInit.bonus_duration)
-  }
+    setBonusDuration(bonusStandardInit.bonus_duration);
+  };
 
   const getBonus = async () => {
     const bonusJson = await fetch(
@@ -76,7 +78,7 @@ const CartLeft = ({
     );
     const bonusGet = await bonusJson.json();
     setBonusUse(bonusGet);
-  }
+  };
 
   const getCoupon = async () => {
     const couponJson = await fetch(
@@ -97,12 +99,12 @@ const CartLeft = ({
       const user = localStorage.getItem("member_id");
       const courseCart = localStorage.getItem(`courseCart${user}`);
       const ingreCart = localStorage.getItem(`ingreCart${user}`);
-      let afterBonus
-      if(coupon) {
-        afterBonus = bonusUse-bonus+Math.ceil(fnCartTotal*bonusStandard);
-      }else {
-        afterBonus = bonusUse-bonus+Math.ceil(cartTotal*bonusStandard);
-      };
+      let afterBonus;
+      if (coupon) {
+        afterBonus = bonusUse - bonus + Math.ceil(fnCartTotal * bonusStandard);
+      } else {
+        afterBonus = bonusUse - bonus + Math.ceil(cartTotal * bonusStandard);
+      }
       const cart = JSON.stringify({
         courseCart: courseCart,
         ingreCart: ingreCart,
@@ -130,17 +132,15 @@ const CartLeft = ({
       localStorage.setItem(`ingreCart${user}`, "[]");
       await setIngreCards();
       await cartIngreDispatch(checkoutAction());
-      window.location = 'http://localhost:3000/handmade/member/order';
+      window.location = "http://localhost:3000/handmade/member/order";
     } catch (e) {
       console.log(e);
     }
   };
 
-  const checkBonus = (e) => {
+  const checkBonus = e => {
     setBonus(e.target.value > bonusUse ? bonus : e.target.value);
-  }
-
-
+  };
 
   useEffect(() => {
     setCartTotal(CartTotal(courseCards, ingreCards));
@@ -152,7 +152,7 @@ const CartLeft = ({
   }, [courseCards, ingreCards, bonus]);
 
   useEffect(() => {
-    Promise.all([setPage(4),getBonus(),getCoupon(),getBonusStandard()]);
+    Promise.all([setPage(4), getBonus(), getCoupon(), getBonusStandard()]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -169,7 +169,7 @@ const CartLeft = ({
 
   return (
     <>
-      <div className="col-md-4  col-12 px-3 checkLeftBox">
+      <div className="col-md-5  col-12 px-3 checkLeftBox">
         <div>
           <div className="checkPageIconBox d-flex align-items-center justify-content-around">
             <div
@@ -184,7 +184,11 @@ const CartLeft = ({
             <hr style={step ? { background: "#f78177" } : {}} />
             <div
               className="d-flex align-items-center"
-              onClick={() => {courseCards.length || ingreCards.length ?setStep(1):setStep(0)}}
+              onClick={() => {
+                courseCards.length || ingreCards.length
+                  ? setStep(1)
+                  : setStep(0);
+              }}
             >
               <div
                 className="checkPageIcon cartStep2"
@@ -221,50 +225,68 @@ const CartLeft = ({
                           >
                             {couponUse.map((coupon, index = 0) => {
                               return (
-                                <option
-                                  index={index}
-                                  value={coupon.coupon_sid}
-                                >
+                                <option index={index} value={coupon.coupon_sid}>
                                   {coupon.coupon_content}
                                 </option>
                               );
                             })}
                           </select>
-                        ):''}
+                        ) : (
+                          ""
+                        )}
                       </li>
                       {step ? (
                         <li>
                           <p>可用折扣</p>
                           <h4>{couponSelect}折</h4>
                         </li>
-                      ) : ''}
+                      ) : (
+                        ""
+                      )}
                     </>
-                  ):''}
+                  ) : (
+                    ""
+                  )}
                   <li>
                     <p>可用紅利</p>
                     <h4>$ {bonusUse}</h4>
                   </li>
                   {step ? (
-                    <li className='flex-column'>
+                    <li className="flex-column">
                       <p>使用紅利</p>
-                      <input type='number'
-                        onChange={(event) => { checkBonus(event) }}
+                      <input
+                        type="number"
+                        onChange={event => {
+                          checkBonus(event);
+                        }}
                         value={bonus}
-                        max={(bonusUse + "")}
+                        max={bonusUse + ""}
                         maxLength={(bonusUse + "").length}
                       />
                     </li>
-                  ) : ''}
+                  ) : (
+                    ""
+                  )}
                 </ul>
               </div>
               <div>
                 <div className="checkOrderTotal">
                   <p>結帳總額</p>
-                  <h4>$ {step ? (fnCartTotal ? fnCartTotal : cartTotal) : cartTotal}</h4>
+                  <h4>
+                    ${" "}
+                    {step ? (fnCartTotal ? fnCartTotal : cartTotal) : cartTotal}
+                  </h4>
                 </div>
-                <p style={{color:'white',fontWeight:'bold'}}>可獲得紅利:  {step ? (fnCartTotal ? Math.ceil(fnCartTotal*bonusStandard) : Math.ceil(cartTotal*bonusStandard)) : Math.ceil(cartTotal*bonusStandard)}</p>
-                <p style={{color:'white'}}>紅利計算率: {bonusStandard}</p>
-                <p style={{color:'white'}}>紅利截止日期: {bonusDuration}</p>
+                <p style={{ color: "white", fontWeight: "bold" }}>
+                  可獲得紅利:{" "}
+                  {step
+                    ? fnCartTotal
+                      ? Math.ceil(fnCartTotal * bonusStandard)
+                      : Math.ceil(cartTotal * bonusStandard)
+                    : Math.ceil(cartTotal * bonusStandard)}
+                </p>
+                <p style={{ color: "white" }}>紅利計算率: {bonusStandard}</p>
+                <p style={{ color: "white" }}>紅利截止日期: {bonusDuration}</p>
               </div>
             </div>
           </div>
@@ -321,13 +343,19 @@ const CartLeft = ({
             </div>
           </>
         ) : (
-            ""
-          )}
+          ""
+        )}
         {!step ? (
-          <button onClick={() => {courseCards.length || ingreCards.length ?setStep(1):setStep(0)}}>NEXT</button>
+          <button
+            onClick={() => {
+              courseCards.length || ingreCards.length ? setStep(1) : setStep(0);
+            }}
+          >
+            NEXT
+          </button>
         ) : (
-            <button onClick={() => cartSubmit()}>CHECK</button>
-          )}
+          <button onClick={() => cartSubmit()}>CHECK</button>
+        )}
       </div>
     </>
   );
