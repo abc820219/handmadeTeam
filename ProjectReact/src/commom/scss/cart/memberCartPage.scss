@@ -128,7 +128,6 @@
   width: 90%;
   margin: 30px auto;
   height: 250px;
-  background-color: #362d2b;
   border-radius: 36px;
   padding: 35px;
   color: white;
@@ -282,6 +281,9 @@
   }
   .cartButtonAdd {
     margin-top: 18px;
+    button{
+      outline: none;
+    }
   }
   .pic_cart_position {
     position: absolute;
