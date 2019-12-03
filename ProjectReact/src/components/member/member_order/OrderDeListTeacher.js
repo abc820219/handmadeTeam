@@ -57,6 +57,7 @@ const OrderDeListTeacher = ({ orderDetail }) => {
     subject_spend_time,
     subject_applicants_name,
     subject_applicants_phone,
+    subject_applicants,
     subject_feature,
     subject_price,
     order_sid,
@@ -67,6 +68,8 @@ const OrderDeListTeacher = ({ orderDetail }) => {
     teacher_big_img,
     subject_sid
   } = orderDetail;
+
+  console.log(orderDetail);
 
   let member_data;
   useEffect(() => {
@@ -149,7 +152,7 @@ const OrderDeListTeacher = ({ orderDetail }) => {
           </div>
           <div>
             <p>
-              金額:<span>$ </span>{subject_price}
+              金額:<span>$ </span>{subject_price*subject_applicants}
             </p>
           </div>
         </div>
@@ -160,7 +163,7 @@ const OrderDeListTeacher = ({ orderDetail }) => {
           </li>
           <li>{subject_address}</li>
           <li className="orderBtn">
-            <a href={'https://www.google.com/maps/search/' + subject_address} target="_blank">Google Map</a>
+            <a href={'https://www.google.com/maps/search/' + subject_address} target="_blank" style={{textDecoration:'none',color:'black'}}>Google Map</a>
           </li>
         </ul>
         <hr className="orderDeListCourseHr"></hr>
@@ -170,7 +173,7 @@ const OrderDeListTeacher = ({ orderDetail }) => {
           </li>
           <li style={{ width: '60%' }}>{subject_feature}</li>
           <li className="orderBtn">
-            <a href={`/handmade/teacher/`}>返回老師頁</a>
+            <a href={`/handmade/teacher/`}  style={{textDecoration:'none',color:'black'}}>返回老師頁</a>
           </li>
         </ul>
         <hr className="orderDeListCourseHr"></hr>
