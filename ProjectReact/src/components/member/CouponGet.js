@@ -25,7 +25,8 @@ const CouponGet = () => {
       })
       .then(rows => {
         console.log(rows);
-        alert.error(rows.message);
+        if (rows.message === "領取成功") alert.success(rows.message);
+        if (rows.message === "已領取過") alert.error(rows.message);
       });
   };
   useEffect(() => {

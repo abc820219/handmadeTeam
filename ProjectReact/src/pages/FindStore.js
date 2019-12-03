@@ -77,7 +77,7 @@ function Map({
       defaultOptions={{ styles: mapStyles }}
       zoom={defaultZoomMap}
       center={{ lat: defaultLat, lng: defaultLng }}
-      // options={{ 
+      // options={{
       //   mapTypeControl: false
       //  }}
     >
@@ -91,9 +91,9 @@ function Map({
       )}
 
       <MarkerClusterer
-        // averageCenter
+        averageCenter
         calculator={markerClustererCalculator}
-        // enableRetinaIcons
+        enableRetinaIcons
         gridSize={30}
       >
         {storeData.map(store => (
@@ -215,7 +215,7 @@ function FindStore(props) {
           setDefaultLat(25.040741099999998);
           setDefaultLng(121.543399);
           setDefaultZoomMap(15);
-          setCrdUserPosition({ lat: 25.040741099999998, lng: 121.543399 });
+          setCrdUserPosition({ lat: 25.033934, lng: 121.543398 });
           setLot(121.543399);
           setLat(25.040741099999998);
           setNowPositionHandler(true);
@@ -240,7 +240,7 @@ function FindStore(props) {
           setDefaultLat(23.6);
           setDefaultLng(121);
           setDefaultZoomMap(8);
-          setCrdUserPosition({ lat: 25.040741099999998, lng: 121.543399 });
+          setCrdUserPosition({ lat: 25.033934, lng: 121.543398 });
           setLot(0);
           setLat(0);
           setNowPositionHandler(false);

@@ -269,7 +269,7 @@ router.post("/fbLogin", (req, res, next) => {
     if (rows.length >= 1) {
       db.query(allMember.getUserByTokenIdSQL(), (error, rows) => {
         res.json({
-          status: "202",
+          status: "202",  
           message: "登入成功跳轉中",
           info: rows[0]
         });
