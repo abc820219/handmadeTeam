@@ -183,14 +183,16 @@ const CartLeft = ({
       let orderCreate_time = await data[0].order_create_time;
       let [orderDate, orderTime] = await orderCreate_time.split("T");
       orderTime = await orderTime.split(".")[0];
-      alert.info(`訂單${order_Sid}於${orderDate}---${orderTime}新增完成`);
+      alert.success(`訂單${order_Sid}新增完成`);
       localStorage.setItem(`courseCart${user}`, "[]");
       await setCourseCards();
       await cartCourseDispatch(checkoutAction());
       localStorage.setItem(`ingreCart${user}`, "[]");
       await setIngreCards();
       await cartIngreDispatch(checkoutAction());
-      window.location = "http://localhost:3000/handmade/member/order";
+      setTimeout(()=>{
+        window.location = "http://localhost:3000/handmade/member/order";
+      },1000)
     } catch (e) {
       console.log(e);
     }

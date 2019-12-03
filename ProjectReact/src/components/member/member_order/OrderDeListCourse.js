@@ -149,7 +149,7 @@ const OrderDeListCourse = ({ orderDetail }) => {
           </li>
           <li>{store_address}</li>
           <li className="orderBtn">
-            <a href={'https://www.google.com/maps/search/' + store_address} target="_blank">Google Map</a>
+            <a href={'https://www.google.com/maps/search/' + store_address} target="_blank" style={{textDecoration:'none',color:'black'}}>Google Map</a>
           </li>
         </ul>
         <hr className="orderDeListCourseHr"></hr>
@@ -159,7 +159,7 @@ const OrderDeListCourse = ({ orderDetail }) => {
           </li>
           <li style={{ width: '60%' }}>{course_ingredient}</li>
           <li className="orderBtn">
-            <a href={`/handmade/store/${store_sid}/course/${course_sid}`}>返回商品頁</a>
+            <a href={`/handmade/store/${store_sid}/course/${course_sid}`} style={{textDecoration:'none',color:'black'}}>返回商品頁</a>
           </li>
         </ul>
         <hr className="orderDeListCourseHr"></hr>
