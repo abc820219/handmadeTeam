@@ -3,29 +3,29 @@ import CartStore from "./CartStore";
 import { checkoutAction } from "./CartAction";
 import { usePaymentInputs } from "react-payment-inputs";
 import { useAlert } from "react-alert";
-import Cards from 'react-credit-cards';
-import 'react-credit-cards/lib/styles.scss';
+import Cards from "react-credit-cards";
+import "react-credit-cards/lib/styles.scss";
 
 export class PaymentForm extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      cvc: '',
-      expiry: '',
-      focus: '',
-      name: '   ',
-      number: '',
+      cvc: "",
+      expiry: "",
+      focus: "",
+      name: "   ",
+      number: ""
     };
   }
 
-  handleInputFocus = (e) => {
+  handleInputFocus = e => {
     this.setState({ focus: e.target.name });
-  }
+  };
 
-  handleInputChange = (e) => {
+  handleInputChange = e => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
-  }
+  };
 
   render() {
     return (
@@ -36,10 +36,12 @@ export class PaymentForm extends React.Component {
           focused={this.state.focus}
           name={this.state.name}
           number={this.state.number}
+          style={{ width: "1000px" }}
         />
-        <form className='creditCardForm d-flex flex-wrap'>
+        <form className="creditCardForm d-flex flex-column">
           <input
-            className='m-2'
+            className="my-3 mx-auto"
+            style={{ maxWidth: "300px" }}
             type="tel"
             name="number"
             placeholder="Card Number"
@@ -50,7 +52,8 @@ export class PaymentForm extends React.Component {
             disabled={!this.props.creditRadio}
           />
           <input
-            className='m-2'
+            className="my-3 mx-auto"
+            style={{ maxWidth: "300px" }}
             type="tel"
             name="expiry"
             placeholder="Expiry"
@@ -60,7 +63,8 @@ export class PaymentForm extends React.Component {
             disabled={!this.props.creditRadio}
           />
           <input
-            className='m-2 mr-auto'
+            className="my-3 mx-auto"
+            style={{ maxWidth: "300px" }}
             type="tel"
             name="cvc"
             placeholder="CVC"
@@ -93,12 +97,8 @@ const CartLeft = ({
   const [bonus, setBonus] = useState(0);
   const [bonusStandard, setBonusStandard] = useState(0);
   const [bonusDuration, setBonusDuration] = useState("");
-  const [creditRadio, setCreditRadio] = useState(false)
-  const {
-    cartCourseDispatch,
-    cartIngreDispatch,
-    id
-  } = useContext(CartStore);
+  const [creditRadio, setCreditRadio] = useState(false);
+  const { cartCourseDispatch, cartIngreDispatch, id } = useContext(CartStore);
   const [couponSelect, setCouponSelect] = useState();
 
   let CartTotal = (courseCards, ingreCards) => {
@@ -289,8 +289,8 @@ const CartLeft = ({
                             })}
                           </select>
                         ) : (
-                            ""
-                          )}
+                          ""
+                        )}
                       </li>
                       {step ? (
                         <li>
@@ -298,12 +298,12 @@ const CartLeft = ({
                           <h4>{couponSelect}折</h4>
                         </li>
                       ) : (
-                          ""
-                        )}
+                        ""
+                      )}
                     </>
                   ) : (
-                      ""
-                    )}
+                    ""
+                  )}
                   <li>
                     <p>可用紅利</p>
                     <h4>$ {bonusUse}</h4>
@@ -322,8 +322,8 @@ const CartLeft = ({
                       />
                     </li>
                   ) : (
-                      ""
-                    )}
+                    ""
+                  )}
                 </ul>
               </div>
               <div>
@@ -350,17 +350,23 @@ const CartLeft = ({
         </div>
         {step ? (
           <>
-            <div className="creditCard mb-5">
+            <div className="creditCard">
               <div className="d-flex align-items-center justify-content-center">
-                <input type="checkbox" name="pay" onChange={() => { setCreditRadio(!creditRadio) }} />
-                <p>信用卡資料</p>
+                <input
+                  type="checkbox"
+                  name="pay"
+                  onChange={() => {
+                    setCreditRadio(!creditRadio);
+                  }}
+                />
+                <p>使用信用卡</p>
               </div>
-              <PaymentForm creditRadio={creditRadio} style={{marginBottom:'300px'}}/>
+              <PaymentForm creditRadio={creditRadio} />
             </div>
           </>
         ) : (
-            ""
-          )}
+          ""
+        )}
         {!step ? (
           <button
             onClick={() => {
@@ -370,8 +376,10 @@ const CartLeft = ({
             NEXT
           </button>
         ) : (
-            <button onClick={() => cartSubmit()} className='mt-5'>CHECK</button>
-          )}
+          <button onClick={() => cartSubmit()} style={{marginTop:"150px"}}>
+            CHECK
+          </button>
+        )}
       </div>
     </>
   );
