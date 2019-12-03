@@ -170,7 +170,7 @@ const OrderDeListTeacher = ({ orderDetail }) => {
           </li>
           <li style={{ width: '60%' }}>{subject_feature}</li>
           <li className="orderBtn">
-            <a href={`/handmade/subject/`}>返回老師頁</a>
+            <a href={`/handmade/teacher/`}>返回老師頁</a>
           </li>
         </ul>
         <hr className="orderDeListCourseHr"></hr>

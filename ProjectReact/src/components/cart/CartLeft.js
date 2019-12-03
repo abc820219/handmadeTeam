@@ -1,11 +1,79 @@
 import React, { useState, useContext, useEffect, useCallback } from "react";
 import CartStore from "./CartStore";
 import { checkoutAction } from "./CartAction";
-import { FieldSet, InputField } from "fannypack";
 import { usePaymentInputs } from "react-payment-inputs";
-import images from "react-payment-inputs/images";
-import { Form, Col } from "react-bootstrap";
 import { useAlert } from "react-alert";
+import Cards from 'react-credit-cards';
+import 'react-credit-cards/lib/styles.scss';
+
+export class PaymentForm extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      cvc: '',
+      expiry: '',
+      focus: '',
+      name: '   ',
+      number: '',
+    };
+  }
+
+  handleInputFocus = (e) => {
+    this.setState({ focus: e.target.name });
+  }
+
+  handleInputChange = (e) => {
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
+  }
+
+  render() {
+    return (
+      <div id="PaymentForm">
+        <Cards
+          cvc={this.state.cvc}
+          expiry={this.state.expiry}
+          focused={this.state.focus}
+          name={this.state.name}
+          number={this.state.number}
+        />
+        <form className='creditCardForm d-flex flex-wrap'>
+          <input
+            className='m-2'
+            type="tel"
+            name="number"
+            placeholder="Card Number"
+            pattern="/^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6011[0-9]{12}|622((12[6-9]|1[3-9][0-9])|([2-8][0-9][0-9])|(9(([0-1][0-9])|(2[0-5]))))[0-9]{10}|64[4-9][0-9]{13}|65[0-9]{14}|3(?:0[0-5]|[68][0-9])[0-9]{11}|3[47][0-9]{13})*$/"
+            maxLength={16}
+            onChange={this.handleInputChange}
+            onFocus={this.handleInputFocus}
+            disabled={!this.props.creditRadio}
+          />
+          <input
+            className='m-2'
+            type="tel"
+            name="expiry"
+            placeholder="Expiry"
+            maxLength={4}
+            onChange={this.handleInputChange}
+            onFocus={this.handleInputFocus}
+            disabled={!this.props.creditRadio}
+          />
+          <input
+            className='m-2 mr-auto'
+            type="tel"
+            name="cvc"
+            placeholder="CVC"
+            maxLength={3}
+            onChange={this.handleInputChange}
+            onFocus={this.handleInputFocus}
+            disabled={!this.props.creditRadio}
+          />
+        </form>
+      </div>
+    );
+  }
+}
 
 const CartLeft = ({
   courseCards,
@@ -18,7 +86,6 @@ const CartLeft = ({
 }) => {
   const alert = useAlert();
   const [cartTotal, setCartTotal] = useState(0);
-  // const [afterCoupon, setAfterCoupon] = useState(localStorage.getItem("afterTotal") ? localStorage.getItem("afterTotal") : 0);
   const [fnCartTotal, setFnCartTotal] = useState(0);
   const [coupon, setCoupon] = useState(0);
   const [couponUse, setCouponUse] = useState(0);
@@ -26,22 +93,13 @@ const CartLeft = ({
   const [bonus, setBonus] = useState(0);
   const [bonusStandard, setBonusStandard] = useState(0);
   const [bonusDuration, setBonusDuration] = useState("");
-  const [creditRadio,setCreditRadio] = useState(false)
+  const [creditRadio, setCreditRadio] = useState(false)
   const {
     cartCourseDispatch,
     cartIngreDispatch,
-    id,
-    courseCart,
-    ingreCart
+    id
   } = useContext(CartStore);
   const [couponSelect, setCouponSelect] = useState();
-  const {
-    meta,
-    getCardNumberProps,
-    getExpiryDateProps,
-    getCVCProps
-  } = usePaymentInputs();
-  const { erroredInputs, touchedInputs } = meta;
 
   let CartTotal = (courseCards, ingreCards) => {
     if (courseCards && ingreCards) {
@@ -231,8 +289,8 @@ const CartLeft = ({
                             })}
                           </select>
                         ) : (
-                          ""
-                        )}
+                            ""
+                          )}
                       </li>
                       {step ? (
                         <li>
@@ -240,12 +298,12 @@ const CartLeft = ({
                           <h4>{couponSelect}折</h4>
                         </li>
                       ) : (
-                        ""
-                      )}
+                          ""
+                        )}
                     </>
                   ) : (
-                    ""
-                  )}
+                      ""
+                    )}
                   <li>
                     <p>可用紅利</p>
                     <h4>$ {bonusUse}</h4>
@@ -264,8 +322,8 @@ const CartLeft = ({
                       />
                     </li>
                   ) : (
-                    ""
-                  )}
+                      ""
+                    )}
                 </ul>
               </div>
               <div>
@@ -292,60 +350,17 @@ const CartLeft = ({
         </div>
         {step ? (
           <>
-            <div className="creditCard">
-              <div className="d-flex align-items-center">
-                <input type="checkbox" name="pay" onChange={()=>{setCreditRadio(!creditRadio)}}/>
+            <div className="creditCard mb-5">
+              <div className="d-flex align-items-center justify-content-center">
+                <input type="checkbox" name="pay" onChange={() => { setCreditRadio(!creditRadio) }} />
                 <p>信用卡資料</p>
               </div>
-              <Form>
-                <Form.Row>
-                  <Form.Group as={Col} lg="12">
-                    <Form.Label>Card number</Form.Label>
-                    <Form.Control disabled={!creditRadio}
-                      // Here is where React Payment Inputs injects itself into the input element.
-                      {...getCardNumberProps()}
-                      // You can retrieve error state by making use of the error & touched attributes in `meta`.
-                      isInvalid={
-                        touchedInputs.cardNumber && erroredInputs.cardNumber
-                      }
-                      placeholder="0000 0000 0000 0000"
-                    />
-                    <Form.Control.Feedback type="invalid">
-                      {erroredInputs.cardNumber}
-                    </Form.Control.Feedback>
-                  </Form.Group>
-                  <Form.Group as={Col} style={{ maxWidth: "10rem" }}>
-                    <Form.Label>Expiry date</Form.Label>
-                    <Form.Control
-                    disabled={!creditRadio}
-                      {...getExpiryDateProps()}
-                      isInvalid={
-                        touchedInputs.expiryDate && erroredInputs.expiryDate
-                      }
-                    />
-                    <Form.Control.Feedback type="invalid">
-                      {erroredInputs.expiryDate}
-                    </Form.Control.Feedback>
-                  </Form.Group>
-                  <Form.Group as={Col} style={{ maxWidth: "7rem" }}>
-                    <Form.Label>CVC</Form.Label>
-                    <Form.Control
-                    disabled={!creditRadio}
-                      {...getCVCProps()}
-                      isInvalid={touchedInputs.cvc && erroredInputs.cvc}
-                      placeholder="123"
-                    />
-                    <Form.Control.Feedback type="invalid">
-                      {erroredInputs.cvc}
-                    </Form.Control.Feedback>
-                  </Form.Group>
-                </Form.Row>
-              </Form>
+              <PaymentForm creditRadio={creditRadio} style={{marginBottom:'300px'}}/>
             </div>
           </>
         ) : (
-          ""
-        )}
+            ""
+          )}
         {!step ? (
           <button
             onClick={() => {
@@ -355,8 +370,8 @@ const CartLeft = ({
             NEXT
           </button>
         ) : (
-          <button onClick={() => cartSubmit()}>CHECK</button>
-        )}
+            <button onClick={() => cartSubmit()} className='mt-5'>CHECK</button>
+          )}
       </div>
     </>
   );
