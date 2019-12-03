@@ -127,7 +127,7 @@ function MemberRegister(props) {
             alert.success(member_data.message);
             setTimeout(() => {
               window.location = "http://localhost:3000/handmade/member";
-            });
+            },1500);
           })
           .catch(async err => {
             console.log(err);

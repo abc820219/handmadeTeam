@@ -77,6 +77,9 @@ function Map({
       defaultOptions={{ styles: mapStyles }}
       zoom={defaultZoomMap}
       center={{ lat: defaultLat, lng: defaultLng }}
+      // options={{ 
+      //   mapTypeControl: false
+      //  }}
     >
       {nowPositionHandler && (
         <Marker
@@ -169,6 +172,7 @@ function Map({
 }
 
 const MapWrapped = withScriptjs(withGoogleMap(Map));
+
 function FindStore(props) {
   console.log(navigator.geolocation);
   const [selectedPark, setSelectedPark] = useState(null);
