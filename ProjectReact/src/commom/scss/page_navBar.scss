@@ -108,6 +108,7 @@
   .navbar-profile {
     position: relative;
     .navbar-img-box {
+      cursor: pointer;
       width: 40px;
       height: 40px;
       border-radius: 50%;
@@ -230,7 +231,7 @@
           height: 100%;
           top: 0;
           left: 0;
-          filter: brightness(.5);
+          filter: brightness(0.5);
         }
         li {
           width: 100%;
@@ -239,7 +240,7 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          transition: .5s;
+          transition: 0.5s;
           position: relative;
           .chooseLinkHover {
             opacity: 1;
@@ -262,7 +263,7 @@
             margin: 0 10px 0 0;
             text-align: right;
             opacity: 1;
-            transition: .5s;
+            transition: 0.5s;
             cursor: pointer;
           }
           .chooseImageHover {
@@ -273,16 +274,13 @@
           justify-content: flex-start;
           align-items: flex-start;
         }
-        .chooseLiHover:hover .choosePHover{
-
+        .chooseLiHover:hover .choosePHover {
         }
-        .chooseLiHover:hover .chooseLinkHover  {
-
+        .chooseLiHover:hover .chooseLinkHover {
         }
         .chooseLiHover:hover .chooseImageHover {
-
         }
       }
-    }    
+    }
   }
 }
