@@ -253,15 +253,19 @@
       flex-wrap: wrap;
       overflow: hidden;
       max-height: 65vh;
+     
       img {
         width: 100%;
         opacity: 0.39;
+
       }
 
       .course_store_info {
         width: 25%;
         height: 100%;
         position: relative;
+        cursor: pointer;
+      
         .course_store_info_wrap {
           display: flex;
           flex-direction: column;
@@ -271,6 +275,8 @@
           left: 50%;
           align-content: center;
           justify-items: center;
+     
+          
 
           .course_store_info_txt {
             font-family: niagara, serif;
@@ -279,6 +285,8 @@
             transform: translateX(-50%);
             left: 50%;
             top: 1px;
+            pointer-events: none ;
+
           }
           .course_store_info_minTxt {
             font-family: niagara, serif;
@@ -496,6 +504,7 @@
         color: #f78177;
         display: block;
         transition: none;
+        cursor: pointer;
       }
       .course_filter_bar {
         // border: 1px black solid;
@@ -600,6 +609,7 @@
         color: #362d2b;
         z-index: 25;
         display: block;
+        cursor: pointer;
       }
       .open_close {
         display: none;
@@ -950,6 +960,7 @@
         color: #f78177;
         display: block;
         transition: none;
+        cursor: pointer;
       }
       .course_filter_bar {
         // border: 1px black solid;
@@ -1052,6 +1063,7 @@
         color: #362d2b;
         z-index: 25;
         display: block;
+        cursor: pointer;
       }
       .open_close {
         display: none;
@@ -1402,6 +1414,7 @@
         color: #f78177;
         display: block;
         transition: none;
+        cursor: pointer;
       }
       .course_filter_bar {
         // border: 1px black solid;
@@ -1504,6 +1517,7 @@
         color: #362d2b;
         z-index: 25;
         display: block;
+        cursor: pointer;
       }
       .open_close {
         display: none;
@@ -1826,6 +1840,7 @@
         color: #f78177;
         display: block;
         transition: none;
+        cursor: pointer;
       }
       .course_filter_bar {
         // border: 1px black solid;
@@ -1929,6 +1944,7 @@
         color: #362d2b;
         z-index: 25;
         display: block;
+        cursor: pointer;
       }
       .open_close {
         display: none;
