@@ -31,7 +31,6 @@ body {
     }
     100% {
       background-position: 0% 50%;
-
     }
   }
   .teacher-list-page {
@@ -102,7 +101,8 @@ body {
 
       button {
         padding-left: 2%;
-        font-size: 18px;
+        font-size: 19px;
+        margin-left: 3px;
       }
 
       .btn-slide {
@@ -332,83 +332,100 @@ body {
   }
 }
 
-// =========RWD (max-width: 400px)============
+// =========RWD (max-width: 500px)============
 @media (max-width: 500px) {
-  .teacher-list-page {
-    .left-img {
-      display: none;
-    }
-    .shadow-tea1 {
-      display: none;
-    }
-    .shadow-tea2 {
-      display: none;
-    }
-    .teacherlist{
-      display: none;
-    }
-    .silder-circle {
-      .slider-box {
-        width: 280px;
-        height: 280px;
-        position: absolute;
-        left: 11%;
-        top: 23%;
-      }
-    }
-    .right-img {
-      display: none;
-    }
-    .right-img-subject {
-      display: block;
-      width: 100%;
-      height: 250px;
-      overflow: hidden;
-      object-fit: cover;
-      position: absolute;
-      bottom: -12%;
-      .link-subject {
-        position: absolute;
-        top: 7%;
-        left: 89%;
-        a {
-          color: #c57647;
-          font-size: 30px;
-        }
-      }
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-    }
-    .teacher-page-left {
-      width: 0%;
-    }
-    .teacher-page-right {
-      width: 0%;
-    }
-    .teacher-page-center {
-      height: 100%;
-      width: 100%;
-      .teacher-name {
-        // padding-top: 3%;
-        h1 {
-          font-size: 150px;
-        }
-      }
-      .teacher-intro {
-        padding-top: 74%;
-        .teacher-intro-box {
-          width: 100%;
-          margin-left: 19%;
-        }
-      }
-      .teacher-expe {
+  .background_first {
+    .teacher-list-page {
+      .left-img {
         display: none;
       }
-      .slider-btn-box {
-        top: 51%;
+      .shadow-tea1 {
+        display: none;
+      }
+      .shadow-tea2 {
+        display: none;
+      }
+      .teacherlist {
+        display: none;
+      }
+      .silder-circle {
+        .slider-box {
+          width: 300px;
+          height: 300px;
+          position: absolute;
+          left: 18%;
+          top: 26%;
+        }
+      }
+      .right-img {
+        display: none;
+      }
+      .cover {
+        display: none;
+      }
+      .wordBox {
+        display: none;
+      }
+      .shadow-sub {
+        display: none;
+      }
+      .right-img-subject {
+        display: block;
+        width: 100%;
+        height: 250px;
+        overflow: hidden;
+        object-fit: cover;
+        position: absolute;
+        bottom: -6%;
+        .link-subject {
+          position: absolute;
+          top: 7%;
+          left: 89%;
+          a {
+            color: #c57647;
+            font-size: 30px;
+          }
+        }
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+      .teacher-page-left {
+        width: 0%;
+      }
+      .teacher-page-right {
+        width: 0%;
+      }
+      .teacher-page-center {
+        height: 100%;
+        width: 100%;
+        .teacher-name {
+          // padding-top: 3%;
+          .baker{
+            font-size: 20px;
+          }
+          h1 {
+            font-size: 120px;
+          }
+        }
+        .teacher-intro {
+          padding-top: 60%;
+          .teacher-intro-box {
+            width: 100%;
+            margin-left: 19%;
+          }
+        }
+        .teacher-expe {
+          display: none;
+        }
+        .slider-btn-box {
+          top: 52%;
+          button{
+            margin-left: 9px;
+          }
+        }
       }
     }
   }

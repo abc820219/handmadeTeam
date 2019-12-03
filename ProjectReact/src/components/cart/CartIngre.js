@@ -46,7 +46,7 @@ const CartIngre = ({ ingreSid, ingreName, ingrePic, ingreOrderQty, ingreEnName, 
             src={`/image/ingredients/${ingrePic}`}
             alt=""
             width="100%"
-            // height="100%"
+            height="100%"
           />
         </figure>
       </div>

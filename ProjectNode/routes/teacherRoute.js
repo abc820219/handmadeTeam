@@ -118,7 +118,7 @@ router.get("/", (req, res) => {
 //post表單資料
 router.route("/subject/order").post(function(req, response) {
   // console.lusernameog(subjectId);
-  console.log(req.body);
+  console.log(req.body.usersid, req.body.totalPrice);
   let user = req.body.usersid;
   let totalprice = req.body.totalPrice;
   db.queryAsync(
@@ -128,26 +128,28 @@ router.route("/subject/order").post(function(req, response) {
     db.queryAsync(
       "SELECT `order_sid`  FROM `order` WHERE `member_sid` = (?) ORDER BY `order_create_time` DESC LIMIT 1",
       [user]
-    ).then(res => {
-      console.log(res[0].order_sid);
-      db.queryAsync(
-        "INSERT INTO `subject_order`(`order_sid`, `subject_sid`, `subject_applicants_name`, `subject_applicants_phone`, `subject_applicants`) VALUES (?,?,?,?,?)",
-        [
-          res[0].order_sid,
-          req.body.subject_sid,
-          req.body.username,
-          req.body.phone,
-          req.body.people
-        ]
-      ).then(results =>
-        results.affectedRows >= 1
-          ? response.json({ status: 200 })
-          : response.json({ status: 400 })
-      );
-    })
-    .catch((error)=>{
-      console.log("Sql錯誤",error)
-    })
+    )
+      .then(res => {
+        console.log(res[0].order_sid);
+        db.queryAsync(
+          "INSERT INTO `subject_order`(`order_sid`, `subject_sid`, `subject_applicants_name`, `subject_applicants_phone`, `subject_applicants`) VALUES (?,?,?,?,?)",
+          [
+            res[0].order_sid,
+            req.body.subject_sid,
+            req.body.username,
+            req.body.phone,
+            req.body.people
+          ]
+        ).then(results => {
+          console.log(results);
+          results.affectedRows >= 1
+            ? response.json({ status: 200 })
+            : response.json({ status: 400 });
+        });
+      })
+      .catch(error => {
+        console.log("Sql錯誤", error);
+      });
   });
 });
 

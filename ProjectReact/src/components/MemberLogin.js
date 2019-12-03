@@ -213,11 +213,18 @@ function MemberLogin(props) {
           }
           onClick={props.memberSignIn}
         >
-          {props.bgImg && (
-            <div className="perf-link">
-              <a href="">12345678</a>
-            </div>
-          )}
+        <div className="go-to-item ">前往商品頁</div>
+
+       <div className="perf-link ">
+           
+       {props.bgImg == 1 ? <a href="http://localhost:3000/handmade/store/7/course/148" className="btn1 btn-2">小蛋糕</a> : ""}
+           {props.bgImg == 2 ? <a href="http://localhost:3000/handmade/store/7/course/149" className="btn1 btn-2">馬卡龍</a> : ""}
+           {props.bgImg == 3 ? <a href="http://localhost:3000/handmade/store/7/course/150" className="btn1 btn-2">蝴蝶餅</a> : ""}
+           {props.bgImg == 4 ? <a href="http://localhost:3000/handmade/store/7/course/151" className="btn1 btn-2">小甜點</a> : ""}
+           {props.bgImg == 5 ? <a href="http://localhost:3000/handmade/store/7/course/152" className="btn1 btn-2">鹹蛋糕</a> : ""}
+           {props.bgImg == 6 ? <a href="http://localhost:3000/handmade/store/7/course/159" className="btn1 btn-2">檸檬塔</a> : ""}
+           {props.bgImg == 7 ? <a href="http://localhost:3000/handmade/store/7/course/296" className="btn1 btn-2">抹茶塔</a> : ""}
+         </div>
         </div>
       </>
     );

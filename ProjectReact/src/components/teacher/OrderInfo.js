@@ -6,10 +6,10 @@ import { useAlert } from "react-alert";
 
 const AlerTeacher = props => {
   const alert = useAlert();
-  if (props.step === 1) {
+  if (props.step == 1) {
     alert.success("報名成功");
   }
-  if (props.step === 2) {
+  if (props.step == 2) {
     alert.error("請填寫完整資料");
   }
   return <></>;
@@ -24,13 +24,18 @@ class OrderInfo extends Component {
       people: "1",
       // 最大可報名人數
       maxPeople: "",
-      step: false
+      step: false,
+      usersid: ""
     };
   }
   componentDidMount() {
     // this.getApiData();
+    console.log("33" + this.state.step);
     this.getSubjectInfo();
     this.getSubjectOrder();
+    this.setState({ usersid: localStorage.getItem("member_id") }, () => {
+      console.log(this.state.usersid);
+    });
   }
 
   // ------------ 取得開課資料------------
@@ -149,17 +154,18 @@ class OrderInfo extends Component {
   // ------------post API 上傳報名資料------------
   //post表單到資料庫
   postMeberInfo = () => {
-    let usersid = localStorage.getItem("member_id"); //(在Application裡看)抓localStorage裡key為member_id的value
+    // let usersid = localStorage.getItem("member_id");
+    //(在Application裡看)抓localStorage裡key為member_id的value
 
-    console.log("order_sid:", usersid);
+    // console.log("order_sid:", usersid);
     console.log("subject_sid:", this.props.subject_sid);
     console.log("username:", this.state.username);
     console.log("phone:", this.state.phone);
     console.log("people:", this.state.people);
     console.log(this.state.subject_price * this.state.people);
-
+    console.log("166" + this.state.step);
     let postData = {
-      usersid: usersid, //會員訂單編號
+      usersid: this.state.usersid, //會員訂單編號
       subject_sid: this.props.subject_sid,
       username: this.state.username,
       phone: this.state.phone,
@@ -179,22 +185,27 @@ class OrderInfo extends Component {
         },
         body: JSON.stringify(postData)
       })
-        .then(function(response) {
+        .then(response => {
+          console.log(response);
+          // this.setState({ step: 1 });
           return response.json();
         })
-        .then(function(data) {
+        .then(data => {
+          console.log(data);
+          console.log("成功");
           this.setState({ step: 1 }, () => {
-            console.log("成功");
+            this.setState({ step: false });
           });
-          // alert.sccess("已完成預訂");
         })
         .catch(error => {});
     } else {
       this.setState({ step: 2 }, () => {
         console.log("失敗");
+        this.setState({ step: false });
       });
+      console.log("206" + this.state.step);
     }
-    };
+  };
 
   render() {
     // console.log("props:", this.props.subject_sid);
@@ -222,10 +233,6 @@ class OrderInfo extends Component {
               <div className="order-subject-date">
                 {this.state.subject_date}
               </div>
-              {/* <div className="order-subject-address">
-                {this.state.subject_address}
-              </div> */}
-              {/* <div className="member-name">會員xxx</div> */}
               <div className="user-box">
                 <label>報名人 :</label>
                 <input
