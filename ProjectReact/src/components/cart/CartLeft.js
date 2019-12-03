@@ -26,7 +26,7 @@ const CartLeft = ({
   const [bonus, setBonus] = useState(0);
   const [bonusStandard, setBonusStandard] = useState(0);
   const [bonusDuration, setBonusDuration] = useState("");
-
+  const [creditRadio,setCreditRadio] = useState(false)
   const {
     cartCourseDispatch,
     cartIngreDispatch,
@@ -137,7 +137,6 @@ const CartLeft = ({
       console.log(e);
     }
   };
-
   const checkBonus = e => {
     setBonus(e.target.value > bonusUse ? bonus : e.target.value);
   };
@@ -295,14 +294,14 @@ const CartLeft = ({
           <>
             <div className="creditCard">
               <div className="d-flex align-items-center">
-                <input type="radio" name="pay" />
+                <input type="checkbox" name="pay" onChange={()=>{setCreditRadio(!creditRadio)}}/>
                 <p>信用卡資料</p>
               </div>
               <Form>
                 <Form.Row>
                   <Form.Group as={Col} lg="12">
                     <Form.Label>Card number</Form.Label>
-                    <Form.Control
+                    <Form.Control disabled={!creditRadio}
                       // Here is where React Payment Inputs injects itself into the input element.
                       {...getCardNumberProps()}
                       // You can retrieve error state by making use of the error & touched attributes in `meta`.
@@ -318,6 +317,7 @@ const CartLeft = ({
                   <Form.Group as={Col} style={{ maxWidth: "10rem" }}>
                     <Form.Label>Expiry date</Form.Label>
                     <Form.Control
+                    disabled={!creditRadio}
                       {...getExpiryDateProps()}
                       isInvalid={
                         touchedInputs.expiryDate && erroredInputs.expiryDate
@@ -330,6 +330,7 @@ const CartLeft = ({
                   <Form.Group as={Col} style={{ maxWidth: "7rem" }}>
                     <Form.Label>CVC</Form.Label>
                     <Form.Control
+                    disabled={!creditRadio}
                       {...getCVCProps()}
                       isInvalid={touchedInputs.cvc && erroredInputs.cvc}
                       placeholder="123"
