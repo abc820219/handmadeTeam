@@ -19,41 +19,33 @@
 會員系統<br>
 優惠卷系統<br>
 google地圖api<br>
+facebookapi<br>
 串接其他頁面<br>
 git 版本主控<br>
 
 # 專案內容(負責部分示意圖)
 
-# 導覽頁
+# 會員登入登出
 
 ![image](https://github.com/abc820219/baking/blob/master/bakeImg/navgation.png)
 
-# 首頁
+![image](https://github.com/abc820219/baking/blob/master/bakeImg/navgation.png)
+
+# 會員系統
+
+![image](https://github.com/abc820219/baking/blob/master/bakeImg/home.png)
+
+![image](https://github.com/abc820219/baking/blob/master/bakeImg/home.png)
+
+# 優惠卷系統
 
 ![image](https://github.com/abc820219/baking/blob/master/bakeImg/home.png)
 
 
-# 產品頁
+# googleApi
 
 ![image](https://github.com/abc820219/baking/blob/master/bakeImg/coupon.png)
 
 ![image](https://github.com/abc820219/baking/blob/master/bakeImg/product.png)
 
-
-# 購物車功能
-
-購物車填寫表單
-
-![image](https://github.com/abc820219/baking/blob/master/bakeImg/cart.png)
-
-
-購物車訂單送出
-
-![image](https://github.com/abc820219/baking/blob/master/bakeImg/pay.png)
-
-
-
-# RWD
-
-![image](https://github.com/abc820219/baking/blob/master/bakeImg/RWD.png)
 
