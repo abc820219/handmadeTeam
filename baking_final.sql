@@ -1093,7 +1093,8 @@ INSERT INTO `course_order` (`course_order_sid`, `order_sid`, `course_sid`, `cour
 (147, 304, 105, '2019-12-19 12:00:00', 1, 0, 0),
 (148, 319, 31, '2019-12-13 15:00:00', 1, 0, 0),
 (151, 325, 227, '2019-12-24 09:00:00', 2, 0, 0),
-(152, 332, 197, '2019-12-12 15:00:00', 4, 0, 0);
+(152, 332, 197, '2019-12-12 15:00:00', 4, 0, 0),
+(155, 345, 197, '2019-12-12 12:00:00', 4, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -1334,7 +1335,8 @@ INSERT INTO `ingredients_order` (`ingredients_order_sid`, `order_sid`, `ingredie
 (159, 338, 41, 1, 0),
 (160, 339, 35, 1, 0),
 (161, 340, 43, 1, 0),
-(162, 341, 25, 1, 0);
+(162, 341, 25, 1, 0),
+(163, 345, 29, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -1380,7 +1382,7 @@ INSERT INTO `member` (`member_sid`, `member_account`, `member_password`, `member
 (66, 'barbeer21', 'accle123456', 'beerBar21@gmail.com', '', '', '', '', NULL, '', '', 393, '2019-11-30 16:39:14'),
 (67, '123456', '1234567', 'abc820219@yahoo.com.tw', '', '', '123456', '', '2019-01-01', '', '', 0, '2019-12-01 19:09:39'),
 (68, '6666', '123456', 'z27089433@gmail.com', '', '', '', '', NULL, '', '', 0, '2019-12-01 19:24:44'),
-(69, '', '', 'beerBar21@gmail.com', '3171644589573233', '', 'Liu Han-wen', '', '2019-01-01', '', '', 190, '2019-12-02 21:23:54'),
+(69, '', '', 'beerBar21@gmail.com', '3171644589573233', '', 'Liu Han-wen', '', '2019-01-01', '', '', 132, '2019-12-02 21:23:54'),
 (70, '9999', '9999', 'z27089433@gmail.com', '', '', '', '', NULL, '', '', 868, '2019-12-02 21:26:24'),
 (71, '99999', '99999', 'z27089433@gmail.com', '', '', '', '', NULL, '', '', 0, '2019-12-02 23:44:29'),
 (72, '999999', '9999999', 'z27089433@gmail.com', '', '', '123', '', '2019-01-01', '', '', 0, '2019-12-02 23:45:50'),
@@ -1388,7 +1390,9 @@ INSERT INTO `member` (`member_sid`, `member_account`, `member_password`, `member
 (74, '', '', 'undefined', 'undefined', '', 'undefined', '', NULL, '', '', 0, '2019-12-03 13:48:08'),
 (75, 'abc820299', 'a112233', 'beerBar21@gmail.com', '', '', 'hanwen', '文', '2019-01-01', '0976562513', '台北市大安區通化街', 515, '2019-12-03 16:17:19'),
 (76, '7777', '7777', 'beerBar21@gmail.com', '', '', 'liuhanwen ', '文', '2019-01-01', '0976562513', '台北市大安區通化街19巷11號', 72, '2019-12-03 16:49:55'),
-(77, 'beerBar21', 'beerBar22', 'beerBar21@gmail.com', '', '', 'liuhanwen ', '文', '2019-01-01', '0976562513', '台北市大安區通化街', 44, '2019-12-03 19:15:42');
+(77, 'beerBar21', 'beerBar22', 'beerBar21@gmail.com', '', '', 'liuhanwen ', '文', '2019-01-01', '0976562513', '台北市大安區通化街', 44, '2019-12-03 19:15:42'),
+(78, 'kkkk', 'kkkk', 'abc820219@yahoo.com.tw', '', '', '', '', NULL, '', '', 0, '2019-12-04 09:09:35'),
+(79, 'beerBar23', 'beerBar24', 'beerBar21@gmail.com', '', '', '', '', '2019-01-01', '0976562513', '', 0, '2019-12-04 10:10:35');
 
 -- --------------------------------------------------------
 
@@ -1434,7 +1438,8 @@ INSERT INTO `member_coupon` (`member_coupon_sid`, `member_sid`, `coupon_sid`, `m
 (52, 76, 3, 0, '2019-12-03 16:56:04'),
 (53, 69, 2, 1, '2019-12-03 19:19:24'),
 (54, 74, 1, 0, '2019-12-03 21:21:52'),
-(55, 74, 2, 0, '2019-12-03 21:21:54');
+(55, 74, 2, 0, '2019-12-03 21:21:54'),
+(56, 69, 3, 1, '2019-12-04 10:14:25');
 
 -- --------------------------------------------------------
 
@@ -1510,7 +1515,9 @@ INSERT INTO `member_photo` (`member_photo_sid`, `member_sid`, `member_photo_name
 (71, 1, 'dog.jpg', 0, '2019-12-02 12:47:36'),
 (72, 75, 'BIGHEAD.jpeg', 0, '2019-12-03 16:21:01'),
 (73, 77, 'BIGHEAD.jpeg', 0, '2019-12-03 19:18:20'),
-(74, 74, 'BIGHEAD.jpeg', 0, '2019-12-03 21:22:10');
+(74, 74, 'BIGHEAD.jpeg', 0, '2019-12-03 21:22:10'),
+(75, 78, 'cake2.jpg', 0, '2019-12-04 09:09:43'),
+(76, 79, 'BIGHEAD.jpeg', 0, '2019-12-04 10:10:50');
 
 -- --------------------------------------------------------
 
@@ -1710,7 +1717,15 @@ INSERT INTO `order` (`order_sid`, `member_sid`, `coupon_sid`, `order_total_price
 (339, 1, 0, 80, 0, '2019-12-03 21:31:57'),
 (340, 1, 0, 186, 0, '2019-12-03 21:33:04'),
 (341, 69, 0, 550, 0, '2019-12-03 22:22:38'),
-(342, 1, 0, 8000, 0, '2019-12-04 00:55:32');
+(342, 1, 0, 8000, 0, '2019-12-04 00:55:32'),
+(343, 61, 0, 4000, 0, '2019-12-04 09:09:09'),
+(344, 69, 0, 4000, 0, '2019-12-04 10:21:13'),
+(345, 69, 3, 1638, 190, '2019-12-04 10:25:24'),
+(346, 1, 0, 4000, 0, '2019-12-06 11:26:32'),
+(347, 1, 0, 4000, 0, '2019-12-06 11:29:24'),
+(348, 1, 0, 4000, 0, '2019-12-06 11:36:15'),
+(349, 1, 0, 4000, 0, '2019-12-06 11:45:52'),
+(350, 1, 0, 4000, 0, '2019-12-06 11:49:09');
 
 -- --------------------------------------------------------
 
@@ -1931,9 +1946,11 @@ INSERT INTO `subject_order` (`subject_order_sid`, `order_sid`, `subject_sid`, `s
 (88, 322, 5, 'eva', '0923456456', 2),
 (89, 326, 10, 'Annie', '0945678999', 1),
 (90, 329, 12, 'Annie', '0945678900', 2),
-(91, 330, 12, 'eva', '0945678900', 1),
 (92, 331, 6, 'eva', '0976562513', 4),
-(93, 342, 6, 'Ben', '0989123456', 2);
+(93, 342, 6, 'Ben', '0989123456', 2),
+(94, 343, 6, 'troy0606', '0975123456', 1),
+(95, 344, 6, 'eva', '0976562513', 1),
+(100, 350, 12, 'Annie', '0945678900', 1);
 
 -- --------------------------------------------------------
 
@@ -2239,7 +2256,7 @@ ALTER TABLE `course_ind`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `course_order`
 --
 ALTER TABLE `course_order`
-  MODIFY `course_order_sid` int(11) NOT NULL AUTO_INCREMENT COMMENT '課程訂單編號', AUTO_INCREMENT=155;
+  MODIFY `course_order_sid` int(11) NOT NULL AUTO_INCREMENT COMMENT '課程訂單編號', AUTO_INCREMENT=156;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `ingredients`
@@ -2257,19 +2274,19 @@ ALTER TABLE `ingredients_cart`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `ingredients_order`
 --
 ALTER TABLE `ingredients_order`
-  MODIFY `ingredients_order_sid` int(11) NOT NULL AUTO_INCREMENT COMMENT '食材訂單編號', AUTO_INCREMENT=163;
+  MODIFY `ingredients_order_sid` int(11) NOT NULL AUTO_INCREMENT COMMENT '食材訂單編號', AUTO_INCREMENT=164;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `member`
 --
 ALTER TABLE `member`
-  MODIFY `member_sid` int(11) NOT NULL AUTO_INCREMENT COMMENT '會員編號', AUTO_INCREMENT=78;
+  MODIFY `member_sid` int(11) NOT NULL AUTO_INCREMENT COMMENT '會員編號', AUTO_INCREMENT=80;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `member_coupon`
 --
 ALTER TABLE `member_coupon`
-  MODIFY `member_coupon_sid` int(11) NOT NULL AUTO_INCREMENT COMMENT '會員優惠卷編號', AUTO_INCREMENT=56;
+  MODIFY `member_coupon_sid` int(11) NOT NULL AUTO_INCREMENT COMMENT '會員優惠卷編號', AUTO_INCREMENT=57;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `member_like`
@@ -2281,13 +2298,13 @@ ALTER TABLE `member_like`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `member_photo`
 --
 ALTER TABLE `member_photo`
-  MODIFY `member_photo_sid` int(11) NOT NULL AUTO_INCREMENT COMMENT '照片編號', AUTO_INCREMENT=75;
+  MODIFY `member_photo_sid` int(11) NOT NULL AUTO_INCREMENT COMMENT '照片編號', AUTO_INCREMENT=77;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `order`
 --
 ALTER TABLE `order`
-  MODIFY `order_sid` int(11) NOT NULL AUTO_INCREMENT COMMENT '會員訂單編號', AUTO_INCREMENT=343;
+  MODIFY `order_sid` int(11) NOT NULL AUTO_INCREMENT COMMENT '會員訂單編號', AUTO_INCREMENT=351;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `order_status`
@@ -2329,7 +2346,7 @@ ALTER TABLE `subject_img`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `subject_order`
 --
 ALTER TABLE `subject_order`
-  MODIFY `subject_order_sid` int(11) NOT NULL AUTO_INCREMENT COMMENT '開課訂單編號', AUTO_INCREMENT=94;
+  MODIFY `subject_order_sid` int(11) NOT NULL AUTO_INCREMENT COMMENT '開課訂單編號', AUTO_INCREMENT=101;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `teacher`
