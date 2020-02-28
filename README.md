@@ -25,7 +25,7 @@ git 版本主控<br>
 
 # 專案內容(負責部分示意圖)
 
-# 會員登入登出
+# 會員登入註冊
 
 ![image](https://github.com/abc820219/handmadeTeam/blob/master/handmadeImg/home.png)
 
