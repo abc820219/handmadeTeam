@@ -27,25 +27,24 @@ git 版本主控<br>
 
 # 會員登入登出
 
-![image](https://github.com/abc820219/baking/blob/master/bakeImg/navgation.png)
+![image](https://github.com/abc820219/handmadeTeam/blob/master/handmadeImg/home.png)
 
-![image](https://github.com/abc820219/baking/blob/master/bakeImg/navgation.png)
+![image](https://github.com/abc820219/handmadeTeam/blob/master/handmadeImg/register.png)
 
 # 會員系統
 
-![image](https://github.com/abc820219/baking/blob/master/bakeImg/home.png)
+![image](https://github.com/abc820219/handmadeTeam/blob/master/handmadeImg/memberInfo.png)
 
-![image](https://github.com/abc820219/baking/blob/master/bakeImg/home.png)
+![image](https://github.com/abc820219/handmadeTeam/blob/master/handmadeImg/password.png)
 
 # 優惠卷系統
 
-![image](https://github.com/abc820219/baking/blob/master/bakeImg/home.png)
+![image](https://github.com/abc820219/handmadeTeam/blob/master/handmadeImg/coupon.png)
 
 
 # googleApi
 
-![image](https://github.com/abc820219/baking/blob/master/bakeImg/coupon.png)
+![image](https://github.com/abc820219/handmadeTeam/blob/master/handmadeImg/googleApi.png)
 
-![image](https://github.com/abc820219/baking/blob/master/bakeImg/product.png)
 
 
