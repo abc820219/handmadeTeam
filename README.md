@@ -1,8 +1,7 @@
 # 享烘烘焙共享平台網站(六人專案)
 
 使用 React.js 製作電商網站
-
- width="800" height="450" src="https://youtu.be/ydU_z_tpGL0?t=2260" allowfullscreen=""> <br/>&#10;
+https://youtu.be/ydU_z_tpGL0?t=2260
 
 # 專案使用者故事
 
